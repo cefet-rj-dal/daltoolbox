@@ -106,6 +106,66 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/normalize.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.bar.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.boxplot.class.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.boxplot.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.correlation.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.density.class.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.density.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.dotchar.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.groupedbar.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.hist.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.lollipop.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.norm_dist.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.pair.adv.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.pair.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.pieplot.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.points.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.radar.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.scatter.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.series.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.series_second_axis.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.stackedbar.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/prepare_ranges.html</loc>
   </url>
   <url>
