@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">dal</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.18</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.27</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -139,7 +139,8 @@
 <span><span class="co">#&gt;     optimize</span></span>
 <span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     jitter, transform</span></span></code></pre></div>
+<span><span class="co">#&gt;     jitter, transform</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pkg.robjhyndman.com/forecast/" class="external-link">forecast</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="time-series-regression---arima">Time Series Regression - arima<a class="anchor" aria-label="anchor" href="#time-series-regression---arima"></a>
 </h3>
@@ -190,7 +191,7 @@
 <span></span>
 <span><span class="va">io_train</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ts_projection.html">ts_projection</a></span><span class="op">(</span><span class="va">samp</span><span class="op">$</span><span class="va">train</span><span class="op">)</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit.html">fit</a></span><span class="op">(</span><span class="va">model</span>, x<span class="op">=</span><span class="va">io_train</span><span class="op">$</span><span class="va">input</span>, y<span class="op">=</span><span class="va">io_train</span><span class="op">$</span><span class="va">output</span><span class="op">)</span></span>
-<span><span class="co">#&gt; tsreg_arima,0.004</span></span>
+<span><span class="co">#&gt; tsreg_arima,0.003</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu">describe</span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "tsreg_arima"</span></span></code></pre></div>

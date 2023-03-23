@@ -19,7 +19,18 @@ articles:
   reg_mlp: reg_mlp.html
   reg_rf: reg_rf.html
   reg_svm: reg_svm.html
-last_built: 2023-03-23T04:11Z
+  ts_arima: ts_arima.html
+  ts_augment: ts_augment.html
+  ts_data: ts_data.html
+  ts_elm: ts_elm.html
+  ts_filter: ts_filter.html
+  ts_mlp: ts_mlp.html
+  ts_preprocessing: ts_preprocessing.html
+  ts_rf: ts_rf.html
+  ts_svm: ts_svm.html
+  ts_swfilter: ts_swfilter.html
+  ts_tune: ts_tune.html
+last_built: 2023-03-23T04:30Z
 urls:
   reference: https://cefet-rj-dal.github.io/dal/reference
   article: https://cefet-rj-dal.github.io/dal/articles
