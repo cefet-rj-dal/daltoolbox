@@ -211,7 +211,7 @@ this notebook.</p>
 <span></span>
 <span><span class="va">io_train</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ts_projection.html">ts_projection</a></span><span class="op">(</span><span class="va">samp</span><span class="op">$</span><span class="va">train</span><span class="op">)</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit.html">fit</a></span><span class="op">(</span><span class="va">tune</span>, x<span class="op">=</span><span class="va">io_train</span><span class="op">$</span><span class="va">input</span>, y<span class="op">=</span><span class="va">io_train</span><span class="op">$</span><span class="va">output</span>, <span class="va">ranges</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ts_maintune-ts_elm-none,0.072</span></span>
+<span><span class="co">#&gt; ts_maintune-ts_elm-none,0.098</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu">describe</span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ts_elm"</span></span></code></pre></div>
@@ -224,7 +224,7 @@ this notebook.</p>
 <span><span class="va">ev_adjust</span> <span class="op">&lt;-</span> <span class="fu">evaluation.tsreg</span><span class="op">(</span><span class="va">io_train</span><span class="op">$</span><span class="va">output</span>, <span class="va">adjust</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ev_adjust</span><span class="op">$</span><span class="va">metrics</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            mse        smape</span></span>
-<span><span class="co">#&gt; 1 4.794186e-31 1.871233e-15</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 2.146897e-29 1.660412e-14</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="prediction-of-test">Prediction of test<a class="anchor" aria-label="anchor" href="#prediction-of-test"></a>
@@ -249,7 +249,7 @@ this notebook.</p>
 <code class="sourceCode R"><span><span class="va">ev_test</span> <span class="op">&lt;-</span> <span class="fu">evaluation.tsreg</span><span class="op">(</span><span class="va">output</span>, <span class="va">prediction</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ev_test</span><span class="op">$</span><span class="va">metrics</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            mse        smape</span></span>
-<span><span class="co">#&gt; 1 6.039716e-31 7.840536e-16</span></span>
+<span><span class="co">#&gt; 1 4.290664e-29 6.608452e-15</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"%s: smape: %.2f"</span>, <span class="fu">describe</span><span class="op">(</span><span class="va">model</span><span class="op">)</span>, <span class="fl">100</span><span class="op">*</span><span class="va">ev_test</span><span class="op">$</span><span class="va">metrics</span><span class="op">$</span><span class="va">smape</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ts_elm: smape: 0.00"</span></span></code></pre></div>
 <hr>
