@@ -193,7 +193,7 @@
 <span><span class="fu">describe</span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "reg_mlp"</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit.html">fit</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">boston_train</span><span class="op">)</span></span>
-<span><span class="co">#&gt; size=5,decay=0.54,0.006</span></span>
+<span><span class="co">#&gt; size=5,decay=0.54,0.005</span></span>
 <span></span>
 <span><span class="va">train_prediction</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">boston_train</span><span class="op">)</span></span>
 <span><span class="va">boston_train_predictand</span> <span class="op">=</span> <span class="va">boston_train</span><span class="op">[</span>,<span class="st">"medv"</span><span class="op">]</span></span>
