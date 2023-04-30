@@ -160,6 +160,9 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/dal_transform.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/dt_pca.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/evaluate_error.html</loc>
   </url>
   <url>
@@ -170,6 +173,12 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/fit.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/fit.minmax.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/fit.zscore.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/flip.html</loc>
@@ -184,6 +193,12 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/inverse_transform.minmax.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/inverse_transform.zscore.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/jitter.html</loc>
   </url>
   <url>
@@ -191,6 +206,9 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/normalize.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/outliers.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/plot.bar.html</loc>
@@ -284,6 +302,12 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/transform.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/transform.minmax.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/transform.zscore.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/ts_an.html</loc>
