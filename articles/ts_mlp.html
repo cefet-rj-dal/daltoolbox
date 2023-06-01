@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">daltoolbox</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.30</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.31</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -208,7 +208,7 @@
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit.html">fit</a></span><span class="op">(</span><span class="va">model</span>, x<span class="op">=</span><span class="va">io_train</span><span class="op">$</span><span class="va">input</span>, y<span class="op">=</span><span class="va">io_train</span><span class="op">$</span><span class="va">output</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ts_mlp,0.000</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu">describe</span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/describe.html">describe</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ts_mlp"</span></span></code></pre></div>
 </div>
 <div class="section level4">
@@ -245,7 +245,7 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ev_test</span><span class="op">$</span><span class="va">metrics</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            mse       smape</span></span>
 <span><span class="co">#&gt; 1 1.049518e-06 0.001034087</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"%s: smape: %.2f"</span>, <span class="fu">describe</span><span class="op">(</span><span class="va">model</span><span class="op">)</span>, <span class="fl">100</span><span class="op">*</span><span class="va">ev_test</span><span class="op">$</span><span class="va">metrics</span><span class="op">$</span><span class="va">smape</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"%s: smape: %.2f"</span>, <span class="fu"><a href="../reference/describe.html">describe</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>, <span class="fl">100</span><span class="op">*</span><span class="va">ev_test</span><span class="op">$</span><span class="va">metrics</span><span class="op">$</span><span class="va">smape</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ts_mlp: smape: 0.10"</span></span></code></pre></div>
 </div>
 <div class="section level4">

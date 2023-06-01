@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">daltoolbox</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.30</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.31</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -181,7 +181,7 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># preparing dataset for random sampling</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
-<span><span class="va">sr</span> <span class="op">&lt;-</span> <span class="fu">sample_random</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">sr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample_random.html">sample_random</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">sr</span> <span class="op">&lt;-</span> <span class="fu">train_test</span><span class="op">(</span><span class="va">sr</span>, <span class="va">iris</span><span class="op">)</span></span>
 <span><span class="va">iris_train</span> <span class="op">=</span> <span class="va">sr</span><span class="op">$</span><span class="va">train</span></span>
 <span><span class="va">iris_test</span> <span class="op">=</span> <span class="va">sr</span><span class="op">$</span><span class="va">test</span></span></code></pre></div>
@@ -200,7 +200,7 @@
 </h4>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cla_rf.html">cla_rf</a></span><span class="op">(</span><span class="st">"Species"</span>, <span class="va">slevels</span>, mtry<span class="op">=</span><span class="fl">3</span>, ntree<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu">describe</span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/describe.html">describe</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "cla_rf"</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit.html">fit</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">iris_train</span><span class="op">)</span></span>
 <span><span class="co">#&gt; mtry=3,ntree=5,0.000</span></span>

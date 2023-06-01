@@ -145,6 +145,9 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/cluster_dbscan.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/cluster_evaluation.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/cluster_kmeans.html</loc>
   </url>
   <url>
@@ -160,6 +163,12 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/dal_transform.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/data_sample.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/describe.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/dt_pca.html</loc>
   </url>
   <url>
@@ -169,7 +178,16 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/feature_selection.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/feature_selection_fss.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/feature_selection_ig.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/feature_selection_lasso.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/feature_selection_relief.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/fit.html</loc>
@@ -179,6 +197,15 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/fit.zscore.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/fit_curvature.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/fit_curvature_max.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/fit_curvature_min.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/flip.html</loc>
@@ -191,6 +218,9 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/inverse_transform.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/inverse_transform.minmax.html</loc>
@@ -206,6 +236,9 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/normalize.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/optimize.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/outliers.html</loc>
@@ -230,6 +263,9 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/plot.dotchar.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.fit_curvature.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/plot.groupedbar.html</loc>
@@ -295,10 +331,37 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/regression.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/sample_random.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/sample_stratified.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/shrink.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/smoothing.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/smoothing_cluster.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/smoothing_evaluation.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/smoothing_freq.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/smoothing_inter.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/start_log.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/stretch.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/transform.fit_curvature.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/transform.html</loc>
