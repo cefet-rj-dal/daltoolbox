@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">daltoolbox</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.31</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.40</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -159,7 +159,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sw_size</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
 <span><span class="va">ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ts_data.html">ts_data</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">sw_size</span><span class="op">)</span></span>
-<span><span class="fu">tshead</span><span class="op">(</span><span class="va">ts</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tshead.html">tshead</a></span><span class="op">(</span><span class="va">ts</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             t9        t8        t7        t6        t5         t4         t3</span></span>
 <span><span class="co">#&gt; [1,] 1.0000000 0.9689124 0.8775826 0.7316889 0.5403023  0.3153224  0.0707372</span></span>
 <span><span class="co">#&gt; [2,] 0.9689124 0.8775826 0.7316889 0.5403023 0.3153224  0.0707372 -0.1782461</span></span>
@@ -175,7 +175,7 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_size</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
 <span><span class="va">samp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ts_sample.html">ts_sample</a></span><span class="op">(</span><span class="va">ts</span>, <span class="va">test_size</span><span class="op">)</span></span>
-<span><span class="fu">tshead</span><span class="op">(</span><span class="va">samp</span><span class="op">$</span><span class="va">train</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tshead.html">tshead</a></span><span class="op">(</span><span class="va">samp</span><span class="op">$</span><span class="va">train</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             t9        t8        t7        t6        t5         t4         t3</span></span>
 <span><span class="co">#&gt; [1,] 1.0000000 0.9689124 0.8775826 0.7316889 0.5403023  0.3153224  0.0707372</span></span>
 <span><span class="co">#&gt; [2,] 0.9689124 0.8775826 0.7316889 0.5403023 0.3153224  0.0707372 -0.1782461</span></span>
@@ -184,7 +184,7 @@
 <span><span class="co">#&gt; [1,] -0.1782461 -0.4161468 -0.6281736</span></span>
 <span><span class="co">#&gt; [2,] -0.4161468 -0.6281736 -0.8011436</span></span>
 <span><span class="co">#&gt; [3,] -0.6281736 -0.8011436 -0.9243024</span></span>
-<span><span class="fu">tshead</span><span class="op">(</span><span class="va">samp</span><span class="op">$</span><span class="va">test</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tshead.html">tshead</a></span><span class="op">(</span><span class="va">samp</span><span class="op">$</span><span class="va">test</span><span class="op">)</span></span>
 <span><span class="co">#&gt;              t9        t8         t7          t6        t5       t4       t3</span></span>
 <span><span class="co">#&gt; [1,] -0.7256268 -0.532833 -0.3069103 -0.06190529 0.1869486 0.424179 0.635036</span></span>
 <span><span class="co">#&gt;             t2        t1        t0</span></span>
@@ -204,7 +204,7 @@
 <span></span>
 <span><span class="va">io_train</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ts_projection.html">ts_projection</a></span><span class="op">(</span><span class="va">samp</span><span class="op">$</span><span class="va">train</span><span class="op">)</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit.html">fit</a></span><span class="op">(</span><span class="va">model</span>, x<span class="op">=</span><span class="va">io_train</span><span class="op">$</span><span class="va">input</span>, y<span class="op">=</span><span class="va">io_train</span><span class="op">$</span><span class="va">output</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ts_elm,0.000</span></span>
+<span><span class="co">#&gt; ts_elm,0.001</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/describe.html">describe</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ts_elm"</span></span></code></pre></div>
@@ -215,7 +215,7 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">adjust</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">io_train</span><span class="op">$</span><span class="va">input</span><span class="op">)</span></span>
 <span><span class="va">adjust</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">adjust</span><span class="op">)</span></span>
-<span><span class="va">ev_adjust</span> <span class="op">&lt;-</span> <span class="fu">evaluation.tsreg</span><span class="op">(</span><span class="va">io_train</span><span class="op">$</span><span class="va">output</span>, <span class="va">adjust</span><span class="op">)</span></span>
+<span><span class="va">ev_adjust</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/evaluation.tsreg.html">evaluation.tsreg</a></span><span class="op">(</span><span class="va">io_train</span><span class="op">$</span><span class="va">output</span>, <span class="va">adjust</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ev_adjust</span><span class="op">$</span><span class="va">metrics</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           mse        smape</span></span>
 <span><span class="co">#&gt; 1 2.83449e-26 5.149935e-13</span></span></code></pre></div>
@@ -240,7 +240,7 @@
 <h4 id="evaluation-of-test-data">Evaluation of test data<a class="anchor" aria-label="anchor" href="#evaluation-of-test-data"></a>
 </h4>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ev_test</span> <span class="op">&lt;-</span> <span class="fu">evaluation.tsreg</span><span class="op">(</span><span class="va">output</span>, <span class="va">prediction</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">ev_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/evaluation.tsreg.html">evaluation.tsreg</a></span><span class="op">(</span><span class="va">output</span>, <span class="va">prediction</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ev_test</span><span class="op">$</span><span class="va">metrics</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            mse        smape</span></span>
 <span><span class="co">#&gt; 1 6.003785e-26 2.472009e-13</span></span>
@@ -255,7 +255,7 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">yvalues</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 92</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">tsplot</span><span class="op">(</span><span class="va">model</span>, y<span class="op">=</span><span class="va">yvalues</span>, yadj<span class="op">=</span><span class="va">adjust</span>, ypre<span class="op">=</span><span class="va">prediction</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/tsplot.html">tsplot</a></span><span class="op">(</span><span class="va">model</span>, y<span class="op">=</span><span class="va">yvalues</span>, yadj<span class="op">=</span><span class="va">adjust</span>, ypre<span class="op">=</span><span class="va">prediction</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ts_elm_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 </div>
 </div>

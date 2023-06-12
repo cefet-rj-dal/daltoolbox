@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">daltoolbox</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.31</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.40</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -160,7 +160,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sw_size</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
 <span><span class="va">ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ts_data.html">ts_data</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">sw_size</span><span class="op">)</span></span>
-<span><span class="fu">tshead</span><span class="op">(</span><span class="va">ts</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tshead.html">tshead</a></span><span class="op">(</span><span class="va">ts</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             t9        t8        t7        t6        t5        t4        t3</span></span>
 <span><span class="co">#&gt; [1,] 1.0000000 0.9980267 0.9921147 0.9822873 0.9685832 0.9510565 0.9297765</span></span>
 <span><span class="co">#&gt; [2,] 0.9980267 0.9921147 0.9822873 0.9685832 0.9510565 0.9297765 0.9048271</span></span>
@@ -187,7 +187,7 @@
 <code class="sourceCode R"><span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ts_gminmax.html">ts_gminmax</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit.html">fit</a></span><span class="op">(</span><span class="va">preproc</span>, <span class="va">ts</span><span class="op">)</span></span>
 <span><span class="va">tst</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/transform.html">transform</a></span><span class="op">(</span><span class="va">preproc</span>, <span class="va">ts</span><span class="op">)</span></span>
-<span><span class="fu">tshead</span><span class="op">(</span><span class="va">tst</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tshead.html">tshead</a></span><span class="op">(</span><span class="va">tst</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             t9        t8        t7        t6        t5        t4        t3</span></span>
 <span><span class="co">#&gt; [1,] 1.0000000 0.9990134 0.9960574 0.9911436 0.9842916 0.9755283 0.9648882</span></span>
 <span><span class="co">#&gt; [2,] 0.9990134 0.9960574 0.9911436 0.9842916 0.9755283 0.9648882 0.9524135</span></span>
@@ -214,7 +214,7 @@
 <code class="sourceCode R"><span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ts_diff.html">ts_diff</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit.html">fit</a></span><span class="op">(</span><span class="va">preproc</span>, <span class="va">ts</span><span class="op">)</span></span>
 <span><span class="va">tst</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/transform.html">transform</a></span><span class="op">(</span><span class="va">preproc</span>, <span class="va">ts</span><span class="op">)</span></span>
-<span><span class="fu">tshead</span><span class="op">(</span><span class="va">tst</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tshead.html">tshead</a></span><span class="op">(</span><span class="va">tst</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             t8        t7        t6        t5        t4        t3        t2</span></span>
 <span><span class="co">#&gt; [1,] 0.4842869 0.4529226 0.4217442 0.3908745 0.3604356 0.3305474 0.3013280</span></span>
 <span><span class="co">#&gt; [2,] 0.4529226 0.4217442 0.3908745 0.3604356 0.3305474 0.3013280 0.2728927</span></span>
@@ -241,7 +241,7 @@
 <code class="sourceCode R"><span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ts_swminmax.html">ts_swminmax</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit.html">fit</a></span><span class="op">(</span><span class="va">preproc</span>, <span class="va">ts</span><span class="op">)</span></span>
 <span><span class="va">tst</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/transform.html">transform</a></span><span class="op">(</span><span class="va">preproc</span>, <span class="va">ts</span><span class="op">)</span></span>
-<span><span class="fu">tshead</span><span class="op">(</span><span class="va">tst</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tshead.html">tshead</a></span><span class="op">(</span><span class="va">tst</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;      t9        t8        t7        t6        t5        t4        t3        t2</span></span>
 <span><span class="co">#&gt; [1,]  1 0.9873242 0.9493467 0.8862176 0.7981858 0.6855988 0.5489010 0.3886319</span></span>
 <span><span class="co">#&gt; [2,]  1 0.9687210 0.9167266 0.8442220 0.7514932 0.6389062 0.5069054 0.3560117</span></span>
@@ -269,7 +269,7 @@
 <code class="sourceCode R"><span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ts_an.html">ts_an</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit.html">fit</a></span><span class="op">(</span><span class="va">preproc</span>, <span class="va">ts</span><span class="op">)</span></span>
 <span><span class="va">tst</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/transform.html">transform</a></span><span class="op">(</span><span class="va">preproc</span>, <span class="va">ts</span><span class="op">)</span></span>
-<span><span class="fu">tshead</span><span class="op">(</span><span class="va">tst</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tshead.html">tshead</a></span><span class="op">(</span><span class="va">tst</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             t9        t8        t7        t6        t5        t4        t3</span></span>
 <span><span class="co">#&gt; [1,] 0.5888370 0.5856653 0.5761626 0.5603665 0.5383393 0.5101679 0.4759635</span></span>
 <span><span class="co">#&gt; [2,] 0.6163629 0.6068602 0.5910641 0.5690369 0.5408655 0.5066611 0.4665587</span></span>
@@ -298,7 +298,7 @@
 <code class="sourceCode R"><span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ts_an.html">ts_an</a></span><span class="op">(</span>nw<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit.html">fit</a></span><span class="op">(</span><span class="va">preproc</span>, <span class="va">ts</span><span class="op">)</span></span>
 <span><span class="va">tst</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/transform.html">transform</a></span><span class="op">(</span><span class="va">preproc</span>, <span class="va">ts</span><span class="op">)</span></span>
-<span><span class="fu">tshead</span><span class="op">(</span><span class="va">tst</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tshead.html">tshead</a></span><span class="op">(</span><span class="va">tst</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             t9        t8        t7        t6        t5        t4        t3</span></span>
 <span><span class="co">#&gt; [1,] 0.6432297 0.6409659 0.6341833 0.6229088 0.6071868 0.5870793 0.5626658</span></span>
 <span><span class="co">#&gt; [2,] 0.6776053 0.6708227 0.6595482 0.6438261 0.6237187 0.5993052 0.5706819</span></span>
@@ -327,7 +327,7 @@ average)<a class="anchor" aria-label="anchor" href="#sliding-window-adaptive-nor
 <code class="sourceCode R"><span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ts_ean.html">ts_ean</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit.html">fit</a></span><span class="op">(</span><span class="va">preproc</span>, <span class="va">ts</span><span class="op">)</span></span>
 <span><span class="va">tst</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/transform.html">transform</a></span><span class="op">(</span><span class="va">preproc</span>, <span class="va">ts</span><span class="op">)</span></span>
-<span><span class="fu">tshead</span><span class="op">(</span><span class="va">tst</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tshead.html">tshead</a></span><span class="op">(</span><span class="va">tst</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             t9        t8        t7        t6        t5        t4        t3</span></span>
 <span><span class="co">#&gt; [1,] 0.6250579 0.6221220 0.6133258 0.5987041 0.5783145 0.5522376 0.5205762</span></span>
 <span><span class="co">#&gt; [2,] 0.6590724 0.6502762 0.6356545 0.6152649 0.5891879 0.5575265 0.5204056</span></span>
@@ -357,7 +357,7 @@ average)<a class="anchor" aria-label="anchor" href="#sliding-window-adaptive-nor
 <code class="sourceCode R"><span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ts_ean.html">ts_ean</a></span><span class="op">(</span>nw <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit.html">fit</a></span><span class="op">(</span><span class="va">preproc</span>, <span class="va">ts</span><span class="op">)</span></span>
 <span><span class="va">tst</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/transform.html">transform</a></span><span class="op">(</span><span class="va">preproc</span>, <span class="va">ts</span><span class="op">)</span></span>
-<span><span class="fu">tshead</span><span class="op">(</span><span class="va">tst</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tshead.html">tshead</a></span><span class="op">(</span><span class="va">tst</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             t9        t8        t7        t6        t5        t4        t3</span></span>
 <span><span class="co">#&gt; [1,] 0.6491567 0.6470222 0.6406272 0.6299970 0.6151735 0.5962151 0.5731968</span></span>
 <span><span class="co">#&gt; [2,] 0.6831385 0.6767435 0.6661133 0.6512897 0.6323314 0.6093130 0.5823255</span></span>

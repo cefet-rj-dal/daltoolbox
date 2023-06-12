@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">daltoolbox</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.31</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.40</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,6 +85,26 @@
       
 
       <dl><dt>
+          
+          <code><a href="MSE.tsreg.html">MSE.tsreg()</a></code> 
+        </dt>
+        <dd>Calculate the mean squared error (MSE) between actual values and forecasts of a time series</dd>
+      </dl><dl><dt>
+          
+          <code><a href="adjust.ts_data.html">adjust.ts_data()</a></code> 
+        </dt>
+        <dd>Transform the date object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="adjust_data.frame.html">adjust_data.frame()</a></code> 
+        </dt>
+        <dd>dal_base object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="adjust_matrix.html">adjust_matrix()</a></code> 
+        </dt>
+        <dd>dal_base object</dd>
+      </dl><dl><dt>
           
           <code><a href="balance_dataset.html">balance_dataset()</a></code> 
         </dt>
@@ -196,6 +216,66 @@
         <dd>Describe</dd>
       </dl><dl><dt>
           
+          <code><a href="describe.default.html">describe(<i>&lt;default&gt;</i>)</a></code> 
+        </dt>
+        <dd>dal_base object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="describe.ts_transform.html">describe(<i>&lt;ts_transform&gt;</i>)</a></code> 
+        </dt>
+        <dd>Describe the ts_transform function</dd>
+      </dl><dl><dt>
+          
+          <code><a href="do_fit.html">do_fit()</a></code> 
+        </dt>
+        <dd>Delegate the task of adjusting the model to the specific methods of each class that implements it.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="do_fit.ts_elm.html">do_fit(<i>&lt;ts_elm&gt;</i>)</a></code> 
+        </dt>
+        <dd>Train an ELM (Extreme Learning Machine) model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="do_fit.ts_mlp.html">do_fit(<i>&lt;ts_mlp&gt;</i>)</a></code> 
+        </dt>
+        <dd>Train the ts_mlp model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="do_fit.ts_rf.html">do_fit(<i>&lt;ts_rf&gt;</i>)</a></code> 
+        </dt>
+        <dd>Fits a random forest model to time series</dd>
+      </dl><dl><dt>
+          
+          <code><a href="do_fit.ts_svm.html">do_fit(<i>&lt;ts_svm&gt;</i>)</a></code> 
+        </dt>
+        <dd>Fits an SVM model to time series</dd>
+      </dl><dl><dt>
+          
+          <code><a href="do_predict.html">do_predict()</a></code> 
+        </dt>
+        <dd>Define a generic method and delegate the implementation</dd>
+      </dl><dl><dt>
+          
+          <code><a href="do_predict.ts_elm.html">do_predict(<i>&lt;ts_elm&gt;</i>)</a></code> 
+        </dt>
+        <dd>Make predictions using a previously trained ELM model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="do_predict.ts_rf.html">do_predict(<i>&lt;ts_rf&gt;</i>)</a></code> 
+        </dt>
+        <dd>Make predictions on a new dataset (x) using the fitted random forest model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="do_predict.ts_svm.html">do_predict(<i>&lt;ts_svm&gt;</i>)</a></code> 
+        </dt>
+        <dd>Uses an adjusted SVM model for time series to make predictions</dd>
+      </dl><dl><dt>
+          
+          <code><a href="do_predict.tsreg_sw.html">do_predict(<i>&lt;tsreg_sw&gt;</i>)</a></code> 
+        </dt>
+        <dd>Performs the prediction step of the temporal regression model</dd>
+      </dl><dl><dt>
+          
           <code><a href="dt_pca.html">dt_pca()</a></code> 
         </dt>
         <dd>PCA</dd>
@@ -204,6 +284,11 @@
           <code><a href="evaluate_error.html">evaluate_error()</a></code> 
         </dt>
         <dd>Evaluate Error</dd>
+      </dl><dl><dt>
+          
+          <code><a href="evaluation.tsreg.html">evaluation.tsreg()</a></code> 
+        </dt>
+        <dd>Calculate the Mean Squared Error (MSE) error metric and the Symmetric Mean Absolute Percentage Error (sMAPE) error metric</dd>
       </dl><dl><dt>
           
           <code><a href="feature_selection.html">feature_selection()</a></code> 
@@ -236,9 +321,44 @@
         <dd>Fit</dd>
       </dl><dl><dt>
           
+          <code><a href="fit.default.html">fit(<i>&lt;default&gt;</i>)</a></code> 
+        </dt>
+        <dd>dal_base object</dd>
+      </dl><dl><dt>
+          
           <code><a href="fit.minmax.html">fit(<i>&lt;minmax&gt;</i>)</a></code> 
         </dt>
         <dd>Fit MinMax</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.outliers.html">fit(<i>&lt;outliers&gt;</i>)</a></code> 
+        </dt>
+        <dd>Calculates upper and lower bounds based on alpha value</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.ts_an.html">fit(<i>&lt;ts_an&gt;</i>)</a></code> 
+        </dt>
+        <dd>Fits the "ts_an" normalization model to a training dataset</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.ts_diff.html">fit(<i>&lt;ts_diff&gt;</i>)</a></code> 
+        </dt>
+        <dd>Fit the object created by the ts_diff function to the training data</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.ts_gminmax.html">fit(<i>&lt;ts_gminmax&gt;</i>)</a></code> 
+        </dt>
+        <dd>Sets the parameters of an object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.ts_swminmax.html">fit(<i>&lt;ts_swminmax&gt;</i>)</a></code> 
+        </dt>
+        <dd>adjust the obj object parameters for the "sw-min-max" normalization method</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.tsreg_sw.html">fit(<i>&lt;tsreg_sw&gt;</i>)</a></code> 
+        </dt>
+        <dd>Performs the adjustment (training) of a regression model in time series</dd>
       </dl><dl><dt>
           
           <code><a href="fit.zscore.html">fit(<i>&lt;zscore&gt;</i>)</a></code> 
@@ -281,9 +401,34 @@
         <dd>Inverse Transform</dd>
       </dl><dl><dt>
           
+          <code><a href="inverse_transform.default.html">inverse_transform(<i>&lt;default&gt;</i>)</a></code> 
+        </dt>
+        <dd>dal_base object</dd>
+      </dl><dl><dt>
+          
           <code><a href="inverse_transform.minmax.html">inverse_transform(<i>&lt;minmax&gt;</i>)</a></code> 
         </dt>
         <dd>Inverse Transform MinMax</dd>
+      </dl><dl><dt>
+          
+          <code><a href="inverse_transform.ts_an.html">inverse_transform(<i>&lt;ts_an&gt;</i>)</a></code> 
+        </dt>
+        <dd>Perform the inversion of the transformation performed by the transform.t_an function</dd>
+      </dl><dl><dt>
+          
+          <code><a href="inverse_transform.ts_diff.html">inverse_transform(<i>&lt;ts_diff&gt;</i>)</a></code> 
+        </dt>
+        <dd>Revert the transform applied in the transform.ts_diff function</dd>
+      </dl><dl><dt>
+          
+          <code><a href="inverse_transform.ts_gminmax.html">inverse_transform(<i>&lt;ts_gminmax&gt;</i>)</a></code> 
+        </dt>
+        <dd>Inverse of function "transform.ts_gminmax</dd>
+      </dl><dl><dt>
+          
+          <code><a href="inverse_transform.ts_swminmax.html">inverse_transform(<i>&lt;ts_swminmax&gt;</i>)</a></code> 
+        </dt>
+        <dd>Do the inverse transformation of normalized data</dd>
       </dl><dl><dt>
           
           <code><a href="inverse_transform.zscore.html">inverse_transform(<i>&lt;zscore&gt;</i>)</a></code> 
@@ -294,6 +439,11 @@
           <code><a href="jitter.html">jitter()</a></code> 
         </dt>
         <dd>Time Series Augmentation Jitter</dd>
+      </dl><dl><dt>
+          
+          <code><a href="ma.ts_an.html">ma.ts_an()</a></code> 
+        </dt>
+        <dd>Removes the first few columns from a data array</dd>
       </dl><dl><dt>
           
           <code><a href="minmax.html">minmax()</a></code> 
@@ -308,7 +458,12 @@
           
           <code><a href="optimize.html">optimize()</a></code> 
         </dt>
-        <dd>Optimize</dd>
+        <dd>Allow different types of objects to be optimized using different optimization algorithms</dd>
+      </dl><dl><dt>
+          
+          <code><a href="optimize.default.html">optimize(<i>&lt;default&gt;</i>)</a></code> 
+        </dt>
+        <dd>dal_base object</dd>
       </dl><dl><dt>
           
           <code><a href="outliers.html">outliers()</a></code> 
@@ -421,6 +576,16 @@
         <dd>plot scatter</dd>
       </dl><dl><dt>
           
+          <code><a href="predict.tsreg.html">predict(<i>&lt;tsreg&gt;</i>)</a></code> 
+        </dt>
+        <dd>Returns the last observed value</dd>
+      </dl><dl><dt>
+          
+          <code><a href="predict.tsreg_sw.html">predict(<i>&lt;tsreg_sw&gt;</i>)</a></code> 
+        </dt>
+        <dd>Performs prediction of values for a time series</dd>
+      </dl><dl><dt>
+          
           <code><a href="prepare_ranges.html">prepare_ranges()</a></code> 
         </dt>
         <dd>Prepare Ranges</dd>
@@ -456,9 +621,19 @@
         <dd>Register log details</dd>
       </dl><dl><dt>
           
+          <code><a href="register_log.default.html">register_log(<i>&lt;default&gt;</i>)</a></code> 
+        </dt>
+        <dd>dal_base object</dd>
+      </dl><dl><dt>
+          
           <code><a href="regression.html">regression()</a></code> 
         </dt>
         <dd>Regression</dd>
+      </dl><dl><dt>
+          
+          <code><a href="sMAPE.tsreg.html">sMAPE.tsreg()</a></code> 
+        </dt>
+        <dd>Calculate the symmetric mean absolute percent error (sMAPE)</dd>
       </dl><dl><dt>
           
           <code><a href="sample_random.html">sample_random()</a></code> 
@@ -469,6 +644,36 @@
           <code><a href="sample_stratified.html">sample_stratified()</a></code> 
         </dt>
         <dd>sample_stratified</dd>
+      </dl><dl><dt>
+          
+          <code><a href="set_params.html">set_params()</a></code> 
+        </dt>
+        <dd>Update an object's parameters</dd>
+      </dl><dl><dt>
+          
+          <code><a href="set_params.default.html">set_params(<i>&lt;default&gt;</i>)</a></code> 
+        </dt>
+        <dd>Defines a default method for the set_params function</dd>
+      </dl><dl><dt>
+          
+          <code><a href="set_params.ts_elm.html">set_params(<i>&lt;ts_elm&gt;</i>)</a></code> 
+        </dt>
+        <dd>Set specific parameters of a ts_elm object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="set_params.ts_mlp.html">set_params(<i>&lt;ts_mlp&gt;</i>)</a></code> 
+        </dt>
+        <dd>Update ts_mlp object parameters</dd>
+      </dl><dl><dt>
+          
+          <code><a href="set_params.ts_rf.html">set_params(<i>&lt;ts_rf&gt;</i>)</a></code> 
+        </dt>
+        <dd>Allows parameters of a ts_rf object to be updated with new values</dd>
+      </dl><dl><dt>
+          
+          <code><a href="set_params.ts_svm.html">set_params(<i>&lt;ts_svm&gt;</i>)</a></code> 
+        </dt>
+        <dd>Updates the parameters of an SVM model object for time series (ts_svm)</dd>
       </dl><dl><dt>
           
           <code><a href="shrink.html">shrink()</a></code> 
@@ -503,7 +708,12 @@
           
           <code><a href="start_log.html">start_log()</a></code> 
         </dt>
-        <dd>Start Log</dd>
+        <dd>Start logging on an obj object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="start_log.default.html">start_log(<i>&lt;default&gt;</i>)</a></code> 
+        </dt>
+        <dd>dal_base object</dd>
       </dl><dl><dt>
           
           <code><a href="stretch.html">stretch()</a></code> 
@@ -511,9 +721,19 @@
         <dd>Time Series Augmentation Stretch</dd>
       </dl><dl><dt>
           
+          <code><a href="sub-.ts_data.html">`[`(<i>&lt;ts_data&gt;</i>)</a></code> 
+        </dt>
+        <dd>Extract a subset of a time series stored in an object</dd>
+      </dl><dl><dt>
+          
           <code><a href="transform.html">transform()</a></code> 
         </dt>
         <dd>Transform</dd>
+      </dl><dl><dt>
+          
+          <code><a href="transform.default.html">transform(<i>&lt;default&gt;</i>)</a></code> 
+        </dt>
+        <dd>dal_base object</dd>
       </dl><dl><dt>
           
           <code><a href="transform.fit_curvature.html">transform(<i>&lt;fit_curvature&gt;</i>)</a></code> 
@@ -526,6 +746,36 @@
         <dd>Transform MinMax</dd>
       </dl><dl><dt>
           
+          <code><a href="transform.outliers.html">transform(<i>&lt;outliers&gt;</i>)</a></code> 
+        </dt>
+        <dd>Remove outliers from data</dd>
+      </dl><dl><dt>
+          
+          <code><a href="transform.ts_an.html">transform(<i>&lt;ts_an&gt;</i>)</a></code> 
+        </dt>
+        <dd>Normalize the input data</dd>
+      </dl><dl><dt>
+          
+          <code><a href="transform.ts_diff.html">transform(<i>&lt;ts_diff&gt;</i>)</a></code> 
+        </dt>
+        <dd>Transform the data</dd>
+      </dl><dl><dt>
+          
+          <code><a href="transform.ts_gminmax.html">transform(<i>&lt;ts_gminmax&gt;</i>)</a></code> 
+        </dt>
+        <dd>Normalize time series data</dd>
+      </dl><dl><dt>
+          
+          <code><a href="transform.ts_swminmax.html">transform(<i>&lt;ts_swminmax&gt;</i>)</a></code> 
+        </dt>
+        <dd>Normalizes each line of the input data to the range 0,1</dd>
+      </dl><dl><dt>
+          
+          <code><a href="transform.ts_transform.html">transform(<i>&lt;ts_transform&gt;</i>)</a></code> 
+        </dt>
+        <dd>Transform data to objects of class st_transform</dd>
+      </dl><dl><dt>
+          
           <code><a href="transform.zscore.html">transform(<i>&lt;zscore&gt;</i>)</a></code> 
         </dt>
         <dd>Transform Z-score</dd>
@@ -534,6 +784,11 @@
           <code><a href="ts_an.html">ts_an()</a></code> 
         </dt>
         <dd>Time Series Adaptive Normalization</dd>
+      </dl><dl><dt>
+          
+          <code><a href="ts_as_matrix.html">ts_as_matrix()</a></code> 
+        </dt>
+        <dd>Prepare the data to feed a machine learning model</dd>
       </dl><dl><dt>
           
           <code><a href="ts_augment.html">ts_augment()</a></code> 
@@ -646,9 +901,29 @@
         <dd>Time Series Transformation</dd>
       </dl><dl><dt>
           
+          <code><a href="tshead.html">tshead()</a></code> 
+        </dt>
+        <dd>Extract the first observations from a time series</dd>
+      </dl><dl><dt>
+          
+          <code><a href="tsplot.html">tsplot()</a></code> 
+        </dt>
+        <dd>Plot a time series chart</dd>
+      </dl><dl><dt>
+          
+          <code><a href="tsreg.html">tsreg()</a></code> 
+        </dt>
+        <dd>Create an object of class "tsreg" which is a subclass of object "dal_transform</dd>
+      </dl><dl><dt>
+          
           <code><a href="tsreg_arima.html">tsreg_arima()</a></code> 
         </dt>
         <dd>Time Series AutoRegressive Integrated Moving Average (ARIMA)</dd>
+      </dl><dl><dt>
+          
+          <code><a href="tsreg_sw.html">tsreg_sw()</a></code> 
+        </dt>
+        <dd>Create an object of class "tsreg_sw", which is an extension of class "tsreg"</dd>
       </dl><dl><dt>
           
           <code><a href="wormhole.html">wormhole()</a></code> 

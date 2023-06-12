@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">daltoolbox</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.31</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.40</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -149,7 +149,7 @@
 <p><img src="ts_data_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ts_data.html">ts_data</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
-<span><span class="fu">tshead</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tshead.html">tshead</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             t0</span></span>
 <span><span class="co">#&gt; [1,] 0.0000000</span></span>
 <span><span class="co">#&gt; [2,] 0.2474040</span></span>
@@ -161,7 +161,7 @@
 <p><img src="ts_data_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data10</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ts_data.html">ts_data</a></span><span class="op">(</span><span class="va">y</span>, <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="fu">tshead</span><span class="op">(</span><span class="va">data10</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tshead.html">tshead</a></span><span class="op">(</span><span class="va">data10</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             t9        t8        t7        t6        t5        t4        t3</span></span>
 <span><span class="co">#&gt; [1,] 0.0000000 0.2474040 0.4794255 0.6816388 0.8414710 0.9489846 0.9974950</span></span>
 <span><span class="co">#&gt; [2,] 0.2474040 0.4794255 0.6816388 0.8414710 0.9489846 0.9974950 0.9839859</span></span>
@@ -202,7 +202,7 @@
 <span><span class="co">#&gt; [1] 10</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">c1</span> <span class="op">&lt;-</span> <span class="va">data10</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span>
-<span><span class="fu">tshead</span><span class="op">(</span><span class="va">c1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tshead.html">tshead</a></span><span class="op">(</span><span class="va">c1</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             t9</span></span>
 <span><span class="co">#&gt; [1,] 0.0000000</span></span>
 <span><span class="co">#&gt; [2,] 0.2474040</span></span>
@@ -212,7 +212,7 @@
 <span><span class="co">#&gt; [6,] 0.9489846</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">c2</span> <span class="op">&lt;-</span> <span class="va">data10</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span>
-<span><span class="fu">tshead</span><span class="op">(</span><span class="va">c2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/tshead.html">tshead</a></span><span class="op">(</span><span class="va">c2</span><span class="op">)</span></span>
 <span><span class="co">#&gt;             t9        t8</span></span>
 <span><span class="co">#&gt; [1,] 0.0000000 0.2474040</span></span>
 <span><span class="co">#&gt; [2,] 0.2474040 0.4794255</span></span>
