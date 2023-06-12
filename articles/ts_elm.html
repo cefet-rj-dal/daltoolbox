@@ -217,8 +217,8 @@
 <span><span class="va">adjust</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">adjust</span><span class="op">)</span></span>
 <span><span class="va">ev_adjust</span> <span class="op">&lt;-</span> <span class="fu">evaluation.tsreg</span><span class="op">(</span><span class="va">io_train</span><span class="op">$</span><span class="va">output</span>, <span class="va">adjust</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ev_adjust</span><span class="op">$</span><span class="va">metrics</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;            mse        smape</span></span>
-<span><span class="co">#&gt; 1 2.740751e-26 5.066776e-13</span></span></code></pre></div>
+<span><span class="co">#&gt;           mse        smape</span></span>
+<span><span class="co">#&gt; 1 2.83449e-26 5.149935e-13</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="prediction-of-test">Prediction of test<a class="anchor" aria-label="anchor" href="#prediction-of-test"></a>
@@ -243,7 +243,7 @@
 <code class="sourceCode R"><span><span class="va">ev_test</span> <span class="op">&lt;-</span> <span class="fu">evaluation.tsreg</span><span class="op">(</span><span class="va">output</span>, <span class="va">prediction</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ev_test</span><span class="op">$</span><span class="va">metrics</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            mse        smape</span></span>
-<span><span class="co">#&gt; 1 5.927857e-26 2.456328e-13</span></span>
+<span><span class="co">#&gt; 1 6.003785e-26 2.472009e-13</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"%s: smape: %.2f"</span>, <span class="fu"><a href="../reference/describe.html">describe</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span>, <span class="fl">100</span><span class="op">*</span><span class="va">ev_test</span><span class="op">$</span><span class="va">metrics</span><span class="op">$</span><span class="va">smape</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ts_elm: smape: 0.00"</span></span></code></pre></div>
 </div>
