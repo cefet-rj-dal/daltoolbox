@@ -1,36 +1,8 @@
 pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
-articles:
-  cla_dtree: cla_dtree.html
-  cla_knn: cla_knn.html
-  cla_majority: cla_majority.html
-  cla_mlp: cla_mlp.html
-  cla_nb: cla_nb.html
-  cla_rf: cla_rf.html
-  cla_svm: cla_svm.html
-  clu_dbscan: clu_dbscan.html
-  clu_kmeans: clu_kmeans.html
-  clu_pam: clu_pam.html
-  dal_categorical_mapping: dal_categorical_mapping.html
-  dal_normalization: dal_normalization.html
-  reg_dtree: reg_dtree.html
-  reg_knn: reg_knn.html
-  reg_mlp: reg_mlp.html
-  reg_rf: reg_rf.html
-  reg_svm: reg_svm.html
-  ts_arima: ts_arima.html
-  ts_augment: ts_augment.html
-  ts_data: ts_data.html
-  ts_elm: ts_elm.html
-  ts_filter: ts_filter.html
-  ts_mlp: ts_mlp.html
-  ts_preprocessing: ts_preprocessing.html
-  ts_rf: ts_rf.html
-  ts_svm: ts_svm.html
-  ts_swfilter: ts_swfilter.html
-  ts_tune: ts_tune.html
-last_built: 2023-06-12T13:59Z
+articles: {}
+last_built: 2023-06-12T20:07Z
 urls:
   reference: https://cefet-rj-dal.github.io/dal/reference
   article: https://cefet-rj-dal.github.io/dal/articles
