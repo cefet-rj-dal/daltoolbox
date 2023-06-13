@@ -28,9 +28,6 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/adjust_matrix.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/build_model.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/categ_mapping.html</loc>
   </url>
   <url>
@@ -124,10 +121,10 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/dt_pca.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/evaluate_error.html</loc>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/evaluate.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/evaluation.tsreg.html</loc>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/evaluate.tsreg.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/fit.default.html</loc>
@@ -167,12 +164,6 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/fit_curvature_min.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/get_augment.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/get_preprocess.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/index.html</loc>
@@ -262,9 +253,6 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/predict.tsreg_sw.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/prepare_ranges.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/reg_dtree.html</loc>
   </url>
   <url>
@@ -296,6 +284,9 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/sample_stratified.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/select_hyper.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/set_params.default.html</loc>
@@ -397,9 +388,6 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/ts_gminmax.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/ts_maintune.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/ts_mlp.html</loc>
   </url>
   <url>
@@ -422,6 +410,9 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/ts_transform.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/ts_tune.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/tsaug_aware_smooth.html</loc>
