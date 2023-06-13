@@ -169,9 +169,6 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/fit_curvature_min.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/flip.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/get_augment.html</loc>
   </url>
   <url>
@@ -205,9 +202,6 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/inverse_transform.zscore.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/jitter.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/ma.ts_an.html</loc>
   </url>
   <url>
@@ -218,9 +212,6 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/outliers.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/plot.fit_curvature.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/predict.tsreg.html</loc>
@@ -283,9 +274,6 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/set_params.ts_svm.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/shrink.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/smoothing.html</loc>
   </url>
   <url>
@@ -305,9 +293,6 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/start_log.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/stretch.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/sub-.ts_data.html</loc>
@@ -355,12 +340,6 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/ts_augment.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/ts_aware_smooth.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/ts_awareness.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/ts_data.html</loc>
   </url>
   <url>
@@ -373,16 +352,7 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/ts_elm.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/ts_ema.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/ts_filter.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/ts_gminmax.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/ts_ma.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/ts_maintune.html</loc>
@@ -403,19 +373,49 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/ts_sample.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/ts_smooth.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/ts_svm.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/ts_swfilter.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/ts_swminmax.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/ts_transform.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/tsaug_aware_smooth.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/tsaug_awareness.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/tsaug_flip.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/tsaug_jitter.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/tsaug_shrink.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/tsaug_stretch.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/tsaug_wormhole.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/tsfil_ema.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/tsfil_filter.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/tsfil_ma.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/tsfil_smooth.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/tsfil_swfilter.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/tshead.html</loc>
@@ -431,9 +431,6 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/tsreg_sw.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/wormhole.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/zscore.html</loc>
