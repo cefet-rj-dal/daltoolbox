@@ -66,19 +66,33 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of DAL Toolbox from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<p>You can install the development version of dal from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"cefet-rj-dal/daltoolbox"</span>, force<span class="op">=</span><span class="cn">TRUE</span>, dependencies<span class="op">=</span><span class="cn">FALSE</span>, upgrade<span class="op">=</span><span class="st">"never"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
+<p>The DAL Toolbox examples are made available at: <a href="https://nbviewer.org/github/cefet-rj-dal/daltoolbox/tree/main/examples/" class="external-link uri">https://nbviewer.org/github/cefet-rj-dal/daltoolbox/tree/main/examples/</a></p>
+<p>The examples are organized according to general (data preprocessing), clustering, classification, regression, and time series functions.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/cefet-rj-dal/dal" class="external-link">daltoolbox</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Registered S3 method overwritten by 'quantmod':</span></span>
+<span><span class="co">#&gt;   method            from</span></span>
+<span><span class="co">#&gt;   as.zoo.data.frame zoo</span></span>
+<span><span class="co">#&gt; Warning: replacing previous import 'dplyr::rename' by 'reshape::rename' when</span></span>
+<span><span class="co">#&gt; loading 'daltoolbox'</span></span>
+<span><span class="co">#&gt; Warning: replacing previous import 'class::condense' by 'reshape::condense'</span></span>
+<span><span class="co">#&gt; when loading 'daltoolbox'</span></span>
+<span><span class="co">#&gt; Warning: replacing previous import 'dplyr::filter' by 'stats::filter' when</span></span>
+<span><span class="co">#&gt; loading 'daltoolbox'</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'daltoolbox'</span></span></code></pre></div>
+<span><span class="co">#&gt; Attaching package: 'daltoolbox'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     transform</span></span>
+<span><span class="co">## loading DAL Toolbox</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
