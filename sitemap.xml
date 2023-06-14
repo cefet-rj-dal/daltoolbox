@@ -439,6 +439,12 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/ts_normalize.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/ts_plot.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/ts_plot_pred.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/ts_projection.html</loc>
   </url>
   <url>
@@ -497,9 +503,6 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/tshead.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/tsplot.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/tsreg.html</loc>
