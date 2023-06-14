@@ -52,6 +52,9 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/cla_svm.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/cla_tune.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/classification.html</loc>
   </url>
   <url>
@@ -299,6 +302,18 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/select_hyper.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/set_params.cla_knn.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/set_params.cla_mlp.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/set_params.cla_rf.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/set_params.cla_svm.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/set_params.cluster_kmeans.html</loc>
