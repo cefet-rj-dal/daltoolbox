@@ -55,10 +55,16 @@
     <loc>https://cefet-rj-dal.github.io/dal/reference/classification.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/cluster_dbscan.html</loc>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/clu_tune.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/dal/reference/cluster_evaluation.html</loc>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/cluster.default.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/cluster.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/cluster_dbscan.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/cluster_kmeans.html</loc>
@@ -119,6 +125,9 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/dt_pca.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/evaluate.clustering.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/evaluate.html</loc>
@@ -287,6 +296,12 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/select_hyper.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/set_params.cluster_kmeans.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/dal/reference/set_params.cluster_pam.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/dal/reference/set_params.default.html</loc>
