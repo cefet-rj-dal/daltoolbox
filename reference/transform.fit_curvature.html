@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">daltoolbox</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.58</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.59</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +49,7 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for fit_curvature</span></span>
-<span><span class="fu"><a href="transform.html">transform</a></span><span class="op">(</span><span class="va">obj</span>, <span class="va">y</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="transform.html">transform</a></span><span class="op">(</span><span class="va">obj</span>, <span class="va">y</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -60,6 +60,10 @@
 
 <dt>y</dt>
 <dd><p>A numeric vector of the input data.</p></dd>
+
+
+<dt>...</dt>
+<dd><p>optional arguments</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -73,6 +77,11 @@
     <p>The function fits a spline to the input data and computes the curvature of the spline, and then applies the transformation function defined in the obj argument to the curvature values. The function returns a data frame with the transformed data.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">trans</span> <span class="op">&lt;-</span> <span class="fu"><a href="dal_transform.html">dal_transform</a></span><span class="op">(</span><span class="op">)</span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

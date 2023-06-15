@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">daltoolbox</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.58</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.59</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,9 +58,19 @@
         <dd>Calculate the mean squared error (MSE) between actual values and forecasts of a time series</dd>
       </dl><dl><dt>
           
+          <code><a href="adjust.factor.html">adjust.factor()</a></code> 
+        </dt>
+        <dd>adjust categorical values</dd>
+      </dl><dl><dt>
+          
           <code><a href="adjust.ts_data.html">adjust.ts_data()</a></code> 
         </dt>
         <dd>Transform the date object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="adjustClassLabels.html">adjustClassLabels()</a></code> 
+        </dt>
+        <dd>compute categorical mapping</dd>
       </dl><dl><dt>
           
           <code><a href="adjust_data.frame.html">adjust_data.frame()</a></code> 
@@ -125,17 +135,17 @@
           
           <code><a href="clu_tune.html">clu_tune()</a></code> 
         </dt>
-        <dd>Time Series Tune</dd>
+        <dd>Clustering Tune</dd>
       </dl><dl><dt>
           
           <code><a href="cluster.html">cluster()</a></code> 
         </dt>
-        <dd>cluster</dd>
+        <dd>cluster dataset abstract method</dd>
       </dl><dl><dt>
           
           <code><a href="cluster.default.html">cluster(<i>&lt;default&gt;</i>)</a></code> 
         </dt>
-        <dd>dal_base object</dd>
+        <dd>cluster dataset basic method</dd>
       </dl><dl><dt>
           
           <code><a href="cluster_dbscan.html">cluster_dbscan()</a></code> 
@@ -175,7 +185,7 @@
           
           <code><a href="describe.html">describe()</a></code> 
         </dt>
-        <dd>Describe</dd>
+        <dd>Describe object status</dd>
       </dl><dl><dt>
           
           <code><a href="describe.default.html">describe(<i>&lt;default&gt;</i>)</a></code> 
@@ -248,9 +258,24 @@
         <dd>evaluate</dd>
       </dl><dl><dt>
           
+          <code><a href="evaluate.classification.html">evaluate(<i>&lt;classification&gt;</i>)</a></code> 
+        </dt>
+        <dd>Classification evaluation</dd>
+      </dl><dl><dt>
+          
           <code><a href="evaluate.clustering.html">evaluate(<i>&lt;clustering&gt;</i>)</a></code> 
         </dt>
         <dd>Cluster Evaluation</dd>
+      </dl><dl><dt>
+          
+          <code><a href="evaluate.default.html">evaluate(<i>&lt;default&gt;</i>)</a></code> 
+        </dt>
+        <dd>evaluate</dd>
+      </dl><dl><dt>
+          
+          <code><a href="evaluate.regression.html">evaluate(<i>&lt;regression&gt;</i>)</a></code> 
+        </dt>
+        <dd>Regression evaluation</dd>
       </dl><dl><dt>
           
           <code><a href="evaluate.tsreg.html">evaluate(<i>&lt;tsreg&gt;</i>)</a></code> 
@@ -263,19 +288,79 @@
         <dd>Fit</dd>
       </dl><dl><dt>
           
+          <code><a href="fit.cla_dtree.html">fit(<i>&lt;cla_dtree&gt;</i>)</a></code> 
+        </dt>
+        <dd>fit dtree model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.cla_knn.html">fit(<i>&lt;cla_knn&gt;</i>)</a></code> 
+        </dt>
+        <dd>fit knn model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.cla_majority.html">fit(<i>&lt;cla_majority&gt;</i>)</a></code> 
+        </dt>
+        <dd>fit majority model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.cla_mlp.html">fit(<i>&lt;cla_mlp&gt;</i>)</a></code> 
+        </dt>
+        <dd>fit mlp model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.cla_nb.html">fit(<i>&lt;cla_nb&gt;</i>)</a></code> 
+        </dt>
+        <dd>fit nb model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.cla_rf.html">fit(<i>&lt;cla_rf&gt;</i>)</a></code> 
+        </dt>
+        <dd>fit rf model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.cla_svm.html">fit(<i>&lt;cla_svm&gt;</i>)</a></code> 
+        </dt>
+        <dd>fit svm model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.cla_tune.html">fit(<i>&lt;cla_tune&gt;</i>)</a></code> 
+        </dt>
+        <dd>tune hyperparameters of ml model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.classification.html">fit(<i>&lt;classification&gt;</i>)</a></code> 
+        </dt>
+        <dd>fit classification</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.clu_tune.html">fit(<i>&lt;clu_tune&gt;</i>)</a></code> 
+        </dt>
+        <dd>tune hyperparameters of ml model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.cluster_dbscan.html">fit(<i>&lt;cluster_dbscan&gt;</i>)</a></code> 
+        </dt>
+        <dd>fit dbscan model</dd>
+      </dl><dl><dt>
+          
           <code><a href="fit.default.html">fit(<i>&lt;default&gt;</i>)</a></code> 
         </dt>
-        <dd>dal_base object</dd>
+        <dd>fit default implementation</dd>
       </dl><dl><dt>
           
           <code><a href="fit.minmax.html">fit(<i>&lt;minmax&gt;</i>)</a></code> 
         </dt>
-        <dd>Fit MinMax</dd>
+        <dd>Fit MinMax Normalization</dd>
       </dl><dl><dt>
           
           <code><a href="fit.outliers.html">fit(<i>&lt;outliers&gt;</i>)</a></code> 
         </dt>
-        <dd>Calculates upper and lower bounds based on alpha value</dd>
+        <dd>Fit outliers object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="fit.reg_tune.html">fit(<i>&lt;reg_tune&gt;</i>)</a></code> 
+        </dt>
+        <dd>tune hyperparameters of ml model (regression)</dd>
       </dl><dl><dt>
           
           <code><a href="fit.ts_an.html">fit(<i>&lt;ts_an&gt;</i>)</a></code> 
@@ -290,7 +375,7 @@
           
           <code><a href="fit.ts_gminmax.html">fit(<i>&lt;ts_gminmax&gt;</i>)</a></code> 
         </dt>
-        <dd>Sets the parameters of an object</dd>
+        <dd>Fit global min max parameters for normalization</dd>
       </dl><dl><dt>
           
           <code><a href="fit.ts_swminmax.html">fit(<i>&lt;ts_swminmax&gt;</i>)</a></code> 
@@ -335,7 +420,7 @@
           
           <code><a href="inverse_transform.minmax.html">inverse_transform(<i>&lt;minmax&gt;</i>)</a></code> 
         </dt>
-        <dd>Inverse Transform MinMax</dd>
+        <dd>Inverse Transform minmax</dd>
       </dl><dl><dt>
           
           <code><a href="inverse_transform.ts_an.html">inverse_transform(<i>&lt;ts_an&gt;</i>)</a></code> 
@@ -350,7 +435,7 @@
           
           <code><a href="inverse_transform.ts_gminmax.html">inverse_transform(<i>&lt;ts_gminmax&gt;</i>)</a></code> 
         </dt>
-        <dd>Inverse of function "transform.ts_gminmax</dd>
+        <dd>Inverse transformation using global min-max</dd>
       </dl><dl><dt>
           
           <code><a href="inverse_transform.ts_swminmax.html">inverse_transform(<i>&lt;ts_swminmax&gt;</i>)</a></code> 
@@ -360,7 +445,12 @@
           
           <code><a href="inverse_transform.zscore.html">inverse_transform(<i>&lt;zscore&gt;</i>)</a></code> 
         </dt>
-        <dd>Inverse Transform Zscore</dd>
+        <dd>Inverse Transform z-score</dd>
+      </dl><dl><dt>
+          
+          <code><a href="k_fold.html">k_fold()</a></code> 
+        </dt>
+        <dd>k-fold sampling</dd>
       </dl><dl><dt>
           
           <code><a href="ma.ts_an.html">ma.ts_an()</a></code> 
@@ -385,7 +475,7 @@
           
           <code><a href="plot_bar.html">plot_bar()</a></code> 
         </dt>
-        <dd>plot bar</dd>
+        <dd>plot bar graph</dd>
       </dl><dl><dt>
           
           <code><a href="plot_boxplot.html">plot_boxplot()</a></code> 
@@ -403,7 +493,7 @@
         <dd>plot density</dd>
       </dl><dl><dt>
           
-          <code><a href="plot_density.class.html">plot_density.class()</a></code> 
+          <code><a href="plot_density_class.html">plot_density_class()</a></code> 
         </dt>
         <dd>plot density per class</dd>
       </dl><dl><dt>
@@ -440,7 +530,7 @@
           
           <code><a href="plot_scatter.html">plot_scatter()</a></code> 
         </dt>
-        <dd>plot scatter</dd>
+        <dd>scatter graph</dd>
       </dl><dl><dt>
           
           <code><a href="plot_series.html">plot_series()</a></code> 
@@ -453,9 +543,74 @@
         <dd>plot stacked bar</dd>
       </dl><dl><dt>
           
+          <code><a href="predict.cla_dtree.html">predict(<i>&lt;cla_dtree&gt;</i>)</a></code> 
+        </dt>
+        <dd>predict data from input</dd>
+      </dl><dl><dt>
+          
+          <code><a href="predict.cla_knn.html">predict(<i>&lt;cla_knn&gt;</i>)</a></code> 
+        </dt>
+        <dd>predict data from input</dd>
+      </dl><dl><dt>
+          
+          <code><a href="predict.cla_majority.html">predict(<i>&lt;cla_majority&gt;</i>)</a></code> 
+        </dt>
+        <dd>predict data from input</dd>
+      </dl><dl><dt>
+          
+          <code><a href="predict.cla_mlp.html">predict(<i>&lt;cla_mlp&gt;</i>)</a></code> 
+        </dt>
+        <dd>predict data from input</dd>
+      </dl><dl><dt>
+          
+          <code><a href="predict.cla_nb.html">predict(<i>&lt;cla_nb&gt;</i>)</a></code> 
+        </dt>
+        <dd>predict data from input</dd>
+      </dl><dl><dt>
+          
+          <code><a href="predict.cla_rf.html">predict(<i>&lt;cla_rf&gt;</i>)</a></code> 
+        </dt>
+        <dd>predict data from input</dd>
+      </dl><dl><dt>
+          
+          <code><a href="predict.cla_svm.html">predict(<i>&lt;cla_svm&gt;</i>)</a></code> 
+        </dt>
+        <dd>predict data from input</dd>
+      </dl><dl><dt>
+          
+          <code><a href="predict.reg_dtree.html">predict(<i>&lt;reg_dtree&gt;</i>)</a></code> 
+        </dt>
+        <dd>predict data from input</dd>
+      </dl><dl><dt>
+          
+          <code><a href="predict.reg_knn.html">predict(<i>&lt;reg_knn&gt;</i>)</a></code> 
+        </dt>
+        <dd>predict data from input</dd>
+      </dl><dl><dt>
+          
+          <code><a href="predict.reg_mlp.html">predict(<i>&lt;reg_mlp&gt;</i>)</a></code> 
+        </dt>
+        <dd>predict data from input</dd>
+      </dl><dl><dt>
+          
+          <code><a href="predict.reg_rf.html">predict(<i>&lt;reg_rf&gt;</i>)</a></code> 
+        </dt>
+        <dd>predict data from input</dd>
+      </dl><dl><dt>
+          
+          <code><a href="predict.reg_svm.html">predict(<i>&lt;reg_svm&gt;</i>)</a></code> 
+        </dt>
+        <dd>predict data from input</dd>
+      </dl><dl><dt>
+          
           <code><a href="predict.tsreg.html">predict(<i>&lt;tsreg&gt;</i>)</a></code> 
         </dt>
-        <dd>Returns the last observed value</dd>
+        <dd>predict data from input</dd>
+      </dl><dl><dt>
+          
+          <code><a href="predict.tsreg_arima.html">predict(<i>&lt;tsreg_arima&gt;</i>)</a></code> 
+        </dt>
+        <dd>predict data from input</dd>
       </dl><dl><dt>
           
           <code><a href="predict.tsreg_sw.html">predict(<i>&lt;tsreg_sw&gt;</i>)</a></code> 
@@ -505,7 +660,7 @@
           
           <code><a href="regression.html">regression()</a></code> 
         </dt>
-        <dd>Regression</dd>
+        <dd>Regression base class</dd>
       </dl><dl><dt>
           
           <code><a href="sMAPE.tsreg.html">sMAPE.tsreg()</a></code> 
@@ -526,6 +681,16 @@
           <code><a href="select_hyper.html">select_hyper()</a></code> 
         </dt>
         <dd>select hyper parameters</dd>
+      </dl><dl><dt>
+          
+          <code><a href="select_hyper.cla_tune.html">select_hyper(<i>&lt;cla_tune&gt;</i>)</a></code> 
+        </dt>
+        <dd>selection of hyperparameters</dd>
+      </dl><dl><dt>
+          
+          <code><a href="select_hyper.reg_tune.html">select_hyper(<i>&lt;reg_tune&gt;</i>)</a></code> 
+        </dt>
+        <dd>selection of hyperparameters</dd>
       </dl><dl><dt>
           
           <code><a href="set_params.html">set_params()</a></code> 
@@ -648,6 +813,16 @@
         <dd>Extract a subset of a time series stored in an object</dd>
       </dl><dl><dt>
           
+          <code><a href="train_test.html">train_test()</a></code> 
+        </dt>
+        <dd>training and test partition object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="train_test_from_folds.html">train_test_from_folds()</a></code> 
+        </dt>
+        <dd>k-fold training and test partition object</dd>
+      </dl><dl><dt>
+          
           <code><a href="transform.html">transform()</a></code> 
         </dt>
         <dd>Transform</dd>
@@ -665,7 +840,7 @@
           
           <code><a href="transform.minmax.html">transform(<i>&lt;minmax&gt;</i>)</a></code> 
         </dt>
-        <dd>Transform MinMax</dd>
+        <dd>Transform minmax</dd>
       </dl><dl><dt>
           
           <code><a href="transform.outliers.html">transform(<i>&lt;outliers&gt;</i>)</a></code> 
@@ -700,7 +875,7 @@
           
           <code><a href="transform.zscore.html">transform(<i>&lt;zscore&gt;</i>)</a></code> 
         </dt>
-        <dd>Transform Z-score</dd>
+        <dd>Transform z-score</dd>
       </dl><dl><dt>
           
           <code><a href="ts_an.html">ts_an()</a></code> 
