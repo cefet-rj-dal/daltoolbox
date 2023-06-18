@@ -16,22 +16,40 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/index.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/MSE.tsreg.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/MSE.ts.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/adjust.factor.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.cluster.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/adjust.ts_data.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.dal_learner.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/adjustClassLabels.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.default.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.prediction.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.ts_reg.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/adjust_class_label.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/adjust_data.frame.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/adjust_factor.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/adjust_matrix.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/adjust_ts_data.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/categ_mapping.html</loc>
@@ -88,19 +106,13 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/dal_base.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/dal_learner.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/dal_transform.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/data_sample.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/describe.default.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/describe.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/describe.ts_transform.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/do_fit.html</loc>
@@ -124,13 +136,13 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/do_predict.ts_elm.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/do_predict.ts_regsw.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/do_predict.ts_rf.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/do_predict.ts_svm.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/do_predict.tsreg_sw.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/dt_pca.html</loc>
@@ -151,7 +163,7 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/evaluate.regression.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/evaluate.tsreg.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/evaluate.ts_reg.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.cla_dtree.html</loc>
@@ -178,9 +190,6 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.cla_tune.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.classification.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.clu_tune.html</loc>
   </url>
   <url>
@@ -199,6 +208,9 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.outliers.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.prediction.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.reg_tune.html</loc>
   </url>
   <url>
@@ -211,10 +223,10 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.ts_gminmax.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.ts_swminmax.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.ts_regsw.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.tsreg_sw.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.ts_swminmax.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.zscore.html</loc>
@@ -313,6 +325,12 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/plot_stackedbar.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/plot_ts.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/plot_ts_pred.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/predict.cla_dtree.html</loc>
   </url>
   <url>
@@ -349,13 +367,16 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/predict.reg_svm.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/predict.tsreg.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/predict.ts_reg.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/predict.ts_regsw.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/predict.tsreg_arima.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/predict.tsreg_sw.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/prediction.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/reg_dtree.html</loc>
@@ -376,16 +397,10 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/reg_tune.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/register_log.default.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/register_log.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/regression.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/sMAPE.tsreg.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/sMAPE.ts.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/sample_random.html</loc>
@@ -406,52 +421,13 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/select_hyper.ts_tune.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.cla_knn.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.cla_mlp.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.cla_rf.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.cla_svm.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.cluster_kmeans.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.cluster_pam.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.dal_base.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.default.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.reg_knn.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.reg_mlp.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.reg_rf.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.reg_svm.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.ts_elm.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.ts_mlp.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.ts_rf.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/set_params.ts_svm.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/smoothing.html</loc>
@@ -467,12 +443,6 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/smoothing_inter.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/start_log.default.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/start_log.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/sub-.ts_data.html</loc>
@@ -541,19 +511,22 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_gminmax.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_head.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_mlp.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_normalize.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_plot.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_plot_pred.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_projection.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_reg.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_regsw.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_rf.html</loc>
@@ -610,16 +583,7 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsfil_swfilter.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tshead.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsreg.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsreg_arima.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsreg_sw.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/zscore.html</loc>

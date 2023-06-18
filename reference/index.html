@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">daltoolbox</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.60</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.70</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,22 +53,42 @@
 
       <dl><dt>
           
-          <code><a href="MSE.tsreg.html">MSE.tsreg()</a></code> 
+          <code><a href="MSE.ts.html">MSE.ts()</a></code> 
         </dt>
         <dd>Calculate the mean squared error (MSE) between actual values and forecasts of a time series</dd>
       </dl><dl><dt>
           
-          <code><a href="adjust.factor.html">adjust.factor()</a></code> 
+          <code><a href="action.html">action()</a></code> 
         </dt>
-        <dd>adjust categorical values</dd>
+        <dd>Action</dd>
       </dl><dl><dt>
           
-          <code><a href="adjust.ts_data.html">adjust.ts_data()</a></code> 
+          <code><a href="action.cluster.html">action(<i>&lt;cluster&gt;</i>)</a></code> 
         </dt>
-        <dd>Transform the date object</dd>
+        <dd>Action implementation for clustering</dd>
       </dl><dl><dt>
           
-          <code><a href="adjustClassLabels.html">adjustClassLabels()</a></code> 
+          <code><a href="action.dal_learner.html">action(<i>&lt;dal_learner&gt;</i>)</a></code> 
+        </dt>
+        <dd>Default Action implementation</dd>
+      </dl><dl><dt>
+          
+          <code><a href="action.default.html">action(<i>&lt;default&gt;</i>)</a></code> 
+        </dt>
+        <dd>Default Action implementation</dd>
+      </dl><dl><dt>
+          
+          <code><a href="action.prediction.html">action(<i>&lt;prediction&gt;</i>)</a></code> 
+        </dt>
+        <dd>Action implementation for prediction</dd>
+      </dl><dl><dt>
+          
+          <code><a href="action.ts_reg.html">action(<i>&lt;ts_reg&gt;</i>)</a></code> 
+        </dt>
+        <dd>Action implementation for prediction</dd>
+      </dl><dl><dt>
+          
+          <code><a href="adjust_class_label.html">adjust_class_label()</a></code> 
         </dt>
         <dd>compute categorical mapping</dd>
       </dl><dl><dt>
@@ -78,9 +98,19 @@
         <dd>dal_base object</dd>
       </dl><dl><dt>
           
+          <code><a href="adjust_factor.html">adjust_factor()</a></code> 
+        </dt>
+        <dd>adjust categorical values</dd>
+      </dl><dl><dt>
+          
           <code><a href="adjust_matrix.html">adjust_matrix()</a></code> 
         </dt>
         <dd>dal_base object</dd>
+      </dl><dl><dt>
+          
+          <code><a href="adjust_ts_data.html">adjust_ts_data()</a></code> 
+        </dt>
+        <dd>Transform the date object</dd>
       </dl><dl><dt>
           
           <code><a href="categ_mapping.html">categ_mapping()</a></code> 
@@ -173,6 +203,11 @@
         <dd>dal_base object</dd>
       </dl><dl><dt>
           
+          <code><a href="dal_learner.html">dal_learner()</a></code> 
+        </dt>
+        <dd>DAL Transform</dd>
+      </dl><dl><dt>
+          
           <code><a href="dal_transform.html">dal_transform()</a></code> 
         </dt>
         <dd>DAL Transform</dd>
@@ -181,21 +216,6 @@
           <code><a href="data_sample.html">data_sample()</a></code> 
         </dt>
         <dd>Data Sample</dd>
-      </dl><dl><dt>
-          
-          <code><a href="describe.html">describe()</a></code> 
-        </dt>
-        <dd>Describe object status</dd>
-      </dl><dl><dt>
-          
-          <code><a href="describe.default.html">describe(<i>&lt;default&gt;</i>)</a></code> 
-        </dt>
-        <dd>dal_base object</dd>
-      </dl><dl><dt>
-          
-          <code><a href="describe.ts_transform.html">describe(<i>&lt;ts_transform&gt;</i>)</a></code> 
-        </dt>
-        <dd>Describe the ts_transform function</dd>
       </dl><dl><dt>
           
           <code><a href="do_fit.html">do_fit()</a></code> 
@@ -233,6 +253,11 @@
         <dd>Make predictions using a previously trained ELM model</dd>
       </dl><dl><dt>
           
+          <code><a href="do_predict.ts_regsw.html">do_predict(<i>&lt;ts_regsw&gt;</i>)</a></code> 
+        </dt>
+        <dd>Performs the prediction step of the temporal regression model</dd>
+      </dl><dl><dt>
+          
           <code><a href="do_predict.ts_rf.html">do_predict(<i>&lt;ts_rf&gt;</i>)</a></code> 
         </dt>
         <dd>Make predictions on a new dataset (x) using the fitted random forest model</dd>
@@ -241,11 +266,6 @@
           <code><a href="do_predict.ts_svm.html">do_predict(<i>&lt;ts_svm&gt;</i>)</a></code> 
         </dt>
         <dd>Uses an adjusted SVM model for time series to make predictions</dd>
-      </dl><dl><dt>
-          
-          <code><a href="do_predict.tsreg_sw.html">do_predict(<i>&lt;tsreg_sw&gt;</i>)</a></code> 
-        </dt>
-        <dd>Performs the prediction step of the temporal regression model</dd>
       </dl><dl><dt>
           
           <code><a href="dt_pca.html">dt_pca()</a></code> 
@@ -278,7 +298,7 @@
         <dd>Regression evaluation</dd>
       </dl><dl><dt>
           
-          <code><a href="evaluate.tsreg.html">evaluate(<i>&lt;tsreg&gt;</i>)</a></code> 
+          <code><a href="evaluate.ts_reg.html">evaluate(<i>&lt;ts_reg&gt;</i>)</a></code> 
         </dt>
         <dd>Calculate the Mean Squared Error (MSE) error metric and the Symmetric Mean Absolute Percentage Error (sMAPE) error metric</dd>
       </dl><dl><dt>
@@ -328,11 +348,6 @@
         <dd>tune hyperparameters of ml model</dd>
       </dl><dl><dt>
           
-          <code><a href="fit.classification.html">fit(<i>&lt;classification&gt;</i>)</a></code> 
-        </dt>
-        <dd>fit classification</dd>
-      </dl><dl><dt>
-          
           <code><a href="fit.clu_tune.html">fit(<i>&lt;clu_tune&gt;</i>)</a></code> 
         </dt>
         <dd>tune hyperparameters of ml model</dd>
@@ -358,6 +373,11 @@
         <dd>Fit outliers object</dd>
       </dl><dl><dt>
           
+          <code><a href="fit.prediction.html">fit(<i>&lt;prediction&gt;</i>)</a></code> 
+        </dt>
+        <dd>fit predict</dd>
+      </dl><dl><dt>
+          
           <code><a href="fit.reg_tune.html">fit(<i>&lt;reg_tune&gt;</i>)</a></code> 
         </dt>
         <dd>tune hyperparameters of ml model (regression)</dd>
@@ -378,14 +398,14 @@
         <dd>Fit global min max parameters for normalization</dd>
       </dl><dl><dt>
           
+          <code><a href="fit.ts_regsw.html">fit(<i>&lt;ts_regsw&gt;</i>)</a></code> 
+        </dt>
+        <dd>Performs the adjustment (training) of a regression model in time series</dd>
+      </dl><dl><dt>
+          
           <code><a href="fit.ts_swminmax.html">fit(<i>&lt;ts_swminmax&gt;</i>)</a></code> 
         </dt>
         <dd>adjust the obj object parameters for the "sw-min-max" normalization method</dd>
-      </dl><dl><dt>
-          
-          <code><a href="fit.tsreg_sw.html">fit(<i>&lt;tsreg_sw&gt;</i>)</a></code> 
-        </dt>
-        <dd>Performs the adjustment (training) of a regression model in time series</dd>
       </dl><dl><dt>
           
           <code><a href="fit.zscore.html">fit(<i>&lt;zscore&gt;</i>)</a></code> 
@@ -543,6 +563,16 @@
         <dd>plot stacked bar</dd>
       </dl><dl><dt>
           
+          <code><a href="plot_ts.html">plot_ts()</a></code> 
+        </dt>
+        <dd>Plot a time series chart</dd>
+      </dl><dl><dt>
+          
+          <code><a href="plot_ts_pred.html">plot_ts_pred()</a></code> 
+        </dt>
+        <dd>Plot a time series chart</dd>
+      </dl><dl><dt>
+          
           <code><a href="predict.cla_dtree.html">predict(<i>&lt;cla_dtree&gt;</i>)</a></code> 
         </dt>
         <dd>predict data from input</dd>
@@ -603,9 +633,14 @@
         <dd>predict data from input</dd>
       </dl><dl><dt>
           
-          <code><a href="predict.tsreg.html">predict(<i>&lt;tsreg&gt;</i>)</a></code> 
+          <code><a href="predict.ts_reg.html">predict(<i>&lt;ts_reg&gt;</i>)</a></code> 
         </dt>
         <dd>predict data from input</dd>
+      </dl><dl><dt>
+          
+          <code><a href="predict.ts_regsw.html">predict(<i>&lt;ts_regsw&gt;</i>)</a></code> 
+        </dt>
+        <dd>Performs prediction of values for a time series</dd>
       </dl><dl><dt>
           
           <code><a href="predict.tsreg_arima.html">predict(<i>&lt;tsreg_arima&gt;</i>)</a></code> 
@@ -613,9 +648,9 @@
         <dd>predict data from input</dd>
       </dl><dl><dt>
           
-          <code><a href="predict.tsreg_sw.html">predict(<i>&lt;tsreg_sw&gt;</i>)</a></code> 
+          <code><a href="prediction.html">prediction()</a></code> 
         </dt>
-        <dd>Performs prediction of values for a time series</dd>
+        <dd>DAL Predict</dd>
       </dl><dl><dt>
           
           <code><a href="reg_dtree.html">reg_dtree()</a></code> 
@@ -648,22 +683,12 @@
         <dd>Regression Tune</dd>
       </dl><dl><dt>
           
-          <code><a href="register_log.html">register_log()</a></code> 
-        </dt>
-        <dd>Register log details</dd>
-      </dl><dl><dt>
-          
-          <code><a href="register_log.default.html">register_log(<i>&lt;default&gt;</i>)</a></code> 
-        </dt>
-        <dd>dal_base object</dd>
-      </dl><dl><dt>
-          
           <code><a href="regression.html">regression()</a></code> 
         </dt>
         <dd>Regression base class</dd>
       </dl><dl><dt>
           
-          <code><a href="sMAPE.tsreg.html">sMAPE.tsreg()</a></code> 
+          <code><a href="sMAPE.ts.html">sMAPE.ts()</a></code> 
         </dt>
         <dd>Calculate the symmetric mean absolute percent error (sMAPE)</dd>
       </dl><dl><dt>
@@ -703,79 +728,14 @@
         <dd>Update an object's parameters</dd>
       </dl><dl><dt>
           
-          <code><a href="set_params.cla_knn.html">set_params(<i>&lt;cla_knn&gt;</i>)</a></code> 
+          <code><a href="set_params.dal_base.html">set_params(<i>&lt;dal_base&gt;</i>)</a></code> 
         </dt>
-        <dd>Set parameters values for cla_knn</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_params.cla_mlp.html">set_params(<i>&lt;cla_mlp&gt;</i>)</a></code> 
-        </dt>
-        <dd>Set parameters values for cla_mlp</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_params.cla_rf.html">set_params(<i>&lt;cla_rf&gt;</i>)</a></code> 
-        </dt>
-        <dd>Set parameters values for cla_rf</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_params.cla_svm.html">set_params(<i>&lt;cla_svm&gt;</i>)</a></code> 
-        </dt>
-        <dd>Set parameters values for reg_svm</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_params.cluster_kmeans.html">set_params(<i>&lt;cluster_kmeans&gt;</i>)</a></code> 
-        </dt>
-        <dd>Updates the parameters of cluster_kmeans</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_params.cluster_pam.html">set_params(<i>&lt;cluster_pam&gt;</i>)</a></code> 
-        </dt>
-        <dd>Updates the parameters of cluster_pam</dd>
+        <dd>Set parameters values for dal_base</dd>
       </dl><dl><dt>
           
           <code><a href="set_params.default.html">set_params(<i>&lt;default&gt;</i>)</a></code> 
         </dt>
         <dd>Defines a default method for the set_params function</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_params.reg_knn.html">set_params(<i>&lt;reg_knn&gt;</i>)</a></code> 
-        </dt>
-        <dd>Set parameters values for reg_knn</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_params.reg_mlp.html">set_params(<i>&lt;reg_mlp&gt;</i>)</a></code> 
-        </dt>
-        <dd>Set parameters values for reg_mlp</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_params.reg_rf.html">set_params(<i>&lt;reg_rf&gt;</i>)</a></code> 
-        </dt>
-        <dd>Set parameters values for reg_rf</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_params.reg_svm.html">set_params(<i>&lt;reg_svm&gt;</i>)</a></code> 
-        </dt>
-        <dd>Set parameters values for reg_svm</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_params.ts_elm.html">set_params(<i>&lt;ts_elm&gt;</i>)</a></code> 
-        </dt>
-        <dd>Set specific parameters of a ts_elm object</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_params.ts_mlp.html">set_params(<i>&lt;ts_mlp&gt;</i>)</a></code> 
-        </dt>
-        <dd>Update ts_mlp object parameters</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_params.ts_rf.html">set_params(<i>&lt;ts_rf&gt;</i>)</a></code> 
-        </dt>
-        <dd>Allows parameters of a ts_rf object to be updated with new values</dd>
-      </dl><dl><dt>
-          
-          <code><a href="set_params.ts_svm.html">set_params(<i>&lt;ts_svm&gt;</i>)</a></code> 
-        </dt>
-        <dd>Updates the parameters of an SVM model object for time series (ts_svm)</dd>
       </dl><dl><dt>
           
           <code><a href="smoothing.html">smoothing()</a></code> 
@@ -801,16 +761,6 @@
           <code><a href="smoothing_inter.html">smoothing_inter()</a></code> 
         </dt>
         <dd>Smoothing by interval</dd>
-      </dl><dl><dt>
-          
-          <code><a href="start_log.html">start_log()</a></code> 
-        </dt>
-        <dd>Start logging on an obj object</dd>
-      </dl><dl><dt>
-          
-          <code><a href="start_log.default.html">start_log(<i>&lt;default&gt;</i>)</a></code> 
-        </dt>
-        <dd>dal_base object</dd>
       </dl><dl><dt>
           
           <code><a href="sub-.ts_data.html">`[`(<i>&lt;ts_data&gt;</i>)</a></code> 
@@ -923,6 +873,11 @@
         <dd>Time Series Global Min-Max</dd>
       </dl><dl><dt>
           
+          <code><a href="ts_head.html">ts_head()</a></code> 
+        </dt>
+        <dd>Extract the first observations from a time series</dd>
+      </dl><dl><dt>
+          
           <code><a href="ts_mlp.html">ts_mlp()</a></code> 
         </dt>
         <dd>Time Series Multilayer Perceptron (MLP)</dd>
@@ -933,19 +888,19 @@
         <dd>Time Series Normalize</dd>
       </dl><dl><dt>
           
-          <code><a href="ts_plot.html">ts_plot()</a></code> 
-        </dt>
-        <dd>Plot a time series chart</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ts_plot_pred.html">ts_plot_pred()</a></code> 
-        </dt>
-        <dd>Plot a time series chart</dd>
-      </dl><dl><dt>
-          
           <code><a href="ts_projection.html">ts_projection()</a></code> 
         </dt>
         <dd>Time Series Projection</dd>
+      </dl><dl><dt>
+          
+          <code><a href="ts_reg.html">ts_reg()</a></code> 
+        </dt>
+        <dd>Create an object of class "ts_reg" which is a subclass of object dal_learner</dd>
+      </dl><dl><dt>
+          
+          <code><a href="ts_regsw.html">ts_regsw()</a></code> 
+        </dt>
+        <dd>Create an object of class "ts_regsw", which is an extension of class "ts_reg"</dd>
       </dl><dl><dt>
           
           <code><a href="ts_rf.html">ts_rf()</a></code> 
@@ -1038,24 +993,9 @@
         <dd>Time Series Sliding Window Filter</dd>
       </dl><dl><dt>
           
-          <code><a href="tshead.html">tshead()</a></code> 
-        </dt>
-        <dd>Extract the first observations from a time series</dd>
-      </dl><dl><dt>
-          
-          <code><a href="tsreg.html">tsreg()</a></code> 
-        </dt>
-        <dd>Create an object of class "tsreg" which is a subclass of object "dal_transform</dd>
-      </dl><dl><dt>
-          
           <code><a href="tsreg_arima.html">tsreg_arima()</a></code> 
         </dt>
         <dd>Time Series AutoRegressive Integrated Moving Average (ARIMA)</dd>
-      </dl><dl><dt>
-          
-          <code><a href="tsreg_sw.html">tsreg_sw()</a></code> 
-        </dt>
-        <dd>Create an object of class "tsreg_sw", which is an extension of class "tsreg"</dd>
       </dl><dl><dt>
           
           <code><a href="zscore.html">zscore()</a></code> 
