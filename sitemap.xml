@@ -19,7 +19,7 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/MSE.ts.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.cluster.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.clusterer.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.dal_learner.html</loc>
@@ -31,7 +31,7 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.prediction.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.predictor.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.ts_reg.html</loc>
@@ -100,7 +100,7 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/cluster_pam.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/clustering.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/clusterer.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/dal_base.html</loc>
@@ -151,7 +151,7 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/evaluate.classification.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/evaluate.clustering.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/evaluate.clusterer.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/evaluate.default.html</loc>
@@ -208,7 +208,7 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.outliers.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.prediction.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.predictor.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.reg_tune.html</loc>
@@ -376,7 +376,7 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/predict.tsreg_arima.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/prediction.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/predictor.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/reg_dtree.html</loc>
