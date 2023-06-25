@@ -235,9 +235,6 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.zscore.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit_curvature.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit_curvature_max.html</loc>
   </url>
   <url>
@@ -455,9 +452,6 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/transform.default.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/transform.fit_curvature.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/transform.html</loc>
