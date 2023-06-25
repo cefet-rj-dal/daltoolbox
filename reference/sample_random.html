@@ -71,7 +71,7 @@ generate a random sample of specified size from a given data set.</p>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">tt</span><span class="op">$</span><span class="va">train</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     setosa versicolor  virginica </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         41         44         35 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         36         43         41 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># preparing dataset into four folds</span></span></span>
 <span class="r-in"><span><span class="va">folds</span> <span class="op">&lt;-</span> <span class="fu"><a href="k_fold.html">k_fold</a></span><span class="op">(</span><span class="va">sample</span>, <span class="va">iris</span>, <span class="fl">4</span><span class="op">)</span></span></span>
@@ -83,10 +83,10 @@ generate a random sample of specified size from a given data set.</p>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      setosa versicolor virginica</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]     13         11        13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]     12         10        15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]     13         14        11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]     12         15        11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]     13          8        16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]     12         13        12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]     11         17        10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]     14         12        12</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
