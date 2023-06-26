@@ -277,49 +277,61 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/transform.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_an.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_aug_awareness.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_augawareness.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_aug_awaresmooth.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_augawaresmooth.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_aug_flip.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_augflip.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_aug_jitter.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_augjitter.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_aug_shrink.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_augshrink.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_aug_stretch.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_augstretch.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_augwormhole.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_aug_wormhole.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_data.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_diff.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_ean.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_elm.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_gminmax.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_fil_ema.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_fil_ma.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_fil_smooth.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_head.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_mlp.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_norm_an.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_norm_diff.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_norm_ean.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_norm_gminmax.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_norm_swminmax.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_projection.html</loc>
@@ -340,19 +352,7 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_svm.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_swminmax.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_tune.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsfil_ema.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsfil_ma.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsfil_smooth.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsreg_arima.html</loc>
