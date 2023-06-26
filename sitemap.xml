@@ -277,6 +277,9 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/transform.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_arima.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_aug_awareness.html</loc>
   </url>
   <url>
@@ -353,9 +356,6 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_tune.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsreg_arima.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/zscore.html</loc>
