@@ -79,7 +79,158 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">trans</span> <span class="op">&lt;-</span> <span class="fu"><a href="dal_transform.html">dal_transform</a></span><span class="op">(</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">sin_data</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data10</span> <span class="op">&lt;-</span> <span class="fu"><a href="ts_data.html">ts_data</a></span><span class="op">(</span><span class="va">sin_data</span><span class="op">$</span><span class="va">y</span>, <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="ts_head.html">ts_head</a></span><span class="op">(</span><span class="va">data10</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             t9        t8        t7        t6        t5        t4        t3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.0000000 0.2474040 0.4794255 0.6816388 0.8414710 0.9489846 0.9974950</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.2474040 0.4794255 0.6816388 0.8414710 0.9489846 0.9974950 0.9839859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.4794255 0.6816388 0.8414710 0.9489846 0.9974950 0.9839859 0.9092974</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.6816388 0.8414710 0.9489846 0.9974950 0.9839859 0.9092974 0.7780732</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.8414710 0.9489846 0.9974950 0.9839859 0.9092974 0.7780732 0.5984721</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] 0.9489846 0.9974950 0.9839859 0.9092974 0.7780732 0.5984721 0.3816610</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             t2         t1         t0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.9839859  0.9092974  0.7780732</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.9092974  0.7780732  0.5984721</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.7780732  0.5984721  0.3816610</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.5984721  0.3816610  0.1411200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.3816610  0.1411200 -0.1081951</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] 0.1411200 -0.1081951 -0.3507832</span>
+<span class="r-in"><span><span class="co">#single line</span></span></span>
+<span class="r-in"><span><span class="va">data10</span><span class="op">[</span><span class="fl">12</span>,<span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            t9      t8         t7         t6         t5         t4         t3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.381661 0.14112 -0.1081951 -0.3507832 -0.5715613 -0.7568025 -0.8949894</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              t2         t1         t0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.9775301 -0.9992928 -0.9589243</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ts_data" "matrix"  "array"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"sw")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#range of lines</span></span></span>
+<span class="r-in"><span><span class="va">data10</span><span class="op">[</span><span class="fl">12</span><span class="op">:</span><span class="fl">13</span>,<span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            t9         t8         t7         t6         t5         t4         t3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.381661  0.1411200 -0.1081951 -0.3507832 -0.5715613 -0.7568025 -0.8949894</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.141120 -0.1081951 -0.3507832 -0.5715613 -0.7568025 -0.8949894 -0.9775301</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              t2         t1         t0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.9775301 -0.9992928 -0.9589243</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.9992928 -0.9589243 -0.8589345</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ts_data" "matrix"  "array"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"sw")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#single column</span></span></span>
+<span class="r-in"><span><span class="va">data10</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                t9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,]  0.00000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,]  0.24740396</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,]  0.47942554</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  0.68163876</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,]  0.84147098</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,]  0.94898462</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,]  0.99749499</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,]  0.98398595</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,]  0.90929743</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,]  0.77807320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11,]  0.59847214</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [12,]  0.38166099</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13,]  0.14112001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [14,] -0.10819513</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15,] -0.35078323</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16,] -0.57156132</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17,] -0.75680250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [18,] -0.89498936</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19,] -0.97753012</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20,] -0.99929279</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21,] -0.95892427</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22,] -0.85893449</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [23,] -0.70554033</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [24,] -0.50827908</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25,] -0.27941550</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [26,] -0.03317922</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [27,]  0.21511999</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [28,]  0.45004407</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29,]  0.65698660</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [30,]  0.82308088</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31,]  0.93799998</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [32,]  0.99459878</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ts_data" "matrix"  "array"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"sw")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#range of columns</span></span></span>
+<span class="r-in"><span><span class="va">data10</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                t9          t8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,]  0.00000000  0.24740396</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,]  0.24740396  0.47942554</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,]  0.47942554  0.68163876</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  0.68163876  0.84147098</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,]  0.84147098  0.94898462</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,]  0.94898462  0.99749499</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,]  0.99749499  0.98398595</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,]  0.98398595  0.90929743</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,]  0.90929743  0.77807320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,]  0.77807320  0.59847214</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11,]  0.59847214  0.38166099</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [12,]  0.38166099  0.14112001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13,]  0.14112001 -0.10819513</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [14,] -0.10819513 -0.35078323</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15,] -0.35078323 -0.57156132</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16,] -0.57156132 -0.75680250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17,] -0.75680250 -0.89498936</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [18,] -0.89498936 -0.97753012</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19,] -0.97753012 -0.99929279</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20,] -0.99929279 -0.95892427</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21,] -0.95892427 -0.85893449</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22,] -0.85893449 -0.70554033</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [23,] -0.70554033 -0.50827908</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [24,] -0.50827908 -0.27941550</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25,] -0.27941550 -0.03317922</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [26,] -0.03317922  0.21511999</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [27,]  0.21511999  0.45004407</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [28,]  0.45004407  0.65698660</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29,]  0.65698660  0.82308088</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [30,]  0.82308088  0.93799998</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31,]  0.93799998  0.99459878</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [32,]  0.99459878  0.98935825</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ts_data" "matrix"  "array"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"sw")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#range of rows and columns</span></span></span>
+<span class="r-in"><span><span class="va">data10</span><span class="op">[</span><span class="fl">12</span><span class="op">:</span><span class="fl">13</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            t9         t8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.381661  0.1411200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.141120 -0.1081951</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ts_data" "matrix"  "array"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"sw")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#single line and a range of columns</span></span></span>
+<span class="r-in"><span><span class="co">#'data10[12,1:2]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#range of lines and a single column</span></span></span>
+<span class="r-in"><span><span class="va">data10</span><span class="op">[</span><span class="fl">12</span><span class="op">:</span><span class="fl">13</span>,<span class="fl">1</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            t9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.381661</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.141120</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ts_data" "matrix"  "array"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"sw")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#single observation</span></span></span>
+<span class="r-in"><span><span class="va">data10</span><span class="op">[</span><span class="fl">12</span>,<span class="fl">1</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            t9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.381661</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ts_data" "matrix"  "array"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"sw")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
