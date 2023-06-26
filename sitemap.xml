@@ -22,9 +22,6 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/MSE.ts.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.clusterer.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.dal_transform.html</loc>
   </url>
   <url>
@@ -149,9 +146,6 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.cla_tune.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.clu_tune.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/fit.cluster_dbscan.html</loc>
