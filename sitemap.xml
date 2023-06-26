@@ -349,16 +349,31 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/transform.ts_swminmax.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/transform.ts_transform.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_an.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_as_matrix.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_augment.html</loc>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_augawareness.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_augawaresmooth.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_augflip.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_augjitter.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_augshrink.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_augstretch.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_augwormhole.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_data.html</loc>
@@ -382,9 +397,6 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_mlp.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_normalize.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_projection.html</loc>
   </url>
   <url>
@@ -406,31 +418,7 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_swminmax.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_transform.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_tune.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsaug_aware_smooth.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsaug_awareness.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsaug_flip.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsaug_jitter.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsaug_shrink.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsaug_stretch.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsaug_wormhole.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsfil_ema.html</loc>
@@ -443,9 +431,6 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsfil_smooth.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsfil_swfilter.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/tsreg_arima.html</loc>
