@@ -70,7 +70,50 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">trans</span> <span class="op">&lt;-</span> <span class="fu"><a href="dal_transform.html">dal_transform</a></span><span class="op">(</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># time series to normalize</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">sin_data</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># convert to sliding windows</span></span></span>
+<span class="r-in"><span><span class="va">ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="ts_data.html">ts_data</a></span><span class="op">(</span><span class="va">sin_data</span><span class="op">$</span><span class="va">y</span>, <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="ts_head.html">ts_head</a></span><span class="op">(</span><span class="va">ts</span>, <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             t9        t8        t7        t6        t5        t4        t3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.0000000 0.2474040 0.4794255 0.6816388 0.8414710 0.9489846 0.9974950</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.2474040 0.4794255 0.6816388 0.8414710 0.9489846 0.9974950 0.9839859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.4794255 0.6816388 0.8414710 0.9489846 0.9974950 0.9839859 0.9092974</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             t2        t1        t0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.9839859 0.9092974 0.7780732</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.9092974 0.7780732 0.5984721</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.7780732 0.5984721 0.3816610</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">ts</span><span class="op">[</span>,<span class="fl">10</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        t0          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Min.   :-0.99929  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1st Qu.:-0.55091  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Median : 0.05397  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Mean   : 0.02988  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3rd Qu.: 0.63279  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Max.   : 0.99460  </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># normalization</span></span></span>
+<span class="r-in"><span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu">ts_norm_ean</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="fit.html">fit</a></span><span class="op">(</span><span class="va">preproc</span>, <span class="va">ts</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">tst</span> <span class="op">&lt;-</span> <span class="fu"><a href="transform.html">transform</a></span><span class="op">(</span><span class="va">preproc</span>, <span class="va">ts</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="ts_head.html">ts_head</a></span><span class="op">(</span><span class="va">tst</span>, <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             t9        t8        t7        t6        t5        t4        t3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.1573972 0.2630526 0.3621389 0.4484953 0.5167527 0.5626671 0.5833837</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.2718782 0.3709644 0.4573209 0.5255782 0.5714926 0.5922093 0.5864402</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.4006181 0.4869745 0.5552319 0.6011462 0.6218629 0.6160938 0.5841976</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             t2        t1        t0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.5776146 0.5457184 0.4896783</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.5545440 0.4985038 0.4218041</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.5281574 0.4514577 0.3588671</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">tst</span><span class="op">[</span>,<span class="fl">10</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        t0        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Min.   :0.2253  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1st Qu.:0.2873  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Median :0.4262  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Mean   :0.4646  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3rd Qu.:0.6407  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Max.   :0.7764  </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
