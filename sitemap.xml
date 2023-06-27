@@ -28,9 +28,6 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/action.ts_reg.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/adjust_class_label.html</loc>
   </url>
   <url>
@@ -197,9 +194,6 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/plot_ts_pred.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/predict.ts_reg.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/predictor.html</loc>
