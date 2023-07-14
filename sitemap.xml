@@ -295,6 +295,9 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_aug_wormhole.html</loc>
   </url>
   <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_conv1d.html</loc>
+  </url>
+  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_data.html</loc>
   </url>
   <url>
@@ -311,6 +314,12 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_head.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_knn.html</loc>
+  </url>
+  <url>
+    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_lstm.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_mlp.html</loc>
