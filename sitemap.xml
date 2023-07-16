@@ -274,27 +274,6 @@
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_arima.html</loc>
   </url>
   <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_aug_awareness.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_aug_awaresmooth.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_aug_flip.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_aug_jitter.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_aug_shrink.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_aug_stretch.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_aug_wormhole.html</loc>
-  </url>
-  <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_conv1d.html</loc>
   </url>
   <url>
@@ -302,15 +281,6 @@
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_elm.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_fil_ema.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_fil_ma.html</loc>
-  </url>
-  <url>
-    <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_fil_smooth.html</loc>
   </url>
   <url>
     <loc>https://cefet-rj-dal.github.io/daltoolbox/reference/ts_head.html</loc>
