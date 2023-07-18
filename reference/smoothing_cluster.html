@@ -81,14 +81,14 @@ smoothed value for all observations within that cluster.</p>
 <span class="r-in"><span><span class="va">sl.bi</span> <span class="op">&lt;-</span> <span class="fu"><a href="transform.html">transform</a></span><span class="op">(</span><span class="va">obj</span>, <span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Length</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">sl.bi</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sl.bi</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5.19875    6.58 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      80      70 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5.22409638554217 6.61044776119403 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               83               67 </span>
 <span class="r-in"><span><span class="va">obj</span><span class="op">$</span><span class="va">interval</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4.300000 5.889375 7.900000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4.300000 5.917272 7.900000</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">entro</span> <span class="op">&lt;-</span> <span class="fu"><a href="evaluate.html">evaluate</a></span><span class="op">(</span><span class="va">obj</span>, <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">sl.bi</span><span class="op">)</span><span class="op">)</span>, <span class="va">iris</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">entro</span><span class="op">$</span><span class="va">entropy</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.097573</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.12088</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
