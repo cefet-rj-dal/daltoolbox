@@ -1,0 +1,51 @@
+Package: daltoolbox
+Title: Leveraging Experiment Lines to Data Analytics 
+Version: 1.0.777
+Authors@R: 
+  c(    person(given = "Eduardo", family = "Ogasawara", role = c("aut", "ths", "cre"), 
+               email = "eogasawara@ieee.org", comment = c(ORCID = "0000-0002-0466-0626")),
+        person(given = "Antonio", family = "Castro", role = c("aut", "ctb"), email = "antonio.castro@eic.cefet-rj.br"),
+        person(given = "Heraldo", family = "Borges", role = c("aut", "ths"), email = "heraldo.borges@cefet-rj.br"),
+        person(given = "Diego", family = "Carvalho", role = c("aut", "ths"), email = "d.carvalho@ieee.org"),
+        person(given = "Joel", family = "Santos", role = c("aut", "ths"), email = "joel.santos@cefet-rj.br"),
+        person(given = "Eduardo", family = "Bezerra", role = c("aut", "ths"), email = "ebezerra@cefet-rj.br"),
+        person(given = "Rafaelli", family = "Coutinho", role = c("aut", "ths"), email = "rafaelli.coutinho@cefet-rj.br"),
+        person(given = "Federal Center for Technological Education of Rio de Janeiro (CEFET/RJ)", role = "cph")
+   )
+Description: The natural increase in the complexity of current research experiments and data demands better tools to enhance productivity in Data Analytics. The package is a framework designed to address the modern challenges in data analytics workflows. The package is inspired by Experiment Line concepts. It aims to provide seamless support for users in developing their data mining workflows by offering a uniform data model and method API. It enables the integration of various data mining activities, including data preprocessing, classification, regression, clustering, and time series prediction. It also offers options for hyper-parameter tuning and supports integration with existing libraries and languages. Overall, the package provides researchers with a comprehensive set of functionalities for data science, promoting ease of use, extensibility, and integration with various tools and libraries. Information on Experiment Line is based on Ogasawara et al. (2009) <doi:10.1007/978-3-642-02279-1_20>.
+License: MIT + file LICENSE
+URL: https://github.com/cefet-rj-dal/daltoolbox
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+  FNN, 
+  MLmetrics, 
+  caret, 
+  class, 
+  cluster, 
+  dbscan, 
+  dplyr,
+  e1071, 
+  elmNNRcpp, 
+  forecast, 
+  ggplot2, 
+  nnet, 
+  randomForest,
+  reshape, 
+  tree,
+  reticulate
+Config/reticulate:
+  list(
+    packages = list(
+      list(package = "scipy"),
+      list(package = "torch"),
+      list(package = "pandas"),
+      list(package = "numpy"),
+      list(package = "matplotlib"),
+      list(package = "scikit-learn"),
+      list(package = "functools"),
+      list(package = "operator"),
+      list(package = "sys")
+    )
+  )  
