@@ -18,6 +18,8 @@ vae_encode(
 
 \item{encoding_size}{encoding size}
 
+\item{mean_var_size}{mean variable size}
+
 \item{batch_size}{size for batch learning}
 
 \item{num_epochs}{number of epochs for training}

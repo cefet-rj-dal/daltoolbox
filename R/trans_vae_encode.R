@@ -3,6 +3,7 @@
 #' It wraps the pytorch library.
 #'@param input_size input size
 #'@param encoding_size encoding size
+#'@param mean_var_size mean variable size
 #'@param batch_size size for batch learning
 #'@param num_epochs number of epochs for training
 #'@param learning_rate learning rate
@@ -20,7 +21,7 @@ vae_encode <- function(input_size, encoding_size, mean_var_size=6, batch_size = 
   obj$num_epochs <- num_epochs
   obj$learning_rate <- learning_rate
   class(obj) <- append("vae_encode", class(obj))
-  
+
   return(obj)
 }
 
@@ -28,21 +29,21 @@ vae_encode <- function(input_size, encoding_size, mean_var_size=6, batch_size = 
 fit.vae_encode <- function(obj, data, return_loss=FALSE, ...) {
   if (!exists("vae_create"))
     reticulate::source_python(system.file("python", "var_autoencoder.py", package = "daltoolbox"))
-  
+
   if (is.null(obj$model))
     obj$model <- vae_create(obj$input_size, obj$encoding_size, obj$mean_var_size)
-  
-  
+
+
   if (return_loss){
     fit_output <- vae_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=return_loss)
     obj$model <- fit_output[[1]]
-    
+
     return(list(obj=obj, loss=fit_output[-1]))
   }else{
     obj$model <- vae_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=return_loss)
-    return(obj) 
+    return(obj)
   }
-  
+
   return(obj)
 }
 
@@ -50,7 +51,7 @@ fit.vae_encode <- function(obj, data, return_loss=FALSE, ...) {
 transform.vae_encode <- function(obj, data, ...) {
   if (!exists("vae_create"))
     reticulate::source_python(system.file("python", "var_autoencoder.py", package = "daltoolbox"))
-  
+
   result <- NULL
   if (!is.null(obj$model))
     result <- var_encode(obj$model, data)
