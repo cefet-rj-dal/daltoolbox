@@ -1,5 +1,5 @@
 # DAL ToolBox
-# version 1.0.767
+# version 1.0.777
 
 source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
 

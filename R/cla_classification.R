@@ -59,7 +59,7 @@ evaluate.classification <- function(obj, data, prediction, ref = 1, ...) {
 
   metrics$f1 <- 2*(metrics$precision*metrics$recall)/(metrics$precision+metrics$recall)
 
-  result$metrics <- metrics
+  result$metrics <- as.data.frame(metrics)
 
   return(result)
 }
