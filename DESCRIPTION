@@ -1,6 +1,6 @@
 Package: daltoolbox
 Title: Leveraging Experiment Lines to Data Analytics 
-Version: 1.0.777
+Version: 1.0.787
 Authors@R: 
   c(    person(given = "Eduardo", family = "Ogasawara", role = c("aut", "ths", "cre"), 
                email = "eogasawara@ieee.org", comment = c(ORCID = "0000-0002-0466-0626")),
