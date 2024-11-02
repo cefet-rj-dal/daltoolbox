@@ -8,8 +8,8 @@
 #'@param learning_rate learning rate
 #'@return returns a `autoenc_encode_decode` object.
 #'@examples
-#'#See an example of using `autoenc_encode_decode` at
-#'#[this link](https://nbviewer.org/github/cefet-rj-dal/daltoolbox/blob/main/transformation/autoencoder_encode_decode.ipynb)
+#'#See an example of using `autoenc_encode_decode` at this
+#'#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/van_enc_decode.ipynb)
 #'@import reticulate
 #'@export
 autoenc_encode_decode <- function(input_size, encoding_size, batch_size = 32, num_epochs = 1000, learning_rate = 0.001) {
