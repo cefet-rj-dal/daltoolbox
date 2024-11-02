@@ -31,5 +31,6 @@ Creates an deep learning adversarial autoencoder to encode a sequence of observa
 It wraps the pytorch library.
 }
 \examples{
-#See example at https://nbviewer.org/github/cefet-rj-dal/daltoolbox-examples
+#See an example of using `aae_encode_decode` at this
+#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/aae_enc_decode.ipynb)
 }

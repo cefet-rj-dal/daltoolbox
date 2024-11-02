@@ -2,7 +2,7 @@
 % Please edit documentation in R/trans_lae_encode.R
 \name{lae_encode}
 \alias{lae_encode}
-\title{Convolutional 2d Autoencoder - Encode}
+\title{LSTM Autoencoder - Encode}
 \usage{
 lae_encode(
   input_size,
@@ -24,12 +24,13 @@ lae_encode(
 \item{learning_rate}{learning rate}
 }
 \value{
-a \code{cae2d_encode_decode} object.
+returns a \code{lae_encode} object.
 }
 \description{
-Creates an deep learning convolutional autoencoder to encode a sequence of observations.
+Creates an deep learning LSTM autoencoder to encode a sequence of observations.
 It wraps the pytorch library.
 }
 \examples{
-#See example at https://nbviewer.org/github/cefet-rj-dal/daltoolbox-examples
+#See an example of using `lae_encode` at this
+#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/lae_encode.ipynb)
 }

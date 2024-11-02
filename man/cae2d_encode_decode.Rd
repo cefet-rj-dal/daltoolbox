@@ -25,11 +25,14 @@ cae2d_encode_decode(
 }
 \value{
 a \code{cae2d_encode_decode} object.
+
+returns a \code{cae2d_encode_decode} object.
 }
 \description{
 Creates an deep learning convolutional autoencoder to encode a sequence of observations.
 It wraps the pytorch library.
 }
 \examples{
-#See example at https://nbviewer.org/github/cefet-rj-dal/daltoolbox-examples
+#See an example of using `cae2d_encode_decode` at this
+#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/cae2d_enc_decode.ipynb)
 }

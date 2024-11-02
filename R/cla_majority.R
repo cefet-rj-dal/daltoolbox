@@ -48,8 +48,8 @@ predict.cla_majority <- function(object, x, ...) {
   cols <- length(object$model$cols)
   prediction <- matrix(rep.int(0, rows*cols), nrow=rows, ncol=cols)
   prediction[,object$model$col] <- 1
-  colnames(prediction) <- names(object$model$cols)
-  prediction <- as.matrix(prediction)
+  prediction <- as.data.frame(prediction)
+  colnames(prediction) <- object$slevels
   return(prediction)
 }
 

@@ -7,12 +7,13 @@
 #'@param batch_size size for batch learning
 #'@param num_epochs number of epochs for training
 #'@param learning_rate learning rate
-#'@return a `vae_encode_decode` object.
+#'@return returns a `varae_encode_decode` object.
 #'@examples
-#'#See example at https://nbviewer.org/github/cefet-rj-dal/daltoolbox-examples
+#'#See an example of using `varae_encode_decode` at this
+#'#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/varae_enc_decode.ipynb)
 #'@import reticulate
 #'@export
-vae_encode_decode <- function(input_size, encoding_size, mean_var_size=6, batch_size = 32, num_epochs = 1000, learning_rate = 0.001) {
+varae_encode_decode <- function(input_size, encoding_size, mean_var_size=6, batch_size = 32, num_epochs = 1000, learning_rate = 0.001) {
   obj <- dal_transform()
   obj$input_size <- input_size
   obj$encoding_size <- encoding_size
@@ -20,15 +21,15 @@ vae_encode_decode <- function(input_size, encoding_size, mean_var_size=6, batch_
   obj$batch_size <- batch_size
   obj$num_epochs <- num_epochs
   obj$learning_rate <- learning_rate
-  class(obj) <- append("vae_encode_decode", class(obj))
+  class(obj) <- append("varae_encode_decode", class(obj))
 
   return(obj)
 }
 
 #'@export
-fit.vae_encode_decode <- function(obj, data, return_loss=FALSE, ...) {
+fit.varae_encode_decode <- function(obj, data, return_loss=FALSE, ...) {
   if (!exists("vae_create"))
-    reticulate::source_python(system.file("python", "var_autoencoder.py", package = "daltoolbox"))
+    reticulate::source_python(system.file("python", "varae_autoencoder.py", package = "daltoolbox"))
 
   if (is.null(obj$model))
     obj$model <- vae_create(obj$input_size, obj$encoding_size, obj$mean_var_size)
@@ -45,9 +46,9 @@ fit.vae_encode_decode <- function(obj, data, return_loss=FALSE, ...) {
 }
 
 #'@export
-transform.vae_encode_decode <- function(obj, data, ...) {
+transform.varae_encode_decode <- function(obj, data, ...) {
   if (!exists("vae_create"))
-    reticulate::source_python(system.file("python", "var_autoencoder.py", package = "daltoolbox"))
+    reticulate::source_python(system.file("python", "varae_autoencoder.py", package = "daltoolbox"))
 
   result <- NULL
   if (!is.null(obj$model))

@@ -6,9 +6,9 @@
 #'@param batch_size size for batch learning
 #'@param num_epochs number of epochs for training
 #'@param learning_rate learning rate
-#'@return a `autoenc_encode` object.
-#'@examples
-#'#See example at https://nbviewer.org/github/cefet-rj-dal/daltoolbox-examples
+#'@return a `aae_encode` object.
+#'#See an example of using `aae_encode` at this
+#'#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/aae_encode.ipynb)
 #'@import reticulate
 #'@export
 aae_encode <- function(input_size, encoding_size, batch_size = 32, num_epochs = 1000, learning_rate = 0.001) {
@@ -34,11 +34,11 @@ fit.aae_encode <- function(obj, data, return_loss=FALSE, verbose=FALSE, ...) {
   if (return_loss){
     fit_output <- aae_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=return_loss, verbose=verbose)
     obj$model <- fit_output[[1]]
-    
+
     return(list(obj=obj, loss=fit_output[-1]))
   }else{
     obj$model <- aae_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=return_loss, verbose=verbose)
-    return(obj) 
+    return(obj)
   }
 }
 

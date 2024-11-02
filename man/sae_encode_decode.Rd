@@ -27,7 +27,7 @@ sae_encode_decode(
 \item{k_ae}{number of AE layers in the stack}
 }
 \value{
-a \code{sae_encode_decode} object.
+returns a \code{sae_encode_decode} object.
 }
 \description{
 Creates an deep learning stacked autoencoder to encode a sequence of observations.
@@ -35,5 +35,6 @@ The autoencoder layers are based on DAL Toolbox Vanilla Autoencoder
 It wraps the pytorch library.
 }
 \examples{
-#See example at https://nbviewer.org/github/cefet-rj-dal/daltoolbox-examples
+#See an example of using `sae_encode_decode` at this
+#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/sae_enc_decode.ipynb)
 }

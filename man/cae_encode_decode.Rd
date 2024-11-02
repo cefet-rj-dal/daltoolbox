@@ -31,5 +31,6 @@ Creates an deep learning convolutional autoencoder to encode a sequence of obser
 It wraps the pytorch library.
 }
 \examples{
-#See example at https://nbviewer.org/github/cefet-rj-dal/daltoolbox-examples
+#See an example of using `cae_encode_decode` at this
+#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/cae_enc_decode.ipynb)
 }

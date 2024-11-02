@@ -18,28 +18,48 @@ classification <- function(attribute, slevels) {
 
 #'@import MLmetrics nnet
 #'@export
-evaluate.classification <- function(obj, data, prediction, ...) {
-  result <- list(data=data, prediction=prediction)
-
-  adjust_predictions <- function(predictions) {
-    predictions_i <- matrix(rep.int(0, nrow(predictions)*ncol(predictions)), nrow=nrow(predictions), ncol=ncol(predictions))
-    y <- apply(predictions, 1, nnet::which.is.max)
-    for(i in unique(y)) {
-      predictions_i[y==i,i] <- 1
-    }
-    return(predictions_i)
+evaluate.classification <- function(obj, data, prediction, ref = 1, ...) {
+  variables_as_factor <- function(prediction, s_levels) {
+    y <- apply(prediction, 1, nnet::which.is.max)
+    yfact <- factor(s_levels[y], s_levels)
+    return(yfact)
   }
-  predictions <- adjust_predictions(result$prediction)
-  result$conf_mat <- MLmetrics::ConfusionMatrix(data, predictions)
-  result$accuracy <- MLmetrics::Accuracy(y_pred = predictions, y_true = data)
-  result$f1 <- MLmetrics::F1_Score(y_pred = predictions, y_true = data, positive = 1)
-  result$sensitivity <- MLmetrics::Sensitivity(y_pred = predictions, y_true = data, positive = 1)
-  result$specificity <- MLmetrics::Specificity(y_pred = predictions, y_true = data, positive = 1)
-  result$precision <- MLmetrics::Precision(y_pred = predictions, y_true = data, positive = 1)
-  result$recall <- MLmetrics::Recall(y_pred = predictions, y_true = data, positive = 1)
-  result$metrics <- data.frame(accuracy=result$accuracy, f1=result$f1,
-    sensitivity=result$sensitivity, specificity=result$specificity,
-    precision=result$precision, recall=result$recall)
+  variables_as_probability <- function(prediction) {
+    y <- apply(prediction, 1, max)
+    return(y)
+  }
+
+
+  data_f <- data
+  if (!is.factor(data_f))
+    data_f <- variables_as_factor(data_f, obj$slevels)
+
+  pred_f <- variables_as_factor(prediction, obj$slevels)
+  pred_p <- variables_as_probability(prediction)
+
+  result <- list(data=data_f, prediction=pred_f, probability=pred_p)
+
+  metrics <- list()
+
+  metrics$accuracy <- sum(data_f == pred_f)/length(data_f)
+
+  data <- data_f == obj$slevels[ref]
+  pred <- pred_f == obj$slevels[ref]
+
+  metrics$TP <- sum(data == 1 & pred == 1)
+  metrics$TN <- sum(data == 0 & pred == 0)
+  metrics$FP <- sum(data == 0 & pred == 1)
+  metrics$FN <- sum(data == 1 & pred == 0)
+
+  metrics$precision <- metrics$TP/(metrics$TP+metrics$FP)
+  metrics$recall <- metrics$TP/(metrics$TP+metrics$FN)
+
+  metrics$sensitivity <- metrics$recall
+  metrics$specificity <- metrics$TN/(metrics$TN+metrics$FP)
+
+  metrics$f1 <- 2*(metrics$precision*metrics$recall)/(metrics$precision+metrics$recall)
+
+  result$metrics <- metrics
 
   return(result)
 }

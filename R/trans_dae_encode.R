@@ -7,9 +7,10 @@
 #'@param num_epochs number of epochs for training
 #'@param learning_rate learning rate
 #'@param noise_factor level of noise to be added to the data
-#'@return a `dae_encode_decode` object.
+#'@return a `dae_encode` object.
 #'@examples
-#'#See example at https://nbviewer.org/github/cefet-rj-dal/daltoolbox-examples
+#'#See an example of using `dae_encode` at this
+#'#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/dae_encode.ipynb)
 #'@import reticulate
 dae_encode <- function(input_size, encoding_size, batch_size = 32, num_epochs = 1000, learning_rate = 0.001, noise_factor=0.3) {
   obj <- dal_transform()
@@ -20,7 +21,7 @@ dae_encode <- function(input_size, encoding_size, batch_size = 32, num_epochs = 
   obj$learning_rate <- learning_rate
   obj$noise_factor <- noise_factor
   class(obj) <- append("dae_encode", class(obj))
-  
+
   return(obj)
 }
 
@@ -28,18 +29,18 @@ dae_encode <- function(input_size, encoding_size, batch_size = 32, num_epochs = 
 fit.dae_encode <- function(obj, data, return_loss=FALSE, ...) {
   if (!exists("dns_ae_create"))
     reticulate::source_python(system.file("python", "dns_autoencoder.py", package = "daltoolbox"))
-  
+
   if (is.null(obj$model))
     obj$model <- dns_ae_create(obj$input_size, obj$encoding_size)
-  
+
   if (return_loss){
     fit_output <- dns_ae_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=return_loss)
     obj$model <- fit_output[[1]]
-    
+
     return(list(obj=obj, loss=fit_output[-1]))
   }else{
     obj$model <- dns_ae_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=return_loss)
-    return(obj) 
+    return(obj)
   }
 }
 
@@ -47,7 +48,7 @@ fit.dae_encode <- function(obj, data, return_loss=FALSE, ...) {
 transform.dae_encode <- function(obj, data, ...) {
   if (!exists("dns_ae_create"))
     reticulate::source_python(system.file("python", "dns_autoencoder.py", package = "daltoolbox"))
-  
+
   result <- NULL
   if (!is.null(obj$model))
     result <- dns_encode(obj$model, data)

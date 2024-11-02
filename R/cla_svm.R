@@ -61,6 +61,8 @@ predict.cla_svm  <- function(object, x, ...) {
   prediction <- predict(object$model, x, probability = TRUE)
   prediction <- attr(prediction, "probabilities")
   prediction <- prediction[,object$slevels]
+  prediction <- as.data.frame(prediction)
+  colnames(prediction) <- object$slevels
 
   return(prediction)
 }

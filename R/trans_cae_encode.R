@@ -6,9 +6,10 @@
 #'@param batch_size size for batch learning
 #'@param num_epochs number of epochs for training
 #'@param learning_rate learning rate
-#'@return a `cae_encode_decode` object.
+#'@return a `cae_encode` object.
 #'@examples
-#'#See example at https://nbviewer.org/github/cefet-rj-dal/daltoolbox-examples
+#'#See an example of using `cae_encode` at this
+#'#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/cae_encode.ipynb)
 #'@import reticulate
 #'@export
 cae_encode <- function(input_size, encoding_size, batch_size = 32, num_epochs = 1000, learning_rate = 0.001) {
@@ -19,7 +20,7 @@ cae_encode <- function(input_size, encoding_size, batch_size = 32, num_epochs = 
   obj$num_epochs <- num_epochs
   obj$learning_rate <- learning_rate
   class(obj) <- append("cae_encode", class(obj))
-  
+
   return(obj)
 }
 
@@ -27,18 +28,18 @@ cae_encode <- function(input_size, encoding_size, batch_size = 32, num_epochs = 
 fit.cae_encode <- function(obj, data, return_loss=FALSE, ...) {
   if (!exists("cae_create"))
     reticulate::source_python(system.file("python", "conv_autoencoder.py", package = "daltoolbox"))
-  
+
   if (is.null(obj$model))
     obj$model <- cae_create(obj$input_size, obj$encoding_size)
-  
+
   if (return_loss){
     fit_output <- cae_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=return_loss)
     obj$model <- fit_output[[1]]
-    
+
     return(list(obj=obj, loss=fit_output[-1]))
   }else{
     obj$model <- cae_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=return_loss)
-    return(obj) 
+    return(obj)
   }
 }
 
@@ -46,7 +47,7 @@ fit.cae_encode <- function(obj, data, return_loss=FALSE, ...) {
 transform.cae_encode <- function(obj, data, ...) {
   if (!exists("cae_create"))
     reticulate::source_python(system.file("python", "conv_autoencoder.py", package = "daltoolbox"))
-  
+
   result <- NULL
   if (!is.null(obj$model))
     result <- conv_encode(obj$model, data)

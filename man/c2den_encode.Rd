@@ -31,5 +31,6 @@ Creates an deep learning convolutional denoising autoencoder to encode a sequenc
 It wraps the pytorch library.
 }
 \examples{
-#See example at https://nbviewer.org/github/cefet-rj-dal/daltoolbox-examples
+#See an example of using `c2den_encode_decode` at this
+#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/c2den_encode.ipynb)
 }

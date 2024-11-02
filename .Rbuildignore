@@ -11,7 +11,7 @@
 ^graphics$
 ^regression$
 ^timeseries$
-^transformation$
+^transf$
 ^develop$
 package.R
 jupyter.R

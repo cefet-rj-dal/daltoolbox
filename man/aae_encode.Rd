@@ -24,12 +24,11 @@ aae_encode(
 \item{learning_rate}{learning rate}
 }
 \value{
-a \code{autoenc_encode} object.
+a \code{aae_encode} object.
+#See an example of using \code{aae_encode} at this
+#\href{https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/aae_encode.ipynb}{link}
 }
 \description{
 Creates an deep learning adversarial autoencoder to encode a sequence of observations.
 It wraps the pytorch library.
-}
-\examples{
-#See example at https://nbviewer.org/github/cefet-rj-dal/daltoolbox-examples
 }

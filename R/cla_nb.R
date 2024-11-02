@@ -49,6 +49,8 @@ predict.cla_nb  <- function(object, x, ...) {
   x <- x[,object$x, drop=FALSE]
 
   prediction <- predict(object$model, x, type="raw")
+  prediction <- as.data.frame(prediction)
+  colnames(prediction) <- object$slevels
 
   return(prediction)
 }

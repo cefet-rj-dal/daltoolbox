@@ -54,6 +54,8 @@ predict.cla_knn  <- function(object, x, ...) {
 
   prediction <- class::knn(train=object$model$x, test=x, cl=object$model$y, prob=TRUE)
   prediction <- adjust_class_label(prediction)
+  prediction <- as.data.frame(prediction)
+  colnames(prediction) <- object$slevels
 
   return(prediction)
 }

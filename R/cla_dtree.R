@@ -50,6 +50,8 @@ predict.cla_dtree <- function(object, x, ...) {
   x <- x[,object$x, drop=FALSE]
 
   prediction <- predict(object$model, x, type="vector")
+  prediction <- as.data.frame(prediction)
+  colnames(prediction) <- object$slevels
 
   return(prediction)
 }
