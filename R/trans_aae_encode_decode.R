@@ -12,35 +12,36 @@
 #'#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/aae_enc_decode.ipynb)
 #'@import reticulate
 #'@export
-aae_encode_decode <- function(input_size, encoding_size, batch_size = 32, num_epochs = 1000, learning_rate = 0.001) {
+aae_encode_decode <- function(input_size, encoding_size, batch_size = 32, num_epochs = 1000, learning_rate = 0.001, return_loss = FALSE, verbose = FALSE) {
   obj <- dal_transform()
   obj$input_size <- input_size
   obj$encoding_size <- encoding_size
   obj$batch_size <- batch_size
   obj$num_epochs <- num_epochs
   obj$learning_rate <- learning_rate
+  obj$return_loss <- return_loss
+  obj$verbose <- verbose
   class(obj) <- append("aae_encode_decode", class(obj))
 
   return(obj)
 }
 
 #'@export
-fit.aae_encode_decode <- function(obj, data, return_loss=FALSE, verbose=FALSE, ...){
+fit.aae_encode_decode <- function(obj, data, ...){
   if (!exists("aae_create"))
     reticulate::source_python(system.file("python", "adv_autoencoder.py", package = "daltoolbox"))
 
   if (is.null(obj$model))
     obj$model <- aae_create(obj$input_size, obj$encoding_size)
 
-  if (return_loss){
-    fit_output <- aae_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=return_loss, verbose=verbose)
+  if (obj$return_loss){
+    fit_output <- aae_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=obj$return_loss, verbose=obj$verbose)
     obj$model <- fit_output[[1]]
-
-    return(list(obj=obj, loss=fit_output[-1]))
+    obj$loss <- fit_output[-1]
   }else{
-    obj$model <- aae_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=return_loss, verbose=verbose)
-    return(obj)
+    obj$model <- aae_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=obj$return_loss, verbose=obj$verbose)
   }
+  return(obj)
 }
 
 #'@export
