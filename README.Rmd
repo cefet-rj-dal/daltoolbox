@@ -53,7 +53,7 @@ Regression: <https://nbviewer.org/github/cefet-rj-dal/daltoolbox/tree/main/regre
 
 Time series: <https://nbviewer.org/github/cefet-rj-dal/daltoolbox/tree/main/timeseries/>
 
-Transformation: <https://nbviewer.org/github/cefet-rj-dal/daltoolbox/tree/main/transformation/>
+Transformation: <https://nbviewer.org/github/cefet-rj-dal/daltoolbox/tree/main/transf/>
 
 
 The examples are organized according to general (data preprocessing),

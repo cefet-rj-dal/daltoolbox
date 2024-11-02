@@ -52,7 +52,7 @@ Time series:
 <https://nbviewer.org/github/cefet-rj-dal/daltoolbox/tree/main/timeseries/>
 
 Transformation:
-<https://nbviewer.org/github/cefet-rj-dal/daltoolbox/tree/main/transformation/>
+<https://nbviewer.org/github/cefet-rj-dal/daltoolbox/tree/main/transf/>
 
 The examples are organized according to general (data preprocessing),
 clustering, classification, regression, and time series functions. This
