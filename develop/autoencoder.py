@@ -21,6 +21,7 @@ class Autoencoder_TS(Dataset):
     def __getitem__(self, index):
         return self.data[index], self.data[index]
 
+
 class Autoencoder(nn.Module):
     def __init__(self, input_size, encoding_size):
         super(Autoencoder, self).__init__()
@@ -39,6 +40,7 @@ class Autoencoder(nn.Module):
         x = self.encoder(x)
         x = self.decoder(x)
         return x
+
     
 # Create the autoencoder
 def autoencoder_create(input_size, encoding_size):
@@ -51,10 +53,9 @@ def autoencoder_create(input_size, encoding_size):
 
 
 # Train the autoencoder
-def autoencoder_train(autoencoder, train_loader, val_loader, num_epochs = 1000, learning_rate = 0.001, return_loss=False):
+def autoencoder_train(autoencoder, train_loader, val_loader, num_epochs = 1000, learning_rate = 0.001):
   criterion = nn.MSELoss()
   optimizer = optim.Adam(autoencoder.parameters(), lr=learning_rate)
-
 
   train_loss = []
   val_loss = []
@@ -87,12 +88,10 @@ def autoencoder_train(autoencoder, train_loader, val_loader, num_epochs = 1000, 
       train_loss.append(np.mean(train_epoch_loss))
       val_loss.append(np.mean(val_epoch_loss))
 
-  if return_loss:
-    return autoencoder, train_loss, val_loss
-  else:
-    return autoencoder
+  return autoencoder, train_loss, val_loss
 
-def autoencoder_fit(autoencoder, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001, return_loss=False):
+
+def autoencoder_fit(autoencoder, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001):
   batch_size = int(batch_size)
   num_epochs = int(num_epochs)
   
@@ -110,13 +109,10 @@ def autoencoder_fit(autoencoder, data, batch_size = 32, num_epochs = 1000, learn
   train_loader = DataLoader(ds_train, batch_size=batch_size)
   val_loader = DataLoader(ds_val, batch_size=batch_size)
   
-  if return_loss:
-    autoencoder, train_loss, val_loss = autoencoder_train(autoencoder, train_loader, val_loader, num_epochs = num_epochs, learning_rate = 0.001, return_loss=return_loss)
-    return autoencoder, train_loss, val_loss
-  else:
-    autoencoder = autoencoder_train(autoencoder, train_loader, val_loader, num_epochs = num_epochs, learning_rate = 0.001, return_loss=return_loss)
-    return autoencoder
-
+  autoencoder, train_loss, val_loss = autoencoder_train(autoencoder, train_loader, val_loader, num_epochs = num_epochs, learning_rate = 0.001, return_loss=return_loss)    
+  autoencoder.train_loss = train_loss
+  autoencoder.val_loss = val_loss    
+  return autoencoder
 
 
 def encode_data(autoencoder, data_loader):
@@ -132,6 +128,7 @@ def encode_data(autoencoder, data_loader):
   encoded_data = np.concatenate(encoded_data, axis=0)
 
   return encoded_data
+
 
 def autoencoder_encode(autoencoder, data, batch_size = 32):
   array = data.to_numpy()

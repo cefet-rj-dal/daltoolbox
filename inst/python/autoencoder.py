@@ -2,12 +2,13 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
+torch.set_grad_enabled(True)
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
 
-class AutoEncoderTS(Dataset):
+class Autoencoder_TS(Dataset):
     def __init__(self, num_samples, input_size):
         self.data = np.random.randn(num_samples, input_size)
 
@@ -50,41 +51,66 @@ def autoencoder_create(input_size, encoding_size):
 
 
 # Train the autoencoder
-def autoencoder_train(autoencoder, train_loader, num_epochs = 1000, learning_rate = 0.001):
+def autoencoder_train(autoencoder, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001):
   criterion = nn.MSELoss()
   optimizer = optim.Adam(autoencoder.parameters(), lr=learning_rate)
 
+  train_loss = []
+  val_loss = []
+  
   for epoch in range(num_epochs):
-      running_loss = 0.0
-      for data in train_loader:
-          inputs, _ = data
-          inputs = inputs.float()
-          inputs = inputs.view(inputs.size(0), -1)
+      # Train Test Split
+      array = data.to_numpy()
+      array = array[:, :]
+      
+      val_sample = sample(range(1, data.shape[0], 1), k=int(data.shape[0]*0.3))
+      train_sample = [v for v in range(1, data.shape[0], 1) if v not in val_sample]
+      
+      train_data = array[train_sample, :]
+      val_data = array[val_sample, :]
+      
+      ds_train = Autoencoder_TS(train_data)
+      ds_val = Autoencoder_TS(val_data)
+      train_loader = DataLoader(ds_train, batch_size=batch_size)
+      val_loader = DataLoader(ds_val, batch_size=batch_size)
+    
+      # Train
+      train_epoch_loss = []
+      val_epoch_loss = []
+      autoencoder.train()
+      for train_data in train_loader:
+          train_input, _ = train_data
+          train_input = train_input.float()
           optimizer.zero_grad()
-          outputs = autoencoder(inputs)
-          loss = criterion(outputs, inputs)
-          loss.backward()
+          train_output = autoencoder(train_input)
+          train_batch_loss = criterion(train_output, train_input)
+          train_batch_loss.backward()
           optimizer.step()
-          running_loss += loss.item()
-#      if (epoch + 1) % 100 == 0:
-#          print('Epoch {} Loss: {:.4f}'.format(epoch+1, running_loss/len(train_loader)))
-
+          train_epoch_loss.append(train_batch_loss.item())
+          
+          
+      # Validation
+      autoencoder.eval()
+      for val_data in val_loader:
+          val_input, _ = val_data
+          val_input = val_input.float()
+          val_output = autoencoder(val_input)
+          val_batch_loss = criterion(val_output, val_input)
+          val_epoch_loss.append(val_batch_loss.item())
+          
+      train_loss.append(np.mean(train_epoch_loss))
+      val_loss.append(np.mean(val_epoch_loss))
+  
+  autoencoder.train_loss = train_loss
+  autoencoder.val_loss = val_loss
   return autoencoder
 
 def autoencoder_fit(autoencoder, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001):
   batch_size = int(batch_size)
   num_epochs = int(num_epochs)
   
-  array = data.to_numpy()
-  array = array[:, :, np.newaxis]
-  
-  ds = AutoEncoderTS(array)
-  train_loader = DataLoader(ds, batch_size=batch_size)
-  
-  autoencoder = autoencoder_train(autoencoder, train_loader, num_epochs = 1000, learning_rate = 0.001)
-  
+  autoencoder = autoencoder_train(autoencoder, data, num_epochs = num_epochs, learning_rate = 0.001)
   return autoencoder
-
 
 
 def encode_data(autoencoder, data_loader):
@@ -103,9 +129,9 @@ def encode_data(autoencoder, data_loader):
 
 def autoencoder_encode(autoencoder, data, batch_size = 32):
   array = data.to_numpy()
-  array = array[:, :, np.newaxis]
+  array = array[:, :]
   
-  ds = AutoEncoderTS(array)
+  ds = Autoencoder_TS(array)
   train_loader = DataLoader(ds, batch_size=batch_size)
   
   encoded_data = encode_data(autoencoder, train_loader)
@@ -133,7 +159,7 @@ def autoencoder_encode_decode(autoencoder, data, batch_size = 32):
   array = data.to_numpy()
   array = array[:, :, np.newaxis]
   
-  ds = AutoEncoderTS(array)
+  ds = Autoencoder_TS(array)
   train_loader = DataLoader(ds, batch_size=batch_size)
   
   encoded_decoded_data = encode_decode_data(autoencoder, train_loader)

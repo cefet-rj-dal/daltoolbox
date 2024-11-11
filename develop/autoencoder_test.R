@@ -5,7 +5,7 @@ source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R
 
 #loading DAL
 library(devtools)
-load_all("/home/lucas/daltoolbox")
+load_all("/home/lucas/daltoolbox_autoenc")
 library(ggpubr)
 set.seed(1)
 
@@ -46,16 +46,15 @@ test <- as.data.frame(samp$test)
 features <- names(train)
 
 # Create Autoencoder
-auto <- lae_encode_decode(length(ts), encoding_size=2, num_epochs=40)
+auto <- autoenc_encode_decode(length(ts), encoding_size=2, num_epochs=40)
 ae_type <- 'decoder'
 
 return_loss <- TRUE
 if (return_loss){
-  fit_output <- fit(auto, train, return_loss=return_loss)
-  auto <- fit_output[['obj']]
+  auto <- fit(auto, train)
   
-  train_loss <- unlist(fit_output[['loss']][[1]])
-  val_loss <- unlist(fit_output[['loss']][[2]])
+  train_loss <- unlist(auto$model$train_loss)
+  val_loss <- unlist(auto$model$val_loss)
   
   fit_loss <- as.data.frame(cbind(train_loss, val_loss))
   fit_loss['epoch'] <- 1:nrow(fit_loss)

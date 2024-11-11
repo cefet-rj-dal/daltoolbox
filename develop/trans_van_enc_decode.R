@@ -33,15 +33,15 @@ fit.autoenc_encode_decode <- function(obj, data, ...) {
   if (is.null(obj$model))
     obj$model <- autoencoder_create(obj$input_size, obj$encoding_size)
 
+  fit_output <- autoencoder_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate)
+  obj$model <- fit_output$autoencoder
+  
   if (obj$return_loss){
-    fit_output <- autoencoder_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=obj$return_loss)
-    obj$model <- fit_output[[1]]
-
-    return(list(obj=obj, loss=fit_output[-1]))
-  }else{
-    obj$model <- autoencoder_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=obj$return_loss)
-    return(obj)
+    obj$train_loss <- fit_output$train_loss
+    obj$val_loss <- fit_output$val_loss
   }
+  
+  return(obj)
 }
 
 #'@export
