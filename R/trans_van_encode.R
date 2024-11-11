@@ -12,13 +12,14 @@
 #'#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/van_encode.ipynb)
 #'@import reticulate
 #'@export
-autoenc_encode <- function(input_size, encoding_size, batch_size = 32, num_epochs = 1000, learning_rate = 0.001) {
+autoenc_encode <- function(input_size, encoding_size, batch_size = 32, num_epochs = 1000, learning_rate = 0.001, return_loss = FALSE) {
   obj <- dal_transform()
   obj$input_size <- input_size
   obj$encoding_size <- encoding_size
   obj$batch_size <- batch_size
   obj$num_epochs <- num_epochs
   obj$learning_rate <- learning_rate
+  obj$return_loss <- return_loss
   class(obj) <- append("autoenc_encode", class(obj))
 
   return(obj)
@@ -31,9 +32,15 @@ fit.autoenc_encode <- function(obj, data, ...) {
 
   if (is.null(obj$model))
     obj$model <- autoencoder_create(obj$input_size, obj$encoding_size)
+  
+  fit_output <- autoencoder_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate)
+  obj$model <- fit_output$autoencoder
 
-  obj$model <- autoencoder_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate)
-
+  if (obj$return_loss){
+    obj$train_loss <- fit_output$train_loss
+    obj$val_loss <- fit_output$val_loss
+  }
+  
   return(obj)
 }
 

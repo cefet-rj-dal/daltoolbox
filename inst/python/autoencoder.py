@@ -101,21 +101,16 @@ def autoencoder_train(autoencoder, data, batch_size=32, num_epochs = 1000, learn
       train_loss.append(np.mean(train_epoch_loss))
       val_loss.append(np.mean(val_epoch_loss))
 
-  if return_loss:
-    return autoencoder, train_loss, val_loss
-  else:
-    return autoencoder
+  return autoencoder, train_loss, val_loss
 
-def autoencoder_fit(autoencoder, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001, return_loss=False):
+def autoencoder_fit(autoencoder, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001):
   batch_size = int(batch_size)
   num_epochs = int(num_epochs)
   
-  if return_loss:
-    autoencoder, train_loss, val_loss = autoencoder_train(autoencoder, data, batch_size=batch_size, num_epochs = num_epochs, learning_rate = 0.001, return_loss=return_loss)
-    return autoencoder, train_loss, val_loss
-  else:
-    autoencoder = autoencoder_train(autoencoder, data, batch_size=batch_size, num_epochs = num_epochs, learning_rate = 0.001, return_loss=return_loss)
-    return autoencoder
+  autoencoder, train_loss, val_loss = autoencoder_train(autoencoder, train_loader, val_loader, num_epochs = num_epochs, learning_rate = 0.001, return_loss=return_loss)    
+  autoencoder.train_loss = train_loss
+  autoencoder.val_loss = val_loss    
+  return autoencoder
 
 
 def encode_data(autoencoder, data_loader):
