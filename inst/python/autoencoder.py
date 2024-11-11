@@ -51,7 +51,7 @@ def autoencoder_create(input_size, encoding_size):
 
 
 # Train the autoencoder
-def autoencoder_train(autoencoder, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001, return_loss=False):
+def autoencoder_train(autoencoder, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001):
   criterion = nn.MSELoss()
   optimizer = optim.Adam(autoencoder.parameters(), lr=learning_rate)
 
@@ -100,16 +100,16 @@ def autoencoder_train(autoencoder, data, batch_size=32, num_epochs = 1000, learn
           
       train_loss.append(np.mean(train_epoch_loss))
       val_loss.append(np.mean(val_epoch_loss))
-
-  return autoencoder, train_loss, val_loss
+  
+  autoencoder.train_loss = train_loss
+  autoencoder.val_loss = val_loss
+  return autoencoder
 
 def autoencoder_fit(autoencoder, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001):
   batch_size = int(batch_size)
   num_epochs = int(num_epochs)
   
-  autoencoder, train_loss, val_loss = autoencoder_train(autoencoder, train_loader, val_loader, num_epochs = num_epochs, learning_rate = 0.001, return_loss=return_loss)    
-  autoencoder.train_loss = train_loss
-  autoencoder.val_loss = val_loss    
+  autoencoder = autoencoder_train(autoencoder, data, num_epochs = num_epochs, learning_rate = 0.001)
   return autoencoder
 
 

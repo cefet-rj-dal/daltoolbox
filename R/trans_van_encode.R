@@ -33,14 +33,8 @@ fit.autoenc_encode <- function(obj, data, ...) {
   if (is.null(obj$model))
     obj$model <- autoencoder_create(obj$input_size, obj$encoding_size)
   
-  fit_output <- autoencoder_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate)
-  obj$model <- fit_output$autoencoder
+  obj$model <- autoencoder_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate)
 
-  if (obj$return_loss){
-    obj$train_loss <- fit_output$train_loss
-    obj$val_loss <- fit_output$val_loss
-  }
-  
   return(obj)
 }
 
