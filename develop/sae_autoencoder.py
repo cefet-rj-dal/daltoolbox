@@ -10,6 +10,7 @@ from torch.utils.data import Dataset, DataLoader
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from random import sample
 
 
 class SAE_TS(Dataset):
@@ -53,127 +54,99 @@ class SAE(nn.Module):
 
 
 #Create Stack of Autoencoders
-def sae_create(input_size, encoding_size, k_ae=3):
+def sae_create(input_size, encoding_size, k=3):
     input_size = int(input_size)
     encoding_size = int(encoding_size)
-    k_ae = int(k_ae)
+    k = int(k)
     
     #Stack of k autoencoders
     stack = []
-    for k in range(k_ae):
+    for k in range(k):
         stack.append(SAE(input_size, encoding_size))
         stack[k].float()
-        #print(f'Autoencoder layer {k} added to the stack')
     
     return stack
 
 
 #Train SAE
-def sae_train(sae, train_loader, val_loader, num_epochs = 1000, learning_rate = 0.001, return_loss=False):
-    criterion = nn.MSELoss()
-    optimizer = optim.Adam(sae.parameters(), lr=learning_rate)
-    
-    train_loss = []
-    val_loss = []
-    
-    for epoch in range(num_epochs):
-        train_epoch_loss = []
-        val_epoch_loss = []
-        # Train
-        sae.train()
-        for train_data in train_loader:
-            train_input, _ = train_data
-            train_input = train_input.float()
-            optimizer.zero_grad()
-            train_output= sae(train_input)
-            train_batch_loss = criterion(train_output, train_input)
-            train_batch_loss.backward()
-            optimizer.step()
-            train_epoch_loss.append(train_batch_loss.item())
-            
-            
-        # Validation
-        sae.eval()
-        for val_data in val_loader:
-            val_input, _ = val_data
-            val_input = val_input.float()
-            val_output = sae(val_input)
-            val_batch_loss = criterion(val_output, val_input)
-            val_epoch_loss.append(val_batch_loss.item())
-            
-        train_loss.append(np.mean(train_epoch_loss))
-        val_loss.append(np.mean(val_epoch_loss))
+def sae_train(sae, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001):
+  criterion = nn.MSELoss()
+  optimizer = optim.Adam(sae.parameters(), lr=learning_rate)
+
+  train_loss = []
+  val_loss = []
   
-    if return_loss:
-      return sae, train_loss, val_loss
-    else:
-      return sae
+  for epoch in range(num_epochs):
+      # Train Test Split
+      array = data.to_numpy()
+      array = array[:, :]
+      
+      val_sample = sample(range(1, data.shape[0], 1), k=int(data.shape[0]*0.3))
+      train_sample = [v for v in range(1, data.shape[0], 1) if v not in val_sample]
+      
+      train_data = array[train_sample, :]
+      val_data = array[val_sample, :]
+      
+      ds_train = SAE_TS(train_data)
+      ds_val = SAE_TS(val_data)
+      train_loader = DataLoader(ds_train, batch_size=batch_size)
+      val_loader = DataLoader(ds_val, batch_size=batch_size)
+    
+      # Train
+      train_epoch_loss = []
+      val_epoch_loss = []
+      sae.train()
+      for train_data in train_loader:
+          train_input, _ = train_data
+          train_input = train_input.float()
+          optimizer.zero_grad()
+          train_output = sae(train_input)
+          train_batch_loss = criterion(train_output, train_input)
+          train_batch_loss.backward()
+          optimizer.step()
+          train_epoch_loss.append(train_batch_loss.item())
+          
+          
+      # Validation
+      sae.eval()
+      for val_data in val_loader:
+          val_input, _ = val_data
+          val_input = val_input.float()
+          val_output = sae(val_input)
+          val_batch_loss = criterion(val_output, val_input)
+          val_epoch_loss.append(val_batch_loss.item())
+          
+      train_loss.append(np.mean(train_epoch_loss))
+      val_loss.append(np.mean(val_epoch_loss))
+  
+  sae.train_loss = train_loss
+  sae.val_loss = val_loss
+  return sae
 
 
-def sae_fit(stack, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001, return_loss=False):
+def sae_fit(stack, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001):
     batch_size = int(batch_size)
     num_epochs = int(num_epochs)
 
-    #STEP 1 - Start fitting first k autoencoder using original input layer    
-    array = data.to_numpy()
-    array = array[:, :]
-    
-    val_sample = sample(range(1, array.shape[0], 1), k=int(array.shape[0]*0.3))
-    train_sample = [v for v in range(1, array.shape[0], 1) if v not in val_sample]
-    
-    train_data = array[train_sample, :]
-    val_data = array[val_sample, :]
-    
-    ds_train = SAE_TS(train_data)
-    ds_val = SAE_TS(val_data)
-    train_loader = DataLoader(ds_train, batch_size=batch_size)
-    val_loader = DataLoader(ds_val, batch_size=batch_size)
-    
+    #STEP 1 - Start fitting first k autoencoder using original input layer        
     ae_k1 = stack[0]
-    ae_k1 = sae_train(ae_k1, train_loader, val_loader, num_epochs = num_epochs, learning_rate = learning_rate, return_loss=False)
+    ae_k1 = sae_train(ae_k1, data, num_epochs = num_epochs, learning_rate = learning_rate)
     ae_k_out = sae_encode_decode(ae_k1, data)
     
     #STEP 2 - Fit internal layers using outputs from previous layers
     internal = int(len(stack)-1)
     
-    for k in range(1, internal):
-        
-        array = ae_k_out[:, :]
-        
-        val_sample = sample(range(1, array.shape[0], 1), k=int(array.shape[0]*0.3))
-        train_sample = [v for v in range(1, array.shape[0], 1) if v not in val_sample]
-        
-        train_data = array[train_sample, :]
-        val_data = array[val_sample, :]
-        
-        ds_train = SAE_TS(train_data)
-        ds_val = SAE_TS(val_data)
-        train_loader = DataLoader(ds_train, batch_size=batch_size)
-        val_loader = DataLoader(ds_val, batch_size=batch_size)
-        
+    for k in range(1, internal):        
         ae_k = stack[k]
-        ae_k = sae_train(ae_k, train_loader, val_loader, num_epochs = num_epochs, learning_rate = learning_rate, return_loss=False)
+        ae_k = sae_train(ae_k, data, num_epochs = num_epochs, learning_rate = learning_rate)
         ae_k_out = sae_encode_decode(ae_k, ae_k_out)
     
     #STEP 3 - Fit last k autoencoder
-    #print(f'Fit ae_k{len(stack)-1}')
-    val_sample = sample(range(1, ae_k_out.shape[0], 1), k=int(ae_k_out.shape[0]*0.3))
-    train_sample = [v for v in range(1, ae_k_out.shape[0], 1) if v not in val_sample]
-    
-    train_data = array[train_sample, :]
-    val_data = array[val_sample, :]
-    
-    ds_train = SAE_TS(train_data)
-    ds_val = SAE_TS(val_data)
-    train_loader = DataLoader(ds_train, batch_size=batch_size)
-    val_loader = DataLoader(ds_val, batch_size=batch_size)
+    #print(f'Fit ae_k{len(stack)-1}')    
     sae = stack[-1]
-    if return_loss:
-      sae, train_loss, val_loss = sae_train(ae_k, train_loader, val_loader, num_epochs = num_epochs, learning_rate = 0.001, return_loss=return_loss)
-      return sae, train_loss, val_loss
-    else:
-      sae = sae_train(ae_k, train_loader, val_loader, num_epochs = num_epochs, learning_rate = 0.001, return_loss=return_loss)
-      return sae
+    sae = sae_train(ae_k, data, num_epochs = num_epochs, learning_rate = 0.001)
+    
+    return sae
 
 
 def sae_encode_data(sae, data_loader):
