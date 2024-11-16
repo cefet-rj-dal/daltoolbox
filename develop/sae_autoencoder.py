@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from random import sample
 
+torch.set_grad_enabled(True)
 
 class SAE_TS(Dataset):
     def __init__(self, num_samples, input_size):
