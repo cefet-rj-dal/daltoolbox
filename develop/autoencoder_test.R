@@ -46,8 +46,8 @@ test <- as.data.frame(samp$test)
 features <- names(train)
 
 # Create Autoencoder
-auto <- cae_encode(length(ts), encoding_size=2, num_epochs=40)
-ae_type <- 'encoder'
+auto <- sae_encode_decode(length(ts), encoding_size=3, num_epochs=100)
+ae_type <- 'decoder'
 
 return_loss <- TRUE
 if (return_loss){
@@ -65,7 +65,7 @@ if (return_loss){
     scale_color_manual(values=c('Blue','Orange')) +
     theme_classic()
 }else{
-  auto <- fit(auto, train, return_loss=return_loss)
+  auto <- fit(auto, train)
 }
 
 # Testing Autoencoder
@@ -146,8 +146,6 @@ if (ae_type == 'encoder'){
     print(paste('R2 test:', col, r2_col))
   }
   print(paste('R2 test mean:', mean(r2)))
-  
-  
   
   ggarrange(
     plotlist=plotList,

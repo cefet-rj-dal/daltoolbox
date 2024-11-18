@@ -24,7 +24,7 @@ sae_encode_decode(
 
 \item{learning_rate}{learning rate}
 
-\item{k_ae}{number of AE layers in the stack}
+\item{k}{number of AE layers in the stack}
 }
 \value{
 a \code{sae_encode_decode} object.

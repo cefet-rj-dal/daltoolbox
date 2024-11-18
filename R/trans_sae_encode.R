@@ -7,7 +7,7 @@
 #'@param batch_size size for batch learning
 #'@param num_epochs number of epochs for training
 #'@param learning_rate learning rate
-#'@param k_ae number of AE layers in the stack
+#'@param k number of AE layers in the stack
 #'@return a `sae_encode_decode` object.
 #'@examples
 #'#See example at https://nbviewer.org/github/cefet-rj-dal/daltoolbox-examples
