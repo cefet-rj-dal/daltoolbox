@@ -35,7 +35,7 @@ par(mfrow=(c(1,3)))
 map(img, plot)
 
 # Sample the data
-sample_images <- sample(file_names, 1000)
+sample_images <- sample(file_names, 400)
 
 # Check dimensions
 img <- load.image(file_names[1])
@@ -74,7 +74,7 @@ dim(train)
 dim(test)
 
 # Transform
-auto <- cae2d_encode_decode(input_size, encoding_size=150, num_epochs=500)
+auto <- cae2den_encode_decode(input_size, encoding_size=150, batch_size=100, num_epochs=100, learning_rate=0.3)
 ae_type <- 'decoder'
 
 return_loss <- TRUE
