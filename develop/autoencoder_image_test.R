@@ -6,7 +6,7 @@ library(imager)
 library(caret)
 library(stringr)
 library(devtools)
-load_all("/home/lucas/daltoolbox/")
+load_all("/home/lucas/daltoolbox_autoenc/")
 options(scipen=999)
 set.seed(1)
 
@@ -35,7 +35,7 @@ par(mfrow=(c(1,3)))
 map(img, plot)
 
 # Sample the data
-sample_images <- sample(file_names, 400)
+sample_images <- sample(file_names, 1000)
 
 # Check dimensions
 img <- load.image(file_names[1])
@@ -57,7 +57,7 @@ dim_df <- map_df(sample_images, get_dim)
 input_size <- as.array(c(1, as.vector(unlist(dim_df[1, c('height', 'width')]))))
 
 # Create Dataset
-sample_size <- 200
+sample_size <- length(sample_images)/2
 train <- array(0, c(length(sample_images)/2, input_size[1], input_size[2], input_size[3]))
 test <- array(0, c(length(sample_images)/2, input_size[1], input_size[2], input_size[3]))
 a <- 1
@@ -74,16 +74,15 @@ dim(train)
 dim(test)
 
 # Transform
-auto <- cae2den_encode(input_size, encoding_size=4, num_epochs=20)
-ae_type <- 'encoder'
+auto <- cae2d_encode_decode(input_size, encoding_size=150, num_epochs=500)
+ae_type <- 'decoder'
 
-return_loss <- FALSE
+return_loss <- TRUE
 if (return_loss){
-  fit_output <- fit(auto, train, return_loss=return_loss)
-  auto <- fit_output[[1]]
+  auto <- fit(auto, train)
   
-  train_loss <- unlist(fit_output[['loss']][[1]])
-  val_loss <- unlist(fit_output[['loss']][[2]])
+  train_loss <- unlist(auto$model$train_loss)
+  val_loss <- unlist(auto$model$val_loss)
   
   fit_loss <- as.data.frame(cbind(train_loss, val_loss))
   fit_loss['epoch'] <- 1:nrow(fit_loss)
