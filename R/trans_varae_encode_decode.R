@@ -33,16 +33,10 @@ fit.varae_encode_decode <- function(obj, data, return_loss=FALSE, ...) {
 
   if (is.null(obj$model))
     obj$model <- vae_create(obj$input_size, obj$encoding_size, obj$mean_var_size)
+  
+  obj$model <- vae_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate)
+  return(obj)
 
-  if (return_loss){
-    fit_output <- vae_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=return_loss)
-    obj$model <- fit_output[[1]]
-
-    return(list(obj=obj, loss=fit_output[-1]))
-  }else{
-    obj$model <- vae_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=return_loss)
-    return(obj)
-  }
 }
 
 #'@export
