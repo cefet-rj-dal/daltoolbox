@@ -4,8 +4,9 @@ import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from random import sample
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
+
+torch.set_grad_enabled(True)
 
 
 class VAE_TS(Dataset):
@@ -20,6 +21,7 @@ class VAE_TS(Dataset):
 
     def __getitem__(self, index):
         return self.data[index], self.data[index]
+
 
 class VAE(nn.Module):
     def __init__(self, input_size, encoding_size, mean_var_size=6):
@@ -60,6 +62,7 @@ class VAE(nn.Module):
         z = self.reparameterization(mean, var)
         x = self.decode(z)
         return x, mean, var
+
     
 # Create the vae
 def vae_create(input_size, encoding_size, mean_var_size):
@@ -71,6 +74,7 @@ def vae_create(input_size, encoding_size, mean_var_size):
   vae = vae.float()
   return vae  
 
+
 # Define specific VAE Loss Function
 def criterion(outputs, inputs, mean, var):
     reproduction_loss = nn.functional.binary_cross_entropy(outputs, inputs, reduction='sum')
@@ -78,17 +82,34 @@ def criterion(outputs, inputs, mean, var):
 
     return reproduction_loss + KLD
 
+
 # Train the vae
-def vae_train(vae, train_loader, val_loader, num_epochs = 1000, learning_rate = 0.001, return_loss=False):
+def vae_train(vae, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001):
   optimizer = optim.Adam(vae.parameters(), lr=learning_rate)
 
   train_loss = []
   val_loss = []
   
   for epoch in range(num_epochs):
+      # Train Test Split
+      array = data.to_numpy()
+      array = array[:, :]
+      
+      val_sample = sample(range(1, array.shape[0], 1), k=int(array.shape[0]*0.3))
+      train_sample = [v for v in range(1, array.shape[0], 1) if v not in val_sample]
+      
+      train_data = array[train_sample, :]
+      val_data = array[val_sample, :]
+      
+      ds_train = VAE_TS(train_data)
+      ds_val = VAE_TS(val_data)
+      train_loader = DataLoader(ds_train, batch_size=batch_size)
+      val_loader = DataLoader(ds_val, batch_size=batch_size)
+               
+      # Train
       train_epoch_loss = []
       val_epoch_loss = []
-      # Train
+      
       vae.train()
       for train_data in train_loader:
           train_input, _ = train_data
@@ -114,36 +135,19 @@ def vae_train(vae, train_loader, val_loader, num_epochs = 1000, learning_rate = 
       train_loss.append(np.mean(train_epoch_loss))
       val_loss.append(np.mean(val_epoch_loss))
 
-  if return_loss:
-    return vae, train_loss, val_loss
-  else:
-    return vae
+  vae.train_loss = train_loss
+  vae.val_loss = val_loss
+  
+  return vae
 
-def vae_fit(vae, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001, return_loss=False):
+
+def vae_fit(vae, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001):
   batch_size = int(batch_size)
   num_epochs = int(num_epochs)
+    
+  vae = vae_train(vae, data, batch_size = batch_size, num_epochs = num_epochs, learning_rate = learning_rate)
   
-  array = data.to_numpy()
-  array = array[:, :]
-  
-  val_sample = sample(range(1, array.shape[0], 1), k=int(array.shape[0]*0.3))
-  train_sample = [v for v in range(1, array.shape[0], 1) if v not in val_sample]
-  
-  train_data = array[train_sample, :]
-  val_data = array[val_sample, :]
-  
-  ds_train = VAE_TS(train_data)
-  ds_val = VAE_TS(val_data)
-  train_loader = DataLoader(ds_train, batch_size=batch_size)
-  val_loader = DataLoader(ds_val, batch_size=batch_size)
-  
-  if return_loss:
-    vae, train_loss, val_loss = vae_train(vae, train_loader, val_loader, num_epochs = num_epochs, learning_rate = learning_rate, return_loss=return_loss)
-    return vae, train_loss, val_loss
-  else:
-    vae = vae_train(vae, train_loader, val_loader, num_epochs = num_epochs, learning_rate = learning_rate, return_loss=return_loss)
-    return vae
-
+  return vae
 
 
 def var_encode_data(vae, data_loader):
@@ -160,6 +164,7 @@ def var_encode_data(vae, data_loader):
   encoded_data = np.concatenate(encoded_data, axis=0)
 
   return encoded_data
+
 
 def var_encode(vae, data, batch_size = 32):
   array = data.to_numpy()
@@ -180,8 +185,6 @@ def var_encode_decode_data(vae, data_loader):
       inputs, _ = data
       inputs = inputs.float()
       decoded, _, _ = vae(inputs)
-
-
 
       encoded_decoded_data.append(decoded.detach().numpy())
 
