@@ -167,8 +167,6 @@ def aae_train(aae, data, batch_size = 350, num_epochs = 1000, learning_rate = 0.
   val_loss = []
   
   for epoch in range(num_epochs):
-      
-    #Train test split
     array = data.to_numpy()
     array = array[:, :, np.newaxis]
     
@@ -188,8 +186,8 @@ def aae_train(aae, data, batch_size = 350, num_epochs = 1000, learning_rate = 0.
     train_epoch_loss = []
     val_epoch_loss = []
     
-    for data in train_loader:
-        train_input, _ = data
+    for train_data in train_loader:
+        train_input, _ = train_data
         train_input = train_input.float()
         train_input = train_input.view(train_input.size(0), -1)
 
@@ -244,8 +242,8 @@ def aae_train(aae, data, batch_size = 350, num_epochs = 1000, learning_rate = 0.
         aae.D_gauss.zero_grad()
         train_epoch_loss.append(recon_loss.item())
         
-    for data in val_loader:
-        val_input, _ = data
+    for val_data in val_loader:
+        val_input, _ = val_data
         val_input = val_input.float()
         val_input = val_input.view(val_input.size(0), -1)
         
@@ -261,12 +259,11 @@ def aae_train(aae, data, batch_size = 350, num_epochs = 1000, learning_rate = 0.
     val_loss.append(np.mean(val_epoch_loss))
   aae.train_loss = train_loss  
   aae.val_loss = val_loss
-  return  aae
+  return aae
 
 
 
 def aae_fit(aae, data, batch_size = 350, num_epochs = 1000, learning_rate = 0.001):
-  
   batch_size = int(batch_size)
   num_epochs = int(num_epochs)
   

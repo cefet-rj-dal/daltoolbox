@@ -46,7 +46,7 @@ test <- as.data.frame(samp$test)
 features <- names(train)
 
 # Create Autoencoder
-auto <- sae_encode_decode(length(ts), encoding_size=3, num_epochs=100)
+auto <- aae_encode_decode(length(ts), encoding_size=4, num_epochs=300)
 ae_type <- 'decoder'
 
 return_loss <- TRUE
