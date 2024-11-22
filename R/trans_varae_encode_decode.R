@@ -27,7 +27,7 @@ varae_encode_decode <- function(input_size, encoding_size, mean_var_size=6, batc
 }
 
 #'@export
-fit.varae_encode_decode <- function(obj, data, return_loss=FALSE, ...) {
+fit.varae_encode_decode <- function(obj, data, ...) {
   if (!exists("vae_create"))
     reticulate::source_python(system.file("python", "varae_autoencoder.py", package = "daltoolbox"))
 

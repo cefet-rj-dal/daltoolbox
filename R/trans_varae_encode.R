@@ -27,9 +27,9 @@ varae_encode <- function(input_size, encoding_size, mean_var_size=6, batch_size 
 }
 
 #'@export
-fit.varae_encode <- function(obj, data, return_loss=FALSE, ...) {
+fit.varae_encode <- function(obj, data, ...) {
   if (!exists("vae_create"))
-    reticulate::source_python(system.file("python", "var_autoencoder.py", package = "daltoolbox"))
+    reticulate::source_python(system.file("python", "varae_autoencoder.py", package = "daltoolbox"))
 
   if (is.null(obj$model))
     obj$model <- vae_create(obj$input_size, obj$encoding_size, obj$mean_var_size)
@@ -42,7 +42,7 @@ fit.varae_encode <- function(obj, data, return_loss=FALSE, ...) {
 #'@export
 transform.varae_encode <- function(obj, data, ...) {
   if (!exists("vae_create"))
-    reticulate::source_python(system.file("python", "var_autoencoder.py", package = "daltoolbox"))
+    reticulate::source_python(system.file("python", "varae_autoencoder.py", package = "daltoolbox"))
 
   result <- NULL
   if (!is.null(obj$model))
