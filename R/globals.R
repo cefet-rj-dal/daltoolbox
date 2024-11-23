@@ -6,4 +6,4 @@ utils::globalVariables(c("ts_lstm_create", "ts_lstm_fit", "ts_lstm_predict",
                          "c2den_fit", "cae2d_create", "cae_fit", "conv2d_encode_decode", "conv_encode", "conv_encode_decode",
                          "dns_ae_create", "dns_ae_fit", "dns_encode", "lae_fit", "lstm_encode", "lstm_encode_decode", "return_loss",
                          "var_encode", "var_encode_decode", "cae2d_fit", "cae_create", "dns_encode_decode",
-                         "lae_create", "sae_create", "sae_fit"))
+                         "lae_create", "sae_create", "sae_fit", "dns_fit", "c2den_encode"))
