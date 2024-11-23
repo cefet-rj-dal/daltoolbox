@@ -1,14 +1,16 @@
 Package: daltoolbox
 Title: Leveraging Experiment Lines to Data Analytics 
-Version: 1.01.717
+Version: 1.01.727
 Authors@R: 
   c(    person(given = "Eduardo", family = "Ogasawara", role = c("aut", "ths", "cre"), 
                email = "eogasawara@ieee.org", comment = c(ORCID = "0000-0002-0466-0626")),
         person(given = "Antonio", family = "Castro", role = c("aut", "ctb"), email = "antonio.castro@eic.cefet-rj.br"),
         person(given = "Heraldo", family = "Borges", role = c("aut", "ths"), email = "heraldo.borges@cefet-rj.br"),
+        person(given = "Janio", family = "Lima", role = c("aut", "ths"), email = "janio.lima@eic.cefet-rj.br"),
+        person(given = "Lucas", family = "Tavares", role = c("aut", "ths"), email = "lucas.tavares@eic.cefet-rj.br"),
         person(given = "Diego", family = "Carvalho", role = c("aut", "ths"), email = "d.carvalho@ieee.org"),
-        person(given = "Joel", family = "Santos", role = c("aut", "ths"), email = "joel.santos@cefet-rj.br"),
         person(given = "Eduardo", family = "Bezerra", role = c("aut", "ths"), email = "ebezerra@cefet-rj.br"),
+        person(given = "Joel", family = "Santos", role = c("aut", "ths"), email = "joel.santos@cefet-rj.br"),
         person(given = "Rafaelli", family = "Coutinho", role = c("aut", "ths"), email = "rafaelli.coutinho@cefet-rj.br"),
         person(given = "Federal Center for Technological Education of Rio de Janeiro (CEFET/RJ)", role = "cph")
    )
