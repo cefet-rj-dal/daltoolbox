@@ -64,17 +64,29 @@ def cae2d_create(input_size, encoding_size):
   return cae2d  
 
 # Train the cae
-def cae2d_train(cae2d, train_loader, val_loader, num_epochs = 1000, learning_rate = 0.001, return_loss = False):
+def cae2d_train(cae2d, data, batch_size=20, num_epochs = 1000, learning_rate = 0.001):
   criterion = nn.MSELoss()
   optimizer = optim.Adam(cae2d.parameters(), lr=learning_rate)
-  
+
   train_loss = []
   val_loss = []
   
   for epoch in range(num_epochs):
+      # Train Test Split
+      val_sample = sample(range(1, data.shape[0], 1), k=int(data.shape[0]*0.3))
+      train_sample = [v for v in range(1, data.shape[0], 1) if v not in val_sample]
+      
+      train_data = data[train_sample, :, :, :]
+      val_data = data[val_sample, :, :, :]
+      
+      ds_train = CAE2D_TS(train_data)
+      ds_val = CAE2D_TS(val_data)
+      train_loader = DataLoader(ds_train, batch_size=batch_size)
+      val_loader = DataLoader(ds_val, batch_size=batch_size)
+    
+      # Train
       train_epoch_loss = []
       val_epoch_loss = []
-      # Train
       cae2d.train()
       for train_data in train_loader:
           train_input, _ = train_data
@@ -99,33 +111,16 @@ def cae2d_train(cae2d, train_loader, val_loader, num_epochs = 1000, learning_rat
       train_loss.append(np.mean(train_epoch_loss))
       val_loss.append(np.mean(val_epoch_loss))
   
-  if return_loss:
-    return cae2d, train_loss, val_loss
-  else:
-    return cae2d
+  cae2d.train_loss = train_loss
+  cae2d.val_loss = val_loss
+  return cae2d
 
-def cae2d_fit(cae2d, data, batch_size = 20, num_epochs = 50, learning_rate = 0.001, return_loss=False):
+def cae2d_fit(cae2d, data, batch_size = 20, num_epochs = 50, learning_rate = 0.001):
   batch_size = int(batch_size)
   num_epochs = int(num_epochs)
-  
-  val_sample = sample(range(1, 200, 1), k=int(data.shape[0]*0.3))
-  train_sample = [v for v in range(1, 200, 1) if v not in val_sample]
-  
-  train_data = data[train_sample, :, :, :]
-  val_data = data[val_sample, :, :, :]
-  
-  ds_train = CAE2D_TS(train_data)
-  ds_val = CAE2D_TS(val_data)
-  train_loader = DataLoader(ds_train, batch_size=batch_size)
-  val_loader = DataLoader(ds_val, batch_size=batch_size)
-  
-  if return_loss:
-    cae2d, train_loss, val_loss = cae2d_train(cae2d, train_loader, val_loader, num_epochs = num_epochs, learning_rate = learning_rate, return_loss=return_loss)
-    return cae2d, train_loss, val_loss
-  else:
-    cae2d = cae2d_train(cae2d, train_loader, val_loader, num_epochs = num_epochs, learning_rate = learning_rate, return_loss=return_loss)
-    return cae2d
 
+  cae2d = cae2d_train(cae2d, data, batch_size=batch_size, num_epochs = num_epochs, learning_rate = learning_rate)
+  return cae2d
 
 def cae2d_encode_data(cae2d, data_loader):
   # Encode the image data using the trained cae2d

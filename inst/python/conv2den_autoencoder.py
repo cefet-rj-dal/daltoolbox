@@ -5,8 +5,7 @@ from torch.utils.data import Dataset, DataLoader
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
-
+from random import sample
 
 
 class Encoder(nn.Module):
@@ -50,8 +49,7 @@ class Encoder(nn.Module):
         # # Apply linear layers
         x = self.encoder_lin(x)
         return x
-     
-
+  
 class Decoder(nn.Module):
     
     def __init__(self, encoded_space_dim, fc2_input_dim, padding=0):
@@ -94,9 +92,7 @@ class Decoder(nn.Module):
         # Apply a sigmoid to force the output to be between 0 and 1 (valid pixel values)
         x = torch.sigmoid(x)
         return x
-     
-
-
+  
 class C2DEN_TS(Dataset):
     def __init__(self, num_samples, input_size):
         self.data = np.random.randn(num_samples, input_size)
@@ -122,7 +118,6 @@ class C2DEN(nn.Module):
       x = self.decoder(x)
       return x
 
-    
 # Create the cae
 def c2den_create(input_size, encoding_size):
   input_size = tuple(input_size)
@@ -133,17 +128,29 @@ def c2den_create(input_size, encoding_size):
   return c2den  
 
 # Train the cae
-def c2den_train(c2den, train_loader, val_loader, num_epochs = 1000, learning_rate = 0.001, return_loss=False):
+def c2den_train(c2den, data, batch_size=20, num_epochs = 1000, learning_rate = 0.001):
   criterion = nn.MSELoss()
   optimizer = optim.Adam(c2den.parameters(), lr=learning_rate)
-  
+
   train_loss = []
   val_loss = []
   
   for epoch in range(num_epochs):
+      # Train Test Split
+      val_sample = sample(range(1, data.shape[0], 1), k=int(data.shape[0]*0.3))
+      train_sample = [v for v in range(1, data.shape[0], 1) if v not in val_sample]
+      
+      train_data = data[train_sample, :, :, :]
+      val_data = data[val_sample, :, :, :]
+      
+      ds_train = C2DEN_TS(train_data)
+      ds_val = C2DEN_TS(val_data)
+      train_loader = DataLoader(ds_train, batch_size=batch_size)
+      val_loader = DataLoader(ds_val, batch_size=batch_size)
+    
+      # Train
       train_epoch_loss = []
       val_epoch_loss = []
-      # Train
       c2den.train()
       for train_data in train_loader:
           train_input, _ = train_data
@@ -167,33 +174,17 @@ def c2den_train(c2den, train_loader, val_loader, num_epochs = 1000, learning_rat
           
       train_loss.append(np.mean(train_epoch_loss))
       val_loss.append(np.mean(val_epoch_loss))
+  
+  c2den.train_loss = train_loss
+  c2den.val_loss = val_loss
+  return c2den
 
-  if return_loss:
-    return c2den, train_loss, val_loss
-  else:
-    return c2den
-
-def c2den_fit(c2den, data, batch_size = 20, num_epochs = 50, learning_rate = 0.001, return_loss=False):
+def c2den_fit(c2den, data, batch_size = 20, num_epochs = 50, learning_rate = 0.001):
   batch_size = int(batch_size)
   num_epochs = int(num_epochs)
-  
-  val_sample = sample(range(1, 200, 1), k=int(data.shape[0]*0.3))
-  train_sample = [v for v in range(1, 200, 1) if v not in val_sample]
-  
-  train_data = data[train_sample, :, :, :]
-  val_data = data[val_sample, :, :, :]
-  
-  ds_train = C2DEN_TS(train_data)
-  ds_val = C2DEN_TS(val_data)
-  train_loader = DataLoader(ds_train, batch_size=batch_size)
-  val_loader = DataLoader(ds_val, batch_size=batch_size)
-  
-  if return_loss:
-    c2den, train_loss, val_loss = c2den_train(c2den, train_loader, val_loader, num_epochs = num_epochs, learning_rate = learning_rate, return_loss=return_loss)
-    return c2den, train_loss, val_loss
-  else:
-    c2den = c2den_train(c2den, train_loader, val_loader, num_epochs = num_epochs, learning_rate = learning_rate, return_loss=return_loss)
-    return c2den
+
+  c2den = c2den_train(c2den, data, batch_size=batch_size, num_epochs = num_epochs, learning_rate = learning_rate)
+  return c2den
 
 def c2den_encode_data(c2den, data_loader):
   # Encode the synthetic time series data using the trained cae

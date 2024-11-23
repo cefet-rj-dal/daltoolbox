@@ -25,7 +25,7 @@ cae2den_encode <- function(input_size, encoding_size, batch_size = 32, num_epoch
 }
 
 #'@export
-fit.cae2den_encode <- function(obj, data, return_loss=FALSE, ...) {
+fit.cae2den_encode <- function(obj, data, ...) {
   if (!exists("c2den_create"))
     reticulate::source_python(system.file("python", "conv2den_autoencoder.py", package = "daltoolbox"))
 
@@ -34,15 +34,8 @@ fit.cae2den_encode <- function(obj, data, return_loss=FALSE, ...) {
 
   obj$input_size <- np_array(obj$input_size)
 
-  if (return_loss){
-    fit_output <- c2den_fit(obj$model, np_array(data), num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=return_loss)
-    obj$model <- fit_output[[1]]
-
-    return(list(obj=obj, loss=fit_output[-1]))
-  }else{
-    obj$model <- c2den_fit(obj$model, np_array(data), num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=return_loss)
-    return(obj)
-  }
+  obj$model <- c2den_fit(obj$model, np_array(data), num_epochs = obj$num_epochs, learning_rate = obj$learning_rate)
+  return(obj)
 }
 
 #'@export

@@ -26,7 +26,7 @@ cae2d_encode_decode <- function(input_size, encoding_size, batch_size = 32, num_
 }
 
 #'@export
-fit.cae2d_encode_decode <- function(obj, data, return_loss=FALSE, ...) {
+fit.cae2d_encode_decode <- function(obj, data, ...) {
   if (!exists("cae2d_create"))
     reticulate::source_python(system.file("python", "conv2d_autoencoder.py", package = "daltoolbox"))
 
@@ -35,15 +35,9 @@ fit.cae2d_encode_decode <- function(obj, data, return_loss=FALSE, ...) {
 
   obj$input_size <- np_array(obj$input_size)
 
-  if (return_loss){
-    fit_output <- cae2d_fit(obj$model, np_array(data), num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=return_loss)
-    obj$model <- fit_output[[1]]
-
-    return(list(obj=obj, loss=fit_output[-1]))
-  }else{
-    obj$model <- cae2d_fit(obj$model, np_array(data), num_epochs = obj$num_epochs, learning_rate = obj$learning_rate, return_loss=return_loss)
-    return(obj)
-  }
+  obj$model <- cae2d_fit(obj$model, np_array(data), num_epochs = obj$num_epochs, learning_rate = obj$learning_rate)
+  
+  return(obj)
 }
 
 #'@export
