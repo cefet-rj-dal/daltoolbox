@@ -83,19 +83,33 @@ def lae_create(input_size, encoding_size):
   lae = lae.float()
   return lae  
 
-
 # Train the lae
-def lae_train(lae, train_loader, val_loader, num_epochs = 1000, learning_rate = 0.00001, return_loss=False):
-  criterion = nn.MSELoss(reduction='mean')
+def lae_train(lae, data, batch_size=20, num_epochs = 1000, learning_rate = 0.00001):
+  criterion = nn.MSELoss()
   optimizer = optim.Adam(lae.parameters(), lr=learning_rate)
 
   train_loss = []
   val_loss = []
   
   for epoch in range(num_epochs):
+      # Train Test Split
+      array = data.to_numpy()
+      array = array[:, :, np.newaxis]
+      
+      val_sample = sample(range(1, data.shape[0], 1), k=int(data.shape[0]*0.3))
+      train_sample = [v for v in range(1, data.shape[0], 1) if v not in val_sample]
+      
+      train_data = array[train_sample, :]
+      val_data = array[val_sample, :]
+      
+      ds_train = LSTM_TS(train_data)
+      ds_val = LSTM_TS(val_data)
+      train_loader = DataLoader(ds_train, batch_size=batch_size)
+      val_loader = DataLoader(ds_val, batch_size=batch_size)
+    
+      # Train
       train_epoch_loss = []
       val_epoch_loss = []
-      # Train
       lae.train()
       for train_data in train_loader:
           train_input, _ = train_data
@@ -119,36 +133,17 @@ def lae_train(lae, train_loader, val_loader, num_epochs = 1000, learning_rate = 
           
       train_loss.append(np.mean(train_epoch_loss))
       val_loss.append(np.mean(val_epoch_loss))
-
-  if return_loss:
-    return lae, train_loss, val_loss
-  else:
-    return lae
+  
+  lae.train_loss = train_loss
+  lae.val_loss = val_loss
+  return lae
 
 def lae_fit(lae, data, batch_size = 20, num_epochs = 1000, learning_rate = 0.001, return_loss=False):
   batch_size = int(batch_size)
   num_epochs = int(num_epochs)
-  
-  array = data.to_numpy()
-  array = array[:, :, np.newaxis]
-  
-  val_sample = sample(range(1, data.shape[0], 1), k=int(data.shape[0]*0.3))
-  train_sample = [v for v in range(1, data.shape[0], 1) if v not in val_sample]
-  
-  train_data = array[train_sample, :, :]
-  val_data = array[val_sample, :, :]
-  
-  ds_train = LSTM_TS(train_data)
-  ds_val = LSTM_TS(val_data)
-  train_loader = DataLoader(ds_train, batch_size=batch_size)
-  val_loader = DataLoader(ds_val, batch_size=batch_size)
-  
-  if return_loss:
-    lae, train_loss, val_loss = lae_train(lae, train_loader, val_loader, num_epochs = num_epochs, learning_rate = learning_rate, return_loss=return_loss)
-    return lae, train_loss, val_loss
-  else:
-    lae = lae_train(lae, train_loader, val_loader, num_epochs = num_epochs, learning_rate = learning_rate, return_loss=return_loss)
-    return lae
+
+  lae = lae_train(lae, data, batch_size = batch_size, num_epochs = num_epochs, learning_rate = learning_rate)
+  return lae
 
 
 def lae_encode_data(lae, data_loader):
@@ -158,6 +153,7 @@ def lae_encode_data(lae, data_loader):
       inputs, _ = data
       inputs = inputs.float()
       encoded = lae.encoder(inputs)
+      print(encoded)
       encoded_data.append(encoded.detach().numpy())
 
   encoded_data = np.concatenate(encoded_data, axis=0)

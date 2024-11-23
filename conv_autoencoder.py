@@ -5,6 +5,7 @@ from torch.utils.data import Dataset, DataLoader
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from random import sample
 
 
 class CAE_TS(Dataset):
@@ -54,7 +55,7 @@ def cae_create(input_size, encoding_size):
   return cae  
 
 # Train the cae
-def cae_train(cae, train_loader, val_loader, num_epochs = 1000, learning_rate = 0.001, return_loss=False):
+def cae_train(cae, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001):
   criterion = nn.MSELoss()
   optimizer = optim.Adam(cae.parameters(), lr=learning_rate)
 
@@ -62,9 +63,24 @@ def cae_train(cae, train_loader, val_loader, num_epochs = 1000, learning_rate = 
   val_loss = []
   
   for epoch in range(num_epochs):
+      # Train Test Split
+      array = data.to_numpy()
+      array = array[:, :, np.newaxis]
+      
+      val_sample = sample(range(1, data.shape[0], 1), k=int(data.shape[0]*0.3))
+      train_sample = [v for v in range(1, data.shape[0], 1) if v not in val_sample]
+      
+      train_data = array[train_sample, :]
+      val_data = array[val_sample, :]
+      
+      ds_train = CAE_TS(train_data)
+      ds_val = CAE_TS(val_data)
+      train_loader = DataLoader(ds_train, batch_size=batch_size)
+      val_loader = DataLoader(ds_val, batch_size=batch_size)
+    
+      # Train
       train_epoch_loss = []
       val_epoch_loss = []
-      # Train
       cae.train()
       for train_data in train_loader:
           train_input, _ = train_data
@@ -88,36 +104,17 @@ def cae_train(cae, train_loader, val_loader, num_epochs = 1000, learning_rate = 
           
       train_loss.append(np.mean(train_epoch_loss))
       val_loss.append(np.mean(val_epoch_loss))
+  
+  cae.train_loss = train_loss
+  cae.val_loss = val_loss
+  return cae
 
-  if return_loss:
-    return cae, train_loss, val_loss
-  else:
-    return cae
-
-def cae_fit(cae, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001, return_loss=False):
+def cae_fit(cae, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001):
   batch_size = int(batch_size)
   num_epochs = int(num_epochs)
-  
-  array = data.to_numpy()
-  array = array[:, :, np.newaxis]
-  
-  val_sample = sample(range(1, data.shape[0], 1), k=int(data.shape[0]*0.3))
-  train_sample = [v for v in range(1, data.shape[0], 1) if v not in val_sample]
-  
-  train_data = array[train_sample, :, :]
-  val_data = array[val_sample, :, :]
-  
-  ds_train = CAE_TS(train_data)
-  ds_val = CAE_TS(val_data)
-  train_loader = DataLoader(ds_train, batch_size=batch_size)
-  val_loader = DataLoader(ds_val, batch_size=batch_size)
-  
-  if return_loss:
-    cae, train_loss, val_loss = cae_train(cae, train_loader, val_loader, num_epochs = num_epochs, learning_rate = 0.001, return_loss=return_loss)
-    return cae, train_loss, val_loss
-  else:
-    cae = cae_train(cae, train_loader, val_loader, num_epochs = num_epochs, learning_rate = 0.001, return_loss=return_loss)
-    return cae
+
+  cae = cae_train(cae, data, batch_size=batch_size, num_epochs = num_epochs, learning_rate = 0.001)
+  return cae
 
 
 def conv_encode_data(cae, data_loader):
