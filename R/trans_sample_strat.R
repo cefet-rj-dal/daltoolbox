@@ -1,10 +1,3 @@
-# DAL Library
-# version 2.1
-
-# depends dal_sample.R
-
-# sample_stratified
-# loadlibrary("caret") for stratified
 #'@title  Stratified Random Sampling
 #'@description The sample_stratified function in R is used to generate a stratified random sample from a given dataset.
 #'Stratified sampling is a statistical method that is used when the population is divided into non-overlapping subgroups or strata, and a sample is selected from each stratum to represent the entire population.

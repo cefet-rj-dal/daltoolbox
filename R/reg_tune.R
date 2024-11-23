@@ -1,6 +1,3 @@
-# DAL Library
-# version 2.1
-
 #'@title Regression Tune
 #'@description Creates an object for tuning regression models
 #'@param base_model base model for tuning

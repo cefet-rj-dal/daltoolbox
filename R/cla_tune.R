@@ -1,6 +1,3 @@
-# DAL Library
-# version 2.1
-
 #'@title Classification Tune
 #'@description This function performs a grid search or random search over specified hyperparameter values to optimize a base classification model
 #'@param base_model base model for tuning

@@ -1,6 +1,3 @@
-# DAL Library
-# version 2.1
-
 #'@title Clustering Tune
 #'@description Creates an object for tuning clustering models.
 #'This object can be used to fit and optimize clustering algorithms by specifying hyperparameter ranges
