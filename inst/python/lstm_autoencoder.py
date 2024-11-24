@@ -169,6 +169,8 @@ def lstm_encode(lae, data, batch_size = 20):
   
   encoded_data = lae_encode_data(lae, train_loader)
   
+  encoded_data = encoded_data.reshape((encoded_data.shape[0], encoded_data.shape[2]))
+  
   return(encoded_data)
 
 
