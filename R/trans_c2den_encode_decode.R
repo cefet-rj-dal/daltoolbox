@@ -18,7 +18,6 @@ cae2den_encode_decode <- function(input_size, encoding_size, batch_size = 32, nu
   obj$encoding_size <- encoding_size
   obj$batch_size <- batch_size
   obj$num_epochs <- num_epochs
-  print(num_epochs)
   obj$learning_rate <- learning_rate
   class(obj) <- append("cae2den_encode_decode", class(obj))
 

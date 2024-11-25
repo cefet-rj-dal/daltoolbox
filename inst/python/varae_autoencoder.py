@@ -24,22 +24,22 @@ class VAE_TS(Dataset):
 
 
 class VAE(nn.Module):
-    def __init__(self, input_size, encoding_size, mean_var_size=6):
+    def __init__(self, input_size, encoding_size):
         super(VAE, self).__init__()
 
         self.encoder = nn.Sequential(
             nn.Linear(input_size, 64),
             nn.LeakyReLU(0.2),
-            nn.Linear(64, encoding_size),
+            nn.Linear(64, 32),
             nn.LeakyReLU(0.2))
             
-        self.mean_layer = nn.Linear(encoding_size, mean_var_size)
-        self.var_layer = nn.Linear(encoding_size, mean_var_size)
+        self.mean_layer = nn.Linear(32, encoding_size)
+        self.var_layer = nn.Linear(32, encoding_size)
 
         self.decoder = nn.Sequential(
-            nn.Linear(mean_var_size, encoding_size),
+            nn.Linear(encoding_size, 32),
             nn.LeakyReLU(0.2),
-            nn.Linear(encoding_size, 64),
+            nn.Linear(32, 64),
             nn.LeakyReLU(0.2),
             nn.Linear(64, input_size),
             nn.Sigmoid())
@@ -65,12 +65,11 @@ class VAE(nn.Module):
 
     
 # Create the vae
-def vae_create(input_size, encoding_size, mean_var_size):
+def vae_create(input_size, encoding_size):
   input_size = int(input_size)
   encoding_size = int(encoding_size)
-  mean_var_size = int(mean_var_size)
   
-  vae = VAE(input_size, encoding_size, mean_var_size)
+  vae = VAE(input_size, encoding_size)
   vae = vae.float()
   return vae  
 
