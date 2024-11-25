@@ -7,7 +7,6 @@
 varae_encode(
   input_size,
   encoding_size,
-  mean_var_size = 6,
   batch_size = 32,
   num_epochs = 1000,
   learning_rate = 0.001
@@ -18,13 +17,13 @@ varae_encode(
 
 \item{encoding_size}{encoding size}
 
-\item{mean_var_size}{mean variable size}
-
 \item{batch_size}{size for batch learning}
 
 \item{num_epochs}{number of epochs for training}
 
 \item{learning_rate}{learning rate}
+
+\item{mean_var_size}{mean variable size}
 }
 \value{
 returns a \code{varae_encode} object.
