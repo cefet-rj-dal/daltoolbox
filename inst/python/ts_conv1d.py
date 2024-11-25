@@ -73,7 +73,6 @@ def ts_conv1d_train(epochs, lr, model, train_loader, opt_func=torch.optim.SGD):
       # forward pass: compute predicted outputs by passing inputs to the model
       output = model(data.float())
       
-      #print('Going to compute loss...')
       # calculate the loss
       loss = criterion(output, target.float())
       
@@ -87,7 +86,6 @@ def ts_conv1d_train(epochs, lr, model, train_loader, opt_func=torch.optim.SGD):
     # validate the model #
     model.eval() # prep model for evaluation
     
-    # print training/validation statistics 
     # calculate average loss over an epoch
     train_loss = np.average(train_losses)
     avg_train_losses.append(train_loss)

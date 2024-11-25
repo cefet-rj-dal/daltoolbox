@@ -142,8 +142,6 @@ def sae_fit(stack, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.0
         ae_k = sae_train(ae_k, data, num_epochs = num_epochs, learning_rate = learning_rate)
         ae_k_out = sae_encode_decode(ae_k, ae_k_out)
     
-    #STEP 3 - Fit last k autoencoder
-    #print(f'Fit ae_k{len(stack)-1}')    
     sae = stack[-1]
     sae = sae_train(ae_k, data, num_epochs = num_epochs, learning_rate = 0.001)
     

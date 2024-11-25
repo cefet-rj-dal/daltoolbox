@@ -153,7 +153,6 @@ def lae_encode_data(lae, data_loader):
       inputs, _ = data
       inputs = inputs.float()
       encoded = lae.encoder(inputs)
-      print(encoded)
       encoded_data.append(encoded.detach().numpy())
 
   encoded_data = np.concatenate(encoded_data, axis=0)
