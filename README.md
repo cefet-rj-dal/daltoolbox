@@ -37,22 +37,22 @@ devtools::install_github("cefet-rj-dal/daltoolbox", force=TRUE, dependencies=FAL
 ## Examples
 
 Classification:
-<https://nbviewer.org/github/cefet-rj-dal/daltoolbox/tree/main/classification/>
+<https://github.com/cefet-rj-dal/daltoolbox/tree/main/classification/>
 
 Clustering:
-<https://nbviewer.org/github/cefet-rj-dal/daltoolbox/tree/main/clustering/>
+<https://github.com/cefet-rj-dal/daltoolbox/tree/main/clustering/>
 
 Graphics:
-<https://nbviewer.org/github/cefet-rj-dal/daltoolbox/tree/main/graphics/>
+<https://github.com/cefet-rj-dal/daltoolbox/tree/main/graphics/>
 
 Regression:
-<https://nbviewer.org/github/cefet-rj-dal/daltoolbox/tree/main/regression/>
+<https://github.com/cefet-rj-dal/daltoolbox/tree/main/regression/>
 
 Time series:
-<https://nbviewer.org/github/cefet-rj-dal/daltoolbox/tree/main/timeseries/>
+<https://github.com/cefet-rj-dal/daltoolbox/tree/main/timeseries/>
 
 Transformation:
-<https://nbviewer.org/github/cefet-rj-dal/daltoolbox/tree/main/transf/>
+<https://github.com/cefet-rj-dal/daltoolbox/tree/main/transf/>
 
 The examples are organized according to general (data preprocessing),
 clustering, classification, regression, and time series functions. This
