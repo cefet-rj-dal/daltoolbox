@@ -3,7 +3,6 @@
 #' It wraps the pytorch library.
 #'@param input_size input size
 #'@param encoding_size encoding size
-#'@param mean_var_size mean variable size
 #'@param batch_size size for batch learning
 #'@param num_epochs number of epochs for training
 #'@param learning_rate learning rate

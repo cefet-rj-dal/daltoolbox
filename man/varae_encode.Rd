@@ -22,8 +22,6 @@ varae_encode(
 \item{num_epochs}{number of epochs for training}
 
 \item{learning_rate}{learning rate}
-
-\item{mean_var_size}{mean variable size}
 }
 \value{
 returns a \code{varae_encode} object.

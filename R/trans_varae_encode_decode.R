@@ -3,7 +3,6 @@
 #' It wraps the pytorch library.
 #'@param input_size input size
 #'@param encoding_size encoding size
-#'@param mean_var_size mean variable size
 #'@param batch_size size for batch learning
 #'@param num_epochs number of epochs for training
 #'@param learning_rate learning rate
@@ -32,7 +31,7 @@ fit.varae_encode_decode <- function(obj, data, ...) {
 
   if (is.null(obj$model))
     obj$model <- vae_create(obj$input_size, obj$encoding_size)
-  
+
   obj$model <- vae_fit(obj$model, data, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate)
   return(obj)
 
