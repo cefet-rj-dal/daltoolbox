@@ -1,0 +1,43 @@
+---
+title: An R Markdown document converted from "Rmd/transf/normalization_minmax.ipynb"
+output: html_document
+---
+
+```{r}
+# DAL ToolBox
+# version 1.1.727
+
+source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
+#loading DAL
+load_library("daltoolbox") 
+```
+
+## Normalization
+
+Normalization is a technique used to equal strength among variables. 
+
+It is also important to apply it as an input for some machine learning methods. 
+
+## Example
+
+```{r}
+iris <- datasets::iris  
+summary(iris)
+```
+
+### Min-Max 
+Adjust numeric values to 0 (minimum value) - 1 (maximum value).
+
+```{r}
+norm <- minmax()
+norm <- fit(norm, iris)
+ndata <- transform(norm, iris)
+summary(ndata)
+```
+
+```{r}
+ddata <- inverse_transform(norm, ndata)
+summary(ddata)
+```
+

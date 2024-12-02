@@ -1,0 +1,71 @@
+---
+title: An R Markdown document converted from "Rmd/graphics/grf_histogram.ipynb"
+output: html_document
+---
+
+```{r}
+# DAL ToolBox
+# version 1.1.727
+
+source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
+#loading DAL
+load_library("daltoolbox") 
+```
+
+```{r}
+load_library("ggplot2")
+load_library("RColorBrewer")
+
+#color palette
+colors <- brewer.pal(4, 'Set1')
+
+# setting the font size for all charts
+font <- theme(text = element_text(size=16))
+```
+
+## Examples using data distribution
+The following examples use random variables so that different data distribution can be better viewed.
+
+```{r}
+# example: dataset to be plotted  
+example <- data.frame(exponential = rexp(100000, rate = 1), 
+                     uniform = runif(100000, min = 2.5, max = 3.5), 
+                     normal = rnorm(100000, mean=5))
+head(example)
+```
+
+## Histogram
+
+Visualize the distribution of a single continuous variable by dividing the x axis into bins and counting the number of observations in each bin. Histograms (geom_histogram()) display the counts with bars.
+More information: ?geom_histogram (R documentation)
+
+```{r}
+load_library("dplyr")
+
+grf <- plot_hist(example |> select(exponential), 
+                  label_x = "exponential", color=colors[1]) + font
+options(repr.plot.width=5, repr.plot.height=4)
+plot(grf)
+```
+
+## Arrangement of graphs
+
+Function $grid.arrange$ is used to position previously computed charts
+
+```{r}
+grfe <- plot_hist(example |> select(exponential), 
+                  label_x = "exponential", color=colors[1]) + font
+grfu <- plot_hist(example |> select(uniform), 
+                  label_x = "uniform", color=colors[1]) + font  
+grfn <- plot_hist(example |> select(normal), 
+                  label_x = "normal", color=colors[1]) + font 
+```
+
+```{r}
+load_library("gridExtra") 
+
+options(repr.plot.width=15, repr.plot.height=4)
+grid.arrange(grfe, grfu, grfn, ncol=3)
+```
+

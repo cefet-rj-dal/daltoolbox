@@ -1,0 +1,41 @@
+---
+title: An R Markdown document converted from "Rmd/clustering/clu_tune.ipynb"
+output: html_document
+---
+
+# Clustering - Tune Kmeans
+
+```{r}
+# DAL ToolBox
+# version 1.1.727
+
+source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
+#loading DAL
+load_library("daltoolbox")  
+```
+
+```{r}
+data(iris)
+```
+
+```{r}
+# fit model
+model <- clu_tune(cluster_kmeans(k = 0))
+ranges <- list(k = 1:10)
+model <- fit(model, iris[,1:4], ranges)
+model$k
+```
+
+```{r}
+# run model
+clu <- cluster(model, iris[,1:4])
+table(clu)
+```
+
+```{r}
+# evaluate model using external metric
+eval <- evaluate(model, clu, iris$Species)
+eval
+```
+

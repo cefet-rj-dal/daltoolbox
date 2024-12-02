@@ -1,0 +1,47 @@
+---
+title: An R Markdown document converted from "Rmd/graphics/grf_points.ipynb"
+output: html_document
+---
+
+```{r}
+# DAL ToolBox
+# version 1.1.727
+
+source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
+#loading DAL
+load_library("daltoolbox") 
+```
+
+```{r}
+load_library("ggplot2")
+load_library("RColorBrewer")
+
+#color palette
+colors <- brewer.pal(4, 'Set1')
+
+# setting the font size for all charts
+font <- theme(text = element_text(size=16))
+```
+
+#### Synthetic time series
+
+```{r}
+x <- seq(0, 10, 0.25)
+serie <- data.frame(x, sin=sin(x), cosine=cos(x)+5)
+head(serie)
+```
+
+## Plot points
+
+A point plot is similiar to series plot without drawing lines.
+
+```{r}
+# The function returns a preset graphic that can be enhanced. 
+grf <- plot_points(serie, colors=colors[1:2])
+# Increasing the font size of the graphics
+grf <- grf + font
+# Actual plot
+plot(grf)
+```
+

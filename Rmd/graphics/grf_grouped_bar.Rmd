@@ -1,0 +1,51 @@
+---
+title: An R Markdown document converted from "Rmd/graphics/grf_grouped_bar.ipynb"
+output: html_document
+---
+
+```{r}
+# DAL ToolBox
+# version 1.1.727
+
+source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
+#loading DAL
+load_library("daltoolbox") 
+```
+
+```{r}
+load_library("ggplot2")
+load_library("RColorBrewer")
+
+#color palette
+colors <- brewer.pal(4, 'Set1')
+
+# setting the font size for all charts
+font <- theme(text = element_text(size=16))
+```
+
+```{r}
+#iris dataset for the example
+head(iris)
+```
+
+```{r}
+load_library("dplyr")
+
+data <- iris |> group_by(Species) |> summarize(Sepal.Length=mean(Sepal.Length), Sepal.Width=mean(Sepal.Width))
+head(data)
+```
+
+## Grouped barbar
+
+Grouped bar charts are used to organize data into groups for each category.
+
+In a grouped bar chart, for each categorical group, there are two or more bars. These bars are color-coded to represent a particular grouping.  
+
+More information: https://en.wikipedia.org/wiki/Bar_chart#Grouped_or_stacked
+
+```{r}
+grf <- plot_groupedbar(data, colors=colors[1:2]) + font
+plot(grf)
+```
+

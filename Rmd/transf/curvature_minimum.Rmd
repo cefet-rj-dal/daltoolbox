@@ -1,0 +1,60 @@
+---
+title: An R Markdown document converted from "Rmd/transf/curvature_minimum.ipynb"
+output: html_document
+---
+
+```{r}
+# DAL ToolBox
+# version 1.1.727
+
+source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
+#loading DAL
+load_library("daltoolbox") 
+
+#for ploting
+load_library("ggplot2")
+load_library("dplyr")
+```
+
+```{r}
+wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/wine.RData")))
+head(wine)
+```
+
+## Example: PCA components
+Cummulative variance of PCA: First dimensions have high variance. However, adding more dimensions does not bring much benefit in terms of cummulative variance. 
+The goal is to establish a trade-off.
+
+```{r}
+pca_res = prcomp(wine[,2:ncol(wine)], center=TRUE, scale.=TRUE)
+y <- cumsum(pca_res$sdev^2/sum(pca_res$sdev^2))
+x <- 1:length(y)
+```
+
+```{r}
+dat <- data.frame(x, value = y, variable = "PCA")
+dat$variable <- as.factor(dat$variable)
+head(dat)
+```
+
+```{r}
+grf <- plot_scatter(dat, label_x = "dimensions", label_y = "cumulative variance", colors="black") + 
+    theme(text = element_text(size=16))
+plot(grf)
+```
+
+## Minimum curvature
+If the curve is increasing, use minimum curvature analysis. 
+It brings a trade-off between having lower x values (with not so high y values) and having higher x values (not having to much increase in y values). 
+
+```{r}
+myfit <- fit_curvature_min()
+res <- transform(myfit, y)
+head(res)
+```
+
+```{r}
+plot(grf + geom_vline(xintercept = res$x, linetype="dashed", color = "red", size=0.5))
+```
+
