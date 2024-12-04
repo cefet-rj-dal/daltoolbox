@@ -7,7 +7,7 @@
 
 
 #loading DAL
-library(daltoolbox)("daltoolbox")
+library(daltoolbox)
 ```
 
 ### Series for studying

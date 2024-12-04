@@ -18,7 +18,7 @@ library(stringr)
 library(devtools)
 load_all("/home/lucas/daltoolbox_autoenc")
 #loading DAL
-# library(daltoolbox)("daltoolbox")
+# library(daltoolbox)
 ```
 
 ### dataset for example 

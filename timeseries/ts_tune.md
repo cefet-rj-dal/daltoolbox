@@ -14,14 +14,8 @@ Configuring the environment:
 
 
 #loading DAL Toolbox
-library(daltoolbox)("daltoolbox")
-```
+library(daltoolbox)
 
-```
-## Error in eval(expr, envir, enclos): attempt to apply non-function
-```
-
-```r
 #load required library
 library(ggplot2)
 ```

@@ -8,11 +8,7 @@
 
 
 #loading DAL
-library(daltoolbox)("daltoolbox")
-```
-
-```
-## Error in eval(expr, envir, enclos): attempt to apply non-function
+library(daltoolbox)
 ```
 
 ### Series for studying
@@ -68,7 +64,7 @@ ev_adjust$mse
 ```
 
 ```
-## [1] 0.0005472658
+## [1] 0.0003773015
 ```
 
 ### Prediction of test
@@ -88,7 +84,7 @@ print(sprintf("%.2f, %.2f", output, prediction))
 ```
 
 ```
-## [1] "0.41, 0.44"   "0.17, 0.20"   "-0.08, -0.08" "-0.32, -0.35" "-0.54, -0.59"
+## [1] "0.41, 0.41"   "0.17, 0.16"   "-0.08, -0.10" "-0.32, -0.34" "-0.54, -0.56"
 ```
 
 ### Evaluation of test data
@@ -100,8 +96,8 @@ print(head(ev_test$metrics))
 ```
 
 ```
-##            mse     smape        R2
-## 1 0.0008588064 0.0778206 0.9925824
+##            mse      smape        R2
+## 1 0.0002929144 0.08068743 0.9974701
 ```
 
 ```r
@@ -109,7 +105,7 @@ print(sprintf("smape: %.2f", 100*ev_test$metrics$smape))
 ```
 
 ```
-## [1] "smape: 7.78"
+## [1] "smape: 8.07"
 ```
 
 ### Plot results

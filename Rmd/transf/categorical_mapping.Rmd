@@ -10,7 +10,7 @@ It is also possible to map into $n-1$ binary values, where the scenario where al
 
 
 #loading DAL
-library(daltoolbox)("daltoolbox")
+library(daltoolbox)
 ```
 
 ### dataset for example 

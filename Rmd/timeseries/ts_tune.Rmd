@@ -13,7 +13,7 @@ Configuring the environment:
 
 
 #loading DAL Toolbox
-library(daltoolbox)("daltoolbox")
+library(daltoolbox)
 
 #load required library
 library(ggplot2)
