@@ -62,7 +62,7 @@ if (FALSE) {
   }
 }
 
-dir <- "Rmd/timeseries"
+dir <- "Rmd/transf"
 texs <- list.files(path = dir, pattern = ".Rmd$", full.names = TRUE, recursive = TRUE)
 if (TRUE) {
   for (tex in texs) {

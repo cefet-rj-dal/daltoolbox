@@ -46,7 +46,7 @@ load_all("/home/lucas/daltoolbox_autoenc")
 
 ```r
 #loading DAL
-# library(daltoolbox)("daltoolbox")
+# library(daltoolbox)
 ```
 
 ### dataset for example 

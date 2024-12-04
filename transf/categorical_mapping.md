@@ -11,11 +11,7 @@ It is also possible to map into $n-1$ binary values, where the scenario where al
 
 
 #loading DAL
-library(daltoolbox)("daltoolbox")
-```
-
-```
-## Error in eval(expr, envir, enclos): attempt to apply non-function
+library(daltoolbox)
 ```
 
 ### dataset for example 

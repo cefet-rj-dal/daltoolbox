@@ -38,5 +38,12 @@ grf <- plot_scatter(dat, label_x = "dimensions", label_y = "cumulative variance"
 plot(grf + geom_vline(xintercept = dat$x[res$x], linetype="dashed", color = "red", size=0.5))
 ```
 
+```
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+```
+
 ![plot of chunk unnamed-chunk-3](fig/curvature_maximum/unnamed-chunk-3-1.png)
 
