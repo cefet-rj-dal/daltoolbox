@@ -8,7 +8,6 @@
 
 #loading DAL
 library(daltoolbox) 
-load_github("cefet-rj-dal/tspredit")
 ```
 
 ### Series for studying

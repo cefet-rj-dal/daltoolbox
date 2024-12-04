@@ -9,11 +9,6 @@
 
 #loading DAL
 library(daltoolbox) 
-load_github("cefet-rj-dal/tspredit")
-```
-
-```
-## Error in load_github("cefet-rj-dal/tspredit"): could not find function "load_github"
 ```
 
 ### Series for studying
