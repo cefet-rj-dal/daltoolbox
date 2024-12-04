@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/transf/sae_encode.ipynb"
-output: html_document
----
-
 ## Stacked Autoencode transformation (encode)
 
 Considering a dataset with $p$ numerical attributes. 
@@ -14,11 +9,18 @@ The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that 
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox")
-load_library("ggplot2")
+library(daltoolbox)("daltoolbox")
+```
+
+```
+## Error in eval(expr, envir, enclos): attempt to apply non-function
+```
+
+```r
+library(ggplot2)
 ```
 
 ### dataset for example 
@@ -127,11 +129,11 @@ print(head(result))
 
 ```
 ##           [,1]       [,2]     [,3]
-## [1,] -1.119002 -0.3001583 1.501127
-## [2,] -1.228194 -0.4139498 1.540943
-## [3,] -1.290656 -0.5138483 1.535903
-## [4,] -1.301576 -0.5927322 1.486244
-## [5,] -1.267393 -0.6526701 1.395834
-## [6,] -1.182630 -0.6872926 1.271608
+## [1,] -1.154842 -0.2596309 1.496048
+## [2,] -1.257876 -0.3714404 1.534065
+## [3,] -1.315992 -0.4704824 1.529732
+## [4,] -1.323050 -0.5521106 1.481962
+## [5,] -1.282655 -0.6176242 1.395000
+## [6,] -1.197688 -0.6579078 1.277016
 ```
 

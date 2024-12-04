@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/transf/cae_encode.ipynb"
-output: html_document
----
-
 ## Convolutional Autoencoder transformation (encode)
 
 Considering a dataset with $p$ numerical attributes. 
@@ -14,11 +9,18 @@ The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that 
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox")
-load_library("ggplot2")
+library(daltoolbox)("daltoolbox")
+```
+
+```
+## Error in eval(expr, envir, enclos): attempt to apply non-function
+```
+
+```r
+library(ggplot2)
 ```
 
 ### dataset for example 
@@ -127,11 +129,11 @@ print(head(result))
 
 ```
 ##            [,1]      [,2]       [,3]
-## [1,] -0.6438218 0.5488213 -1.6360555
-## [2,] -0.7503008 0.7927349 -1.5997087
-## [3,] -0.7775353 1.0034537 -1.4879320
-## [4,] -0.7401009 1.1592429 -1.3301371
-## [5,] -0.6275330 1.2247654 -1.1452430
-## [6,] -0.4645177 1.2041904 -0.9463072
+## [1,] -0.5520967 0.6101637 -1.5535893
+## [2,] -0.6706143 0.8478350 -1.5338824
+## [3,] -0.7057959 1.0493350 -1.4334513
+## [4,] -0.6820510 1.1974025 -1.2865543
+## [5,] -0.5884507 1.2611210 -1.1092976
+## [6,] -0.4457970 1.2409470 -0.9143605
 ```
 

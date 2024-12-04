@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/timeseries/ts_tune.ipynb"
-output: html_document
----
-
 # Leveraging Experiment Lines to Data Analytics
 
 ## Time Series regression - tune - example
@@ -16,11 +11,17 @@ Configuring the environment:
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL Toolbox
-load_library("daltoolbox")
+library(daltoolbox)("daltoolbox")
+```
 
+```
+## Error in eval(expr, envir, enclos): attempt to apply non-function
+```
+
+```r
 #load required library
 library(ggplot2)
 ```

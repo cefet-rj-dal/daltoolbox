@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/transf/cae2d_enc_decode.ipynb"
-output: html_document
----
-
 ## Autoencoder transformation (encode-decode)
 
 Considering a dataset with $p$ numerical attributes. 
@@ -14,18 +9,18 @@ The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that 
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 library(tidyverse)
 ```
 
 ```
-## ── Attaching core tidyverse packages ───────────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+## ── Attaching core tidyverse packages ────────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
 ## ✔ lubridate 1.9.3     ✔ tibble    3.2.1
 ## ✔ purrr     1.0.2     ✔ tidyr     1.3.1
 ## ✔ readr     2.1.5     
-## ── Conflicts ─────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ purrr::%||%()        masks base::%||%()
 ## ✖ gridExtra::combine() masks dplyr::combine()
 ## ✖ dplyr::filter()      masks stats::filter()
@@ -93,7 +88,7 @@ load_all("/home/lucas/daltoolbox_autoenc")
 
 ```r
 #loading DAL
-# load_library("daltoolbox")
+# library(daltoolbox)("daltoolbox")
 ```
 
 ### dataset for example 

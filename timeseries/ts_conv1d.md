@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/timeseries/ts_conv1d.ipynb"
-output: html_document
----
-
 ## Time Series regression - 1D Convolutional Neural Networks (Conv1D)
 
 
@@ -10,10 +5,14 @@ output: html_document
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox")
+library(daltoolbox)("daltoolbox")
+```
+
+```
+## Error in eval(expr, envir, enclos): attempt to apply non-function
 ```
 
 ### Series for studying
@@ -69,7 +68,7 @@ ev_adjust$mse
 ```
 
 ```
-## [1] 1.199938e-05
+## [1] 4.465049e-05
 ```
 
 ### Prediction of test
@@ -88,20 +87,20 @@ ev_test
 ## [1]  0.41211849  0.17388949 -0.07515112 -0.31951919 -0.54402111
 ## 
 ## $prediction
-## [1]  0.40677429  0.16539566 -0.09259785 -0.34444326 -0.57543428
+## [1]  0.42813144  0.19906450 -0.03729289 -0.26960795 -0.48405367
 ## 
 ## $smape
-## [1] 0.08046603
+## [1] 0.2265179
 ## 
 ## $mse
-## [1] 0.000402618
+## [1] 0.001682134
 ## 
 ## $R2
-## [1] 0.9965226
+## [1] 0.9854713
 ## 
 ## $metrics
-##           mse      smape        R2
-## 1 0.000402618 0.08046603 0.9965226
+##           mse     smape        R2
+## 1 0.001682134 0.2265179 0.9854713
 ```
 
 ### Plot results

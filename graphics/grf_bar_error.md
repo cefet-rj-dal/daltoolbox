@@ -1,37 +1,19 @@
----
-title: An R Markdown document converted from "Rmd/graphics/grf_bar_error.ipynb"
-output: html_document
----
-
 
 ```r
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox") 
+library(daltoolbox) 
 ```
 
 
 ```r
-load_library("ggplot2")
-```
+library(ggplot2)
+library(RColorBrewer)
 
-```
-## Loading required package: ggplot2
-```
-
-```r
-load_library("RColorBrewer")
-```
-
-```
-## Loading required package: RColorBrewer
-```
-
-```r
 #color palette
 colors <- brewer.pal(4, 'Set1')
 
@@ -57,11 +39,7 @@ head(iris)
 
 
 ```r
-load_library("dplyr")
-```
-
-```
-## Loading required package: dplyr
+library(dplyr)
 ```
 
 ```

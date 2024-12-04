@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/transf/dns_encode.ipynb"
-output: html_document
----
-
 ## Denoising Autoencoder transformation (encode)
 
 Considering a dataset with $p$ numerical attributes. 
@@ -14,11 +9,18 @@ The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that 
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox")
-load_library("ggplot2")
+library(daltoolbox)("daltoolbox")
+```
+
+```
+## Error in eval(expr, envir, enclos): attempt to apply non-function
+```
+
+```r
+library(ggplot2)
 ```
 
 ### dataset for example 
@@ -127,11 +129,11 @@ print(head(result))
 
 ```
 ##           [,1]      [,2]       [,3]
-## [1,] 0.6515791 0.7107761 -0.2033965
-## [2,] 0.7085958 0.7390600 -0.2261041
-## [3,] 0.7346419 0.7470565 -0.2339880
-## [4,] 0.7369266 0.7356222 -0.2292563
-## [5,] 0.7172611 0.7024850 -0.2133515
-## [6,] 0.6722828 0.6424217 -0.1869109
+## [1,] 0.6189358 0.7238086 -0.2030503
+## [2,] 0.6814507 0.7508006 -0.2274710
+## [3,] 0.7104753 0.7584916 -0.2362894
+## [4,] 0.7134218 0.7478284 -0.2317687
+## [5,] 0.6922229 0.7166525 -0.2153933
+## [6,] 0.6434196 0.6597660 -0.1877971
 ```
 

@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/timeseries/ts_lstm.ipynb"
-output: html_document
----
-
 ## Time Series regression - Long short-term memory (LSTM)
 
 
@@ -10,10 +5,14 @@ output: html_document
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox")
+library(daltoolbox)("daltoolbox")
+```
+
+```
+## Error in eval(expr, envir, enclos): attempt to apply non-function
 ```
 
 ### Series for studying
@@ -69,7 +68,7 @@ ev_adjust$mse
 ```
 
 ```
-## [1] 0.0002029583
+## [1] 0.0005472658
 ```
 
 ### Prediction of test
@@ -89,7 +88,7 @@ print(sprintf("%.2f, %.2f", output, prediction))
 ```
 
 ```
-## [1] "0.41, 0.41"   "0.17, 0.17"   "-0.08, -0.08" "-0.32, -0.33" "-0.54, -0.55"
+## [1] "0.41, 0.44"   "0.17, 0.20"   "-0.08, -0.08" "-0.32, -0.35" "-0.54, -0.59"
 ```
 
 ### Evaluation of test data
@@ -101,8 +100,8 @@ print(head(ev_test$metrics))
 ```
 
 ```
-##           mse      smape       R2
-## 1 4.89693e-05 0.03523341 0.999577
+##            mse     smape        R2
+## 1 0.0008588064 0.0778206 0.9925824
 ```
 
 ```r
@@ -110,7 +109,7 @@ print(sprintf("smape: %.2f", 100*ev_test$metrics$smape))
 ```
 
 ```
-## [1] "smape: 3.52"
+## [1] "smape: 7.78"
 ```
 
 ### Plot results

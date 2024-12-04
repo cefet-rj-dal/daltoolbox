@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/transf/lae_encode.ipynb"
-output: html_document
----
-
 ## LSTM Autoencoder transformation (encode)
 
 Considering a dataset with $p$ numerical attributes. 
@@ -14,11 +9,18 @@ The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that 
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox")
-load_library("ggplot2")
+library(daltoolbox)("daltoolbox")
+```
+
+```
+## Error in eval(expr, envir, enclos): attempt to apply non-function
+```
+
+```r
+library(ggplot2)
 ```
 
 ### dataset for example 
@@ -127,11 +129,11 @@ print(head(result))
 
 ```
 ##            [,1]       [,2]      [,3]
-## [1,] -0.2821420 -0.7172936 0.4580446
-## [2,] -0.3699743 -0.7292618 0.5037723
-## [3,] -0.4154155 -0.7348838 0.5258573
-## [4,] -0.4180219 -0.7347200 0.5232847
-## [5,] -0.3773750 -0.7287459 0.4956536
-## [6,] -0.2921059 -0.7161816 0.4427497
+## [1,] -0.2769125 -0.7131094 0.4675240
+## [2,] -0.3658836 -0.7251041 0.5122901
+## [3,] -0.4120023 -0.7307820 0.5339755
+## [4,] -0.4148137 -0.7307174 0.5316853
+## [5,] -0.3739344 -0.7248889 0.5050712
+## [6,] -0.2880312 -0.7125092 0.4538750
 ```
 

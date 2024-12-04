@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/transf/cae_enc_decode.ipynb"
-output: html_document
----
-
 ## Convolutional Autoencoder transformation (encode-decode)
 
 Considering a dataset with $p$ numerical attributes. 
@@ -14,11 +9,18 @@ The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that 
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox")
-load_library("ggplot2")
+library(daltoolbox)("daltoolbox")
+```
+
+```
+## Error in eval(expr, envir, enclos): attempt to apply non-function
+```
+
+```r
+library(ggplot2)
 ```
 
 ### dataset for example 
@@ -129,12 +131,12 @@ print(head(result))
 ## , , 1
 ## 
 ##           [,1]      [,2]      [,3]      [,4]      [,5]
-## [1,] 0.7439395 0.8422694 0.9074726 0.9356412 0.9564437
-## [2,] 0.8527516 0.9055635 0.9423693 0.9501971 0.9560371
-## [3,] 0.9145901 0.9372364 0.9547365 0.9514682 0.9416415
-## [4,] 0.9442809 0.9519753 0.9548468 0.9420982 0.9072387
-## [5,] 0.9541466 0.9510488 0.9378921 0.9084148 0.8420147
-## [6,] 0.9530345 0.9375906 0.8957862 0.8375536 0.7230620
+## [1,] 0.7482769 0.8472383 0.9087895 0.9406031 0.9534612
+## [2,] 0.8586965 0.9083700 0.9448194 0.9542099 0.9521543
+## [3,] 0.9165116 0.9369628 0.9570222 0.9528340 0.9388811
+## [4,] 0.9458770 0.9507378 0.9548562 0.9384456 0.9086093
+## [5,] 0.9566288 0.9522529 0.9399490 0.9055774 0.8435386
+## [6,] 0.9550486 0.9400682 0.8988617 0.8380141 0.7250761
 ```
 
 
@@ -153,11 +155,11 @@ print(paste(col, 'R2 test:', r2_col, 'MAPE:', mape_col))
 ```
 
 ```
-## [1] "t4 R2 test: 0.975307847900319 MAPE: 0.0236671555872853"
-## [1] "t3 R2 test: 0.983060920957482 MAPE: 0.0219802675568067"
-## [1] "t2 R2 test: 0.99242704434616 MAPE: 0.0189768217227215"
-## [1] "t1 R2 test: 0.98989230343042 MAPE: 0.0290119950223216"
-## [1] "t0 R2 test: 0.993673019662487 MAPE: 0.0310191399245855"
+## [1] "t4 R2 test: 0.97058171678842 MAPE: 0.0255092412038186"
+## [1] "t3 R2 test: 0.977426777837836 MAPE: 0.0228632739892855"
+## [1] "t2 R2 test: 0.991843096788716 MAPE: 0.0184862412208245"
+## [1] "t1 R2 test: 0.99148771863047 MAPE: 0.0251331197282864"
+## [1] "t0 R2 test: 0.992554081127 MAPE: 0.034193656939974"
 ```
 
 ```r
@@ -165,6 +167,6 @@ print(paste('Means R2 test:', mean(r2), 'MAPE:', mean(mape)))
 ```
 
 ```
-## [1] "Means R2 test: 0.986872227259374 MAPE: 0.0249310759627441"
+## [1] "Means R2 test: 0.984778678234488 MAPE: 0.0252371066164378"
 ```
 

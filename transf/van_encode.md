@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/transf/van_encode.ipynb"
-output: html_document
----
-
 ## Vanilla autoencoder transformation (encode)
 
 Considering a dataset with $p$ numerical attributes. 
@@ -14,11 +9,18 @@ The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that 
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox")
-load_library("ggplot2")
+library(daltoolbox)("daltoolbox")
+```
+
+```
+## Error in eval(expr, envir, enclos): attempt to apply non-function
+```
+
+```r
+library(ggplot2)
 ```
 
 ### dataset for example 
@@ -126,12 +128,12 @@ print(head(result))
 ```
 
 ```
-##           [,1]         [,2]      [,3]
-## [1,] -1.181307  0.503823340 -1.877367
-## [2,] -1.221471  0.429592222 -2.021412
-## [3,] -1.222327  0.331441164 -2.106718
-## [4,] -1.189246  0.223025501 -2.125458
-## [5,] -1.123074  0.109093376 -2.080427
-## [6,] -1.027420 -0.005412087 -1.973595
+##            [,1]       [,2]      [,3]
+## [1,] -0.5689122 -0.3040708 -2.053079
+## [2,] -0.5449437 -0.4239701 -2.148781
+## [3,] -0.5023268 -0.5311267 -2.179630
+## [4,] -0.4435885 -0.6183596 -2.144176
+## [5,] -0.3720020 -0.6809745 -2.045215
+## [6,] -0.2895588 -0.7161682 -1.886804
 ```
 

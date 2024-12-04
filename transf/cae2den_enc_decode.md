@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/transf/cae2den_enc_decode.ipynb"
-output: html_document
----
-
 ## Autoencoder transformation (encode-decode)
 
 Considering a dataset with $p$ numerical attributes. 
@@ -14,7 +9,7 @@ The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that 
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 library(tidyverse)
 library(torchvision)
@@ -51,7 +46,7 @@ load_all("/home/lucas/daltoolbox_autoenc")
 
 ```r
 #loading DAL
-# load_library("daltoolbox")
+# library(daltoolbox)("daltoolbox")
 ```
 
 ### dataset for example 

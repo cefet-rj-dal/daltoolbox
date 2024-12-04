@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/transf/varae_encode.ipynb"
-output: html_document
----
-
 ## Variational Autoencoder transformation (encode)
 
 Considering a dataset with $p$ numerical attributes. 
@@ -14,11 +9,18 @@ The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that 
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox")
-load_library("ggplot2")
+library(daltoolbox)("daltoolbox")
+```
+
+```
+## Error in eval(expr, envir, enclos): attempt to apply non-function
+```
+
+```r
+library(ggplot2)
 ```
 
 ### dataset for example 
@@ -126,12 +128,12 @@ print(head(result))
 ```
 
 ```
-##             [,1]       [,2]        [,3]        [,4]          [,5]       [,6]
-## [1,] -0.25029394 0.08843812 -0.09210392 0.011077791  0.0010694191 0.01920353
-## [2,] -0.23422915 0.12738305 -0.02814193 0.010626314 -0.0032235384 0.02105949
-## [3,] -0.19384408 0.15491256  0.03702697 0.011340838 -0.0047015473 0.02193411
-## [4,] -0.13029355 0.16933706  0.10057293 0.010512112 -0.0039387792 0.02262588
-## [5,] -0.05686317 0.16779065  0.15184769 0.009057809 -0.0019217804 0.02388204
-## [6,]  0.02055864 0.15247050  0.19143692 0.006474443  0.0006962121 0.02340304
+##              [,1]       [,2]        [,3]         [,4]        [,5]       [,6]
+## [1,] -0.221594885 0.09054228 -0.09496186 -0.006511543 0.011966407 0.01647821
+## [2,] -0.214113221 0.12650165 -0.03377834 -0.006675009 0.007204071 0.01770460
+## [3,] -0.179159507 0.14958704  0.03584412 -0.009800091 0.003782704 0.02009987
+## [4,] -0.127986178 0.15773353  0.09860417 -0.013356581 0.001571514 0.02279738
+## [5,] -0.062917456 0.14998171  0.14613682 -0.015813489 0.002927735 0.02292367
+## [6,]  0.003058806 0.12881419  0.17507854 -0.018066920 0.003696173 0.02263530
 ```
 

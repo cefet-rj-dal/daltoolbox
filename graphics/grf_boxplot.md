@@ -1,23 +1,18 @@
----
-title: An R Markdown document converted from "Rmd/graphics/grf_boxplot.ipynb"
-output: html_document
----
-
 
 ```r
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox") 
+library(daltoolbox) 
 ```
 
 
 ```r
-load_library("ggplot2")
-load_library("RColorBrewer")
+library(ggplot2)
+library(RColorBrewer)
 
 #color palette
 colors <- brewer.pal(4, 'Set1')

@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/timeseries/ts_norm_gminmax.ipynb"
-output: html_document
----
-
 ## Normalization Global Min-Max
 
 
@@ -10,10 +5,10 @@ output: html_document
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox") 
+library(daltoolbox) 
 ```
 
 ### Series for studying

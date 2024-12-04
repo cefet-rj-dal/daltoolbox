@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/timeseries/ts_knn.ipynb"
-output: html_document
----
-
 ## Time Series regression - KNN
 
 
@@ -10,15 +5,15 @@ output: html_document
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox") 
+library(daltoolbox) 
 load_github("cefet-rj-dal/tspredit")
 ```
 
 ```
-## Loading required package: tspredit
+## Error in load_github("cefet-rj-dal/tspredit"): could not find function "load_github"
 ```
 
 ### Series for studying

@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/clustering/clu_kmeans.ipynb"
-output: html_document
----
-
 # Clustering - Kmeans
 
 
@@ -10,10 +5,10 @@ output: html_document
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox")  
+library(daltoolbox)  
 ```
 
 

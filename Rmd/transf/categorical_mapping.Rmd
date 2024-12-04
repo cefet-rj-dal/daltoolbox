@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/transf/categorical_mapping.ipynb"
-output: html_document
----
-
 ## Categorical mapping
 A categorical attribute with $n$ distinct values is mapped into $n$ binary attributes. 
 
@@ -12,10 +7,10 @@ It is also possible to map into $n-1$ binary values, where the scenario where al
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox")
+library(daltoolbox)("daltoolbox")
 ```
 
 ### dataset for example 

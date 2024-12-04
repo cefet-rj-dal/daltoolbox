@@ -1,26 +1,21 @@
----
-title: An R Markdown document converted from "Rmd/graphics/grf_density.ipynb"
-output: html_document
----
-
 
 ```r
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox") 
+library(daltoolbox) 
 ```
 
 
 ```r
-load_library("RColorBrewer")
+library(RColorBrewer)
 #color palette
 colors <- brewer.pal(4, 'Set1')
 
-load_library("ggplot2")
+library(ggplot2)
 # setting the font size for all charts
 font <- theme(text = element_text(size=16))
 ```
@@ -75,7 +70,7 @@ Function $grid.arrange$ is used to position previously computed charts
 
 
 ```r
-load_library("dplyr")
+library(dplyr)
 grfe <- plot_density(example |> select(exponential), 
                      label_x = "exponential", color=colors[1]) + font  
 ```
@@ -104,11 +99,7 @@ grfn <- plot_density(example |> select(normal),
 
 
 ```r
-load_library("gridExtra") 
-```
-
-```
-## Loading required package: gridExtra
+library(gridExtra)  
 ```
 
 ```

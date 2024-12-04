@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/regression/reg_dtree.ipynb"
-output: html_document
----
-
 ## Regression Decision Tree
 
 
@@ -10,21 +5,17 @@ output: html_document
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox") 
+library(daltoolbox) 
 ```
 
 ### Dataset for regression analysis
 
 
 ```r
-load_library("MASS")
-```
-
-```
-## Loading required package: MASS
+library(MASS)
 ```
 
 ```

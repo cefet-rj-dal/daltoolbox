@@ -1,8 +1,3 @@
----
-title: An R Markdown document converted from "Rmd/transf/aae_enc_decode.ipynb"
-output: html_document
----
-
 ## Adversarial Autoencoder transformation (encode-decode)
 
 Considering a dataset with $p$ numerical attributes. 
@@ -13,11 +8,11 @@ The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that 
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox")
-load_library("ggplot2")
+library(daltoolbox)("daltoolbox")
+library(ggplot2)
 ```
 
 ### dataset for example 

@@ -1,21 +1,16 @@
----
-title: An R Markdown document converted from "Rmd/graphics/grf_scatter.ipynb"
-output: html_document
----
-
 ```{r}
 # DAL ToolBox
 # version 1.1.727
 
-source("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/jupyter.R")
+
 
 #loading DAL
-load_library("daltoolbox") 
+library(daltoolbox) 
 ```
 
 ```{r}
-load_library("ggplot2")
-load_library("RColorBrewer")
+library(ggplot2)
+library(RColorBrewer)
 
 #color palette
 colors <- brewer.pal(4, 'Set1')
@@ -38,7 +33,7 @@ The colors vectors should have the same size as the number of dependent columns.
 More information: https://en.wikipedia.org/wiki/Scatter_plot
 
 ```{r}
-load_library("dplyr")
+library(dplyr)
 
 grf <- plot_scatter(iris |> select(x = Sepal.Length, value = Sepal.Width, variable = Species), 
                     label_x = "Sepal.Length", label_y = "Sepal.Width", colors=colors[1:3]) + font
