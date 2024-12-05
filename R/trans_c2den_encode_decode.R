@@ -9,7 +9,7 @@
 #'@return a `c2den_encode_decode` object.
 #'@examples
 #'#See an example of using `cae2den_encode_decode` at this
-#'#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/cae2den_enc_decode.ipynb)
+#'#https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/cae2den_enc_decode.md
 #'@import reticulate
 #'@export
 cae2den_encode_decode <- function(input_size, encoding_size, batch_size = 32, num_epochs = 50, learning_rate = 0.001) {

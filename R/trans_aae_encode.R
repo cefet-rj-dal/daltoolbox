@@ -8,7 +8,7 @@
 #'@param learning_rate learning rate
 #'@return a `aae_encode` object.
 #'#See an example of using `aae_encode` at this
-#'#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/aae_encode.ipynb)
+#'#https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/aae_encode.md
 #'@import reticulate
 #'@export
 aae_encode <- function(input_size, encoding_size, batch_size = 350, num_epochs = 1000, learning_rate = 0.001) {

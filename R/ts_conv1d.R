@@ -7,7 +7,7 @@
 #'@return returns a `ts_conv1d` object.
 #'@examples
 #'#See an example of using `ts_conv1d` at this
-#'#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/timeseries/ts_conv1d.ipynb)
+#'#https://github.com/cefet-rj-dal/daltoolbox/blob/main/timeseries/ts_conv1d.md
 #'@import reticulate
 #'@export
 ts_conv1d <- function(preprocess = NA, input_size = NA, epochs = 10000L) {

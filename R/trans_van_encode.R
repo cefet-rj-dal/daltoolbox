@@ -9,7 +9,7 @@
 #'@return returns a `autoenc_encode` object.
 #'@examples
 #'#See an example of using `autoenc_encode` at this
-#'#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/van_encode.ipynb)
+#'#https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/van_encode.md
 #'@import reticulate
 #'@export
 autoenc_encode <- function(input_size, encoding_size, batch_size = 32, num_epochs = 1000, learning_rate = 0.001) {

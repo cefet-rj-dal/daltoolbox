@@ -9,7 +9,7 @@
 #'@return returns a `varae_encode` object.
 #'@examples
 #'#See an example of using `varae_encode` at this
-#'#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/varae_encode.ipynb)
+#'#https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/varae_encode.md
 #'@import reticulate
 #'@export
 varae_encode <- function(input_size, encoding_size, batch_size = 32, num_epochs = 1000, learning_rate = 0.001) {
