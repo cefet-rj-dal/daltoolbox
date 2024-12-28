@@ -32,5 +32,5 @@ It wraps the pytorch library.
 }
 \examples{
 #See an example of using `varae_encode` at this
-#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/varae_encode.ipynb)
+#https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/varae_encode.md
 }

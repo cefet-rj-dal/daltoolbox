@@ -1,5 +1,6 @@
 #'@title Min-max normalization
 #'@description The minmax performs scales data between \[0,1\].
+#'@param minmax_list list(feat=list(min=x, max=y)...) List of lists with min and max for each feature.
 #'
 #'\eqn{minmax = (x-min(x))/(max(x)-min(x))}
 #'@return returns an object of class `minmax`
@@ -15,8 +16,9 @@
 #'itiris <- inverse_transform(trans, tiris)
 #'head(itiris)
 #'@export
-minmax <- function() {
+minmax <- function(minmax_list=NULL) {
   obj <- dal_transform()
+  obj$minmax_list <- minmax_list
   class(obj) <- append("minmax", class(obj))
   return(obj)
 }
@@ -29,8 +31,14 @@ fit.minmax <- function(obj, data, ...) {
   colnames(minmax) = colnames(data)
   rownames(minmax) = c("numeric", "max", "min")
   for (j in colnames(minmax)[minmax["numeric",]==1]) {
-    minmax["min",j] <- min(data[,j], na.rm=TRUE)
-    minmax["max",j] <- max(data[,j], na.rm=TRUE)
+    if(!is.null(obj$minmax_list)){
+      minmax["min",j] <- obj$minmax_list[[j]]$min
+      minmax["max",j] <- obj$minmax_list[[j]]$max
+    }else{
+      minmax["min",j] <- min(data[,j], na.rm=TRUE)
+      minmax["max",j] <- max(data[,j], na.rm=TRUE)
+    }
+    
   }
   obj$norm.set <- minmax
   return(obj)

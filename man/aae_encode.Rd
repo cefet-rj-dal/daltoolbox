@@ -26,7 +26,7 @@ aae_encode(
 \value{
 a \code{aae_encode} object.
 #See an example of using \code{aae_encode} at this
-#\href{https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/aae_encode.ipynb}{link}
+#https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/aae_encode.md
 }
 \description{
 Creates an deep learning adversarial autoencoder to encode a sequence of observations.

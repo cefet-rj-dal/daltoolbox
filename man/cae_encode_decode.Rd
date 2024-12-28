@@ -32,5 +32,5 @@ It wraps the pytorch library.
 }
 \examples{
 #See an example of using `cae_encode_decode` at this
-#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/cae_enc_decode.ipynb)
+#https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/cae_enc_decode.md
 }

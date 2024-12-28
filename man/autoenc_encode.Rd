@@ -32,5 +32,5 @@ It wraps the pytorch and reticulate libraries.
 }
 \examples{
 #See an example of using `autoenc_encode` at this
-#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/van_encode.ipynb)
+#https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/van_encode.md
 }
