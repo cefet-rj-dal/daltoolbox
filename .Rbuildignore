@@ -12,6 +12,7 @@
 ^regression$
 ^timeseries$
 ^transf$
+^Rmd$
 ^develop$
 package.R
 jupyter.R
