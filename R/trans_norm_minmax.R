@@ -32,13 +32,15 @@ fit.minmax <- function(obj, data, ...) {
   rownames(minmax) = c("numeric", "max", "min")
   for (j in colnames(minmax)[minmax["numeric",]==1]) {
     if(!is.null(obj$minmax_list)){
-      minmax["min",j] <- obj$minmax_list[[j]]$min
-      minmax["max",j] <- obj$minmax_list[[j]]$max
+      if (!is.null(obj$minmax_list[[j]])) {
+        minmax["min",j] <- obj$minmax_list[[j]]$min
+        minmax["max",j] <- obj$minmax_list[[j]]$max
+      }
     }else{
       minmax["min",j] <- min(data[,j], na.rm=TRUE)
       minmax["max",j] <- max(data[,j], na.rm=TRUE)
     }
-    
+
   }
   obj$norm.set <- minmax
   return(obj)

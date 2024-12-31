@@ -4,18 +4,13 @@
 \alias{fixed_zscore}
 \title{Fixed Z-score normalization}
 \usage{
-fixed_zscore(nmean = 0, nsd = 1)
-}
-\arguments{
-\item{nmean}{new mean for normalized data}
-
-\item{nsd}{new standard deviation for normalized data}
+fixed_zscore()
 }
 \value{
 returns the z-score transformation object
 }
 \description{
-Scale data using z-score and minmax normalization.
+Integrated scale data using z-score and minmax normalization.
 
 \eqn{zscore = (x - mean(x))/sd(x)}
 }
@@ -23,7 +18,7 @@ Scale data using z-score and minmax normalization.
 data(iris)
 head(iris)
 
-trans <- zscore()
+trans <- fixed_zscore()
 trans <- fit(trans, iris)
 tiris <- transform(trans, iris)
 head(tiris)
