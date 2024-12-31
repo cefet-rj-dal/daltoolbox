@@ -4,15 +4,18 @@
 \alias{minmax}
 \title{Min-max normalization}
 \usage{
-minmax()
+minmax(minmax_list = NULL)
+}
+\arguments{
+\item{minmax_list}{list(feat=list(min=x, max=y)...) List of lists with min and max for each feature.
+
+\eqn{minmax = (x-min(x))/(max(x)-min(x))}}
 }
 \value{
 returns an object of class \code{minmax}
 }
 \description{
 The minmax performs scales data between [0,1].
-
-\eqn{minmax = (x-min(x))/(max(x)-min(x))}
 }
 \examples{
 data(iris)

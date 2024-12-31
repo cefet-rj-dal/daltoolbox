@@ -22,5 +22,5 @@ It wraps the pytorch library.
 }
 \examples{
 #See an example of using `ts_conv1d` at this
-#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/timeseries/ts_conv1d.ipynb)
+#https://github.com/cefet-rj-dal/daltoolbox/blob/main/timeseries/ts_conv1d.md
 }

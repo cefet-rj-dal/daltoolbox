@@ -62,7 +62,7 @@ def autoencoder_train(autoencoder, data, batch_size=32, num_epochs = 1000, learn
   for epoch in range(num_epochs):
       # Train Test Split
       array = data.to_numpy()
-      array = array[:, :]
+      array = array[:, :, np.newaxis]
       
       val_sample = sample(range(1, data.shape[0], 1), k=int(data.shape[0]*0.3))
       train_sample = [v for v in range(1, data.shape[0], 1) if v not in val_sample]
@@ -110,7 +110,7 @@ def autoencoder_fit(autoencoder, data, batch_size = 32, num_epochs = 1000, learn
   batch_size = int(batch_size)
   num_epochs = int(num_epochs)
   
-  autoencoder = autoencoder_train(autoencoder, data, num_epochs = num_epochs, learning_rate = 0.001)
+  autoencoder = autoencoder_train(autoencoder, data, batch_size=batch_size, num_epochs = num_epochs, learning_rate = 0.001)
   return autoencoder
 
 
@@ -120,7 +120,6 @@ def encode_data(autoencoder, data_loader):
   for data in data_loader:
       inputs, _ = data
       inputs = inputs.float()
-      inputs = inputs.view(inputs.size(0), -1)
       encoded = autoencoder.encoder(inputs)
       encoded_data.append(encoded.detach().numpy())
 
@@ -146,7 +145,6 @@ def encode_decode_data(autoencoder, data_loader):
   for data in data_loader:
       inputs, _ = data
       inputs = inputs.float()
-      inputs = inputs.view(inputs.size(0), -1)
       encoded = autoencoder.encoder(inputs)
       decoded = autoencoder.decoder(encoded)
       encoded_decoded_data.append(decoded.detach().numpy())
@@ -157,6 +155,8 @@ def encode_decode_data(autoencoder, data_loader):
 
 
 def autoencoder_encode_decode(autoencoder, data, batch_size = 32):
+  batch_size = int(batch_size)
+  
   array = data.to_numpy()
   array = array[:, :, np.newaxis]
   

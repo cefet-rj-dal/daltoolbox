@@ -45,7 +45,7 @@ It wraps the pytorch library.
 }
 \examples{
 #See an example of using `c2den_encode_decode` at this
-#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/c2den_encode.ipynb)
+#https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/c2den_encode.md
 #See an example of using `cae2den_encode` at this
-#[link](https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/cae2den_encode.ipynb)
+#https://github.com/cefet-rj-dal/daltoolbox/blob/main/transf/cae2den_encode.md
 }
