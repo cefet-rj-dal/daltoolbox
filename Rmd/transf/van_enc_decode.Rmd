@@ -1,8 +1,8 @@
 ## Vanilla autoencoder transformation (encode-decode)
 
-Considering a dataset with $p$ numerical attributes. 
+Considering a dataset with $p$ numerical attributes.
 
-The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that these $k$ attributes are enough to recompose the original $p$ attributes. However from the $k$ dimensionals the data is returned back to $p$ dimensions. The higher the quality of autoencoder the similiar is the output from the input. 
+The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that these $k$ attributes are enough to recompose the original $p$ attributes. However from the $k$ dimensionals the data is returned back to $p$ dimensions. The higher the quality of autoencoder the similiar is the output from the input.
 
 ```{r}
 # DAL ToolBox
@@ -15,7 +15,7 @@ library(daltoolbox)
 library(ggplot2)
 ```
 
-### dataset for example 
+### dataset for example
 
 ```{r}
 data(sin_data)
@@ -45,6 +45,7 @@ test <- as.data.frame(samp$test)
 ```
 
 ### creating autoencoder
+
 Reduce from 5 to 3 dimensions
 
 ```{r}
@@ -70,6 +71,7 @@ theme_classic()
 ```
 
 ### testing autoencoder
+
 presenting the original test set and display encoding
 
 ```{r}
@@ -92,4 +94,3 @@ print(paste(col, 'R2 test:', r2_col, 'MAPE:', mape_col))
 }
 print(paste('Means R2 test:', mean(r2), 'MAPE:', mean(mape)))
 ```
-
