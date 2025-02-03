@@ -26,7 +26,7 @@ fixed_zscore <- function() {
 #'@export
 fit.fixed_zscore <- function(obj, data, ...) {
   obj$zmodel <- zscore()
-  obj$minmax_model <- minmax()
+  obj$minmax_model <- minmax(minmax_list=minmax_list)
   obj$zmodel <- fit(obj$zmodel, data)
   z <- transform(obj$zmodel, data)
   obj$minmax_model <- fit(obj$minmax_model, z)
