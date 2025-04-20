@@ -79,7 +79,9 @@ auto <- fit(auto, train)
 ```
 
 ```
-## input.size(-1) must be equal to input_size. Expected 5, got 1
+## Called from: eval(expr, p)
+## debug at /home/gpca/daltoolbox/R/autoenc_lstm_e.R#29: if (!exists("autoenc_lstm_create")) reticulate::source_python(system.file("python", 
+##     "autoenc_lstm.py", package = "daltoolbox"))
 ```
 
 ### learning curves
@@ -87,27 +89,12 @@ auto <- fit(auto, train)
 
 ```r
 fit_loss <- data.frame(x=1:length(auto$train_loss), train_loss=auto$train_loss,val_loss=auto$val_loss)
-```
 
-```
-## Error in data.frame(x = 1:length(auto$train_loss), train_loss = auto$train_loss, : arguments imply differing number of rows: 2, 0
-```
-
-```r
 grf <- plot_series(fit_loss, colors=c('Blue','Orange'))
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'fit_loss' not found
-```
-
-```r
 plot(grf)
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'grf' not found
-```
+![plot of chunk unnamed-chunk-6](fig/autoenc_lstm_e/unnamed-chunk-6-1.png)
 
 ### testing autoencoder
 presenting the original test set and display encoding
@@ -129,10 +116,17 @@ print(head(test))
 
 ```r
 result <- transform(auto, test)
+```
+
+```
+## Error in autoenc_lstm_encode(obj$model, data): could not find function "autoenc_lstm_encode"
+```
+
+```r
 print(head(result))
 ```
 
 ```
-## NULL
+## Error in eval(expr, envir, enclos): object 'result' not found
 ```
 

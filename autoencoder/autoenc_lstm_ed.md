@@ -78,36 +78,17 @@ auto <- autoenc_lstm_ed(5, 3, num_epochs=1500)
 auto <- fit(auto, train)
 ```
 
-```
-## input.size(-1) must be equal to input_size. Expected 5, got 1
-```
-
 ### learning curves
 
 
 ```r
 fit_loss <- data.frame(x=1:length(auto$train_loss), train_loss=auto$train_loss,val_loss=auto$val_loss)
-```
 
-```
-## Error in data.frame(x = 1:length(auto$train_loss), train_loss = auto$train_loss, : arguments imply differing number of rows: 2, 0
-```
-
-```r
 grf <- plot_series(fit_loss, colors=c('Blue','Orange'))
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'fit_loss' not found
-```
-
-```r
 plot(grf)
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'grf' not found
-```
+![plot of chunk unnamed-chunk-6](fig/autoenc_lstm_ed/unnamed-chunk-6-1.png)
 
 ### testing autoencoder
 presenting the original test set and display encoding
@@ -129,21 +110,35 @@ print(head(test))
 
 ```r
 result <- transform(auto, test)
+```
+
+```
+## Error in autoenc_lstm_encode_decode(obj$model, data): could not find function "autoenc_lstm_encode_decode"
+```
+
+```r
 print(head(result))
 ```
 
 ```
-## NULL
+## Error in eval(expr, envir, enclos): object 'result' not found
 ```
 
 
 ```r
 result <- as.data.frame(result)
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'result' not found
+```
+
+```r
 names(result) <- names(test)
 ```
 
 ```
-## Error in names(result) <- names(test): 'names' attribute [5] must be the same length as the vector [0]
+## Error in eval(ei, envir): object 'result' not found
 ```
 
 ```r
@@ -159,7 +154,7 @@ print(paste(col, 'R2 test:', r2_col, 'MAPE:', mape_col))
 ```
 
 ```
-## Error in `[.data.frame`(result, col): undefined columns selected
+## Error in eval(expr, envir, enclos): object 'result' not found
 ```
 
 ```r
