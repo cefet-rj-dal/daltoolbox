@@ -79,7 +79,7 @@ auto <- fit(auto, train)
 ```
 
 ```
-## Error in eval(ei, envir): Unable to open file ''
+## input.size(-1) must be equal to input_size. Expected 5, got 1
 ```
 
 ### learning curves
@@ -129,35 +129,21 @@ print(head(test))
 
 ```r
 result <- transform(auto, test)
-```
-
-```
-## Error in eval(ei, envir): Unable to open file ''
-```
-
-```r
 print(head(result))
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'result' not found
+## NULL
 ```
 
 
 ```r
 result <- as.data.frame(result)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'result' not found
-```
-
-```r
 names(result) <- names(test)
 ```
 
 ```
-## Error in eval(ei, envir): object 'result' not found
+## Error in names(result) <- names(test): 'names' attribute [5] must be the same length as the vector [0]
 ```
 
 ```r
@@ -173,7 +159,7 @@ print(paste(col, 'R2 test:', r2_col, 'MAPE:', mape_col))
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'result' not found
+## Error in `[.data.frame`(result, col): undefined columns selected
 ```
 
 ```r

@@ -79,7 +79,7 @@ auto <- fit(auto, train)
 ```
 
 ```
-## Error in eval(ei, envir): Unable to open file ''
+## input.size(-1) must be equal to input_size. Expected 5, got 1
 ```
 
 ### learning curves
@@ -129,17 +129,10 @@ print(head(test))
 
 ```r
 result <- transform(auto, test)
-```
-
-```
-## Error in eval(ei, envir): Unable to open file ''
-```
-
-```r
 print(head(result))
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'result' not found
+## NULL
 ```
 

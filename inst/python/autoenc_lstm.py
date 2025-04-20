@@ -23,9 +23,8 @@ class Encoder(nn.Module):
         )
 
     def forward(self, x):
-        x = self.lstm(x)
-        x = x[1][0][[-1], :, :]
-        x = x.reshape((x.shape[1], x.shape[0], x.shape[2]))
+        _, (h_n, _) = self.lstm(x)
+        x = h_n[-1].unsqueeze(1)
         return x
 
 class Decoder(nn.Module):
@@ -94,7 +93,7 @@ def autoenc_lstm_train(lae, data, batch_size=20, num_epochs = 1000, learning_rat
   for epoch in range(num_epochs):
       # Train Test Split
       array = data.to_numpy()
-      array = array[:, :, np.newaxis]
+      array = array.reshape(array.shape[0], 1, array.shape[1])
       
       val_sample = sample(range(1, data.shape[0], 1), k=int(data.shape[0]*0.3))
       train_sample = [v for v in range(1, data.shape[0], 1) if v not in val_sample]
@@ -160,7 +159,7 @@ def autoenc_lstm_encode_data(lae, data_loader):
 
 def lstm_encode(lae, data, batch_size = 20):
   array = data.to_numpy()
-  array = array[:, :, np.newaxis]
+  array = array.reshape(array.shape[0], 1, array.shape[1])
   
   ds = Autoencoder_LSTM_TS(array)
   train_loader = DataLoader(ds, batch_size=batch_size)
@@ -189,7 +188,7 @@ def autoenc_lstm_encode_decode_data(lae, data_loader):
 
 def lstm_encode_decode(lae, data, batch_size = 20):
   array = data.to_numpy()
-  array = array[:, :, np.newaxis]
+  array = array.reshape(array.shape[0], 1, array.shape[1])
   
   ds = Autoencoder_LSTM_TS(array)
   train_loader = DataLoader(ds, batch_size=batch_size)
