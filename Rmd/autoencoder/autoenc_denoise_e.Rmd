@@ -48,7 +48,7 @@ test <- as.data.frame(samp$test)
 Reduce from 5 to 3 dimensions
 
 ```{r}
-auto <- lae_encode(5, 3, num_epochs=1500)
+auto <- autoenc_denoise_e(5, 3, num_epochs=1500)
 
 auto <- fit(auto, train)
 ```
@@ -56,17 +56,10 @@ auto <- fit(auto, train)
 ### learning curves
 
 ```{r}
-train_loss <- unlist(auto$model$train_loss)
-val_loss <- unlist(auto$model$val_loss)
+fit_loss <- data.frame(x=1:length(auto$train_loss), train_loss=auto$train_loss,val_loss=auto$val_loss)
 
-fit_loss <- as.data.frame(cbind(train_loss, val_loss))
-fit_loss['epoch'] <- 1:nrow(fit_loss)
-
-ggplot(fit_loss, aes(x=epoch)) +
-geom_line(aes(y=train_loss, colour='Train Loss')) +
-geom_line(aes(y=val_loss, colour='Val Loss')) +
-scale_color_manual(values=c('Blue','Orange')) +
-theme_classic()
+grf <- plot_series(fit_loss, colors=c('Blue','Orange'))
+plot(grf)
 ```
 
 ### testing autoencoder

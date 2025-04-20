@@ -5,4 +5,5 @@ utils::globalVariables(c("ts_lstm_create", "ts_lstm_fit", "ts_lstm_predict",
                          "autoenc_conv_create", "autoenc_conv_fit", "autoenc_conv_encode", "autoenc_conv_encode_decode",
                          "autoenc_lstm_create", "autoenc_lstm_fit", "autoenc_lstm_encode", "autoenc_lstm_encode_decode",
                          "autoenc_stacked_create", "autoenc_stacked_fit", "autoenc_stacked_encode", "autoenc_stacked_encode_decode",
-                         "autoenc_variational_create", "autoenc_variational_fit", "autoenc_variational_encode", "autoenc_variational_encode_decode"))
+                         "autoenc_variational_create", "autoenc_variational_fit", "autoenc_variational_encode", "autoenc_variational_encode_decode",
+                         "autoenc_denoise_create", "autoenc_denoise_fit", "autoenc_denoise_encode", "autoenc_denoise_encode_decode"))

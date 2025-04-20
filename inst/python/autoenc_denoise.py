@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Denoising Autoencoder (DNS AE)
+Denoising Autoencoder (Autoencoder_Denoise AE)
 """
 
 import torch
@@ -13,7 +13,7 @@ from random import sample
 
 torch.set_grad_enabled(True)
 
-class DNS_TS(Dataset):
+class Autoencoder_Denoise_TS(Dataset):
     def __init__(self, num_samples, input_size):
         self.data = np.random.randn(num_samples, input_size)
 
@@ -52,7 +52,7 @@ class DNS_Autoencoder(nn.Module):
         return x
 
 
-#Create denoising autoencoder (DNS AE)
+#Create denoising autoencoder (Autoencoder_Denoise AE)
 def add_noise(data, noise_factor=0.3):
     noisy = torch.randn_like(data)
     noisy = data + noisy * noise_factor
@@ -60,7 +60,7 @@ def add_noise(data, noise_factor=0.3):
     return noisy
 
 
-def dns_ae_create(input_size, encoding_size, noise_factor=0.3):
+def autoenc_denoise_create(input_size, encoding_size, noise_factor=0.3):
     input_size = int(input_size)
     encoding_size = int(encoding_size)
     
@@ -72,7 +72,7 @@ def dns_ae_create(input_size, encoding_size, noise_factor=0.3):
 
 
 # Train the autoencoder
-def dns_train(dns, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001):
+def autoenc_denoise_train(dns, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001):
   criterion = nn.MSELoss()
   optimizer = optim.Adam(dns.parameters(), lr=learning_rate)
 
@@ -92,8 +92,8 @@ def dns_train(dns, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001
       train_data = array[train_sample, :]
       val_data = array[val_sample, :]
       
-      ds_train = DNS_TS(train_data)
-      ds_val = DNS_TS(val_data)
+      ds_train = Autoencoder_Denoise_TS(train_data)
+      ds_val = Autoencoder_Denoise_TS(val_data)
       train_loader = DataLoader(ds_train, batch_size=batch_size)
       val_loader = DataLoader(ds_val, batch_size=batch_size)
     
@@ -128,20 +128,18 @@ def dns_train(dns, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001
       train_loss.append(np.mean(train_epoch_loss))
       val_loss.append(np.mean(val_epoch_loss))
   
-  dns.train_loss = train_loss
-  dns.val_loss = val_loss
-  return dns
+  return dns, np.array(train_loss), np.array(val_loss)  
 
 
-def dns_fit(dns, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001):
+def autoenc_denoise_fit(dns, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001):
   batch_size = int(batch_size)
   num_epochs = int(num_epochs)
   
-  dns = dns_train(dns, data, batch_size = batch_size, num_epochs = num_epochs, learning_rate = 0.001)
+  dns = autoenc_denoise_train(dns, data, batch_size = batch_size, num_epochs = num_epochs, learning_rate = 0.001)
   return dns
 
 
-def dns_encode_data(dns, data_loader):
+def autoenc_denoise_encode_data(dns, data_loader):
   # Encode the synthetic time series data using the trained autoencoder
   encoded_data = []
   for data in data_loader:
@@ -156,19 +154,19 @@ def dns_encode_data(dns, data_loader):
   return encoded_data
 
 
-def dns_encode(dns, data, batch_size = 32):
+def autoenc_denoise_encode(dns, data, batch_size = 32):
   array = data.to_numpy()
   array = array[:, :]
   
-  ds = DNS_TS(array)
+  ds = Autoencoder_Denoise_TS(array)
   train_loader = DataLoader(ds, batch_size=batch_size)
   
-  encoded_data = dns_encode_data(dns, train_loader)
+  encoded_data = autoenc_denoise_encode_data(dns, train_loader)
   
   return(encoded_data)
 
 
-def dns_encode_decode_data(dns, data_loader):
+def autoenc_denoise_encode_decode_data(dns, data_loader):
   # Encode the synthetic time series data using the trained autoencoder
   encoded_decoded_data = []
   for data in data_loader:
@@ -184,13 +182,13 @@ def dns_encode_decode_data(dns, data_loader):
   return encoded_decoded_data
 
 
-def dns_encode_decode(dns, data, batch_size = 32):
+def autoenc_denoise_encode_decode(dns, data, batch_size = 32):
   array = data.to_numpy()
   array = array[:, :, np.newaxis]
   
-  ds = DNS_TS(array)
+  ds = Autoencoder_Denoise_TS(array)
   train_loader = DataLoader(ds, batch_size=batch_size)
   
-  encoded_decoded_data = dns_encode_decode_data(dns, train_loader)
+  encoded_decoded_data = autoenc_denoise_encode_decode_data(dns, train_loader)
   
   return(encoded_decoded_data)
