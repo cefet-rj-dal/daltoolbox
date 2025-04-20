@@ -157,7 +157,7 @@ def autoenc_lstm_encode_data(lae, data_loader):
 
   return encoded_data
 
-def lstm_encode(lae, data, batch_size = 20):
+def autoenc_lstm_encode(lae, data, batch_size = 20):
   array = data.to_numpy()
   array = array.reshape(array.shape[0], 1, array.shape[1])
   
@@ -186,7 +186,7 @@ def autoenc_lstm_encode_decode_data(lae, data_loader):
   return encoded_decoded_data
 
 
-def lstm_encode_decode(lae, data, batch_size = 20):
+def autoenc_lstm_encode_decode(lae, data, batch_size = 20):
   array = data.to_numpy()
   array = array.reshape(array.shape[0], 1, array.shape[1])
   
