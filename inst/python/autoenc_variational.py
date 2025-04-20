@@ -9,7 +9,7 @@ import pandas as pd
 torch.set_grad_enabled(True)
 
 
-class VAE_TS(Dataset):
+class Autoencoder_Variational_TS(Dataset):
     def __init__(self, num_samples, input_size):
         self.data = np.random.randn(num_samples, input_size)
 
@@ -23,9 +23,9 @@ class VAE_TS(Dataset):
         return self.data[index], self.data[index]
 
 
-class VAE(nn.Module):
+class Autoencoder_Variational(nn.Module):
     def __init__(self, input_size, encoding_size):
-        super(VAE, self).__init__()
+        super(Autoencoder_Variational, self).__init__()
 
         self.encoder = nn.Sequential(
             nn.Linear(input_size, 64),
@@ -65,16 +65,16 @@ class VAE(nn.Module):
 
     
 # Create the vae
-def vae_create(input_size, encoding_size):
+def autoenc_variational_create(input_size, encoding_size):
   input_size = int(input_size)
   encoding_size = int(encoding_size)
   
-  vae = VAE(input_size, encoding_size)
+  vae = Autoencoder_Variational(input_size, encoding_size)
   vae = vae.float()
   return vae  
 
 
-# Define specific VAE Loss Function
+# Define specific Autoencoder_Variational Loss Function
 def criterion(outputs, inputs, mean, var):
     reproduction_loss = nn.functional.binary_cross_entropy(outputs, inputs, reduction='sum')
     KLD = - 0.5 * torch.sum(1+ var - mean.pow(2) - var.exp())
@@ -83,7 +83,7 @@ def criterion(outputs, inputs, mean, var):
 
 
 # Train the vae
-def vae_train(vae, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001):
+def autoenc_variational_train(vae, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001):
   optimizer = optim.Adam(vae.parameters(), lr=learning_rate)
 
   train_loss = []
@@ -100,8 +100,8 @@ def vae_train(vae, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001
       train_data = array[train_sample, :]
       val_data = array[val_sample, :]
       
-      ds_train = VAE_TS(train_data)
-      ds_val = VAE_TS(val_data)
+      ds_train = Autoencoder_Variational_TS(train_data)
+      ds_val = Autoencoder_Variational_TS(val_data)
       train_loader = DataLoader(ds_train, batch_size=batch_size)
       val_loader = DataLoader(ds_val, batch_size=batch_size)
                
@@ -134,22 +134,19 @@ def vae_train(vae, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001
       train_loss.append(np.mean(train_epoch_loss))
       val_loss.append(np.mean(val_epoch_loss))
 
-  vae.train_loss = train_loss
-  vae.val_loss = val_loss
-  
-  return vae
+  return vae, np.array(train_loss), np.array(val_loss)  
 
 
-def vae_fit(vae, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001):
+def autoenc_variational_fit(vae, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001):
   batch_size = int(batch_size)
   num_epochs = int(num_epochs)
     
-  vae = vae_train(vae, data, batch_size = batch_size, num_epochs = num_epochs, learning_rate = learning_rate)
+  vae = autoenc_variational_train(vae, data, batch_size = batch_size, num_epochs = num_epochs, learning_rate = learning_rate)
   
   return vae
 
 
-def var_encode_data(vae, data_loader):
+def autoenc_variational_encode_data(vae, data_loader):
   # Encode the synthetic time series data using the trained vae
   encoded_data = []
   for data in data_loader:
@@ -165,19 +162,19 @@ def var_encode_data(vae, data_loader):
   return encoded_data
 
 
-def var_encode(vae, data, batch_size = 32):
+def autoenc_variational_encode(vae, data, batch_size = 32):
   array = data.to_numpy()
   array = array[:, :]
   
-  ds = VAE_TS(array)
+  ds = Autoencoder_Variational_TS(array)
   train_loader = DataLoader(ds, batch_size=batch_size)
   
-  encoded_data = var_encode_data(vae, train_loader)
+  encoded_data = autoenc_variational_encode_data(vae, train_loader)
   
   return(encoded_data)
 
 
-def var_encode_decode_data(vae, data_loader):
+def autoenc_variational_encode_decode_data(vae, data_loader):
   # Encode the synthetic time series data using the trained vae
   encoded_decoded_data = []
   for data in data_loader:
@@ -192,13 +189,13 @@ def var_encode_decode_data(vae, data_loader):
   return encoded_decoded_data
 
 
-def var_encode_decode(vae, data, batch_size = 32):
+def autoenc_variational_encode_decode(vae, data, batch_size = 32):
   array = data.to_numpy()
   array = array[:, :]
   
-  ds = VAE_TS(array)
+  ds = Autoencoder_Variational_TS(array)
   train_loader = DataLoader(ds, batch_size=batch_size)
   
-  encoded_decoded_data = var_encode_decode_data(vae, train_loader)
+  encoded_decoded_data = autoenc_variational_encode_decode_data(vae, train_loader)
   
   return(encoded_decoded_data)
