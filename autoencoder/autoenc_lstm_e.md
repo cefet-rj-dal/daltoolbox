@@ -110,17 +110,16 @@ print(head(test))
 
 ```r
 result <- transform(auto, test)
-```
-
-```
-## Error in autoenc_lstm_encode(obj$model, data): could not find function "autoenc_lstm_encode"
-```
-
-```r
 print(head(result))
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'result' not found
+##           [,1]      [,2]      [,3]
+## [1,] 0.6304764 0.6498994 0.3258096
+## [2,] 0.6501208 0.6644903 0.3695853
+## [3,] 0.6592461 0.6716064 0.3876165
+## [4,] 0.6594568 0.6722906 0.3808382
+## [5,] 0.6508831 0.6666684 0.3486067
+## [6,] 0.6322514 0.6539683 0.2890787
 ```
 

@@ -110,38 +110,23 @@ print(head(test))
 
 ```r
 result <- transform(auto, test)
-```
-
-```
-## Error in autoenc_lstm_encode_decode(obj$model, data): could not find function "autoenc_lstm_encode_decode"
-```
-
-```r
 print(head(result))
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'result' not found
+##           [,1]      [,2]      [,3]      [,4]      [,5]
+## [1,] 0.8680881 0.8717358 0.8687662 0.8440707 0.9034428
+## [2,] 0.8966588 0.8985013 0.8964494 0.8675469 0.9345998
+## [3,] 0.9090778 0.9100680 0.9084690 0.8776659 0.9480956
+## [4,] 0.9081328 0.9089860 0.9074649 0.8765930 0.9469324
+## [5,] 0.8936265 0.8950326 0.8932301 0.8641115 0.9308695
+## [6,] 0.8623418 0.8651733 0.8626755 0.8375810 0.8963800
 ```
 
 
 ```r
 result <- as.data.frame(result)
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'result' not found
-```
-
-```r
 names(result) <- names(test)
-```
-
-```
-## Error in eval(ei, envir): object 'result' not found
-```
-
-```r
 r2 <- c()
 mape <- c()
 for (col in names(test)){
@@ -154,7 +139,11 @@ print(paste(col, 'R2 test:', r2_col, 'MAPE:', mape_col))
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'result' not found
+## [1] "t4 R2 test: 0.348298167511024 MAPE: 0.155537850342273"
+## [1] "t3 R2 test: 0.896232461091606 MAPE: 0.0948211649140002"
+## [1] "t2 R2 test: 0.979153191037044 MAPE: 0.0490433946055436"
+## [1] "t1 R2 test: 0.920075831072431 MAPE: 0.163144996494756"
+## [1] "t0 R2 test: 0.849527374185237 MAPE: 0.339475933635261"
 ```
 
 ```r
@@ -162,14 +151,6 @@ print(paste('Means R2 test:', mean(r2), 'MAPE:', mean(mape)))
 ```
 
 ```
-## Warning in mean.default(r2): argument is not numeric or logical: returning NA
-```
-
-```
-## Warning in mean.default(mape): argument is not numeric or logical: returning NA
-```
-
-```
-## [1] "Means R2 test: NA MAPE: NA"
+## [1] "Means R2 test: 0.798657404979468 MAPE: 0.160404667998367"
 ```
 
