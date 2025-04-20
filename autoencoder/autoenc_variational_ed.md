@@ -1,8 +1,8 @@
-## Vanilla autoencoder transformation (encode-decode)
+## Variational Autoencoder transformation (encode-decode)
 
-Considering a dataset with $p$ numerical attributes.
+Considering a dataset with $p$ numerical attributes. 
 
-The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that these $k$ attributes are enough to recompose the original $p$ attributes. However from the $k$ dimensionals the data is returned back to $p$ dimensions. The higher the quality of autoencoder the similiar is the output from the input.
+The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that these $k$ attributes are enough to recompose the original $p$ attributes. However from the $k$ dimensionals the data is returned back to $p$ dimensions. The higher the quality of autoencoder the similiar is the output from the input. 
 
 
 ```r
@@ -16,7 +16,7 @@ library(daltoolbox)
 library(ggplot2)
 ```
 
-### dataset for example
+### dataset for example 
 
 
 ```r
@@ -69,12 +69,11 @@ test <- as.data.frame(samp$test)
 ```
 
 ### creating autoencoder
-
 Reduce from 5 to 3 dimensions
 
 
 ```r
-auto <- autoenc_ed(5, 3)
+auto <- autoenc_variational_ed(5, 3, num_epochs=350)
 
 auto <- fit(auto, train)
 ```
@@ -89,10 +88,9 @@ grf <- plot_series(fit_loss, colors=c('Blue','Orange'))
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-6](fig/autoenc_ed/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-6](fig/autoenc_variational_ed/unnamed-chunk-6-1.png)
 
 ### testing autoencoder
-
 presenting the original test set and display encoding
 
 
@@ -117,12 +115,12 @@ print(head(result))
 
 ```
 ##           [,1]      [,2]      [,3]      [,4]      [,5]
-## [1,] 0.7251327 0.8326825 0.9137484 0.9689078 0.9936819
-## [2,] 0.8276048 0.9145403 0.9710720 0.9974754 0.9937129
-## [3,] 0.9108157 0.9696681 0.9989486 0.9959074 0.9656485
-## [4,] 0.9719444 0.9975514 0.9958122 0.9624435 0.9045404
-## [5,] 1.0016953 0.9971633 0.9620951 0.8996294 0.8108205
-## [6,] 0.9944385 0.9615505 0.8991834 0.8146682 0.7034807
+## [1,] 0.8503051 0.8929620 0.9135478 0.8999104 0.8618968
+## [2,] 0.9038644 0.9391446 0.9553601 0.9454204 0.9162371
+## [3,] 0.9082614 0.9422597 0.9577807 0.9479312 0.9187939
+## [4,] 0.9079691 0.9418459 0.9572094 0.9471714 0.9177207
+## [5,] 0.8926039 0.9295232 0.9467438 0.9355682 0.9032041
+## [6,] 0.8565168 0.8982036 0.9181623 0.9045670 0.8666398
 ```
 
 
@@ -141,11 +139,11 @@ print(paste(col, 'R2 test:', r2_col, 'MAPE:', mape_col))
 ```
 
 ```
-## [1] "t4 R2 test: 0.999671474849584 MAPE: 0.00199461897603427"
-## [1] "t3 R2 test: 0.999866770383792 MAPE: 0.00211061922322808"
-## [1] "t2 R2 test: 0.999981412084544 MAPE: 0.000931595433106821"
-## [1] "t1 R2 test: 0.999974180828884 MAPE: 0.00153598341091907"
-## [1] "t0 R2 test: 0.999878628885846 MAPE: 0.0045472166834255"
+## [1] "t4 R2 test: 0.306687157430185 MAPE: 0.16865150818723"
+## [1] "t3 R2 test: 0.886995183525101 MAPE: 0.0979105701642281"
+## [1] "t2 R2 test: 0.988050055971764 MAPE: 0.0224274704984487"
+## [1] "t1 R2 test: 0.947590323923565 MAPE: 0.120685984684149"
+## [1] "t0 R2 test: 0.896393304377062 MAPE: 0.291761674582322"
 ```
 
 ```r
@@ -153,5 +151,6 @@ print(paste('Means R2 test:', mean(r2), 'MAPE:', mean(mape)))
 ```
 
 ```
-## [1] "Means R2 test: 0.99987449340653 MAPE: 0.00222400674534275"
+## [1] "Means R2 test: 0.805143205045535 MAPE: 0.140287441623276"
 ```
+
