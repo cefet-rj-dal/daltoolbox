@@ -1,4 +1,4 @@
-## Variational Autoencoder transformation (encode)
+## Denoising Autoencoder transformation (encode)
 
 Considering a dataset with $p$ numerical attributes. 
 
@@ -73,7 +73,7 @@ Reduce from 5 to 3 dimensions
 
 
 ```r
-auto <- autoenc_variational_e(5, 3, num_epochs=350)
+auto <- autoenc_denoise_e(5, 3, num_epochs=1500)
 
 auto <- fit(auto, train)
 ```
@@ -88,7 +88,7 @@ grf <- plot_series(fit_loss, colors=c('Blue','Orange'))
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-6](fig/autoenc_variational_e/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-6](fig/autoenc_denoise_e/unnamed-chunk-6-1.png)
 
 ### testing autoencoder
 presenting the original test set and display encoding
@@ -114,12 +114,12 @@ print(head(result))
 ```
 
 ```
-##              [,1]         [,2]          [,3]
-## [1,] -0.008950582  0.109399125 -0.2047924548
-## [2,]  0.001759611 -0.002335682  0.0041080862
-## [3,]  0.041273184  0.146797746 -0.1912864596
-## [4,]  0.001428828 -0.003005473  0.0005699247
-## [5,]  0.089698091  0.174812421 -0.1617040485
-## [6,]  0.002547510 -0.001050720 -0.0020724982
+##           [,1]       [,2]      [,3]
+## [1,] 0.9643772 -0.6125317 0.7148783
+## [2,] 0.9708810 -0.7552925 0.7223940
+## [3,] 0.9489072 -0.8686051 0.7099132
+## [4,] 0.9000779 -0.9480048 0.6774064
+## [5,] 0.8263971 -0.9909552 0.6265363
+## [6,] 0.7324461 -0.9947855 0.5604654
 ```
 
