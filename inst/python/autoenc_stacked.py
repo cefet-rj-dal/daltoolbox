@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 """
-Stacked Autoencoder (SAE)
+Stacked Autoencoder (Autoencoder_Stacked)
 """
 
 import torch
@@ -14,7 +13,7 @@ from random import sample
 
 torch.set_grad_enabled(True)
 
-class SAE_TS(Dataset):
+class Autoencoder_Stacked_TS(Dataset):
     def __init__(self, num_samples, input_size):
         self.data = np.random.randn(num_samples, input_size)
 
@@ -28,10 +27,10 @@ class SAE_TS(Dataset):
         return self.data[index], self.data[index]
 
 
-class SAE(nn.Module):
+class Autoencoder_Stacked(nn.Module):
     ##NN architecture for the autoencoder
     def __init__(self, input_size, encoding_size):
-        super(SAE, self).__init__()
+        super(Autoencoder_Stacked, self).__init__()
         
         #Encode NN
         self.encoder = nn.Sequential(
@@ -55,7 +54,7 @@ class SAE(nn.Module):
 
 
 #Create Stack of Autoencoders
-def sae_create(input_size, encoding_size, k=3):
+def autoenc_stacked_create(input_size, encoding_size, k=3):
     input_size = int(input_size)
     encoding_size = int(encoding_size)
     k = int(k)
@@ -63,14 +62,14 @@ def sae_create(input_size, encoding_size, k=3):
     #Stack of k autoencoders
     stack = []
     for k in range(k):
-        stack.append(SAE(input_size, encoding_size))
+        stack.append(Autoencoder_Stacked(input_size, encoding_size))
         stack[k].float()
     
     return stack
 
 
-#Train SAE
-def sae_train(sae, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001):
+#Train Autoencoder_Stacked
+def autoenc_stacked_train(sae, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001):
   criterion = nn.MSELoss()
   optimizer = optim.Adam(sae.parameters(), lr=learning_rate)
 
@@ -88,8 +87,8 @@ def sae_train(sae, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001
       train_data = array[train_sample, :]
       val_data = array[val_sample, :]
       
-      ds_train = SAE_TS(train_data)
-      ds_val = SAE_TS(val_data)
+      ds_train = Autoencoder_Stacked_TS(train_data)
+      ds_val = Autoencoder_Stacked_TS(val_data)
       train_loader = DataLoader(ds_train, batch_size=batch_size)
       val_loader = DataLoader(ds_val, batch_size=batch_size)
     
@@ -120,35 +119,32 @@ def sae_train(sae, data, batch_size=32, num_epochs = 1000, learning_rate = 0.001
       train_loss.append(np.mean(train_epoch_loss))
       val_loss.append(np.mean(val_epoch_loss))
   
-  sae.train_loss = train_loss
-  sae.val_loss = val_loss
-  return sae
+  return sae, np.array(train_loss), np.array(val_loss)  
 
-
-def sae_fit(stack, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001):
+def autoenc_stacked_fit(stack, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001):
     batch_size = int(batch_size)
     num_epochs = int(num_epochs)
 
     #STEP 1 - Start fitting first k autoencoder using original input layer        
     ae_k1 = stack[0]
-    ae_k1 = sae_train(ae_k1, data, num_epochs = num_epochs, learning_rate = learning_rate)
-    ae_k_out = sae_encode_decode(ae_k1, data)
+    ae_k1 = autoenc_stacked_train(ae_k1, data, num_epochs = num_epochs, learning_rate = learning_rate)
+    ae_k_out = autoenc_stacked_encode_decode(ae_k1, data)
     
     #STEP 2 - Fit internal layers using outputs from previous layers
     internal = int(len(stack)-1)
     
     for k in range(1, internal):        
         ae_k = stack[k]
-        ae_k = sae_train(ae_k, data, num_epochs = num_epochs, learning_rate = learning_rate)
-        ae_k_out = sae_encode_decode(ae_k, ae_k_out)
+        ae_k = autoenc_stacked_train(ae_k, data, num_epochs = num_epochs, learning_rate = learning_rate)
+        ae_k_out = autoenc_stacked_encode_decode(ae_k, ae_k_out)
     
     sae = stack[-1]
-    sae = sae_train(ae_k, data, num_epochs = num_epochs, learning_rate = 0.001)
+    sae = autoenc_stacked_train(ae_k, data, num_epochs = num_epochs, learning_rate = 0.001)
     
     return sae
 
 
-def sae_encode_data(sae, data_loader):
+def autoenc_stacked_encode_data(sae, data_loader):
     # Encode the synthetic time series data using the trained autoencoder
     encoded_data = []
     for data in data_loader:
@@ -163,7 +159,7 @@ def sae_encode_data(sae, data_loader):
     return encoded_data
 
 
-def sae_encode(sae, data, batch_size = 32):
+def autoenc_stacked_encode(sae, data, batch_size = 32):
     #Condition to check numpy array in internal stacked autoencoders
     if not isinstance(data, np.ndarray):
         array = data.to_numpy()
@@ -172,15 +168,15 @@ def sae_encode(sae, data, batch_size = 32):
         
     array = array[:, :]
     
-    ds = SAE_TS(array)
+    ds = Autoencoder_Stacked_TS(array)
     train_loader = DataLoader(ds, batch_size=batch_size)
     
-    encoded_data = sae_encode_data(sae, train_loader)
+    encoded_data = autoenc_stacked_encode_data(sae, train_loader)
     
     return(encoded_data)
 
 
-def sae_encode_decode_data(sae, data_loader):
+def autoenc_stacked_encode_decode_data(sae, data_loader):
     # Encode the synthetic time series data using the trained autoencoder
     encoded_decoded_data = []
     for data in data_loader:
@@ -196,7 +192,7 @@ def sae_encode_decode_data(sae, data_loader):
     return encoded_decoded_data
 
 
-def sae_encode_decode(sae, data, batch_size = 32):
+def autoenc_stacked_encode_decode(sae, data, batch_size = 32):
     #Condition to check numpy array in internal stacked autoencoders
     if not isinstance(data, np.ndarray):
         array = data.to_numpy()
@@ -205,9 +201,9 @@ def sae_encode_decode(sae, data, batch_size = 32):
     
     array = array[:, :]
     
-    ds = SAE_TS(array)
+    ds = Autoencoder_Stacked_TS(array)
     train_loader = DataLoader(ds, batch_size=batch_size)
     
-    encoded_decoded_data = sae_encode_decode_data(sae, train_loader)
+    encoded_decoded_data = autoenc_stacked_encode_decode_data(sae, train_loader)
     
     return(encoded_decoded_data)
