@@ -1,8 +1,8 @@
-## LSTM Autoencoder transformation (encode)
+## Stacked Autoencoder transformation (encode-decode)
 
 Considering a dataset with $p$ numerical attributes. 
 
-The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that these $k$ attributes are enough to recompose the original $p$ attributes. 
+The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that these $k$ attributes are enough to recompose the original $p$ attributes. However from the $k$ dimensionals the data is returned back to $p$ dimensions. The higher the quality of autoencoder the similiar is the output from the input. 
 
 
 ```r
@@ -73,9 +73,13 @@ Reduce from 5 to 3 dimensions
 
 
 ```r
-auto <- autoenc_lstm_e(5, 3, num_epochs=1500)
+auto <- autoenc_stacked_ed(5, 3)
 
 auto <- fit(auto, train)
+```
+
+```
+## 'tuple' object has no attribute 'encoder'
 ```
 
 ### learning curves
@@ -83,12 +87,27 @@ auto <- fit(auto, train)
 
 ```r
 fit_loss <- data.frame(x=1:length(auto$train_loss), train_loss=auto$train_loss,val_loss=auto$val_loss)
+```
 
+```
+## Error in data.frame(x = 1:length(auto$train_loss), train_loss = auto$train_loss, : arguments imply differing number of rows: 2, 0
+```
+
+```r
 grf <- plot_series(fit_loss, colors=c('Blue','Orange'))
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'fit_loss' not found
+```
+
+```r
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-6](fig/autoenc_lstm_e/unnamed-chunk-6-1.png)
+```
+## Error in eval(expr, envir, enclos): object 'grf' not found
+```
 
 ### testing autoencoder
 presenting the original test set and display encoding
@@ -110,17 +129,52 @@ print(head(test))
 
 ```r
 result <- transform(auto, test)
-```
-
-```
-## Error in autoenc_lstm_encode(obj$model, data): could not find function "autoenc_lstm_encode"
-```
-
-```r
 print(head(result))
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'result' not found
+## NULL
+```
+
+
+```r
+result <- as.data.frame(result)
+names(result) <- names(test)
+```
+
+```
+## Error in names(result) <- names(test): 'names' attribute [5] must be the same length as the vector [0]
+```
+
+```r
+r2 <- c()
+mape <- c()
+for (col in names(test)){
+r2_col <- cor(test[col], result[col])^2
+r2 <- append(r2, r2_col)
+mape_col <- mean((abs((result[col] - test[col]))/test[col])[[col]])
+mape <- append(mape, mape_col)
+print(paste(col, 'R2 test:', r2_col, 'MAPE:', mape_col))
+}
+```
+
+```
+## Error in `[.data.frame`(result, col): undefined columns selected
+```
+
+```r
+print(paste('Means R2 test:', mean(r2), 'MAPE:', mean(mape)))
+```
+
+```
+## Warning in mean.default(r2): argument is not numeric or logical: returning NA
+```
+
+```
+## Warning in mean.default(mape): argument is not numeric or logical: returning NA
+```
+
+```
+## [1] "Means R2 test: NA MAPE: NA"
 ```
 
