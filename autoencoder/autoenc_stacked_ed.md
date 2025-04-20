@@ -78,36 +78,17 @@ auto <- autoenc_stacked_ed(5, 3)
 auto <- fit(auto, train)
 ```
 
-```
-## 'tuple' object has no attribute 'encoder'
-```
-
 ### learning curves
 
 
 ```r
 fit_loss <- data.frame(x=1:length(auto$train_loss), train_loss=auto$train_loss,val_loss=auto$val_loss)
-```
 
-```
-## Error in data.frame(x = 1:length(auto$train_loss), train_loss = auto$train_loss, : arguments imply differing number of rows: 2, 0
-```
-
-```r
 grf <- plot_series(fit_loss, colors=c('Blue','Orange'))
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'fit_loss' not found
-```
-
-```r
 plot(grf)
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'grf' not found
-```
+![plot of chunk unnamed-chunk-6](fig/autoenc_stacked_ed/unnamed-chunk-6-1.png)
 
 ### testing autoencoder
 presenting the original test set and display encoding
@@ -133,20 +114,19 @@ print(head(result))
 ```
 
 ```
-## NULL
+##           [,1]      [,2]      [,3]      [,4]      [,5]
+## [1,] 0.7267006 0.8286961 0.9104187 0.9673617 0.9957749
+## [2,] 0.8296547 0.9115273 0.9678695 0.9958019 0.9922695
+## [3,] 0.9118465 0.9683105 0.9963526 0.9946541 0.9602421
+## [4,] 0.9692327 0.9968472 0.9941206 0.9615766 0.8981550
+## [5,] 0.9980532 0.9949844 0.9611439 0.8989650 0.8104084
+## [6,] 0.9960976 0.9611527 0.8982551 0.8113660 0.7037683
 ```
 
 
 ```r
 result <- as.data.frame(result)
 names(result) <- names(test)
-```
-
-```
-## Error in names(result) <- names(test): 'names' attribute [5] must be the same length as the vector [0]
-```
-
-```r
 r2 <- c()
 mape <- c()
 for (col in names(test)){
@@ -159,7 +139,11 @@ print(paste(col, 'R2 test:', r2_col, 'MAPE:', mape_col))
 ```
 
 ```
-## Error in `[.data.frame`(result, col): undefined columns selected
+## [1] "t4 R2 test: 0.999955811670551 MAPE: 0.000730884713085735"
+## [1] "t3 R2 test: 0.999994134181576 MAPE: 0.00119268474939598"
+## [1] "t2 R2 test: 0.999995206921027 MAPE: 0.00228395058206119"
+## [1] "t1 R2 test: 0.999992167761683 MAPE: 0.00279392582585509"
+## [1] "t0 R2 test: 0.999993586042064 MAPE: 0.00337816250447034"
 ```
 
 ```r
@@ -167,14 +151,6 @@ print(paste('Means R2 test:', mean(r2), 'MAPE:', mean(mape)))
 ```
 
 ```
-## Warning in mean.default(r2): argument is not numeric or logical: returning NA
-```
-
-```
-## Warning in mean.default(mape): argument is not numeric or logical: returning NA
-```
-
-```
-## [1] "Means R2 test: NA MAPE: NA"
+## [1] "Means R2 test: 0.99998618131538 MAPE: 0.00207592167497367"
 ```
 

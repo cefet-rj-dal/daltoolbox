@@ -121,13 +121,14 @@ def autoenc_stacked_train(sae, data, batch_size=32, num_epochs = 1000, learning_
   
   return sae, np.array(train_loss), np.array(val_loss)  
 
+
 def autoenc_stacked_fit(stack, data, batch_size = 32, num_epochs = 1000, learning_rate = 0.001):
     batch_size = int(batch_size)
     num_epochs = int(num_epochs)
 
     #STEP 1 - Start fitting first k autoencoder using original input layer        
     ae_k1 = stack[0]
-    ae_k1 = autoenc_stacked_train(ae_k1, data, num_epochs = num_epochs, learning_rate = learning_rate)
+    ae_k1, _, _ = autoenc_stacked_train(ae_k1, data, num_epochs = num_epochs, learning_rate = learning_rate)
     ae_k_out = autoenc_stacked_encode_decode(ae_k1, data)
     
     #STEP 2 - Fit internal layers using outputs from previous layers
@@ -135,13 +136,13 @@ def autoenc_stacked_fit(stack, data, batch_size = 32, num_epochs = 1000, learnin
     
     for k in range(1, internal):        
         ae_k = stack[k]
-        ae_k = autoenc_stacked_train(ae_k, data, num_epochs = num_epochs, learning_rate = learning_rate)
+        ae_k, _, _ = autoenc_stacked_train(ae_k, data, num_epochs = num_epochs, learning_rate = learning_rate)
         ae_k_out = autoenc_stacked_encode_decode(ae_k, ae_k_out)
     
     sae = stack[-1]
-    sae = autoenc_stacked_train(ae_k, data, num_epochs = num_epochs, learning_rate = 0.001)
+    saelist = autoenc_stacked_train(ae_k, data, num_epochs = num_epochs, learning_rate = 0.001)
     
-    return sae
+    return saelist
 
 
 def autoenc_stacked_encode_data(sae, data_loader):

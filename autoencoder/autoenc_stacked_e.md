@@ -78,36 +78,17 @@ auto <- autoenc_stacked_e(5, 3)
 auto <- fit(auto, train)
 ```
 
-```
-## 'tuple' object has no attribute 'encoder'
-```
-
 ### learning curves
 
 
 ```r
 fit_loss <- data.frame(x=1:length(auto$train_loss), train_loss=auto$train_loss,val_loss=auto$val_loss)
-```
 
-```
-## Error in data.frame(x = 1:length(auto$train_loss), train_loss = auto$train_loss, : arguments imply differing number of rows: 2, 0
-```
-
-```r
 grf <- plot_series(fit_loss, colors=c('Blue','Orange'))
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'fit_loss' not found
-```
-
-```r
 plot(grf)
 ```
 
-```
-## Error in eval(expr, envir, enclos): object 'grf' not found
-```
+![plot of chunk unnamed-chunk-6](fig/autoenc_stacked_e/unnamed-chunk-6-1.png)
 
 ### testing autoencoder
 presenting the original test set and display encoding
@@ -133,6 +114,12 @@ print(head(result))
 ```
 
 ```
-## NULL
+##            [,1]        [,2]      [,3]
+## [1,] -0.7253746  0.39318785 -1.245108
+## [2,] -0.7515501  0.29520994 -1.315129
+## [3,] -0.7591967  0.18773380 -1.347228
+## [4,] -0.7481624  0.07891147 -1.338709
+## [5,] -0.7207873 -0.01697753 -1.286517
+## [6,] -0.6773266 -0.10331622 -1.197592
 ```
 
