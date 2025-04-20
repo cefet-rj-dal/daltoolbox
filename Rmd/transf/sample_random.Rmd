@@ -1,0 +1,46 @@
+# Sampling dataset
+
+```{r}
+# DAL ToolBox
+# version 1.1.737
+
+
+
+#loading DAL
+library(daltoolbox) 
+```
+
+```{r}
+iris <- datasets::iris
+head(iris)
+table(iris$Species)
+```
+
+## Dividing a dataset with training and test
+
+```{r}
+#using random sampling
+tt <- train_test(sample_random(), iris)
+
+# distribution of train
+print(table(tt$train$Species))
+
+# distribution of test
+print(table(tt$test$Species))
+```
+
+## Dividing a dataset into folds
+
+```{r}
+# preparing dataset into four folds
+sample <- sample_random()
+folds <- k_fold(sample, iris, 4)
+
+# distribution of folds
+tbl <- NULL
+for (f in folds) {
+tbl <- rbind(tbl, table(f$Species))
+}
+print(tbl)
+```
+

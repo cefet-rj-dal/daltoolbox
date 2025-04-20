@@ -1,0 +1,80 @@
+## Time Series regression - Long short-term memory (LSTM)
+
+```{r}
+# DAL ToolBox
+# version 1.1.737
+
+
+
+#loading DAL
+library(daltoolbox)
+```
+
+### Series for studying
+
+```{r}
+data(sin_data)
+ts <- ts_data(sin_data$y, 10)
+ts_head(ts, 3)
+```
+
+```{r}
+library(ggplot2)
+plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
+```
+
+### data sampling
+
+```{r}
+samp <- ts_sample(ts, test_size = 5)
+io_train <- ts_projection(samp$train)
+io_test <- ts_projection(samp$test)
+```
+
+### Model training
+
+```{r}
+model <- ts_lstm(ts_norm_gminmax(), input_size=4, epochs=10000)
+model <- fit(model, x=io_train$input, y=io_train$output)
+```
+
+### Evaluation of adjustment
+
+```{r}
+adjust <- predict(model, io_train$input)
+adjust <- as.vector(adjust)
+output <- as.vector(io_train$output)
+ev_adjust <- evaluate(model, output, adjust)
+ev_adjust$mse
+```
+
+### Prediction of test
+
+```{r}
+steps_ahead <- 1
+io_test <- ts_projection(samp$test)
+prediction <- predict(model, x=io_test$input, steps_ahead=steps_ahead)
+prediction <- as.vector(prediction)
+
+output <- as.vector(io_test$output)
+if (steps_ahead > 1)
+    output <- output[1:steps_ahead]
+
+print(sprintf("%.2f, %.2f", output, prediction))
+```
+
+### Evaluation of test data
+
+```{r}
+ev_test <- evaluate(model, output, prediction)
+print(head(ev_test$metrics))
+print(sprintf("smape: %.2f", 100*ev_test$metrics$smape))
+```
+
+### Plot results
+
+```{r}
+yvalues <- c(io_train$output, io_test$output)
+plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction) + theme(text = element_text(size=16))
+```
+

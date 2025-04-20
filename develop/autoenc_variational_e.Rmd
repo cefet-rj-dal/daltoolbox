@@ -1,0 +1,80 @@
+## Variational Autoencoder transformation (encode)
+
+Considering a dataset with $p$ numerical attributes. 
+
+The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that these $k$ attributes are enough to recompose the original $p$ attributes. 
+
+```{r}
+# DAL ToolBox
+# version 1.1.737
+
+
+
+#loading DAL
+library(daltoolbox)
+library(ggplot2)
+```
+
+### dataset for example 
+
+```{r}
+data(sin_data)
+
+sw_size <- 5
+ts <- ts_data(sin_data$y, sw_size)
+
+ts_head(ts)
+```
+
+### applying data normalization
+
+```{r}
+preproc <- ts_norm_gminmax()
+preproc <- fit(preproc, ts)
+ts <- transform(preproc, ts)
+
+ts_head(ts)
+```
+
+### spliting into training and test
+
+```{r}
+samp <- ts_sample(ts, test_size = 10)
+train <- as.data.frame(samp$train)
+test <- as.data.frame(samp$test)
+```
+
+### creating autoencoder
+Reduce from 5 to 3 dimensions
+
+```{r}
+auto <- varae_encode(5, 3, num_epochs=350)
+
+auto <- fit(auto, train)
+```
+
+### learning curves
+
+```{r}
+train_loss <- unlist(auto$model$train_loss)
+val_loss <- unlist(auto$model$val_loss)
+
+fit_loss <- as.data.frame(cbind(train_loss, val_loss))
+fit_loss['epoch'] <- 1:nrow(fit_loss)
+
+ggplot(fit_loss, aes(x=epoch)) +
+geom_line(aes(y=train_loss, colour='Train Loss')) +
+geom_line(aes(y=val_loss, colour='Val Loss')) +
+scale_color_manual(values=c('Blue','Orange')) +
+theme_classic()
+```
+
+### testing autoencoder
+presenting the original test set and display encoding
+
+```{r}
+print(head(test))
+result <- transform(auto, test)
+print(head(result))
+```
+

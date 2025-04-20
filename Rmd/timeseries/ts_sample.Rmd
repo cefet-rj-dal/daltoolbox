@@ -1,0 +1,53 @@
+## Time Series Sample
+
+```{r}
+# DAL ToolBox
+# version 1.1.737
+
+
+
+#loading DAL
+library(daltoolbox) 
+```
+
+### Series for studying
+
+```{r}
+data(sin_data)
+```
+
+```{r}
+library(ggplot2)
+plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
+```
+
+### sliding windows
+
+```{r}
+sw_size <- 10
+ts <- ts_data(sin_data$y, sw_size)
+ts_head(ts, 3)
+```
+
+### data sampling
+
+```{r}
+test_size <- 3
+samp <- ts_sample(ts, test_size)
+```
+
+```{r}
+#first five rows from training data
+ts_head(samp$train, 5)
+```
+
+```{r}
+#last five rows from training data
+ts_head(samp$train[-c(1:(nrow(samp$train)-5)),])
+```
+
+```{r}
+#testing data
+ts_head(samp$test)
+```
+

@@ -1,0 +1,61 @@
+## Time Series Encoder-Decoder
+
+```{r}
+# DAL ToolBox
+# version 1.1.737
+
+
+
+#loading DAL
+library(daltoolbox)
+```
+
+### Series for studying
+
+```{r}
+data(sin_data)
+sin_data$y[39] <- sin_data$y[39]*6
+```
+
+```{r}
+sw_size <- 5
+ts <- ts_data(sin_data$y, sw_size)
+ts_head(ts, 3)
+```
+
+```{r}
+library(ggplot2)
+plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
+```
+
+### data sampling
+
+```{r}
+samp <- ts_sample(ts, test_size = 5)
+train <- as.data.frame(samp$train)
+test <- as.data.frame(samp$test)
+```
+
+### Model training
+
+```{r}
+auto <- autoenc_ed(5, 3)
+auto <- fit(auto, train)
+```
+
+### Evaluation of encoding
+
+```{r}
+print(head(train))
+result <- transform(auto, train)
+print(head(result))
+```
+
+### Encoding of test
+
+```{r}
+print(head(test))
+result <- transform(auto, test)
+print(head(result))
+```
+

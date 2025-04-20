@@ -1,0 +1,36 @@
+## NA and Outlier analysis
+
+```{r}
+# DAL ToolBox
+# version 1.1.737
+
+
+
+#loading DAL
+library(daltoolbox) 
+```
+
+### NA removal
+
+```{r}
+iris <- datasets::iris
+head(iris)
+nrow(iris)
+```
+
+```{r}
+#introducing a NA to remove
+iris.na <- iris
+iris.na$Sepal.Length[2] <- NA
+head(iris.na)
+nrow(iris.na)
+```
+
+### removing NA tuples
+
+```{r}
+iris.na.omit <- na.omit(iris.na)
+head(iris.na.omit)
+nrow(iris.na.omit)
+```
+

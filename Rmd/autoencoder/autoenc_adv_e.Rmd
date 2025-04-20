@@ -1,0 +1,73 @@
+## Adversarial Autoencoder transformation (encode)
+
+Considering a dataset with $p$ numerical attributes. 
+
+The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that these $k$ attributes are enough to recompose the original $p$ attributes. 
+
+```{r}
+# DAL ToolBox
+# version 1.1.737
+
+
+
+#loading DAL
+library(daltoolbox)
+library(ggplot2)
+```
+
+### dataset for example 
+
+```{r}
+data(sin_data)
+
+sw_size <- 5
+ts <- ts_data(sin_data$y, sw_size)
+
+ts_head(ts)
+```
+
+### applying data normalization
+
+```{r}
+preproc <- ts_norm_gminmax()
+preproc <- fit(preproc, ts)
+ts <- transform(preproc, ts)
+
+ts_head(ts)
+```
+
+### spliting into training and test
+
+```{r}
+samp <- ts_sample(ts, test_size = 10)
+train <- as.data.frame(samp$train)
+test <- as.data.frame(samp$test)
+```
+
+### creating autoencoder
+Reduce from 5 to 3 dimensions
+
+```{r}
+auto <- autoenc_adv_e(5, 3, batch_size=3, num_epochs=1500)
+
+auto <- fit(auto, train)
+```
+
+### learning curves
+
+```{r}
+fit_loss <- data.frame(x=1:length(auto$train_loss), train_loss=auto$train_loss,val_loss=auto$val_loss)
+
+grf <- plot_series(fit_loss, colors=c('Blue','Orange'))
+plot(grf)
+```
+
+### testing autoencoder
+presenting the original test set and display encoding
+
+```{r}
+print(head(test))
+result <- transform(auto, test)
+print(head(result))
+```
+

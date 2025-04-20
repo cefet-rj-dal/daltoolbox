@@ -1,0 +1,48 @@
+## Normalization Diff
+
+```{r}
+# DAL ToolBox
+# version 1.1.737
+
+
+
+#loading DAL
+library(daltoolbox) 
+```
+
+### Series for studying
+
+```{r}
+data(sin_data)
+```
+
+```{r}
+library(ggplot2)
+plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
+```
+
+### sliding windows
+
+```{r}
+sw_size <- 10
+ts <- ts_data(sin_data$y, sw_size)
+ts_head(ts, 3)
+summary(ts[,10])
+```
+
+```{r}
+library(ggplot2)
+plot_ts(y=ts[,10]) + theme(text = element_text(size=16))
+```
+
+### normalization
+
+```{r}
+preproc <- ts_norm_swminmax()
+preproc <- fit(preproc, ts)
+tst <- transform(preproc, ts)
+ts_head(tst, 3)
+summary(tst[,10])
+plot_ts(y=ts[1,]) + theme(text = element_text(size=16))
+```
+

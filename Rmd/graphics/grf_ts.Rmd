@@ -1,0 +1,38 @@
+```{r}
+# DAL ToolBox
+# version 1.1.737
+
+
+
+#loading DAL
+library(daltoolbox) 
+```
+
+```{r}
+library(ggplot2)
+library(RColorBrewer)
+
+#color palette
+colors <- brewer.pal(4, 'Set1')
+
+# setting the font size for all charts
+font <- theme(text = element_text(size=16))
+```
+
+#### Synthetic time series
+
+```{r}
+x <- seq(0, 10, 0.25)
+data <- data.frame(x, sin=sin(x))
+head(data)
+```
+
+## ts plot
+
+A time series plot during exploratory analysis
+
+```{r}
+grf <- plot_ts(x = data$x, y = data$sin, color=colors[1])
+plot(grf)
+```
+

@@ -1,0 +1,47 @@
+```{r}
+# DAL ToolBox
+# version 1.1.737
+
+
+
+#loading DAL
+library(daltoolbox) 
+```
+
+```{r}
+library(ggplot2)
+library(RColorBrewer)
+
+#color palette
+colors <- brewer.pal(4, 'Set1')
+
+# setting the font size for all charts
+font <- theme(text = element_text(size=16))
+```
+
+```{r}
+#iris dataset for the example
+head(iris)
+```
+
+```{r}
+library(dplyr)
+
+data <- iris |> group_by(Species) |> summarize(Sepal.Length=mean(Sepal.Length))
+head(data)
+```
+
+## Lollipop plot
+
+The lollipop graph has the same goal as a bar graph.
+
+```{r}
+grf <- plot_lollipop(data, colors=colors[1], max_value_gap=0.2) + font
+plot(grf)
+```
+
+```{r}
+grf <- plot_lollipop(data, colors=colors[1], max_value_gap=0.1) + font + coord_flip() 
+plot(grf)
+```
+
