@@ -1,4 +1,4 @@
-## Vanilla autoencoder transformation (encode)
+## LSTM Autoencoder transformation (encode)
 
 Considering a dataset with $p$ numerical attributes. 
 
@@ -73,9 +73,13 @@ Reduce from 5 to 3 dimensions
 
 
 ```r
-auto <- autoenc_e(5, 3)
+auto <- autoenc_lstm_e(5, 3, num_epochs=1500)
 
 auto <- fit(auto, train)
+```
+
+```
+## Error in eval(ei, envir): Unable to open file ''
 ```
 
 ### learning curves
@@ -83,12 +87,27 @@ auto <- fit(auto, train)
 
 ```r
 fit_loss <- data.frame(x=1:length(auto$train_loss), train_loss=auto$train_loss,val_loss=auto$val_loss)
+```
 
+```
+## Error in data.frame(x = 1:length(auto$train_loss), train_loss = auto$train_loss, : arguments imply differing number of rows: 2, 0
+```
+
+```r
 grf <- plot_series(fit_loss, colors=c('Blue','Orange'))
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'fit_loss' not found
+```
+
+```r
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-6](fig/autoenc_e/unnamed-chunk-6-1.png)
+```
+## Error in eval(expr, envir, enclos): object 'grf' not found
+```
 
 ### testing autoencoder
 presenting the original test set and display encoding
@@ -110,16 +129,17 @@ print(head(test))
 
 ```r
 result <- transform(auto, test)
+```
+
+```
+## Error in eval(ei, envir): Unable to open file ''
+```
+
+```r
 print(head(result))
 ```
 
 ```
-##           [,1]       [,2]      [,3]
-## [1,] 1.0645484 -0.6772732 0.6271166
-## [2,] 1.0810437 -0.8094092 0.6249610
-## [3,] 1.0637506 -0.9143854 0.6025229
-## [4,] 1.0186976 -0.9869197 0.5620340
-## [5,] 0.9491944 -1.0220580 0.5065160
-## [6,] 0.8554145 -1.0193181 0.4396216
+## Error in eval(expr, envir, enclos): object 'result' not found
 ```
 
