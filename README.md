@@ -1,11 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# <img src='https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/master/inst/logo.png' alt='Logo do pacote DAL Toolbox' align='centre' height='150' width='139'/> DAL Toolbox
+# <img src='https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/master/inst/logo.png' align='centre' height='150' width='139'/> DAL Toolbox
 
 <!-- badges: start -->
 
-![logo](https://img.shields.io/github/stars/cefet-rj-dal/daltoolbox?logo=Github)
+![GitHub Repo
+stars](https://img.shields.io/github/stars/cefet-rj-dal/daltoolbox?logo=Github)
 ![GitHub Repo stars](https://cranlogs.r-pkg.org/badges/daltoolbox)
 <!-- badges: end -->
 
