@@ -24,7 +24,7 @@ autoenc_variational_ed <- function(input_size, encoding_size, batch_size = 32, n
   return(obj)
 }
 
-#'@export
+#'@exportS3Method fit autoenc_variational_ed
 fit.autoenc_variational_ed <- function(obj, data, ...) {
   if (!exists("autoenc_variational_create"))
     reticulate::source_python(system.file("python", "autoenc_variational.py", package = "daltoolbox"))
@@ -42,7 +42,7 @@ fit.autoenc_variational_ed <- function(obj, data, ...) {
 
 }
 
-#'@export
+#'@exportS3Method transform autoenc_variational_ed
 transform.autoenc_variational_ed <- function(obj, data, ...) {
   if (!exists("autoenc_variational_create"))
     reticulate::source_python(system.file("python", "autoenc_variational.py", package = "daltoolbox"))

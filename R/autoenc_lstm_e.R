@@ -24,7 +24,7 @@ autoenc_lstm_e <- function(input_size, encoding_size, batch_size = 32, num_epoch
   return(obj)
 }
 
-#'@export
+#'@exportS3Method fit autoenc_lstm_e
 fit.autoenc_lstm_e <- function(obj, data, ...) {
   if (!exists("autoenc_lstm_create"))
     reticulate::source_python(system.file("python", "autoenc_lstm.py", package = "daltoolbox"))
@@ -41,7 +41,7 @@ fit.autoenc_lstm_e <- function(obj, data, ...) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method transform autoenc_lstm_e
 transform.autoenc_lstm_e <- function(obj, data, ...) {
   if (!exists("autoenc_lstm_create"))
     reticulate::source_python(system.file("python", "autoenc_lstm.py", package = "daltoolbox"))

@@ -16,6 +16,8 @@ if (FALSE) {
   library(devtools)
   check()
   load_all()
+  #'@exportS3Method fit autoenc_variational_ed
+  #'@exportS3Method transform autoenc_stacked_ed
 }
 
 if (FALSE) {

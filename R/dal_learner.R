@@ -30,17 +30,14 @@ action.dal_learner <- function(obj, ...) {
 #'@examples
 #'data(iris)
 #'slevels <- levels(iris$Species)
-
 #classification learner using decision tree
 #'model <- cla_dtree("Species", slevels)
 #'model <- fit(model, iris)
 #'prediction <- predict(model, iris)
-
 # categorical mapping for predictand
 #'predictand <- adjust_class_label(iris[,"Species"])
 #'test_eval <- evaluate(model, predictand, prediction)
 #'test_eval$metrics
-
 #'@export
 evaluate <- function(obj, ...) {
   UseMethod("evaluate")
