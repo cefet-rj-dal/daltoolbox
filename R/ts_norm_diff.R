@@ -26,14 +26,14 @@ ts_norm_diff <- function(remove_outliers = TRUE) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method fit ts_norm_diff
 fit.ts_norm_diff <- function(obj, data, ...) {
   data <- data[,2:ncol(data)]-data[,1:(ncol(data)-1)]
   obj <- fit.ts_norm_gminmax(obj, data)
   return(obj)
 }
 
-#'@export
+#'@exportS3Method transform ts_norm_diff
 transform.ts_norm_diff <- function(obj, data, x=NULL, ...) {
   if (!is.null(x)) {
     ref <- attr(data, "ref")
@@ -56,7 +56,7 @@ transform.ts_norm_diff <- function(obj, data, x=NULL, ...) {
   }
 }
 
-#'@export
+#'@exportS3Method inverse_transform ts_norm_diff
 inverse_transform.ts_norm_diff <- function(obj, data, x=NULL, ...) {
   cnames <- attr(data, "cnames")
   ref <- attr(data, "ref")

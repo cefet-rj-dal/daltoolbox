@@ -11,7 +11,7 @@ ts_reg <- function() {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method action ts_reg
 action.ts_reg <- function(obj, ...) {
   thiscall <- match.call(expand.dots = TRUE)
   thiscall[[1]] <- as.name("predict")
@@ -20,6 +20,7 @@ action.ts_reg <- function(obj, ...) {
 }
 
 #'@export
+#'@exportS3Method predict ts_reg
 predict.ts_reg <- function(object, x, ...) {
   return(x[,ncol(x)])
 }
@@ -94,7 +95,7 @@ R2.ts <- function (actual, prediction) {
 }
 
 
-#'@export
+#'@exportS3Method evaluate ts_reg
 evaluate.ts_reg <- function(obj, values, prediction, ...) {
   result <- list(values=values, prediction=prediction)
 

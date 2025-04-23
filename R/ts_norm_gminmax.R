@@ -25,7 +25,7 @@ ts_norm_gminmax <- function(remove_outliers = TRUE) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method fit ts_norm_gminmax
 fit.ts_norm_gminmax <- function(obj, data, ...) {
   if (obj$remove_outliers) {
     out <- outliers()
@@ -39,7 +39,7 @@ fit.ts_norm_gminmax <- function(obj, data, ...) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method transform ts_norm_gminmax
 transform.ts_norm_gminmax <- function(obj, data, x=NULL, ...) {
   if (!is.null(x)) {
     x <- (x-obj$gmin)/(obj$gmax-obj$gmin)
@@ -51,7 +51,7 @@ transform.ts_norm_gminmax <- function(obj, data, x=NULL, ...) {
   }
 }
 
-#'@export
+#'@exportS3Method inverse_transform ts_norm_gminmax
 inverse_transform.ts_norm_gminmax <- function(obj, data, x=NULL, ...) {
   if (!is.null(x)) {
     x <- x * (obj$gmax-obj$gmin) + obj$gmin

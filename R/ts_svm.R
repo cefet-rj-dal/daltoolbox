@@ -39,14 +39,14 @@ ts_svm <- function(preprocess=NA, input_size=NA, kernel="radial", epsilon=0, cos
 }
 
 #'@import e1071
-#'@export
+#'@exportS3Method do_fit ts_svm
 do_fit.ts_svm <- function(obj, x, y) {
   obj$model <- e1071::svm(x = as.data.frame(x), y = y, epsilon=obj$epsilon, cost=obj$cost, kernel=obj$kernel)
   return(obj)
 }
 
 #'@importFrom stats predict
-#'@export
+#'@exportS3Method do_predict ts_svm
 do_predict.ts_svm <- function(obj, x) {
   prediction <- stats::predict(obj$model, as.data.frame(x))
   return(prediction)

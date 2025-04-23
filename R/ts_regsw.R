@@ -20,7 +20,7 @@ ts_regsw <- function(preprocess=NA, input_size=NA) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method fit ts_regsw
 fit.ts_regsw <- function(obj, x, y, ...) {
   obj$preprocess <- fit(obj$preprocess, x)
 
@@ -33,7 +33,7 @@ fit.ts_regsw <- function(obj, x, y, ...) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method predict ts_regsw
 predict.ts_regsw <- function(object, x, steps_ahead=1, ...) {
   if (steps_ahead == 1) {
     x <- transform(object$preprocess, x)
@@ -65,8 +65,8 @@ predict.ts_regsw <- function(object, x, steps_ahead=1, ...) {
   return(prediction)
 }
 
-#'@export
 #'@importFrom stats predict
+#'@exportS3Method do_predict ts_regsw
 do_predict.ts_regsw <- function(obj, x) {
   prediction <- stats::predict(obj$model, x)
   return(prediction)

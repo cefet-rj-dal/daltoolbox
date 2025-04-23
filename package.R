@@ -20,6 +20,9 @@ if (FALSE) {
   #'@exportS3Method predict ts_conv1d
   #'@exportS3Method do_fit ts_conv1d
   #'@exportS3Method do_predict ts_conv1d
+  #'@exportS3Method fit ts_conv1d
+  #'@exportS3Method transform ts_conv1d
+  #'@exportS3Method invert_transform ts_conv1d
 }
 
 if (FALSE) {

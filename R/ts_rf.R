@@ -40,7 +40,7 @@ ts_rf <- function(preprocess=NA, input_size=NA, nodesize = 1, ntree = 10, mtry =
 
 
 #'@importFrom randomForest randomForest
-#'@export
+#'@exportS3Method do_fit ts_rf
 do_fit.ts_rf <- function(obj, x, y) {
   if (is.null(obj$mtry))
     obj$mtry <- ceiling(obj$input_size/3)
@@ -49,7 +49,7 @@ do_fit.ts_rf <- function(obj, x, y) {
 }
 
 #'@importFrom stats predict
-#'@export
+#'@exportS3Method do_predict ts_rf
 do_predict.ts_rf <- function(obj, x) {
   prediction <- stats::predict(obj$model, as.data.frame(x))
   return(prediction)

@@ -120,7 +120,7 @@ fit.ts_tune <- function(obj, x, y, ranges, ...) {
 #'@param hyperparameters hyperparameters dataset
 #'@return returns the optimized key number of hyperparameters
 #'@importFrom dplyr filter summarise group_by
-#'@export
+#'@exportS3Method select_hyper ts_tune
 select_hyper.ts_tune <- function(obj, hyperparameters) {
   msg <- error <- 0
   hyper_summary <- hyperparameters |> dplyr::filter(msg == "") |>

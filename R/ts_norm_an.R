@@ -38,7 +38,7 @@ ts_norm_an <- function(remove_outliers = TRUE, nw = 0) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method fit ts_norm_an
 fit.ts_norm_an <- function(obj, data, ...) {
   input <- data[,1:(ncol(data)-1)]
   an <- obj$ma(obj, input, obj$an_mean)
@@ -56,7 +56,7 @@ fit.ts_norm_an <- function(obj, data, ...) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method transform ts_norm_an
 transform.ts_norm_an <- function(obj, data, x=NULL, ...) {
   if (!is.null(x)) {
     an <- attr(data, "an")
@@ -73,7 +73,7 @@ transform.ts_norm_an <- function(obj, data, x=NULL, ...) {
   }
 }
 
-#'@export
+#'@exportS3Method inverse_transform ts_norm_an
 inverse_transform.ts_norm_an <- function(obj, data, x=NULL, ...) {
   an <- attr(data, "an")
   if (!is.null(x)) {
