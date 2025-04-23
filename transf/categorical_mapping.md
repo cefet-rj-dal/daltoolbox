@@ -4,7 +4,7 @@ A categorical attribute with $n$ distinct values is mapped into $n$ binary attri
 It is also possible to map into $n-1$ binary values, where the scenario where all binary attributes are equal to zero corresponds to the last categorical value not indicated in the attributes.  
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -17,7 +17,7 @@ library(daltoolbox)
 ### dataset for example 
 
 
-```r
+``` r
 iris <- datasets::iris
 head(iris)
 ```
@@ -35,7 +35,7 @@ head(iris)
 ### creating categorical mapping
 
 
-```r
+``` r
 cm <- categ_mapping("Species")
 iris_cm <- transform(cm, iris)
 print(head(iris_cm))
@@ -55,7 +55,7 @@ print(head(iris_cm))
 Can be made from a single column, but needs to be a data frame
 
 
-```r
+``` r
 diris <- iris[,"Species", drop=FALSE]
 head(diris)
 ```
@@ -71,7 +71,7 @@ head(diris)
 ```
 
 
-```r
+``` r
 iris_cm <- transform(cm, diris)
 print(head(iris_cm))
 ```

@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -10,14 +10,14 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 data(sin_data)
 x <- sin_data$x
 y <- sin_data$y
 ```
 
 
-```r
+``` r
 library(ggplot2)
 plot_ts(x=x, y=y) + theme(text = element_text(size=16))
 ```
@@ -25,7 +25,7 @@ plot_ts(x=x, y=y) + theme(text = element_text(size=16))
 ![plot of chunk unnamed-chunk-3](fig/ts_data/unnamed-chunk-3-1.png)
 
 
-```r
+``` r
 data <- ts_data(y)
 ts_head(data)
 ```
@@ -40,14 +40,14 @@ ts_head(data)
 ## [6,] 0.9489846
 ```
 
-```r
+``` r
 plot_ts(y=data[,1]) + theme(text = element_text(size=16))
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/ts_data/unnamed-chunk-4-1.png)
 
 
-```r
+``` r
 data10 <- ts_data(y, 10)
 ts_head(data10)
 ```
@@ -63,7 +63,7 @@ ts_head(data10)
 ```
 
 
-```r
+``` r
 r1 <- data10[12,]
 r1
 ```
@@ -78,7 +78,7 @@ r1
 ```
 
 
-```r
+``` r
 r2 <- data10[12:13,]
 r2
 ```
@@ -94,7 +94,7 @@ r2
 ```
 
 
-```r
+``` r
 c1 <- data10[,1]
 ts_head(c1)
 ```
@@ -110,7 +110,7 @@ ts_head(c1)
 ```
 
 
-```r
+``` r
 c2 <- data10[,1:2]
 ts_head(c2)
 ```
@@ -126,7 +126,7 @@ ts_head(c2)
 ```
 
 
-```r
+``` r
 rc1 <- data10[12:13,1:2]
 rc1
 ```
@@ -142,7 +142,7 @@ rc1
 ```
 
 
-```r
+``` r
 rc2 <- data10[12,1:2]
 rc2
 ```
@@ -157,7 +157,7 @@ rc2
 ```
 
 
-```r
+``` r
 rc3 <- data10[12:13,1]
 rc3
 ```
@@ -173,7 +173,7 @@ rc3
 ```
 
 
-```r
+``` r
 rc4 <- data10[12,1]
 rc4
 ```

@@ -1,7 +1,7 @@
 ## Time Series Sample
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -14,12 +14,12 @@ library(daltoolbox)
 ### Series for studying
 
 
-```r
+``` r
 data(sin_data)
 ```
 
 
-```r
+``` r
 library(ggplot2)
 plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 ```
@@ -29,7 +29,7 @@ plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 ### sliding windows
 
 
-```r
+``` r
 sw_size <- 5
 ts <- ts_data(sin_data$y, sw_size)
 ts_head(ts, 3)
@@ -45,12 +45,12 @@ ts_head(ts, 3)
 ### projection
 
 
-```r
+``` r
 io <- ts_projection(ts)
 ```
 
 
-```r
+``` r
 #input data
 ts_head(io$input)
 ```
@@ -66,7 +66,7 @@ ts_head(io$input)
 ```
 
 
-```r
+``` r
 #output data
 ts_head(io$output)
 ```

@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -10,7 +10,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 library(ggplot2)
 library(RColorBrewer)
 
@@ -24,7 +24,7 @@ font <- theme(text = element_text(size=16))
 #### Synthetic time series
 
 
-```r
+``` r
 x <- seq(0, 10, 0.25)
 data <- data.frame(x, sin=sin(x))
 head(data)
@@ -45,7 +45,7 @@ head(data)
 A time series plot during exploratory analysis
 
 
-```r
+``` r
 grf <- plot_ts(x = data$x, y = data$sin, color=colors[1])
 plot(grf)
 ```

@@ -17,7 +17,7 @@ train <- as.data.frame(samp$train)
 test <- as.data.frame(samp$test)
 
 
-auto <- autoenc_stacked_ed(5, 3)
+auto <- autoenc_ed(5, 3)
 
 auto <- fit(auto, train)
 

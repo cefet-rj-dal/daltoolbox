@@ -2,7 +2,7 @@
 ## Libraries and Datasets
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -13,7 +13,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 #load dataset
 data(iris)
 ```
@@ -23,13 +23,13 @@ General entropy of dataset
 ## General function to test clustering methods
 
 
-```r
+``` r
 # setup clustering
 model <- cluster_pam(k=3)
 ```
 
 
-```r
+``` r
 # build model
 model <- fit(model, iris[,1:4])
 clu <- cluster(model, iris[,1:4])
@@ -43,7 +43,7 @@ table(clu)
 ```
 
 
-```r
+``` r
 # evaluate model using external metric
 eval <- evaluate(model, clu, iris$Species)
 eval

@@ -1,7 +1,7 @@
 ## Time Series Encoder
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -14,13 +14,13 @@ library(daltoolbox)
 ### Series for studying
 
 
-```r
+``` r
 data(sin_data)
 sin_data$y[39] <- sin_data$y[39]*6
 ```
 
 
-```r
+``` r
 sw_size <- 5
 ts <- ts_data(sin_data$y, sw_size)
 ts_head(ts, 3)
@@ -34,7 +34,7 @@ ts_head(ts, 3)
 ```
 
 
-```r
+``` r
 library(ggplot2)
 plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 ```
@@ -44,7 +44,7 @@ plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 ### data sampling
 
 
-```r
+``` r
 samp <- ts_sample(ts, test_size = 5)
 train <- as.data.frame(samp$train)
 test <- as.data.frame(samp$test)
@@ -53,15 +53,19 @@ test <- as.data.frame(samp$test)
 ### Model training
 
 
-```r
+``` r
 auto <- autoenc_e(5, 3)
 auto <- fit(auto, train)
+```
+
+```
+## Error in result[[2]]$tolist: $ operator is invalid for atomic vectors
 ```
 
 ### Evaluation of encoding
 
 
-```r
+``` r
 print(head(train))
 ```
 
@@ -75,25 +79,19 @@ print(head(train))
 ## 6 0.9489846 0.9974950 0.9839859 0.9092974 0.7780732
 ```
 
-```r
+``` r
 result <- transform(auto, train)
 print(head(result))
 ```
 
 ```
-##            [,1]       [,2]       [,3]
-## [1,] -0.2449699 -0.9237874 -0.7116989
-## [2,] -0.5093963 -0.9286473 -0.9828807
-## [3,] -0.7247004 -0.8780325 -1.1870633
-## [4,] -0.8907462 -0.7765861 -1.3246028
-## [5,] -1.0072058 -0.6287313 -1.3839664
-## [6,] -1.0559044 -0.4423282 -1.3709325
+## NULL
 ```
 
 ### Encoding of test
 
 
-```r
+``` r
 print(head(test))
 ```
 
@@ -106,17 +104,12 @@ print(head(test))
 ## 5 0.4121185 0.1738895 -0.4509067 -0.3195192 -0.5440211
 ```
 
-```r
+``` r
 result <- transform(auto, test)
 print(head(result))
 ```
 
 ```
-##             [,1]         [,2]       [,3]
-## [1,] -0.96370214 -0.009673536 -1.1747576
-## [2,] -0.79199177  0.224617675 -0.9419171
-## [3,] -0.52124983  0.690012038 -0.4031975
-## [4,] -0.21180084  0.738708973 -0.1239848
-## [5,]  0.05358816  0.733879030  0.3958242
+## NULL
 ```
 

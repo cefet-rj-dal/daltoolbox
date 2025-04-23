@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -10,7 +10,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 library(ggplot2)
 library(RColorBrewer)
 
@@ -22,7 +22,7 @@ font <- theme(text = element_text(size=16))
 ```
 
 
-```r
+``` r
 #iris dataset for the example
 head(iris)
 ```
@@ -43,7 +43,7 @@ In descriptive statistics, a box plot is a method for graphically depicting grou
 More information: https://en.wikipedia.org/wiki/Box_plot
 
 
-```r
+``` r
 grf <- plot_boxplot(iris, colors="white") + font
 ```
 
@@ -51,14 +51,14 @@ grf <- plot_boxplot(iris, colors="white") + font
 ## Using Species as id variables
 ```
 
-```r
+``` r
 plot(grf)  
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/grf_boxplot/unnamed-chunk-4-1.png)
 
 
-```r
+``` r
 grf <- plot_boxplot(iris, colors=colors[1:4]) + font
 ```
 
@@ -66,7 +66,7 @@ grf <- plot_boxplot(iris, colors=colors[1:4]) + font
 ## Using Species as id variables
 ```
 
-```r
+``` r
 plot(grf)  
 ```
 

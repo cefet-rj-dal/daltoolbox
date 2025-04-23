@@ -13,7 +13,7 @@ The majority of functions require a data.frame with two attributes or more attri
 The library $myGraphics.R$ is loaded using the source function. 
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -38,14 +38,14 @@ More information: https://colorbrewer2.org
 Take some time to look at how to use it in R: https://rdrr.io/cran/RColorBrewer/man/ColorBrewer.html.
 
 
-```r
+``` r
 library(RColorBrewer)
 col_set <- brewer.pal(9, 'Set1')
 colors <- col_set[1:4]
 ```
 
 
-```r
+``` r
 library(ggplot2)
 # setting the font size for all charts
 font <- theme(text = element_text(size=16))

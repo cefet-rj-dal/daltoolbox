@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -10,7 +10,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 # Dataset for example
 iris <- datasets::iris
 head(iris)
@@ -30,7 +30,7 @@ head(iris)
 PCA is a technique that finds a projection that captures the largest amount of variation in data.
 
 
-```r
+``` r
 mypca <- dt_pca("Species")
 mypca <- fit(mypca, datasets::iris)
 iris.pca <- transform(mypca, iris)
@@ -39,7 +39,7 @@ iris.pca <- transform(mypca, iris)
 ## Properties of PCA
 
 
-```r
+``` r
 print(head(iris.pca))
 ```
 
@@ -53,7 +53,7 @@ print(head(iris.pca))
 ## 6 2.975946 -5.707321  setosa
 ```
 
-```r
+``` r
 print(head(mypca$pca.transf))
 ```
 
@@ -66,7 +66,7 @@ print(head(mypca$pca.transf))
 ```
 
 
-```r
+``` r
 # Manual establishment of number of components
 mypca <- dt_pca("Species", 3)
 mypca <- fit(mypca, datasets::iris)
@@ -84,7 +84,7 @@ print(head(iris.pca))
 ## 6 2.975946 -5.707321 2.437245  setosa
 ```
 
-```r
+``` r
 print(head(mypca$pca.transf))
 ```
 

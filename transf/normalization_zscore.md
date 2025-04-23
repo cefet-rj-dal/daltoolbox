@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -18,7 +18,7 @@ It is also important to apply it as an input for some machine learning methods.
 ## Example
 
 
-```r
+``` r
 iris <- datasets::iris  
 summary(iris)
 ```
@@ -38,7 +38,7 @@ summary(iris)
 Adjust values to 0 (mean), 1 (variance).
 
 
-```r
+``` r
 norm <- zscore()
 norm <- fit(norm, iris)
 ndata <- transform(norm, iris)
@@ -55,7 +55,7 @@ summary(ndata)
 ##  Max.   : 2.48370   Max.   : 3.0805   Max.   : 1.7799   Max.   : 1.7064
 ```
 
-```r
+``` r
 ddata <- inverse_transform(norm, ndata)
 summary(ddata)
 ```
@@ -71,7 +71,7 @@ summary(ddata)
 ```
 
 
-```r
+``` r
 norm <- zscore(nmean=0.5, nsd=0.5/2.698)
 norm <- fit(norm, iris)
 ndata <- transform(norm, iris)
@@ -89,7 +89,7 @@ summary(ndata)
 ```
 
 
-```r
+``` r
 ddata <- inverse_transform(norm, ndata)
 summary(ddata)
 ```

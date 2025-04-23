@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -10,7 +10,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 library(ggplot2)
 library(RColorBrewer)
 
@@ -22,7 +22,7 @@ font <- theme(text = element_text(size=16))
 ```
 
 
-```r
+``` r
 #iris dataset for the example
 head(iris)
 ```
@@ -38,7 +38,7 @@ head(iris)
 ```
 
 
-```r
+``` r
 library(dplyr)
 
 data <- iris |> group_by(Species) |> summarize(Sepal.Length=mean(Sepal.Length))
@@ -59,7 +59,7 @@ head(data)
 The lollipop graph has the same goal as a bar graph.
 
 
-```r
+``` r
 grf <- plot_lollipop(data, colors=colors[1], max_value_gap=0.2) + font
 plot(grf)
 ```
@@ -67,7 +67,7 @@ plot(grf)
 ![plot of chunk unnamed-chunk-5](fig/grf_lollipop/unnamed-chunk-5-1.png)
 
 
-```r
+``` r
 grf <- plot_lollipop(data, colors=colors[1], max_value_gap=0.1) + font + coord_flip() 
 plot(grf)
 ```

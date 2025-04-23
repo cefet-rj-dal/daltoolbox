@@ -1,7 +1,7 @@
 # Sampling dataset
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -12,7 +12,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 iris <- datasets::iris
 head(iris)
 ```
@@ -27,7 +27,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-```r
+``` r
 table(iris$Species)
 ```
 
@@ -40,7 +40,7 @@ table(iris$Species)
 ## Dividing a dataset with training and test
 
 
-```r
+``` r
 #using random sampling
 tt <- train_test(sample_random(), iris)
 
@@ -54,7 +54,7 @@ print(table(tt$train$Species))
 ##         39         39         42
 ```
 
-```r
+``` r
 # distribution of test
 print(table(tt$test$Species))
 ```
@@ -68,7 +68,7 @@ print(table(tt$test$Species))
 ## Dividing a dataset into folds
 
 
-```r
+``` r
 # preparing dataset into four folds
 sample <- sample_random()
 folds <- k_fold(sample, iris, 4)

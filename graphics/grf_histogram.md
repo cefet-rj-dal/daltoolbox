@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -10,7 +10,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 library(ggplot2)
 library(RColorBrewer)
 
@@ -25,7 +25,7 @@ font <- theme(text = element_text(size=16))
 The following examples use random variables so that different data distribution can be better viewed.
 
 
-```r
+``` r
 # example: dataset to be plotted  
 example <- data.frame(exponential = rexp(100000, rate = 1), 
                      uniform = runif(100000, min = 2.5, max = 3.5), 
@@ -49,7 +49,7 @@ Visualize the distribution of a single continuous variable by dividing the x axi
 More information: ?geom_histogram (R documentation)
 
 
-```r
+``` r
 library(dplyr)
 
 grf <- plot_hist(example |> dplyr::select(exponential), 
@@ -60,7 +60,7 @@ grf <- plot_hist(example |> dplyr::select(exponential),
 ## Using  as id variables
 ```
 
-```r
+``` r
 options(repr.plot.width=5, repr.plot.height=4)
 plot(grf)
 ```
@@ -72,7 +72,7 @@ plot(grf)
 Function $grid.arrange$ is used to position previously computed charts
 
 
-```r
+``` r
 grfe <- plot_hist(example |> dplyr::select(exponential), 
                   label_x = "exponential", color=colors[1]) + font
 ```
@@ -81,7 +81,7 @@ grfe <- plot_hist(example |> dplyr::select(exponential),
 ## Using  as id variables
 ```
 
-```r
+``` r
 grfu <- plot_hist(example |> dplyr::select(uniform), 
                   label_x = "uniform", color=colors[1]) + font  
 ```
@@ -90,7 +90,7 @@ grfu <- plot_hist(example |> dplyr::select(uniform),
 ## Using  as id variables
 ```
 
-```r
+``` r
 grfn <- plot_hist(example |> dplyr::select(normal), 
                   label_x = "normal", color=colors[1]) + font 
 ```
@@ -100,7 +100,7 @@ grfn <- plot_hist(example |> dplyr::select(normal),
 ```
 
 
-```r
+``` r
 library(gridExtra)  
 
 options(repr.plot.width=15, repr.plot.height=4)

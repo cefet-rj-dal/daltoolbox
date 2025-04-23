@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -10,7 +10,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 library(ggplot2)
 library(RColorBrewer)
 
@@ -24,7 +24,7 @@ font <- theme(text = element_text(size=16))
 #### Synthetic time series
 
 
-```r
+``` r
 x <- seq(0, 10, 0.25)
 serie <- data.frame(x, sin=sin(x), cosine=cos(x)+5)
 head(serie)
@@ -49,7 +49,7 @@ It is similar to a scatter plot except that their x-axis value orders the measur
 More information: https://en.wikipedia.org/wiki/Line_chart
 
 
-```r
+``` r
 grf <- plot_series(serie, colors=colors[1:2]) + font
 plot(grf)
 ```

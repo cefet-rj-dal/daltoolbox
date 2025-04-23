@@ -5,7 +5,7 @@ Considering a dataset with $p$ numerical attributes.
 The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that these $k$ attributes are enough to recompose the original $p$ attributes. 
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -19,7 +19,7 @@ library(ggplot2)
 ### dataset for example 
 
 
-```r
+``` r
 data(sin_data)
 
 sw_size <- 5
@@ -41,7 +41,7 @@ ts_head(ts)
 ### applying data normalization
 
 
-```r
+``` r
 preproc <- ts_norm_gminmax()
 preproc <- fit(preproc, ts)
 ts <- transform(preproc, ts)
@@ -62,7 +62,7 @@ ts_head(ts)
 ### spliting into training and test
 
 
-```r
+``` r
 samp <- ts_sample(ts, test_size = 10)
 train <- as.data.frame(samp$train)
 test <- as.data.frame(samp$test)
@@ -72,29 +72,48 @@ test <- as.data.frame(samp$test)
 Reduce from 5 to 3 dimensions
 
 
-```r
+``` r
 auto <- autoenc_lstm_e(5, 3, num_epochs=1500)
 
 auto <- fit(auto, train)
 ```
 
+```
+## Error in result[[2]]$tolist: $ operator is invalid for atomic vectors
+```
+
 ### learning curves
 
 
-```r
+``` r
 fit_loss <- data.frame(x=1:length(auto$train_loss), train_loss=auto$train_loss,val_loss=auto$val_loss)
+```
 
+```
+## Error in data.frame(x = 1:length(auto$train_loss), train_loss = auto$train_loss, : arguments imply differing number of rows: 2, 0
+```
+
+``` r
 grf <- plot_series(fit_loss, colors=c('Blue','Orange'))
+```
+
+```
+## Error: object 'fit_loss' not found
+```
+
+``` r
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-6](fig/autoenc_lstm_e/unnamed-chunk-6-1.png)
+```
+## Error: object 'grf' not found
+```
 
 ### testing autoencoder
 presenting the original test set and display encoding
 
 
-```r
+``` r
 print(head(test))
 ```
 
@@ -108,18 +127,12 @@ print(head(test))
 ## 6 0.9959251 0.9624944 0.9003360 0.8133146 0.7068409
 ```
 
-```r
+``` r
 result <- transform(auto, test)
 print(head(result))
 ```
 
 ```
-##            [,1]        [,2]       [,3]
-## [1,] -0.6438680 -0.06416248 -0.5553886
-## [2,] -0.6556123 -0.14337471 -0.5834367
-## [3,] -0.6598849 -0.18551211 -0.5956281
-## [4,] -0.6572116 -0.18916126 -0.5941507
-## [5,] -0.6472561 -0.15421762 -0.5790233
-## [6,] -0.6288520 -0.08141974 -0.5482253
+## NULL
 ```
 

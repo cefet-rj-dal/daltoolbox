@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -10,7 +10,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 library(RColorBrewer)
 #color palette
 colors <- brewer.pal(4, 'Set1')
@@ -24,7 +24,7 @@ font <- theme(text = element_text(size=16))
 The following examples use random variables so that different data distribution can be better viewed.
 
 
-```r
+``` r
 # example4: dataset to be plotted  
 example <- data.frame(exponential = rexp(100000, rate = 1), 
                      uniform = runif(100000, min = 2.5, max = 3.5), 
@@ -49,7 +49,7 @@ Computes and draws kernel density estimate, which is a smoothed version of the h
 More information: ?geom_density (R documentation)
 
 
-```r
+``` r
 options(repr.plot.width=8, repr.plot.height=5)
 grf <- plot_density(example, colors=colors[1:3]) + font
 ```
@@ -58,7 +58,7 @@ grf <- plot_density(example, colors=colors[1:3]) + font
 ## Using  as id variables
 ```
 
-```r
+``` r
 plot(grf)
 ```
 
@@ -69,7 +69,7 @@ plot(grf)
 Function $grid.arrange$ is used to position previously computed charts
 
 
-```r
+``` r
 library(dplyr)
 grfe <- plot_density(example |> dplyr::select(exponential), 
                      label_x = "exponential", color=colors[1]) + font  
@@ -79,7 +79,7 @@ grfe <- plot_density(example |> dplyr::select(exponential),
 ## Using  as id variables
 ```
 
-```r
+``` r
 grfu <- plot_density(example |> dplyr::select(uniform), 
                      label_x = "uniform", color=colors[2]) + font  
 ```
@@ -88,7 +88,7 @@ grfu <- plot_density(example |> dplyr::select(uniform),
 ## Using  as id variables
 ```
 
-```r
+``` r
 grfn <- plot_density(example |> dplyr::select(normal), 
                      label_x = "normal", color=colors[3]) + font 
 ```
@@ -98,8 +98,22 @@ grfn <- plot_density(example |> dplyr::select(normal),
 ```
 
 
-```r
+``` r
 library(gridExtra)  
+```
+
+```
+## 
+## Attaching package: 'gridExtra'
+```
+
+```
+## The following object is masked from 'package:dplyr':
+## 
+##     combine
+```
+
+``` r
 options(repr.plot.width=15, repr.plot.height=4)
 grid.arrange(grfe, grfu, grfn, ncol=3)
 ```

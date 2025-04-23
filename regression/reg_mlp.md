@@ -1,7 +1,7 @@
 ## Regression MLP
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -14,18 +14,20 @@ library(daltoolbox)
 ### Dataset for regression analysis
 
 
-```r
+``` r
 library(MASS)
 data(Boston)
 print(t(sapply(Boston, class)))
 ```
 
 ```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black     lstat     medv     
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "numeric"
+##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black    
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric"
+##      lstat     medv     
+## [1,] "numeric" "numeric"
 ```
 
-```r
+``` r
 head(Boston)
 ```
 
@@ -40,7 +42,7 @@ head(Boston)
 ```
 
 
-```r
+``` r
 # for performance issues, you can use matrix
 Boston <- as.matrix(Boston)
 ```
@@ -48,7 +50,7 @@ Boston <- as.matrix(Boston)
 ## Building samples (training and testing)
 
 
-```r
+``` r
 # preparing dataset for random sampling
 set.seed(1)
 sr <- sample_random()
@@ -60,7 +62,7 @@ boston_test <- sr$test
 ### Training
 
 
-```r
+``` r
 model <- reg_mlp("medv", size=5, decay=0.54)
 model <- fit(model, boston_train)
 ```
@@ -68,7 +70,7 @@ model <- fit(model, boston_train)
 ### Model adjustment
 
 
-```r
+``` r
 train_prediction <- predict(model, boston_train)
 boston_train_predictand <- boston_train[,"medv"]
 train_eval <- evaluate(model, boston_train_predictand, train_prediction)
@@ -83,7 +85,7 @@ print(train_eval$metrics)
 ### Test
 
 
-```r
+``` r
 test_prediction <- predict(model, boston_test)
 boston_test_predictand <- boston_test[,"medv"]
 test_eval <- evaluate(model, boston_test_predictand, test_prediction)

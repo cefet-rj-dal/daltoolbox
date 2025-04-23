@@ -1,7 +1,7 @@
 ## Time Series regression - Long short-term memory (LSTM)
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -14,7 +14,7 @@ library(daltoolbox)
 ### Series for studying
 
 
-```r
+``` r
 data(sin_data)
 ts <- ts_data(sin_data$y, 10)
 ts_head(ts, 3)
@@ -28,7 +28,7 @@ ts_head(ts, 3)
 ```
 
 
-```r
+``` r
 library(ggplot2)
 plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 ```
@@ -38,7 +38,7 @@ plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 ### data sampling
 
 
-```r
+``` r
 samp <- ts_sample(ts, test_size = 5)
 io_train <- ts_projection(samp$train)
 io_test <- ts_projection(samp$test)
@@ -47,7 +47,7 @@ io_test <- ts_projection(samp$test)
 ### Model training
 
 
-```r
+``` r
 model <- ts_lstm(ts_norm_gminmax(), input_size=4, epochs=10000)
 model <- fit(model, x=io_train$input, y=io_train$output)
 ```
@@ -55,27 +55,61 @@ model <- fit(model, x=io_train$input, y=io_train$output)
 ### Evaluation of adjustment
 
 
-```r
+``` r
 adjust <- predict(model, io_train$input)
+```
+
+```
+## Error in prediction$tolist: $ operator is invalid for atomic vectors
+```
+
+``` r
 adjust <- as.vector(adjust)
+```
+
+```
+## Error: object 'adjust' not found
+```
+
+``` r
 output <- as.vector(io_train$output)
 ev_adjust <- evaluate(model, output, adjust)
+```
+
+```
+## Error: object 'adjust' not found
+```
+
+``` r
 ev_adjust$mse
 ```
 
 ```
-## [1] 0.0002224616
+## Error: object 'ev_adjust' not found
 ```
 
 ### Prediction of test
 
 
-```r
+``` r
 steps_ahead <- 1
 io_test <- ts_projection(samp$test)
 prediction <- predict(model, x=io_test$input, steps_ahead=steps_ahead)
-prediction <- as.vector(prediction)
+```
 
+```
+## Error in prediction$tolist: $ operator is invalid for atomic vectors
+```
+
+``` r
+prediction <- as.vector(prediction)
+```
+
+```
+## Error: object 'prediction' not found
+```
+
+``` r
 output <- as.vector(io_test$output)
 if (steps_ahead > 1)
     output <- output[1:steps_ahead]
@@ -84,37 +118,45 @@ print(sprintf("%.2f, %.2f", output, prediction))
 ```
 
 ```
-## [1] "0.41, 0.41"   "0.17, 0.18"   "-0.08, -0.06" "-0.32, -0.31" "-0.54, -0.54"
+## Error: object 'prediction' not found
 ```
 
 ### Evaluation of test data
 
 
-```r
+``` r
 ev_test <- evaluate(model, output, prediction)
+```
+
+```
+## Error: object 'prediction' not found
+```
+
+``` r
 print(head(ev_test$metrics))
 ```
 
 ```
-##            mse      smape        R2
-## 1 7.319394e-05 0.05587017 0.9993678
+## Error: object 'ev_test' not found
 ```
 
-```r
+``` r
 print(sprintf("smape: %.2f", 100*ev_test$metrics$smape))
 ```
 
 ```
-## [1] "smape: 5.59"
+## Error: object 'ev_test' not found
 ```
 
 ### Plot results
 
 
-```r
+``` r
 yvalues <- c(io_train$output, io_test$output)
 plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction) + theme(text = element_text(size=16))
 ```
 
-![plot of chunk unnamed-chunk-9](fig/ts_lstm/unnamed-chunk-9-1.png)
+```
+## Error: object 'adjust' not found
+```
 

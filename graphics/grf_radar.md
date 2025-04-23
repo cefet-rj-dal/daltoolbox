@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -10,7 +10,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 library(ggplot2)
 library(RColorBrewer)
 
@@ -22,7 +22,7 @@ font <- theme(text = element_text(size=16))
 ```
 
 
-```r
+``` r
 #iris dataset for the example
 head(iris)
 ```
@@ -38,7 +38,7 @@ head(iris)
 ```
 
 
-```r
+``` r
 library(dplyr)
 
 data <- iris |> dplyr::select(-Species) 
@@ -63,7 +63,7 @@ A radar chart is a graphical method of displaying multivariate data containing t
 More information: https://en.wikipedia.org/wiki/Radar_chart
 
 
-```r
+``` r
 grf <- plot_radar(data, colors=colors[1]) + font
 grf <- grf + ylim(0, NA)
 plot(grf)

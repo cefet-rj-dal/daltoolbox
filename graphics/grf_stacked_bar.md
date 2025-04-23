@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -10,7 +10,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 library(ggplot2)
 library(RColorBrewer)
 
@@ -22,7 +22,7 @@ font <- theme(text = element_text(size=16))
 ```
 
 
-```r
+``` r
 #iris dataset for the example
 head(iris)
 ```
@@ -38,7 +38,7 @@ head(iris)
 ```
 
 
-```r
+``` r
 library(dplyr)
 
 data <- iris |> group_by(Species) |> summarize(Sepal.Length=mean(Sepal.Length), Sepal.Width=mean(Sepal.Width))
@@ -63,7 +63,7 @@ A stacked bar chart stacks bars that represent different groups on top of each o
 More information: https://en.wikipedia.org/wiki/Bar_chart#Grouped_or_stacked
 
 
-```r
+``` r
 grf <- plot_stackedbar(data, colors=colors[1:2]) + font
 grf <- grf + theme(axis.text.x = element_text(angle=90, hjust=1))
 plot(grf)

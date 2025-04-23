@@ -1,7 +1,7 @@
 ## Time Series regression - KNN
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -14,7 +14,7 @@ library(daltoolbox)
 ### Series for studying
 
 
-```r
+``` r
 data(sin_data)
 ts <- ts_data(sin_data$y, 10)
 ts_head(ts, 3)
@@ -28,7 +28,7 @@ ts_head(ts, 3)
 ```
 
 
-```r
+``` r
 library(ggplot2)
 plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 ```
@@ -38,7 +38,7 @@ plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 ### data sampling
 
 
-```r
+``` r
 samp <- ts_sample(ts, test_size = 5)
 io_train <- ts_projection(samp$train)
 io_test <- ts_projection(samp$test)
@@ -47,14 +47,14 @@ io_test <- ts_projection(samp$test)
 ### data preprocessing
 
 
-```r
+``` r
 preproc <- ts_norm_gminmax()
 ```
 
 ### Model training
 
 
-```r
+``` r
 model <- ts_knn(ts_norm_gminmax(), input_size=4, k=3)
 model <- fit(model, x=io_train$input, y=io_train$output)
 ```
@@ -62,7 +62,7 @@ model <- fit(model, x=io_train$input, y=io_train$output)
 ### Evaluation of adjustment
 
 
-```r
+``` r
 adjust <- predict(model, io_train$input)
 adjust <- as.vector(adjust)
 output <- as.vector(io_train$output)
@@ -77,7 +77,7 @@ ev_adjust$mse
 ### Prediction of test
 
 
-```r
+``` r
 prediction <- predict(model, x=io_test$input[1,], steps_ahead=5)
 prediction <- as.vector(prediction)
 output <- as.vector(io_test$output)
@@ -109,7 +109,7 @@ ev_test
 ### Plot results
 
 
-```r
+``` r
 yvalues <- c(io_train$output, io_test$output)
 plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction) + theme(text = element_text(size=16))
 ```

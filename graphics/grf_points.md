@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -10,7 +10,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 library(ggplot2)
 library(RColorBrewer)
 
@@ -24,7 +24,7 @@ font <- theme(text = element_text(size=16))
 #### Synthetic time series
 
 
-```r
+``` r
 x <- seq(0, 10, 0.25)
 serie <- data.frame(x, sin=sin(x), cosine=cos(x)+5)
 head(serie)
@@ -45,7 +45,7 @@ head(serie)
 A point plot is similiar to series plot without drawing lines.
 
 
-```r
+``` r
 # The function returns a preset graphic that can be enhanced. 
 grf <- plot_points(serie, colors=colors[1:2])
 # Increasing the font size of the graphics

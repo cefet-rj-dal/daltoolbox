@@ -1,7 +1,7 @@
 ## NA and Outlier analysis
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -14,7 +14,7 @@ library(daltoolbox)
 ### NA removal
 
 
-```r
+``` r
 iris <- datasets::iris
 head(iris)
 ```
@@ -29,7 +29,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-```r
+``` r
 nrow(iris)
 ```
 
@@ -38,7 +38,7 @@ nrow(iris)
 ```
 
 
-```r
+``` r
 #introducing a NA to remove
 iris.na <- iris
 iris.na$Sepal.Length[2] <- NA
@@ -55,7 +55,7 @@ head(iris.na)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-```r
+``` r
 nrow(iris.na)
 ```
 
@@ -66,7 +66,7 @@ nrow(iris.na)
 ### removing NA tuples
 
 
-```r
+``` r
 iris.na.omit <- na.omit(iris.na)
 head(iris.na.omit)
 ```
@@ -81,7 +81,7 @@ head(iris.na.omit)
 ## 7          4.6         3.4          1.4         0.3  setosa
 ```
 
-```r
+``` r
 nrow(iris.na.omit)
 ```
 

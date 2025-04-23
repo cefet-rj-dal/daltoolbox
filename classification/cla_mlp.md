@@ -1,7 +1,7 @@
 ## Classification using Multilayer Perceptron
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -12,7 +12,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 iris <- datasets::iris
 head(iris)
 ```
@@ -28,7 +28,7 @@ head(iris)
 ```
 
 
-```r
+``` r
 #extracting the levels for the dataset
 slevels <- levels(iris$Species)
 slevels
@@ -39,7 +39,7 @@ slevels
 ```
 
 
-```r
+``` r
 #for performance issues, you can use matrix instead of data.frame (uncomment next line to test)
 iris <- cbind(as.matrix(iris[,1:4]), Species=iris$Species)
 ```
@@ -47,7 +47,7 @@ iris <- cbind(as.matrix(iris[,1:4]), Species=iris$Species)
 ## Building samples (training and testing)
 
 
-```r
+``` r
 # preparing dataset for random sampling
 set.seed(1)
 sr <- sample_random()
@@ -57,7 +57,7 @@ iris_test <- sr$test
 ```
 
 
-```r
+``` r
 tbl <- rbind(table(iris[,"Species"]), 
              table(iris_train[,"Species"]), 
              table(iris_test[,"Species"]))
@@ -75,7 +75,7 @@ head(tbl)
 ### Model training
 
 
-```r
+``` r
 model <- cla_mlp("Species", slevels, size=3,decay=0.03)
 model <- fit(model, iris_train)
 train_prediction <- predict(model, iris_train)
@@ -84,7 +84,7 @@ train_prediction <- predict(model, iris_train)
 ### Model adjustment
 
 
-```r
+``` r
 iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
 train_eval <- evaluate(model, iris_train_predictand, train_prediction)
 print(train_eval$metrics)
@@ -98,7 +98,7 @@ print(train_eval$metrics)
 ### Model testing
 
 
-```r
+``` r
 # Test  
 test_prediction <- predict(model, iris_test)
   

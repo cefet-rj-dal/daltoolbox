@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -10,7 +10,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 library(ggplot2)
 library(RColorBrewer)
 
@@ -22,7 +22,7 @@ font <- theme(text = element_text(size=16))
 ```
 
 
-```r
+``` r
 #iris dataset for the example
 head(iris)
 ```
@@ -38,7 +38,7 @@ head(iris)
 ```
 
 
-```r
+``` r
 library(dplyr)
 
 data <- iris |> group_by(Species) |> summarize(Sepal.Length=mean(Sepal.Length))
@@ -60,7 +60,7 @@ A pie chart is a circular statistical graphic, which is divided into slices to i
 More information: https://en.wikipedia.org/wiki/Pie_chart
 
 
-```r
+``` r
 grf <- plot_pieplot(data, colors=colors[1:3]) + font
 plot(grf)
 ```

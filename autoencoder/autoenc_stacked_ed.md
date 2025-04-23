@@ -5,7 +5,7 @@ Considering a dataset with $p$ numerical attributes.
 The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that these $k$ attributes are enough to recompose the original $p$ attributes. However from the $k$ dimensionals the data is returned back to $p$ dimensions. The higher the quality of autoencoder the similiar is the output from the input. 
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -19,7 +19,7 @@ library(ggplot2)
 ### dataset for example 
 
 
-```r
+``` r
 data(sin_data)
 
 sw_size <- 5
@@ -41,7 +41,7 @@ ts_head(ts)
 ### applying data normalization
 
 
-```r
+``` r
 preproc <- ts_norm_gminmax()
 preproc <- fit(preproc, ts)
 ts <- transform(preproc, ts)
@@ -62,7 +62,7 @@ ts_head(ts)
 ### spliting into training and test
 
 
-```r
+``` r
 samp <- ts_sample(ts, test_size = 10)
 train <- as.data.frame(samp$train)
 test <- as.data.frame(samp$test)
@@ -72,29 +72,48 @@ test <- as.data.frame(samp$test)
 Reduce from 5 to 3 dimensions
 
 
-```r
+``` r
 auto <- autoenc_stacked_ed(5, 3)
 
 auto <- fit(auto, train)
 ```
 
+```
+## Error in result[[2]]$tolist: $ operator is invalid for atomic vectors
+```
+
 ### learning curves
 
 
-```r
+``` r
 fit_loss <- data.frame(x=1:length(auto$train_loss), train_loss=auto$train_loss,val_loss=auto$val_loss)
+```
 
+```
+## Error in data.frame(x = 1:length(auto$train_loss), train_loss = auto$train_loss, : arguments imply differing number of rows: 2, 0
+```
+
+``` r
 grf <- plot_series(fit_loss, colors=c('Blue','Orange'))
+```
+
+```
+## Error: object 'fit_loss' not found
+```
+
+``` r
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-6](fig/autoenc_stacked_ed/unnamed-chunk-6-1.png)
+```
+## Error: object 'grf' not found
+```
 
 ### testing autoencoder
 presenting the original test set and display encoding
 
 
-```r
+``` r
 print(head(test))
 ```
 
@@ -108,25 +127,26 @@ print(head(test))
 ## 6 0.9959251 0.9624944 0.9003360 0.8133146 0.7068409
 ```
 
-```r
+``` r
 result <- transform(auto, test)
 print(head(result))
 ```
 
 ```
-##           [,1]      [,2]      [,3]      [,4]      [,5]
-## [1,] 0.7263159 0.8299513 0.9142647 0.9698127 0.9995285
-## [2,] 0.8291360 0.9121389 0.9695408 0.9962854 0.9967470
-## [3,] 0.9126645 0.9703268 0.9971194 0.9944127 0.9646803
-## [4,] 0.9703483 0.9998378 0.9973257 0.9639211 0.8984488
-## [5,] 0.9984325 0.9961808 0.9643107 0.9012272 0.8116580
-## [6,] 0.9967545 0.9613598 0.9012408 0.8115196 0.7064322
+## NULL
 ```
 
 
-```r
+``` r
 result <- as.data.frame(result)
 names(result) <- names(test)
+```
+
+```
+## Error in names(result) <- names(test): 'names' attribute [5] must be the same length as the vector [0]
+```
+
+``` r
 r2 <- c()
 mape <- c()
 for (col in names(test)){
@@ -139,18 +159,22 @@ print(paste(col, 'R2 test:', r2_col, 'MAPE:', mape_col))
 ```
 
 ```
-## [1] "t4 R2 test: 0.999908685453044 MAPE: 0.000888174804881599"
-## [1] "t3 R2 test: 0.999966831651692 MAPE: 0.000730159027048143"
-## [1] "t2 R2 test: 0.999965093530322 MAPE: 0.00120111206902155"
-## [1] "t1 R2 test: 0.999975861840206 MAPE: 0.00140107013783063"
-## [1] "t0 R2 test: 0.99997200734564 MAPE: 0.00268007625447399"
+## Error in `[.data.frame`(result, col): undefined columns selected
 ```
 
-```r
+``` r
 print(paste('Means R2 test:', mean(r2), 'MAPE:', mean(mape)))
 ```
 
 ```
-## [1] "Means R2 test: 0.999957695964181 MAPE: 0.00138011845865118"
+## Warning in mean.default(r2): argument is not numeric or logical: returning NA
+```
+
+```
+## Warning in mean.default(mape): argument is not numeric or logical: returning NA
+```
+
+```
+## [1] "Means R2 test: NA MAPE: NA"
 ```
 

@@ -1,7 +1,7 @@
 ## Normalization Diff
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -14,12 +14,12 @@ library(daltoolbox)
 ### Series for studying
 
 
-```r
+``` r
 data(sin_data)
 ```
 
 
-```r
+``` r
 library(ggplot2)
 plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 ```
@@ -29,7 +29,7 @@ plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 ### sliding windows
 
 
-```r
+``` r
 sw_size <- 10
 ts <- ts_data(sin_data$y, sw_size)
 ts_head(ts, 3)
@@ -42,7 +42,7 @@ ts_head(ts, 3)
 ## [3,] 0.4794255 0.6816388 0.8414710 0.9489846 0.9974950 0.9839859 0.9092974 0.7780732 0.5984721 0.3816610
 ```
 
-```r
+``` r
 summary(ts[,10])
 ```
 
@@ -57,7 +57,7 @@ summary(ts[,10])
 ```
 
 
-```r
+``` r
 library(ggplot2)
 plot_ts(y=ts[,10]) + theme(text = element_text(size=16))
 ```
@@ -67,7 +67,7 @@ plot_ts(y=ts[,10]) + theme(text = element_text(size=16))
 ### normalization
 
 
-```r
+``` r
 preproc <- ts_norm_diff()
 preproc <- fit(preproc, ts)
 tst <- transform(preproc, ts)
@@ -81,7 +81,7 @@ ts_head(tst, 3)
 ## [3,] 0.9073861 0.8222178 0.7170790 0.5985067 0.4738732 0.3509276 0.2373141 0.1400966 0.06531964
 ```
 
-```r
+``` r
 summary(tst[,9])
 ```
 
@@ -95,7 +95,7 @@ summary(tst[,9])
 ##  Max.   :1.00000
 ```
 
-```r
+``` r
 plot_ts(y=ts[,9]) + theme(text = element_text(size=16))
 ```
 

@@ -7,7 +7,7 @@ Our objective here is to generate a model that is able to do time series forecas
 Configuring the environment:
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -25,7 +25,7 @@ library(ggplot2)
 Generate a cosine time series to use in the example, it starts at 0 (zero) and goes up to 25 (twenty-five).
 
 
-```r
+``` r
 i <- seq(0, 25, 0.25)
 x <- cos(i)
 ```
@@ -33,7 +33,7 @@ x <- cos(i)
 Plots the time series:
 
 
-```r
+``` r
 plot_ts(x=i, y=x) + theme(text = element_text(size=16))
 ```
 
@@ -44,7 +44,7 @@ plot_ts(x=i, y=x) + theme(text = element_text(size=16))
 Creates a matrix representing a sliding window to be used in the process of training the model. Each row of the matrix represents one moment of the sliding window, with 10 (ten) elements as attributes (t9, t8, t7, ..., t0).
 
 
-```r
+``` r
 sw_size <- 10
 ts <- ts_data(x, sw_size)
 ts_head(ts, 3)
@@ -62,7 +62,7 @@ ts_head(ts, 3)
 Samples data into train and test.
 
 
-```r
+``` r
 test_size <- 1
 samp <- ts_sample(ts, test_size)
 ts_head(samp$train, 3)
@@ -75,7 +75,7 @@ ts_head(samp$train, 3)
 ## [3,] 0.8775826 0.7316889 0.5403023 0.3153224 0.0707372 -0.1782461 -0.4161468 -0.6281736 -0.8011436 -0.9243024
 ```
 
-```r
+``` r
 ts_head(samp$test)
 ```
 
@@ -89,7 +89,7 @@ ts_head(samp$test)
 Tune optimizes a learner hyperparameter, no matter which one. This way, in this example, an ELM is used in the hyperparameters tuning using an appropriate range. The result of tunning is an ELM model for the training set.
 
 
-```r
+``` r
 # Setup for tunning using ELM
 tune <- ts_tune(input_size=c(3:5), base_model = ts_elm(ts_norm_gminmax()))
 ranges <- list(nhid = 1:5, actfun=c('sig', 'radbas', 'tribas', 'relu', 'purelin'))
@@ -104,7 +104,7 @@ Options of ranges for all time series models are presented in the end of this no
 Input size options should be between 1 and sw_size-2.
 
 
-```r
+``` r
 # tune <- ts_tune(input_size=c(3:5), base_model = ts_lstm(ts_norm_gminmax()))
 # ranges <- list(input_size = 1:10, epochs=10000)
 ```
@@ -112,7 +112,7 @@ Input size options should be between 1 and sw_size-2.
 The prediction output using the training set can be used to evaluate the model's adjustment level to the training data:
 
 
-```r
+``` r
 io_train <- ts_projection(samp$train)
 
 # Generic model tunning
@@ -122,7 +122,7 @@ model <- fit(tune, x=io_train$input, y=io_train$output, ranges)
 ### Evaluation of adjustment
 
 
-```r
+``` r
 adjust <- predict(model, io_train$input)
 ev_adjust <- evaluate(model, io_train$output, adjust)
 print(head(ev_adjust$metrics))
@@ -136,7 +136,7 @@ print(head(ev_adjust$metrics))
 ### Prediction of test
 
 
-```r
+``` r
 steps_ahead <- 1
 io_test <- ts_projection(samp$test)
 prediction <- predict(model, x=io_test$input, steps_ahead=steps_ahead)
@@ -156,7 +156,7 @@ print(sprintf("%.2f, %.2f", output, prediction))
 ### Evaluation of test data
 
 
-```r
+``` r
 ev_test <- evaluate(model, output, prediction)
 print(head(ev_test$metrics))
 ```
@@ -166,7 +166,7 @@ print(head(ev_test$metrics))
 ## 1 1.49144e-30 1.232084e-15 -Inf
 ```
 
-```r
+``` r
 print(sprintf("smape: %.2f", 100*ev_test$metrics$smape))
 ```
 
@@ -179,7 +179,7 @@ print(sprintf("smape: %.2f", 100*ev_test$metrics$smape))
 The plot shows results of the prediction. 
 
 
-```r
+``` r
 yvalues <- c(io_train$output, io_test$output)
 plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction) + theme(text = element_text(size=16))
 ```
@@ -191,7 +191,7 @@ plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction) + theme(text = element_tex
 Options of ranges for all time series models:
 
 
-```r
+``` r
 ### Ranges for ELM
 ranges_elm <- list(nhid = 1:20, actfun=c('sig', 'radbas', 'tribas', 'relu', 'purelin'))
 

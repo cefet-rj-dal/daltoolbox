@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -19,7 +19,7 @@ An important part of the discretization/smoothing is to set up bins for proceedi
 ## general function to evaluate different smoothing technique
 
 
-```r
+``` r
 iris <- datasets::iris
 head(iris)
 ```
@@ -35,7 +35,7 @@ head(iris)
 ```
 
 
-```r
+``` r
 # smoothing using regular interval
 obj <- smoothing_inter(n = 2)  
 obj <- fit(obj, iris$Sepal.Length)
@@ -49,7 +49,7 @@ print(table(sl.bi))
 ##               95               55
 ```
 
-```r
+``` r
 obj$interval
 ```
 
@@ -58,7 +58,7 @@ obj$interval
 ```
 
 
-```r
+``` r
 entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
 print(entro$entropy)
 ```
@@ -70,7 +70,7 @@ print(entro$entropy)
 ## Optimizing the number of binnings
 
 
-```r
+``` r
 opt_obj <- smoothing_inter(n=1:20)
 obj <- fit(opt_obj, iris$Sepal.Length)
 obj$n
@@ -81,7 +81,7 @@ obj$n
 ```
 
 
-```r
+``` r
 obj <- fit(obj, iris$Sepal.Length)
 sl.bi <- transform(obj, iris$Sepal.Length)
 print(table(sl.bi))
@@ -89,7 +89,9 @@ print(table(sl.bi))
 
 ```
 ## sl.bi
-## 4.52727272727273 5.00294117647059             5.49 5.88333333333333            6.352 6.76666666666667 7.23333333333333 7.71666666666667 
-##               11               34               20               30               25               18                6                6
+## 4.52727272727273 5.00294117647059             5.49 5.88333333333333            6.352 6.76666666666667 7.23333333333333 
+##               11               34               20               30               25               18                6 
+## 7.71666666666667 
+##                6
 ```
 

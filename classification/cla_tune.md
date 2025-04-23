@@ -1,7 +1,7 @@
 ## Tune Regression 
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -14,7 +14,7 @@ library(daltoolbox)
 ### Dataset for classification
 
 
-```r
+``` r
 iris <- datasets::iris
 head(iris)
 ```
@@ -29,7 +29,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-```r
+``` r
 #extracting the levels for the dataset
 slevels <- levels(iris$Species)
 slevels
@@ -42,7 +42,7 @@ slevels
 ## Building samples (training and testing)
 
 
-```r
+``` r
 # preparing dataset for random sampling
 set.seed(1)
 sr <- sample_random()
@@ -67,7 +67,7 @@ head(tbl)
 ### Training
 
 
-```r
+``` r
 tune <- cla_tune(cla_svm("Species", slevels))
 ranges <- list(epsilon=seq(0,1,0.2), cost=seq(20,100,20), kernel = c("linear", "radial", "polynomial", "sigmoid"))
 
@@ -77,7 +77,7 @@ model <- fit(tune, iris_train, ranges)
 ### Model adjustment
 
 
-```r
+``` r
 train_prediction <- predict(model, iris_train)
 
 iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
@@ -93,7 +93,7 @@ print(train_eval$metrics)
 ### Test
 
 
-```r
+``` r
 # Test
 test_prediction <- predict(model, iris_test)
 
@@ -109,7 +109,7 @@ print(test_eval$metrics)
 ## 1 0.9333333 11 19  0  0         1      1           1           1  1
 ```
 
-```r
+``` r
 #Avaliação #versicolor
 test_eval <- evaluate(model, iris_test_predictand, test_prediction, ref=2)
 print(test_eval$metrics)
@@ -120,7 +120,7 @@ print(test_eval$metrics)
 ## 1 0.9333333 12 16  2  0 0.8571429      1           1   0.8888889 0.9230769
 ```
 
-```r
+``` r
 #Avaliação #virginica
 test_eval <- evaluate(model, iris_test_predictand, test_prediction, ref=3)
 print(test_eval$metrics)
@@ -134,7 +134,7 @@ print(test_eval$metrics)
 ### Options for other models
 
 
-```r
+``` r
 #knn
 ranges <- list(k=1:20)
 

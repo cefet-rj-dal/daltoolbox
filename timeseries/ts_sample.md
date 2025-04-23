@@ -1,7 +1,7 @@
 ## Time Series Sample
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -14,12 +14,12 @@ library(daltoolbox)
 ### Series for studying
 
 
-```r
+``` r
 data(sin_data)
 ```
 
 
-```r
+``` r
 library(ggplot2)
 plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 ```
@@ -29,7 +29,7 @@ plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 ### sliding windows
 
 
-```r
+``` r
 sw_size <- 10
 ts <- ts_data(sin_data$y, sw_size)
 ts_head(ts, 3)
@@ -45,13 +45,13 @@ ts_head(ts, 3)
 ### data sampling
 
 
-```r
+``` r
 test_size <- 3
 samp <- ts_sample(ts, test_size)
 ```
 
 
-```r
+``` r
 #first five rows from training data
 ts_head(samp$train, 5)
 ```
@@ -66,7 +66,7 @@ ts_head(samp$train, 5)
 ```
 
 
-```r
+``` r
 #last five rows from training data
 ts_head(samp$train[-c(1:(nrow(samp$train)-5)),])
 ```
@@ -81,7 +81,7 @@ ts_head(samp$train[-c(1:(nrow(samp$train)-5)),])
 ```
 
 
-```r
+``` r
 #testing data
 ts_head(samp$test)
 ```

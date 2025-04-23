@@ -1,7 +1,7 @@
 ## Classification using Decision Tree
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -12,7 +12,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 iris <- datasets::iris
 head(iris)
 ```
@@ -28,7 +28,7 @@ head(iris)
 ```
 
 
-```r
+``` r
 #extracting the levels for the dataset
 slevels <- levels(iris$Species)
 slevels
@@ -41,7 +41,7 @@ slevels
 ## Building samples (training and testing)
 
 
-```r
+``` r
 # preparing dataset for random sampling
 set.seed(1)
 sr <- sample_random()
@@ -51,7 +51,7 @@ iris_test <- sr$test
 ```
 
 
-```r
+``` r
 tbl <- rbind(table(iris[,"Species"]), 
              table(iris_train[,"Species"]), 
              table(iris_test[,"Species"]))
@@ -69,7 +69,7 @@ head(tbl)
 ### Model training
 
 
-```r
+``` r
 model <- cla_dtree("Species", slevels)
 model <- fit(model, iris_train)
 train_prediction <- predict(model, iris_train)
@@ -78,7 +78,7 @@ train_prediction <- predict(model, iris_train)
 ### Model adjustment
 
 
-```r
+``` r
 # Model evaluation
 iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
 train_eval <- evaluate(model, iris_train_predictand, train_prediction)
@@ -93,7 +93,7 @@ print(train_eval$metrics)
 ### Model testing
 
 
-```r
+``` r
 # Test
 test_prediction <- predict(model, iris_test)
 
@@ -109,7 +109,7 @@ print(test_eval$metrics)
 ## 1 0.9666667 11 19  0  0         1      1           1           1  1
 ```
 
-```r
+``` r
 #Avaliação #versicolor
 test_eval <- evaluate(model, iris_test_predictand, test_prediction, ref=2)
 print(test_eval$metrics)
@@ -120,7 +120,7 @@ print(test_eval$metrics)
 ## 1 0.9666667 12 17  1  0 0.9230769      1           1   0.9444444 0.96
 ```
 
-```r
+``` r
 #Avaliação #virginica
 test_eval <- evaluate(model, iris_test_predictand, test_prediction, ref=3)
 print(test_eval$metrics)

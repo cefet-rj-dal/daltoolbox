@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -18,7 +18,7 @@ If the curve is decreasing, use maximum curvature analysis.
 It brings a trade-off between having lower x values (with not so low y values) and having higher x values (not having to much decrease in y values). 
 
 
-```r
+``` r
 x <- seq(from=1,to=10,by=0.5)
 dat <- data.frame(x = x, value = -log(x), variable = as.factor("log"))
 myfit <- fit_curvature_max()
@@ -32,7 +32,7 @@ head(res)
 ```
 
 
-```r
+``` r
 grf <- plot_scatter(dat, label_x = "dimensions", label_y = "cumulative variance", colors="black") + 
     theme(text = element_text(size=16))
 plot(grf + geom_vline(xintercept = dat$x[res$x], linetype="dashed", color = "red", size=0.5))

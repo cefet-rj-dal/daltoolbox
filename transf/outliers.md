@@ -1,7 +1,7 @@
 ## NA and Outlier analysis
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -21,7 +21,7 @@ The class remove outliers for numeric attributes.
 ### removing outliers of a data frame
 
 
-```r
+``` r
 # code for outlier removal
 out_obj <- outliers() # class for outlier analysis
 out_obj <- fit(out_obj, iris) # computing boundaries
@@ -41,7 +41,7 @@ head(iris.clean)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-```r
+``` r
 nrow(iris.clean)
 ```
 
@@ -52,7 +52,7 @@ nrow(iris.clean)
 Visualizing the actual outliers
 
 
-```r
+``` r
 idx <- attr(iris.clean, "idx")
 print(table(idx))
 ```
@@ -63,7 +63,7 @@ print(table(idx))
 ##   146     4
 ```
 
-```r
+``` r
 iris.outliers <- iris[idx,]
 head(iris.outliers)
 ```

@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -14,7 +14,7 @@ library(dplyr)
 ```
 
 
-```r
+``` r
 wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/wine.RData")))
 head(wine)
 ```
@@ -34,14 +34,14 @@ Cummulative variance of PCA: First dimensions have high variance. However, addin
 The goal is to establish a trade-off.
 
 
-```r
+``` r
 pca_res = prcomp(wine[,2:ncol(wine)], center=TRUE, scale.=TRUE)
 y <- cumsum(pca_res$sdev^2/sum(pca_res$sdev^2))
 x <- 1:length(y)
 ```
 
 
-```r
+``` r
 dat <- data.frame(x, value = y, variable = "PCA")
 dat$variable <- as.factor(dat$variable)
 head(dat)
@@ -58,7 +58,7 @@ head(dat)
 ```
 
 
-```r
+``` r
 grf <- plot_scatter(dat, label_x = "dimensions", label_y = "cumulative variance", colors="black") + 
     theme(text = element_text(size=16))
 plot(grf)
@@ -71,7 +71,7 @@ If the curve is increasing, use minimum curvature analysis.
 It brings a trade-off between having lower x values (with not so high y values) and having higher x values (not having to much increase in y values). 
 
 
-```r
+``` r
 myfit <- fit_curvature_min()
 res <- transform(myfit, y)
 head(res)
@@ -83,7 +83,7 @@ head(res)
 ```
 
 
-```r
+``` r
 plot(grf + geom_vline(xintercept = res$x, linetype="dashed", color = "red", size=0.5))
 ```
 

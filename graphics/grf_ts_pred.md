@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -10,7 +10,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 library(ggplot2)
 library(RColorBrewer)
 
@@ -24,7 +24,7 @@ font <- theme(text = element_text(size=16))
 #### Synthetic time series
 
 
-```r
+``` r
 i <- seq(0, 25, 0.25)
 x <- cos(i)
 
@@ -40,7 +40,7 @@ ts_head(ts, 3)
 ```
 
 
-```r
+``` r
 #sampling training and test
 samp <- ts_sample(ts, test_size= 5)
 #division between input and output
@@ -64,7 +64,7 @@ prediction <- as.vector(prediction)
 A time series ploting with model adjustment and prediction values. 
 
 
-```r
+``` r
 plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction)
 ```
 

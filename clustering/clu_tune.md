@@ -1,7 +1,7 @@
 # Clustering - Tune Kmeans
 
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -12,12 +12,12 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 data(iris)
 ```
 
 
-```r
+``` r
 # fit model
 model <- clu_tune(cluster_kmeans(k = 0))
 ranges <- list(k = 1:10)
@@ -30,7 +30,7 @@ model$k
 ```
 
 
-```r
+``` r
 # run model
 clu <- cluster(model, iris[,1:4])
 table(clu)
@@ -43,7 +43,7 @@ table(clu)
 ```
 
 
-```r
+``` r
 # evaluate model using external metric
 eval <- evaluate(model, clu, iris$Species)
 eval

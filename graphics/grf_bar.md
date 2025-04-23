@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -10,7 +10,7 @@ library(daltoolbox)
 ```
 
 
-```r
+``` r
 library(RColorBrewer)
 library(ggplot2)
 
@@ -21,7 +21,7 @@ font <- theme(text = element_text(size=16))
 ```
 
 
-```r
+``` r
 #iris dataset for the example
 head(iris)
 ```
@@ -37,7 +37,7 @@ head(iris)
 ```
 
 
-```r
+``` r
 library(dplyr)
 data <- iris |> group_by(Species) |> summarize(Sepal.Length=mean(Sepal.Length))
 head(data)
@@ -59,7 +59,7 @@ A bar graph is used to presents categorical data with rectangular bars with heig
 More information: https://en.wikipedia.org/wiki/Bar_chart
 
 
-```r
+``` r
 grf <- plot_bar(data, colors=colors[1]) + font
 plot(grf)
 ```
@@ -67,7 +67,7 @@ plot(grf)
 ![plot of chunk unnamed-chunk-5](fig/grf_bar/unnamed-chunk-5-1.png)
 
 
-```r
+``` r
 # Sometimes the bars can be plotted vertically. Use function coord_flip() for that.
 grf <- grf + coord_flip()
 plot(grf)
@@ -76,7 +76,7 @@ plot(grf)
 ![plot of chunk unnamed-chunk-6](fig/grf_bar/unnamed-chunk-6-1.png)
 
 
-```r
+``` r
 # Bar graph with one color for each species
 grf <- plot_bar(data, colors=colors[1:3]) + font
 plot(grf)

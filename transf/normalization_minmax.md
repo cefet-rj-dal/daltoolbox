@@ -1,5 +1,5 @@
 
-```r
+``` r
 # DAL ToolBox
 # version 1.1.737
 
@@ -18,7 +18,7 @@ It is also important to apply it as an input for some machine learning methods.
 ## Example
 
 
-```r
+``` r
 iris <- datasets::iris  
 summary(iris)
 ```
@@ -37,7 +37,7 @@ summary(iris)
 Adjust numeric values to 0 (minimum value) - 1 (maximum value).
 
 
-```r
+``` r
 norm <- minmax()
 norm <- fit(norm, iris)
 ndata <- transform(norm, iris)
@@ -55,7 +55,7 @@ summary(ndata)
 ```
 
 
-```r
+``` r
 ddata <- inverse_transform(norm, ndata)
 summary(ddata)
 ```
