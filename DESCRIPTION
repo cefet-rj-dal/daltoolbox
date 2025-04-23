@@ -46,8 +46,6 @@ Config/reticulate:
       list(package = "pandas"),
       list(package = "numpy"),
       list(package = "matplotlib"),
-      list(package = "scikit-learn"),
-      list(package = "operator"),
-      list(package = "sys")
+      list(package = "scikit-learn")
     )
   )  
