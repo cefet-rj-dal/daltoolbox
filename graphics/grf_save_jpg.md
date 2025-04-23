@@ -64,8 +64,8 @@ plot(grf)
 ```
 
 ```
-## RStudioGD 
-##         2
+## png 
+##   2
 ```
 
 
