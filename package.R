@@ -17,6 +17,10 @@ if (FALSE) {
   check()
   load_all()
   #'@exportS3Method fit autoenc_variational_ed
+  #'@exportS3Method cluster cla_dtree
+  #'@exportS3Method fit autoenc_variational_ed
+  #'@exportS3Method predict cla_dtree
+  #'@exportS3Method fit autoenc_variational_ed
   #'@exportS3Method transform autoenc_stacked_ed
 }
 

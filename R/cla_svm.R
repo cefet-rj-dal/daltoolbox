@@ -39,7 +39,7 @@ cla_svm <- function(attribute, slevels, epsilon=0.1, cost=10, kernel="radial") {
 }
 
 #'@importFrom e1071 svm
-#'@export
+#'@exportS3Method fit cla_svm
 fit.cla_svm <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
   data[,obj$attribute] <- adjust_factor(data[,obj$attribute], obj$ilevels, obj$slevels)
@@ -53,7 +53,7 @@ fit.cla_svm <- function(obj, data, ...) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method predict cla_svm
 predict.cla_svm  <- function(object, x, ...) {
   x <- adjust_data.frame(x)
   x <- x[,object$x, drop = FALSE]

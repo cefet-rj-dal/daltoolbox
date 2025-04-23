@@ -30,7 +30,7 @@ cla_nb <- function(attribute, slevels) {
 }
 
 #'@import e1071
-#'@export
+#'@exportS3Method fit cla_nb
 fit.cla_nb <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
   data[,obj$attribute] <- adjust_factor(data[,obj$attribute], obj$ilevels, obj$slevels)
@@ -43,7 +43,7 @@ fit.cla_nb <- function(obj, data, ...) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method predict cla_nb
 predict.cla_nb  <- function(object, x, ...) {
   x <- adjust_data.frame(x)
   x <- x[,object$x, drop=FALSE]

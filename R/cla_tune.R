@@ -42,6 +42,7 @@ cla_tune <- function(base_model, folds=10, metric="accuracy") {
 #'@return a fitted obj
 #'@importFrom stats predict
 #'@export
+#'@exportS3Method fit cla_tune
 fit.cla_tune <- function(obj, data, ranges, ...) {
 
   build_model <- function(obj, ranges, data) {
@@ -115,7 +116,7 @@ fit.cla_tune <- function(obj, data, ranges, ...) {
 #'@param hyperparameters a dataframe with columns `key` (hyperparameter configuration) and `metric` (classification metric)
 #'@return returns a optimized key number of hyperparameters
 #'@importFrom dplyr filter summarise group_by
-#'@export
+#'@exportS3Method select_hyper cla_tune
 select_hyper.cla_tune <- function(obj, hyperparameters) {
   msg <- metric <- 0
   hyper_summary <- hyperparameters |> dplyr::filter(msg == "") |>

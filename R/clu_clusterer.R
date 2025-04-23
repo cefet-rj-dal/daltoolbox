@@ -10,7 +10,7 @@ clusterer <- function() {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method action clusterer
 action.clusterer <- function(obj, ...) {
   thiscall <- match.call(expand.dots = TRUE)
   thiscall[[1]] <- as.name("cluster")
@@ -25,18 +25,18 @@ action.clusterer <- function(obj, ...) {
 #'@return clustered data
 #'@examples
 #'#See ?cluster_kmeans for an example of transformation
-#'@export
+#' @export
 cluster <- function(obj, ...) {
   UseMethod("cluster")
 }
 
-#'@export
+#'@exportS3Method cluster default
 cluster.default <- function(obj, ...) {
   return(data.frame())
 }
 
 #'@importFrom dplyr filter summarise group_by n
-#'@export
+#'@exportS3Method evaluate clusterer
 evaluate.clusterer <- function(obj, cluster, attribute, ...) {
   compute_entropy <- function(obj) {
     x <- y <- e <- qtd <- n <- 0

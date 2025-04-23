@@ -17,7 +17,7 @@ classification <- function(attribute, slevels) {
 
 
 #'@import MLmetrics nnet
-#'@export
+#'@exportS3Method evaluate classification
 evaluate.classification <- function(obj, data, prediction, ref = 1, ...) {
   variables_as_factor <- function(prediction, s_levels) {
     y <- apply(prediction, 1, nnet::which.is.max)

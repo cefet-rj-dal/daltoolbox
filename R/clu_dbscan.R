@@ -39,7 +39,7 @@ cluster_dbscan <- function(minPts = 3, eps = NULL) {
 #'@param ... optional arguments
 #'@return returns a fitted obj with the `eps` parameter set
 #'@import dbscan
-#'@export
+#'@exportS3Method fit cluster_dbscan
 fit.cluster_dbscan <- function(obj, data, ...) {
   if (is.null(obj$eps)) {
     t <- sort(dbscan::kNNdist(data, k = obj$minPts))
@@ -53,7 +53,7 @@ fit.cluster_dbscan <- function(obj, data, ...) {
 
 
 #'@import dbscan
-#'@export
+#'@exportS3Method cluster cluster_dbscan
 cluster.cluster_dbscan <- function(obj, data, ...) {
   db_cluster <- dbscan::dbscan(data, eps = obj$eps, minPts = obj$minPts)
   cluster <- db_cluster$cluster

@@ -22,6 +22,7 @@ clu_tune <- function(base_model) {
 
 #'@importFrom stats predict
 #'@export
+#'@exportS3Method fit clu_tune
 fit.clu_tune <- function(obj, data, ranges, ...) {
 
   build_cluster <- function(obj, ranges, data) {

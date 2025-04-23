@@ -31,7 +31,7 @@ cla_knn <- function(attribute, slevels, k=1) {
 }
 
 #'@import class
-#'@export
+#'@exportS3Method fit cla_knn
 fit.cla_knn <- function(obj, data, ...) {
 
   data <- adjust_data.frame(data)
@@ -47,7 +47,7 @@ fit.cla_knn <- function(obj, data, ...) {
 }
 
 #'@import class
-#'@export
+#'@exportS3Method predict cla_knn
 predict.cla_knn  <- function(object, x, ...) {
   x <- adjust_data.frame(x)
   x <- x[,object$x, drop=FALSE]

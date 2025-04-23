@@ -31,7 +31,7 @@ cla_dtree <- function(attribute, slevels) {
 }
 
 #'@import tree
-#'@export
+#'@exportS3Method fit cla_dtree
 fit.cla_dtree <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
   data[,obj$attribute] <- adjust_factor(data[,obj$attribute], obj$ilevels, obj$slevels)
@@ -44,7 +44,7 @@ fit.cla_dtree <- function(obj, data, ...) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method predict cla_dtree
 predict.cla_dtree <- function(object, x, ...) {
   x <- adjust_data.frame(x)
   x <- x[,object$x, drop=FALSE]

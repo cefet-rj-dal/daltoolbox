@@ -29,7 +29,7 @@ cluster_kmeans <- function(k = 1) {
 }
 
 #'@importFrom stats kmeans
-#'@export
+#'@exportS3Method cluster cluster_kmeans
 cluster.cluster_kmeans <- function(obj, data, ...) {
   k <- obj$k
   k_cluster <- stats::kmeans(x = data, centers = k)

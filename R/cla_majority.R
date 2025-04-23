@@ -28,7 +28,7 @@ cla_majority <- function(attribute, slevels) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method fit cla_majority
 fit.cla_majority <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
   data[,obj$attribute] <- adjust_factor(data[,obj$attribute], obj$ilevels, obj$slevels)
@@ -42,7 +42,7 @@ fit.cla_majority <- function(obj, data, ...) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method predict cla_majority
 predict.cla_majority <- function(object, x, ...) {
   rows <- nrow(x)
   cols <- length(object$model$cols)
