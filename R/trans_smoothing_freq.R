@@ -20,7 +20,7 @@ smoothing_freq <- function(n) {
 }
 
 #'@importFrom stats quantile
-#'@export
+#'@exportS3Method fit smoothing_freq
 fit.smoothing_freq <- function(obj, data, ...) {
   if (length(obj$n) > 1)
     obj <- obj$tune(obj, data)

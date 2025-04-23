@@ -56,7 +56,7 @@ train_test <- function(obj, data, perc=0.8, ...) {
   UseMethod("train_test")
 }
 
-#'@export
+#'@exportS3Method train_test default
 train_test.default <- function(obj, data, perc=0.8, ...) {
   return(list())
 }
@@ -85,7 +85,7 @@ k_fold <- function(obj, data, k) {
   UseMethod("k_fold")
 }
 
-#'@export
+#'@exportS3Method k_fold default
 k_fold.default <- function(obj, data, k) {
   return(list())
 }

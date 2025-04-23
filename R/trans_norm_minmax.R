@@ -21,7 +21,7 @@ minmax <- function() {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method fit minmax
 fit.minmax <- function(obj, data, ...) {
   minmax = data.frame(t(ifelse(sapply(data, is.numeric), 1, 0)))
   minmax = rbind(minmax, rep(NA, ncol(minmax)))
@@ -36,8 +36,7 @@ fit.minmax <- function(obj, data, ...) {
   return(obj)
 }
 
-
-#'@export
+#'@exportS3Method transform minmax
 transform.minmax <- function(obj, data, ...) {
   minmax <- obj$norm.set
   for (j in colnames(minmax)[minmax["numeric",]==1]) {
@@ -51,7 +50,7 @@ transform.minmax <- function(obj, data, ...) {
   return (data)
 }
 
-#'@export
+#'@exportS3Method inverse_transform minmax
 inverse_transform.minmax <- function(obj, data, ...) {
   minmax <- obj$norm.set
   for (j in colnames(minmax)[minmax["numeric",]==1]) {

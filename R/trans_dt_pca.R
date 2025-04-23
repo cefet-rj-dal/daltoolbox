@@ -14,7 +14,6 @@
 #'iris.pca <- transform(mypca, iris)
 #'head(iris.pca)
 #'head(mypca$pca.transf)
-
 #'# Manual establishment of number of components
 #'mypca <- dt_pca("Species", 3)
 #'mypca <- fit(mypca, datasets::iris)
@@ -30,8 +29,8 @@ dt_pca <- function(attribute=NULL, components = NULL) {
   return(obj)
 }
 
-#'@export
 #'@importFrom stats prcomp
+#'@exportS3Method fit dt_pca
 fit.dt_pca <- function(obj, data, ...) {
   data <- data.frame(data)
   attribute <- obj$attribute
@@ -63,7 +62,7 @@ fit.dt_pca <- function(obj, data, ...) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method transform dt_pca
 transform.dt_pca <- function(obj, data, ...) {
   attribute <- obj$attribute
   pca.transf <- obj$pca.transf

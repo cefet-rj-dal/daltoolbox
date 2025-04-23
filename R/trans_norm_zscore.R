@@ -27,7 +27,7 @@ zscore <- function(nmean=0, nsd=1) {
 
 
 #'@importFrom stats sd
-#'@export
+#'@exportS3Method fit zscore
 fit.zscore <- function(obj, data, ...) {
   nmean <- obj$nmean
   nsd <- obj$nsd
@@ -49,7 +49,7 @@ fit.zscore <- function(obj, data, ...) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method transform zscore
 transform.zscore <- function(obj, data, ...) {
   zscore <- obj$norm.set
   for (j in colnames(zscore)[zscore["numeric",]==1]) {
@@ -63,7 +63,7 @@ transform.zscore <- function(obj, data, ...) {
   return (data)
 }
 
-#'@export
+#'@exportS3Method inverse_transform zscore
 inverse_transform.zscore <- function(obj, data, ...) {
   zscore <- obj$norm.set
   for (j in colnames(zscore)[zscore["numeric",]==1]) {

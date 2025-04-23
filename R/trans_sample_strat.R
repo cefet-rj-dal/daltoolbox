@@ -30,7 +30,7 @@ sample_stratified <- function(attribute) {
 }
 
 #'@importFrom caret createDataPartition
-#'@export
+#'@exportS3Method train_test sample_stratified
 train_test.sample_stratified <- function(obj, data, perc=0.8, ...) {
   predictors_name <- setdiff(colnames(data), obj$attribute)
   predictand <- data[,obj$attribute]
@@ -41,7 +41,7 @@ train_test.sample_stratified <- function(obj, data, perc=0.8, ...) {
   return (list(train=train, test=test))
 }
 
-#'@export
+#'@exportS3Method k_fold sample_stratified
 k_fold.sample_stratified <- function(obj, data, k) {
   folds <- list()
   samp <- list()

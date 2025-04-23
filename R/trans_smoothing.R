@@ -43,7 +43,7 @@ smoothing <- function(n) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method fit smoothing
 fit.smoothing <- function(obj, data, ...) {
   v <- data
   interval <- obj$interval
@@ -58,7 +58,7 @@ fit.smoothing <- function(obj, data, ...) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method transform smoothing
 transform.smoothing <- function(obj, data, ...) {
   v <- data
   interval.adj <- obj$interval.adj
@@ -68,7 +68,7 @@ transform.smoothing <- function(obj, data, ...) {
   return(vm)
 }
 
-#'@export
+#'@exportS3Method evaluate smoothing
 evaluate.smoothing <- function(obj, data, attribute, ...) {
   x <- y <- q <- qtd <- e <- n <- 0
   result <- list(data=as.factor(data), attribute=as.factor(attribute))

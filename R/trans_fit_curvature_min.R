@@ -24,7 +24,7 @@ fit_curvature_min <- function() {
 
 #'@importFrom stats predict
 #'@importFrom stats smooth.spline
-#'@export
+#'@exportS3Method transform fit_curvature_min
 transform.fit_curvature_min <- function(obj, y, ...) {
   x <- 1:length(y)
   smodel = stats::smooth.spline(x, y, df = obj$df)

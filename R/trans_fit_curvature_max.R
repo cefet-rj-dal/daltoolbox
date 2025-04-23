@@ -26,7 +26,7 @@ fit_curvature_max <- function() {
 
 #'@importFrom stats predict
 #'@importFrom stats smooth.spline
-#'@export
+#'@exportS3Method transform fit_curvature_max
 transform.fit_curvature_max <- function(obj, y, ...) {
   x <- 1:length(y)
   smodel = stats::smooth.spline(x, y, df = obj$df)

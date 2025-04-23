@@ -26,7 +26,7 @@ sample_random <- function() {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method train_test sample_random
 train_test.sample_random <- function(obj, data, perc=0.8, ...) {
   idx <- base::sample(1:nrow(data),as.integer(perc*nrow(data)))
   train <- data[idx,]
@@ -34,7 +34,7 @@ train_test.sample_random <- function(obj, data, perc=0.8, ...) {
   return (list(train=train, test=test))
 }
 
-#'@export
+#'@exportS3Method k_fold sample_random
 k_fold.sample_random <- function(obj, data, k) {
   folds <- list()
   samp <- list()

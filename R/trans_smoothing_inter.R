@@ -20,7 +20,7 @@ smoothing_inter <- function(n) {
 }
 
 #'@importFrom graphics boxplot
-#'@export
+#'@exportS3Method fit smoothing_inter
 fit.smoothing_inter <- function(obj, data, ...) {
   if (length(obj$n) > 1)
     obj <- obj$tune(obj, data)

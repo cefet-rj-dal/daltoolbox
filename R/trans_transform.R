@@ -23,7 +23,7 @@ transform <- function(obj, ...) {
   UseMethod("transform")
 }
 
-#'@export
+#'@exportS3Method transform default
 transform.default <- function(obj, ...) {
   thiscall <- match.call(expand.dots = TRUE)
   thiscall[[1]] <- as.name("action.default")
@@ -38,7 +38,7 @@ transform.default <- function(obj, ...) {
 #'@return returns a transformed data
 #'@examples
 #'#See ?minmax for an example of transformation
-#'@export
+#'@exportS3Method action dal_transform
 action.dal_transform <- function(obj, ...) {
   thiscall <- match.call(expand.dots = TRUE)
   thiscall[[1]] <- as.name("transform")
@@ -58,7 +58,7 @@ inverse_transform <- function(obj, ...) {
   UseMethod("inverse_transform")
 }
 
-#'@export
+#'@exportS3Method inverse_transform default
 inverse_transform.default <- function(obj, ...) {
   thiscall <- match.call(expand.dots = TRUE)
   thiscall[[1]] <- as.name("action.default")

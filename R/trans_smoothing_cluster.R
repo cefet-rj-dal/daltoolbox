@@ -23,7 +23,7 @@ smoothing_cluster <- function(n) {
 }
 
 #'@importFrom stats kmeans
-#'@export
+#'@exportS3Method fit smoothing_cluster
 fit.smoothing_cluster <- function(obj, data, ...) {
   if (length(obj$n) > 1)
     obj <- obj$tune(obj, data)

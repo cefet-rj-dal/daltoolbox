@@ -27,7 +27,7 @@ outliers <- function(alpha = 1.5) {
 }
 
 #'@importFrom stats quantile
-#'@export
+#'@exportS3Method fit outliers
 fit.outliers <- function(obj, data, ...) {
   lq1 <- NA
   hq3 <- NA
@@ -58,7 +58,7 @@ fit.outliers <- function(obj, data, ...) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method transform outliers
 transform.outliers <- function(obj, data, ...) {
   idx <- FALSE
   lq1 <- obj$lq1

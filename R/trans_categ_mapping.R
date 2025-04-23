@@ -20,7 +20,7 @@ categ_mapping <- function(attribute) {
 
 #'@importFrom stats formula
 #'@importFrom stats model.matrix
-#'@export
+#'@exportS3Method transform categ_mapping
 transform.categ_mapping <- function(obj, data, ...) {
   mdlattribute <- stats::formula(paste("~", paste(obj$attribute, "-1")))
   data <- as.data.frame(stats::model.matrix(mdlattribute, data=data))
