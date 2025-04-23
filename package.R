@@ -16,12 +16,10 @@ if (FALSE) {
   library(devtools)
   check()
   load_all()
-  #'@exportS3Method fit autoenc_variational_ed
-  #'@exportS3Method cluster cla_dtree
-  #'@exportS3Method fit autoenc_variational_ed
-  #'@exportS3Method predict cla_dtree
-  #'@exportS3Method fit autoenc_variational_ed
-  #'@exportS3Method transform autoenc_stacked_ed
+  #'@exportS3Method fit ts_conv1d
+  #'@exportS3Method predict ts_conv1d
+  #'@exportS3Method do_fit ts_conv1d
+  #'@exportS3Method do_predict ts_conv1d
 }
 
 if (FALSE) {

@@ -39,14 +39,14 @@ ts_elm <- function(preprocess=NA, input_size=NA, nhid=NA, actfun='purelin') {
 }
 
 #'@import elmNNRcpp
-#'@export
+#'@exportS3Method do_fit ts_elm
 do_fit.ts_elm <- function(obj, x, y) {
   obj$model <- elmNNRcpp::elm_train(x, y, nhid = obj$nhid, actfun = obj$actfun, init_weights = "uniform_positive", bias = FALSE, verbose = FALSE)
   return(obj)
 }
 
 #'@import elmNNRcpp
-#'@export
+#'@exportS3Method do_predict ts_elm
 do_predict.ts_elm <- function(obj, x) {
   if (is.data.frame(x))
     x <- as.matrix(x)

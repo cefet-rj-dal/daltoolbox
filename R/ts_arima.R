@@ -30,7 +30,7 @@ ts_arima <- function() {
 }
 
 #'@import forecast
-#'@export
+#'@exportS3Method fit ts_arima
 fit.ts_arima <- function(obj, x, y = NULL, ...) {
   obj$model <- forecast::auto.arima(x, allowdrift = TRUE, allowmean = TRUE)
   order <- obj$model$arma[c(1, 6, 2, 3, 7, 4, 5)]
@@ -45,7 +45,7 @@ fit.ts_arima <- function(obj, x, y = NULL, ...) {
 }
 
 #'@import forecast
-#'@export
+#'@exportS3Method predict ts_arima
 predict.ts_arima <- function(object, x, y = NULL, steps_ahead=NULL, ...) {
   if (!is.null(x) && (length(object$model$x) == length(x)) && (sum(object$model$x-x) == 0)){
     #get adjusted data

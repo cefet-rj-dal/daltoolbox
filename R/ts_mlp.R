@@ -42,7 +42,7 @@ ts_mlp <- function(preprocess=NA, input_size=NA, size=NA, decay=0.01, maxit=1000
 
 
 #'@import nnet
-#'@export
+#'@exportS3Method do_fit ts_mlp
 do_fit.ts_mlp <- function(obj, x, y) {
   obj$model <- nnet::nnet(x = x, y = y, size = obj$size, decay=obj$decay, maxit = obj$maxit, linout=TRUE, trace = FALSE)
   return(obj)

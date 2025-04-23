@@ -35,7 +35,7 @@ ts_knn <- function(preprocess=NA, input_size=NA, k=NA) {
 }
 
 #'@importFrom FNN knn.reg
-#'@export
+#'@exportS3Method do_fit ts_knn
 do_fit.ts_knn <- function(obj, x, y) {
   x <- adjust_data.frame(x)
   y <- adjust_data.frame(y)
@@ -46,7 +46,7 @@ do_fit.ts_knn <- function(obj, x, y) {
 }
 
 #'@importFrom FNN knn.reg
-#'@export
+#'@exportS3Method do_predict ts_knn
 do_predict.ts_knn <- function(obj, x) {
   #develop from FNN https://daviddalpiaz.github.io/r4sl/knn-reg.html
   x <- adjust_data.frame(x)
