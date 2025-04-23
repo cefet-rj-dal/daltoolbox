@@ -27,7 +27,7 @@ select_hyper <- function(obj, hyperparameters) {
   UseMethod("select_hyper")
 }
 
-#'@export
+#'@exportS3Method select_hyper dal_tune
 select_hyper.default <- function(obj, hyperparameters) {
   return(length(hyperparameters))
 }

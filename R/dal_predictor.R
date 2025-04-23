@@ -14,13 +14,13 @@ predictor <- function() {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method fit predictor
 fit.predictor <- function(obj, data, ...) {
   obj$x <- setdiff(colnames(data), obj$attribute)
   return(obj)
 }
 
-#'@export
+#'@exportS3Method action predictor
 action.predictor <- function(obj, ...) {
   thiscall <- match.call(expand.dots = TRUE)
   thiscall[[1]] <- as.name("predict")

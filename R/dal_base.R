@@ -25,7 +25,7 @@ fit <- function(obj, ...) {
   UseMethod("fit")
 }
 
-#'@export
+#'@exportS3Method fit default
 fit.default <- function(obj, ...) {
   return(obj)
 }
@@ -46,7 +46,7 @@ action <- function(obj, ...) {
   UseMethod("action")
 }
 
-#'@export
+#'@exportS3Method action default
 action.default <- function(obj, ...) {
   par <- c(as.list(environment()), list(...))
   data <- NULL
@@ -73,11 +73,12 @@ set_params <- function(obj, params) {
 #'@param params parameters
 #'@return returns the object unchanged
 #'@export
+#'@exportS3Method set_params default
 set_params.default <- function(obj, params) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method set_params dal_base
 set_params.dal_base <- function(obj, params) {
   if (!is.null(params)) {
     params <- as.list(params)

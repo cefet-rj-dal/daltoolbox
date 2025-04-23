@@ -13,7 +13,7 @@ dal_learner <- function() {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method action dal_learner
 action.dal_learner <- function(obj, ...) {
   thiscall <- match.call(expand.dots = TRUE)
   thiscall[[1]] <- as.name("predict")
@@ -43,7 +43,7 @@ evaluate <- function(obj, ...) {
   UseMethod("evaluate")
 }
 
-#'@export
+#'@exportS3Method evaluate default
 evaluate.default <- function(obj, ...) {
   return(NULL)
 }
