@@ -29,3 +29,54 @@ plot(grf)
 
 print(head(test))
 
+
+# parte 2
+
+load("~/harbinger/develop/train.rdata")
+
+auto <- autoenc_ed(3, 2)
+
+auto <- fit(auto, train)
+
+
+
+# fitting the model
+model <- fit(model, dataset$serie)
+
+## 'list' object has no attribute 'to_numpy'
+
+# making detections
+detection <- detect(model, dataset$serie)
+
+## Error in UseMethod("detect"): no applicable method for 'detect' applied to an object of class "c('autoenc_ed', 'dal_transform', 'dal_base')"
+
+# filtering detected events
+print(detection |> dplyr::filter(event==TRUE))
+
+## Error: object 'detection' not found
+
+# evaluating the detections
+evaluation <- evaluate(model, detection$event, dataset$event)
+print(evaluation$confMatrix)
+
+## NULL
+
+# ploting the results
+grf <- har_plot(model, dataset$serie, detection, dataset$event)
+
+## Error: object 'detection' not found
+
+plot(grf)
+
+## Error: object 'grf' not found
+
+# ploting the results
+res <-  attr(detection, "res")
+
+## Error: object 'detection' not found
+
+plot(res)
+
+## Error: object 'res' not found
+
+
