@@ -50,7 +50,6 @@ transform.autoenc_variational_e <- function(obj, data, ...) {
   result <- NULL
   if (!is.null(obj$model)) {
     result <- autoenc_variational_encode(obj$model, data)
-    result <- matrix(unlist(result$tolist()), ncol = obj$encoding_size, byrow = TRUE)
   }
   return(result)
 }

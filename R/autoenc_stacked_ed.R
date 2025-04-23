@@ -52,6 +52,5 @@ transform.autoenc_stacked_ed <- function(obj, data, ...) {
   result <- NULL
   if (!is.null(obj$model)) {
     result <- autoenc_stacked_encode_decode(obj$model, data)
-    result <- matrix(unlist(result$tolist()), ncol = obj$input_size, byrow = TRUE)
   }
 }

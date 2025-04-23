@@ -49,7 +49,6 @@ transform.autoenc_ed <- function(obj, data, ...) {
   result <- NULL
   if (!is.null(obj$model)) {
     result <- autoenc_encode_decode(obj$model, data, batch_size=obj$batch_size)
-    result <- matrix(unlist(result$tolist()), ncol = obj$input_size, byrow = TRUE)
   }
   return(result)
 }

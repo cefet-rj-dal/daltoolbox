@@ -115,7 +115,8 @@ result <- transform(auto, test)
 ```
 
 ```
-## Error in result$tolist: $ operator is invalid for atomic vectors
+## Called from: eval(expr, p)
+## debug at /home/gpca/daltoolbox/R/autoenc_ed.R#51: result <- autoenc_encode_decode(obj$model, data, batch_size = obj$batch_size)
 ```
 
 ``` r
@@ -123,27 +124,19 @@ print(head(result))
 ```
 
 ```
-## Error: object 'result' not found
+##           [,1]      [,2]      [,3]      [,4]      [,5]
+## [1,] 0.7217127 0.8282319 0.9116995 0.9669886 0.9985917
+## [2,] 0.8280803 0.9119485 0.9693578 0.9979107 0.9959416
+## [3,] 0.9154853 0.9717947 0.9989132 0.9977472 0.9621152
+## [4,] 0.9758620 1.0020174 0.9972875 0.9660388 0.8996256
+## [5,] 0.9979519 0.9949440 0.9610474 0.9034204 0.8135284
+## [6,] 0.9918338 0.9598563 0.8978407 0.8158258 0.7073913
 ```
 
 
 ``` r
 result <- as.data.frame(result)
-```
-
-```
-## Error: object 'result' not found
-```
-
-``` r
 names(result) <- names(test)
-```
-
-```
-## Error in eval(ei, envir): object 'result' not found
-```
-
-``` r
 r2 <- c()
 mape <- c()
 for (col in names(test)){
@@ -156,7 +149,11 @@ print(paste(col, 'R2 test:', r2_col, 'MAPE:', mape_col))
 ```
 
 ```
-## Error: object 'result' not found
+## [1] "t4 R2 test: 0.999143653193266 MAPE: 0.00297926511681434"
+## [1] "t3 R2 test: 0.999722694042756 MAPE: 0.00252325096099102"
+## [1] "t2 R2 test: 0.999890214478579 MAPE: 0.00217666393785985"
+## [1] "t1 R2 test: 0.999885279399409 MAPE: 0.00397349470656526"
+## [1] "t0 R2 test: 0.999987732602016 MAPE: 0.00155169352245455"
 ```
 
 ``` r
@@ -164,13 +161,5 @@ print(paste('Means R2 test:', mean(r2), 'MAPE:', mean(mape)))
 ```
 
 ```
-## Warning in mean.default(r2): argument is not numeric or logical: returning NA
-```
-
-```
-## Warning in mean.default(mape): argument is not numeric or logical: returning NA
-```
-
-```
-## [1] "Means R2 test: NA MAPE: NA"
+## [1] "Means R2 test: 0.999725914743205 MAPE: 0.002640873648937"
 ```

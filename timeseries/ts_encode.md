@@ -77,18 +77,17 @@ print(head(train))
 
 ``` r
 result <- transform(auto, train)
-```
-
-```
-## Error in result$tolist: $ operator is invalid for atomic vectors
-```
-
-``` r
 print(head(result))
 ```
 
 ```
-## Error: object 'result' not found
+##            [,1]        [,2]        [,3]
+## [1,] -0.7159342  0.43500486 -0.15155376
+## [2,] -0.9853274  0.23114434  0.01875746
+## [3,] -1.1602597  0.03849183  0.20733730
+## [4,] -1.2581468 -0.12541457  0.38406050
+## [5,] -1.2806805 -0.24872348  0.54072189
+## [6,] -1.2268844 -0.33412734  0.67071229
 ```
 
 ### Encoding of test
@@ -109,17 +108,15 @@ print(head(test))
 
 ``` r
 result <- transform(auto, test)
-```
-
-```
-## Error in result$tolist: $ operator is invalid for atomic vectors
-```
-
-``` r
 print(head(result))
 ```
 
 ```
-## Error: object 'result' not found
+##             [,1]       [,2]      [,3]
+## [1,] -0.92710847 -0.3925960 0.8225801
+## [2,] -0.68301076 -0.3778404 0.8558649
+## [3,] -0.25951201 -0.4723695 1.0486027
+## [4,]  0.07026887 -0.2917564 0.7079601
+## [5,]  0.47224808 -0.3185220 0.8014187
 ```
 

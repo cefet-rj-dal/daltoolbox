@@ -110,38 +110,25 @@ print(head(test))
 
 ``` r
 result <- transform(auto, test)
-```
-
-```
-## Error in result$tolist: $ operator is invalid for atomic vectors
-```
-
-``` r
 print(head(result))
 ```
 
 ```
-## Error: object 'result' not found
+## , , 1
+## 
+##           [,1]      [,2]      [,3]      [,4]      [,5]
+## [1,] 0.8745927 0.9112762 0.8639653 0.8618314 0.8745435
+## [2,] 0.8996338 0.9414996 0.8894896 0.8873888 0.9020282
+## [3,] 0.9104158 0.9547455 0.9006196 0.8986353 0.9141209
+## [4,] 0.9095716 0.9541335 0.9000699 0.8982364 0.9137260
+## [5,] 0.8968399 0.9395242 0.8877202 0.8861331 0.9008006
+## [6,] 0.8689230 0.9074502 0.8605632 0.8595197 0.8723499
 ```
 
 
 ``` r
 result <- as.data.frame(result)
-```
-
-```
-## Error: object 'result' not found
-```
-
-``` r
 names(result) <- names(test)
-```
-
-```
-## Error in eval(ei, envir): object 'result' not found
-```
-
-``` r
 r2 <- c()
 mape <- c()
 for (col in names(test)){
@@ -154,7 +141,11 @@ print(paste(col, 'R2 test:', r2_col, 'MAPE:', mape_col))
 ```
 
 ```
-## Error: object 'result' not found
+## [1] "t4 R2 test: 0.356011403393437 MAPE: 0.152380954798778"
+## [1] "t3 R2 test: 0.899121254927845 MAPE: 0.0781644894203197"
+## [1] "t2 R2 test: 0.971695952549378 MAPE: 0.0552045321627146"
+## [1] "t1 R2 test: 0.912645827943198 MAPE: 0.163576735327956"
+## [1] "t0 R2 test: 0.836901813124828 MAPE: 0.351747874635084"
 ```
 
 ``` r
@@ -162,14 +153,6 @@ print(paste('Means R2 test:', mean(r2), 'MAPE:', mean(mape)))
 ```
 
 ```
-## Warning in mean.default(r2): argument is not numeric or logical: returning NA
-```
-
-```
-## Warning in mean.default(mape): argument is not numeric or logical: returning NA
-```
-
-```
-## [1] "Means R2 test: NA MAPE: NA"
+## [1] "Means R2 test: 0.795275250387737 MAPE: 0.16021491726897"
 ```
 

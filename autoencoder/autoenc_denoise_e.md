@@ -110,17 +110,16 @@ print(head(test))
 
 ``` r
 result <- transform(auto, test)
-```
-
-```
-## Error in result$tolist: $ operator is invalid for atomic vectors
-```
-
-``` r
 print(head(result))
 ```
 
 ```
-## Error: object 'result' not found
+##           [,1]       [,2]      [,3]
+## [1,] 0.9871817 -0.6391851 0.6696485
+## [2,] 1.0003511 -0.7660673 0.6839391
+## [3,] 0.9772787 -0.8781938 0.6748700
+## [4,] 0.9256222 -0.9589269 0.6461249
+## [5,] 0.8485929 -1.0032468 0.5994912
+## [6,] 0.7509801 -1.0083981 0.5378681
 ```
 

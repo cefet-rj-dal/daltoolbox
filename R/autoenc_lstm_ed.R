@@ -50,7 +50,6 @@ transform.autoenc_lstm_ed <- function(obj, data, ...) {
 
   if (!is.null(obj$model)) {
     result <- autoenc_lstm_encode_decode(obj$model, data)
-    result <- matrix(unlist(result$tolist()), ncol = obj$input_size, byrow = TRUE)
   }
   return(result)
 }
