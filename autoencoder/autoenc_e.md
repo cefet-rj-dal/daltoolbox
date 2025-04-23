@@ -78,36 +78,17 @@ auto <- autoenc_e(5, 3)
 auto <- fit(auto, train)
 ```
 
-```
-## Error in result[[2]]$tolist: $ operator is invalid for atomic vectors
-```
-
 ### learning curves
 
 
 ``` r
 fit_loss <- data.frame(x=1:length(auto$train_loss), train_loss=auto$train_loss,val_loss=auto$val_loss)
-```
 
-```
-## Error in data.frame(x = 1:length(auto$train_loss), train_loss = auto$train_loss, : arguments imply differing number of rows: 2, 0
-```
-
-``` r
 grf <- plot_series(fit_loss, colors=c('Blue','Orange'))
-```
-
-```
-## Error: object 'fit_loss' not found
-```
-
-``` r
 plot(grf)
 ```
 
-```
-## Error: object 'grf' not found
-```
+![plot of chunk unnamed-chunk-6](fig/autoenc_e/unnamed-chunk-6-1.png)
 
 ### testing autoencoder
 presenting the original test set and display encoding
@@ -129,10 +110,17 @@ print(head(test))
 
 ``` r
 result <- transform(auto, test)
+```
+
+```
+## Error in result$tolist: $ operator is invalid for atomic vectors
+```
+
+``` r
 print(head(result))
 ```
 
 ```
-## NULL
+## Error: object 'result' not found
 ```
 

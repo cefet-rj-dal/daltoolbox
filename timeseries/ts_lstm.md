@@ -57,35 +57,14 @@ model <- fit(model, x=io_train$input, y=io_train$output)
 
 ``` r
 adjust <- predict(model, io_train$input)
-```
-
-```
-## Error in prediction$tolist: $ operator is invalid for atomic vectors
-```
-
-``` r
 adjust <- as.vector(adjust)
-```
-
-```
-## Error: object 'adjust' not found
-```
-
-``` r
 output <- as.vector(io_train$output)
 ev_adjust <- evaluate(model, output, adjust)
-```
-
-```
-## Error: object 'adjust' not found
-```
-
-``` r
 ev_adjust$mse
 ```
 
 ```
-## Error: object 'ev_adjust' not found
+## [1] 0.0001382763
 ```
 
 ### Prediction of test
@@ -95,21 +74,8 @@ ev_adjust$mse
 steps_ahead <- 1
 io_test <- ts_projection(samp$test)
 prediction <- predict(model, x=io_test$input, steps_ahead=steps_ahead)
-```
-
-```
-## Error in prediction$tolist: $ operator is invalid for atomic vectors
-```
-
-``` r
 prediction <- as.vector(prediction)
-```
 
-```
-## Error: object 'prediction' not found
-```
-
-``` r
 output <- as.vector(io_test$output)
 if (steps_ahead > 1)
     output <- output[1:steps_ahead]
@@ -118,7 +84,7 @@ print(sprintf("%.2f, %.2f", output, prediction))
 ```
 
 ```
-## Error: object 'prediction' not found
+## [1] "0.41, 0.41"   "0.17, 0.18"   "-0.08, -0.07" "-0.32, -0.31" "-0.54, -0.55"
 ```
 
 ### Evaluation of test data
@@ -126,18 +92,12 @@ print(sprintf("%.2f, %.2f", output, prediction))
 
 ``` r
 ev_test <- evaluate(model, output, prediction)
-```
-
-```
-## Error: object 'prediction' not found
-```
-
-``` r
 print(head(ev_test$metrics))
 ```
 
 ```
-## Error: object 'ev_test' not found
+##            mse      smape       R2
+## 1 2.188733e-05 0.02755854 0.999811
 ```
 
 ``` r
@@ -145,7 +105,7 @@ print(sprintf("smape: %.2f", 100*ev_test$metrics$smape))
 ```
 
 ```
-## Error: object 'ev_test' not found
+## [1] "smape: 2.76"
 ```
 
 ### Plot results
@@ -156,7 +116,5 @@ yvalues <- c(io_train$output, io_test$output)
 plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction) + theme(text = element_text(size=16))
 ```
 
-```
-## Error: object 'adjust' not found
-```
+![plot of chunk unnamed-chunk-9](fig/ts_lstm/unnamed-chunk-9-1.png)
 

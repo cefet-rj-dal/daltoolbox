@@ -58,10 +58,6 @@ auto <- autoenc_ed(5, 3)
 auto <- fit(auto, train)
 ```
 
-```
-## Error in result[[2]]$tolist: $ operator is invalid for atomic vectors
-```
-
 ### Evaluation of encoding
 
 
@@ -81,11 +77,18 @@ print(head(train))
 
 ``` r
 result <- transform(auto, train)
+```
+
+```
+## Error in result$tolist: $ operator is invalid for atomic vectors
+```
+
+``` r
 print(head(result))
 ```
 
 ```
-## NULL
+## Error: object 'result' not found
 ```
 
 ### Encoding of test
@@ -106,10 +109,17 @@ print(head(test))
 
 ``` r
 result <- transform(auto, test)
+```
+
+```
+## Error in result$tolist: $ operator is invalid for atomic vectors
+```
+
+``` r
 print(head(result))
 ```
 
 ```
-## NULL
+## Error: object 'result' not found
 ```
 

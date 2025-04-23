@@ -70,4 +70,4 @@ if (TRUE) {
     convert_rmd_md(tex)
   }
 }
-
+#Procurar por ## Error

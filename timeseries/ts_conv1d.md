@@ -57,35 +57,14 @@ model <- fit(model, x=io_train$input, y=io_train$output)
 
 ``` r
 adjust <- predict(model, io_train$input)
-```
-
-```
-## Error in prediction$tolist: $ operator is invalid for atomic vectors
-```
-
-``` r
 adjust <- as.vector(adjust)
-```
-
-```
-## Error: object 'adjust' not found
-```
-
-``` r
 output <- as.vector(io_train$output)
 ev_adjust <- evaluate(model, output, adjust)
-```
-
-```
-## Error: object 'adjust' not found
-```
-
-``` r
 ev_adjust$mse
 ```
 
 ```
-## Error: object 'ev_adjust' not found
+## [1] 5.457399e-05
 ```
 
 ### Prediction of test
@@ -93,35 +72,31 @@ ev_adjust$mse
 
 ``` r
 prediction <- predict(model, x=io_test$input[1,], steps_ahead=5)
-```
-
-```
-## Error in prediction$tolist: $ operator is invalid for atomic vectors
-```
-
-``` r
 prediction <- as.vector(prediction)
-```
-
-```
-## Error: object 'prediction' not found
-```
-
-``` r
 output <- as.vector(io_test$output)
 ev_test <- evaluate(model, output, prediction)
-```
-
-```
-## Error: object 'prediction' not found
-```
-
-``` r
 ev_test
 ```
 
 ```
-## Error: object 'ev_test' not found
+## $values
+## [1]  0.41211849  0.17388949 -0.07515112 -0.31951919 -0.54402111
+## 
+## $prediction
+## [1]  0.4041274  0.1567712 -0.1027277 -0.3598590 -0.5930030
+## 
+## $smape
+## [1] 0.1276187
+## 
+## $mse
+## [1] 0.001028778
+## 
+## $R2
+## [1] 0.9911144
+## 
+## $metrics
+##           mse     smape        R2
+## 1 0.001028778 0.1276187 0.9911144
 ```
 
 ### Plot results
@@ -132,7 +107,5 @@ yvalues <- c(io_train$output, io_test$output)
 plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction) + theme(text = element_text(size=16))
 ```
 
-```
-## Error: object 'adjust' not found
-```
+![plot of chunk unnamed-chunk-8](fig/ts_conv1d/unnamed-chunk-8-1.png)
 
