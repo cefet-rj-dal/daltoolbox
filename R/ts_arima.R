@@ -29,7 +29,7 @@ ts_arima <- function() {
   return(obj)
 }
 
-#'@import forecast
+#'@importFrom forecast auto.arima
 #'@exportS3Method fit ts_arima
 fit.ts_arima <- function(obj, x, y = NULL, ...) {
   obj$model <- forecast::auto.arima(x, allowdrift = TRUE, allowmean = TRUE)
@@ -44,7 +44,9 @@ fit.ts_arima <- function(obj, x, y = NULL, ...) {
   return(obj)
 }
 
-#'@import forecast
+#'@importFrom forecast forecast
+#'@importFrom forecast Arima
+#'@importFrom forecast auto.arima
 #'@exportS3Method predict ts_arima
 predict.ts_arima <- function(object, x, y = NULL, steps_ahead=NULL, ...) {
   if (!is.null(x) && (length(object$model$x) == length(x)) && (sum(object$model$x-x) == 0)){
@@ -60,7 +62,7 @@ predict.ts_arima <- function(object, x, y = NULL, steps_ahead=NULL, ...) {
       i <- 1
       y <- model$x
       while (i <= length(x)) {
-        pred <- c(pred, forecast(model, h = 1)$mean)
+        pred <- c(pred, forecast::forecast(model, h = 1)$mean)
         y <- c(y, x[i])
 
         model <- tryCatch(
