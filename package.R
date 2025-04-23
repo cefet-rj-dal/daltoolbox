@@ -43,6 +43,8 @@ if (FALSE) {
 
 if (FALSE) {
   #update documentation
+  devtools::document()
+  devtools::check()
   pkgdown::build_site()
 }
 if (FALSE) {
