@@ -41,16 +41,6 @@ do_predict.ts_conv1d <- function(obj, x) {
   X_values$t0 <- 0
 
   n <- nrow(X_values)
-  if (n > 1) {
-    prediction <- ts_conv1d_predict(obj$model, X_values)
-    prediction <-unlist(prediction$tolist())
-  }
-  else if (n == 1) {
-    X_values <- rbind(X_values,X_values)
-    prediction <- ts_conv1d_predict(obj$model, X_values)
-    prediction <-unlist(prediction$tolist())[1]
-  }
-  else
-    prediction <- NA
+  prediction <- ts_conv1d_predict(obj$model, X_values)
   return(prediction)
 }

@@ -35,8 +35,8 @@ fit.autoenc_ed <- function(obj, data, ...) {
   result <- autoenc_fit(obj$model, data, batch_size=obj$batch_size, num_epochs = obj$num_epochs, learning_rate = obj$learning_rate)
 
   obj$model <- result[[1]]
-  obj$train_loss <- unlist(result[[2]]$tolist())
-  obj$val_loss <- unlist(result[[3]]$tolist())
+  obj$train_loss <- result[[2]]
+  obj$val_loss <- result[[3]]
 
   return(obj)
 }
