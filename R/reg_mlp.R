@@ -34,7 +34,7 @@ reg_mlp <- function(attribute, size=NULL, decay=0.05, maxit=1000) {
 }
 
 #'@importFrom nnet nnet
-#'@export
+#'@exportS3Method fit reg_mlp
 fit.reg_mlp <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
   obj <- fit.predictor(obj, data)
@@ -50,7 +50,7 @@ fit.reg_mlp <- function(obj, data, ...) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method predict reg_mlp
 predict.reg_mlp  <- function(object, x, ...) {
   x <- adjust_data.frame(x)
   x <- x[,object$x]

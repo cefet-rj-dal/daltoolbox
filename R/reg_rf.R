@@ -36,7 +36,7 @@ reg_rf <- function(attribute, nodesize = 1, ntree = 10, mtry = NULL) {
 }
 
 #'@importFrom randomForest randomForest
-#'@export
+#'@exportS3Method fit reg_rf
 fit.reg_rf <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
   obj <- fit.predictor(obj, data)
@@ -52,7 +52,7 @@ fit.reg_rf <- function(obj, data, ...) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method predict reg_rf
 predict.reg_rf  <- function(object, x, ...) {
   x <- adjust_data.frame(x)
   x <- x[,object$x]

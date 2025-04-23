@@ -36,7 +36,7 @@ reg_svm <- function(attribute, epsilon=0.1, cost=10, kernel="radial") {
 }
 
 #'@importFrom e1071 svm
-#'@export
+#'@exportS3Method fit reg_svm
 fit.reg_svm <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
   obj <- fit.predictor(obj, data)
@@ -49,7 +49,7 @@ fit.reg_svm <- function(obj, data, ...) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method predict reg_svm
 predict.reg_svm  <- function(object, x, ...) {
   x <- adjust_data.frame(x)
   x <- x[,object$x]

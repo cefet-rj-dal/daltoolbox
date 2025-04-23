@@ -13,7 +13,7 @@ regression <- function(attribute) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method evaluate regression
 evaluate.regression <- function(obj, values, prediction, ...) {
   MSE <- function (actual, prediction) {
     if (length(actual) != length(prediction))

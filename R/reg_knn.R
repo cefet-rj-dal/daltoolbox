@@ -31,6 +31,7 @@ reg_knn <- function(attribute, k) {
 
 #'@importFrom FNN knn.reg
 #'@export
+#'@exportS3Method fit reg_knn
 fit.reg_knn <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
   obj <- fit.predictor(obj, data)
@@ -44,7 +45,7 @@ fit.reg_knn <- function(obj, data, ...) {
 }
 
 #'@importFrom FNN knn.reg
-#'@export
+#'@exportS3Method predict reg_knn
 predict.reg_knn  <- function(object, x, ...) {
   #develop from FNN https://daviddalpiaz.github.io/r4sl/knn-reg.html
   x <- adjust_data.frame(x)

@@ -29,7 +29,7 @@ reg_dtree <- function(attribute) {
 }
 
 #'@import tree
-#'@export
+#'@exportS3Method fit reg_dtree
 fit.reg_dtree <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
   obj <- fit.predictor(obj, data)
@@ -40,7 +40,7 @@ fit.reg_dtree <- function(obj, data, ...) {
   return(obj)
 }
 
-#'@export
+#'@exportS3Method predict reg_dtree
 predict.reg_dtree <- function(object, x, ...) {
   x <- adjust_data.frame(x)
   x <- x[,object$x]

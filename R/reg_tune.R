@@ -33,6 +33,7 @@ reg_tune <- function(base_model, folds=10) {
 
 #'@importFrom stats predict
 #'@export
+#'@exportS3Method fit reg_tune
 fit.reg_tune <- function(obj, data, ranges, ...) {
 
   build_model <- function(obj, ranges, data) {
@@ -105,7 +106,7 @@ fit.reg_tune <- function(obj, data, ranges, ...) {
 
 
 #'@importFrom dplyr filter summarise group_by
-#'@export
+#'@exportS3Method select_hyper reg_tune
 select_hyper.reg_tune <- function(obj, hyperparameters) {
   msg <- error <- 0
   hyper_summary <- hyperparameters |> dplyr::filter(msg == "") |>
