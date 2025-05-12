@@ -1,33 +1,34 @@
+# DAL ToolBox
+# version 1.1.737
+
+
+
+#loading DAL
+#library(daltoolbox)
+
 data(sin_data)
-ts <- ts_data(sin_data$y, 10)
+
+library(ggplot2)
+plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
+
+
+sw_size <- 10
+ts <- ts_data(sin_data$y, sw_size)
 ts_head(ts, 3)
 
-plot_ts(x=sin_data$x, y=sin_data$y)
+summary(ts[,10])
 
-samp <- ts_sample(ts, test_size = 5)
-io_train <- ts_projection(samp$train)
-io_test <- ts_projection(samp$test)
+library(ggplot2)
+plot_ts(y=ts[,10]) + theme(text = element_text(size=16))
 
-model <- ts_conv1d(ts_norm_gminmax(), input_size=4, epochs=10000)
-model <- fit(model, x=io_train$input, y=io_train$output)
+preproc <- ts_norm_an(outliers = outliers_gaussian())
+preproc <- fit(preproc, ts)
+tst <- transform(preproc, ts)
+ts_head(tst, 3)
 
-adjust <- predict(model, io_train$input)
+summary(as.vector(tst[10,]))
 
-adjust <- as.vector(adjust)
+plot_ts(y=tst[,10]) + theme(text = element_text(size=16))
 
-output <- as.vector(io_train$output)
-ev_adjust <- evaluate(model, output, adjust)
+plot_ts(y=tst[10,]) + theme(text = element_text(size=16))
 
-ev_adjust$mse
-
-prediction <- predict(model, x=io_test$input[1,], steps_ahead=5)
-
-prediction <- as.vector(prediction)
-
-output <- as.vector(io_test$output)
-ev_test <- evaluate(model, output, prediction)
-
-ev_test
-
-yvalues <- c(io_train$output, io_test$output)
-plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction) + theme(text = element_text(size=16))

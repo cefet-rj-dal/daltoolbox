@@ -1,6 +1,6 @@
 #'@title Time Series Sliding Window Min-Max
 #'@description The ts_norm_swminmax function creates an object for normalizing a time series based on the "sliding window min-max scaling" method
-#'@param remove_outliers logical: if TRUE (default) outliers will be removed.
+#'@param outliers Indicate outliers transformation class. NULL can avoid outliers removal.
 #'@return returns a `ts_norm_swminmax` object.
 #'@examples
 #'# time series to normalize
@@ -18,17 +18,17 @@
 #'ts_head(tst, 3)
 #'summary(tst[,10])
 #'@export
-ts_norm_swminmax <- function(remove_outliers = TRUE) {
+ts_norm_swminmax <- function(outliers = outliers_boxplot()) {
   obj <- dal_transform()
-  obj$remove_outliers <- remove_outliers
+  obj$outliers <- outliers
   class(obj) <- append("ts_norm_swminmax", class(obj))
   return(obj)
 }
 
 #'@exportS3Method fit ts_norm_swminmax
 fit.ts_norm_swminmax <- function(obj, data, ...) {
-  if (obj$remove_outliers) {
-    out <- outliers()
+  if (!is.null(obj$outliers)) {
+    out <- obj$outliers
     out <- fit(out, data)
     data <- transform(out, data)
   }

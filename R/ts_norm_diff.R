@@ -1,7 +1,7 @@
 #ts_norm_diff
 #'@title Time Series Diff
 #'@description This function calculates the difference between the values of a time series.
-#'@param remove_outliers logical: if TRUE (default) outliers will be removed.
+#'@param outliers Indicate outliers transformation class. NULL can avoid outliers removal.
 #'@return returns a `ts_norm_diff` object.
 #'@examples
 #'# time series to normalize
@@ -19,9 +19,9 @@
 #'ts_head(tst, 3)
 #'summary(tst[,9])
 #'@export
-ts_norm_diff <- function(remove_outliers = TRUE) {
+ts_norm_diff <- function(outliers = outliers_boxplot()) {
   obj <- dal_transform()
-  obj$remove_outliers <- remove_outliers
+  obj$outliers <- outliers
   class(obj) <- append("ts_norm_diff", class(obj))
   return(obj)
 }

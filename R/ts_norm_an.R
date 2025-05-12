@@ -1,7 +1,7 @@
 #'@title Time Series Adaptive Normalization
 #'@description Transform data to a common scale while taking into account the
 #' changes in the statistical properties of the data over time.
-#'@param remove_outliers logical: if TRUE (default) outliers will be removed.
+#'@param outliers Indicate outliers transformation class. NULL can avoid outliers removal.
 #'@param nw integer: window size.
 #'@return returns a `ts_norm_an` object.
 #'@examples
@@ -20,8 +20,9 @@
 #'ts_head(tst, 3)
 #'summary(tst[,10])
 #'@export
-ts_norm_an <- function(remove_outliers = TRUE, nw = 0) {
+ts_norm_an <- function(outliers = outliers_boxplot(), nw = 0) {
   obj <- dal_transform()
+  obj$outliers <- outliers
   obj$ma <- function(obj, data, func) {
     if (obj$nw != 0) {
       cols <- ncol(data) - ((obj$nw-1):0)
@@ -30,8 +31,6 @@ ts_norm_an <- function(remove_outliers = TRUE, nw = 0) {
     }
     an <- apply(data, 1, func, na.rm=TRUE)
   }
-  obj$remove_outliers <- remove_outliers
-
   obj$an_mean <- mean
   obj$nw <- nw
   class(obj) <- append("ts_norm_an", class(obj))
@@ -44,8 +43,8 @@ fit.ts_norm_an <- function(obj, data, ...) {
   an <- obj$ma(obj, input, obj$an_mean)
   data <- data - an #
 
-  if (obj$remove_outliers) {
-    out <- outliers()
+  if (!is.null(obj$outliers)) {
+    out <- obj$outliers
     out <- fit(out, data)
     data <- transform(out, data)
   }

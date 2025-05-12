@@ -4,10 +4,10 @@
 \alias{ts_norm_diff}
 \title{Time Series Diff}
 \usage{
-ts_norm_diff(remove_outliers = TRUE)
+ts_norm_diff(outliers = outliers_boxplot())
 }
 \arguments{
-\item{remove_outliers}{logical: if TRUE (default) outliers will be removed.}
+\item{outliers}{Indicate outliers transformation class. NULL can avoid outliers removal.}
 }
 \value{
 returns a \code{ts_norm_diff} object.

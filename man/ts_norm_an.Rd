@@ -4,10 +4,10 @@
 \alias{ts_norm_an}
 \title{Time Series Adaptive Normalization}
 \usage{
-ts_norm_an(remove_outliers = TRUE, nw = 0)
+ts_norm_an(outliers = outliers_boxplot(), nw = 0)
 }
 \arguments{
-\item{remove_outliers}{logical: if TRUE (default) outliers will be removed.}
+\item{outliers}{Indicate outliers transformation class. NULL can avoid outliers removal.}
 
 \item{nw}{integer: window size.}
 }
