@@ -10,10 +10,10 @@
 library(daltoolbox) 
 ```
 
-### Outlier removal
+### Outlier removal using gaussian
 The following class uses box-plot definition for outliers.
 
-An outlier is a value that is below than $Q_1 - 1.5 \cdot IQR$ or higher than $Q_3 + 1.5 \cdot IQR$.
+An outlier is a value that is below than $\overline{x} - 3 \sigma_x$ or higher than $\overline{x} + 3 \sigma_x}$.
 
 The class remove outliers for numeric attributes. 
 
@@ -21,7 +21,7 @@ The class remove outliers for numeric attributes.
 
 ```{r}
 # code for outlier removal
-out_obj <- outliers() # class for outlier analysis
+out_obj <- outliers_gaussian() # class for outlier analysis
 out_obj <- fit(out_obj, iris) # computing boundaries
 iris.clean <- transform(out_obj, iris) # returning cleaned dataset
 

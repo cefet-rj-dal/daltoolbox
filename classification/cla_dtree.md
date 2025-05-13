@@ -11,6 +11,30 @@
 library(daltoolbox) 
 ```
 
+```
+## Registered S3 method overwritten by 'quantmod':
+##   method            from
+##   as.zoo.data.frame zoo
+```
+
+```
+## Registered S3 methods overwritten by 'forecast':
+##   method  from 
+##   head.ts stats
+##   tail.ts stats
+```
+
+```
+## 
+## Attaching package: 'daltoolbox'
+```
+
+```
+## The following object is masked from 'package:base':
+## 
+##     transform
+```
+
 
 ``` r
 iris <- datasets::iris
