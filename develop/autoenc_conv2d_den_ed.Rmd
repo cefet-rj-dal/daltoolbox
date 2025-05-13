@@ -6,7 +6,7 @@ The goal of the autoencoder is to reduce the dimension of $p$ to $k$, such that 
 
 ```{r}
 # DAL ToolBox
-# version 1.1.737
+# version 1.2.707
 
 
 
