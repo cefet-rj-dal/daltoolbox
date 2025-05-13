@@ -47,8 +47,6 @@ Graphics: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/graphics/>
 
 Transformation: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/transf/>
 
-Autoencoders: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/autoencoder/>
-
 Classification: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/classification/>
 
 Clustering: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/clustering/>
@@ -56,8 +54,6 @@ Clustering: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/clustering/>
 Regression: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/regression/>
 
 Time series: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/timeseries/>
-
-
 
 
 The examples are organized according to general (data preprocessing),

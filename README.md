@@ -42,9 +42,6 @@ Graphics:
 Transformation:
 <https://github.com/cefet-rj-dal/daltoolbox/tree/main/transf/>
 
-Autoencoders:
-<https://github.com/cefet-rj-dal/daltoolbox/tree/main/autoencoder/>
-
 Classification:
 <https://github.com/cefet-rj-dal/daltoolbox/tree/main/classification/>
 
