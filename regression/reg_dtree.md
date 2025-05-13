@@ -16,6 +16,20 @@ library(daltoolbox)
 
 ``` r
 library(MASS)
+```
+
+```
+## 
+## Attaching package: 'MASS'
+```
+
+```
+## The following object is masked from 'package:dplyr':
+## 
+##     select
+```
+
+``` r
 data(Boston)
 print(t(sapply(Boston, class)))
 ```
