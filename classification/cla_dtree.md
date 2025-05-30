@@ -6,7 +6,15 @@
 # version 1.2.707
 
 
+#installation 
+install.packages("daltoolbox", ask = FALSE, quiet=TRUE)
+```
 
+```
+
+```
+
+``` r
 #loading DAL
 library(daltoolbox) 
 ```

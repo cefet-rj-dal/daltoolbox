@@ -4,7 +4,8 @@
 # DAL ToolBox
 # version 1.2.707
 
-
+#installation 
+install.packages("daltoolbox", ask = FALSE, quiet=TRUE)
 
 #loading DAL
 library(daltoolbox) 
