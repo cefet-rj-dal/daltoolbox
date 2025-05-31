@@ -1,10 +1,9 @@
-# Clustering - Tune Kmeans
 
 ```{r}
-# DAL ToolBox
-# version 1.2.707
+# Clustering - Tune Kmeans
 
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox)  

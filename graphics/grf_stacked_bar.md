@@ -1,10 +1,24 @@
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
 
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
@@ -54,16 +68,16 @@ head(data)
 ## 3 virginica          6.59        2.97
 ```
 
-# Stacked-bar
-
-Stacked bar charts are used to organize data into groups for each category.
-
-A stacked bar chart stacks bars that represent different groups on top of each other. The height of the resulting bar shows the combined result of the groups. 
-
-More information: https://en.wikipedia.org/wiki/Bar_chart# Grouped_or_stacked
-
 
 ``` r
+# Stacked-bar
+
+# Stacked bar charts are used to organize data into groups for each category.
+
+# A stacked bar chart stacks bars that represent different groups on top of each other. The height of the resulting bar shows the combined result of the groups. 
+
+# More information: https://en.wikipedia.org/wiki/Bar_chart# Grouped_or_stacked
+
 grf <- plot_stackedbar(data, colors=colors[1:2]) + font
 grf <- grf + theme(axis.text.x = element_text(angle=90, hjust=1))
 plot(grf)

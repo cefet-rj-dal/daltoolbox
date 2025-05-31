@@ -1,8 +1,6 @@
 ```{r}
-# DAL ToolBox
-# version 1.2.707
-
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
@@ -19,19 +17,19 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+```{r}
 # Synthetic time series
 
-```{r}
 x <- seq(0, 10, 0.25)
 data <- data.frame(x, sin=sin(x))
 head(data)
 ```
 
+```{r}
 # ts plot
 
-A time series plot during exploratory analysis
+# A time series plot during exploratory analysis
 
-```{r}
 grf <- plot_ts(x = data$x, y = data$sin, color=colors[1])
 plot(grf)
 ```

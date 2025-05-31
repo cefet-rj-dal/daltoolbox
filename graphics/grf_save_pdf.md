@@ -1,10 +1,24 @@
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
 
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
@@ -21,10 +35,10 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-# Synthetic time series
-
 
 ``` r
+# Synthetic time series
+
 x <- seq(0, 10, 0.25)
 serie <- data.frame(x, sin=sin(x), cosine=cos(x)+5)
 head(serie)
@@ -40,16 +54,16 @@ head(serie)
 ## 6 1.25 0.9489846 5.315322
 ```
 
-# Series plot
-
-A series plot is a type of chart that displays information as a series of data points connected by straight line segments. 
-
-It is similar to a scatter plot except that their x-axis value orders the measurement points.
-
-More information: https://en.wikipedia.org/wiki/Line_chart
-
 
 ``` r
+# Series plot
+
+# A series plot is a type of chart that displays information as a series of data points connected by straight line segments. 
+
+# It is similar to a scatter plot except that their x-axis value orders the measurement points.
+
+# More information: https://en.wikipedia.org/wiki/Line_chart
+
 grf <- plot_series(serie, colors=colors[1:2]) + font
 plot(grf)
 ```

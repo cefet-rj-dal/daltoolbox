@@ -1,18 +1,16 @@
+```{r}
 # Time Series Sample
 
-```{r}
-# DAL ToolBox
-# version 1.2.707
-
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
+```{r}
 # Series for studying
 
-```{r}
 data(sin_data)
 ```
 
@@ -21,17 +19,17 @@ library(ggplot2)
 plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 ```
 
+```{r}
 # sliding windows
 
-```{r}
 sw_size <- 5
 ts <- ts_data(sin_data$y, sw_size)
 ts_head(ts, 3)
 ```
 
+```{r}
 # projection
 
-```{r}
 io <- ts_projection(ts)
 ```
 

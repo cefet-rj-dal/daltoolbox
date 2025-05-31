@@ -1,25 +1,39 @@
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
 
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
 
+
+``` r
 # Discretization & smoothing
-Discretization is the process of transferring continuous functions, models, variables, and equations into discrete counterparts. 
+# Discretization is the process of transferring continuous functions, models, variables, and equations into discrete counterparts. 
 
-Smoothing is a technique that creates an approximating function that attempts to capture important patterns in the data while leaving out noise or other fine-scale structures/rapid phenomena.
+# Smoothing is a technique that creates an approximating function that attempts to capture important patterns in the data while leaving out noise or other fine-scale structures/rapid phenomena.
 
-An important part of the discretization/smoothing is to set up bins for proceeding the approximation.
+# An important part of the discretization/smoothing is to set up bins for proceeding the approximation.
 
 # general function to evaluate different smoothing technique
 
-
-``` r
 iris <- datasets::iris
 head(iris)
 ```
@@ -67,10 +81,10 @@ print(entro$entropy)
 ## [1] 1.191734
 ```
 
-# Optimizing the number of binnings
-
 
 ``` r
+# Optimizing the number of binnings
+
 opt_obj <- smoothing_inter(n=1:20)
 obj <- fit(opt_obj, iris$Sepal.Length)
 obj$n

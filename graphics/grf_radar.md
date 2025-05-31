@@ -1,10 +1,24 @@
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
 
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
@@ -56,14 +70,14 @@ head(data)
 ## Sepal.Width   Sepal.Width 3.057333
 ```
 
-# Radar plot
-
-A radar chart is a graphical method of displaying multivariate data containing three or more quantitative variables represented on axes starting from the same point. 
-
-More information: https://en.wikipedia.org/wiki/Radar_chart
-
 
 ``` r
+# Radar plot
+
+# A radar chart is a graphical method of displaying multivariate data containing three or more quantitative variables represented on axes starting from the same point. 
+
+# More information: https://en.wikipedia.org/wiki/Radar_chart
+
 grf <- plot_radar(data, colors=colors[1]) + font
 grf <- grf + ylim(0, NA)
 plot(grf)

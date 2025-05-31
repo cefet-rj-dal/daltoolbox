@@ -1,10 +1,24 @@
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
 
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
@@ -53,13 +67,13 @@ head(data)
 ## 3 virginica   6.59 0.636
 ```
 
-# Bar graph with error bars
-When bar graphs present an average behavior, it is possible to plot a dispersion around it using an error bar.
-
-The error bar is added using $geom\_errorbar()$ function to a previously defined bar graph. 
 
 
 ``` r
+# Bar graph with error bars
+# When bar graphs present an average behavior, it is possible to plot a dispersion around it using an error bar.
+# The error bar is added using $geom\_errorbar()$ function to a previously defined bar graph. 
+
 grf <- plot_bar(data, colors=colors[1], alpha=1) + font
 grf <- grf + geom_errorbar(aes(x=Species, ymin=mean-sd, ymax=mean+sd), 
                            width=0.2, colour="darkred", alpha=0.8, size=1.1) 

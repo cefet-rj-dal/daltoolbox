@@ -1,8 +1,6 @@
 ```{r}
-# DAL ToolBox
-# version 1.2.707
-
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
@@ -29,13 +27,13 @@ data <- iris |> group_by(Species) |> summarize(Sepal.Length=mean(Sepal.Length))
 head(data)
 ```
 
+```{r}
 # Bar graph
 
-A bar graph is used to presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent. 
+# A bar graph is used to presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent. 
 
-More information: https://en.wikipedia.org/wiki/Bar_chart
+# More information: https://en.wikipedia.org/wiki/Bar_chart
 
-```{r}
 grf <- plot_bar(data, colors=colors[1]) + font
 plot(grf)
 ```

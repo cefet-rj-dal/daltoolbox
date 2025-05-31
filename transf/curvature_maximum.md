@@ -1,10 +1,24 @@
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
 
+``` r
 # loading DAL
 library(daltoolbox) 
 
@@ -13,12 +27,12 @@ library(ggplot2)
 library(dplyr)
 ```
 
-# Maximum curvature
-If the curve is decreasing, use maximum curvature analysis. 
-It brings a trade-off between having lower x values (with not so low y values) and having higher x values (not having to much decrease in y values). 
-
 
 ``` r
+# Maximum curvature
+# If the curve is decreasing, use maximum curvature analysis. 
+# It brings a trade-off between having lower x values (with not so low y values) and having higher x values (not having to much decrease in y values). 
+
 x <- seq(from=1,to=10,by=0.5)
 dat <- data.frame(x = x, value = -log(x), variable = as.factor("log"))
 myfit <- fit_curvature_max()

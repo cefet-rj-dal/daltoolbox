@@ -1,10 +1,24 @@
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
 
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
@@ -21,10 +35,10 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-# Synthetic time series
-
 
 ``` r
+# Synthetic time series
+
 i <- seq(0, 25, 0.25)
 x <- cos(i)
 
@@ -43,9 +57,11 @@ ts_head(ts, 3)
 ``` r
 # sampling training and test
 samp <- ts_sample(ts, test_size= 5)
+
 # division between input and output
 io_train <- ts_projection(samp$train)
 io_test <- ts_projection(samp$test)
+
 # time series
 yvalues <- c(io_train$output, io_test$output)
 
@@ -59,12 +75,12 @@ prediction <- predict(model, x=io_test$input, steps_ahead=5)
 prediction <- as.vector(prediction)
 ```
 
-# Series plot with predictions
-
-A time series ploting with model adjustment and prediction values. 
-
 
 ``` r
+# Series plot with predictions
+
+# A time series ploting with model adjustment and prediction values. 
+
 plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction)
 ```
 

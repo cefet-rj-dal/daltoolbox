@@ -1,12 +1,27 @@
-# Clustering - Kmeans
 
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# Clustering - Kmeans
 
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
+
+``` r
 # loading DAL
 library(daltoolbox)  
 ```
@@ -16,8 +31,6 @@ library(daltoolbox)
 # load dataset
 data(iris)
 ```
-
-# General function to test clustering methods
 
 
 ``` r
@@ -62,10 +75,11 @@ eval
 ## [1] 1.584963
 ```
 
-# Influence of normalization in clustering
 
 
 ``` r
+# Influence of normalization in clustering
+
 iris_minmax <- transform(fit(minmax(), iris), iris)
 model <- fit(model, iris_minmax[,1:4])
 clu <- cluster(model, iris_minmax[,1:4])
@@ -81,6 +95,7 @@ table(clu)
 
 ``` r
 # evaluate model using external metric
+
 eval <- evaluate(model, clu, iris_minmax$Species)
 eval
 ```

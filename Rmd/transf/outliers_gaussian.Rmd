@@ -1,25 +1,23 @@
+```{r}
 # NA and Outlier analysis
 
-```{r}
-# DAL ToolBox
-# version 1.2.707
-
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
+```{r}
 # Outlier removal using gaussian
-The following class uses box-plot definition for outliers.
+# The following class uses box-plot definition for outliers.
 
-An outlier is a value that is below than $\overline{x} - 3 \sigma_x$ or higher than $\overline{x} + 3 \sigma_x}$.
+# An outlier is a value that is below than $\overline{x} - 3 \sigma_x$ or higher than $\overline{x} + 3 \sigma_x}$.
 
-The class remove outliers for numeric attributes. 
+# The class remove outliers for numeric attributes. 
 
 # removing outliers of a data frame
 
-```{r}
 # code for outlier removal
 out_obj <- outliers_gaussian() # class for outlier analysis
 out_obj <- fit(out_obj, iris) # computing boundaries
@@ -30,9 +28,9 @@ head(iris.clean)
 nrow(iris.clean)
 ```
 
-Visualizing the actual outliers
-
 ```{r}
+# Visualizing the actual outliers
+
 idx <- attr(iris.clean, "idx")
 print(table(idx))
 iris.outliers <- iris[idx,]

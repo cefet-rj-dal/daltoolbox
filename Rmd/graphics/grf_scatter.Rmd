@@ -1,8 +1,6 @@
 ```{r}
-# DAL ToolBox
-# version 1.2.707
-
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
@@ -24,15 +22,15 @@ font <- theme(text = element_text(size=16))
 head(iris)
 ```
 
+```{r}
 # Scatter plot
 
-A Scatter plot is used to display values for the typical relationship between independent and dependent variables. The first column of the dataset is the independent variable, whereas the following variables are the dependent ones. 
+# A Scatter plot is used to display values for the typical relationship between independent and dependent variables. The first column of the dataset is the independent variable, whereas the following variables are the dependent ones. 
 
-The colors vectors should have the same size as the number of dependent columns. 
+# The colors vectors should have the same size as the number of dependent columns. 
 
-More information: https://en.wikipedia.org/wiki/Scatter_plot
+# More information: https://en.wikipedia.org/wiki/Scatter_plot
 
-```{r}
 library(dplyr)
 
 grf <- plot_scatter(iris |> dplyr::select(x = Sepal.Length, value = Sepal.Width, variable = Species), 

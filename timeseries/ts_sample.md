@@ -1,20 +1,34 @@
-# Time Series Sample
-
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# Time Series Sample
 
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
+
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
 
-# Series for studying
-
 
 ``` r
+# Series for studying
+
 data(sin_data)
 ```
 
@@ -26,10 +40,10 @@ plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 
 ![plot of chunk unnamed-chunk-3](fig/ts_sample/unnamed-chunk-3-1.png)
 
-# sliding windows
-
 
 ``` r
+# sliding windows
+
 sw_size <- 10
 ts <- ts_data(sin_data$y, sw_size)
 ts_head(ts, 3)
@@ -42,10 +56,10 @@ ts_head(ts, 3)
 ## [3,] 0.4794255 0.6816388 0.8414710 0.9489846 0.9974950 0.9839859 0.9092974 0.7780732 0.5984721 0.3816610
 ```
 
-# data sampling
-
 
 ``` r
+# data sampling
+
 test_size <- 3
 samp <- ts_sample(ts, test_size)
 ```

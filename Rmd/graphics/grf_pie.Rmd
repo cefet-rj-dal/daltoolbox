@@ -1,8 +1,6 @@
 ```{r}
-# DAL ToolBox
-# version 1.2.707
-
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
@@ -31,12 +29,12 @@ data <- iris |> group_by(Species) |> summarize(Sepal.Length=mean(Sepal.Length))
 head(data)
 ```
 
-# Pie chart
-A pie chart is a circular statistical graphic, which is divided into slices to illustrate numerical proportion. 
-
-More information: https://en.wikipedia.org/wiki/Pie_chart
-
 ```{r}
+# Pie chart
+# A pie chart is a circular statistical graphic, which is divided into slices to illustrate numerical proportion. 
+
+# More information: https://en.wikipedia.org/wiki/Pie_chart
+
 grf <- plot_pieplot(data, colors=colors[1:3]) + font
 plot(grf)
 ```

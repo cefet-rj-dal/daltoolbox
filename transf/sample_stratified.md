@@ -1,12 +1,26 @@
-# Stratified sampling dataset
-
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# Stratified sampling dataset
 
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
+
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
@@ -37,10 +51,10 @@ table(iris$Species)
 ##         50         50         50
 ```
 
-# Dividing a dataset with training and test
-
 
 ``` r
+# Dividing a dataset with training and test
+
 # using random sampling
 tt <- train_test(sample_stratified("Species"), iris)
 
@@ -65,10 +79,10 @@ print(table(tt$test$Species))
 ##         10         10         10
 ```
 
-# Dividing a dataset into folds
-
 
 ``` r
+# Dividing a dataset into folds
+
 # using stratified sampling
 # preparing dataset into four folds
 sample <- sample_stratified("Species")

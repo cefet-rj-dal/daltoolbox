@@ -1,8 +1,6 @@
 ```{r}
-# DAL ToolBox
-# version 1.2.707
-
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
@@ -30,12 +28,12 @@ data <- iris |> group_by(Species) |> summarize(mean=mean(Sepal.Length), sd=sd(Se
 head(data)
 ```
 
-# Bar graph with error bars
-When bar graphs present an average behavior, it is possible to plot a dispersion around it using an error bar.
-
-The error bar is added using $geom\_errorbar()$ function to a previously defined bar graph. 
 
 ```{r}
+# Bar graph with error bars
+# When bar graphs present an average behavior, it is possible to plot a dispersion around it using an error bar.
+# The error bar is added using $geom\_errorbar()$ function to a previously defined bar graph. 
+
 grf <- plot_bar(data, colors=colors[1], alpha=1) + font
 grf <- grf + geom_errorbar(aes(x=Species, ymin=mean-sd, ymax=mean+sd), 
                            width=0.2, colour="darkred", alpha=0.8, size=1.1) 

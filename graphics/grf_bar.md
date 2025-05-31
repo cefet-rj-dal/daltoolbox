@@ -1,10 +1,24 @@
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
 
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
@@ -52,14 +66,14 @@ head(data)
 ## 3 virginica          6.59
 ```
 
-# Bar graph
-
-A bar graph is used to presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent. 
-
-More information: https://en.wikipedia.org/wiki/Bar_chart
-
 
 ``` r
+# Bar graph
+
+# A bar graph is used to presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent. 
+
+# More information: https://en.wikipedia.org/wiki/Bar_chart
+
 grf <- plot_bar(data, colors=colors[1]) + font
 plot(grf)
 ```

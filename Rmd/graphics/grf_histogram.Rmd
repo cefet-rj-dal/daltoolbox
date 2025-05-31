@@ -1,8 +1,6 @@
 ```{r}
-# DAL ToolBox
-# version 1.2.707
-
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
@@ -19,10 +17,10 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-# Examples using data distribution
-The following examples use random variables so that different data distribution can be better viewed.
-
 ```{r}
+# Examples using data distribution
+# The following examples use random variables so that different data distribution can be better viewed.
+
 # example: dataset to be plotted  
 example <- data.frame(exponential = rexp(100000, rate = 1), 
                      uniform = runif(100000, min = 2.5, max = 3.5), 

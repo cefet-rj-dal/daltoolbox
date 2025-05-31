@@ -1,10 +1,24 @@
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
 
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
@@ -54,13 +68,13 @@ head(data)
 ## 3 virginica          6.59
 ```
 
-# Pie chart
-A pie chart is a circular statistical graphic, which is divided into slices to illustrate numerical proportion. 
-
-More information: https://en.wikipedia.org/wiki/Pie_chart
-
 
 ``` r
+# Pie chart
+# A pie chart is a circular statistical graphic, which is divided into slices to illustrate numerical proportion. 
+
+# More information: https://en.wikipedia.org/wiki/Pie_chart
+
 grf <- plot_pieplot(data, colors=colors[1:3]) + font
 plot(grf)
 ```

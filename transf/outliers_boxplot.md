@@ -1,27 +1,42 @@
-# NA and Outlier analysis
-
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# NA and Outlier analysis
 
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
+
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
 
+
+``` r
 # Outlier removal using boxplot
-The following class uses box-plot definition for outliers.
 
-An outlier is a value that is below than $Q_1 - 1.5 \cdot IQR$ or higher than $Q_3 + 1.5 \cdot IQR$.
+# The following class uses box-plot definition for outliers.
 
-The class remove outliers for numeric attributes. 
+# An outlier is a value that is below than $Q_1 - 1.5 \cdot IQR$ or higher than $Q_3 + 1.5 \cdot IQR$.
+ 
+# The class remove outliers for numeric attributes. 
 
 # removing outliers of a data frame
 
-
-``` r
 # code for outlier removal
 out_obj <- outliers_boxplot() # class for outlier analysis
 out_obj <- fit(out_obj, iris) # computing boundaries
@@ -49,10 +64,10 @@ nrow(iris.clean)
 ## [1] 146
 ```
 
-Visualizing the actual outliers
-
 
 ``` r
+# Visualizing the actual outliers
+
 idx <- attr(iris.clean, "idx")
 print(table(idx))
 ```

@@ -1,20 +1,34 @@
-# NA and Outlier analysis
-
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# NA and Outlier analysis
 
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
+
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
 
-# NA removal
-
 
 ``` r
+# NA removal
+
 iris <- datasets::iris
 head(iris)
 ```
@@ -40,6 +54,7 @@ nrow(iris)
 
 ``` r
 # introducing a NA to remove
+
 iris.na <- iris
 iris.na$Sepal.Length[2] <- NA
 head(iris.na)
@@ -63,10 +78,10 @@ nrow(iris.na)
 ## [1] 150
 ```
 
-# removing NA tuples
-
 
 ``` r
+# removing NA tuples
+
 iris.na.omit <- na.omit(iris.na)
 head(iris.na.omit)
 ```

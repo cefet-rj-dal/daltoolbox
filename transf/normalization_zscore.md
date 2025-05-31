@@ -1,24 +1,38 @@
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
 
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
 
+
+``` r
 # Normalization
 
-Normalization is a technique used to equal strength among variables. 
+# Normalization is a technique used to equal strength among variables. 
 
-It is also important to apply it as an input for some machine learning methods. 
+# It is also important to apply it as an input for some machine learning methods. 
 
 # Example
 
-
-``` r
 iris <- datasets::iris  
 summary(iris)
 ```
@@ -33,12 +47,12 @@ summary(iris)
 ##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500
 ```
 
-# Z-Score
-
-Adjust values to 0 (mean), 1 (variance).
-
 
 ``` r
+# Z-Score
+
+# Adjust values to 0 (mean), 1 (variance).
+
 norm <- zscore()
 norm <- fit(norm, iris)
 ndata <- transform(norm, iris)

@@ -1,30 +1,28 @@
 ```{r}
-# DAL ToolBox
-# version 1.2.707
-
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
+```{r}
 # Normalization
 
-Normalization is a technique used to equal strength among variables. 
+# Normalization is a technique used to equal strength among variables. 
 
-It is also important to apply it as an input for some machine learning methods. 
+# It is also important to apply it as an input for some machine learning methods. 
 
 # Example
 
-```{r}
 iris <- datasets::iris  
 summary(iris)
 ```
 
-# Min-Max 
-Adjust numeric values to 0 (minimum value) - 1 (maximum value).
-
 ```{r}
+# Min-Max 
+# Adjust numeric values to 0 (minimum value) - 1 (maximum value).
+
 norm <- minmax()
 norm <- fit(norm, iris)
 ndata <- transform(norm, iris)

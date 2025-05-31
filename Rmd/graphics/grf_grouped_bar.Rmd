@@ -1,8 +1,6 @@
 ```{r}
-# DAL ToolBox
-# version 1.2.707
-
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
@@ -31,15 +29,15 @@ data <- iris |> group_by(Species) |> summarize(Sepal.Length=mean(Sepal.Length), 
 head(data)
 ```
 
+```{r}
 # Grouped barbar
 
-Grouped bar charts are used to organize data into groups for each category.
+# Grouped bar charts are used to organize data into groups for each category.
 
-In a grouped bar chart, for each categorical group, there are two or more bars. These bars are color-coded to represent a particular grouping.  
+# In a grouped bar chart, for each categorical group, there are two or more bars. These bars are color-coded to represent a particular grouping.  
 
-More information: https://en.wikipedia.org/wiki/Bar_chart# Grouped_or_stacked
+# More information: https://en.wikipedia.org/wiki/Bar_chart# Grouped_or_stacked
 
-```{r}
 grf <- plot_groupedbar(data, colors=colors[1:2]) + font
 plot(grf)
 ```

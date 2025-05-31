@@ -1,10 +1,24 @@
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
 
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
@@ -54,16 +68,16 @@ head(data)
 ## 3 virginica          6.59        2.97
 ```
 
-# Grouped barbar
-
-Grouped bar charts are used to organize data into groups for each category.
-
-In a grouped bar chart, for each categorical group, there are two or more bars. These bars are color-coded to represent a particular grouping.  
-
-More information: https://en.wikipedia.org/wiki/Bar_chart# Grouped_or_stacked
-
 
 ``` r
+# Grouped barbar
+
+# Grouped bar charts are used to organize data into groups for each category.
+
+# In a grouped bar chart, for each categorical group, there are two or more bars. These bars are color-coded to represent a particular grouping.  
+
+# More information: https://en.wikipedia.org/wiki/Bar_chart# Grouped_or_stacked
+
 grf <- plot_groupedbar(data, colors=colors[1:2]) + font
 plot(grf)
 ```

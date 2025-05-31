@@ -1,10 +1,8 @@
+```{r}
 # Sampling dataset
 
-```{r}
-# DAL ToolBox
-# version 1.2.707
-
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
@@ -16,9 +14,9 @@ head(iris)
 table(iris$Species)
 ```
 
+```{r}
 # Dividing a dataset with training and test
 
-```{r}
 # using random sampling
 tt <- train_test(sample_random(), iris)
 
@@ -29,9 +27,9 @@ print(table(tt$train$Species))
 print(table(tt$test$Species))
 ```
 
+```{r}
 # Dividing a dataset into folds
 
-```{r}
 # preparing dataset into four folds
 sample <- sample_random()
 folds <- k_fold(sample, iris, 4)

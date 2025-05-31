@@ -1,20 +1,34 @@
-# Regression MLP
-
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# Regression MLP
 
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
+
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
 
-# Dataset for regression analysis
-
 
 ``` r
+# Dataset for regression analysis
+
 library(MASS)
 data(Boston)
 print(t(sapply(Boston, class)))
@@ -47,8 +61,6 @@ head(Boston)
 Boston <- as.matrix(Boston)
 ```
 
-# Building samples (training and testing)
-
 
 ``` r
 # preparing dataset for random sampling
@@ -59,18 +71,18 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
-# Training
-
 
 ``` r
+# Training
+
 model <- reg_mlp("medv", size=5, decay=0.54)
 model <- fit(model, boston_train)
 ```
 
-# Model adjustment
-
 
 ``` r
+# Model adjustment
+
 train_prediction <- predict(model, boston_train)
 boston_train_predictand <- boston_train[,"medv"]
 train_eval <- evaluate(model, boston_train_predictand, train_prediction)
@@ -82,10 +94,10 @@ print(train_eval$metrics)
 ## 1 6.531913 0.09502499 0.9274298
 ```
 
-# Test
-
 
 ``` r
+# Test
+
 test_prediction <- predict(model, boston_test)
 boston_test_predictand <- boston_test[,"medv"]
 test_eval <- evaluate(model, boston_test_predictand, test_prediction)

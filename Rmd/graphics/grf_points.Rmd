@@ -1,8 +1,6 @@
 ```{r}
-# DAL ToolBox
-# version 1.2.707
-
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
@@ -27,15 +25,17 @@ serie <- data.frame(x, sin=sin(x), cosine=cos(x)+5)
 head(serie)
 ```
 
+```{r}
 # Plot points
 
-A point plot is similiar to series plot without drawing lines.
+# A point plot is similiar to series plot without drawing lines.
 
-```{r}
 # The function returns a preset graphic that can be enhanced. 
 grf <- plot_points(serie, colors=colors[1:2])
+
 # Increasing the font size of the graphics
 grf <- grf + font
+
 # Actual plot
 plot(grf)
 ```

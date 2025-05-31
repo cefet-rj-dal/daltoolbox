@@ -1,10 +1,24 @@
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
 
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
@@ -37,16 +51,16 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-# Scatter plot
-
-A Scatter plot is used to display values for the typical relationship between independent and dependent variables. The first column of the dataset is the independent variable, whereas the following variables are the dependent ones. 
-
-The colors vectors should have the same size as the number of dependent columns. 
-
-More information: https://en.wikipedia.org/wiki/Scatter_plot
-
 
 ``` r
+# Scatter plot
+
+# A Scatter plot is used to display values for the typical relationship between independent and dependent variables. The first column of the dataset is the independent variable, whereas the following variables are the dependent ones. 
+
+# The colors vectors should have the same size as the number of dependent columns. 
+
+# More information: https://en.wikipedia.org/wiki/Scatter_plot
+
 library(dplyr)
 
 grf <- plot_scatter(iris |> dplyr::select(x = Sepal.Length, value = Sepal.Width, variable = Species), 

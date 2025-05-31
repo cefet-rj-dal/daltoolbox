@@ -1,11 +1,8 @@
-# Clustering - pam
-# Libraries and Datasets
-
 ```{r}
-# DAL ToolBox
-# version 1.2.707
+# Clustering - pam
 
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
@@ -15,10 +12,6 @@ library(daltoolbox)
 # load dataset
 data(iris)
 ```
-
-General entropy of dataset
-
-# General function to test clustering methods
 
 ```{r}
 # setup clustering

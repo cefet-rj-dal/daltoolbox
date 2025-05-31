@@ -1,10 +1,24 @@
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
 
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
@@ -21,10 +35,10 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-# Synthetic time series
-
 
 ``` r
+# Synthetic time series
+
 x <- seq(0, 10, 0.25)
 data <- data.frame(x, sin=sin(x))
 head(data)
@@ -40,12 +54,12 @@ head(data)
 ## 6 1.25 0.9489846
 ```
 
-# ts plot
-
-A time series plot during exploratory analysis
-
 
 ``` r
+# ts plot
+
+# A time series plot during exploratory analysis
+
 grf <- plot_ts(x = data$x, y = data$sin, color=colors[1])
 plot(grf)
 ```

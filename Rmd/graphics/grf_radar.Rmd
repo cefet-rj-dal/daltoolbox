@@ -1,8 +1,6 @@
 ```{r}
-# DAL ToolBox
-# version 1.2.707
-
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
@@ -34,13 +32,14 @@ data <- data.frame(name = names(data), value = data) |> dplyr::arrange(name)
 head(data)
 ```
 
+```{r}
+
 # Radar plot
 
-A radar chart is a graphical method of displaying multivariate data containing three or more quantitative variables represented on axes starting from the same point. 
+# A radar chart is a graphical method of displaying multivariate data containing three or more quantitative variables represented on axes starting from the same point. 
 
-More information: https://en.wikipedia.org/wiki/Radar_chart
+# More information: https://en.wikipedia.org/wiki/Radar_chart
 
-```{r}
 grf <- plot_radar(data, colors=colors[1]) + font
 grf <- grf + ylim(0, NA)
 plot(grf)

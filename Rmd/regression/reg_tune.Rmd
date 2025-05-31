@@ -1,18 +1,16 @@
+```{r}
 # Tune Regression 
 
-```{r}
-# DAL ToolBox
-# version 1.2.707
-
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
+```{r}
 # Dataset for regression analysis
 
-```{r}
 library(MASS)
 data(Boston)
 print(t(sapply(Boston, class)))
@@ -24,8 +22,6 @@ head(Boston)
 Boston <- as.matrix(Boston)
 ```
 
-# Building samples (training and testing)
-
 ```{r}
 # preparing dataset for random sampling
 set.seed(1)
@@ -35,35 +31,35 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
+```{r}
 # Training
 
-```{r}
 tune <- reg_tune(reg_svm("medv"))
 ranges <- list(seq(0,1,0.2), cost=seq(20,100,20), kernel = c("radial"))
 model <- fit(tune, boston_train, ranges)
 ```
 
+```{r}
 # Model adjustment
 
-```{r}
 train_prediction <- predict(model, boston_train)
 boston_train_predictand <- boston_train[,"medv"]
 train_eval <- evaluate(model, boston_train_predictand, train_prediction)
 print(train_eval$metrics)
 ```
 
+```{r}
 # Test
 
-```{r}
 test_prediction <- predict(model, boston_test)
 boston_test_predictand <- boston_test[,"medv"]
 test_eval <- evaluate(model, boston_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
 
+```{r}
 # Options for other models
 
-```{r}
 # svm
 ranges <- list(seq(0,1,0.2), cost=seq(20,100,20), kernel = c("linear", "radial", "polynomial", "sigmoid"))
 

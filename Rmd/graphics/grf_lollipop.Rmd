@@ -1,8 +1,6 @@
 ```{r}
-# DAL ToolBox
-# version 1.2.707
-
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
@@ -31,11 +29,11 @@ data <- iris |> group_by(Species) |> summarize(Sepal.Length=mean(Sepal.Length))
 head(data)
 ```
 
+```{r}
 # Lollipop plot
 
-The lollipop graph has the same goal as a bar graph.
+# The lollipop graph has the same goal as a bar graph.
 
-```{r}
 grf <- plot_lollipop(data, colors=colors[1], max_value_gap=0.2) + font
 plot(grf)
 ```

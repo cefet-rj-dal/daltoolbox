@@ -14,11 +14,6 @@ The library $myGraphics.R$ is loaded using the source function.
 
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
-
-
-
 # loading DAL
 library(daltoolbox) 
 

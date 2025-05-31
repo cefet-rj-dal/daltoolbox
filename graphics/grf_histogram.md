@@ -1,10 +1,24 @@
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# installation 
+install.packages("daltoobox")
+```
 
+```
+## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
+## (as 'lib' is unspecified)
+```
 
+```
+## Warning in install.packages :
+##   package 'daltoobox' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+```
 
+``` r
 # loading DAL
 library(daltoolbox) 
 ```
@@ -21,11 +35,11 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-# Examples using data distribution
-The following examples use random variables so that different data distribution can be better viewed.
-
 
 ``` r
+# Examples using data distribution
+# The following examples use random variables so that different data distribution can be better viewed.
+
 # example: dataset to be plotted  
 example <- data.frame(exponential = rexp(100000, rate = 1), 
                      uniform = runif(100000, min = 2.5, max = 3.5), 

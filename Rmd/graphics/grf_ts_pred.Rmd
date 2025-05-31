@@ -1,8 +1,6 @@
 ```{r}
-# DAL ToolBox
-# version 1.2.707
-
-
+# installation 
+install.packages("daltoobox")
 
 # loading DAL
 library(daltoolbox) 
@@ -19,9 +17,9 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+```{r}
 # Synthetic time series
 
-```{r}
 i <- seq(0, 25, 0.25)
 x <- cos(i)
 
@@ -32,9 +30,11 @@ ts_head(ts, 3)
 ```{r}
 # sampling training and test
 samp <- ts_sample(ts, test_size= 5)
+
 # division between input and output
 io_train <- ts_projection(samp$train)
 io_test <- ts_projection(samp$test)
+
 # time series
 yvalues <- c(io_train$output, io_test$output)
 
@@ -48,11 +48,11 @@ prediction <- predict(model, x=io_test$input, steps_ahead=5)
 prediction <- as.vector(prediction)
 ```
 
+```{r}
 # Series plot with predictions
 
-A time series ploting with model adjustment and prediction values. 
+# A time series ploting with model adjustment and prediction values. 
 
-```{r}
 plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction)
 ```
 
