@@ -7,7 +7,7 @@ install.packages("daltoolbox")
 ```
 
 ```
-## Error in install.packages : Updating loaded packages
+
 ```
 
 ``` r
