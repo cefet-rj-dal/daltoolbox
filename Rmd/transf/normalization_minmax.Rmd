@@ -4,24 +4,24 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
-## Normalization
+# Normalization
 
 Normalization is a technique used to equal strength among variables. 
 
 It is also important to apply it as an input for some machine learning methods. 
 
-## Example
+# Example
 
 ```{r}
 iris <- datasets::iris  
 summary(iris)
 ```
 
-### Min-Max 
+# Min-Max 
 Adjust numeric values to 0 (minimum value) - 1 (maximum value).
 
 ```{r}

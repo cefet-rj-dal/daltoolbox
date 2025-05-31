@@ -1,4 +1,4 @@
-## Time Series Sample
+# Time Series Sample
 
 
 ``` r
@@ -7,11 +7,11 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
-### Series for studying
+# Series for studying
 
 
 ``` r
@@ -26,7 +26,7 @@ plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 
 ![plot of chunk unnamed-chunk-3](fig/ts_projection/unnamed-chunk-3-1.png)
 
-### sliding windows
+# sliding windows
 
 
 ``` r
@@ -42,7 +42,7 @@ ts_head(ts, 3)
 ## [3,] 0.4794255 0.6816388 0.8414710 0.9489846 0.9974950
 ```
 
-### projection
+# projection
 
 
 ``` r
@@ -51,7 +51,7 @@ io <- ts_projection(ts)
 
 
 ``` r
-#input data
+# input data
 ts_head(io$input)
 ```
 
@@ -67,7 +67,7 @@ ts_head(io$input)
 
 
 ``` r
-#output data
+# output data
 ts_head(io$output)
 ```
 

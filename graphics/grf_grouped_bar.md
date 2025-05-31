@@ -5,7 +5,7 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
@@ -14,7 +14,7 @@ library(daltoolbox)
 library(ggplot2)
 library(RColorBrewer)
 
-#color palette
+# color palette
 colors <- brewer.pal(4, 'Set1')
 
 # setting the font size for all charts
@@ -23,7 +23,7 @@ font <- theme(text = element_text(size=16))
 
 
 ``` r
-#iris dataset for the example
+# iris dataset for the example
 head(iris)
 ```
 
@@ -54,13 +54,13 @@ head(data)
 ## 3 virginica          6.59        2.97
 ```
 
-## Grouped barbar
+# Grouped barbar
 
 Grouped bar charts are used to organize data into groups for each category.
 
 In a grouped bar chart, for each categorical group, there are two or more bars. These bars are color-coded to represent a particular grouping.  
 
-More information: https://en.wikipedia.org/wiki/Bar_chart#Grouped_or_stacked
+More information: https://en.wikipedia.org/wiki/Bar_chart# Grouped_or_stacked
 
 
 ``` r

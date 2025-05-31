@@ -1,4 +1,4 @@
-## Time Series Regression - arima
+# Time Series Regression - arima
 
 ```{r}
 # DAL ToolBox
@@ -6,11 +6,11 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
-### Series for studying
+# Series for studying
 
 ```{r}
 data(sin_data)
@@ -23,7 +23,7 @@ library(ggplot2)
 plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 ```
 
-### data sampling
+# data sampling
 
 ```{r}
 samp <- ts_sample(ts, test_size = 5)
@@ -31,14 +31,14 @@ io_train <- ts_projection(samp$train)
 io_test <- ts_projection(samp$test)
 ```
 
-### Model training
+# Model training
 
 ```{r}
 model <- ts_arima()
 model <- fit(model, x=io_train$input, y=io_train$output)
 ```
 
-### Evaluation of adjustment
+# Evaluation of adjustment
 
 ```{r}
 adjust <- predict(model, io_train$input)
@@ -48,7 +48,7 @@ ev_adjust <- evaluate(model, output, adjust)
 ev_adjust$mse
 ```
 
-### Prediction of test
+# Prediction of test
 
 ```{r}
 prediction <- predict(model, x=io_test$input[1,], steps_ahead=5)
@@ -58,7 +58,7 @@ ev_test <- evaluate(model, output, prediction)
 ev_test
 ```
 
-### Plot results
+# Plot results
 
 ```{r}
 yvalues <- c(io_train$output, io_test$output)

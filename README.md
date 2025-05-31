@@ -23,7 +23,7 @@ The latest version of DAL Toolbox at CRAN is available at:
 You can install the stable version of DAL Toolbox from CRAN with:
 
 ``` r
-install.packages("daltoolbox", ask = FALSE, quiet=TRUE)
+install.packages("daltoolbox")
 ```
 
 You can install the development version of DAL Toolbox from GitHub

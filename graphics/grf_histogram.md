@@ -5,7 +5,7 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
@@ -14,14 +14,14 @@ library(daltoolbox)
 library(ggplot2)
 library(RColorBrewer)
 
-#color palette
+# color palette
 colors <- brewer.pal(4, 'Set1')
 
 # setting the font size for all charts
 font <- theme(text = element_text(size=16))
 ```
 
-## Examples using data distribution
+# Examples using data distribution
 The following examples use random variables so that different data distribution can be better viewed.
 
 
@@ -43,7 +43,7 @@ head(example)
 ## 6 0.290940174 3.462437 5.358632
 ```
 
-## Histogram
+# Histogram
 
 Visualize the distribution of a single continuous variable by dividing the x axis into bins and counting the number of observations in each bin. Histograms (geom_histogram()) display the counts with bars.
 More information: ?geom_histogram (R documentation)
@@ -67,7 +67,7 @@ plot(grf)
 
 ![plot of chunk unnamed-chunk-4](fig/grf_histogram/unnamed-chunk-4-1.png)
 
-## Arrangement of graphs
+# Arrangement of graphs
 
 Function $grid.arrange$ is used to position previously computed charts
 

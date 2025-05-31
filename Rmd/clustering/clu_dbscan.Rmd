@@ -1,5 +1,5 @@
 # Clustering - dbscan
-## Libraries and Datasets
+# Libraries and Datasets
 
 ```{r}
 # DAL ToolBox
@@ -7,18 +7,18 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
 ```{r}
-#load dataset
+# load dataset
 data(iris)
 ```
 
 General entropy of dataset
 
-## General function to test clustering methods
+# General function to test clustering methods
 
 ```{r}
 # setup clustering

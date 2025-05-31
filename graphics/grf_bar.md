@@ -5,7 +5,7 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
@@ -22,7 +22,7 @@ font <- theme(text = element_text(size=16))
 
 
 ``` r
-#iris dataset for the example
+# iris dataset for the example
 head(iris)
 ```
 
@@ -52,7 +52,7 @@ head(data)
 ## 3 virginica          6.59
 ```
 
-## Bar graph
+# Bar graph
 
 A bar graph is used to presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent. 
 

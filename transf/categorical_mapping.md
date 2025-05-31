@@ -1,4 +1,4 @@
-## Categorical mapping
+# Categorical mapping
 A categorical attribute with $n$ distinct values is mapped into $n$ binary attributes. 
 
 It is also possible to map into $n-1$ binary values, where the scenario where all binary attributes are equal to zero corresponds to the last categorical value not indicated in the attributes.  
@@ -10,11 +10,11 @@ It is also possible to map into $n-1$ binary values, where the scenario where al
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox)
 ```
 
-### dataset for example 
+# dataset for example 
 
 
 ``` r
@@ -32,7 +32,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-### creating categorical mapping
+# creating categorical mapping
 
 
 ``` r
@@ -51,7 +51,7 @@ print(head(iris_cm))
 ## 6             1                 0                0
 ```
 
-### creating categorical mapping
+# creating categorical mapping
 Can be made from a single column, but needs to be a data frame
 
 

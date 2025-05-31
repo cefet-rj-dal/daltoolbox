@@ -5,7 +5,7 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
@@ -14,14 +14,14 @@ library(daltoolbox)
 library(ggplot2)
 library(RColorBrewer)
 
-#color palette
+# color palette
 colors <- brewer.pal(4, 'Set1')
 
 # setting the font size for all charts
 font <- theme(text = element_text(size=16))
 ```
 
-#### Synthetic time series
+# Synthetic time series
 
 
 ``` r
@@ -40,7 +40,7 @@ head(serie)
 ## 6 1.25 0.9489846 5.315322
 ```
 
-## Series plot
+# Series plot
 
 A series plot is a type of chart that displays information as a series of data points connected by straight line segments. 
 

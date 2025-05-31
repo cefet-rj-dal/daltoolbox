@@ -5,7 +5,7 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
@@ -14,14 +14,14 @@ library(daltoolbox)
 library(ggplot2)
 library(RColorBrewer)
 
-#color palette
+# color palette
 colors <- brewer.pal(4, 'Set1')
 
 # setting the font size for all charts
 font <- theme(text = element_text(size=16))
 ```
 
-#### Synthetic time series
+# Synthetic time series
 
 
 ``` r
@@ -40,7 +40,7 @@ head(data)
 ## 6 1.25 0.9489846
 ```
 
-## ts plot
+# ts plot
 
 A time series plot during exploratory analysis
 

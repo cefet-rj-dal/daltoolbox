@@ -1,4 +1,4 @@
-## Time Series Sample
+# Time Series Sample
 
 
 ``` r
@@ -7,11 +7,11 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
-### Series for studying
+# Series for studying
 
 
 ``` r
@@ -26,7 +26,7 @@ plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 
 ![plot of chunk unnamed-chunk-3](fig/ts_sample/unnamed-chunk-3-1.png)
 
-### sliding windows
+# sliding windows
 
 
 ``` r
@@ -42,7 +42,7 @@ ts_head(ts, 3)
 ## [3,] 0.4794255 0.6816388 0.8414710 0.9489846 0.9974950 0.9839859 0.9092974 0.7780732 0.5984721 0.3816610
 ```
 
-### data sampling
+# data sampling
 
 
 ``` r
@@ -52,7 +52,7 @@ samp <- ts_sample(ts, test_size)
 
 
 ``` r
-#first five rows from training data
+# first five rows from training data
 ts_head(samp$train, 5)
 ```
 
@@ -67,7 +67,7 @@ ts_head(samp$train, 5)
 
 
 ``` r
-#last five rows from training data
+# last five rows from training data
 ts_head(samp$train[-c(1:(nrow(samp$train)-5)),])
 ```
 
@@ -82,7 +82,7 @@ ts_head(samp$train[-c(1:(nrow(samp$train)-5)),])
 
 
 ``` r
-#testing data
+# testing data
 ts_head(samp$test)
 ```
 

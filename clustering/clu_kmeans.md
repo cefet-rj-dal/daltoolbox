@@ -7,17 +7,17 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox)  
 ```
 
 
 ``` r
-#load dataset
+# load dataset
 data(iris)
 ```
 
-## General function to test clustering methods
+# General function to test clustering methods
 
 
 ``` r
@@ -62,7 +62,7 @@ eval
 ## [1] 1.584963
 ```
 
-## Influence of normalization in clustering
+# Influence of normalization in clustering
 
 
 ``` r

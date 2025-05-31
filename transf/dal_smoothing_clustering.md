@@ -5,18 +5,18 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
-## Discretization & smoothing
+# Discretization & smoothing
 Discretization is the process of transferring continuous functions, models, variables, and equations into discrete counterparts. 
 
 Smoothing is a technique that creates an approximating function that attempts to capture important patterns in the data while leaving out noise or other fine-scale structures/rapid phenomena.
 
 An important part of the discretization/smoothing is to set up bins for proceeding the approximation.
 
-## general function to evaluate different smoothing technique
+# general function to evaluate different smoothing technique
 
 
 ``` r
@@ -67,7 +67,7 @@ print(entro$entropy)
 ## [1] 1.12088
 ```
 
-## Optimizing the number of binnings
+# Optimizing the number of binnings
 
 
 ``` r

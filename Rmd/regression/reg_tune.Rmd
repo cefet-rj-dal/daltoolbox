@@ -1,4 +1,4 @@
-## Tune Regression 
+# Tune Regression 
 
 ```{r}
 # DAL ToolBox
@@ -6,11 +6,11 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
-### Dataset for regression analysis
+# Dataset for regression analysis
 
 ```{r}
 library(MASS)
@@ -24,7 +24,7 @@ head(Boston)
 Boston <- as.matrix(Boston)
 ```
 
-## Building samples (training and testing)
+# Building samples (training and testing)
 
 ```{r}
 # preparing dataset for random sampling
@@ -35,7 +35,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
-### Training
+# Training
 
 ```{r}
 tune <- reg_tune(reg_svm("medv"))
@@ -43,7 +43,7 @@ ranges <- list(seq(0,1,0.2), cost=seq(20,100,20), kernel = c("radial"))
 model <- fit(tune, boston_train, ranges)
 ```
 
-### Model adjustment
+# Model adjustment
 
 ```{r}
 train_prediction <- predict(model, boston_train)
@@ -52,7 +52,7 @@ train_eval <- evaluate(model, boston_train_predictand, train_prediction)
 print(train_eval$metrics)
 ```
 
-### Test
+# Test
 
 ```{r}
 test_prediction <- predict(model, boston_test)
@@ -61,19 +61,19 @@ test_eval <- evaluate(model, boston_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
 
-### Options for other models
+# Options for other models
 
 ```{r}
-#svm
+# svm
 ranges <- list(seq(0,1,0.2), cost=seq(20,100,20), kernel = c("linear", "radial", "polynomial", "sigmoid"))
 
-#knn
+# knn
 ranges <- list(k=1:20)
 
-#mlp
+# mlp
 ranges <- list(size=1:10, decay=seq(0, 1, 0.1))
 
-#rf
+# rf
 ranges <- list(mtry=1:10, ntree=1:10)
 ```
 

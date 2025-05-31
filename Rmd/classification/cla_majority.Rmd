@@ -1,16 +1,12 @@
 ```{r}
-# DAL ToolBox
-# version 1.2.707
+# Classification using Majority class
 
+# installation 
+install.packages("daltoolbox")
 
-#installation 
-install.packages("daltoolbox", ask = FALSE, quiet=TRUE)
-
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
-
-## Classification
 
 ```{r}
 iris <- datasets::iris
@@ -18,15 +14,14 @@ head(iris)
 ```
 
 ```{r}
-#extracting the levels for the dataset
+# extracting the levels for the dataset
 slevels <- levels(iris$Species)
 slevels
 ```
 
-## Building samples (training and testing)
 
 ```{r}
-# preparing dataset for random sampling
+# Building samples (training and testing) using random sampling
 set.seed(1)
 sr <- sample_random()
 sr <- train_test(sr, iris)
@@ -35,6 +30,7 @@ iris_test <- sr$test
 ```
 
 ```{r}
+
 tbl <- rbind(table(iris[,"Species"]), 
              table(iris_train[,"Species"]), 
              table(iris_test[,"Species"]))
@@ -42,29 +38,31 @@ rownames(tbl) <- c("dataset", "training", "test")
 head(tbl)
 ```
 
-### Model training
-
 ```{r}
+# Model training
 model <- cla_majority("Species", slevels)
 model <- fit(model, iris_train)
-train_prediction <- predict(model, iris_train)
+
 ```
 
-### Model adjustement
-
 ```{r}
+# Checking model adjustment
+train_prediction <- predict(model, iris_train)
+
+# Model evaluation
 iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
 train_eval <- evaluate(model, iris_train_predictand, train_prediction)
 print(train_eval$metrics)
 ```
 
-### Model testing
 
 ```{r}
-# Test  
+# Model testing
 test_prediction <- predict(model, iris_test)
-  
+
 iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
+
+# Evaluating # setosa as primary class
 test_eval <- evaluate(model, iris_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```

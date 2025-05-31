@@ -7,7 +7,7 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
@@ -37,11 +37,11 @@ table(iris$Species)
 ##         50         50         50
 ```
 
-## Dividing a dataset with training and test
+# Dividing a dataset with training and test
 
 
 ``` r
-#using random sampling
+# using random sampling
 tt <- train_test(sample_stratified("Species"), iris)
 
 # distribution of train
@@ -65,11 +65,11 @@ print(table(tt$test$Species))
 ##         10         10         10
 ```
 
-## Dividing a dataset into folds
+# Dividing a dataset into folds
 
 
 ``` r
-#using stratified sampling
+# using stratified sampling
 # preparing dataset into four folds
 sample <- sample_stratified("Species")
 folds <- k_fold(sample, iris, 4)

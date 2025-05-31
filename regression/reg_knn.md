@@ -1,4 +1,4 @@
-## Regression KNN
+# Regression KNN
 
 
 ``` r
@@ -7,11 +7,11 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
-### Dataset for regression analysis
+# Dataset for regression analysis
 
 
 ``` r
@@ -47,7 +47,7 @@ head(Boston)
 Boston <- as.matrix(Boston)
 ```
 
-## Building samples (training and testing)
+# Building samples (training and testing)
 
 
 ``` r
@@ -59,7 +59,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
-### Training
+# Training
 
 
 ``` r
@@ -67,7 +67,7 @@ model <- reg_knn("medv", k=5)
 model <- fit(model, boston_train)
 ```
 
-### Model adjustment
+# Model adjustment
 
 
 ``` r
@@ -82,7 +82,7 @@ print(train_eval$metrics)
 ## 1 27.02782 0.155995 0.6997184
 ```
 
-### Test
+# Test
 
 
 ``` r

@@ -1,5 +1,5 @@
 # Clustering - pam
-## Libraries and Datasets
+# Libraries and Datasets
 
 
 ``` r
@@ -8,19 +8,19 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
 
 ``` r
-#load dataset
+# load dataset
 data(iris)
 ```
 
 General entropy of dataset
 
-## General function to test clustering methods
+# General function to test clustering methods
 
 
 ``` r

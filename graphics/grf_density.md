@@ -5,14 +5,14 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
 
 ``` r
 library(RColorBrewer)
-#color palette
+# color palette
 colors <- brewer.pal(4, 'Set1')
 
 library(ggplot2)
@@ -20,7 +20,7 @@ library(ggplot2)
 font <- theme(text = element_text(size=16))
 ```
 
-## Examples using data distribution
+# Examples using data distribution
 The following examples use random variables so that different data distribution can be better viewed.
 
 
@@ -42,7 +42,7 @@ head(example)
 ## 6   2.2377570 2.722793 5.408614
 ```
 
-## Density plot
+# Density plot
 
 Computes and draws kernel density estimate, which is a smoothed version of the histogram. This is a useful alternative to the histogram for continuous data that comes from an underlying smooth distribution.
 
@@ -64,7 +64,7 @@ plot(grf)
 
 ![plot of chunk unnamed-chunk-4](fig/grf_density/unnamed-chunk-4-1.png)
 
-## Arrangement of graphs
+# Arrangement of graphs
 
 Function $grid.arrange$ is used to position previously computed charts
 

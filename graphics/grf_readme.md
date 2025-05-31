@@ -2,14 +2,14 @@
 The ggplot2 is one of the most powerful packages for plotting chars.
 Although very powerful, the learning curve for ggplot2 is high, as it is established on a grammar of graphics (https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448) approach.
 
-## graphics.R
+# graphics.R
 
 The graphic.R enables plotting charts encapsulating ggplot2.
 It enables an easy startup while learning how to use ggplot2. 
 
 The majority of functions require a data.frame with two attributes or more attributes. In most cases, the first attribute is associated with the x-axis. In contrast, the second is related to the y-axis.
 
-## Library
+# Library
 The library $myGraphics.R$ is loaded using the source function. 
 
 
@@ -19,17 +19,17 @@ The library $myGraphics.R$ is loaded using the source function.
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 
 # The easiest way to get ggplot2 is to install the whole tidyverse:
 # install.packages("tidyverse")
 # Alternatively, install just ggplot2:
 # install.packages("ggplot2")
-#Use suppressPackageStartupMessages(source(filename)) to avoid warning messages
+# Use suppressPackageStartupMessages(source(filename)) to avoid warning messages
 ```
 
-## Color palette
+# Color palette
 
 One thing very relevant while plotting charts is to preserve visual identity. 
 For that, the color brewer is an excellent tool to set up colors for your graphics using appropriate colors.

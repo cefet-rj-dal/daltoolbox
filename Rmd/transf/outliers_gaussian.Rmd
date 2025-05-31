@@ -1,4 +1,4 @@
-## NA and Outlier analysis
+# NA and Outlier analysis
 
 ```{r}
 # DAL ToolBox
@@ -6,18 +6,18 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
-### Outlier removal using gaussian
+# Outlier removal using gaussian
 The following class uses box-plot definition for outliers.
 
 An outlier is a value that is below than $\overline{x} - 3 \sigma_x$ or higher than $\overline{x} + 3 \sigma_x}$.
 
 The class remove outliers for numeric attributes. 
 
-### removing outliers of a data frame
+# removing outliers of a data frame
 
 ```{r}
 # code for outlier removal

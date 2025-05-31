@@ -1,27 +1,25 @@
-## Tune Regression 
-
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# Tune Regression 
 
-#installation 
-install.packages("daltoolbox", ask = FALSE, quiet=TRUE)
+# installation 
+install.packages("daltoolbox")
 ```
 
 ```
-
+## Error in install.packages : Updating loaded packages
 ```
 
 ``` r
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
-### Dataset for classification
 
 
 ``` r
+# Dataset for classification
+
 iris <- datasets::iris
 head(iris)
 ```
@@ -37,7 +35,7 @@ head(iris)
 ```
 
 ``` r
-#extracting the levels for the dataset
+# extracting the levels for the dataset
 slevels <- levels(iris$Species)
 slevels
 ```
@@ -46,7 +44,7 @@ slevels
 ## [1] "setosa"     "versicolor" "virginica"
 ```
 
-## Building samples (training and testing)
+# Building samples (training and testing)
 
 
 ``` r
@@ -71,20 +69,20 @@ head(tbl)
 ## test         11         12         7
 ```
 
-### Training
 
 
 ``` r
+# Training
 tune <- cla_tune(cla_svm("Species", slevels))
 ranges <- list(epsilon=seq(0,1,0.2), cost=seq(20,100,20), kernel = c("linear", "radial", "polynomial", "sigmoid"))
 
 model <- fit(tune, iris_train, ranges)
 ```
 
-### Model adjustment
 
 
 ``` r
+# Model adjustment
 train_prediction <- predict(model, iris_train)
 
 iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
@@ -97,7 +95,6 @@ print(train_eval$metrics)
 ## 1 0.9833333 39 81  0  0         1      1           1           1  1
 ```
 
-### Test
 
 
 ``` r
@@ -106,7 +103,7 @@ test_prediction <- predict(model, iris_test)
 
 iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
 
-#Avaliação #setosa
+# Evaluating # setosa as primary class
 test_eval <- evaluate(model, iris_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
@@ -116,39 +113,17 @@ print(test_eval$metrics)
 ## 1 0.9333333 11 19  0  0         1      1           1           1  1
 ```
 
-``` r
-#Avaliação #versicolor
-test_eval <- evaluate(model, iris_test_predictand, test_prediction, ref=2)
-print(test_eval$metrics)
-```
-
-```
-##    accuracy TP TN FP FN precision recall sensitivity specificity        f1
-## 1 0.9333333 12 16  2  0 0.8571429      1           1   0.8888889 0.9230769
-```
-
-``` r
-#Avaliação #virginica
-test_eval <- evaluate(model, iris_test_predictand, test_prediction, ref=3)
-print(test_eval$metrics)
-```
-
-```
-##    accuracy TP TN FP FN precision    recall sensitivity specificity        f1
-## 1 0.9333333  5 23  0  2         1 0.7142857   0.7142857           1 0.8333333
-```
-
-### Options for other models
 
 
 ``` r
-#knn
+# Options for other models
+# knn
 ranges <- list(k=1:20)
 
-#mlp
+# mlp
 ranges <- list(size=1:10, decay=seq(0, 1, 0.1))
 
-#rf
+# rf
 ranges <- list(mtry=1:3, ntree=1:10)
 ```
 

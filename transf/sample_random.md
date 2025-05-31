@@ -7,7 +7,7 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
@@ -37,11 +37,11 @@ table(iris$Species)
 ##         50         50         50
 ```
 
-## Dividing a dataset with training and test
+# Dividing a dataset with training and test
 
 
 ``` r
-#using random sampling
+# using random sampling
 tt <- train_test(sample_random(), iris)
 
 # distribution of train
@@ -65,7 +65,7 @@ print(table(tt$test$Species))
 ##         11         10          9
 ```
 
-## Dividing a dataset into folds
+# Dividing a dataset into folds
 
 
 ``` r

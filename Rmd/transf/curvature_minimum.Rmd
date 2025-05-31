@@ -4,10 +4,10 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 
-#for ploting
+# for ploting
 library(ggplot2)
 library(dplyr)
 ```
@@ -17,7 +17,7 @@ wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/
 head(wine)
 ```
 
-## Example: PCA components
+# Example: PCA components
 Cummulative variance of PCA: First dimensions have high variance. However, adding more dimensions does not bring much benefit in terms of cummulative variance. 
 The goal is to establish a trade-off.
 
@@ -39,7 +39,7 @@ grf <- plot_scatter(dat, label_x = "dimensions", label_y = "cumulative variance"
 plot(grf)
 ```
 
-## Minimum curvature
+# Minimum curvature
 If the curve is increasing, use minimum curvature analysis. 
 It brings a trade-off between having lower x values (with not so high y values) and having higher x values (not having to much increase in y values). 
 

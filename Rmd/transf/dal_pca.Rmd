@@ -4,7 +4,7 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
@@ -14,7 +14,7 @@ iris <- datasets::iris
 head(iris)
 ```
 
-## PCA
+# PCA
 PCA is a technique that finds a projection that captures the largest amount of variation in data.
 
 ```{r}
@@ -23,7 +23,7 @@ mypca <- fit(mypca, datasets::iris)
 iris.pca <- transform(mypca, iris)
 ```
 
-## Properties of PCA
+# Properties of PCA
 
 ```{r}
 print(head(iris.pca))

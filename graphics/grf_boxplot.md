@@ -5,7 +5,7 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
@@ -14,7 +14,7 @@ library(daltoolbox)
 library(ggplot2)
 library(RColorBrewer)
 
-#color palette
+# color palette
 colors <- brewer.pal(4, 'Set1')
 
 # setting the font size for all charts
@@ -23,7 +23,7 @@ font <- theme(text = element_text(size=16))
 
 
 ``` r
-#iris dataset for the example
+# iris dataset for the example
 head(iris)
 ```
 
@@ -37,7 +37,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-## Box-plot
+# Box-plot
 In descriptive statistics, a box plot is a method for graphically depicting groups of numerical data through their quartiles. Box plots may also have lines extending from the boxes (whiskers), indicating variability outside the upper and lower quartiles (outliers). 
 
 More information: https://en.wikipedia.org/wiki/Box_plot

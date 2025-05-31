@@ -5,7 +5,7 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
@@ -14,7 +14,7 @@ library(daltoolbox)
 library(ggplot2)
 library(RColorBrewer)
 
-#color palette
+# color palette
 colors <- brewer.pal(4, 'Set1')
 
 # setting the font size for all charts
@@ -23,7 +23,7 @@ font <- theme(text = element_text(size=16))
 
 
 ``` r
-#iris dataset for the example
+# iris dataset for the example
 head(iris)
 ```
 
@@ -53,7 +53,7 @@ head(data)
 ## 3 virginica   6.59 0.636
 ```
 
-## Bar graph with error bars
+# Bar graph with error bars
 When bar graphs present an average behavior, it is possible to plot a dispersion around it using an error bar.
 
 The error bar is added using $geom\_errorbar()$ function to a previously defined bar graph. 

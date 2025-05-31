@@ -1,4 +1,4 @@
-## Time Series Regression - arima
+# Time Series Regression - arima
 
 
 ``` r
@@ -7,11 +7,11 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
-### Series for studying
+# Series for studying
 
 
 ``` r
@@ -35,7 +35,7 @@ plot_ts(x=sin_data$x, y=sin_data$y) + theme(text = element_text(size=16))
 
 ![plot of chunk unnamed-chunk-3](fig/ts_arima/unnamed-chunk-3-1.png)
 
-### data sampling
+# data sampling
 
 
 ``` r
@@ -44,7 +44,7 @@ io_train <- ts_projection(samp$train)
 io_test <- ts_projection(samp$test)
 ```
 
-### Model training
+# Model training
 
 
 ``` r
@@ -52,7 +52,7 @@ model <- ts_arima()
 model <- fit(model, x=io_train$input, y=io_train$output)
 ```
 
-### Evaluation of adjustment
+# Evaluation of adjustment
 
 
 ``` r
@@ -67,7 +67,7 @@ ev_adjust$mse
 ## [1] 0.02857686
 ```
 
-### Prediction of test
+# Prediction of test
 
 
 ``` r
@@ -99,7 +99,7 @@ ev_test
 ## 1 0.4904025 1.489711 -3.235632
 ```
 
-### Plot results
+# Plot results
 
 
 ``` r

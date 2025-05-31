@@ -5,17 +5,17 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
-## Normalization
+# Normalization
 
 Normalization is a technique used to equal strength among variables. 
 
 It is also important to apply it as an input for some machine learning methods. 
 
-## Example
+# Example
 
 
 ``` r
@@ -33,7 +33,7 @@ summary(iris)
 ##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500
 ```
 
-### Min-Max 
+# Min-Max 
 Adjust numeric values to 0 (minimum value) - 1 (maximum value).
 
 

@@ -1,20 +1,17 @@
-## Classification using Support Vector Machine
-
 
 ``` r
-# DAL ToolBox
-# version 1.2.707
+# Classification using Support Vector Machine
 
-#installation 
-install.packages("daltoolbox", ask = FALSE, quiet=TRUE)
+# installation 
+install.packages("daltoolbox")
 ```
 
 ```
-
+## Error in install.packages : Updating loaded packages
 ```
 
 ``` r
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
@@ -36,7 +33,7 @@ head(iris)
 
 
 ``` r
-#extracting the levels for the dataset
+# extracting the levels for the dataset
 slevels <- levels(iris$Species)
 slevels
 ```
@@ -45,11 +42,10 @@ slevels
 ## [1] "setosa"     "versicolor" "virginica"
 ```
 
-## Building samples (training and testing)
 
 
 ``` r
-# preparing dataset for random sampling
+# Building samples (training and testing) using random sampling
 set.seed(1)
 sr <- sample_random()
 sr <- train_test(sr, iris)
@@ -73,19 +69,19 @@ head(tbl)
 ## test         11         12         7
 ```
 
-### Model training
-
 
 ``` r
+# Model training
 model <- cla_svm("Species", slevels, epsilon=0.0,cost=20.000)
 model <- fit(model, iris_train)
-train_prediction <- predict(model, iris_train)
 ```
-
-### Model adjustment
 
 
 ``` r
+# Checking model adjustment
+train_prediction <- predict(model, iris_train)
+
+# Model evaluation
 iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
 train_eval <- evaluate(model, iris_train_predictand, train_prediction)
 print(train_eval$metrics)
@@ -96,16 +92,15 @@ print(train_eval$metrics)
 ## 1    0.975 39 81  0  0         1      1           1           1  1
 ```
 
-### Model testing
 
 
 ``` r
-# Test
+# Model testing
 test_prediction <- predict(model, iris_test)
 
 iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
 
-#Avaliação #setosa
+# Evaluating # setosa as primary class
 test_eval <- evaluate(model, iris_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
@@ -113,27 +108,5 @@ print(test_eval$metrics)
 ```
 ##   accuracy TP TN FP FN precision recall sensitivity specificity f1
 ## 1        1 11 19  0  0         1      1           1           1  1
-```
-
-``` r
-#Avaliação #versicolor
-test_eval <- evaluate(model, iris_test_predictand, test_prediction, ref=2)
-print(test_eval$metrics)
-```
-
-```
-##   accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1        1 12 18  0  0         1      1           1           1  1
-```
-
-``` r
-#Avaliação #virginica
-test_eval <- evaluate(model, iris_test_predictand, test_prediction, ref=3)
-print(test_eval$metrics)
-```
-
-```
-##   accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1        1  7 23  0  0         1      1           1           1  1
 ```
 

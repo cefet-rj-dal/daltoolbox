@@ -4,15 +4,15 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 
-#for ploting
+# for ploting
 library(ggplot2)
 library(dplyr)
 ```
 
-## Maximum curvature
+# Maximum curvature
 If the curve is decreasing, use maximum curvature analysis. 
 It brings a trade-off between having lower x values (with not so low y values) and having higher x values (not having to much decrease in y values). 
 

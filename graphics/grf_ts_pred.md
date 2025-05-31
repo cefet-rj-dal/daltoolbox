@@ -5,7 +5,7 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
@@ -14,14 +14,14 @@ library(daltoolbox)
 library(ggplot2)
 library(RColorBrewer)
 
-#color palette
+# color palette
 colors <- brewer.pal(4, 'Set1')
 
 # setting the font size for all charts
 font <- theme(text = element_text(size=16))
 ```
 
-#### Synthetic time series
+# Synthetic time series
 
 
 ``` r
@@ -41,25 +41,25 @@ ts_head(ts, 3)
 
 
 ``` r
-#sampling training and test
+# sampling training and test
 samp <- ts_sample(ts, test_size= 5)
-#division between input and output
+# division between input and output
 io_train <- ts_projection(samp$train)
 io_test <- ts_projection(samp$test)
-#time series
+# time series
 yvalues <- c(io_train$output, io_test$output)
 
-#model adjustment
+# model adjustment
 model <- ts_arima()
 model <- fit(model, x=io_train$input, y=io_train$output)
 adjust <- predict(model, io_train$input)
 
-#prediction
+# prediction
 prediction <- predict(model, x=io_test$input, steps_ahead=5)
 prediction <- as.vector(prediction)
 ```
 
-## Series plot with predictions
+# Series plot with predictions
 
 A time series ploting with model adjustment and prediction values. 
 

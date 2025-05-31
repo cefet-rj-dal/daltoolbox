@@ -5,7 +5,7 @@
 
 
 
-#loading DAL
+# loading DAL
 library(daltoolbox) 
 ```
 
@@ -14,7 +14,7 @@ library(daltoolbox)
 library(ggplot2)
 library(RColorBrewer)
 
-#color palette
+# color palette
 colors <- brewer.pal(4, 'Set1')
 
 # setting the font size for all charts
@@ -23,7 +23,7 @@ font <- theme(text = element_text(size=16))
 
 
 ``` r
-#iris dataset for the example
+# iris dataset for the example
 head(iris)
 ```
 
@@ -54,7 +54,7 @@ head(data)
 ## 3 virginica          6.59
 ```
 
-## Pie chart
+# Pie chart
 A pie chart is a circular statistical graphic, which is divided into slices to illustrate numerical proportion. 
 
 More information: https://en.wikipedia.org/wiki/Pie_chart
