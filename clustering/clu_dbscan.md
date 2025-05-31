@@ -3,21 +3,11 @@
 # Clustering - dbscan
 
 # installation 
-install.packages("daltoobox")
+install.packages("daltoolbox")
 ```
 
 ```
-## Installing package into '/home/gpca/R/x86_64-pc-linux-gnu-library/4.5'
-## (as 'lib' is unspecified)
-```
 
-```
-## Warning in install.packages :
-##   package 'daltoobox' is not available for this version of R
-## 
-## A version of this package for your version of R might be available elsewhere,
-## see the ideas at
-## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
 ```
 
 ``` r

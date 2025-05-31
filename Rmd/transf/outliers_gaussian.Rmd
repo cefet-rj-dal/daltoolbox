@@ -2,7 +2,7 @@
 # NA and Outlier analysis
 
 # installation 
-install.packages("daltoobox")
+install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 

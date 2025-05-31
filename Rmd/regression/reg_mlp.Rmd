@@ -2,7 +2,7 @@
 # Regression MLP
 
 # installation 
-install.packages("daltoobox")
+install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
