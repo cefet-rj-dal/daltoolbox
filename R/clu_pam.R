@@ -28,7 +28,7 @@ cluster_pam <- function(k = 1) {
   return(obj)
 }
 
-#'@import cluster
+#'@importFrom cluster pam
 #'@exportS3Method cluster cluster_pam
 cluster.cluster_pam <- function(obj, data, ...) {
   pam_cluster <- cluster::pam(data, obj$k)

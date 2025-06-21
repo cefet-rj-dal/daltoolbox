@@ -30,7 +30,7 @@ cla_dtree <- function(attribute, slevels) {
   return(obj)
 }
 
-#'@import tree
+#'@importFrom tree tree
 #'@exportS3Method fit cla_dtree
 fit.cla_dtree <- function(obj, data, ...) {
   data <- adjust_data.frame(data)

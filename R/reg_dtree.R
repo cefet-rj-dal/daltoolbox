@@ -28,7 +28,7 @@ reg_dtree <- function(attribute) {
   return(obj)
 }
 
-#'@import tree
+#'@importFrom tree tree
 #'@exportS3Method fit reg_dtree
 fit.reg_dtree <- function(obj, data, ...) {
   data <- adjust_data.frame(data)

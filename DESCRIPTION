@@ -23,7 +23,6 @@ Depends: R (>= 4.1.0)
 RoxygenNote: 7.3.2
 Imports: 
   FNN, 
-  MLmetrics, 
   caret, 
   class, 
   cluster, 

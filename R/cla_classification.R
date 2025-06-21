@@ -1,5 +1,5 @@
 #'@title classification
-#'@description Ancestor class for classification problems using MLmetrics nnet
+#'@description Ancestor class for classification problems
 #'@param attribute attribute target to model building
 #'@param slevels possible values for the target classification
 #'@return returns a classification object
@@ -16,7 +16,7 @@ classification <- function(attribute, slevels) {
 }
 
 
-#'@import MLmetrics nnet
+#'@importFrom nnet which.is.max
 #'@exportS3Method evaluate classification
 evaluate.classification <- function(obj, data, prediction, ref = 1, ...) {
   variables_as_factor <- function(prediction, s_levels) {

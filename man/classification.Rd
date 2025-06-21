@@ -15,7 +15,7 @@ classification(attribute, slevels)
 returns a classification object
 }
 \description{
-Ancestor class for classification problems using MLmetrics nnet
+Ancestor class for classification problems
 }
 \examples{
 #See ?cla_dtree for a classification example using a decision tree

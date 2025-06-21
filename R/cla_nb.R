@@ -29,7 +29,7 @@ cla_nb <- function(attribute, slevels) {
   return(obj)
 }
 
-#'@import e1071
+#'@importFrom e1071 naiveBayes
 #'@exportS3Method fit cla_nb
 fit.cla_nb <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
