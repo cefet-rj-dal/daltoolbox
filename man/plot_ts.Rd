@@ -18,7 +18,7 @@ plot_ts(x = NULL, y, label_x = "", label_y = "", color = "black")
 \item{color}{color for time series}
 }
 \value{
-returns a ggplot graphic
+returns a ggplot2::ggplot graphic
 }
 \description{
 This function plots a time series chart with points and a line using ggplot2.

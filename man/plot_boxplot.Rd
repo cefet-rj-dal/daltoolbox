@@ -18,7 +18,7 @@ plot_boxplot(data, label_x = "", label_y = "", colors = NULL, barwidth = 0.25)
 \item{barwidth}{width of bar}
 }
 \value{
-returns a ggplot graphic
+returns a ggplot2::ggplot graphic
 }
 \description{
 this function displays a boxplot graph from a data frame containing x-axis categories and numeric values using ggplot2.

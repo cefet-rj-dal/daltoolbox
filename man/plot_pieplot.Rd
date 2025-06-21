@@ -27,7 +27,7 @@ plot_pieplot(
 \item{bordercolor}{border color}
 }
 \value{
-returns a ggplot graphic
+returns a ggplot2::ggplot graphic
 }
 \description{
 This function creates a pie chart using ggplot2.
@@ -35,7 +35,7 @@ This function creates a pie chart using ggplot2.
 \examples{
 #summarizing iris dataset
 data <- iris |> dplyr::group_by(Species) |>
- dplyr::summarize(Sepal.Length=mean(Sepal.Length))
+dplyr::summarize(Sepal.Length=mean(Sepal.Length))
 head(data)
 
 #ploting data

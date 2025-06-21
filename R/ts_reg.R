@@ -3,7 +3,7 @@
 #'Ancestral class for non-sliding windows implementation.
 #'@return returns `ts_reg` object
 #'@examples
-#'#See ?ts_arima for an example using Auto-regressive Integrated Moving Average
+#'#This is an abstract class.
 #'@export
 ts_reg <- function() {
   obj <- predictor()

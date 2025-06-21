@@ -18,7 +18,7 @@ plot_stackedbar(data, label_x = "", label_y = "", colors = NULL, alpha = 1)
 \item{alpha}{level of transparency}
 }
 \value{
-returns a ggplot graphic
+returns a ggplot2::ggplot graphic
 }
 \description{
 this function creates a stacked bar chart using ggplot2.
@@ -26,7 +26,7 @@ this function creates a stacked bar chart using ggplot2.
 \examples{
 #summarizing iris dataset
 data <- iris |> dplyr::group_by(Species) |>
- dplyr::summarize(Sepal.Length=mean(Sepal.Length), Sepal.Width=mean(Sepal.Width))
+dplyr::summarize(Sepal.Length=mean(Sepal.Length), Sepal.Width=mean(Sepal.Width))
 
 #plotting data
 grf <- plot_stackedbar(data, colors=c("blue", "red"))

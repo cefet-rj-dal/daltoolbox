@@ -18,7 +18,7 @@ plot_hist(data, label_x = "", label_y = "", color = "white", alpha = 0.25)
 \item{alpha}{transparency level}
 }
 \value{
-returns a ggplot graphic
+returns a ggplot2::ggplot graphic
 }
 \description{
 This function generates a histogram from a specified data frame using ggplot2.

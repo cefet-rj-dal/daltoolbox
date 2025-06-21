@@ -18,7 +18,7 @@ plot_groupedbar(data, label_x = "", label_y = "", colors = NULL, alpha = 1)
 \item{alpha}{level of transparency}
 }
 \value{
-returns a ggplot graphic
+returns a ggplot2::ggplot graphic
 }
 \description{
 This function generates a grouped bar plot from a given data frame using ggplot2.
@@ -26,7 +26,7 @@ This function generates a grouped bar plot from a given data frame using ggplot2
 \examples{
 #summarizing iris dataset
 data <- iris |> dplyr::group_by(Species) |>
- dplyr::summarize(Sepal.Length=mean(Sepal.Length), Sepal.Width=mean(Sepal.Width))
+dplyr::summarize(Sepal.Length=mean(Sepal.Length), Sepal.Width=mean(Sepal.Width))
 head(data)
 
 #ploting data

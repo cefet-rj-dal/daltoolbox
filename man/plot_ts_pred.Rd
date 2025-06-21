@@ -36,7 +36,7 @@ plot_ts_pred(
 \item{color_prediction}{color for the predictions}
 }
 \value{
-returns a ggplot graphic
+returns a ggplot2::ggplot graphic
 }
 \description{
 This function plots a time series chart with three lines: the original series, the adjusted series, and the predicted series using ggplot2.

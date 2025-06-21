@@ -16,15 +16,15 @@ plot_scatter(data, label_x = "", label_y = "", colors = NULL)
 \item{colors}{color vector}
 }
 \value{
-return a ggplot graphic
+return a ggplot2::ggplot graphic
 }
 \description{
 This function creates a scatter plot using ggplot2.
 }
 \examples{
 grf <- plot_scatter(iris |> dplyr::select(x = Sepal.Length,
- value = Sepal.Width, variable = Species),
- label_x = "Sepal.Length", label_y = "Sepal.Width",
- colors=c("red", "green", "blue"))
- plot(grf)
+value = Sepal.Width, variable = Species),
+label_x = "Sepal.Length", label_y = "Sepal.Width",
+colors=c("red", "green", "blue"))
+plot(grf)
 }

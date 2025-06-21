@@ -19,5 +19,5 @@ Time Series Regression from Sliding Windows.
 Ancestral class for Machine Learning Implementation.
 }
 \examples{
-#See ?ts_elm for an example using Extreme Learning Machine
+#This is an abstract class.
 }

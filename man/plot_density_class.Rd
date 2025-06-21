@@ -30,13 +30,13 @@ plot_density_class(
 \item{alpha}{level of transparency}
 }
 \value{
-returns a ggplot graphic
+returns a ggplot2::ggplot graphic
 }
 \description{
 This function generates density plots using ggplot2 grouped by a specified class label from a data frame containing numeric values.
 }
 \examples{
 grf <- plot_density_class(iris |> dplyr::select(Sepal.Width, Species),
- class = "Species", colors=c("red", "green", "blue"))
+class = "Species", colors=c("red", "green", "blue"))
 plot(grf)
 }

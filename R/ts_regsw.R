@@ -5,7 +5,7 @@
 #'@param input_size input size for machine learning model
 #'@return returns a `ts_regsw` object
 #'@examples
-#'#See ?ts_elm for an example using Extreme Learning Machine
+#'#This is an abstract class.
 #'@export
 ts_regsw <- function(preprocess=NA, input_size=NA) {
   obj <- ts_reg()

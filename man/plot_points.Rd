@@ -16,7 +16,7 @@ plot_points(data, label_x = "", label_y = "", colors = NULL)
 \item{colors}{color vector}
 }
 \value{
-returns a ggplot graphic
+returns a ggplot2::ggplot graphic
 }
 \description{
 This function creates a scatter plot using ggplot2.

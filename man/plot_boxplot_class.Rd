@@ -24,13 +24,13 @@ plot_boxplot_class(
 \item{colors}{color vector}
 }
 \value{
-returns a ggplot graphic
+returns a ggplot2::ggplot graphic
 }
 \description{
 This function generates boxplots grouped by a specified class label from a data frame containing numeric values using ggplot2.
 }
 \examples{
 grf <- plot_boxplot_class(iris |> dplyr::select(Sepal.Width, Species),
- class = "Species", colors=c("red", "green", "blue"))
+class = "Species", colors=c("red", "green", "blue"))
 plot(grf)
 }

@@ -14,5 +14,5 @@ Time Series Regression directly from time series
 Ancestral class for non-sliding windows implementation.
 }
 \examples{
-#See ?ts_arima for an example using Auto-regressive Integrated Moving Average
+#This is an abstract class.
 }

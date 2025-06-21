@@ -18,7 +18,7 @@ plot_bar(data, label_x = "", label_y = "", colors = NULL, alpha = 1)
 \item{alpha}{level of transparency}
 }
 \value{
-returns a ggplot graphic
+returns a ggplot2::ggplot graphic
 }
 \description{
 this function displays a bar graph from a data frame containing x-axis categories using ggplot2.
@@ -26,7 +26,7 @@ this function displays a bar graph from a data frame containing x-axis categorie
 \examples{
 #summarizing iris dataset
 data <- iris |> dplyr::group_by(Species) |>
- dplyr::summarize(Sepal.Length=mean(Sepal.Length))
+dplyr::summarize(Sepal.Length=mean(Sepal.Length))
 head(data)
 
 #ploting data

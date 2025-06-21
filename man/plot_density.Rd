@@ -27,7 +27,7 @@ plot_density(
 \item{alpha}{level of transparency}
 }
 \value{
-returns a ggplot graphic
+returns a ggplot2::ggplot graphic
 }
 \description{
 This function generates a density plot from a data frame containing numeric values using ggplot2.
