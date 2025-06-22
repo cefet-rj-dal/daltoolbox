@@ -25,9 +25,8 @@ This function plots a time series chart with points and a line using ggplot2.
 }
 \examples{
 x <- seq(0, 10, 0.25)
-data <- data.frame(x, sin=sin(x))
-head(data)
+y <- sin(x)
 
-grf <- plot_ts(x = data$x, y = data$sin, color=c("red"))
+grf <- plot_ts(x = x, y = y, color=c("red"))
 plot(grf)
 }

@@ -710,10 +710,9 @@ plot_stackedbar <- function(data, label_x = "", label_y = "", colors = NULL, alp
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
 #'x <- seq(0, 10, 0.25)
-#'data <- data.frame(x, sin=sin(x))
-#'head(data)
+#'y <- sin(x)
 #'
-#'grf <- plot_ts(x = data$x, y = data$sin, color=c("red"))
+#'grf <- plot_ts(x = x, y = y, color=c("red"))
 #'plot(grf)
 #'@export
 #'@importFrom ggplot2 ggplot
