@@ -3,7 +3,7 @@
 # Classification using Multilayer Perceptron
 
 # installation 
-#install.packages("daltoolbox")
+install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 

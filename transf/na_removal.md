@@ -3,7 +3,7 @@
 # NA and Outlier analysis
 
 # installation 
-#install.packages("daltoolbox")
+install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 

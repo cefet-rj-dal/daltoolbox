@@ -3,7 +3,7 @@
 # Clustering - pam
 
 # installation 
-#install.packages("daltoolbox")
+install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 

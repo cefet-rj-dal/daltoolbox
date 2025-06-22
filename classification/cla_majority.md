@@ -3,7 +3,7 @@
 # Classification using Majority class
 
 # installation 
-#install.packages("daltoolbox")
+install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
