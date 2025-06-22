@@ -6,14 +6,8 @@
 # It is also possible to map into $n-1$ binary values, where the scenario where all binary attributes are equal to zero corresponds to the last categorical value not indicated in the attributes.  
 
 # installation 
-install.packages("daltoolbox")
-```
+install.packages"daltoolbox")
 
-```
-
-```
-
-``` r
 # loading DAL
 library(daltoolbox)
 ```

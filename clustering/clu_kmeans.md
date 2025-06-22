@@ -4,14 +4,8 @@
 # Clustering - Kmeans
 
 # installation 
-install.packages("daltoolbox")
-```
+install.packages"daltoolbox")
 
-```
-
-```
-
-``` r
 # loading DAL
 library(daltoolbox)  
 ```
