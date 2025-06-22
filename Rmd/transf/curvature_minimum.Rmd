@@ -11,7 +11,7 @@ library(dplyr)
 ```
 
 ```{r}
-wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/develop/data/wine.RData")))
+wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/develop/wine.RData")))
 head(wine)
 ```
 
