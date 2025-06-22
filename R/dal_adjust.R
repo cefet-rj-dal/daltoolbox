@@ -30,20 +30,6 @@ adjust_data.frame <- function(data) {
     return(data)
 }
 
-#'@title Adjust `ts_data`
-#'@description Converts a dataset to a `ts_data` object
-#'@param data dataset
-#'@return returns an adjusted `ts_data`
-#'@export
-adjust_ts_data <- function(data) {
-  if (!is.matrix(data))
-    data <- as.matrix(data)
-  colnames(data) <- paste("t",c((ncol(data)-1):0), sep="")
-  class(data) <- append("ts_data", class(data))
-  attr(data, "sw") <- ncol(data)
-  return(data)
-}
-
 #'@title Adjust factors
 #'@description Converts a vector into a factor with specified levels and labels
 #'@param value vector to be converted into factor
