@@ -1,7 +1,7 @@
 
 ``` r
 # installation 
-install.packages"daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -24,18 +24,7 @@ font <- theme(text = element_text(size=16))
 # Synthetic time series
 
 x <- seq(0, 10, 0.25)
-data <- data.frame(x, sin=sin(x))
-head(data)
-```
-
-```
-##      x       sin
-## 1 0.00 0.0000000
-## 2 0.25 0.2474040
-## 3 0.50 0.4794255
-## 4 0.75 0.6816388
-## 5 1.00 0.8414710
-## 6 1.25 0.9489846
+y <- sin(x)
 ```
 
 
@@ -44,7 +33,7 @@ head(data)
 
 # A time series plot during exploratory analysis
 
-grf <- plot_ts(x = data$x, y = data$sin, color=colors[1])
+grf <- plot_ts(x = x, y = y, color=c("red"))
 plot(grf)
 ```
 

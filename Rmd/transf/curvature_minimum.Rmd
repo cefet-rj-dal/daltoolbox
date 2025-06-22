@@ -1,6 +1,6 @@
 ```{r}
 # installation 
-install.packages"daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -11,7 +11,7 @@ library(dplyr)
 ```
 
 ```{r}
-wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/wine.RData")))
+wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/develop/data/wine.RData")))
 head(wine)
 ```
 
