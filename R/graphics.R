@@ -757,23 +757,10 @@ plot_ts <- function(x = NULL, y, label_x = "", label_y = "", color="black") {
 #'@param color_prediction color for the predictions
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
-#'data(sin_data)
-#'ts <- ts_data(sin_data$y, 0)
-#'ts_head(ts, 3)
-#'
-#'
-#'samp <- ts_sample(ts, test_size= 5)
-#'io_train <- ts_projection(samp$train)
-#'io_test <- ts_projection(samp$test)
-#'
-#'model <- ts_arima()
-#'model <- fit(model, x=io_train$input, y=io_train$output)
-#'adjust <- predict(model, io_train$input)
-#'
-#'prediction <- predict(model, x=io_test$input, steps_ahead=5)
-#'prediction <- as.vector(prediction)
-#'
-#'yvalues <- c(io_train$output, io_test$output)
+#'x <- base::seq(0, 10, 0.25)
+#'yvalues <- sin(x) + rnorm(41,0,0.1)
+#'adjust <- sin(x[1:35])
+#'prediction <- sin(x[36:41])
 #'grf <- plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction)
 #'plot(grf)
 #'@export
@@ -814,10 +801,6 @@ plot_ts_pred <- function(x = NULL, y, yadj, ypred = NULL, label_x = "", label_y 
     ggplot2::theme(legend.title = ggplot2::element_blank()) +
     ggplot2::theme(legend.position = "bottom") +
     ggplot2::theme(legend.key = ggplot2::element_blank())
-
-  smape_train <- sMAPE.ts(y[1:ntrain], yadj)*100
-  if (ntest > 0)
-    smape_test <- sMAPE.ts(y[(ntrain+1):(ntrain+ntest)], ypred)*100
 
   grf <- grf + ggplot2::geom_line( ggplot2::aes(x = x[1:ntrain], y = yhat[1:ntrain]),
                                    color = color_adjust, linetype = "dashed")

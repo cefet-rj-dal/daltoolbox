@@ -29,21 +29,3 @@
 #' head(Boston)
 "Boston"
 
-
-#' Time series example dataset
-#' @description Synthetic dataset of sine function.
-#' \itemize{
-#' \item x: correspond time from 0 to 10.
-#' \item y: dependent variable for time series modeling.
-#' }
-#' @docType data
-#' @usage data(sin_data)
-#' @format `data.frame`.
-#' @keywords datasets
-#' @source This dataset was generated for examples.
-#' @examples
-#' data(sin_data)
-#' head(sin_data)
-"sin_data"
-
-
