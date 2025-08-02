@@ -4,13 +4,20 @@ Version: 1.2.737
 Authors@R: 
   c(    person(given = "Eduardo", family = "Ogasawara", role = c("aut", "ths", "cre"), 
                email = "eogasawara@ieee.org", comment = c(ORCID = "0000-0002-0466-0626")),
+        person(given = "Ana Carolina", family = "Sá", role = c("aut"), email = "ana.silva.17@aluno.cefet-rj.br"),
         person(given = "Antonio", family = "Castro", role = c("aut"), email = "antonio.castro@eic.cefet-rj.br"),
+        person(given = "Caio", family = "Santos", role = c("aut"), email = "caio.souza.4@aluno.cefet-rj.br"),
+        person(given = "Diego", family = "Carvalho", role = c("ctb"), email = "d.carvalho@ieee.org"),
         person(given = "Diego", family = "Salles", role = c("aut"), email = "diego.salles@eic.cefet-rj.br"),
+        person(given = "Eduardo", family = "Bezerra", role = c("ctb"), email = "ebezerra@cefet-rj.br"),
+        person(given = "Esther", family = "Pacitti", role = c("ctb"), email = "esther.pacitti@lirmm.fr"),
+        person(given = "Fabio", family = "Porto", role = c("ctb"), email = "fporto@lncc.br"),
         person(given = "Janio", family = "Lima", role = c("aut"), email = "janio.lima@eic.cefet-rj.br"),
         person(given = "Lucas", family = "Tavares", role = c("aut"), email = "lucas.tavares@eic.cefet-rj.br"),
-        person(given = "Diego", family = "Carvalho", role = c("ctb"), email = "d.carvalho@ieee.org"),
-        person(given = "Eduardo", family = "Bezerra", role = c("ctb"), email = "ebezerra@cefet-rj.br"),
         person(given = "Rafaelli", family = "Coutinho", role = c("ctb"), email = "rafaelli.coutinho@cefet-rj.br"),
+        person(given = "Rebecca", family = "Salles", role = "aut", email = "rebecca.salles@eic.cefet-rj.br"),
+        person(given = "Vinicius", family = "Saidy", role = "aut", email = "vinicius.saidy@aluno.cefet-rj.br"),
+
         person(given = "CEFET/RJ", role = "cph")        
    )
 Description: The natural increase in the complexity of current research experiments and data demands better tools to enhance productivity in Data Analytics. The package is a framework designed to address the modern challenges in data analytics workflows. The package is inspired by Experiment Line concepts. It aims to provide seamless support for users in developing their data mining workflows by offering a uniform data model and method API. It enables the integration of various data mining activities, including data preprocessing, classification, regression, clustering, and time series prediction. It also offers options for hyper-parameter tuning and supports integration with existing libraries and languages. Overall, the package provides researchers with a comprehensive set of functionalities for data science, promoting ease of use, extensibility, and integration with various tools and libraries. Information on Experiment Line is based on Ogasawara et al. (2009) <doi:10.1007/978-3-642-02279-1_20>.
