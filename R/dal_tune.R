@@ -3,16 +3,18 @@
 #'allowing the tuning of a base model using cross-validation.
 #'@param base_model base model for tuning
 #'@param folds number of folds for cross-validation
+#'@param ranges a list of hyperparameter ranges to explore
 #'@return returns a `dal_tune` object
 #'@examples
 #'#See ?cla_tune for classification tuning
 #'#See ?reg_tune for regression tuning
 #'#See ?ts_tune for time series tuning
 #'@export
-dal_tune <- function(base_model, folds=10) {
+dal_tune <- function(base_model, folds=10, ranges) {
   obj <- dal_base()
   obj$base_model <- base_model
   obj$folds <- folds
+  obj$ranges <- ranges
   class(obj) <- append("dal_tune", class(obj))
   return(obj)
 }

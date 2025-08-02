@@ -4,12 +4,14 @@
 \alias{dal_tune}
 \title{DAL Tune}
 \usage{
-dal_tune(base_model, folds = 10)
+dal_tune(base_model, folds = 10, ranges)
 }
 \arguments{
 \item{base_model}{base model for tuning}
 
 \item{folds}{number of folds for cross-validation}
+
+\item{ranges}{a list of hyperparameter ranges to explore}
 }
 \value{
 returns a \code{dal_tune} object

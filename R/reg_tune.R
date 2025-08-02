@@ -2,6 +2,7 @@
 #'@description Creates an object for tuning regression models
 #'@param base_model base model for tuning
 #'@param folds number of folds for cross-validation
+#'@param ranges a list of hyperparameter ranges to explore
 #'@return returns a `reg_tune` object.
 #'@examples
 #'# preparing dataset for random sampling
@@ -12,8 +13,7 @@
 #'test <- sr$test
 #'
 #'# hyper parameter setup
-#'tune <- reg_tune(reg_mlp("medv"))
-#'ranges <- list(size=c(3), decay=c(0.1,0.5))
+#'tune <- reg_tune(reg_mlp("medv"), ranges = list(size=c(3), decay=c(0.1,0.5)))
 #'
 #'# hyper parameter optimization
 #'model <- fit(tune, train, ranges)
@@ -23,8 +23,8 @@
 #'test_eval <- evaluate(model, test_predictand, test_prediction)
 #'test_eval$metrics
 #'@export
-reg_tune <- function(base_model, folds=10) {
-  obj <- dal_tune(base_model, folds)
+reg_tune <- function(base_model, folds = 10, ranges = NULL) {
+  obj <- dal_tune(base_model, folds, ranges)
   obj$name <- ""
   class(obj) <- append("reg_tune", class(obj))
   return(obj)
@@ -34,7 +34,7 @@ reg_tune <- function(base_model, folds=10) {
 #'@importFrom stats predict
 #'@export
 #'@exportS3Method fit reg_tune
-fit.reg_tune <- function(obj, data, ranges, ...) {
+fit.reg_tune <- function(obj, data, ...) {
 
   build_model <- function(obj, ranges, data) {
     model <- obj$base_model
@@ -57,6 +57,8 @@ fit.reg_tune <- function(obj, data, ranges, ...) {
     error <- evaluate(model, y, prediction)$mse
     return(error)
   }
+
+  ranges <- obj$ranges
 
   obj <- prepare_ranges(obj, ranges)
   ranges <- obj$ranges

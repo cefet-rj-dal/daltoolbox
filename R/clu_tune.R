@@ -2,18 +2,20 @@
 #'@description Creates an object for tuning clustering models.
 #'This object can be used to fit and optimize clustering algorithms by specifying hyperparameter ranges
 #'@param base_model base model for tuning
+#'@param folds number of folds for cross-validation
+#'@param ranges a list of hyperparameter ranges to explore
 #'@return returns a `clu_tune` object.
 #'@examples
 #'data(iris)
 #'
 #'# fit model
-#'model <- clu_tune(cluster_kmeans(k = 0))
-#'ranges <- list(k = 1:10)
-#'model <- fit(model, iris[,1:4], ranges)
+#'model <- clu_tune(cluster_kmeans(k = 0), ranges = list(k = 1:10))
+#'
+#'model <- fit(model, iris[,1:4])
 #'model$k
 #'@export
-clu_tune <- function(base_model) {
-  obj <- dal_base()
+clu_tune <- function(base_model, folds=10, ranges=NULL) {
+  obj <- dal_tune(base_model, folds, ranges)
   obj$base_model <- base_model
   obj$name <- ""
   class(obj) <- append("clu_tune", class(obj))
@@ -23,7 +25,7 @@ clu_tune <- function(base_model) {
 #'@importFrom stats predict
 #'@export
 #'@exportS3Method fit clu_tune
-fit.clu_tune <- function(obj, data, ranges, ...) {
+fit.clu_tune <- function(obj, data, ...) {
 
   build_cluster <- function(obj, ranges, data) {
     model <- obj$base_model
@@ -38,6 +40,8 @@ fit.clu_tune <- function(obj, data, ranges, ...) {
     obj$ranges <- ranges
     return(obj)
   }
+
+  ranges <- obj$ranges
 
   obj <- prepare_ranges(obj, ranges)
   ranges <- obj$ranges

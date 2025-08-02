@@ -2,6 +2,7 @@
 #'@description This function performs a grid search or random search over specified hyperparameter values to optimize a base classification model
 #'@param base_model base model for tuning
 #'@param folds number of folds for cross-validation
+#'@param ranges a list of hyperparameter ranges to explore
 #'@param metric metric used to optimize
 #'@return returns a `cla_tune` object
 #'@examples
@@ -12,11 +13,11 @@
 #'test <- sr$test
 #'
 #'# hyper parameter setup
-#'tune <- cla_tune(cla_mlp("Species", levels(iris$Species)))
-#'ranges <- list(size=c(3:5), decay=c(0.1))
+#'tune <- cla_tune(cla_mlp("Species", levels(iris$Species)),
+#'   ranges=list(size=c(3:5), decay=c(0.1)))
 #'
 #'# hyper parameter optimization
-#'model <- fit(tune, train, ranges)
+#'model <- fit(tune, train)
 #'
 #'# testing optimization
 #'test_prediction <- predict(model, test)
@@ -24,8 +25,8 @@
 #'test_eval <- evaluate(model, test_predictand, test_prediction)
 #'test_eval$metrics
 #'@export
-cla_tune <- function(base_model, folds=10, metric="accuracy") {
-  obj <- dal_tune(base_model, folds)
+cla_tune <- function(base_model, folds=10, ranges=NULL, metric="accuracy") {
+  obj <- dal_tune(base_model, folds, ranges)
   obj$name <- ""
   obj$metric <- metric
   class(obj) <- append("cla_tune", class(obj))
@@ -37,13 +38,12 @@ cla_tune <- function(base_model, folds=10, metric="accuracy") {
 #'@description Tunes the hyperparameters of a machine learning model for classification
 #'@param obj an object containing the model and tuning configuration
 #'@param data the dataset used for training and evaluation
-#'@param ranges a list of hyperparameter ranges to explore
 #'@param ... optional arguments
 #'@return a fitted obj
 #'@importFrom stats predict
 #'@export
 #'@exportS3Method fit cla_tune
-fit.cla_tune <- function(obj, data, ranges, ...) {
+fit.cla_tune <- function(obj, data, ...) {
 
   build_model <- function(obj, ranges, data) {
     model <- obj$base_model
@@ -66,6 +66,8 @@ fit.cla_tune <- function(obj, data, ranges, ...) {
     metric <- evaluate(model, y, prediction)$metrics[1,obj$metric]
     return(metric)
   }
+  ranges <- obj$ranges
+
   obj <- prepare_ranges(obj, ranges)
   ranges <- obj$ranges
 

@@ -4,14 +4,12 @@
 \alias{fit.cla_tune}
 \title{tune hyperparameters of ml model}
 \usage{
-\method{fit}{cla_tune}(obj, data, ranges, ...)
+\method{fit}{cla_tune}(obj, data, ...)
 }
 \arguments{
 \item{obj}{an object containing the model and tuning configuration}
 
 \item{data}{the dataset used for training and evaluation}
-
-\item{ranges}{a list of hyperparameter ranges to explore}
 
 \item{...}{optional arguments}
 }

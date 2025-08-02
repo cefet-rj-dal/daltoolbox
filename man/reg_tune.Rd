@@ -4,12 +4,14 @@
 \alias{reg_tune}
 \title{Regression Tune}
 \usage{
-reg_tune(base_model, folds = 10)
+reg_tune(base_model, folds = 10, ranges = NULL)
 }
 \arguments{
 \item{base_model}{base model for tuning}
 
 \item{folds}{number of folds for cross-validation}
+
+\item{ranges}{a list of hyperparameter ranges to explore}
 }
 \value{
 returns a \code{reg_tune} object.
@@ -26,8 +28,7 @@ train <- sr$train
 test <- sr$test
 
 # hyper parameter setup
-tune <- reg_tune(reg_mlp("medv"))
-ranges <- list(size=c(3), decay=c(0.1,0.5))
+tune <- reg_tune(reg_mlp("medv"), ranges = list(size=c(3), decay=c(0.1,0.5)))
 
 # hyper parameter optimization
 model <- fit(tune, train, ranges)

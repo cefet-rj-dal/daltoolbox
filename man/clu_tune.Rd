@@ -4,10 +4,14 @@
 \alias{clu_tune}
 \title{Clustering Tune}
 \usage{
-clu_tune(base_model)
+clu_tune(base_model, folds = 10, ranges = NULL)
 }
 \arguments{
 \item{base_model}{base model for tuning}
+
+\item{folds}{number of folds for cross-validation}
+
+\item{ranges}{a list of hyperparameter ranges to explore}
 }
 \value{
 returns a \code{clu_tune} object.
@@ -20,8 +24,8 @@ This object can be used to fit and optimize clustering algorithms by specifying 
 data(iris)
 
 # fit model
-model <- clu_tune(cluster_kmeans(k = 0))
-ranges <- list(k = 1:10)
-model <- fit(model, iris[,1:4], ranges)
+model <- clu_tune(cluster_kmeans(k = 0), ranges = list(k = 1:10))
+
+model <- fit(model, iris[,1:4])
 model$k
 }

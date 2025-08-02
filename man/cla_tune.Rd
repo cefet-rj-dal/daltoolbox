@@ -4,12 +4,14 @@
 \alias{cla_tune}
 \title{Classification Tune}
 \usage{
-cla_tune(base_model, folds = 10, metric = "accuracy")
+cla_tune(base_model, folds = 10, ranges = NULL, metric = "accuracy")
 }
 \arguments{
 \item{base_model}{base model for tuning}
 
 \item{folds}{number of folds for cross-validation}
+
+\item{ranges}{a list of hyperparameter ranges to explore}
 
 \item{metric}{metric used to optimize}
 }
@@ -27,11 +29,11 @@ train <- sr$train
 test <- sr$test
 
 # hyper parameter setup
-tune <- cla_tune(cla_mlp("Species", levels(iris$Species)))
-ranges <- list(size=c(3:5), decay=c(0.1))
+tune <- cla_tune(cla_mlp("Species", levels(iris$Species)),
+  ranges=list(size=c(3:5), decay=c(0.1)))
 
 # hyper parameter optimization
-model <- fit(tune, train, ranges)
+model <- fit(tune, train)
 
 # testing optimization
 test_prediction <- predict(model, test)
