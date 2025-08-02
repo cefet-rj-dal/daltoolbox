@@ -67,10 +67,10 @@ head(tbl)
 
 ``` r
 # Training
-tune <- cla_tune(cla_svm("Species", slevels))
-ranges <- list(epsilon=seq(0,1,0.2), cost=seq(20,100,20), kernel = c("linear", "radial", "polynomial", "sigmoid"))
+tune <- cla_tune(cla_svm("Species", slevels), 
+  ranges = list(epsilon=seq(0,1,0.2), cost=seq(20,100,20), kernel = c("linear", "radial", "polynomial", "sigmoid")))
 
-model <- fit(tune, iris_train, ranges)
+model <- fit(tune, iris_train)
 ```
 
 

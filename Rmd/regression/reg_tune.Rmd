@@ -34,9 +34,9 @@ boston_test <- sr$test
 ```{r}
 # Training
 
-tune <- reg_tune(reg_svm("medv"))
-ranges <- list(seq(0,1,0.2), cost=seq(20,100,20), kernel = c("radial"))
-model <- fit(tune, boston_train, ranges)
+tune <- reg_tune(reg_svm("medv"), 
+          ranges = list(seq(0,1,0.2), cost=seq(20,100,20), kernel = c("radial")))
+model <- fit(tune, boston_train)
 ```
 
 ```{r}

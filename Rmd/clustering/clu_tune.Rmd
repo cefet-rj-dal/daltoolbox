@@ -15,9 +15,8 @@ data(iris)
 
 ```{r}
 # fit model
-model <- clu_tune(cluster_kmeans(k = 0))
-ranges <- list(k = 1:10)
-model <- fit(model, iris[,1:4], ranges)
+model <- clu_tune(cluster_kmeans(k = 0),  ranges = list(k = 1:10))
+model <- fit(model, iris[,1:4])
 model$k
 ```
 
