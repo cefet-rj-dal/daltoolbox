@@ -17,7 +17,6 @@ Authors@R:
         person(given = "Rafaelli", family = "Coutinho", role = c("ctb"), email = "rafaelli.coutinho@cefet-rj.br"),
         person(given = "Rebecca", family = "Salles", role = "aut", email = "rebecca.salles@eic.cefet-rj.br"),
         person(given = "Vinicius", family = "Saidy", role = "aut", email = "vinicius.saidy@aluno.cefet-rj.br"),
-
         person(given = "CEFET/RJ", role = "cph")        
    )
 Description: The natural increase in the complexity of current research experiments and data demands better tools to enhance productivity in Data Analytics. The package is a framework designed to address the modern challenges in data analytics workflows. The package is inspired by Experiment Line concepts. It aims to provide seamless support for users in developing their data mining workflows by offering a uniform data model and method API. It enables the integration of various data mining activities, including data preprocessing, classification, regression, clustering, and time series prediction. It also offers options for hyper-parameter tuning and supports integration with existing libraries and languages. Overall, the package provides researchers with a comprehensive set of functionalities for data science, promoting ease of use, extensibility, and integration with various tools and libraries. Information on Experiment Line is based on Ogasawara et al. (2009) <doi:10.1007/978-3-642-02279-1_20>.
