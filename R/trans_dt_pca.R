@@ -35,11 +35,14 @@ fit.dt_pca <- function(obj, data, ...) {
   data <- data.frame(data)
   attribute <- obj$attribute
   if (!is.null(attribute)) {
+    # drop target column from PCA input (unsupervised)
     data[,attribute] <- NULL
   }
+  # select numeric columns only
   nums <- unlist(lapply(data, is.numeric))
   remove <- NULL
   for(j in names(nums[nums])) {
+    # remove constant columns (zero variance)
     if(min(data[,j])==max(data[,j]))
       remove <- cbind(remove, j)
   }
@@ -49,6 +52,7 @@ fit.dt_pca <- function(obj, data, ...) {
   pca_res <- stats::prcomp(data, center=TRUE, scale.=TRUE)
 
   if (is.null(obj$components)) {
+    # choose number of components via elbow (minimum curvature of cumulative variance)
     y <-  cumsum(pca_res$sdev^2/sum(pca_res$sdev^2))
     curv <-  fit_curvature_min()
     res <- transform(curv, y)
@@ -70,14 +74,17 @@ transform.dt_pca <- function(obj, data, ...) {
 
   data <- data.frame(data)
   if (!is.null(attribute)) {
+    # preserve predictand and remove from PCA input
     predictand <- data[,attribute]
     data[,attribute] <- NULL
   }
   data = as.matrix(data[ , nums])
 
+  # project to principal components
   data = data %*% pca.transf
   data = data.frame(data)
   if (!is.null(attribute)){
+    # reattach predictand
     data[,attribute] <- predictand
   }
   return(data)

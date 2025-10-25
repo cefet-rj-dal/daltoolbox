@@ -22,6 +22,7 @@ categ_mapping <- function(attribute) {
 #'@importFrom stats model.matrix
 #'@exportS3Method transform categ_mapping
 transform.categ_mapping <- function(obj, data, ...) {
+  # build formula without intercept for one-hot encoding
   mdlattribute <- stats::formula(paste("~", paste(obj$attribute, "-1")))
   data <- as.data.frame(stats::model.matrix(mdlattribute, data=data))
   data[,obj$attribute] <- NULL

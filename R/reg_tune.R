@@ -51,6 +51,7 @@ fit.reg_tune <- function(obj, data, ...) {
   }
 
   evaluate_error <- function(model, data) {
+    # compute MSE via evaluate()
     x <- as.matrix(data[,model$x])
     y <- data[,model$attribute]
     prediction <- as.vector(stats::predict(model, x))
@@ -117,6 +118,7 @@ select_hyper.reg_tune <- function(obj, hyperparameters) {
   mim_error <- hyper_summary |> dplyr::summarise(error = min(error))
 
   key <- which(hyper_summary$error == mim_error$error)
+  # tie-breaker: choose smallest key among minima
   i <- min(hyper_summary$key[key])
   return(i)
 }

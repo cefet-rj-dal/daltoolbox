@@ -34,8 +34,10 @@ reg_knn <- function(attribute, k) {
 #'@exportS3Method fit reg_knn
 fit.reg_knn <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
+  # record features used to train KNN regressor
   obj <- fit.predictor(obj, data)
 
+  # convert features to matrix as required by FNN
   x <- as.matrix(data[,obj$x])
   y <- data[,obj$attribute]
 
@@ -49,6 +51,7 @@ fit.reg_knn <- function(obj, data, ...) {
 predict.reg_knn  <- function(object, x, ...) {
   #develop from FNN https://daviddalpiaz.github.io/r4sl/knn-reg.html
   x <- adjust_data.frame(x)
+  # ensure numeric matrix with same columns used in training
   x <- as.matrix(x[,object$x])
   prediction <- FNN::knn.reg(train = object$model$x, test = x, y = object$model$y, k = object$model$k)
   return(prediction$pred)

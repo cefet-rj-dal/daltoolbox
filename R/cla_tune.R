@@ -60,6 +60,7 @@ fit.cla_tune <- function(obj, data, ...) {
   }
 
   evaluate_metric <- function(model, data) {
+    # predict on same feature set; metric computed via evaluate()
     x <- as.matrix(data[,model$x])
     y <- adjust_class_label(data[,model$attribute])
     prediction <- stats::predict(model, x)
@@ -127,6 +128,7 @@ select_hyper.cla_tune <- function(obj, hyperparameters) {
   max_metric <- hyper_summary |> dplyr::summarise(metric = max(metric))
 
   key <- which(hyper_summary$metric == max_metric$metric)
+  # tie-breaker: choose smallest key among maxima
   i <- min(hyper_summary$key[key])
   return(i)
 }

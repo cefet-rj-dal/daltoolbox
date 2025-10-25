@@ -39,6 +39,7 @@ cluster.cluster_pam <- function(obj, data, ...) {
   for (i in 1:obj$k) {
     idx <- i==pam_cluster$clustering
     center <- pam_cluster$medoids[i,]
+    # sum of squared distances to medoids
     dist <- dist + sum(rowSums((data[idx,] - center)^2))
   }
 

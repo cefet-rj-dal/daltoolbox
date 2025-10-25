@@ -34,9 +34,12 @@ cla_dtree <- function(attribute, slevels) {
 #'@exportS3Method fit cla_dtree
 fit.cla_dtree <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
+  # coerce target into factor with expected levels/labels
   data[,obj$attribute] <- adjust_factor(data[,obj$attribute], obj$ilevels, obj$slevels)
+  # record feature columns (exclude target)
   obj <- fit.predictor(obj, data)
 
+  # build formula target ~ . (all remaining columns)
   regression <- formula(paste(obj$attribute, "  ~ ."))
   obj$model <- tree::tree(regression, data)
 
@@ -47,6 +50,7 @@ fit.cla_dtree <- function(obj, data, ...) {
 #'@exportS3Method predict cla_dtree
 predict.cla_dtree <- function(object, x, ...) {
   x <- adjust_data.frame(x)
+  # use same feature set used during training
   x <- x[,object$x, drop=FALSE]
 
   prediction <- predict(object$model, x, type="vector")

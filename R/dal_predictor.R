@@ -16,6 +16,7 @@ predictor <- function() {
 
 #'@exportS3Method fit predictor
 fit.predictor <- function(obj, data, ...) {
+  # capture feature names by removing target attribute from columns
   obj$x <- setdiff(colnames(data), obj$attribute)
   return(obj)
 }
@@ -23,6 +24,7 @@ fit.predictor <- function(obj, data, ...) {
 #'@exportS3Method action predictor
 action.predictor <- function(obj, ...) {
   thiscall <- match.call(expand.dots = TRUE)
+  # proxy action() to S3 predict()
   thiscall[[1]] <- as.name("predict")
   result <- eval.parent(thiscall)
   return(result)

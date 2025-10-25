@@ -39,11 +39,14 @@ reg_rf <- function(attribute, nodesize = 1, ntree = 10, mtry = NULL) {
 #'@exportS3Method fit reg_rf
 fit.reg_rf <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
+  # record feature columns (exclude target attribute)
   obj <- fit.predictor(obj, data)
 
+  # default mtry heuristic if not provided
   if (is.null(obj$mtry))
     obj$mtry <- ceiling(ncol(data)/3)
 
+  # split into features (x) and target (y)
   x <- data[,obj$x]
   y <- data[,obj$attribute]
 
@@ -55,6 +58,7 @@ fit.reg_rf <- function(obj, data, ...) {
 #'@exportS3Method predict reg_rf
 predict.reg_rf  <- function(object, x, ...) {
   x <- adjust_data.frame(x)
+  # ensure prediction uses the same feature columns seen in training
   x <- x[,object$x]
   prediction <- predict(object$model, x)
   return(prediction)

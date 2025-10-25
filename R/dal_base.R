@@ -50,6 +50,7 @@ action <- function(obj, ...) {
 action.default <- function(obj, ...) {
   par <- c(as.list(environment()), list(...))
   data <- NULL
+  # default action simply forwards the second argument (if any)
   if (length(par) > 1)
     data <- par[[2]]
   return (data)
@@ -87,6 +88,7 @@ set_params.dal_base <- function(obj, params) {
     nparams <- names(params)
     nparams <- nparams[nparams != ""]
 
+    # assign only parameters that match existing object fields
     for (i in 1:length(nparams)) {
       j <- which(nparams[i] == nobj)
       if (length(j)> 0) {

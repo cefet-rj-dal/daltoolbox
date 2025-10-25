@@ -40,15 +40,19 @@ cla_mlp <- function(attribute, slevels, size=NULL, decay=0.1, maxit=1000) {
 #'@exportS3Method fit cla_mlp
 fit.cla_mlp <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
+  # turn target into factor with desired label order
   data[,obj$attribute] <- adjust_factor(data[,obj$attribute], obj$ilevels, obj$slevels)
+  # record predictors for consistent inference
   obj <- fit.predictor(obj, data)
 
+  # sensible default for hidden size when not provided
   if (is.null(obj$size))
     obj$size <- ceiling(sqrt(ncol(data)))
 
   x <- data[,obj$x, drop = FALSE]
   y <- data[,obj$attribute]
 
+  # train MLP with one-hot targets
   obj$model <- nnet::nnet(x = x, y = adjust_class_label(y), size=obj$size, decay=obj$decay, maxit=obj$maxit, trace=FALSE)
 
   return(obj)
@@ -57,6 +61,7 @@ fit.cla_mlp <- function(obj, data, ...) {
 #'@exportS3Method predict cla_mlp
 predict.cla_mlp  <- function(object, x, ...) {
   x <- adjust_data.frame(x)
+  # ensure same predictors as used for training
   x <- x[,object$x, drop = FALSE]
 
   prediction <- predict(object$model, x, type="raw")

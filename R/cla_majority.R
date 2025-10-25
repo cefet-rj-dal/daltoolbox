@@ -35,6 +35,7 @@ fit.cla_majority <- function(obj, data, ...) {
   obj <- fit.predictor(obj, data)
 
   y <- adjust_class_label(data[,obj$attribute])
+  # count class occurrences and pick the most frequent (majority)
   cols <- apply(y, 2, sum)
   col <- match(max(cols),cols)
   obj$model <- list(cols=cols, col=col)
@@ -46,6 +47,7 @@ fit.cla_majority <- function(obj, data, ...) {
 predict.cla_majority <- function(object, x, ...) {
   rows <- nrow(x)
   cols <- length(object$model$cols)
+  # build probability matrix where the majority class has prob 1
   prediction <- matrix(rep.int(0, rows*cols), nrow=rows, ncol=cols)
   prediction[,object$model$col] <- 1
   prediction <- as.data.frame(prediction)

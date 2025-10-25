@@ -36,6 +36,7 @@ fit.outliers_gaussian <- function(obj, data, ...) {
     if (nrow(data) >= 30) {
       for (i in 1:ncol(data)) {
         if (is.numeric(data[,i])) {
+          # mean ± alpha * sd per numeric column
           q <- base::mean(data[,i])
           s <- stats::sd(data[,i])
           lower_threshold[i] <- q - obj$alpha*s
@@ -46,6 +47,7 @@ fit.outliers_gaussian <- function(obj, data, ...) {
   }
   else {
     if ((length(data) >= 30) && is.numeric(data)) {
+      # vector input: mean ± alpha * sd
       q <- mean(data)
       s <- sd(data)
       lower_threshold <- q - obj$alpha*s

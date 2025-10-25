@@ -41,9 +41,12 @@ cla_rf <- function(attribute, slevels, nodesize = 5, ntree = 10, mtry = NULL) {
 #'@exportS3Method fit cla_rf
 fit.cla_rf <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
+  # convert target to factor and align levels
   data[,obj$attribute] <- adjust_factor(data[,obj$attribute], obj$ilevels, obj$slevels)
+  # record feature set
   obj <- fit.predictor(obj, data)
 
+  # default mtry heuristic for classification
   if (is.null(obj$mtry))
     obj$mtry <- ceiling(sqrt(ncol(data)))
 
@@ -58,6 +61,7 @@ fit.cla_rf <- function(obj, data, ...) {
 #'@exportS3Method predict cla_rf
 predict.cla_rf  <- function(object, x, ...) {
   x <- adjust_data.frame(x)
+  # ensure consistent predictors
   x <- x[,object$x, drop = FALSE]
 
   prediction <- predict(object$model, x, type="prob")

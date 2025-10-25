@@ -16,6 +16,7 @@ dal_learner <- function() {
 #'@exportS3Method action dal_learner
 action.dal_learner <- function(obj, ...) {
   thiscall <- match.call(expand.dots = TRUE)
+  # action() on learners proxies to predict()
   thiscall[[1]] <- as.name("predict")
   result <- eval.parent(thiscall)
   return(result)

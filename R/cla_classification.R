@@ -11,6 +11,7 @@ classification <- function(attribute, slevels) {
   class(obj) <- append("classification", class(obj))
   obj$attribute <- attribute
   obj$slevels <- slevels
+  # internal numeric indices for class levels
   obj$ilevels <- 1:length(slevels)
   return(obj)
 }
@@ -30,6 +31,7 @@ evaluate.classification <- function(obj, data, prediction, ref = 1, ...) {
   }
 
 
+  # accept either factor labels or probability matrix for data
   data_f <- data
   if (!is.factor(data_f))
     data_f <- variables_as_factor(data_f, obj$slevels)
@@ -59,6 +61,7 @@ evaluate.classification <- function(obj, data, prediction, ref = 1, ...) {
 
   metrics$f1 <- 2*(metrics$precision*metrics$recall)/(metrics$precision+metrics$recall)
 
+  # return metrics as a single-row data.frame
   result$metrics <- as.data.frame(metrics)
 
   return(result)

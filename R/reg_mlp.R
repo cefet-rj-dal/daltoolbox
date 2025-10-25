@@ -37,11 +37,14 @@ reg_mlp <- function(attribute, size=NULL, decay=0.05, maxit=1000) {
 #'@exportS3Method fit reg_mlp
 fit.reg_mlp <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
+  # record feature names, excluding the target
   obj <- fit.predictor(obj, data)
 
+  # default hidden size heuristic if not provided
   if (is.null(obj$size))
     obj$size <- ceiling(ncol(data)/3)
 
+  # split features/target
   x <- data[,obj$x]
   y <- data[,obj$attribute]
 
@@ -53,6 +56,7 @@ fit.reg_mlp <- function(obj, data, ...) {
 #'@exportS3Method predict reg_mlp
 predict.reg_mlp  <- function(object, x, ...) {
   x <- adjust_data.frame(x)
+  # keep feature columns aligned with training
   x <- x[,object$x]
   prediction <- predict(object$model, x)
   return(prediction)

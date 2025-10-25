@@ -27,5 +27,7 @@
 #' @examples
 #' data(Boston)
 #' head(Boston)
+# This file documents and registers the 'Boston' dataset for package users.
+# The symbol below exposes the dataset when the package is loaded.
 "Boston"
 

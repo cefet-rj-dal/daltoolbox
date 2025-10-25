@@ -27,6 +27,7 @@ fit.smoothing_freq <- function(obj, data, ...) {
   else {
     v <- data
     n <- obj$n
+    # split by quantiles at equal frequency
     p <- seq(from = 0, to = 1, by = 1/n)
     obj$interval <- stats::quantile(v, p)
     obj <- fit.smoothing(obj, data)

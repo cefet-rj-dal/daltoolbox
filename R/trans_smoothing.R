@@ -29,11 +29,13 @@ smoothing <- function(n) {
       obj$n <- i
       obj <- fit(obj, data)
       vm <- transform(obj, data)
+      # evaluate smoothing via MSE to pick best n
       mse <- mean((data - vm)^2, na.rm = TRUE)
       row <- c(mse , i)
       opt <- rbind(opt, row)
     }
     colnames(opt)<-c("mean","num")
+    # choose n at elbow point of error curve
     curv <- fit_curvature_max()
     res <- transform(curv, opt$mean)
     obj$n <- res$x
@@ -51,6 +53,7 @@ fit.smoothing <- function(obj, data, ...) {
   interval[1] <- min(v)
   interval[length(interval)] <- max(v)
   interval.adj <- interval
+  # extend first/last boundaries to cover all values in cut()
   interval.adj[1] <- -.Machine$double.xmax
   interval.adj[length(interval)] <- .Machine$double.xmax
   obj$interval <- interval
@@ -83,6 +86,7 @@ evaluate.smoothing <- function(obj, data, attribute, ...) {
     tbl <- base::merge(x=tbl, y=tbs, by.x="x", by.y="x")
     tbl$e <- -(tbl$qtd/tbl$t)*log(tbl$qtd/tbl$t,2)
     tbl <- tbl |> dplyr::group_by(x) |> dplyr::summarise(ce=sum(e), qtd=sum(qtd))
+    # global entropy weighted by cluster sizes
     tbl$ceg <- tbl$ce*tbl$qtd/length(obj$data)
     obj$entropy_clusters <- tbl
     obj$entropy <- sum(obj$entropy$ceg)

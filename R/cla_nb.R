@@ -33,9 +33,11 @@ cla_nb <- function(attribute, slevels) {
 #'@exportS3Method fit cla_nb
 fit.cla_nb <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
+  # ensure factor target with expected label set
   data[,obj$attribute] <- adjust_factor(data[,obj$attribute], obj$ilevels, obj$slevels)
   obj <- fit.predictor(obj, data)
 
+  # build formula target ~ .
   regression <- formula(paste(obj$attribute, "  ~ ."))
   obj$model <- e1071::naiveBayes(regression, data, laplace=0)
 

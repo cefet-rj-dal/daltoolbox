@@ -42,6 +42,7 @@ cluster_dbscan <- function(minPts = 3, eps = NULL) {
 #'@exportS3Method fit cluster_dbscan
 fit.cluster_dbscan <- function(obj, data, ...) {
   if (is.null(obj$eps)) {
+    # sort k-NN distances and pick epsilon at elbow (max curvature)
     t <- sort(dbscan::kNNdist(data, k = obj$minPts))
     y <- t
     myfit <- fit_curvature_max()
@@ -59,6 +60,7 @@ cluster.cluster_dbscan <- function(obj, data, ...) {
   cluster <- db_cluster$cluster
 
   #intrinsic quality metric
+  # number of noise points (cluster 0)
   null_cluster <- length(cluster[cluster==0])
   attr(cluster, "metric") <- null_cluster
 

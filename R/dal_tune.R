@@ -31,6 +31,7 @@ select_hyper <- function(obj, hyperparameters) {
 
 #'@exportS3Method select_hyper default
 select_hyper.default <- function(obj, hyperparameters) {
+  # default: choose last row (useful when ranges has a single configuration)
   return(length(hyperparameters))
 }
 

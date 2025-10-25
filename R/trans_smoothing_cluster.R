@@ -30,8 +30,10 @@ fit.smoothing_cluster <- function(obj, data, ...) {
   else {
     v <- data
     n <- obj$n
+    # cluster the values and derive cut points from cluster centers
     km <- stats::kmeans(x = v, centers = n)
     s <- sort(km$centers)
+    # midpoints between sorted centers define bin boundaries
     s <- (s[1:n-1]+s[2:n])/2
     obj$interval <- c(min(v), s, max(v))
     obj <- fit.smoothing(obj, data)

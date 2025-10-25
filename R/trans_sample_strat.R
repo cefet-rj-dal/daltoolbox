@@ -35,6 +35,7 @@ train_test.sample_stratified <- function(obj, data, perc=0.8, ...) {
   predictors_name <- setdiff(colnames(data), obj$attribute)
   predictand <- data[,obj$attribute]
 
+  # maintain class distribution in train/test via stratification
   idx <- caret::createDataPartition(predictand, p=perc, list=FALSE)
   train <- data[idx,]
   test <- data[-idx,]
@@ -47,6 +48,7 @@ k_fold.sample_stratified <- function(obj, data, k) {
   samp <- list()
   p <- 1.0 / k
   while (k > 1) {
+    # iteratively split off 1/k of remaining data preserving strata
     samp <- train_test.sample_stratified(obj, data, p)
     data <- samp$test
     folds <- append(folds, list(samp$train))

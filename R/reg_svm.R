@@ -39,6 +39,7 @@ reg_svm <- function(attribute, epsilon=0.1, cost=10, kernel="radial") {
 #'@exportS3Method fit reg_svm
 fit.reg_svm <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
+  # record feature names for consistency in predict
   obj <- fit.predictor(obj, data)
 
   x <- data[,obj$x]
@@ -52,6 +53,7 @@ fit.reg_svm <- function(obj, data, ...) {
 #'@exportS3Method predict reg_svm
 predict.reg_svm  <- function(object, x, ...) {
   x <- adjust_data.frame(x)
+  # use same predictors as during training
   x <- x[,object$x]
   prediction <- predict(object$model, x)
   return(prediction)

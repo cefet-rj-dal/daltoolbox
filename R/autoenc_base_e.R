@@ -18,10 +18,12 @@ autoenc_base_e <- function(input_size, encoding_size) {
 
 #'@exportS3Method fit autoenc_base_e
 fit.autoenc_base_e <- function(obj, data, ...) {
+  # base class has no training; specialized implementations override
   return(obj)
 }
 
 #'@exportS3Method transform autoenc_base_e
 transform.autoenc_base_e <- function(obj, data, ...) {
+  # identity by default; specialized encoders should output latent representation
   return(data)
 }

@@ -8,6 +8,7 @@
 #'@export
 adjust_matrix <- function(data) {
   if(!is.matrix(data)) {
+    # coerce data.frame/vectors to matrix
     return(as.matrix(data))
   }
   else
@@ -24,6 +25,7 @@ adjust_matrix <- function(data) {
 #'@export
 adjust_data.frame <- function(data) {
   if(!is.data.frame(data)) {
+    # coerce matrix/vectors to data.frame
     return(as.data.frame(data))
   }
   else
@@ -58,6 +60,7 @@ adjust_class_label <- function (x, valTrue = 1, valFalse = 0)
 {
   n <- length(x)
   x <- as.factor(x)
+  # one-hot encode factor levels into a matrix
   res <- matrix(valFalse, n, length(levels(x)))
   res[(1:n) + n * (unclass(x) - 1)] <- valTrue
   dimnames(res) <- list(names(x), levels(x))

@@ -29,8 +29,10 @@ fit_curvature_max <- function() {
 #'@exportS3Method transform fit_curvature_max
 transform.fit_curvature_max <- function(obj, y, ...) {
   x <- 1:length(y)
+  # fit smoothing spline and compute curvature (2nd derivative)
   smodel = stats::smooth.spline(x, y, df = obj$df)
   curvature = stats::predict(smodel, x = x, deriv = obj$deriv)
+  # find maximum curvature point and map back to original y
   yfit = max(curvature$y)
   xfit = match(yfit, curvature$y)
   y <- y[xfit]

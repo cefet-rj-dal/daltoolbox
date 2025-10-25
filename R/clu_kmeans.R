@@ -40,6 +40,7 @@ cluster.cluster_kmeans <- function(obj, data, ...) {
   for (i in 1:k) {
     idx <- i == k_cluster$cluster
     center <- k_cluster$centers[i,]
+    # sum of squared distances within clusters
     dist <- dist + sum(rowSums((data[idx,] - center)^2))
   }
   attr(cluster, "metric") <- dist

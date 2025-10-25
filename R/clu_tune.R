@@ -50,7 +50,7 @@ fit.clu_tune <- function(obj, data, ...) {
   n <- nrow(ranges)
   i <- 1
   if (n > 1) {
-    msg <- rep("", n) #save later msg in hyper parameters
+    msg <- rep("", n) # store errors per configuration
     for (i in 1:n) {
       err <- tryCatch(
         {
@@ -66,6 +66,7 @@ fit.clu_tune <- function(obj, data, ...) {
         msg[i] <- err
       }
     }
+    # choose parameter at the elbow of metric curve (max curvature)
     myfit <- fit_curvature_max()
     res <- transform(myfit, ranges$metric)
     i <- res$x

@@ -42,12 +42,15 @@ cla_svm <- function(attribute, slevels, epsilon=0.1, cost=10, kernel="radial") {
 #'@exportS3Method fit cla_svm
 fit.cla_svm <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
+  # ensure target is a factor with expected levels
   data[,obj$attribute] <- adjust_factor(data[,obj$attribute], obj$ilevels, obj$slevels)
+  # capture feature columns used for training
   obj <- fit.predictor(obj, data)
 
   x <- data[,obj$x, drop=FALSE]
   y <- data[,obj$attribute]
 
+  # enable probability estimates; pass epsilon/cost/kernel
   obj$model <- e1071::svm(x, y, probability=TRUE, epsilon=obj$epsilon, cost=obj$cost, kernel=obj$kernel)
 
   return(obj)
@@ -56,6 +59,7 @@ fit.cla_svm <- function(obj, data, ...) {
 #'@exportS3Method predict cla_svm
 predict.cla_svm  <- function(object, x, ...) {
   x <- adjust_data.frame(x)
+  # use same feature set as training
   x <- x[,object$x, drop = FALSE]
 
   prediction <- predict(object$model, x, probability = TRUE)

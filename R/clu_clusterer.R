@@ -13,6 +13,7 @@ clusterer <- function() {
 #'@exportS3Method action clusterer
 action.clusterer <- function(obj, ...) {
   thiscall <- match.call(expand.dots = TRUE)
+  # proxy action() to cluster() for clusterers
   thiscall[[1]] <- as.name("cluster")
   result <- eval.parent(thiscall)
   return(result)
@@ -47,8 +48,10 @@ evaluate.clusterer <- function(obj, cluster, attribute, ...) {
     tbl <- dataset |> dplyr::group_by(x, y) |> dplyr::summarise(qtd=dplyr::n())
     tbs <- dataset |> dplyr::group_by(x) |> dplyr::summarise(t=dplyr::n())
     tbl <- base::merge(x=tbl, y=tbs, by.x="x", by.y="x")
+    # per-cluster entropy contribution
     tbl$e <- -(tbl$qtd/tbl$t)*log(tbl$qtd/tbl$t,2)
     tbl <- tbl |> dplyr::group_by(x) |> dplyr::summarise(ce=sum(e), qtd=sum(qtd))
+    # global entropy weighted by cluster sizes
     tbl$ceg <- tbl$ce*tbl$qtd/length(obj$data)
 
     options(dplyr.summarise.inform = value)
@@ -60,8 +63,10 @@ evaluate.clusterer <- function(obj, cluster, attribute, ...) {
     return(result)
   }
 
+  # baseline entropy with a single cluster (upper bound)
   basic <- compute_entropy(list(data=as.factor(rep(1, length(attribute))), attribute=as.factor(attribute)))
 
+  # actual clustering entropy
   result <- compute_entropy(list(data=as.factor(cluster), attribute=as.factor(attribute)))
 
   result$data_entropy <- basic$clustering_entropy

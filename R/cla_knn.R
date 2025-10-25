@@ -34,12 +34,15 @@ cla_knn <- function(attribute, slevels, k=1) {
 fit.cla_knn <- function(obj, data, ...) {
 
   data <- adjust_data.frame(data)
+  # align target labels to expected factor levels
   data[,obj$attribute] <- adjust_factor(data[,obj$attribute], obj$ilevels, obj$slevels)
+  # store feature columns for later prediction
   obj <- fit.predictor(obj, data)
 
   x <- data[,obj$x, drop = FALSE]
   y <- data[,obj$attribute]
 
+  # keep training data and k as a simple list model
   obj$model <-list(x=x, y=y, k=obj$k)
 
   return(obj)
@@ -49,6 +52,7 @@ fit.cla_knn <- function(obj, data, ...) {
 #'@exportS3Method predict cla_knn
 predict.cla_knn  <- function(object, x, ...) {
   x <- adjust_data.frame(x)
+  # select the same feature columns as training
   x <- x[,object$x, drop=FALSE]
 
   prediction <- class::knn(train=object$model$x, test=x, cl=object$model$y, prob=TRUE)

@@ -28,6 +28,7 @@ sample_random <- function() {
 
 #'@exportS3Method train_test sample_random
 train_test.sample_random <- function(obj, data, perc=0.8, ...) {
+  # randomly sample row indices for the training set
   idx <- base::sample(1:nrow(data),as.integer(perc*nrow(data)))
   train <- data[idx,]
   test <- data[-idx,]
@@ -40,6 +41,7 @@ k_fold.sample_random <- function(obj, data, k) {
   samp <- list()
   p <- 1.0 / k
   while (k > 1) {
+    # iteratively split off 1/k of remaining data as a fold
     samp <- train_test.sample_random(obj, data, p)
     data <- samp$test
     folds <- append(folds, list(samp$train))
@@ -77,6 +79,7 @@ k_fold.sample_random <- function(obj, data, k) {
 train_test_from_folds <- function(folds, k) {
   test <- folds[[k]]
   train <- NULL
+  # concatenate all folds except k into the training set
   for (i in 1:length(folds)) {
     if (i != k)
       train <- rbind(train, folds[[i]])

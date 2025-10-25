@@ -17,10 +17,12 @@ autoenc_base_ed <- function(input_size, encoding_size) {
 
 #'@exportS3Method fit autoenc_base_ed
 fit.autoenc_base_ed <- function(obj, data, ...) {
+  # base class has no training; specialized implementations override
   return(obj)
 }
 
 #'@exportS3Method transform autoenc_base_ed
 transform.autoenc_base_ed <- function(obj, data, ...) {
+  # identity by default; specialized autoencoders should encode+decode
   return(data)
 }

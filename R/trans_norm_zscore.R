@@ -31,6 +31,7 @@ zscore <- function(nmean=0, nsd=1) {
 fit.zscore <- function(obj, data, ...) {
   nmean <- obj$nmean
   nsd <- obj$nsd
+  # metadata frame to flag numeric columns and store mean/sd and target nmean/nsd
   zscore <- data.frame(t(ifelse(sapply(data, is.numeric), 1, 0)))
   zscore <- rbind(zscore, rep(NA, ncol(zscore)))
   zscore <- rbind(zscore, rep(NA, ncol(zscore)))
@@ -52,11 +53,13 @@ fit.zscore <- function(obj, data, ...) {
 #'@exportS3Method transform zscore
 transform.zscore <- function(obj, data, ...) {
   zscore <- obj$norm.set
+  # apply standardization and then scale/shift to desired nmean/nsd
   for (j in colnames(zscore)[zscore["numeric",]==1]) {
     if ((zscore["sd", j]) > 0) {
       data[,j] <- (data[,j] - zscore["mean", j]) / zscore["sd", j] * zscore["nsd", j] + zscore["nmean", j]
     }
     else {
+      # constant columns become nmean
       data[,j] <- obj$nmean
     }
   }
@@ -66,6 +69,7 @@ transform.zscore <- function(obj, data, ...) {
 #'@exportS3Method inverse_transform zscore
 inverse_transform.zscore <- function(obj, data, ...) {
   zscore <- obj$norm.set
+  # revert from target nmean/nsd back to original mean/sd
   for (j in colnames(zscore)[zscore["numeric",]==1]) {
     if ((zscore["sd", j]) > 0) {
       data[,j] <- (data[,j] - zscore["nmean", j]) / zscore["nsd", j] * zscore["sd", j] + zscore["mean", j]

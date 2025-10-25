@@ -32,8 +32,10 @@ reg_dtree <- function(attribute) {
 #'@exportS3Method fit reg_dtree
 fit.reg_dtree <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
+  # record features used to train
   obj <- fit.predictor(obj, data)
 
+  # build formula target ~ .
   regression <- formula(paste(obj$attribute, "  ~ ."))
   obj$model <- tree::tree(regression, data)
 
@@ -43,6 +45,7 @@ fit.reg_dtree <- function(obj, data, ...) {
 #'@exportS3Method predict reg_dtree
 predict.reg_dtree <- function(object, x, ...) {
   x <- adjust_data.frame(x)
+  # use same predictors as training
   x <- x[,object$x]
   prediction <- predict(object$model, x, type="vector")
   return(prediction)

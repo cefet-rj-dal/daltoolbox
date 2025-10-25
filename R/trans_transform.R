@@ -26,6 +26,7 @@ transform <- function(obj, ...) {
 #'@exportS3Method transform default
 transform.default <- function(obj, ...) {
   thiscall <- match.call(expand.dots = TRUE)
+  # proxy transform to the default action implementation
   thiscall[[1]] <- as.name("action.default")
   result <- eval.parent(thiscall)
   return (result)
@@ -41,6 +42,7 @@ transform.default <- function(obj, ...) {
 #'@exportS3Method action dal_transform
 action.dal_transform <- function(obj, ...) {
   thiscall <- match.call(expand.dots = TRUE)
+  # ensure action() on a transform dispatches to transform()
   thiscall[[1]] <- as.name("transform")
   result <- eval.parent(thiscall)
   return(result)
@@ -61,6 +63,7 @@ inverse_transform <- function(obj, ...) {
 #'@exportS3Method inverse_transform default
 inverse_transform.default <- function(obj, ...) {
   thiscall <- match.call(expand.dots = TRUE)
+  # by default, inverse_transform behaves like a no-op action
   thiscall[[1]] <- as.name("action.default")
   result <- eval.parent(thiscall)
   return (result)

@@ -27,6 +27,7 @@ fit.smoothing_inter <- function(obj, data, ...) {
   else {
     v <- data
     n <- obj$n
+    # use boxplot whiskers as robust min/max boundaries
     bp <- graphics::boxplot(v, range=1.5, plot = FALSE)
     bimax <- bp$stats[5]
     bimin <- bp$stats[1]
@@ -34,6 +35,7 @@ fit.smoothing_inter <- function(obj, data, ...) {
       bimax = max(v)
       bimin = min(v)
     }
+    # create equally spaced intervals across [bimin, bimax]
     obj$interval <- seq(from = bimin, to = bimax, by = (bimax-bimin)/n)
     obj <- fit.smoothing(obj, data)
   }
