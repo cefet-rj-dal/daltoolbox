@@ -21,28 +21,28 @@ table(iris$Species)
 
 Divisão estratificada em treino/teste preservando proporções de `Species`.
 ```{r}
-# Dividing a dataset with training and test
+# Dividindo em treino e teste
 
-# using random sampling
+# usando amostragem estratificada
 tt <- train_test(sample_stratified("Species"), iris)
 
-# distribution of train
+# distribuição do treino
 print(table(tt$train$Species))
 
-# distribution of test
+# distribuição do teste
 print(table(tt$test$Species))
 ```
 
 Criação de folds estratificados e verificação de distribuição.
 ```{r}
-# Dividing a dataset into folds
+# Dividindo o conjunto em folds
 
-# using stratified sampling
-# preparing dataset into four folds
+# usando amostragem estratificada
+# preparando o conjunto em quatro folds
 sample <- sample_stratified("Species")
 folds <- k_fold(sample, iris, 4)
 
-# distribution of folds
+# distribuição dos folds
 tbl <- NULL
 for (f in folds) {
 tbl <- rbind(tbl, table(f$Species))
