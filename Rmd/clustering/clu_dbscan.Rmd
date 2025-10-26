@@ -13,19 +13,19 @@ library(daltoolbox)
 
 Carregando dados (`iris`).
 ```{r}
-# load dataset
+# carregando conjunto de dados
 data(iris)
 ```
 
 Configuração do DBSCAN; ajuste `minPts` (e `eps` se disponível) conforme densidade.
 ```{r}
-# setup clustering
+# configuração do método de clusterização
 model <- cluster_dbscan(minPts = 3)
 ```
 
 Ajuste e rótulos de cluster.
 ```{r}
-# build model
+# ajuste do modelo e rotulagem
 model <- fit(model, iris[,1:4])
 clu <- cluster(model, iris[,1:4])
 table(clu)
