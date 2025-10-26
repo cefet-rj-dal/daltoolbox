@@ -1,23 +1,15 @@
+Sobre o método
+- `cluster_kmeans`: particiona os dados em k grupos minimizando a variância intra-cluster. Sensível à escala; normalização pode melhorar os resultados.
 
 
 ``` r
 # Clustering - Kmeans
-
-Sobre o método
-- `cluster_kmeans`: particiona os dados em k grupos minimizando a variância intra-cluster. Sensível à escala; normalização pode melhorar os resultados.
 
 # installation 
 install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox)  
-```
-
-```
-## Error in parse(text = input): <text>:3:7: unexpected symbol
-## 2: 
-## 3: Sobre o
-##          ^
 ```
 
 Carregando dados de exemplo (`iris`).

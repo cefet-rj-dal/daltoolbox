@@ -1,9 +1,9 @@
+Sobre o método
+- `cluster_dbscan`: método baseado em densidade. Identifica regiões densas separadas por áreas de baixa densidade; detecta ruído e clusters de formas arbitrárias.
+
 
 ``` r
 # Clustering - dbscan
-
-Sobre o método
-- `cluster_dbscan`: método baseado em densidade. Identifica regiões densas separadas por áreas de baixa densidade; detecta ruído e clusters de formas arbitrárias.
 
 # installation 
 install.packages("daltoolbox")
@@ -12,31 +12,24 @@ install.packages("daltoolbox")
 library(daltoolbox) 
 ```
 
-```
-## Error in parse(text = input): <text>:3:7: unexpected symbol
-## 2: 
-## 3: Sobre o
-##          ^
-```
-
 Carregando dados (`iris`).
 
 ``` r
-# load dataset
+# carregando conjunto de dados
 data(iris)
 ```
 
 Configuração do DBSCAN; ajuste `minPts` (e `eps` se disponível) conforme densidade.
 
 ``` r
-# setup clustering
+# configuração do método de clusterização
 model <- cluster_dbscan(minPts = 3)
 ```
 
 Ajuste e rótulos de cluster.
 
 ``` r
-# build model
+# ajuste do modelo e rotulagem
 model <- fit(model, iris[,1:4])
 clu <- cluster(model, iris[,1:4])
 table(clu)
