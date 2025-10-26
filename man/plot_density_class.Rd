@@ -15,25 +15,29 @@ plot_density_class(
 )
 }
 \arguments{
-\item{data}{data.frame contain x, value, and variable}
+\item{data}{data.frame with class label and a numeric column}
 
-\item{class_label}{name of attribute for class label}
+\item{class_label}{name of the grouping (class) column}
 
-\item{label_x}{x-axis label}
+\item{label_x}{x‑axis label}
 
-\item{label_y}{y-axis label}
+\item{label_y}{y‑axis label}
 
-\item{colors}{color vector}
+\item{colors}{optional vector of fills per class}
 
-\item{bin}{bin width for density estimation}
+\item{bin}{optional bin width passed to \code{geom_density}}
 
-\item{alpha}{level of transparency}
+\item{alpha}{fill transparency (0–1)}
 }
 \value{
 returns a ggplot2::ggplot graphic
 }
 \description{
-This function generates density plots using ggplot2 grouped by a specified class label from a data frame containing numeric values.
+Kernel density plot grouped by a class label.
+}
+\details{
+Expects \code{data} with a grouping column named in \code{class_label} and one numeric column. Each group is
+filled with a distinct color (if provided).
 }
 \examples{
 grf <- plot_density_class(iris |> dplyr::select(Sepal.Width, Species),

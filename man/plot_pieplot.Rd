@@ -14,23 +14,26 @@ plot_pieplot(
 )
 }
 \arguments{
-\item{data}{data.frame contain x, value, and variable}
+\item{data}{two‑column data.frame with category and value}
 
-\item{label_x}{x-axis label}
+\item{label_x}{x‑axis label (unused in pie, kept for symmetry)}
 
-\item{label_y}{y-axis label}
+\item{label_y}{y‑axis label (unused in pie)}
 
-\item{colors}{color vector}
+\item{colors}{vector of slice fills}
 
-\item{textcolor}{text color}
+\item{textcolor}{label text color}
 
-\item{bordercolor}{border color}
+\item{bordercolor}{slice border color}
 }
 \value{
 returns a ggplot2::ggplot graphic
 }
 \description{
-This function creates a pie chart using ggplot2.
+Pie chart from a two‑column data.frame (category, value) using polar coordinates.
+}
+\details{
+Slices are sized by the second (numeric) column. Text and border colors can be customized.
 }
 \examples{
 #summarizing iris dataset

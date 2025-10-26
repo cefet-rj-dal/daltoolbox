@@ -13,24 +13,28 @@ plot_boxplot_class(
 )
 }
 \arguments{
-\item{data}{data.frame contain x, value, and variable}
+\item{data}{data.frame with a grouping column and one numeric column}
 
-\item{class_label}{name of attribute for class label}
+\item{class_label}{name of the grouping (class) column}
 
-\item{label_x}{x-axis label}
+\item{label_x}{x‑axis label}
 
-\item{label_y}{y-axis label}
+\item{label_y}{y‑axis label}
 
-\item{colors}{color vector}
+\item{colors}{optional fill color for the boxes}
 }
 \value{
 returns a ggplot2::ggplot graphic
 }
 \description{
-This function generates boxplots grouped by a specified class label from a data frame containing numeric values using ggplot2.
+Boxplots of a numeric column grouped by a class label.
+}
+\details{
+Expects a data.frame with the grouping column named in \code{class_label} and one numeric column.
+The function melts to long format and draws per‑group distributions.
 }
 \examples{
 grf <- plot_boxplot_class(iris |> dplyr::select(Sepal.Width, Species),
-class = "Species", colors=c("red", "green", "blue"))
+class_label = "Species", colors=c("red", "green", "blue"))
 plot(grf)
 }

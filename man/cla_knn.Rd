@@ -2,7 +2,7 @@
 % Please edit documentation in R/cla_knn.R
 \name{cla_knn}
 \alias{cla_knn}
-\title{K Nearest Neighbor Classification}
+\title{K-Nearest Neighbors (KNN) Classification}
 \usage{
 cla_knn(attribute, slevels, k = 1)
 }
@@ -17,8 +17,10 @@ cla_knn(attribute, slevels, k = 1)
 returns a knn object.
 }
 \description{
-Classifies using the K-Nearest Neighbor algorithm.
-It wraps the class library.
+Classification by majority vote among the k nearest neighbors. Uses \code{class::knn}.
+}
+\details{
+KNN is a simple, non‑parametric method. Choice of \code{k} trades bias/variance; distance metric is Euclidean by default.
 }
 \examples{
 data(iris)
@@ -37,4 +39,7 @@ prediction <- predict(model, test)
 predictand <- adjust_class_label(test[,"Species"])
 test_eval <- evaluate(model, predictand, prediction)
 test_eval$metrics
+}
+\references{
+Cover, T. and Hart, P. (1967). Nearest neighbor pattern classification. IEEE Trans. Info. Theory.
 }

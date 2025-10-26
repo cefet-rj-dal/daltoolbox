@@ -1,9 +1,11 @@
 #'@title Decision Tree for regression
-#'@description Creates a regression object that
-#' uses the Decision Tree method for regression
-#' It wraps the tree library.
+#'@description Regression tree using recursive partitioning via the `tree` package.
+#'@details Splits are chosen to reduce squared error within nodes; result is an interpretable set of piecewise constants.
 #'@param attribute attribute target to model building.
 #'@return returns a decision tree regression object
+#'@references
+#' Breiman, L., Friedman, J., Olshen, R., and Stone, C. (1984).
+#' Classification and Regression Trees. Wadsworth.
 #'@examples
 #'data(Boston)
 #'model <- reg_dtree("medv")

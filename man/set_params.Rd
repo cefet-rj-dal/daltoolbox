@@ -15,7 +15,7 @@ set_params(obj, params)
 returns an object with parameters set
 }
 \description{
-set_params function assigns all parameters to the attributes presented in the object.
+Assign a named list of parameters to matching fields in the object (best‑effort).
 }
 \examples{
 obj <- set_params(dal_base(), list(x = 0))

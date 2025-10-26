@@ -10,7 +10,7 @@ clusterer()
 returns a \code{clusterer} object
 }
 \description{
-Ancestor class for clustering problems
+Base class for clustering algorithms and related evaluation utilities.
 }
 \examples{
 #See ?cluster_kmeans for an example of transformation

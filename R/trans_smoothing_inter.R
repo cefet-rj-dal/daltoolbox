@@ -1,7 +1,10 @@
-#'@title Smoothing by interval
-#'@description The "smoothing by interval" function is used to apply a smoothing technique to a vector or time series data using a moving window approach.
+#'@title Smoothing by equal interval
+#'@description Discretize a numeric vector into `n` equal‑width intervals (robust bounds via boxplot whiskers)
+#' and replace each value by the bin mean.
 #'@param n number of bins
 #'@return returns an object of class `smoothing_inter`
+#'@references
+#' Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Discretization)
 #'@examples
 #'data(iris)
 #'obj <- smoothing_inter(n = 2)

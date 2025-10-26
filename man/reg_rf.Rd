@@ -19,9 +19,14 @@ reg_rf(attribute, nodesize = 1, ntree = 10, mtry = NULL)
 returns an object of class \code{reg_rf}obj
 }
 \description{
-Creates a regression object that
-uses the Random Forest method.
-It wraps the randomForest library.
+Regression via Random Forests, an ensemble of decision trees trained
+on bootstrap samples with random feature subsetting at each split. This wrapper
+uses the \code{randomForest} package API.
+}
+\details{
+Random Forests reduce variance and are robust to overfitting on tabular data.
+Key hyperparameters are the number of trees (\code{ntree}), the number of variables tried at
+each split (\code{mtry}), and the minimum node size (\code{nodesize}).
 }
 \examples{
 data(Boston)
@@ -39,4 +44,8 @@ test_prediction <- predict(model, test)
 test_predictand <- test[,"medv"]
 test_eval <- evaluate(model, test_predictand, test_prediction)
 test_eval$metrics
+}
+\references{
+Breiman, L. (2001). Random Forests. Machine Learning 45(1):5–32.
+Liaw, A. and Wiener, M. (2002). Classification and Regression by randomForest. R News.
 }

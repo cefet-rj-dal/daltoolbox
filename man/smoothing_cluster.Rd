@@ -2,7 +2,7 @@
 % Please edit documentation in R/trans_smoothing_cluster.R
 \name{smoothing_cluster}
 \alias{smoothing_cluster}
-\title{Smoothing by cluster}
+\title{Smoothing by clustering (k-means)}
 \usage{
 smoothing_cluster(n)
 }
@@ -13,10 +13,8 @@ smoothing_cluster(n)
 returns an object of class \code{smoothing_cluster}
 }
 \description{
-Uses clustering method to perform data smoothing.
-The input vector is divided into clusters using the k-means algorithm.
-The mean of each cluster is then calculated and used as the
-smoothed value for all observations within that cluster.
+Quantize a numeric vector into \code{n} levels using k‑means on the values and
+replace each value by its cluster mean (vector quantization).
 }
 \examples{
 data(iris)
@@ -28,4 +26,7 @@ obj$interval
 
 entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
 entro$entropy
+}
+\references{
+MacQueen, J. (1967). Some Methods for classification and Analysis of Multivariate Observations.
 }

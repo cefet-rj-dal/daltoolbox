@@ -21,9 +21,11 @@ cla_mlp(attribute, slevels, size = NULL, decay = 0.1, maxit = 1000)
 returns a classification object
 }
 \description{
-Creates a classification object that
-uses the Multi-Layer Perceptron (MLP) method.
-It wraps the nnet library.
+Multi-Layer Perceptron classifier using \code{nnet::nnet} (single hidden layer).
+}
+\details{
+Uses softmax output with one‑hot targets from \code{adjust_class_label}. \code{size} controls hidden units and
+\code{decay} applies L2 regularization. Features should be scaled.
 }
 \examples{
 data(iris)
@@ -42,4 +44,8 @@ prediction <- predict(model, test)
 predictand <- adjust_class_label(test[,"Species"])
 test_eval <- evaluate(model, predictand, prediction)
 test_eval$metrics
+}
+\references{
+Rumelhart, D., Hinton, G., Williams, R. (1986). Learning representations by back‑propagating errors.
+Bishop, C. M. (1995). Neural Networks for Pattern Recognition.
 }

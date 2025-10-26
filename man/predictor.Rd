@@ -2,7 +2,7 @@
 % Please edit documentation in R/dal_predictor.R
 \name{predictor}
 \alias{predictor}
-\title{DAL Predict}
+\title{Predictor (base for classification/regression)}
 \usage{
 predictor()
 }
@@ -10,11 +10,10 @@ predictor()
 returns a predictor object
 }
 \description{
-Ancestor class for regression and classification
-It provides basis for fit and predict methods.
-Besides, action method proxies to predict.
+Ancestor class for supervised predictors (classification and regression).
+Provides a default \code{fit()} to record feature names and proxies \code{action()} to \code{predict()}.
 
-An example of learner is a decision tree (cla_dtree)
+An example predictor is a decision tree classifier (\code{cla_dtree}).
 }
 \examples{
 #See ?cla_dtree for a classification example using a decision tree

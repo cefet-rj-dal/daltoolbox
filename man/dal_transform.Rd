@@ -7,12 +7,15 @@
 dal_transform()
 }
 \value{
-returns a \code{dal_transform} object.
+returns a \code{dal_transform} object
 }
 \description{
-A transformation method applied to a dataset.
-If needed, the fit can be called to adjust the transform.
+Base class for data transformations with optional \code{fit()}/\code{inverse_transform()} support.
+}
+\details{
+The default \code{transform()} calls the underlying \code{action.default()}; subclasses should implement
+\code{transform.className} and optionally \code{inverse_transform.className}.
 }
 \examples{
-#See ?minmax for an example of transformation
+# See ?minmax or ?zscore for examples
 }

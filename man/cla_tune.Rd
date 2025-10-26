@@ -2,7 +2,7 @@
 % Please edit documentation in R/cla_tune.R
 \name{cla_tune}
 \alias{cla_tune}
-\title{Classification Tune}
+\title{Classification tuning (k-fold CV)}
 \usage{
 cla_tune(base_model, folds = 10, ranges = NULL, metric = "accuracy")
 }
@@ -19,7 +19,7 @@ cla_tune(base_model, folds = 10, ranges = NULL, metric = "accuracy")
 returns a \code{cla_tune} object
 }
 \description{
-This function performs a grid search or random search over specified hyperparameter values to optimize a base classification model
+Tune hyperparameters of a base classifier via k‑fold cross‑validation using a chosen metric.
 }
 \examples{
 # preparing dataset for random sampling
@@ -40,4 +40,7 @@ test_prediction <- predict(model, test)
 test_predictand <- adjust_class_label(test[,"Species"])
 test_eval <- evaluate(model, test_predictand, test_prediction)
 test_eval$metrics
+}
+\references{
+Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection.
 }

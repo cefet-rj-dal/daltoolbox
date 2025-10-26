@@ -7,21 +7,25 @@
 plot_hist(data, label_x = "", label_y = "", color = "white", alpha = 0.25)
 }
 \arguments{
-\item{data}{data.frame contain x, value, and variable}
+\item{data}{data.frame with one numeric column (first column is used if multiple)}
 
-\item{label_x}{x-axis label}
+\item{label_x}{x‑axis label}
 
-\item{label_y}{y-axis label}
+\item{label_y}{y‑axis label}
 
-\item{color}{color vector}
+\item{color}{fill color}
 
-\item{alpha}{transparency level}
+\item{alpha}{transparency level (0–1)}
 }
 \value{
 returns a ggplot2::ggplot graphic
 }
 \description{
-This function generates a histogram from a specified data frame using ggplot2.
+Histogram for a numeric column using ggplot2.
+}
+\details{
+If multiple columns are provided, only the first is used. Breaks are computed via \code{graphics::hist} to
+mirror base R binning. \code{color} controls the fill; \code{alpha} the transparency.
 }
 \examples{
 grf <- plot_hist(iris |> dplyr::select(Sepal.Width), color=c("blue"))

@@ -7,19 +7,23 @@
 plot_series(data, label_x = "", label_y = "", colors = NULL)
 }
 \arguments{
-\item{data}{data.frame contain x, value, and variable}
+\item{data}{data.frame with x in the first column and series in remaining columns}
 
-\item{label_x}{x-axis label}
+\item{label_x}{x‑axis label}
 
-\item{label_y}{y-axis label}
+\item{label_y}{y‑axis label}
 
-\item{colors}{color vector}
+\item{colors}{optional vector of colors for series}
 }
 \value{
 returns a ggplot2::ggplot graphic
 }
 \description{
-This function creates a time series plot using ggplot2.
+Line plot for one or more series over a common x index.
+}
+\details{
+Expects a data.frame where the first column is the x index and remaining columns are numeric series.
+Points and lines are drawn per series; supply \code{colors} to override the palette.
 }
 \examples{
 x <- seq(0, 10, 0.25)

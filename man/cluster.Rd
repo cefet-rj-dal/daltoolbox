@@ -15,7 +15,7 @@ cluster(obj, ...)
 clustered data
 }
 \description{
-Defines a cluster method
+Generic for clustering methods
 }
 \examples{
 #See ?cluster_kmeans for an example of transformation

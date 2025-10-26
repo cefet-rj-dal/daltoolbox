@@ -1,5 +1,6 @@
-#'@title maximum curvature analysis
-#'@description Fitting a curvature model in a sequence of observations. It extracts the the maximum curvature computed.
+#'@title Maximum curvature analysis (elbow detection)
+#'@description Computes a smoothing spline over a sequence and returns the location/value of maximum curvature,
+#' often used as an "elbow" detector.
 #'@return returns an object of class fit_curvature_max, which inherits from the fit_curvature and dal_transform classes.
 #' The object contains a list with the following elements:
 #' \itemize{
@@ -41,3 +42,5 @@ transform.fit_curvature_max <- function(obj, y, ...) {
 }
 
 
+#'@references
+#' Satopaa, V., Albrecht, J., Irwin, D., Raghavan, B. (2011). Finding a “Kneedle” in a Haystack: Detecting Knee Points in System Behavior.

@@ -1,9 +1,11 @@
-#'@title Regression Tune
-#'@description Creates an object for tuning regression models
+#'@title Regression tuning (k-fold CV)
+#'@description Tune hyperparameters of a base regressor via k‑fold cross‑validation minimizing an error metric (MSE).
 #'@param base_model base model for tuning
 #'@param folds number of folds for cross-validation
 #'@param ranges a list of hyperparameter ranges to explore
 #'@return returns a `reg_tune` object.
+#'@references
+#' Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection.
 #'@examples
 #'# preparing dataset for random sampling
 #'data(Boston)

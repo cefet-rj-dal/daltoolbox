@@ -2,7 +2,7 @@
 % Please edit documentation in R/reg_tune.R
 \name{reg_tune}
 \alias{reg_tune}
-\title{Regression Tune}
+\title{Regression tuning (k-fold CV)}
 \usage{
 reg_tune(base_model, folds = 10, ranges = NULL)
 }
@@ -17,7 +17,7 @@ reg_tune(base_model, folds = 10, ranges = NULL)
 returns a \code{reg_tune} object.
 }
 \description{
-Creates an object for tuning regression models
+Tune hyperparameters of a base regressor via k‑fold cross‑validation minimizing an error metric (MSE).
 }
 \examples{
 # preparing dataset for random sampling
@@ -37,4 +37,7 @@ test_prediction <- predict(model, test)
 test_predictand <- test[,"medv"]
 test_eval <- evaluate(model, test_predictand, test_prediction)
 test_eval$metrics
+}
+\references{
+Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection.
 }

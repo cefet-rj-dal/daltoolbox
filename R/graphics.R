@@ -1,10 +1,12 @@
 #'@title Plot bar graph
-#'@description this function displays a bar graph from a data frame containing x-axis categories using ggplot2.
-#'@param data data.frame contain x, value, and variable
-#'@param label_x x-axis label
-#'@param label_y y-axis label
-#'@param colors color vector
-#'@param alpha level of transparency
+#'@description Draw a simple bar chart from a two‑column data.frame: first column as categories (x), second as values.
+#'@details If `colors` is provided, a constant fill is used; otherwise ggplot2's default palette applies.
+#' `alpha` controls bar transparency. The first column is coerced to factor when needed.
+#'@param data two‑column data.frame: category in the first column, numeric values in the second
+#'@param label_x x‑axis label
+#'@param label_y y‑axis label
+#'@param colors optional fill color (single value)
+#'@param alpha bar transparency (0–1)
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
 #'#summarizing iris dataset
@@ -12,7 +14,7 @@
 #' dplyr::summarize(Sepal.Length=mean(Sepal.Length))
 #'head(data)
 #'
-#'#ploting data
+#'# plotting data
 #'grf <- plot_bar(data, colors="blue")
 #'plot(grf)
 #'@importFrom ggplot2 ggplot
@@ -47,12 +49,14 @@ plot_bar <- function(data, label_x = "", label_y = "", colors = NULL, alpha=1) {
 }
 
 #'@title Plot boxplot
-#'@description this function displays a boxplot graph from a data frame containing x-axis categories and numeric values using ggplot2.
-#'@param data data.frame contain x, value, and variable
-#'@param label_x x-axis label
-#'@param label_y y-axis label
-#'@param colors color vector
-#'@param barwidth width of bar
+#'@description Boxplots for each numeric column of a data.frame.
+#'@details The data is melted to long format and a box is drawn per original column. If `colors` is provided,
+#' a constant fill is applied to all boxes. Use `barwidth` to control box width.
+#'@param data data.frame with one or more numeric columns
+#'@param label_x x‑axis label
+#'@param label_y y‑axis label
+#'@param colors optional fill color for boxes
+#'@param barwidth width of the box (numeric)
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
 #'grf <- plot_boxplot(iris, colors="white")
@@ -93,16 +97,18 @@ plot_boxplot <- function(data, label_x = "", label_y = "", colors = NULL, barwid
 }
 
 #'@title Boxplot per class
-#'@description This function generates boxplots grouped by a specified class label from a data frame containing numeric values using ggplot2.
-#'@param data data.frame contain x, value, and variable
-#'@param class_label name of attribute for class label
-#'@param label_x x-axis label
-#'@param label_y y-axis label
-#'@param colors color vector
+#'@description Boxplots of a numeric column grouped by a class label.
+#'@details Expects a data.frame with the grouping column named in `class_label` and one numeric column.
+#' The function melts to long format and draws per‑group distributions.
+#'@param data data.frame with a grouping column and one numeric column
+#'@param class_label name of the grouping (class) column
+#'@param label_x x‑axis label
+#'@param label_y y‑axis label
+#'@param colors optional fill color for the boxes
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
 #'grf <- plot_boxplot_class(iris |> dplyr::select(Sepal.Width, Species),
-#' class = "Species", colors=c("red", "green", "blue"))
+#' class_label = "Species", colors=c("red", "green", "blue"))
 #'plot(grf)
 #'@importFrom ggplot2 ggplot
 #'@importFrom ggplot2 aes
@@ -143,14 +149,16 @@ plot_boxplot_class <- function(data, class_label, label_x = "", label_y = "", co
 
 
 #'@title Plot density
-#'@description This function generates a density plot from a data frame containing numeric values using ggplot2.
-#'If the data frame has multiple columns, densities can be grouped and plotted.
-#'@param data data.frame contain x, value, and variable
-#'@param label_x x-axis label
-#'@param label_y y-axis label
-#'@param colors color vector
-#'@param bin bin width for density estimation
-#'@param alpha level of transparency
+#'@description Kernel density plot for one or multiple numeric columns.
+#'@details If `data` has multiple numeric columns, densities are overlaid and filled by column (group).
+#' When a single column is provided, `colors` (if set) is used as a constant fill.
+#' The `bin` argument is passed to `geom_density(binwidth=...)`.
+#'@param data data.frame with one or more numeric columns
+#'@param label_x x‑axis label
+#'@param label_y y‑axis label
+#'@param colors optional fill color (single column) or vector for groups
+#'@param bin optional bin width passed to `geom_density`
+#'@param alpha fill transparency (0–1)
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
 #'grf <- plot_density(iris |> dplyr::select(Sepal.Width), colors="blue")
@@ -205,14 +213,16 @@ plot_density <- function(data, label_x = "", label_y = "", colors = NULL, bin = 
 }
 
 #'@title Plot density per class
-#'@description This function generates density plots using ggplot2 grouped by a specified class label from a data frame containing numeric values.
-#'@param data data.frame contain x, value, and variable
-#'@param class_label name of attribute for class label
-#'@param label_x x-axis label
-#'@param label_y y-axis label
-#'@param colors color vector
-#'@param bin bin width for density estimation
-#'@param alpha level of transparency
+#'@description Kernel density plot grouped by a class label.
+#'@details Expects `data` with a grouping column named in `class_label` and one numeric column. Each group is
+#' filled with a distinct color (if provided).
+#'@param data data.frame with class label and a numeric column
+#'@param class_label name of the grouping (class) column
+#'@param label_x x‑axis label
+#'@param label_y y‑axis label
+#'@param colors optional vector of fills per class
+#'@param bin optional bin width passed to `geom_density`
+#'@param alpha fill transparency (0–1)
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
 #'grf <- plot_density_class(iris |> dplyr::select(Sepal.Width, Species),
@@ -253,12 +263,14 @@ plot_density_class <- function(data, class_label, label_x = "", label_y = "", co
 }
 
 #'@title Plot grouped bar
-#'@description This function generates a grouped bar plot from a given data frame using ggplot2.
-#'@param data data.frame contain x, value, and variable
-#'@param label_x x-axis label
-#'@param label_y y-axis label
-#'@param colors color vector
-#'@param alpha level of transparency
+#'@description Grouped (side‑by‑side) bar chart for multiple series per category.
+#'@details Expects a data.frame where the first column is the category (x) and the remaining columns are
+#' numeric series. Bars are grouped by series. Provide `colors` with length equal to the number of series to set fills.
+#'@param data data.frame with category in first column and series in remaining columns
+#'@param label_x x‑axis label
+#'@param label_y y‑axis label
+#'@param colors optional vector of fill colors, one per series
+#'@param alpha bar transparency (0–1)
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
 #'#summarizing iris dataset
@@ -303,12 +315,14 @@ plot_groupedbar <- function(data, label_x = "", label_y = "", colors = NULL, alp
 }
 
 #'@title Plot histogram
-#'@description This function generates a histogram from a specified data frame using ggplot2.
-#'@param data data.frame contain x, value, and variable
-#'@param label_x x-axis label
-#'@param label_y y-axis label
-#'@param color color vector
-#'@param alpha transparency level
+#'@description Histogram for a numeric column using ggplot2.
+#'@details If multiple columns are provided, only the first is used. Breaks are computed via `graphics::hist` to
+#' mirror base R binning. `color` controls the fill; `alpha` the transparency.
+#'@param data data.frame with one numeric column (first column is used if multiple)
+#'@param label_x x‑axis label
+#'@param label_y y‑axis label
+#'@param color fill color
+#'@param alpha transparency level (0–1)
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
 #'grf <- plot_hist(iris |> dplyr::select(Sepal.Width), color=c("blue"))
@@ -343,17 +357,19 @@ plot_hist <- function(data, label_x = "", label_y = "", color = 'white', alpha=0
 }
 
 #'@title Plot lollipop
-#'@description This function creates a lollipop chart using ggplot2.
-#'@param data data.frame contain x, value, and variable
-#'@param label_x x-axis label
-#'@param label_y y-axis label
-#'@param colors color vector
-#'@param color_text color of text inside ball
-#'@param size_text size of text inside ball
-#'@param size_ball size of ball
-#'@param alpha_ball transparency of ball
-#'@param min_value minimum value
-#'@param max_value_gap maximum value gap
+#'@description Lollipop chart (stick + circle + value label) per category.
+#'@details Expects a data.frame with category in the first column and numeric values in subsequent columns.
+#' Circles are drawn at values, with vertical segments extending from `min_value` to `value - max_value_gap`.
+#'@param data data.frame with category and numeric values
+#'@param label_x x‑axis label
+#'@param label_y y‑axis label
+#'@param colors stick/circle color
+#'@param color_text color of the text inside the circle
+#'@param size_text text size
+#'@param size_ball circle size
+#'@param alpha_ball circle transparency (0–1)
+#'@param min_value minimum baseline for the stick
+#'@param max_value_gap gap from value to stick end
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
 #'#summarizing iris dataset
@@ -403,13 +419,14 @@ plot_lollipop <- function(data, label_x = "", label_y = "", colors = NULL, color
 }
 
 #'@title Plot pie
-#'@description This function creates a pie chart using ggplot2.
-#'@param data data.frame contain x, value, and variable
-#'@param label_x x-axis label
-#'@param label_y y-axis label
-#'@param colors color vector
-#'@param textcolor text color
-#'@param bordercolor border color
+#'@description Pie chart from a two‑column data.frame (category, value) using polar coordinates.
+#'@details Slices are sized by the second (numeric) column. Text and border colors can be customized.
+#'@param data two‑column data.frame with category and value
+#'@param label_x x‑axis label (unused in pie, kept for symmetry)
+#'@param label_y y‑axis label (unused in pie)
+#'@param colors vector of slice fills
+#'@param textcolor label text color
+#'@param bordercolor slice border color
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
 #'#summarizing iris dataset
@@ -472,11 +489,13 @@ plot_pieplot <- function(data, label_x = "", label_y = "", colors = NULL, textco
 }
 
 #'@title Plot points
-#'@description This function creates a scatter plot using ggplot2.
-#'@param data data.frame contain x, value, and variable
-#'@param label_x x-axis label
-#'@param label_y y-axis label
-#'@param colors color vector
+#'@description Dot chart for multiple series across categories (points only).
+#'@details Expects a data.frame with category in the first column and one or more numeric series.
+#' Points are colored by series (legend shows original column names). Supply `colors` to override the palette.
+#'@param data data.frame with category + one or more numeric columns
+#'@param label_x x‑axis label
+#'@param label_y y‑axis label
+#'@param colors optional color vector for series
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
 #'x <- seq(0, 10, 0.25)
@@ -518,11 +537,12 @@ plot_points <- function(data, label_x = "", label_y = "", colors = NULL) {
 }
 
 #'@title Plot radar
-#'@description This function creates a radar chart using ggplot2.
-#'@param data data.frame contain x, value, and variable
-#'@param label_x x-axis label
-#'@param label_y y-axis label
-#'@param colors color vector
+#'@description Radar (spider) chart for a single profile of variables using polar coordinates.
+#'@details Expects a two‑column data.frame with variable names in the first column and numeric values in the second.
+#'@param data two‑column data.frame: variable name and value
+#'@param label_x x‑axis label (unused; variable names are shown around the circle)
+#'@param label_y y‑axis label
+#'@param colors line/fill color for the polygon
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
 #'data <- data.frame(name = "Petal.Length", value = mean(iris$Petal.Length))
@@ -558,11 +578,12 @@ plot_radar <- function(data, label_x = "", label_y = "", colors = NULL) {
 }
 
 #'@title Scatter graph
-#'@description This function creates a scatter plot using ggplot2.
-#'@param data data.frame contain x, value, and variable
-#'@param label_x x-axis label
-#'@param label_y y-axis label
-#'@param colors color vector
+#'@description Scatter plot from a long data.frame with columns named `x`, `value`, and `variable`.
+#'@details Colors are mapped to `variable`. If `variable` is numeric, a gradient color scale is used when `colors` is provided.
+#'@param data long data.frame with columns `x`, `value`, `variable`
+#'@param label_x x‑axis label
+#'@param label_y y‑axis label
+#'@param colors optional color(s); for numeric `variable`, supply a gradient as c(low, high)
 #'@return return a ggplot2::ggplot graphic
 #'@examples
 #'grf <- plot_scatter(iris |> dplyr::select(x = Sepal.Length,
@@ -603,11 +624,13 @@ plot_scatter <- function(data, label_x = "", label_y = "", colors = NULL) {
 }
 
 #'@title Plot series
-#'@description This function creates a time series plot using ggplot2.
-#'@param data data.frame contain x, value, and variable
-#'@param label_x x-axis label
-#'@param label_y y-axis label
-#'@param colors color vector
+#'@description Line plot for one or more series over a common x index.
+#'@details Expects a data.frame where the first column is the x index and remaining columns are numeric series.
+#' Points and lines are drawn per series; supply `colors` to override the palette.
+#'@param data data.frame with x in the first column and series in remaining columns
+#'@param label_x x‑axis label
+#'@param label_y y‑axis label
+#'@param colors optional vector of colors for series
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
 #'x <- seq(0, 10, 0.25)
@@ -653,12 +676,14 @@ plot_series <- function(data, label_x = "", label_y = "", colors = NULL) {
 }
 
 #'@title Plot stacked bar
-#'@description this function creates a stacked bar chart using ggplot2.
-#'@param data data.frame contain x, value, and variable
-#'@param label_x x-axis label
-#'@param label_y y-axis label
-#'@param colors color vector
-#'@param alpha level of transparency
+#'@description Stacked bar chart for multiple series per category.
+#'@details Expects a data.frame with category in the first column and series in remaining columns.
+#' Bars are stacked within each category. Provide `colors` (one per series) to control fills.
+#'@param data data.frame with category in first column and series in remaining columns
+#'@param label_x x‑axis label
+#'@param label_y y‑axis label
+#'@param colors optional vector of fill colors, one per series
+#'@param alpha bar transparency (0–1)
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
 #'#summarizing iris dataset
@@ -704,12 +729,13 @@ plot_stackedbar <- function(data, label_x = "", label_y = "", colors = NULL, alp
 }
 
 #'@title Plot time series chart
-#'@description This function plots a time series chart with points and a line using ggplot2.
-#'@param x input variable
-#'@param y output variable
-#'@param label_x x-axis label
-#'@param label_y y-axis label
-#'@param color color for time series
+#'@description Simple time series plot with points and a line.
+#'@details If `x` is NULL, an integer index 1:n is used. The color applies to both points and line.
+#'@param x time index (numeric vector) or NULL to use 1:length(y)
+#'@param y numeric series
+#'@param label_x x‑axis label
+#'@param label_y y‑axis label
+#'@param color color for the series
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
 #'x <- seq(0, 10, 0.25)
@@ -746,24 +772,25 @@ plot_ts <- function(x = NULL, y, label_x = "", label_y = "", color="black") {
   return(grf)
 }
 
-#'@title Plot a time series chart with predictions
-#'@description This function plots a time series chart with three lines: the original series, the adjusted series, and the predicted series using ggplot2.
-#'@param x time index
-#'@param y time series
-#'@param yadj adjustment of time series
-#'@param ypred prediction of the time series
-#'@param label_x x-axis title
-#'@param label_y y-axis title
-#'@param color color for the time series
-#'@param color_adjust color for the adjusted values
-#'@param color_prediction color for the predictions
+#'@title Plot time series with predictions
+#'@description Plot original series plus dashed lines for in‑sample adjustment and optional out‑of‑sample predictions.
+#'@details `yadj` length defines the training segment; `ypred` (if provided) is appended after `yadj`.
+#'@param x time index (numeric vector) or NULL to use 1:length(y)
+#'@param y numeric time series
+#'@param yadj fitted/adjusted values for the training window
+#'@param ypred optional predicted values after the training window
+#'@param label_x x‑axis title
+#'@param label_y y‑axis title
+#'@param color color for the original series
+#'@param color_adjust color for the adjusted values (dashed)
+#'@param color_prediction color for the predictions (dashed)
 #'@return returns a ggplot2::ggplot graphic
 #'@examples
 #'x <- base::seq(0, 10, 0.25)
 #'yvalues <- sin(x) + rnorm(41,0,0.1)
 #'adjust <- sin(x[1:35])
 #'prediction <- sin(x[36:41])
-#'grf <- plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction)
+#'grf <- plot_ts_pred(y=yvalues, yadj=adjust, ypred=prediction)
 #'plot(grf)
 #'@export
 #'@importFrom ggplot2 ggplot
@@ -811,3 +838,18 @@ plot_ts_pred <- function(x = NULL, y, yadj, ypred = NULL, label_x = "", label_y 
                                     color = color_prediction, linetype = "dashed")
   return(grf)
 }
+#' Graphics utilities
+#' @description A collection of small plotting helpers built on ggplot2 used across the package
+#' to quickly visualize vectors, grouped summaries and time series. All functions return a
+#' `ggplot2::ggplot` object so you can further customize the theme, scales, and annotations.
+#' @details
+#' Conventions adopted:
+#' - Input data generally follows the pattern: first column is an index or category (x), remaining columns
+#'   are numeric series; in some functions a long format is expected with columns named `x`, `value`, `variable`.
+#' - The `colors` parameter accepts either a single color or a vector mapped to groups/variables.
+#' - Transparency is controlled by `alpha` where provided.
+#' - All helpers set a light `theme_bw()` baseline and place legends at the bottom by default.
+#' @keywords visualization graphics
+#' @name dal_graphics
+#' @seealso ggplot2
+NULL

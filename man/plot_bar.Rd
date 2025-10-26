@@ -7,21 +7,25 @@
 plot_bar(data, label_x = "", label_y = "", colors = NULL, alpha = 1)
 }
 \arguments{
-\item{data}{data.frame contain x, value, and variable}
+\item{data}{two‑column data.frame: category in the first column, numeric values in the second}
 
-\item{label_x}{x-axis label}
+\item{label_x}{x‑axis label}
 
-\item{label_y}{y-axis label}
+\item{label_y}{y‑axis label}
 
-\item{colors}{color vector}
+\item{colors}{optional fill color (single value)}
 
-\item{alpha}{level of transparency}
+\item{alpha}{bar transparency (0–1)}
 }
 \value{
 returns a ggplot2::ggplot graphic
 }
 \description{
-this function displays a bar graph from a data frame containing x-axis categories using ggplot2.
+Draw a simple bar chart from a two‑column data.frame: first column as categories (x), second as values.
+}
+\details{
+If \code{colors} is provided, a constant fill is used; otherwise ggplot2's default palette applies.
+\code{alpha} controls bar transparency. The first column is coerced to factor when needed.
 }
 \examples{
 #summarizing iris dataset
@@ -29,7 +33,7 @@ data <- iris |> dplyr::group_by(Species) |>
 dplyr::summarize(Sepal.Length=mean(Sepal.Length))
 head(data)
 
-#ploting data
+# plotting data
 grf <- plot_bar(data, colors="blue")
 plot(grf)
 }

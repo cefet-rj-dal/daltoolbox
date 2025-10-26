@@ -18,31 +18,35 @@ plot_lollipop(
 )
 }
 \arguments{
-\item{data}{data.frame contain x, value, and variable}
+\item{data}{data.frame with category and numeric values}
 
-\item{label_x}{x-axis label}
+\item{label_x}{x‑axis label}
 
-\item{label_y}{y-axis label}
+\item{label_y}{y‑axis label}
 
-\item{colors}{color vector}
+\item{colors}{stick/circle color}
 
-\item{color_text}{color of text inside ball}
+\item{color_text}{color of the text inside the circle}
 
-\item{size_text}{size of text inside ball}
+\item{size_text}{text size}
 
-\item{size_ball}{size of ball}
+\item{size_ball}{circle size}
 
-\item{alpha_ball}{transparency of ball}
+\item{alpha_ball}{circle transparency (0–1)}
 
-\item{min_value}{minimum value}
+\item{min_value}{minimum baseline for the stick}
 
-\item{max_value_gap}{maximum value gap}
+\item{max_value_gap}{gap from value to stick end}
 }
 \value{
 returns a ggplot2::ggplot graphic
 }
 \description{
-This function creates a lollipop chart using ggplot2.
+Lollipop chart (stick + circle + value label) per category.
+}
+\details{
+Expects a data.frame with category in the first column and numeric values in subsequent columns.
+Circles are drawn at values, with vertical segments extending from \code{min_value} to \code{value - max_value_gap}.
 }
 \examples{
 #summarizing iris dataset

@@ -19,9 +19,12 @@ reg_svm(attribute, epsilon = 0.1, cost = 10, kernel = "radial")
 returns a SVM regression object
 }
 \description{
-Creates a regression object that
-uses the Support Vector Machine (SVM) method for regression
-It wraps the e1071 and svm library.
+Support Vector Regression (SVR) using \code{e1071::svm}.
+}
+\details{
+SVR optimizes a margin with an epsilon‑insensitive loss around the regression function.
+The \code{cost} controls regularization strength; \code{epsilon} sets the width of the insensitive tube; and
+\code{kernel} defines the feature map (linear, radial, polynomial, sigmoid).
 }
 \examples{
 data(Boston)
@@ -39,4 +42,8 @@ test_prediction <- predict(model, test)
 test_predictand <- test[,"medv"]
 test_eval <- evaluate(model, test_predictand, test_prediction)
 test_eval$metrics
+}
+\references{
+Drucker, H., Burges, C., Kaufman, L., Smola, A., Vapnik, V. (1997). Support Vector Regression Machines.
+Chang, C.-C. and Lin, C.-J. (2011). LIBSVM: A library for support vector machines.
 }

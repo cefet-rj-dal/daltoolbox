@@ -1,6 +1,8 @@
-#'@title Categorical mapping
-#'@description Categorical mapping provides a way to map the levels of a categorical variable to new values.
-#' Each possible value is converted to a binary attribute.
+#'@title Categorical mapping (one‑hot encoding)
+#'@description Convert a factor column into dummy variables (one‑hot encoding) using `model.matrix` without intercept.
+#' Each level becomes a separate binary column.
+#'@details This is a light wrapper around `stats::model.matrix(~ attr - 1, data)` that drops the original column
+#' and returns only the dummy variables.
 #'@param attribute attribute to be categorized.
 #'@return returns a data frame with binary attributes, one for each possible category.
 #'@examples

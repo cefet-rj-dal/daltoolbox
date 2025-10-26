@@ -19,9 +19,11 @@ reg_mlp(attribute, size = NULL, decay = 0.05, maxit = 1000)
 returns a object of class \code{reg_mlp}
 }
 \description{
-Creates a regression object that
-uses the Multi-Layer Perceptron (MLP) method.
-It wraps the nnet library.
+Multi-Layer Perceptron regression using \code{nnet::nnet} (single hidden layer).
+}
+\details{
+Feedforward neural network with \code{size} hidden units and L2 regularization controlled by \code{decay}.
+Data should be scaled for stable training.
 }
 \examples{
 data(Boston)
@@ -39,4 +41,7 @@ test_prediction <- predict(model, test)
 test_predictand <- test[,"medv"]
 test_eval <- evaluate(model, test_predictand, test_prediction)
 test_eval$metrics
+}
+\references{
+Bishop, C. M. (1995). Neural Networks for Pattern Recognition. Oxford University Press.
 }

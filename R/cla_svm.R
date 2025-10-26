@@ -1,13 +1,17 @@
 #'@title SVM for classification
-#'@description Creates a classification object that
-#' uses the Support Vector Machine (SVM) method for classification
-#' It wraps the e1071 and svm library.
+#'@description Support Vector Machines (SVM) for classification using `e1071::svm`.
+#'@details SVMs find a maximum‑margin hyperplane in a transformed feature space defined
+#' by a kernel (linear, radial, polynomial, sigmoid). The `cost` controls the trade‑off
+#' between margin width and training error; `epsilon` affects stopping; `kernel` sets the feature map.
 #'@param attribute attribute target to model building
 #'@param slevels possible values for the target classification
 #'@param epsilon parameter that controls the width of the margin around the separating hyperplane
 #'@param cost parameter that controls the trade-off between having a wide margin and correctly classifying training data points
 #'@param kernel the type of kernel function to be used in the SVM algorithm (linear, radial, polynomial, sigmoid)
 #'@return returns a SVM classification object
+#'@references
+#' Cortes, C. and Vapnik, V. (1995). Support-Vector Networks. Machine Learning 20(3):273–297.
+#' Chang, C.-C. and Lin, C.-J. (2011). LIBSVM: A library for support vector machines.
 #'@examples
 #'data(iris)
 #'slevels <- levels(iris$Species)

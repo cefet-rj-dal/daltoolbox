@@ -15,8 +15,10 @@ cla_nb(attribute, slevels)
 returns a classification object.
 }
 \description{
-Classification using the Naive Bayes algorithm
-It wraps the e1071 library.
+Naive Bayes classification using \code{e1071::naiveBayes}.
+}
+\details{
+Assumes conditional independence of features given the class label, enabling fast probabilistic classification.
 }
 \examples{
 data(iris)
@@ -35,4 +37,7 @@ prediction <- predict(model, test)
 predictand <- adjust_class_label(test[,"Species"])
 test_eval <- evaluate(model, predictand, prediction)
 test_eval$metrics
+}
+\references{
+Mitchell, T. (1997). Machine Learning. McGraw‑Hill. (Naive Bayes)
 }

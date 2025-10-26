@@ -13,7 +13,7 @@ adjust_matrix(data)
 returns an adjusted matrix
 }
 \description{
-Converts a dataset to a matrix format if it is not already in that format
+Coerce an object to \code{matrix} if needed (useful before algorithms that expect matrices).
 }
 \examples{
 data(iris)

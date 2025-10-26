@@ -10,7 +10,10 @@ minmax()
 returns an object of class \code{minmax}
 }
 \description{
-The minmax performs scales data between [0,1].
+Linearly scales numeric columns to the [0,1] range per column.
+}
+\details{
+For each numeric column j, computes (x - min_j) / (max_j - min_j). Constant columns map to 0.
 
 \eqn{minmax = (x-min(x))/(max(x)-min(x))}
 }
@@ -25,4 +28,7 @@ head(tiris)
 
 itiris <- inverse_transform(trans, tiris)
 head(itiris)
+}
+\references{
+Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Normalization section)
 }

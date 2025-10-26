@@ -13,9 +13,11 @@ cluster_kmeans(k = 1)
 returns a k-means object.
 }
 \description{
-Creates a clusterer object that
-uses the k-means method
-It wraps the stats library.
+k-means clustering using \code{stats::kmeans}.
+}
+\details{
+Partitions data into k clusters minimizing within‑cluster sum of squares. The intrinsic
+quality metric returned is the total within‑cluster SSE (lower is better).
 }
 \examples{
 # setup clustering
@@ -32,4 +34,8 @@ table(clu)
 # evaluate model using external metric
 eval <- evaluate(model, clu, iris$Species)
 eval
+}
+\references{
+MacQueen, J. (1967). Some Methods for classification and Analysis of Multivariate Observations.
+Lloyd, S. (1982). Least squares quantization in PCM.
 }

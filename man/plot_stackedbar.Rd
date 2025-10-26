@@ -7,21 +7,25 @@
 plot_stackedbar(data, label_x = "", label_y = "", colors = NULL, alpha = 1)
 }
 \arguments{
-\item{data}{data.frame contain x, value, and variable}
+\item{data}{data.frame with category in first column and series in remaining columns}
 
-\item{label_x}{x-axis label}
+\item{label_x}{x‑axis label}
 
-\item{label_y}{y-axis label}
+\item{label_y}{y‑axis label}
 
-\item{colors}{color vector}
+\item{colors}{optional vector of fill colors, one per series}
 
-\item{alpha}{level of transparency}
+\item{alpha}{bar transparency (0–1)}
 }
 \value{
 returns a ggplot2::ggplot graphic
 }
 \description{
-this function creates a stacked bar chart using ggplot2.
+Stacked bar chart for multiple series per category.
+}
+\details{
+Expects a data.frame with category in the first column and series in remaining columns.
+Bars are stacked within each category. Provide \code{colors} (one per series) to control fills.
 }
 \examples{
 #summarizing iris dataset

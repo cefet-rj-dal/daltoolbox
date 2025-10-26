@@ -2,7 +2,7 @@
 % Please edit documentation in R/cla_classification.R
 \name{classification}
 \alias{classification}
-\title{classification}
+\title{Classification base class}
 \usage{
 classification(attribute, slevels)
 }
@@ -15,7 +15,8 @@ classification(attribute, slevels)
 returns a classification object
 }
 \description{
-Ancestor class for classification problems
+Ancestor class for classification models providing common fields (target attribute and levels)
+and evaluation helpers.
 }
 \examples{
 #See ?cla_dtree for a classification example using a decision tree

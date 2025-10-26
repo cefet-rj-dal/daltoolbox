@@ -13,7 +13,7 @@ adjust_data.frame(data)
 returns a data.frame
 }
 \description{
-Converts a dataset to a \code{data.frame} if it is not already in that format
+Coerce an object to \code{data.frame} if needed (useful for S3 methods in this package).
 }
 \examples{
 data(iris)

@@ -1,9 +1,11 @@
 #'@title Naive Bayes Classifier
-#'@description Classification using the Naive Bayes algorithm
-#' It wraps the e1071 library.
+#'@description Naive Bayes classification using `e1071::naiveBayes`.
+#'@details Assumes conditional independence of features given the class label, enabling fast probabilistic classification.
 #'@param attribute attribute target to model building.
 #'@param slevels possible values for the target classification.
 #'@return returns a classification object.
+#'@references
+#' Mitchell, T. (1997). Machine Learning. McGraw‑Hill. (Naive Bayes)
 #'@examples
 #'data(iris)
 #'slevels <- levels(iris$Species)

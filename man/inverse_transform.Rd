@@ -15,7 +15,7 @@ inverse_transform(obj, ...)
 dataset inverse transformed.
 }
 \description{
-Reverses the transformation applied to data.
+Optional inverse operation for a transformation; defaults to identity.
 }
 \examples{
 #See ?minmax for an example of transformation

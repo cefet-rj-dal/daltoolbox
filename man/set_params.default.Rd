@@ -15,5 +15,5 @@
 returns the object unchanged
 }
 \description{
-Default method for \code{set_params} which returns the object unchanged
+Default method for \code{set_params} (returns object unchanged).
 }

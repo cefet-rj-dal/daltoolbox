@@ -2,7 +2,7 @@
 % Please edit documentation in R/dal_tune.R
 \name{dal_tune}
 \alias{dal_tune}
-\title{DAL Tune}
+\title{DAL Tune (base for hyperparameter search)}
 \usage{
 dal_tune(base_model, folds = 10, ranges)
 }
@@ -17,8 +17,12 @@ dal_tune(base_model, folds = 10, ranges)
 returns a \code{dal_tune} object
 }
 \description{
-Creates an ancestor class for hyperparameter optimization,
-allowing the tuning of a base model using cross-validation.
+Base class for hyperparameter optimization that stores a base model, a fold count,
+and a parameter grid. Specializations (classification/regression/clustering) implement the evaluation logic.
+}
+\details{
+Ranges are expanded via \code{expand.grid}, and selection is delegated to \code{select_hyper()} which can be
+overridden by subclasses to implement custom criteria.
 }
 \examples{
 #See ?cla_tune for classification tuning

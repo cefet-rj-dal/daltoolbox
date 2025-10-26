@@ -1,9 +1,11 @@
-#'@title knn regression
-#'@description Creates a regression object that
-#' uses the K-Nearest Neighbors (knn) method for regression
+#'@title K-Nearest Neighbors (KNN) Regression
+#'@description KNN regression using `FNN::knn.reg`, predicting by averaging the targets of the k nearest neighbors.
+#'@details Non‑parametric approach suitable for local smoothing. Sensitive to feature scaling; consider normalization beforehand.
 #'@param attribute attribute target to model building
 #'@param k number of k neighbors
 #'@return returns a knn regression object
+#'@references
+#' Altman, N. (1992). An Introduction to Kernel and Nearest-Neighbor Nonparametric Regression.
 #'@examples
 #'data(Boston)
 #'model <- reg_knn("medv", k=3)

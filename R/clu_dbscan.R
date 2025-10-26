@@ -1,10 +1,12 @@
 #'@title DBSCAN
-#'@description Creates a clusterer object that
-#' uses the DBSCAN method
-#' It wraps the dbscan library.
+#'@description Density-Based Spatial Clustering of Applications with Noise using `dbscan::dbscan`.
+#'@details Discovers clusters as dense regions separated by sparse areas. Hyperparameters are `eps` (neighborhood radius)
+#' and `minPts` (minimum points). If `eps` is missing, it is estimated from the kNN distance curve elbow.
 #'@param eps distance value
 #'@param minPts minimum number of points
 #'@return returns a dbscan object
+#'@references
+#' Ester, M., Kriegel, H.-P., Sander, J., Xu, X. (1996). A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise.
 #'@examples
 #'# setup clustering
 #'model <- cluster_dbscan(minPts = 3)

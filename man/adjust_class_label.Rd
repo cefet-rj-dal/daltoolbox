@@ -17,6 +17,8 @@ adjust_class_label(x, valTrue = 1, valFalse = 0)
 returns an adjusted categorical mapping
 }
 \description{
-Converts a vector into a categorical mapping, where each category is represented by a specific value.
-By default, the values represent binary categories (true/false)
+One‑hot encode a factor vector into a matrix of indicator columns.
+}
+\details{
+Values are mapped to \code{valTrue}/\code{valFalse} (default 1/0). The resulting matrix has column names equal to levels(x).
 }

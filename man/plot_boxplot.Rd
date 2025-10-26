@@ -7,21 +7,25 @@
 plot_boxplot(data, label_x = "", label_y = "", colors = NULL, barwidth = 0.25)
 }
 \arguments{
-\item{data}{data.frame contain x, value, and variable}
+\item{data}{data.frame with one or more numeric columns}
 
-\item{label_x}{x-axis label}
+\item{label_x}{x‑axis label}
 
-\item{label_y}{y-axis label}
+\item{label_y}{y‑axis label}
 
-\item{colors}{color vector}
+\item{colors}{optional fill color for boxes}
 
-\item{barwidth}{width of bar}
+\item{barwidth}{width of the box (numeric)}
 }
 \value{
 returns a ggplot2::ggplot graphic
 }
 \description{
-this function displays a boxplot graph from a data frame containing x-axis categories and numeric values using ggplot2.
+Boxplots for each numeric column of a data.frame.
+}
+\details{
+The data is melted to long format and a box is drawn per original column. If \code{colors} is provided,
+a constant fill is applied to all boxes. Use \code{barwidth} to control box width.
 }
 \examples{
 grf <- plot_boxplot(iris, colors="white")

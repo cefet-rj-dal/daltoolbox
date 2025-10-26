@@ -23,7 +23,7 @@ returns an list with two elements:
 }
 }
 \description{
-Partitions a dataset into training and test sets using a specified sampling method
+Partition a dataset into training and test sets using a sampling strategy.
 }
 \examples{
 #using random sampling

@@ -2,7 +2,7 @@
 % Please edit documentation in R/trans_sample.R
 \name{data_sample}
 \alias{data_sample}
-\title{Data Sample}
+\title{Data sampling abstractions}
 \usage{
 data_sample()
 }
@@ -10,15 +10,8 @@ data_sample()
 returns an object of class \code{data_sample}
 }
 \description{
-The data_sample function in R is used to randomly
-sample data from a given data frame. It can be used to obtain
-a subset of data for further analysis or modeling.
-
-Two basic specializations of data_sample are sample_random and sample_stratified.
-They provide random sampling and stratified sampling, respectively.
-
-Data sample provides both training and testing partitioning (train_test) and
-k-fold partitioning (k_fold) of data.
+Base class for sampling strategies that provide train/test splitting and k‑fold partitioning.
+Two standard implementations are \code{sample_random()} and \code{sample_stratified()}.
 }
 \examples{
 #using random sampling

@@ -2,7 +2,7 @@
 % Please edit documentation in R/graphics.R
 \name{plot_ts_pred}
 \alias{plot_ts_pred}
-\title{Plot a time series chart with predictions}
+\title{Plot time series with predictions}
 \usage{
 plot_ts_pred(
   x = NULL,
@@ -17,35 +17,38 @@ plot_ts_pred(
 )
 }
 \arguments{
-\item{x}{time index}
+\item{x}{time index (numeric vector) or NULL to use 1:length(y)}
 
-\item{y}{time series}
+\item{y}{numeric time series}
 
-\item{yadj}{adjustment of time series}
+\item{yadj}{fitted/adjusted values for the training window}
 
-\item{ypred}{prediction of the time series}
+\item{ypred}{optional predicted values after the training window}
 
-\item{label_x}{x-axis title}
+\item{label_x}{x‑axis title}
 
-\item{label_y}{y-axis title}
+\item{label_y}{y‑axis title}
 
-\item{color}{color for the time series}
+\item{color}{color for the original series}
 
-\item{color_adjust}{color for the adjusted values}
+\item{color_adjust}{color for the adjusted values (dashed)}
 
-\item{color_prediction}{color for the predictions}
+\item{color_prediction}{color for the predictions (dashed)}
 }
 \value{
 returns a ggplot2::ggplot graphic
 }
 \description{
-This function plots a time series chart with three lines: the original series, the adjusted series, and the predicted series using ggplot2.
+Plot original series plus dashed lines for in‑sample adjustment and optional out‑of‑sample predictions.
+}
+\details{
+\code{yadj} length defines the training segment; \code{ypred} (if provided) is appended after \code{yadj}.
 }
 \examples{
 x <- base::seq(0, 10, 0.25)
 yvalues <- sin(x) + rnorm(41,0,0.1)
 adjust <- sin(x[1:35])
 prediction <- sin(x[36:41])
-grf <- plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction)
+grf <- plot_ts_pred(y=yvalues, yadj=adjust, ypred=prediction)
 plot(grf)
 }

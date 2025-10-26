@@ -13,9 +13,10 @@ reg_dtree(attribute)
 returns a decision tree regression object
 }
 \description{
-Creates a regression object that
-uses the Decision Tree method for regression
-It wraps the tree library.
+Regression tree using recursive partitioning via the \code{tree} package.
+}
+\details{
+Splits are chosen to reduce squared error within nodes; result is an interpretable set of piecewise constants.
 }
 \examples{
 data(Boston)
@@ -33,4 +34,8 @@ test_prediction <- predict(model, test)
 test_predictand <- test[,"medv"]
 test_eval <- evaluate(model, test_predictand, test_prediction)
 test_eval$metrics
+}
+\references{
+Breiman, L., Friedman, J., Olshen, R., and Stone, C. (1984).
+Classification and Regression Trees. Wadsworth.
 }

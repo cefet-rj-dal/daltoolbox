@@ -2,7 +2,7 @@
 % Please edit documentation in R/clu_tune.R
 \name{clu_tune}
 \alias{clu_tune}
-\title{Clustering Tune}
+\title{Clustering tuning (intrinsic metric)}
 \usage{
 clu_tune(base_model, folds = 10, ranges = NULL)
 }
@@ -17,8 +17,7 @@ clu_tune(base_model, folds = 10, ranges = NULL)
 returns a \code{clu_tune} object.
 }
 \description{
-Creates an object for tuning clustering models.
-This object can be used to fit and optimize clustering algorithms by specifying hyperparameter ranges
+Tune clustering hyperparameters by evaluating an intrinsic metric over a parameter grid and selecting the elbow (max curvature).
 }
 \examples{
 data(iris)
@@ -28,4 +27,7 @@ model <- clu_tune(cluster_kmeans(k = 0), ranges = list(k = 1:10))
 
 model <- fit(model, iris[,1:4])
 model$k
+}
+\references{
+Satopaa, V. et al. (2011). Finding a “Kneedle” in a Haystack.
 }

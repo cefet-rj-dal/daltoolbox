@@ -15,9 +15,13 @@ cla_dtree(attribute, slevels)
 returns a classification object
 }
 \description{
-Creates a classification object that
-uses the Decision Tree algorithm for classification.
-It wraps the tree library.
+Univariate decision tree for classification using recursive partitioning.
+This wrapper uses the \code{tree} package.
+}
+\details{
+Decision trees split the feature space by maximizing node purity (e.g., Gini/entropy),
+yielding a human‑readable set of rules. They are fast and interpretable, and often used as
+base learners in ensembles.
 }
 \examples{
 data(iris)
@@ -36,4 +40,8 @@ prediction <- predict(model, test)
 predictand <- adjust_class_label(test[,"Species"])
 test_eval <- evaluate(model, predictand, prediction)
 test_eval$metrics
+}
+\references{
+Breiman, L., Friedman, J., Olshen, R., and Stone, C. (1984).
+Classification and Regression Trees. Wadsworth.
 }

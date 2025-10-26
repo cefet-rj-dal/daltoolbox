@@ -1,11 +1,17 @@
-#'@title Autoencoder - Encode
-#'@description Creates a base class for autoencoder.
-#'@param input_size input size
-#'@param encoding_size encoding size
-#'@return returns a `autoenc_base_e` object.
+#'@title Autoencoder base (encoder)
+#'@description Base class for encoder‑only autoencoders. Intended to be subclassed by
+#' concrete implementations that learn a lower‑dimensional latent representation.
+#'@details This base does not train or transform by itself (identity). Implementations should
+#' override `fit()` to learn parameters and `transform()` to output the encoded representation.
+#'@param input_size dimensionality of the input vector
+#'@param encoding_size dimensionality of the latent (encoded) vector
+#'@return returns an `autoenc_base_e` object
 #'@examples
-#'#See an example of using `autoenc_base_e` at this
-#'#https://github.com/cefet-rj-dal/daltoolbox/blob/main/autoencoder/autoenc_base_e.md
+#'# See an end‑to‑end example at:
+#'# https://github.com/cefet-rj-dal/daltoolbox/blob/main/autoencoder/autoenc_base_e.md
+#'
+#'@references
+#' Hinton, G. E., & Salakhutdinov, R. R. (2006). Reducing the Dimensionality of Data with Neural Networks. Science.
 #'@export
 autoenc_base_e <- function(input_size, encoding_size) {
   obj <- dal_transform()

@@ -1,9 +1,9 @@
-#'@title Smoothing
-#'@description Smoothing is a statistical technique used to reduce
-#' the noise in a signal or a dataset by removing the high-frequency components.
-#' The smoothing level is associated with the number of bins used.
-#' There are alternative methods to establish the smoothing:
-#' equal interval, equal frequency, and clustering.
+#'@title Smoothing (binning/quantization)
+#'@description Family of smoothing methods that reduce noise by replacing values with the mean of a bin/cluster.
+#' Supported strategies: equal‑interval bins, equal‑frequency (quantile) bins, and clustering‑based bins (k‑means).
+#'@details The smoothing level is controlled by `n` (number of bins/levels). The helper `tune()` can choose
+#' an `n` by locating the elbow (maximum curvature) of the MSE curve across candidates. After `fit()`,
+#' values are mapped to bin means via `transform()`.
 #'@param n number of bins
 #'@return returns an object of class `smoothing`
 #'@examples

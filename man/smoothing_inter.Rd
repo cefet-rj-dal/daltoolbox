@@ -2,7 +2,7 @@
 % Please edit documentation in R/trans_smoothing_inter.R
 \name{smoothing_inter}
 \alias{smoothing_inter}
-\title{Smoothing by interval}
+\title{Smoothing by equal interval}
 \usage{
 smoothing_inter(n)
 }
@@ -13,7 +13,8 @@ smoothing_inter(n)
 returns an object of class \code{smoothing_inter}
 }
 \description{
-The "smoothing by interval" function is used to apply a smoothing technique to a vector or time series data using a moving window approach.
+Discretize a numeric vector into \code{n} equal‑width intervals (robust bounds via boxplot whiskers)
+and replace each value by the bin mean.
 }
 \examples{
 data(iris)
@@ -25,4 +26,7 @@ obj$interval
 
 entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
 entro$entropy
+}
+\references{
+Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Discretization)
 }

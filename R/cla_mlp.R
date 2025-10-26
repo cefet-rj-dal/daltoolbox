@@ -1,13 +1,16 @@
 #'@title MLP for classification
-#'@description Creates a classification object that
-#' uses the Multi-Layer Perceptron (MLP) method.
-#' It wraps the nnet library.
+#'@description Multi-Layer Perceptron classifier using `nnet::nnet` (single hidden layer).
+#'@details Uses softmax output with one‑hot targets from `adjust_class_label`. `size` controls hidden units and
+#' `decay` applies L2 regularization. Features should be scaled.
 #'@param attribute attribute target to model building
 #'@param slevels possible values for the target classification
 #'@param size number of nodes that will be used in the hidden layer
 #'@param decay how quickly it decreases in gradient descent
 #'@param maxit maximum iterations
 #'@return returns a classification object
+#'@references
+#' Rumelhart, D., Hinton, G., Williams, R. (1986). Learning representations by back‑propagating errors.
+#' Bishop, C. M. (1995). Neural Networks for Pattern Recognition.
 #'@examples
 #'data(iris)
 #'slevels <- levels(iris$Species)

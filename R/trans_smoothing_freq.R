@@ -1,7 +1,10 @@
-#'@title Smoothing by Freq
-#'@description The 'smoothing_freq' function is used to smooth a given time series data by aggregating observations within a fixed frequency.
+#'@title Smoothing by equal frequency
+#'@description Discretize a numeric vector into `n` bins with approximately equal frequency (quantile cuts),
+#' and replace each value by the mean of its bin.
 #'@param n number of bins
 #'@return returns an object of class `smoothing_freq`
+#'@references
+#' Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Discretization)
 #'@examples
 #'data(iris)
 #'obj <- smoothing_freq(n = 2)

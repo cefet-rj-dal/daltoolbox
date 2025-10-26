@@ -1,13 +1,15 @@
 #'@title Random Forest for classification
-#'@description Creates a classification object that
-#' uses the Random Forest method
-#' It wraps the randomForest library.
+#'@description Ensemble classifier of decision trees using `randomForest::randomForest`.
+#'@details Combines many decorrelated trees to reduce variance. Key hyperparameters: `ntree`, `mtry`, `nodesize`.
 #'@param attribute attribute target to model building
 #'@param slevels possible values for the target classification
 #'@param nodesize node size
 #'@param ntree number of trees
 #'@param mtry number of attributes to build tree
 #'@return returns a classification object
+#'@references
+#' Breiman, L. (2001). Random Forests. Machine Learning 45(1):5–32.
+#' Liaw, A. and Wiener, M. (2002). Classification and Regression by randomForest. R News.
 #'@examples
 #'data(iris)
 #'slevels <- levels(iris$Species)

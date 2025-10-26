@@ -1,12 +1,14 @@
 #'@title MLP for regression
-#'@description Creates a regression object that
-#' uses the Multi-Layer Perceptron (MLP) method.
-#' It wraps the nnet library.
+#'@description Multi-Layer Perceptron regression using `nnet::nnet` (single hidden layer).
+#'@details Feedforward neural network with `size` hidden units and L2 regularization controlled by `decay`.
+#' Data should be scaled for stable training.
 #'@param attribute attribute target to model building
 #'@param size number of neurons in hidden layers
 #'@param decay decay learning rate
 #'@param maxit number of maximum iterations for training
 #'@return returns a object of class `reg_mlp`
+#'@references
+#' Bishop, C. M. (1995). Neural Networks for Pattern Recognition. Oxford University Press.
 #'@examples
 #'data(Boston)
 #'model <- reg_mlp("medv", size=5, decay=0.54)

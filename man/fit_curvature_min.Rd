@@ -2,7 +2,7 @@
 % Please edit documentation in R/trans_fit_curvature_min.R
 \name{fit_curvature_min}
 \alias{fit_curvature_min}
-\title{minimum curvature analysis}
+\title{Minimum curvature analysis (elbow detection)}
 \usage{
 fit_curvature_min()
 }
@@ -16,7 +16,8 @@ The object contains a list with the following elements:
 }
 }
 \description{
-Fitting a curvature model in a sequence of observations. It extracts the the minimum curvature computed.
+Computes a smoothing spline over a sequence and returns the location/value of minimum curvature,
+complementary to maximum curvature and useful in elbow detection.
 }
 \examples{
 x <- seq(from=1,to=10,by=0.5)

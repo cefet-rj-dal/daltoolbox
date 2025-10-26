@@ -1,12 +1,16 @@
 #'@title SVM for regression
-#'@description Creates a regression object that
-#' uses the Support Vector Machine (SVM) method for regression
-#' It wraps the e1071 and svm library.
+#'@description Support Vector Regression (SVR) using `e1071::svm`.
+#'@details SVR optimizes a margin with an epsilon‑insensitive loss around the regression function.
+#' The `cost` controls regularization strength; `epsilon` sets the width of the insensitive tube; and
+#' `kernel` defines the feature map (linear, radial, polynomial, sigmoid).
 #'@param attribute attribute target to model building
 #'@param epsilon parameter that controls the width of the margin around the separating hyperplane
 #'@param cost parameter that controls the trade-off between having a wide margin and correctly classifying training data points
 #'@param kernel the type of kernel function to be used in the SVM algorithm (linear, radial, polynomial, sigmoid)
 #'@return returns a SVM regression object
+#'@references
+#' Drucker, H., Burges, C., Kaufman, L., Smola, A., Vapnik, V. (1997). Support Vector Regression Machines.
+#' Chang, C.-C. and Lin, C.-J. (2011). LIBSVM: A library for support vector machines.
 #'@examples
 #'data(Boston)
 #'model <- reg_svm("medv", epsilon=0.2,cost=40.000)

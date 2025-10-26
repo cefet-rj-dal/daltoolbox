@@ -15,11 +15,13 @@ dt_pca(attribute = NULL, components = NULL)
 returns an object of class \code{dt_pca}
 }
 \description{
-PCA (Principal Component Analysis) is an unsupervised
-dimensionality reduction technique used in data analysis and
-machine learning. It transforms a dataset of possibly
-correlated variables into a new set of uncorrelated
-variables called principal components.
+Principal Component Analysis (PCA) for unsupervised dimensionality reduction.
+Transforms correlated variables into orthogonal principal components ordered by explained variance.
+}
+\details{
+Fits PCA on (optionally) the numeric predictors only (excluding \code{attribute} when provided),
+removes constant columns, and selects the number of components by an elbow rule (minimum curvature)
+unless \code{components} is set explicitly.
 }
 \examples{
 mypca <- dt_pca("Species")
@@ -34,4 +36,8 @@ mypca <- fit(mypca, datasets::iris)
 iris.pca <- transform(mypca, iris)
 head(iris.pca)
 head(mypca$pca.transf)
+}
+\references{
+Pearson, K. (1901). On lines and planes of closest fit to systems of points in space.
+Hotelling, H. (1933). Analysis of a complex of statistical variables into principal components.
 }

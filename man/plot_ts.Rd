@@ -7,21 +7,24 @@
 plot_ts(x = NULL, y, label_x = "", label_y = "", color = "black")
 }
 \arguments{
-\item{x}{input variable}
+\item{x}{time index (numeric vector) or NULL to use 1:length(y)}
 
-\item{y}{output variable}
+\item{y}{numeric series}
 
-\item{label_x}{x-axis label}
+\item{label_x}{x‑axis label}
 
-\item{label_y}{y-axis label}
+\item{label_y}{y‑axis label}
 
-\item{color}{color for time series}
+\item{color}{color for the series}
 }
 \value{
 returns a ggplot2::ggplot graphic
 }
 \description{
-This function plots a time series chart with points and a line using ggplot2.
+Simple time series plot with points and a line.
+}
+\details{
+If \code{x} is NULL, an integer index 1:n is used. The color applies to both points and line.
 }
 \examples{
 x <- seq(0, 10, 0.25)

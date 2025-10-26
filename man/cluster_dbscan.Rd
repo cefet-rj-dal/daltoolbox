@@ -15,9 +15,11 @@ cluster_dbscan(minPts = 3, eps = NULL)
 returns a dbscan object
 }
 \description{
-Creates a clusterer object that
-uses the DBSCAN method
-It wraps the dbscan library.
+Density-Based Spatial Clustering of Applications with Noise using \code{dbscan::dbscan}.
+}
+\details{
+Discovers clusters as dense regions separated by sparse areas. Hyperparameters are \code{eps} (neighborhood radius)
+and \code{minPts} (minimum points). If \code{eps} is missing, it is estimated from the kNN distance curve elbow.
 }
 \examples{
 # setup clustering
@@ -34,4 +36,7 @@ table(clu)
 # evaluate model using external metric
 eval <- evaluate(model, clu, iris$Species)
 eval
+}
+\references{
+Ester, M., Kriegel, H.-P., Sander, J., Xu, X. (1996). A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise.
 }

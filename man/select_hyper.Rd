@@ -2,7 +2,7 @@
 % Please edit documentation in R/dal_tune.R
 \name{select_hyper}
 \alias{select_hyper}
-\title{Selection hyper parameters}
+\title{Selection of hyperparameters}
 \usage{
 select_hyper(obj, hyperparameters)
 }
@@ -15,5 +15,5 @@ select_hyper(obj, hyperparameters)
 returns the index of selected hyper parameter
 }
 \description{
-Selects the optimal hyperparameters from a dataset resulting from k-fold cross-validation
+Generic to select the best hyperparameters from cross‑validation results; subclasses can override.
 }

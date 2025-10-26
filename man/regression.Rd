@@ -2,7 +2,7 @@
 % Please edit documentation in R/reg_regression.R
 \name{regression}
 \alias{regression}
-\title{Regression}
+\title{Regression base class}
 \usage{
 regression(attribute)
 }
@@ -13,8 +13,7 @@ regression(attribute)
 returns a regression object
 }
 \description{
-Ancestor class for regression problems.
-This ancestor class is used to define and manage the target attribute for regression tasks.
+Ancestor class for regression models. Stores the target attribute and provides common evaluation metrics.
 }
 \examples{
 #See ?reg_dtree for a regression example using a decision tree

@@ -21,9 +21,10 @@ cla_rf(attribute, slevels, nodesize = 5, ntree = 10, mtry = NULL)
 returns a classification object
 }
 \description{
-Creates a classification object that
-uses the Random Forest method
-It wraps the randomForest library.
+Ensemble classifier of decision trees using \code{randomForest::randomForest}.
+}
+\details{
+Combines many decorrelated trees to reduce variance. Key hyperparameters: \code{ntree}, \code{mtry}, \code{nodesize}.
 }
 \examples{
 data(iris)
@@ -42,4 +43,8 @@ prediction <- predict(model, test)
 predictand <- adjust_class_label(test[,"Species"])
 test_eval <- evaluate(model, predictand, prediction)
 test_eval$metrics
+}
+\references{
+Breiman, L. (2001). Random Forests. Machine Learning 45(1):5–32.
+Liaw, A. and Wiener, M. (2002). Classification and Regression by randomForest. R News.
 }

@@ -15,7 +15,7 @@
 returns a transformed data
 }
 \description{
-A default function that defines the action to proxy transform method
+Default \code{action()} implementation that proxies to \code{transform()} for transforms.
 }
 \examples{
 #See ?minmax for an example of transformation

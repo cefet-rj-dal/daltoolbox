@@ -1,6 +1,5 @@
-#'@title Regression
-#'@description Ancestor class for regression problems.
-#'This ancestor class is used to define and manage the target attribute for regression tasks.
+#'@title Regression base class
+#'@description Ancestor class for regression models. Stores the target attribute and provides common evaluation metrics.
 #'@param attribute attribute target to model building
 #'@return returns a regression object
 #'@examples

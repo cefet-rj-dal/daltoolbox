@@ -15,7 +15,7 @@ action(obj, ...)
 returns the result of an action of the model applied in provided data
 }
 \description{
-Executes the action of model applied in provided data
+Generic to apply the object to data (e.g., \code{predict}, \code{transform}).
 }
 \examples{
 data(iris)

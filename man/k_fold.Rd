@@ -17,7 +17,7 @@ k_fold(obj, data, k)
 returns a list of \code{k} data frames
 }
 \description{
-k-fold partition of a dataset using a sampling method
+Split a dataset into \code{k} folds using a sampling strategy.
 }
 \examples{
 #using random sampling

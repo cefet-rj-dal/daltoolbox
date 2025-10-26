@@ -21,9 +21,12 @@ cla_svm(attribute, slevels, epsilon = 0.1, cost = 10, kernel = "radial")
 returns a SVM classification object
 }
 \description{
-Creates a classification object that
-uses the Support Vector Machine (SVM) method for classification
-It wraps the e1071 and svm library.
+Support Vector Machines (SVM) for classification using \code{e1071::svm}.
+}
+\details{
+SVMs find a maximum‑margin hyperplane in a transformed feature space defined
+by a kernel (linear, radial, polynomial, sigmoid). The \code{cost} controls the trade‑off
+between margin width and training error; \code{epsilon} affects stopping; \code{kernel} sets the feature map.
 }
 \examples{
 data(iris)
@@ -42,4 +45,8 @@ prediction <- predict(model, test)
 predictand <- adjust_class_label(test[,"Species"])
 test_eval <- evaluate(model, predictand, prediction)
 test_eval$metrics
+}
+\references{
+Cortes, C. and Vapnik, V. (1995). Support-Vector Networks. Machine Learning 20(3):273–297.
+Chang, C.-C. and Lin, C.-J. (2011). LIBSVM: A library for support vector machines.
 }

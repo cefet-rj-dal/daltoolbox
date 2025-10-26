@@ -7,21 +7,25 @@
 plot_groupedbar(data, label_x = "", label_y = "", colors = NULL, alpha = 1)
 }
 \arguments{
-\item{data}{data.frame contain x, value, and variable}
+\item{data}{data.frame with category in first column and series in remaining columns}
 
-\item{label_x}{x-axis label}
+\item{label_x}{x‑axis label}
 
-\item{label_y}{y-axis label}
+\item{label_y}{y‑axis label}
 
-\item{colors}{color vector}
+\item{colors}{optional vector of fill colors, one per series}
 
-\item{alpha}{level of transparency}
+\item{alpha}{bar transparency (0–1)}
 }
 \value{
 returns a ggplot2::ggplot graphic
 }
 \description{
-This function generates a grouped bar plot from a given data frame using ggplot2.
+Grouped (side‑by‑side) bar chart for multiple series per category.
+}
+\details{
+Expects a data.frame where the first column is the category (x) and the remaining columns are
+numeric series. Bars are grouped by series. Provide \code{colors} with length equal to the number of series to set fills.
 }
 \examples{
 #summarizing iris dataset

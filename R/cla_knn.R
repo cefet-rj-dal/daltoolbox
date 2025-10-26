@@ -1,10 +1,12 @@
-#'@title K Nearest Neighbor Classification
-#'@description Classifies using the K-Nearest Neighbor algorithm.
-#' It wraps the class library.
+#'@title K-Nearest Neighbors (KNN) Classification
+#'@description Classification by majority vote among the k nearest neighbors. Uses `class::knn`.
+#'@details KNN is a simple, non‑parametric method. Choice of `k` trades bias/variance; distance metric is Euclidean by default.
 #'@param attribute attribute target to model building.
 #'@param slevels possible values for the target classification.
 #'@param k a vector of integers indicating the number of neighbors to be considered.
 #'@return returns a knn object.
+#'@references
+#' Cover, T. and Hart, P. (1967). Nearest neighbor pattern classification. IEEE Trans. Info. Theory.
 #'@examples
 #'data(iris)
 #'slevels <- levels(iris$Species)

@@ -7,19 +7,22 @@
 plot_scatter(data, label_x = "", label_y = "", colors = NULL)
 }
 \arguments{
-\item{data}{data.frame contain x, value, and variable}
+\item{data}{long data.frame with columns \code{x}, \code{value}, \code{variable}}
 
-\item{label_x}{x-axis label}
+\item{label_x}{x‑axis label}
 
-\item{label_y}{y-axis label}
+\item{label_y}{y‑axis label}
 
-\item{colors}{color vector}
+\item{colors}{optional color(s); for numeric \code{variable}, supply a gradient as c(low, high)}
 }
 \value{
 return a ggplot2::ggplot graphic
 }
 \description{
-This function creates a scatter plot using ggplot2.
+Scatter plot from a long data.frame with columns named \code{x}, \code{value}, and \code{variable}.
+}
+\details{
+Colors are mapped to \code{variable}. If \code{variable} is numeric, a gradient color scale is used when \code{colors} is provided.
 }
 \examples{
 grf <- plot_scatter(iris |> dplyr::select(x = Sepal.Length,

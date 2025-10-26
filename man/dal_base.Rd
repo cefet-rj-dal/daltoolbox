@@ -7,10 +7,11 @@
 dal_base()
 }
 \value{
-returns a dal_base object
+returns a \code{dal_base} object
 }
 \description{
-The dal_base class is an abstract class for all dal descendants classes. It provides both fit() and action() functions
+Minimal abstract base class for all DAL objects. Defines the common generics \code{fit()} and \code{action()}
+used by transforms and learners.
 }
 \examples{
 trans <- dal_base()

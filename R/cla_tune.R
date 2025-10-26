@@ -1,10 +1,12 @@
-#'@title Classification Tune
-#'@description This function performs a grid search or random search over specified hyperparameter values to optimize a base classification model
+#'@title Classification tuning (k-fold CV)
+#'@description Tune hyperparameters of a base classifier via k‑fold cross‑validation using a chosen metric.
 #'@param base_model base model for tuning
 #'@param folds number of folds for cross-validation
 #'@param ranges a list of hyperparameter ranges to explore
 #'@param metric metric used to optimize
 #'@return returns a `cla_tune` object
+#'@references
+#' Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection.
 #'@examples
 #'# preparing dataset for random sampling
 #'sr <- sample_random()

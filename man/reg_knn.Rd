@@ -2,7 +2,7 @@
 % Please edit documentation in R/reg_knn.R
 \name{reg_knn}
 \alias{reg_knn}
-\title{knn regression}
+\title{K-Nearest Neighbors (KNN) Regression}
 \usage{
 reg_knn(attribute, k)
 }
@@ -15,8 +15,10 @@ reg_knn(attribute, k)
 returns a knn regression object
 }
 \description{
-Creates a regression object that
-uses the K-Nearest Neighbors (knn) method for regression
+KNN regression using \code{FNN::knn.reg}, predicting by averaging the targets of the k nearest neighbors.
+}
+\details{
+Non‑parametric approach suitable for local smoothing. Sensitive to feature scaling; consider normalization beforehand.
 }
 \examples{
 data(Boston)
@@ -34,4 +36,7 @@ test_prediction <- predict(model, test)
 test_predictand <- test[,"medv"]
 test_eval <- evaluate(model, test_predictand, test_prediction)
 test_eval$metrics
+}
+\references{
+Altman, N. (1992). An Introduction to Kernel and Nearest-Neighbor Nonparametric Regression.
 }

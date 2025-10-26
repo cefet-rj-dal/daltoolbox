@@ -1,5 +1,6 @@
-#'@title classification
-#'@description Ancestor class for classification problems
+#'@title Classification base class
+#'@description Ancestor class for classification models providing common fields (target attribute and levels)
+#' and evaluation helpers.
 #'@param attribute attribute target to model building
 #'@param slevels possible values for the target classification
 #'@return returns a classification object

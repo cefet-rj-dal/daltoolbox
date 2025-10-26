@@ -1,6 +1,5 @@
-#'@title Sample Random
-#'@description The sample_random function in R is used to
-#' generate a random sample of specified size from a given data set.
+#'@title Random sampling
+#'@description Train/test split and k‑fold partitioning by simple random sampling.
 #'@return returns an object of class `sample_random
 #'@examples
 #'#using random sampling

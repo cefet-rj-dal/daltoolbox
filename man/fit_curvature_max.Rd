@@ -2,7 +2,7 @@
 % Please edit documentation in R/trans_fit_curvature_max.R
 \name{fit_curvature_max}
 \alias{fit_curvature_max}
-\title{maximum curvature analysis}
+\title{Maximum curvature analysis (elbow detection)}
 \usage{
 fit_curvature_max()
 }
@@ -16,7 +16,8 @@ The object contains a list with the following elements:
 }
 }
 \description{
-Fitting a curvature model in a sequence of observations. It extracts the the maximum curvature computed.
+Computes a smoothing spline over a sequence and returns the location/value of maximum curvature,
+often used as an "elbow" detector.
 }
 \examples{
 x <- seq(from=1,to=10,by=0.5)

@@ -1,10 +1,13 @@
 #'@title Z-score normalization
-#'@description Scale data using z-score normalization.
+#'@description Standardize numeric columns to zero mean and unit variance, optionally rescaled to a target mean (`nmean`) and sd (`nsd`).
+#'@details For each numeric column j, computes ((x - mean_j)/sd_j) * nsd + nmean. Constant columns become `nmean`.
 #'
 #'\eqn{zscore = (x - mean(x))/sd(x)}
 #'@param nmean new mean for normalized data
 #'@param nsd new standard deviation for normalized data
 #'@return returns the z-score transformation object
+#'@references
+#' Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Standardization)
 #'@examples
 #'data(iris)
 #'head(iris)

@@ -17,5 +17,8 @@ adjust_factor(value, ilevels, slevels)
 returns an adjusted factor
 }
 \description{
-Converts a vector into a factor with specified levels and labels
+Convert a vector to a factor with specified internal levels (\code{ilevels}) and labels (\code{slevels}).
+}
+\details{
+Numeric vectors are first converted to factors with \code{ilevels} as the level order, then relabeled to \code{slevels}.
 }

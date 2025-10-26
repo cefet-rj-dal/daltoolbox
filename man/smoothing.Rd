@@ -2,7 +2,7 @@
 % Please edit documentation in R/trans_smoothing.R
 \name{smoothing}
 \alias{smoothing}
-\title{Smoothing}
+\title{Smoothing (binning/quantization)}
 \usage{
 smoothing(n)
 }
@@ -13,11 +13,13 @@ smoothing(n)
 returns an object of class \code{smoothing}
 }
 \description{
-Smoothing is a statistical technique used to reduce
-the noise in a signal or a dataset by removing the high-frequency components.
-The smoothing level is associated with the number of bins used.
-There are alternative methods to establish the smoothing:
-equal interval, equal frequency, and clustering.
+Family of smoothing methods that reduce noise by replacing values with the mean of a bin/cluster.
+Supported strategies: equal‑interval bins, equal‑frequency (quantile) bins, and clustering‑based bins (k‑means).
+}
+\details{
+The smoothing level is controlled by \code{n} (number of bins/levels). The helper \code{tune()} can choose
+an \code{n} by locating the elbow (maximum curvature) of the MSE curve across candidates. After \code{fit()},
+values are mapped to bin means via \code{transform()}.
 }
 \examples{
 data(iris)

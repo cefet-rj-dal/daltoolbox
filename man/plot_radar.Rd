@@ -7,19 +7,22 @@
 plot_radar(data, label_x = "", label_y = "", colors = NULL)
 }
 \arguments{
-\item{data}{data.frame contain x, value, and variable}
+\item{data}{two‑column data.frame: variable name and value}
 
-\item{label_x}{x-axis label}
+\item{label_x}{x‑axis label (unused; variable names are shown around the circle)}
 
-\item{label_y}{y-axis label}
+\item{label_y}{y‑axis label}
 
-\item{colors}{color vector}
+\item{colors}{line/fill color for the polygon}
 }
 \value{
 returns a ggplot2::ggplot graphic
 }
 \description{
-This function creates a radar chart using ggplot2.
+Radar (spider) chart for a single profile of variables using polar coordinates.
+}
+\details{
+Expects a two‑column data.frame with variable names in the first column and numeric values in the second.
 }
 \examples{
 data <- data.frame(name = "Petal.Length", value = mean(iris$Petal.Length))

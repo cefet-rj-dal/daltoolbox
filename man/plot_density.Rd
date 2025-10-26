@@ -14,24 +14,28 @@ plot_density(
 )
 }
 \arguments{
-\item{data}{data.frame contain x, value, and variable}
+\item{data}{data.frame with one or more numeric columns}
 
-\item{label_x}{x-axis label}
+\item{label_x}{x‑axis label}
 
-\item{label_y}{y-axis label}
+\item{label_y}{y‑axis label}
 
-\item{colors}{color vector}
+\item{colors}{optional fill color (single column) or vector for groups}
 
-\item{bin}{bin width for density estimation}
+\item{bin}{optional bin width passed to \code{geom_density}}
 
-\item{alpha}{level of transparency}
+\item{alpha}{fill transparency (0–1)}
 }
 \value{
 returns a ggplot2::ggplot graphic
 }
 \description{
-This function generates a density plot from a data frame containing numeric values using ggplot2.
-If the data frame has multiple columns, densities can be grouped and plotted.
+Kernel density plot for one or multiple numeric columns.
+}
+\details{
+If \code{data} has multiple numeric columns, densities are overlaid and filled by column (group).
+When a single column is provided, \code{colors} (if set) is used as a constant fill.
+The \code{bin} argument is passed to \code{geom_density(binwidth=...)}.
 }
 \examples{
 grf <- plot_density(iris |> dplyr::select(Sepal.Width), colors="blue")

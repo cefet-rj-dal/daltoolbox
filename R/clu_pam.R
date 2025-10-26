@@ -1,9 +1,10 @@
-#'@title PAM
-#'@description Creates a clusterer object that
-#' uses the Partition Around Medoids (PAM) method
-#' It wraps the cluster library.
+#'@title PAM (Partitioning Around Medoids)
+#'@description Clustering around representative data points (medoids) using `cluster::pam`.
+#'@details More robust to outliers than k‑means. The intrinsic metric reported is the within‑cluster SSE to medoids.
 #'@param k the number of clusters to generate.
 #'@return returns PAM object.
+#'@references
+#' Kaufman, L. and Rousseeuw, P. J. (1990). Finding Groups in Data: An Introduction to Cluster Analysis.
 #'@examples
 #'# setup clustering
 #'model <- cluster_pam(k = 3)

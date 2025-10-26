@@ -2,7 +2,7 @@
 % Please edit documentation in R/trans_smoothing_freq.R
 \name{smoothing_freq}
 \alias{smoothing_freq}
-\title{Smoothing by Freq}
+\title{Smoothing by equal frequency}
 \usage{
 smoothing_freq(n)
 }
@@ -13,7 +13,8 @@ smoothing_freq(n)
 returns an object of class \code{smoothing_freq}
 }
 \description{
-The 'smoothing_freq' function is used to smooth a given time series data by aggregating observations within a fixed frequency.
+Discretize a numeric vector into \code{n} bins with approximately equal frequency (quantile cuts),
+and replace each value by the mean of its bin.
 }
 \examples{
 data(iris)
@@ -25,4 +26,7 @@ obj$interval
 
 entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
 entro$entropy
+}
+\references{
+Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Discretization)
 }

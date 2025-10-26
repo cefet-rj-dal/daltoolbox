@@ -7,19 +7,23 @@
 plot_points(data, label_x = "", label_y = "", colors = NULL)
 }
 \arguments{
-\item{data}{data.frame contain x, value, and variable}
+\item{data}{data.frame with category + one or more numeric columns}
 
-\item{label_x}{x-axis label}
+\item{label_x}{x‑axis label}
 
-\item{label_y}{y-axis label}
+\item{label_y}{y‑axis label}
 
-\item{colors}{color vector}
+\item{colors}{optional color vector for series}
 }
 \value{
 returns a ggplot2::ggplot graphic
 }
 \description{
-This function creates a scatter plot using ggplot2.
+Dot chart for multiple series across categories (points only).
+}
+\details{
+Expects a data.frame with category in the first column and one or more numeric series.
+Points are colored by series (legend shows original column names). Supply \code{colors} to override the palette.
 }
 \examples{
 x <- seq(0, 10, 0.25)

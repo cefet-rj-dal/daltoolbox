@@ -1,10 +1,11 @@
-#'@title Clustering Tune
-#'@description Creates an object for tuning clustering models.
-#'This object can be used to fit and optimize clustering algorithms by specifying hyperparameter ranges
+#'@title Clustering tuning (intrinsic metric)
+#'@description Tune clustering hyperparameters by evaluating an intrinsic metric over a parameter grid and selecting the elbow (max curvature).
 #'@param base_model base model for tuning
 #'@param folds number of folds for cross-validation
 #'@param ranges a list of hyperparameter ranges to explore
 #'@return returns a `clu_tune` object.
+#'@references
+#' Satopaa, V. et al. (2011). Finding a “Kneedle” in a Haystack.
 #'@examples
 #'data(iris)
 #'

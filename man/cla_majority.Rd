@@ -2,7 +2,7 @@
 % Please edit documentation in R/cla_majority.R
 \name{cla_majority}
 \alias{cla_majority}
-\title{Majority Classification}
+\title{Majority baseline classifier}
 \usage{
 cla_majority(attribute, slevels)
 }
@@ -15,7 +15,8 @@ cla_majority(attribute, slevels)
 returns a classification object.
 }
 \description{
-This function creates a classification object that uses the majority vote strategy to predict the target attribute. Given a target attribute, the function counts the number of occurrences of each value in the dataset and selects the one that appears most often.
+Trivial classifier that always predicts the most frequent class observed in the training data.
+Useful as a baseline.
 }
 \examples{
 data(iris)

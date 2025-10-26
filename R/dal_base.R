@@ -1,7 +1,9 @@
 #'@title Class dal_base
-#'@description The dal_base class is an abstract class for all dal descendants classes. It provides both fit() and action() functions
-#'@return returns a dal_base object
-#'@examples trans <- dal_base()
+#'@description Minimal abstract base class for all DAL objects. Defines the common generics `fit()` and `action()`
+#' used by transforms and learners.
+#'@return returns a `dal_base` object
+#'@examples
+#'trans <- dal_base()
 #'@export
 dal_base <- function() {
   obj <- list()
@@ -10,7 +12,7 @@ dal_base <- function() {
 }
 
 #'@title Fit
-#'@description Applies the `fit` method to a model object to train or configure it using the provided data and optional arguments
+#'@description Generic to train/adjust an object using provided data and optional parameters.
 #'@param obj object
 #'@param ... optional arguments.
 #'@return returns a object after fitting
@@ -31,7 +33,7 @@ fit.default <- function(obj, ...) {
 }
 
 #'@title Action
-#'@description Executes the action of model applied in provided data
+#'@description Generic to apply the object to data (e.g., `predict`, `transform`).
 #'@param obj object: a dal_base object to apply the transformation on the input dataset.
 #'@param ... optional arguments.
 #'@return returns the result of an action of the model applied in provided data
@@ -57,7 +59,7 @@ action.default <- function(obj, ...) {
 }
 
 #'@title Assign parameters
-#'@description set_params function assigns all parameters to the attributes presented in the object.
+#'@description Assign a named list of parameters to matching fields in the object (best‑effort).
 #'@param obj object of class dal_base
 #'@param params parameters to set obj
 #'@return returns an object with parameters set
@@ -69,7 +71,7 @@ set_params <- function(obj, params) {
 }
 
 #'@title Default Assign parameters
-#'@description Default method for `set_params` which returns the object unchanged
+#'@description Default method for `set_params` (returns object unchanged).
 #'@param obj object
 #'@param params parameters
 #'@return returns the object unchanged

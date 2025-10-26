@@ -1,10 +1,15 @@
 #'@title Decision Tree for classification
-#'@description Creates a classification object that
-#' uses the Decision Tree algorithm for classification.
-#' It wraps the tree library.
+#'@description Univariate decision tree for classification using recursive partitioning.
+#' This wrapper uses the `tree` package.
+#'@details Decision trees split the feature space by maximizing node purity (e.g., Gini/entropy),
+#' yielding a human‑readable set of rules. They are fast and interpretable, and often used as
+#' base learners in ensembles.
 #'@param attribute attribute target to model building
 #'@param slevels the possible values for the target classification
 #'@return returns a classification object
+#'@references
+#' Breiman, L., Friedman, J., Olshen, R., and Stone, C. (1984).
+#' Classification and Regression Trees. Wadsworth.
 #'@examples
 #'data(iris)
 #'slevels <- levels(iris$Species)

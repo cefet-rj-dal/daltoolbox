@@ -1,9 +1,10 @@
-#'@title DAL Learner
-#'@description A ancestor class for clustering, classification, regression, and time series regression.
-#' It also provides the basis for specialized evaluation of learning performance.
+#'@title DAL Learner (base class)
+#'@description Base ancestor for learning tasks (classification, regression, clustering, time series).
+#' Provides common behavior such as proxying `action()` to the model‑specific operation
+#' (e.g., `predict()` for predictors, `cluster()` for clusterers) and an `evaluate()` generic.
 #'
-#' An example of a learner is a decision tree (cla_dtree)
-#'@return returns a learner
+#' An example of a learner is a decision tree (see `cla_dtree`).
+#'@return returns a learner object
 #'@examples
 #'#See ?cla_dtree for a classification example using a decision tree
 #'@export

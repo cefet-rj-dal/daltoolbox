@@ -1,8 +1,11 @@
 #'@title Min-max normalization
-#'@description The minmax performs scales data between \[0,1\].
+#'@description Linearly scales numeric columns to the \[0,1\] range per column.
+#'@details For each numeric column j, computes (x - min_j) / (max_j - min_j). Constant columns map to 0.
 #'
 #'\eqn{minmax = (x-min(x))/(max(x)-min(x))}
 #'@return returns an object of class `minmax`
+#'@references
+#' Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Normalization section)
 #'@examples
 #'data(iris)
 #'head(iris)

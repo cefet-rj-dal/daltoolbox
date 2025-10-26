@@ -2,18 +2,19 @@
 % Please edit documentation in R/dal_learner.R
 \name{dal_learner}
 \alias{dal_learner}
-\title{DAL Learner}
+\title{DAL Learner (base class)}
 \usage{
 dal_learner()
 }
 \value{
-returns a learner
+returns a learner object
 }
 \description{
-A ancestor class for clustering, classification, regression, and time series regression.
-It also provides the basis for specialized evaluation of learning performance.
+Base ancestor for learning tasks (classification, regression, clustering, time series).
+Provides common behavior such as proxying \code{action()} to the model‑specific operation
+(e.g., \code{predict()} for predictors, \code{cluster()} for clusterers) and an \code{evaluate()} generic.
 
-An example of a learner is a decision tree (cla_dtree)
+An example of a learner is a decision tree (see \code{cla_dtree}).
 }
 \examples{
 #See ?cla_dtree for a classification example using a decision tree

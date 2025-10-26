@@ -15,7 +15,7 @@ fit(obj, ...)
 returns a object after fitting
 }
 \description{
-Applies the \code{fit} method to a model object to train or configure it using the provided data and optional arguments
+Generic to train/adjust an object using provided data and optional parameters.
 }
 \examples{
 data(iris)

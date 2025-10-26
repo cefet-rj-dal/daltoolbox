@@ -2,7 +2,7 @@
 % Please edit documentation in R/trans_sample_random.R
 \name{sample_random}
 \alias{sample_random}
-\title{Sample Random}
+\title{Random sampling}
 \usage{
 sample_random()
 }
@@ -10,8 +10,7 @@ sample_random()
 returns an object of class `sample_random
 }
 \description{
-The sample_random function in R is used to
-generate a random sample of specified size from a given data set.
+Train/test split and k‑fold partitioning by simple random sampling.
 }
 \examples{
 #using random sampling

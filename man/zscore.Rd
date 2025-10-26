@@ -15,7 +15,10 @@ zscore(nmean = 0, nsd = 1)
 returns the z-score transformation object
 }
 \description{
-Scale data using z-score normalization.
+Standardize numeric columns to zero mean and unit variance, optionally rescaled to a target mean (\code{nmean}) and sd (\code{nsd}).
+}
+\details{
+For each numeric column j, computes ((x - mean_j)/sd_j) * nsd + nmean. Constant columns become \code{nmean}.
 
 \eqn{zscore = (x - mean(x))/sd(x)}
 }
@@ -30,4 +33,7 @@ head(tiris)
 
 itiris <- inverse_transform(trans, tiris)
 head(itiris)
+}
+\references{
+Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Standardization)
 }

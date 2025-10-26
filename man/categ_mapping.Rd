@@ -2,7 +2,7 @@
 % Please edit documentation in R/trans_categ_mapping.R
 \name{categ_mapping}
 \alias{categ_mapping}
-\title{Categorical mapping}
+\title{Categorical mapping (one‑hot encoding)}
 \usage{
 categ_mapping(attribute)
 }
@@ -13,8 +13,12 @@ categ_mapping(attribute)
 returns a data frame with binary attributes, one for each possible category.
 }
 \description{
-Categorical mapping provides a way to map the levels of a categorical variable to new values.
-Each possible value is converted to a binary attribute.
+Convert a factor column into dummy variables (one‑hot encoding) using \code{model.matrix} without intercept.
+Each level becomes a separate binary column.
+}
+\details{
+This is a light wrapper around \code{stats::model.matrix(~ attr - 1, data)} that drops the original column
+and returns only the dummy variables.
 }
 \examples{
 cm <- categ_mapping("Species")

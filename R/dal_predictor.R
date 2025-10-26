@@ -1,9 +1,8 @@
-#'@title DAL Predict
-#'@description Ancestor class for regression and classification
-#'It provides basis for fit and predict methods.
-#'Besides, action method proxies to predict.
+#'@title Predictor (base for classification/regression)
+#'@description Ancestor class for supervised predictors (classification and regression).
+#' Provides a default `fit()` to record feature names and proxies `action()` to `predict()`.
 #'
-#' An example of learner is a decision tree (cla_dtree)
+#' An example predictor is a decision tree classifier (`cla_dtree`).
 #'@return returns a predictor object
 #'@examples
 #'#See ?cla_dtree for a classification example using a decision tree

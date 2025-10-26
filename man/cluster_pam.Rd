@@ -2,7 +2,7 @@
 % Please edit documentation in R/clu_pam.R
 \name{cluster_pam}
 \alias{cluster_pam}
-\title{PAM}
+\title{PAM (Partitioning Around Medoids)}
 \usage{
 cluster_pam(k = 1)
 }
@@ -13,9 +13,10 @@ cluster_pam(k = 1)
 returns PAM object.
 }
 \description{
-Creates a clusterer object that
-uses the Partition Around Medoids (PAM) method
-It wraps the cluster library.
+Clustering around representative data points (medoids) using \code{cluster::pam}.
+}
+\details{
+More robust to outliers than k‑means. The intrinsic metric reported is the within‑cluster SSE to medoids.
 }
 \examples{
 # setup clustering
@@ -32,4 +33,7 @@ table(clu)
 # evaluate model using external metric
 eval <- evaluate(model, clu, iris$Species)
 eval
+}
+\references{
+Kaufman, L. and Rousseeuw, P. J. (1990). Finding Groups in Data: An Introduction to Cluster Analysis.
 }

@@ -15,7 +15,7 @@ transform(obj, ...)
 returns a transformed data.
 }
 \description{
-Defines a transformation method.
+Generic to apply a transformation to data.
 }
 \examples{
 #See ?minmax for an example of transformation
