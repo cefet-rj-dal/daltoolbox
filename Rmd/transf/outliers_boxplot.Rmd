@@ -5,7 +5,7 @@ Sobre a transformação
 - `outliers_boxplot`: identifica outliers por regra do boxplot (Q1 − 1.5·IQR, Q3 + 1.5·IQR) e pode removê-los de atributos numéricos.
 
 # installation 
-#install.packages("daltoolbox")
+install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 

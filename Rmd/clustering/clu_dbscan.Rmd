@@ -5,7 +5,7 @@ Sobre o método
 - `cluster_dbscan`: método baseado em densidade. Identifica regiões densas separadas por áreas de baixa densidade; detecta ruído e clusters de formas arbitrárias.
 
 # installation 
-#install.packages("daltoolbox")
+install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 

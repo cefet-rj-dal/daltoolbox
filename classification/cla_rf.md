@@ -8,7 +8,7 @@ Preparação do ambiente.
 # Classification using  Random Forest
 
 # installation 
-#install.packages("daltoolbox")
+install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 

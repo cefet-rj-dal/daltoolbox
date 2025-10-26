@@ -5,7 +5,7 @@ Preparação do ambiente gráfico e paleta.
 
 ``` r
 # installation 
-#install.packages("daltoolbox")
+install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
