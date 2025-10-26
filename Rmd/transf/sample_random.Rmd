@@ -21,27 +21,27 @@ table(iris$Species)
 
 Dividindo em treino/teste com amostragem aleatória (distribuições podem variar por sorteio).
 ```{r}
-# Dividing a dataset with training and test
+# Dividindo em treino e teste
 
-# using random sampling
+# usando amostragem aleatória
 tt <- train_test(sample_random(), iris)
 
-# distribution of train
+# distribuição do treino
 print(table(tt$train$Species))
 
-# distribution of test
+# distribuição do teste
 print(table(tt$test$Species))
 ```
 
 Criando folds k-fold aleatórios e verificando distribuição por fold.
 ```{r}
-# Dividing a dataset into folds
+# Dividindo o conjunto em folds
 
-# preparing dataset into four folds
+# preparando o conjunto em quatro folds
 sample <- sample_random()
 folds <- k_fold(sample, iris, 4)
 
-# distribution of folds
+# distribuição dos folds
 tbl <- NULL
 for (f in folds) {
 tbl <- rbind(tbl, table(f$Species))
