@@ -26,7 +26,7 @@ font <- theme(text = element_text(size=16))
 Dados agregados: média e desvio padrão por espécie.
 
 ``` r
-# iris dataset for the example
+# conjunto de dados iris para o exemplo
 head(iris)
 ```
 
