@@ -1,7 +1,11 @@
+Sobre o gráfico
+- Pontos: semelhante à série, mas sem linhas conectando; bom para destacar observações discretas.
+
+Preparação do ambiente gráfico.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -19,8 +23,9 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-# Synthetic time series
+# Série temporal sintética
 
+Gerando série sintética para exemplo e plotando apenas pontos.
 
 ``` r
 x <- seq(0, 10, 0.25)
@@ -55,4 +60,3 @@ plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/grf_points/unnamed-chunk-4-1.png)
-

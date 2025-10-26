@@ -1,14 +1,20 @@
+Sobre o método
+- `cla_rf`: Random Forest para classificação. Conjunto (ensemble) de árvores de decisão com amostragem aleatória; costuma ser robusto e lidar bem com variáveis heterogêneas.
+- Hiperparâmetros: `mtry` (nº de variáveis por divisão), `ntree` (nº de árvores).
+
+Preparação do ambiente.
 
 ``` r
 # Classification using  Random Forest
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
+Carregando dados e inspeção.
 
 ``` r
 iris <- datasets::iris
@@ -25,6 +31,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
+Níveis do alvo `Species`.
 
 ``` r
 # extracting the levels for the dataset
@@ -36,10 +43,10 @@ slevels
 ## [1] "setosa"     "versicolor" "virginica"
 ```
 
-
+Divisão treino/teste aleatória.
 
 ``` r
-# Building samples (training and testing) using random sampling
+# Construindo amostras (treino e teste) por amostragem aleatória
 set.seed(1)
 sr <- sample_random()
 sr <- train_test(sr, iris)
@@ -47,6 +54,7 @@ iris_train <- sr$train
 iris_test <- sr$test
 ```
 
+Distribuição de classes por partição.
 
 ``` r
 tbl <- rbind(table(iris[,"Species"]), 
@@ -63,19 +71,21 @@ head(tbl)
 ## test         11         12         7
 ```
 
+Treinamento do Random Forest: ajuste de `mtry` e `ntree`.
 
 ``` r
-# Model training
-model <- cla_rf("Species", slevels, mtry=3, ntree=5)
+# Treinamento do modelo
+model <- cla_rf("Species", slevels, mtry=3, ntree=5) # mtry: variáveis por split; ntree: nº de árvores
 model <- fit(model, iris_train)
 ```
 
+Avaliação no treino.
 
 ``` r
-# Checking model adjustment
+# Verificando ajuste no treino
 train_prediction <- predict(model, iris_train)
 
-# Model evaluation
+# Avaliação do modelo (treino)
 iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
 train_eval <- evaluate(model, iris_train_predictand, train_prediction)
 print(train_eval$metrics)
@@ -86,16 +96,16 @@ print(train_eval$metrics)
 ## 1    0.975 39 81  0  0         1      1           1           1  1
 ```
 
-
+Avaliação no teste.
 
 ``` r
-# Model testing
+# Teste do modelo
 test_prediction <- predict(model, iris_test)
 
 iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
 
-# Evaluating # setosa as primary class
-test_eval <- evaluate(model, iris_test_predictand, test_prediction)
+# Avaliação no teste
+ test_eval <- evaluate(model, iris_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
 
@@ -103,4 +113,3 @@ print(test_eval$metrics)
 ##    accuracy TP TN FP FN precision recall sensitivity specificity f1
 ## 1 0.9666667 11 19  0  0         1      1           1           1  1
 ```
-

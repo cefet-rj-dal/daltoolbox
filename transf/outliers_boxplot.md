@@ -2,29 +2,40 @@
 ``` r
 # NA and Outlier analysis
 
+Sobre a transformação
+- `outliers_boxplot`: identifica outliers por regra do boxplot (Q1 − 1.5·IQR, Q3 + 1.5·IQR) e pode removê-los de atributos numéricos.
+
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
+```
+## Error in parse(text = input): <text>:3:7: unexpected symbol
+## 2: 
+## 3: Sobre a
+##          ^
+```
+
+Removendo outliers via boxplot e inspecionando o resultado.
 
 ``` r
-# Outlier removal using boxplot
+# Remoção de outliers usando boxplot
 
-# The following class uses box-plot definition for outliers.
+# A classe utiliza a regra do boxplot para definir outliers.
 
-# An outlier is a value that is below than $Q_1 - 1.5 \cdot IQR$ or higher than $Q_3 + 1.5 \cdot IQR$.
+# Um outlier é um valor menor que $Q_1 - 1{,}5\cdot IQR$ ou maior que $Q_3 + 1{,}5\cdot IQR$.
  
-# The class remove outliers for numeric attributes. 
+# A classe remove outliers em atributos numéricos.
 
-# removing outliers of a data frame
+# removendo outliers de um data frame
 
-# code for outlier removal
-out_obj <- outliers_boxplot() # class for outlier analysis
-out_obj <- fit(out_obj, iris) # computing boundaries
-iris.clean <- transform(out_obj, iris) # returning cleaned dataset
+# código para remoção de outliers
+out_obj <- outliers_boxplot() # classe para análise de outliers
+out_obj <- fit(out_obj, iris) # computa limites por quartis e IQR
+iris.clean <- transform(out_obj, iris) # retorna conjunto de dados limpo
 
 # inspection of cleaned dataset
 head(iris.clean)
@@ -48,6 +59,7 @@ nrow(iris.clean)
 ## [1] 146
 ```
 
+Visualizando quais linhas foram marcadas como outliers.
 
 ``` r
 # Visualizing the actual outliers
@@ -74,4 +86,3 @@ head(iris.outliers)
 ## 34          5.5         4.2          1.4         0.2     setosa
 ## 61          5.0         2.0          3.5         1.0 versicolor
 ```
-

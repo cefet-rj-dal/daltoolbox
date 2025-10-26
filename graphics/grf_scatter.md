@@ -1,7 +1,11 @@
+Sobre o gráfico
+- Dispersão (scatter): avalia relação entre duas variáveis numéricas, com possibilidade de colorir por grupo/categoria.
+
+Preparação do ambiente gráfico e paleta de cores.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -19,9 +23,10 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Dados de exemplo (iris) para o gráfico.
 
 ``` r
-# iris dataset for the example
+# conjunto de dados iris para o exemplo
 head(iris)
 ```
 
@@ -35,22 +40,28 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
+Construindo gráfico de dispersão: selecione e renomeie colunas para `x`, `value` (y) e `variable` (cor).
 
 ``` r
-# Scatter plot
+# Gráfico de dispersão
 
-# A Scatter plot is used to display values for the typical relationship between independent and dependent variables. The first column of the dataset is the independent variable, whereas the following variables are the dependent ones. 
+# Usado para visualizar a relação entre duas variáveis numéricas.
+# A primeira coluna do conjunto é tratada como variável no eixo X (independente) e a segunda no eixo Y (dependente);
+# pode-se usar uma terceira variável categórica para colorir os pontos.
 
-# The colors vectors should have the same size as the number of dependent columns. 
+# O vetor de cores deve ter o mesmo tamanho do número de níveis/grupos.
 
-# More information: https://en.wikipedia.org/wiki/Scatter_plot
+# Mais informações: https://en.wikipedia.org/wiki/Scatter_plot
 
 library(dplyr)
 
-grf <- plot_scatter(iris |> dplyr::select(x = Sepal.Length, value = Sepal.Width, variable = Species), 
-                    label_x = "Sepal.Length", label_y = "Sepal.Width", colors=colors[1:3]) + font
+grf <- plot_scatter(
+  iris |> dplyr::select(x = Sepal.Length, value = Sepal.Width, variable = Species),
+  label_x = "Sepal.Length",  # rótulo do eixo X
+  label_y = "Sepal.Width",   # rótulo do eixo Y
+  colors=colors[1:3]          # um color para cada nível de Species
+) + font
 plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/grf_scatter/unnamed-chunk-4-1.png)
-

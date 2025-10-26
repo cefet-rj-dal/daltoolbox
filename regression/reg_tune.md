@@ -1,17 +1,23 @@
+Sobre o utilitário
+- `reg_tune`: busca de hiperparâmetros para modelos de regressão conforme faixas em `ranges`.
+- Exemplo: ajuste de `reg_svm` variando `epsilon`, `cost` e `kernel`.
+
+Preparação do ambiente.
 
 ``` r
-# Tune Regression 
+# Tuning de Regressão 
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
+Carregando dataset e inspeção.
 
 ``` r
-# Dataset for regression analysis
+# Conjunto de dados para análise de regressão
 
 library(MASS)
 data(Boston)
@@ -39,12 +45,14 @@ head(Boston)
 ## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
 ```
 
+Conversão opcional para matriz.
 
 ``` r
-# for performance issues, you can use matrix
+# por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 
+Divisão treino/teste para validação do tuning.
 
 ``` r
 # preparing dataset for random sampling
@@ -55,6 +63,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
+Configuração do grid de hiperparâmetros e treinamento com busca.
 
 ``` r
 # Training
@@ -64,6 +73,7 @@ tune <- reg_tune(reg_svm("medv"),
 model <- fit(tune, boston_train)
 ```
 
+Avaliação no treino com melhores hiperparâmetros encontrados.
 
 ``` r
 # Model adjustment
@@ -79,6 +89,7 @@ print(train_eval$metrics)
 ## 1 2.393491 0.05155025 0.9734081
 ```
 
+Avaliação no teste.
 
 ``` r
 # Test
@@ -94,6 +105,7 @@ print(test_eval$metrics)
 ## 1 13.61128 0.1297673 0.7738067
 ```
 
+Exemplos de grids para outros modelos.
 
 ``` r
 # Options for other models
@@ -110,4 +122,3 @@ ranges <- list(size=1:10, decay=seq(0, 1, 0.1))
 # rf
 ranges <- list(mtry=1:10, ntree=1:10)
 ```
-

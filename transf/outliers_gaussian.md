@@ -2,28 +2,37 @@
 ``` r
 # NA and Outlier analysis
 
+Sobre a transformação
+- `outliers_gaussian`: marca como outliers valores além de média ± 3 desvios padrão, assumindo distribuição aproximadamente normal.
+
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
+```
+## Error in parse(text = input): <text>:3:7: unexpected symbol
+## 2: 
+## 3: Sobre a
+##          ^
+```
+
+Removendo outliers pela regra de 3 sigmas e inspecionando.
 
 ``` r
-# Outlier removal using gaussian
-# The following class uses box-plot definition for outliers.
+# Remoção de outliers usando regra Gaussiana (3σ)
+# Um outlier é um valor menor que $\overline{x} - 3\,\sigma_x$ ou maior que $\overline{x} + 3\,\sigma_x$.
 
-# An outlier is a value that is below than $\overline{x} - 3 \sigma_x$ or higher than $\overline{x} + 3 \sigma_x}$.
+# A classe remove outliers em atributos numéricos.
 
-# The class remove outliers for numeric attributes. 
+# removendo outliers de um data frame
 
-# removing outliers of a data frame
-
-# code for outlier removal
-out_obj <- outliers_gaussian() # class for outlier analysis
-out_obj <- fit(out_obj, iris) # computing boundaries
-iris.clean <- transform(out_obj, iris) # returning cleaned dataset
+# código para remoção de outliers
+out_obj <- outliers_gaussian() # classe para análise de outliers
+out_obj <- fit(out_obj, iris)  # computa limites com base em média e desvio
+iris.clean <- transform(out_obj, iris) # retorna conjunto de dados limpo
 
 # inspection of cleaned dataset
 head(iris.clean)
@@ -47,6 +56,7 @@ nrow(iris.clean)
 ## [1] 149
 ```
 
+Listando observações identificadas como outliers.
 
 ``` r
 # Visualizing the actual outliers
@@ -70,4 +80,3 @@ head(iris.outliers)
 ##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ## 16          5.7         4.4          1.5         0.4  setosa
 ```
-

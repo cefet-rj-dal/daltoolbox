@@ -1,7 +1,11 @@
+Sobre o gráfico
+- Série temporal com ajuste e previsão: exibe valores observados, ajuste do modelo e horizonte previsto para comparação visual.
+
+Preparação do ambiente gráfico.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -19,6 +23,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Série sintética com ruído; separando janelas de ajuste e previsão.
 
 ``` r
 # Synthetic time series
@@ -34,14 +39,14 @@ adjust <- sin(x[1:35])
 prediction <- sin(x[36:41])
 ```
 
+Plotando série com ajuste e previsão.
 
 ``` r
-# Series plot with predictions
+# Série temporal com previsão
 
-# A time series ploting with model adjustment and prediction values. 
+# Gráfico com valores observados, ajuste do modelo e valores previstos. 
 
 plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/grf_ts_pred/unnamed-chunk-5-1.png)
-

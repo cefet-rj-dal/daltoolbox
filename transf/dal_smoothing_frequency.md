@@ -1,22 +1,26 @@
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
+Sobre a técnica
+- `smoothing_freq`: discretização/suavização por frequência (quantis), gerando bins com contagens semelhantes.
+
+Dados de exemplo e ideia geral.
 
 ``` r
-# Discretization & smoothing
-# Discretization is the process of transferring continuous functions, models, variables, and equations into discrete counterparts. 
+# Discretização e suavização
+# Discretização: transformar funções, modelos, variáveis e equações contínuas em versões discretas. 
 
-# Smoothing is a technique that creates an approximating function that attempts to capture important patterns in the data while leaving out noise or other fine-scale structures/rapid phenomena.
+# Suavização: criar uma função aproximadora para capturar padrões importantes, reduzindo ruídos e variações de alta frequência.
 
-# An important part of the discretization/smoothing is to set up bins for proceeding the approximation.
+# É essencial definir os intervalos (bins) para viabilizar a aproximação/discretização.
 
-# general function to evaluate different smoothing technique
+# Função geral para avaliar diferentes técnicas de suavização
 
 iris <- datasets::iris
 head(iris)
@@ -32,6 +36,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
+Aplicando discretização por frequência e inspecionando intervalos.
 
 ``` r
 # smoothing using regular frequency
@@ -56,6 +61,7 @@ obj$interval
 ## [1] 4.3 5.8 7.9
 ```
 
+Avaliando entropia condicional.
 
 ``` r
 entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
@@ -66,6 +72,7 @@ print(entro$entropy)
 ## [1] 1.097573
 ```
 
+Otimizando número de bins e aplicando novamente.
 
 ``` r
 # Optimizing the number of binnings
@@ -93,4 +100,3 @@ print(table(sl.bi))
 ## 7.31176470588235 
 ##               17
 ```
-

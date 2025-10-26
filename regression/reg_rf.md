@@ -1,15 +1,20 @@
 # Regression Random Forest
 
+Sobre o método
+- `reg_rf`: Random Forest para regressão. Média de muitas árvores de decisão treinadas com amostragens aleatórias; tende a reduzir variância.
+- Hiperparâmetros: `mtry` (nº de variáveis por divisão), `ntree` (nº de árvores).
+
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-# Dataset for regression analysis
+# Conjunto de dados para análise de regressão
+Carrega o dataset Boston e inspeciona tipos/valores.
 
 
 ``` r
@@ -39,17 +44,19 @@ head(Boston)
 ## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
 ```
 
+Conversão opcional para matriz (pode melhorar desempenho em alguns casos).
 
 ``` r
-# for performance issues, you can use matrix
+# por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 
-# Building samples (training and testing)
+# Particionamento em treino e teste
+Divisão treino/teste aleatória e reprodutível.
 
 
 ``` r
-# preparing dataset for random sampling
+# preparando amostragem aleatória
 set.seed(1)
 sr <- sample_random()
 sr <- train_test(sr, Boston)
@@ -58,14 +65,16 @@ boston_test <- sr$test
 ```
 
 # Training
+Treinamento do Random Forest para prever `medv`.
 
 
 ``` r
-model <- reg_rf("medv", mtry=7,ntree=30)
+model <- reg_rf("medv", mtry=7, ntree=30) # mtry: variáveis por split; ntree: nº de árvores
 model <- fit(model, boston_train)
 ```
 
 # Model adjustment
+Avaliação no treino (métricas de regressão como RMSE/MAE).
 
 
 ``` r
@@ -81,6 +90,7 @@ print(train_eval$metrics)
 ```
 
 # Test
+Avaliação no teste.
 
 
 ``` r

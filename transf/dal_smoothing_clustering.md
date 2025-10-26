@@ -1,21 +1,25 @@
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-# Discretization & smoothing
-Discretization is the process of transferring continuous functions, models, variables, and equations into discrete counterparts. 
+Sobre a técnica
+- `smoothing_cluster`: discretização/suavização definindo bins por agrupamento (clusters) em vez de intervalos fixos.
 
-Smoothing is a technique that creates an approximating function that attempts to capture important patterns in the data while leaving out noise or other fine-scale structures/rapid phenomena.
+# Discretização e suavização
+Discretização é o processo de transformar funções, modelos, variáveis e equações contínuas em contrapartes discretas. 
 
-An important part of the discretization/smoothing is to set up bins for proceeding the approximation.
+Suavização é uma técnica que cria uma função aproximadora para capturar padrões importantes nos dados, reduzindo ruídos ou variações de alta frequência.
 
-# general function to evaluate different smoothing technique
+Uma parte importante da discretização/suavização é definir os intervalos (bins) para viabilizar a aproximação.
 
+# Função geral para avaliar diferentes técnicas de suavização
+
+Dados de exemplo (`iris`) para ilustrar discretização/suavização por clusters.
 
 ``` r
 iris <- datasets::iris
@@ -32,6 +36,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
+Aplicando suavização por clusterização e inspecionando bins.
 
 ``` r
 # smoothing using clustering
@@ -55,6 +60,7 @@ obj$interval
 ## [1] 4.300000 5.917272 7.900000
 ```
 
+Avaliando entropia condicional entre bins e espécie.
 
 ``` r
 entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
@@ -67,6 +73,7 @@ print(entro$entropy)
 
 # Optimizing the number of binnings
 
+Otimizando o número de bins (busca em 1:20) e reaplicando o ajuste.
 
 ``` r
 opt_obj <- smoothing_cluster(n=1:20)

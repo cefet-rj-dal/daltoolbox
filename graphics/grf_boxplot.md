@@ -1,7 +1,11 @@
+Sobre o gráfico
+- Boxplot: resume distribuição por quartis e destaca outliers, comparável entre grupos.
+
+Preparação do ambiente gráfico e paleta.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -19,9 +23,10 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Dados e construção do boxplot simples e com cores por variável.
 
 ``` r
-# iris dataset for the example
+# conjunto de dados iris para o exemplo
 head(iris)
 ```
 
@@ -37,10 +42,10 @@ head(iris)
 
 
 ``` r
-# Box-plot
-# In descriptive statistics, a box plot is a method for graphically depicting groups of numerical data through their quartiles. Box plots may also have lines extending from the boxes (whiskers), indicating variability outside the upper and lower quartiles (outliers). 
+# Boxplot
+# Representa a distribuição por quartis; os “bigodes” indicam variabilidade fora dos quartis (e ajudam a identificar outliers).
 
-# More information: https://en.wikipedia.org/wiki/Box_plot
+# Mais informações: https://en.wikipedia.org/wiki/Box_plot
 
 grf <- plot_boxplot(iris, colors="white") + font
 ```
@@ -51,6 +56,11 @@ grf <- plot_boxplot(iris, colors="white") + font
 
 ``` r
 plot(grf)  
+```
+
+```
+## Ignoring unknown labels:
+## • colour : "c(\"Sepal.Length\", \"Sepal.Width\", \"Petal.Length\", \"Petal.Width\", \"Species\")"
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/grf_boxplot/unnamed-chunk-4-1.png)
@@ -68,5 +78,9 @@ grf <- plot_boxplot(iris, colors=colors[1:4]) + font
 plot(grf)  
 ```
 
-![plot of chunk unnamed-chunk-5](fig/grf_boxplot/unnamed-chunk-5-1.png)
+```
+## Ignoring unknown labels:
+## • colour : "c(\"Sepal.Length\", \"Sepal.Width\", \"Petal.Length\", \"Petal.Width\", \"Species\")"
+```
 
+![plot of chunk unnamed-chunk-5](fig/grf_boxplot/unnamed-chunk-5-1.png)

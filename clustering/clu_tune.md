@@ -3,18 +3,30 @@
 ``` r
 # Clustering - Tune Kmeans
 
+Sobre o utilitário
+- `clu_tune`: seleciona hiperparâmetros para um método de clusterização. No exemplo, escolhe `k` para `cluster_kmeans` a partir de um intervalo.
+
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox)  
 ```
 
+```
+## Error in parse(text = input): <text>:3:7: unexpected symbol
+## 2: 
+## 3: Sobre o
+##          ^
+```
+
+Carregando dados (`iris`).
 
 ``` r
 data(iris)
 ```
 
+Ajuste do modelo com busca em k=1..10 e extração do melhor k.
 
 ``` r
 # fit model
@@ -27,6 +39,7 @@ model$k
 ## [1] 9
 ```
 
+Geração dos rótulos de cluster com o melhor k.
 
 ``` r
 # run model
@@ -40,6 +53,7 @@ table(clu)
 ## 12  9 50 12 20  4 17 14 12
 ```
 
+Avaliação externa com `Species`.
 
 ``` r
 # evaluate model using external metric
@@ -68,4 +82,3 @@ eval
 ## $data_entropy
 ## [1] 1.584963
 ```
-

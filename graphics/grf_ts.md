@@ -1,7 +1,11 @@
+Sobre o gráfico
+- Série temporal simples: visualização exploratória de um vetor temporal com eixo x ordenado e valores y.
+
+Preparação do ambiente gráfico.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -19,6 +23,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Série sintética (seno) para exemplo e plot com `plot_ts`.
 
 ``` r
 # Synthetic time series
@@ -29,13 +34,12 @@ y <- sin(x)
 
 
 ``` r
-# ts plot
+# Gráfico de série temporal
 
-# A time series plot during exploratory analysis
+# Visualização exploratória básica de uma série temporal
 
 grf <- plot_ts(x = x, y = y, color=c("red"))
 plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/grf_ts/unnamed-chunk-4-1.png)
-

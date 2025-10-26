@@ -1,7 +1,11 @@
+Sobre o gráfico
+- Barras (bar): compara valores agregados por categorias. Útil para médias, contagens e totais por grupo.
+
+Preparação do ambiente gráfico e paleta de cores.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -18,9 +22,10 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Dados de exemplo agregados por `Species`.
 
 ``` r
-# iris dataset for the example
+# conjunto de dados iris para o exemplo
 head(iris)
 ```
 
@@ -50,13 +55,14 @@ head(data)
 ## 3 virginica          6.59
 ```
 
+Gráfico de barras básico e variação com barras verticais.
 
 ``` r
-# Bar graph
+# Gráfico de barras
 
-# A bar graph is used to presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent. 
+# Apresenta dados categóricos com barras proporcionais ao valor agregado (contagem, média, etc.).
 
-# More information: https://en.wikipedia.org/wiki/Bar_chart
+# Mais informações: https://en.wikipedia.org/wiki/Bar_chart
 
 grf <- plot_bar(data, colors=colors[1]) + font
 plot(grf)
@@ -66,13 +72,14 @@ plot(grf)
 
 
 ``` r
-# Sometimes the bars can be plotted vertically. Use function coord_flip() for that.
+# As barras podem ser invertidas (horizontais/verticais) com coord_flip().
 grf <- grf + coord_flip()
 plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-6](fig/grf_bar/unnamed-chunk-6-1.png)
 
+Colorindo cada barra por espécie.
 
 ``` r
 # Bar graph with one color for each species
@@ -81,4 +88,3 @@ plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-7](fig/grf_bar/unnamed-chunk-7-1.png)
-

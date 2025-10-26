@@ -3,25 +3,38 @@
 ``` r
 # Clustering - Kmeans
 
+Sobre o método
+- `cluster_kmeans`: particiona os dados em k grupos minimizando a variância intra-cluster. Sensível à escala; normalização pode melhorar os resultados.
+
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox)  
 ```
 
+```
+## Error in parse(text = input): <text>:3:7: unexpected symbol
+## 2: 
+## 3: Sobre o
+##          ^
+```
+
+Carregando dados de exemplo (`iris`).
 
 ``` r
 # load dataset
 data(iris)
 ```
 
+Configuração do K-means com k=3 (uma classe por espécie em iris).
 
 ``` r
 # setup clustering
 model <- cluster_kmeans(k=3)
 ```
 
+Ajuste do modelo e obtenção dos rótulos de cluster.
 
 ``` r
 # build model
@@ -36,6 +49,7 @@ table(clu)
 ## 96 33 21
 ```
 
+Avaliação externa usando os rótulos verdadeiros (`Species`).
 
 ``` r
 # evaluate model using external metric
@@ -60,6 +74,7 @@ eval
 ```
 
 
+Influência da normalização: comparar resultados após min-max.
 
 ``` r
 # Influence of normalization in clustering
@@ -76,6 +91,7 @@ table(clu)
 ## 39 50 61
 ```
 
+Reavaliação com dados normalizados.
 
 ``` r
 # evaluate model using external metric
@@ -99,4 +115,3 @@ eval
 ## $data_entropy
 ## [1] 1.584963
 ```
-

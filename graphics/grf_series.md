@@ -1,7 +1,11 @@
+Sobre o gráfico
+- Série temporal (linhas): pontos conectados por segmentos; destaca tendência e sazonalidade ao longo do tempo/eixo ordenado.
+
+Preparação do ambiente gráfico.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -19,9 +23,10 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Série sintética (seno e cosseno deslocado) para exemplo.
 
 ``` r
-# Synthetic time series
+# Série temporal sintética
 
 x <- seq(0, 10, 0.25)
 serie <- data.frame(x, sin=sin(x), cosine=cos(x)+5)
@@ -38,19 +43,19 @@ head(serie)
 ## 6 1.25 0.9489846 5.315322
 ```
 
+Construindo gráfico de séries com duas linhas.
 
 ``` r
-# Series plot
+# Gráfico de séries
 
-# A series plot is a type of chart that displays information as a series of data points connected by straight line segments. 
+# Exibe uma sequência de pontos conectados por segmentos de reta. 
 
-# It is similar to a scatter plot except that their x-axis value orders the measurement points.
+# Semelhante ao scatter, mas com eixo x ordenado por tempo/índice.
 
-# More information: https://en.wikipedia.org/wiki/Line_chart
+# Mais informações: https://en.wikipedia.org/wiki/Line_chart
 
 grf <- plot_series(serie, colors=colors[1:2]) + font
 plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/grf_series/unnamed-chunk-4-1.png)
-

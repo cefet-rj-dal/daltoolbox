@@ -1,7 +1,11 @@
+Sobre o gráfico
+- Barras agrupadas: compara múltiplas medidas por categoria, exibindo barras lado a lado.
+
+Preparação do ambiente gráfico.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -19,9 +23,10 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Dados agregados por espécie para duas métricas.
 
 ``` r
-# iris dataset for the example
+# conjunto de dados iris para o exemplo
 head(iris)
 ```
 
@@ -52,19 +57,17 @@ head(data)
 ## 3 virginica          6.59        2.97
 ```
 
+Construindo gráfico de barras agrupadas.
 
 ``` r
-# Grouped barbar
+# Barras agrupadas
 
-# Grouped bar charts are used to organize data into groups for each category.
+# Organiza dados em grupos para cada categoria, exibindo duas ou mais barras por grupo, coloridas por medida.
 
-# In a grouped bar chart, for each categorical group, there are two or more bars. These bars are color-coded to represent a particular grouping.  
-
-# More information: https://en.wikipedia.org/wiki/Bar_chart# Grouped_or_stacked
+# Mais informações: https://en.wikipedia.org/wiki/Bar_chart#Grouped_or_stacked
 
 grf <- plot_groupedbar(data, colors=colors[1:2]) + font
 plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/grf_grouped_bar/unnamed-chunk-5-1.png)
-

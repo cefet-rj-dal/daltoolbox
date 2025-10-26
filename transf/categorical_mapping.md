@@ -1,20 +1,31 @@
 
 ``` r
-# Categorical mapping
-# A categorical attribute with $n$ distinct values is mapped into $n$ binary attributes. 
+# Mapeamento categórico
+# Um atributo categórico com $n$ valores distintos pode ser mapeado em $n$ atributos binários (one‑hot).
 
-# It is also possible to map into $n-1$ binary values, where the scenario where all binary attributes are equal to zero corresponds to the last categorical value not indicated in the attributes.  
+# Também é possível mapear para $n-1$ atributos binários: o caso em que todos os atributos binários são zero representa o último valor categórico (não explícito nas colunas).
+
+Sobre a transformação
+- `categ_mapping`: converte uma coluna categórica em variáveis binárias (one‑hot). Pode usar codificação com n colunas ou n−1 colunas.
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox)
 ```
 
+```
+## Error in parse(text = input): <text>:6:7: unexpected symbol
+## 5: 
+## 6: Sobre a
+##          ^
+```
+
+Aplicando mapeamento one-hot para a coluna `Species` em um data frame.
 
 ``` r
-# dataset for example 
+# conjunto de dados para o exemplo 
 
 iris <- datasets::iris
 head(iris)
@@ -32,7 +43,7 @@ head(iris)
 
 
 ``` r
-# creating categorical mapping
+# criando o mapeamento categórico
 
 cm <- categ_mapping("Species")
 iris_cm <- transform(cm, iris)
@@ -49,10 +60,11 @@ print(head(iris_cm))
 ## 6             1                 0                0
 ```
 
+Aplicando o mesmo mapeamento para um data frame com única coluna categórica.
 
 ``` r
-# creating categorical mapping
-# Can be made from a single column, but needs to be a data frame
+# criando o mapeamento categórico
+# Pode ser feito a partir de uma única coluna, mas precisa ser um data frame
 
 diris <- iris[,"Species", drop=FALSE]
 head(diris)
@@ -83,4 +95,3 @@ print(head(iris_cm))
 ## 5             1                 0                0
 ## 6             1                 0                0
 ```
-

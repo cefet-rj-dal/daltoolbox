@@ -1,17 +1,23 @@
+Sobre o método
+- `reg_knn`: k-Nearest Neighbors para regressão. Prediz a média (ou ponderação) dos alvos dos k vizinhos mais próximos.
+- Parâmetro principal: `k`.
+
+Preparação do ambiente.
 
 ``` r
 # Regression KNN
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
+Carregando dataset Boston (MASS) e inspecionando tipos.
 
 ``` r
-# Dataset for regression analysis
+# Conjunto de dados para análise de regressão
 
 library(MASS)
 data(Boston)
@@ -39,12 +45,14 @@ head(Boston)
 ## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
 ```
 
+Conversão opcional para matriz.
 
 ``` r
-# for performance issues, you can use matrix
+# por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 
+Divisão treino/teste aleatória.
 
 ``` r
 # preparing dataset for random sampling
@@ -55,6 +63,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
+Treinamento do kNN para regressão: ajuste de `k`.
 
 ``` r
 # Training
@@ -63,6 +72,7 @@ model <- reg_knn("medv", k=5)
 model <- fit(model, boston_train)
 ```
 
+Avaliação no treino.
 
 ``` r
 # Model adjustment
@@ -78,6 +88,7 @@ print(train_eval$metrics)
 ## 1 27.02782 0.155995 0.6997184
 ```
 
+Avaliação no teste.
 
 ``` r
 # Test
@@ -92,4 +103,3 @@ print(test_eval$metrics)
 ##       mse     smape       R2
 ## 1 26.9483 0.1791238 0.552171
 ```
-

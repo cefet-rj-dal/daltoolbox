@@ -1,7 +1,11 @@
+Sobre o gráfico
+- Radar: exibe múltiplas variáveis numéricas em eixos radiais a partir de uma origem comum; útil para perfis comparativos.
+
+Preparação do ambiente gráfico.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -19,9 +23,10 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Média por variável numérica e montagem do formato requerido para radar.
 
 ``` r
-# iris dataset for the example
+# conjunto de dados iris para o exemplo
 head(iris)
 ```
 
@@ -56,11 +61,11 @@ head(data)
 
 
 ``` r
-# Radar plot
+# Gráfico radar
 
-# A radar chart is a graphical method of displaying multivariate data containing three or more quantitative variables represented on axes starting from the same point. 
+# Método gráfico para exibir dados multivariados com 3+ variáveis quantitativas em eixos que partem do mesmo ponto.
 
-# More information: https://en.wikipedia.org/wiki/Radar_chart
+# Mais informações: https://en.wikipedia.org/wiki/Radar_chart
 
 grf <- plot_radar(data, colors=colors[1]) + font
 grf <- grf + ylim(0, NA)
@@ -68,4 +73,3 @@ plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/grf_radar/unnamed-chunk-5-1.png)
-

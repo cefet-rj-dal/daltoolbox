@@ -1,14 +1,19 @@
+Sobre a amostragem
+- `sample_random`: separa conjuntos de treino/teste e cria folds por sorteio aleatório, mantendo apenas proporções esperadas em média.
+
+Preparação do ambiente.
 
 ``` r
 # Sampling dataset
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
+Carregando dataset e visualizando distribuição de classes.
 
 ``` r
 iris <- datasets::iris
@@ -35,6 +40,7 @@ table(iris$Species)
 ##         50         50         50
 ```
 
+Dividindo em treino/teste com amostragem aleatória (distribuições podem variar por sorteio).
 
 ``` r
 # Dividing a dataset with training and test
@@ -63,6 +69,7 @@ print(table(tt$test$Species))
 ##         11         10          9
 ```
 
+Criando folds k-fold aleatórios e verificando distribuição por fold.
 
 ``` r
 # Dividing a dataset into folds
@@ -86,4 +93,3 @@ print(tbl)
 ## [3,]     14         10        14
 ## [4,]     10         11        17
 ```
-

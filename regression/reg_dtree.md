@@ -1,19 +1,38 @@
+Sobre o método
+- `reg_dtree`: árvore de decisão para regressão. Faz partições no espaço de atributos e estima valores por médias nas folhas; interpretável e capaz de modelar não linearidades.
+
+Preparação do ambiente.
 
 ``` r
 # Regression Decision Tree
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
+Carregando dataset Boston (MASS) e inspecionando tipos.
 
 ``` r
-# Dataset for regression analysis
+# Conjunto de dados para análise de regressão
 
 library(MASS)
+```
+
+```
+## 
+## Attaching package: 'MASS'
+```
+
+```
+## The following object is masked from 'package:dplyr':
+## 
+##     select
+```
+
+``` r
 data(Boston)
 print(t(sapply(Boston, class)))
 ```
@@ -39,12 +58,14 @@ head(Boston)
 ## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
 ```
 
+Conversão opcional para matriz por desempenho em alguns métodos.
 
 ``` r
-# for performance issues, you can use matrix
+# por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 
+Divisão treino/teste aleatória.
 
 ``` r
 # preparing dataset for random sampling
@@ -55,6 +76,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
+Treinamento do modelo de árvore de regressão para prever `medv`.
 
 ``` r
 # Training
@@ -63,6 +85,7 @@ model <- reg_dtree("medv")
 model <- fit(model, boston_train)
 ```
 
+Avaliação no treino (métricas de regressão, ex.: RMSE, MAE).
 
 ``` r
 # Model adjustment
@@ -78,6 +101,7 @@ print(train_eval$metrics)
 ## 1 12.68065 0.1345098 0.8591168
 ```
 
+Avaliação no teste.
 
 ``` r
 # Test
@@ -92,4 +116,3 @@ print(test_eval$metrics)
 ##        mse     smape        R2
 ## 1 29.38142 0.1642396 0.5117372
 ```
-

@@ -1,7 +1,11 @@
+Sobre o gráfico
+- Barras empilhadas: mostra a composição de cada categoria somando grupos; útil para proporções acumuladas.
+
+Preparação do ambiente gráfico.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -19,9 +23,10 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Dados agregados por espécie para duas métricas.
 
 ``` r
-# iris dataset for the example
+# conjunto de dados iris para o exemplo
 head(iris)
 ```
 
@@ -52,15 +57,14 @@ head(data)
 ## 3 virginica          6.59        2.97
 ```
 
+Construindo gráfico empilhado e ajustando rótulos do eixo X.
 
 ``` r
-# Stacked-bar
+# Barras empilhadas
 
-# Stacked bar charts are used to organize data into groups for each category.
+# Organizam dados por categoria, empilhando barras que representam diferentes grupos; a altura final mostra o total combinado.
 
-# A stacked bar chart stacks bars that represent different groups on top of each other. The height of the resulting bar shows the combined result of the groups. 
-
-# More information: https://en.wikipedia.org/wiki/Bar_chart# Grouped_or_stacked
+# Mais informações: https://en.wikipedia.org/wiki/Bar_chart#Grouped_or_stacked
 
 grf <- plot_stackedbar(data, colors=colors[1:2]) + font
 grf <- grf + theme(axis.text.x = element_text(angle=90, hjust=1))
@@ -68,4 +72,3 @@ plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/grf_stacked_bar/unnamed-chunk-5-1.png)
-

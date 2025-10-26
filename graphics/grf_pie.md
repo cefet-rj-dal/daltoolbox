@@ -1,7 +1,11 @@
+Sobre o gráfico
+- Pizza (pie): representa proporções de um total. Use com parcimônia e poucas categorias quando ângulos forem fáceis de comparar.
+
+Preparação do ambiente gráfico.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -19,9 +23,10 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Dados agregados e construção do gráfico de pizza.
 
 ``` r
-# iris dataset for the example
+# conjunto de dados iris para o exemplo
 head(iris)
 ```
 
@@ -54,14 +59,13 @@ head(data)
 
 
 ``` r
-# Pie chart
-# A pie chart is a circular statistical graphic, which is divided into slices to illustrate numerical proportion. 
+# Gráfico de pizza
+# Gráfico circular dividido em fatias para ilustrar proporções numéricas.
 
-# More information: https://en.wikipedia.org/wiki/Pie_chart
+# Mais informações: https://en.wikipedia.org/wiki/Pie_chart
 
 grf <- plot_pieplot(data, colors=colors[1:3]) + font
 plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/grf_pie/unnamed-chunk-5-1.png)
-

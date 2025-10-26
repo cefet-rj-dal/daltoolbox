@@ -1,7 +1,7 @@
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -11,6 +11,10 @@ library(ggplot2)
 library(dplyr)
 ```
 
+Sobre a técnica
+- `fit_curvature_min`: calcula a curvatura pela segunda derivada de um spline suavizado sobre a sequência e retorna a posição de curvatura mínima em curvas crescentes; útil para achar um ponto de compromisso onde ganhos adicionais tornam-se marginais.
+
+Carregando dados de exemplo (PCA no dataset wine) e montando curva de variância acumulada.
 
 ``` r
 wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/develop/wine.RData")))
@@ -27,14 +31,14 @@ head(wine)
 ## 6  1  14.39  1.87  2.45  14.6   96 2.50  2.52 0.30  1.98  5.25  1.02  3.58  1290
 ```
 
-# Example: PCA components
-Cummulative variance of PCA: First dimensions have high variance. However, adding more dimensions does not bring much benefit in terms of cummulative variance. 
-The goal is to establish a trade-off.
+# Exemplo: componentes da PCA
+Variância acumulada da PCA: as primeiras dimensões concentram alta variância; adicionar muitas dimensões traz ganhos marginais. 
+O objetivo é estabelecer um ponto de compromisso (trade-off).
 
 
 ``` r
 pca_res = prcomp(wine[,2:ncol(wine)], center=TRUE, scale.=TRUE)
-y <- cumsum(pca_res$sdev^2/sum(pca_res$sdev^2))
+y <- cumsum(pca_res$sdev^2/sum(pca_res$sdev^2)) # variância acumulada
 x <- 1:length(y)
 ```
 
@@ -71,7 +75,7 @@ It brings a trade-off between having lower x values (with not so high y values) 
 
 ``` r
 myfit <- fit_curvature_min()
-res <- transform(myfit, y)
+res <- transform(myfit, y)  # retorna índice ótimo (joelho)
 head(res)
 ```
 
@@ -86,4 +90,3 @@ plot(grf + geom_vline(xintercept = res$x, linetype="dashed", color = "red", size
 ```
 
 ![plot of chunk unnamed-chunk-7](fig/curvature_minimum/unnamed-chunk-7-1.png)
-

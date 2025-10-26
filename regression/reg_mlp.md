@@ -1,17 +1,23 @@
+Sobre o método
+- `reg_mlp`: Multilayer Perceptron (rede neural) para regressão.
+- Hiperparâmetros: `size` (unidades na camada oculta), `decay` (regularização L2).
+
+Preparação do ambiente.
 
 ``` r
 # Regression MLP
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
+Carregando dataset Boston (MASS) e inspecionando tipos.
 
 ``` r
-# Dataset for regression analysis
+# Conjunto de dados para análise de regressão
 
 library(MASS)
 data(Boston)
@@ -39,12 +45,14 @@ head(Boston)
 ## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
 ```
 
+Conversão opcional para matriz.
 
 ``` r
-# for performance issues, you can use matrix
+# por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 
+Divisão treino/teste aleatória e reprodutível.
 
 ``` r
 # preparing dataset for random sampling
@@ -55,6 +63,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
+Treinamento do MLP: ajuste de `size` e `decay`.
 
 ``` r
 # Training
@@ -63,6 +72,7 @@ model <- reg_mlp("medv", size=5, decay=0.54)
 model <- fit(model, boston_train)
 ```
 
+Avaliação no treino.
 
 ``` r
 # Model adjustment
@@ -78,6 +88,7 @@ print(train_eval$metrics)
 ## 1 6.531913 0.09502499 0.9274298
 ```
 
+Avaliação no teste.
 
 ``` r
 # Test
@@ -92,4 +103,3 @@ print(test_eval$metrics)
 ##        mse     smape      R2
 ## 1 23.75304 0.1676875 0.60527
 ```
-

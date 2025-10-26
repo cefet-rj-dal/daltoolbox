@@ -1,7 +1,11 @@
+Sobre o gráfico
+- Densidade (kernel density): versão suavizada do histograma para variáveis contínuas; evidencia formas da distribuição.
+
+Preparação do ambiente gráfico.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -18,9 +22,10 @@ library(ggplot2)
 font <- theme(text = element_text(size=16))
 ```
 
-# Examples using data distribution
-The following examples use random variables so that different data distribution can be better viewed.
+# Exemplos com distribuições distintas
+Os exemplos a seguir usam variáveis aleatórias para facilitar a visualização de diferentes distribuições.
 
+Gerando variáveis de exemplo com diferentes distribuições.
 
 ``` r
 # example4: dataset to be plotted  
@@ -40,12 +45,13 @@ head(example)
 ## 6   2.2377570 2.722793 5.408614
 ```
 
-# Density plot
+# Gráfico de densidade
 
-Computes and draws kernel density estimate, which is a smoothed version of the histogram. This is a useful alternative to the histogram for continuous data that comes from an underlying smooth distribution.
+Desenha a estimativa de densidade via kernel, uma versão suavizada do histograma. Útil como alternativa para dados contínuos.
 
-More information: ?geom_density (R documentation)
+Mais informações: ?geom_density (documentação do R)
 
+Construindo densidades e arranjando gráficos individuais em grade.
 
 ``` r
 options(repr.plot.width=8, repr.plot.height=5)
@@ -62,9 +68,9 @@ plot(grf)
 
 ![plot of chunk unnamed-chunk-4](fig/grf_density/unnamed-chunk-4-1.png)
 
-# Arrangement of graphs
+# Arranjo de gráficos
 
-Function $grid.arrange$ is used to position previously computed charts
+A função `grid.arrange` pode dispor múltiplos gráficos previamente criados.
 
 
 ``` r
@@ -98,6 +104,20 @@ grfn <- plot_density(example |> dplyr::select(normal),
 
 ``` r
 library(gridExtra)  
+```
+
+```
+## 
+## Attaching package: 'gridExtra'
+```
+
+```
+## The following object is masked from 'package:dplyr':
+## 
+##     combine
+```
+
+``` r
 options(repr.plot.width=15, repr.plot.height=4)
 grid.arrange(grfe, grfu, grfn, ncol=3)
 ```

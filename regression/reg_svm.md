@@ -1,17 +1,23 @@
+Sobre o método
+- `reg_svm`: Support Vector Regression (SVR). Modela uma função com margem insensível a erros até `epsilon` e penaliza violações via `cost`.
+- Hiperparâmetros: `epsilon`, `cost` e `kernel` (se aplicável).
+
+Preparação do ambiente.
 
 ``` r
 # Regression SVM
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
+Carregando dataset Boston (MASS) e inspecionando tipos.
 
 ``` r
-# Dataset for regression analysis
+# Conjunto de dados para análise de regressão
 
 library(MASS)
 data(Boston)
@@ -39,12 +45,14 @@ head(Boston)
 ## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
 ```
 
+Conversão opcional para matriz.
 
 ``` r
-# for performance issues, you can use matrix
+# por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 
+Divisão treino/teste aleatória e reprodutível.
 
 ``` r
 # preparing dataset for random sampling
@@ -56,6 +64,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
+Treinamento do SVR: ajuste de `epsilon` e `cost` (kernel padrão se não definido).
 
 ``` r
 # Training
@@ -64,6 +73,7 @@ model <- reg_svm("medv", epsilon=0.2,cost=40.000)
 model <- fit(model, boston_train)
 ```
 
+Avaliação no treino.
 
 ``` r
 # Model adjustment
@@ -79,6 +89,7 @@ print(train_eval$metrics)
 ## 1 2.855767 0.0700268 0.9682722
 ```
 
+Avaliação no teste.
 
 ``` r
 # Test
@@ -93,4 +104,3 @@ print(test_eval$metrics)
 ##        mse     smape        R2
 ## 1 14.65598 0.1363336 0.7564457
 ```
-
