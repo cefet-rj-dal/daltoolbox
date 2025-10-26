@@ -1,3 +1,7 @@
+Sobre o método
+- `reg_knn`: k-Nearest Neighbors para regressão. Prediz a média (ou ponderação) dos alvos dos k vizinhos mais próximos.
+- Parâmetro principal: `k`.
+
 ```{r}
 # Regression KNN
 

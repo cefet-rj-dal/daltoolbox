@@ -1,6 +1,9 @@
 ```{r}
 # Clustering - pam
 
+Sobre o método
+- `cluster_pam`: Partitioning Around Medoids. Similar ao k-means, mas usa medoides (pontos reais) em vez de centróides, tornando-o mais robusto a outliers.
+
 # installation 
 install.packages("daltoolbox")
 

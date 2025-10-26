@@ -4,6 +4,9 @@
 
 # It is also possible to map into $n-1$ binary values, where the scenario where all binary attributes are equal to zero corresponds to the last categorical value not indicated in the attributes.  
 
+Sobre a transformação
+- `categ_mapping`: converte uma coluna categórica em variáveis binárias (one‑hot). Pode usar codificação com n colunas ou n−1 colunas.
+
 # installation 
 install.packages("daltoolbox")
 

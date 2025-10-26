@@ -1,3 +1,6 @@
+Sobre o gráfico
+- Barras (bar): compara valores agregados por categorias. Útil para médias, contagens e totais por grupo.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

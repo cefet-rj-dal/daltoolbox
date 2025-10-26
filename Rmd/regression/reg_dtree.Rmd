@@ -1,3 +1,6 @@
+Sobre o método
+- `reg_dtree`: árvore de decisão para regressão. Faz partições no espaço de atributos e estima valores por médias nas folhas; interpretável e capaz de modelar não linearidades.
+
 ```{r}
 # Regression Decision Tree
 

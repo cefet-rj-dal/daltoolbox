@@ -1,3 +1,7 @@
+Sobre o método
+- `cla_mlp`: Multilayer Perceptron (rede neural feedforward) para classificação.
+- Hiperparâmetros: `size` (nós na camada oculta), `decay` (regularização L2 para evitar overfitting).
+
 ```{r}
 # Classification using Multilayer Perceptron
 

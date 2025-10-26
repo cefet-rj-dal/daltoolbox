@@ -1,3 +1,6 @@
+Sobre o recurso
+- Salvamento de gráfico: exemplo de exportação com `jpeg()`/`dev.off()` e `ggsave()` para arquivos de imagem.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

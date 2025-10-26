@@ -1,5 +1,9 @@
+Sobre o utilitário
+- `reg_tune`: busca de hiperparâmetros para modelos de regressão conforme faixas em `ranges`.
+- Exemplo: ajuste de `reg_svm` variando `epsilon`, `cost` e `kernel`.
+
 ```{r}
-# Tune Regression 
+# Tuning de Regressão 
 
 # installation 
 install.packages("daltoolbox")

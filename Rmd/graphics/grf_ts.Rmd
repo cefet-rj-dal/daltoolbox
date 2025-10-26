@@ -1,3 +1,6 @@
+Sobre o gráfico
+- Série temporal simples: visualização exploratória de um vetor temporal com eixo x ordenado e valores y.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

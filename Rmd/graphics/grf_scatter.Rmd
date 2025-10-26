@@ -1,3 +1,6 @@
+Sobre o gráfico
+- Dispersão (scatter): avalia relação entre duas variáveis numéricas, com possibilidade de colorir por grupo/categoria.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

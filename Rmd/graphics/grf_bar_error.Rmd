@@ -6,6 +6,9 @@ install.packages("daltoolbox")
 library(daltoolbox) 
 ```
 
+Sobre o gráfico
+- Barras com barra de erro: adiciona incerteza/variabilidade (p.ex., desvio padrão) às barras, usando `geom_errorbar()`.
+
 ```{r}
 library(ggplot2)
 library(RColorBrewer)

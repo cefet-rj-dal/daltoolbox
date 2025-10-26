@@ -6,6 +6,9 @@ install.packages("daltoolbox")
 library(daltoolbox) 
 ```
 
+Sobre a técnica
+- `smoothing_cluster`: discretização/suavização definindo bins por agrupamento (clusters) em vez de intervalos fixos.
+
 # Discretization & smoothing
 Discretization is the process of transferring continuous functions, models, variables, and equations into discrete counterparts. 
 

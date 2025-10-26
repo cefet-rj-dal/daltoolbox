@@ -1,5 +1,9 @@
+Sobre o utilitário
+- `cla_tune`: realiza busca de hiperparâmetros para um classificador, a partir de faixas definidas em `ranges`.
+- Exemplo abaixo ajusta um `cla_svm` variando `epsilon`, `cost` e `kernel`.
+
 ```{r}
-# Tune Regression 
+# Tuning de Classificação 
 
 # installation 
 install.packages("daltoolbox")

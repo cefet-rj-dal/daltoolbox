@@ -1,5 +1,9 @@
 # Regression Random Forest
 
+Sobre o método
+- `reg_rf`: Random Forest para regressão. Média de muitas árvores de decisão treinadas com amostragens aleatórias; tende a reduzir variância.
+- Hiperparâmetros: `mtry` (nº de variáveis por divisão), `ntree` (nº de árvores).
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

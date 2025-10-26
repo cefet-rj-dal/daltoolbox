@@ -1,3 +1,6 @@
+Sobre o gráfico
+- Pizza (pie): representa proporções de um total. Use com parcimônia e poucas categorias quando ângulos forem fáceis de comparar.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

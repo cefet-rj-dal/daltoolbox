@@ -6,6 +6,9 @@ install.packages("daltoolbox")
 library(daltoolbox) 
 ```
 
+Sobre a técnica
+- `smoothing_freq`: discretização/suavização por frequência (quantis), gerando bins com contagens semelhantes.
+
 ```{r}
 # Discretization & smoothing
 # Discretization is the process of transferring continuous functions, models, variables, and equations into discrete counterparts. 

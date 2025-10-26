@@ -1,3 +1,6 @@
+Sobre a amostragem
+- `sample_stratified`: separa treino/teste e folds preservando a proporção da variável alvo (estratificação) por categoria.
+
 ```{r}
 # Stratified sampling dataset
 

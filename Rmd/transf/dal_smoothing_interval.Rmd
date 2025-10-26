@@ -6,6 +6,9 @@ install.packages("daltoolbox")
 library(daltoolbox) 
 ```
 
+Sobre a técnica
+- `smoothing_inter`: discretização/suavização por intervalos regulares (larguras iguais). Útil para resumir variáveis contínuas em faixas.
+
 ```{r}
 # Discretization & smoothing
 # Discretization is the process of transferring continuous functions, models, variables, and equations into discrete counterparts. 

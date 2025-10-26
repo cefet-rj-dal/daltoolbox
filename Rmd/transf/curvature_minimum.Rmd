@@ -10,6 +10,9 @@ library(ggplot2)
 library(dplyr)
 ```
 
+Sobre a técnica
+- `fit_curvature_min`: identifica ponto de joelho (curvatura mínima) em curvas crescentes para trade-off entre custo e benefício acumulado.
+
 ```{r}
 wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/develop/wine.RData")))
 head(wine)

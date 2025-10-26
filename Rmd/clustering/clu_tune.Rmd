@@ -2,6 +2,9 @@
 ```{r}
 # Clustering - Tune Kmeans
 
+Sobre o utilitário
+- `clu_tune`: seleciona hiperparâmetros para um método de clusterização. No exemplo, escolhe `k` para `cluster_kmeans` a partir de um intervalo.
+
 # installation 
 install.packages("daltoolbox")
 

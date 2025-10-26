@@ -1,3 +1,7 @@
+Sobre o método
+- `reg_mlp`: Multilayer Perceptron (rede neural) para regressão.
+- Hiperparâmetros: `size` (unidades na camada oculta), `decay` (regularização L2).
+
 ```{r}
 # Regression MLP
 

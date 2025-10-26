@@ -1,3 +1,6 @@
+Sobre o gráfico
+- Série temporal (linhas): pontos conectados por segmentos; destaca tendência e sazonalidade ao longo do tempo/eixo ordenado.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

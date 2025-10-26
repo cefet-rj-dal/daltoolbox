@@ -1,3 +1,6 @@
+Sobre a transformação
+- `dt_pca`: Análise de Componentes Principais (PCA) para projetar dados em componentes ortogonais de maior variância. Permite definir o número de componentes.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

@@ -1,3 +1,6 @@
+Sobre o gráfico
+- Barras agrupadas: compara múltiplas medidas por categoria, exibindo barras lado a lado.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

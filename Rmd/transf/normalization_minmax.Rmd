@@ -1,3 +1,6 @@
+Sobre a transformação
+- `minmax`: normaliza atributos numéricos para um intervalo (padrão 0 a 1). Útil para algoritmos sensíveis à escala.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

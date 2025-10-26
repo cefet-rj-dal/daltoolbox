@@ -1,3 +1,6 @@
+Sobre o gráfico
+- Pontos: semelhante à série, mas sem linhas conectando; bom para destacar observações discretas.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

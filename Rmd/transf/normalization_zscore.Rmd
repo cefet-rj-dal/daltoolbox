@@ -1,3 +1,6 @@
+Sobre a transformação
+- `zscore`: padroniza atributos numéricos para média 0 e desvio padrão 1 (ou outros alvos, via `nmean` e `nsd`).
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

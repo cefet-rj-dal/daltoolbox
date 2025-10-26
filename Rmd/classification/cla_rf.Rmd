@@ -1,3 +1,7 @@
+Sobre o método
+- `cla_rf`: Random Forest para classificação. Conjunto (ensemble) de árvores de decisão com amostragem aleatória; costuma ser robusto e lidar bem com variáveis heterogêneas.
+- Hiperparâmetros: `mtry` (nº de variáveis por divisão), `ntree` (nº de árvores).
+
 ```{r}
 # Classification using  Random Forest
 

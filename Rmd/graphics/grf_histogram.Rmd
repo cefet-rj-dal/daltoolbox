@@ -1,3 +1,6 @@
+Sobre o gráfico
+- Histograma: distribui observações em bins ao longo do eixo x, útil para visualizar frequência e assimetrias.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

@@ -1,3 +1,6 @@
+Sobre o gráfico
+- Série temporal com ajuste e previsão: exibe valores observados, ajuste do modelo e horizonte previsto para comparação visual.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

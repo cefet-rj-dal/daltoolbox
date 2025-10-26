@@ -1,3 +1,6 @@
+Sobre o método
+- `cla_majority`: classificador de base (baseline) que sempre prevê a classe mais frequente observada no treinamento. Útil como referência mínima de desempenho.
+
 ```{r}
 # Classification using Majority class
 

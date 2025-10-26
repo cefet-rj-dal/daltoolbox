@@ -1,3 +1,7 @@
+Sobre o método
+- `cla_svm`: Support Vector Machine para classificação, maximizando a margem entre classes.
+- Hiperparâmetros comuns: `cost` (penalidade), `epsilon` (largura de margem no ajuste) e `kernel` (função de kernel, ex.: linear, radial, polinomial, sigmoide).
+
 ```{r}
 # Classification using Support Vector Machine
 

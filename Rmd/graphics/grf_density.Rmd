@@ -1,3 +1,6 @@
+Sobre o gráfico
+- Densidade (kernel density): versão suavizada do histograma para variáveis contínuas; evidencia formas da distribuição.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

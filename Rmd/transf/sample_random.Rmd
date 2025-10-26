@@ -1,3 +1,6 @@
+Sobre a amostragem
+- `sample_random`: separa conjuntos de treino/teste e cria folds por sorteio aleatório, mantendo apenas proporções esperadas em média.
+
 ```{r}
 # Sampling dataset
 

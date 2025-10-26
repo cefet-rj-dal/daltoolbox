@@ -1,3 +1,6 @@
+Sobre o gráfico
+- Barras empilhadas: mostra a composição de cada categoria somando grupos; útil para proporções acumuladas.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

@@ -1,3 +1,6 @@
+Sobre o método
+- `cla_dtree`: Árvore de decisão para classificação. Realiza divisões recursivas nas variáveis explicativas para separar classes, resultando em um modelo interpretável.
+
 ```{r}
 # Classification using Decision Tree
 

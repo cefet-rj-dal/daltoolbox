@@ -1,3 +1,7 @@
+Sobre o método
+- `reg_svm`: Support Vector Regression (SVR). Modela uma função com margem insensível a erros até `epsilon` e penaliza violações via `cost`.
+- Hiperparâmetros: `epsilon`, `cost` e `kernel` (se aplicável).
+
 ```{r}
 # Regression SVM
 

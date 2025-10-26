@@ -1,3 +1,6 @@
+Sobre o gráfico
+- Boxplot: resume distribuição por quartis e destaca outliers, comparável entre grupos.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

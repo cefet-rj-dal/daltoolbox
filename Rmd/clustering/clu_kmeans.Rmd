@@ -2,6 +2,9 @@
 ```{r}
 # Clustering - Kmeans
 
+Sobre o método
+- `cluster_kmeans`: particiona os dados em k grupos minimizando a variância intra-cluster. Sensível à escala; normalização pode melhorar os resultados.
+
 # installation 
 install.packages("daltoolbox")
 

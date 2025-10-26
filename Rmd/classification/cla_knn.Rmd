@@ -1,3 +1,7 @@
+Sobre o método
+- `cla_knn`: classificador k-Nearest Neighbors. Classifica pela maioria entre os k vizinhos mais próximos no espaço de atributos.
+- Parâmetro principal: `k` (número de vizinhos). Valores baixos tendem a ajustar mais ao ruído; valores maiores suavizam a decisão.
+
 ```{r}
 # Classification using KNN
 

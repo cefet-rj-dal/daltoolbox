@@ -1,3 +1,6 @@
+Sobre o método
+- `cla_nb`: Naive Bayes para classificação. Modelo probabilístico que assume independência condicional entre atributos; simples, eficiente e frequentemente competitivo.
+
 ```{r}
 # Classification using Naive Bayes
 

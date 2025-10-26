@@ -1,6 +1,9 @@
 ```{r}
 # NA and Outlier analysis
 
+Sobre a transformação
+- `outliers_gaussian`: marca como outliers valores além de média ± 3 desvios padrão, assumindo distribuição aproximadamente normal.
+
 # installation 
 install.packages("daltoolbox")
 

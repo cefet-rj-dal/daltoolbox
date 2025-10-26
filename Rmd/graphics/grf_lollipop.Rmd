@@ -1,3 +1,6 @@
+Sobre o gráfico
+- Lollipop: alternativa às barras, enfatiza valores com marcador e haste; visual mais leve para comparações.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")

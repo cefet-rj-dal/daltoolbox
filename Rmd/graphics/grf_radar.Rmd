@@ -1,3 +1,6 @@
+Sobre o gráfico
+- Radar: exibe múltiplas variáveis numéricas em eixos radiais a partir de uma origem comum; útil para perfis comparativos.
+
 ```{r}
 # installation 
 install.packages("daltoolbox")
