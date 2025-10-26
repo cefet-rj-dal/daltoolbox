@@ -1,11 +1,11 @@
+Sobre a transformação
+- `categ_mapping`: converte uma coluna categórica em variáveis binárias (one‑hot). Pode usar codificação com n colunas ou n−1 colunas.
+
 ```{r}
 # Mapeamento categórico
 # Um atributo categórico com $n$ valores distintos pode ser mapeado em $n$ atributos binários (one‑hot).
 
 # Também é possível mapear para $n-1$ atributos binários: o caso em que todos os atributos binários são zero representa o último valor categórico (não explícito nas colunas).
-
-Sobre a transformação
-- `categ_mapping`: converte uma coluna categórica em variáveis binárias (one‑hot). Pode usar codificação com n colunas ou n−1 colunas.
 
 # installation 
 install.packages("daltoolbox")

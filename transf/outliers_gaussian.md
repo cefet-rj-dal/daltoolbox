@@ -1,22 +1,15 @@
+Sobre a transformação
+- `outliers_gaussian`: marca como outliers valores além de média ± 3 desvios padrão, assumindo distribuição aproximadamente normal.
+
 
 ``` r
 # NA and Outlier analysis
-
-Sobre a transformação
-- `outliers_gaussian`: marca como outliers valores além de média ± 3 desvios padrão, assumindo distribuição aproximadamente normal.
 
 # installation 
 install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
-```
-
-```
-## Error in parse(text = input): <text>:3:7: unexpected symbol
-## 2: 
-## 3: Sobre a
-##          ^
 ```
 
 Removendo outliers pela regra de 3 sigmas e inspecionando.

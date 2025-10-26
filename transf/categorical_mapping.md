@@ -1,3 +1,6 @@
+Sobre a transformação
+- `categ_mapping`: converte uma coluna categórica em variáveis binárias (one‑hot). Pode usar codificação com n colunas ou n−1 colunas.
+
 
 ``` r
 # Mapeamento categórico
@@ -5,21 +8,11 @@
 
 # Também é possível mapear para $n-1$ atributos binários: o caso em que todos os atributos binários são zero representa o último valor categórico (não explícito nas colunas).
 
-Sobre a transformação
-- `categ_mapping`: converte uma coluna categórica em variáveis binárias (one‑hot). Pode usar codificação com n colunas ou n−1 colunas.
-
 # installation 
 install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox)
-```
-
-```
-## Error in parse(text = input): <text>:6:7: unexpected symbol
-## 5: 
-## 6: Sobre a
-##          ^
 ```
 
 Aplicando mapeamento one-hot para a coluna `Species` em um data frame.

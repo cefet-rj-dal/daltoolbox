@@ -1,22 +1,15 @@
+Sobre a transformação
+- `outliers_boxplot`: identifica outliers por regra do boxplot (Q1 − 1.5·IQR, Q3 + 1.5·IQR) e pode removê-los de atributos numéricos.
+
 
 ``` r
 # NA and Outlier analysis
-
-Sobre a transformação
-- `outliers_boxplot`: identifica outliers por regra do boxplot (Q1 − 1.5·IQR, Q3 + 1.5·IQR) e pode removê-los de atributos numéricos.
 
 # installation 
 install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
-```
-
-```
-## Error in parse(text = input): <text>:3:7: unexpected symbol
-## 2: 
-## 3: Sobre a
-##          ^
 ```
 
 Removendo outliers via boxplot e inspecionando o resultado.
