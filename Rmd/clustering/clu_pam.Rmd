@@ -13,19 +13,19 @@ library(daltoolbox)
 
 Carregando dados (`iris`).
 ```{r}
-# load dataset
+# carregando conjunto de dados
 data(iris)
 ```
 
 Configuração do PAM com k=3.
 ```{r}
-# setup clustering
+# configuração do método de clusterização
 model <- cluster_pam(k=3)
 ```
 
 Ajuste e rotulagem dos clusters.
 ```{r}
-# build model
+# ajuste do modelo e rotulagem
 model <- fit(model, iris[,1:4])
 clu <- cluster(model, iris[,1:4])
 table(clu)
