@@ -19,20 +19,6 @@ Carregando dataset Boston (MASS) e inspecionando tipos.
 # Conjunto de dados para análise de regressão
 
 library(MASS)
-```
-
-```
-## 
-## Attaching package: 'MASS'
-```
-
-```
-## The following object is masked from 'package:dplyr':
-## 
-##     select
-```
-
-``` r
 data(Boston)
 print(t(sapply(Boston, class)))
 ```
