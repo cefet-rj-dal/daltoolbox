@@ -13,6 +13,7 @@ library(dplyr)
 Sobre a técnica
 - `fit_curvature_min`: identifica ponto de joelho (curvatura mínima) em curvas crescentes para trade-off entre custo e benefício acumulado.
 
+Carregando dados de exemplo (PCA no dataset wine) e montando curva de variância acumulada.
 ```{r}
 wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/develop/wine.RData")))
 head(wine)
@@ -24,7 +25,7 @@ The goal is to establish a trade-off.
 
 ```{r}
 pca_res = prcomp(wine[,2:ncol(wine)], center=TRUE, scale.=TRUE)
-y <- cumsum(pca_res$sdev^2/sum(pca_res$sdev^2))
+y <- cumsum(pca_res$sdev^2/sum(pca_res$sdev^2)) # variância acumulada
 x <- 1:length(y)
 ```
 
@@ -46,11 +47,10 @@ It brings a trade-off between having lower x values (with not so high y values) 
 
 ```{r}
 myfit <- fit_curvature_min()
-res <- transform(myfit, y)
+res <- transform(myfit, y)  # retorna índice ótimo (joelho)
 head(res)
 ```
 
 ```{r}
 plot(grf + geom_vline(xintercept = res$x, linetype="dashed", color = "red", size=0.5))
 ```
-

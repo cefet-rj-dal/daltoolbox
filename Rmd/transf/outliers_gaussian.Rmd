@@ -11,6 +11,7 @@ install.packages("daltoolbox")
 library(daltoolbox) 
 ```
 
+Removendo outliers pela regra de 3 sigmas e inspecionando.
 ```{r}
 # Outlier removal using gaussian
 # The following class uses box-plot definition for outliers.
@@ -31,6 +32,7 @@ head(iris.clean)
 nrow(iris.clean)
 ```
 
+Listando observações identificadas como outliers.
 ```{r}
 # Visualizing the actual outliers
 
@@ -39,4 +41,3 @@ print(table(idx))
 iris.outliers <- iris[idx,]
 head(iris.outliers)
 ```
-

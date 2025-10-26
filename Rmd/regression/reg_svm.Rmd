@@ -2,6 +2,7 @@ Sobre o método
 - `reg_svm`: Support Vector Regression (SVR). Modela uma função com margem insensível a erros até `epsilon` e penaliza violações via `cost`.
 - Hiperparâmetros: `epsilon`, `cost` e `kernel` (se aplicável).
 
+Preparação do ambiente.
 ```{r}
 # Regression SVM
 
@@ -12,6 +13,7 @@ install.packages("daltoolbox")
 library(daltoolbox) 
 ```
 
+Carregando dataset Boston (MASS) e inspecionando tipos.
 ```{r}
 # Dataset for regression analysis
 
@@ -21,11 +23,13 @@ print(t(sapply(Boston, class)))
 head(Boston)
 ```
 
+Conversão opcional para matriz.
 ```{r}
 # for performance issues, you can use matrix
 Boston <- as.matrix(Boston)
 ```
 
+Divisão treino/teste aleatória e reprodutível.
 ```{r}
 # preparing dataset for random sampling
 
@@ -36,6 +40,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
+Treinamento do SVR: ajuste de `epsilon` e `cost` (kernel padrão se não definido).
 ```{r}
 # Training
 
@@ -43,6 +48,7 @@ model <- reg_svm("medv", epsilon=0.2,cost=40.000)
 model <- fit(model, boston_train)
 ```
 
+Avaliação no treino.
 ```{r}
 # Model adjustment
 
@@ -52,6 +58,7 @@ train_eval <- evaluate(model, boston_train_predictand, train_prediction)
 print(train_eval$metrics)
 ```
 
+Avaliação no teste.
 ```{r}
 # Test
 
@@ -60,4 +67,3 @@ boston_test_predictand <- boston_test[,"medv"]
 test_eval <- evaluate(model, boston_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
-

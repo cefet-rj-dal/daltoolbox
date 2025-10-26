@@ -1,6 +1,7 @@
 Sobre o gráfico
 - Histograma: distribui observações em bins ao longo do eixo x, útil para visualizar frequência e assimetrias.
 
+Preparação do ambiente gráfico.
 ```{r}
 # installation 
 install.packages("daltoolbox")
@@ -20,6 +21,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Gerando variáveis com distribuições distintas (exponencial, uniforme, normal).
 ```{r}
 # Examples using data distribution
 # The following examples use random variables so that different data distribution can be better viewed.
@@ -36,6 +38,7 @@ head(example)
 Visualize the distribution of a single continuous variable by dividing the x axis into bins and counting the number of observations in each bin. Histograms (geom_histogram()) display the counts with bars.
 More information: ?geom_histogram (R documentation)
 
+Construindo histogramas e organizando múltiplos gráficos lado a lado.
 ```{r}
 library(dplyr)
 

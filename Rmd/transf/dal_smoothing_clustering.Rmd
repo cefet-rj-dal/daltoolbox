@@ -18,11 +18,13 @@ An important part of the discretization/smoothing is to set up bins for proceedi
 
 # general function to evaluate different smoothing technique
 
+Dados de exemplo (`iris`) para ilustrar discretização/suavização por clusters.
 ```{r}
 iris <- datasets::iris
 head(iris)
 ```
 
+Aplicando suavização por clusterização e inspecionando bins.
 ```{r}
 # smoothing using clustering
 obj <- smoothing_cluster(n = 2)  
@@ -32,6 +34,7 @@ print(table(sl.bi))
 obj$interval
 ```
 
+Avaliando entropia condicional entre bins e espécie.
 ```{r}
 entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
 print(entro$entropy)
@@ -39,6 +42,7 @@ print(entro$entropy)
 
 # Optimizing the number of binnings
 
+Otimizando o número de bins (busca em 1:20) e reaplicando o ajuste.
 ```{r}
 opt_obj <- smoothing_cluster(n=1:20)
 obj <- fit(opt_obj, iris$Sepal.Length)

@@ -11,16 +11,19 @@ install.packages("daltoolbox")
 library(daltoolbox) 
 ```
 
+Carregando dados (`iris`).
 ```{r}
 # load dataset
 data(iris)
 ```
 
+Configuração do DBSCAN; ajuste `minPts` (e `eps` se disponível) conforme densidade.
 ```{r}
 # setup clustering
 model <- cluster_dbscan(minPts = 3)
 ```
 
+Ajuste e rótulos de cluster.
 ```{r}
 # build model
 model <- fit(model, iris[,1:4])
@@ -28,9 +31,9 @@ clu <- cluster(model, iris[,1:4])
 table(clu)
 ```
 
+Avaliação externa usando `Species` (atenção: DBSCAN pode marcar ruído).
 ```{r}
 # evaluate model using external metric
 eval <- evaluate(model, clu, iris$Species)
 eval
 ```
-

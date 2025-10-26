@@ -13,6 +13,7 @@ library(daltoolbox)
 ```
 
 # Dataset for regression analysis
+Carrega o dataset Boston e inspeciona tipos/valores.
 
 ```{r}
 library(MASS)
@@ -21,12 +22,14 @@ print(t(sapply(Boston, class)))
 head(Boston)
 ```
 
+Conversão opcional para matriz (pode melhorar desempenho em alguns casos).
 ```{r}
 # for performance issues, you can use matrix
 Boston <- as.matrix(Boston)
 ```
 
 # Building samples (training and testing)
+Divisão treino/teste aleatória e reprodutível.
 
 ```{r}
 # preparing dataset for random sampling
@@ -38,13 +41,15 @@ boston_test <- sr$test
 ```
 
 # Training
+Treinamento do Random Forest para prever `medv`.
 
 ```{r}
-model <- reg_rf("medv", mtry=7,ntree=30)
+model <- reg_rf("medv", mtry=7, ntree=30) # mtry: variáveis por split; ntree: nº de árvores
 model <- fit(model, boston_train)
 ```
 
 # Model adjustment
+Avaliação no treino (métricas de regressão como RMSE/MAE).
 
 ```{r}
 train_prediction <- predict(model, boston_train)
@@ -54,6 +59,7 @@ print(train_eval$metrics)
 ```
 
 # Test
+Avaliação no teste.
 
 ```{r}
 test_prediction <- predict(model, boston_test)

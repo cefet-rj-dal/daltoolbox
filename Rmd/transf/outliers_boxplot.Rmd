@@ -11,6 +11,7 @@ install.packages("daltoolbox")
 library(daltoolbox) 
 ```
 
+Removendo outliers via boxplot e inspecionando o resultado.
 ```{r}
 # Outlier removal using boxplot
 
@@ -32,6 +33,7 @@ head(iris.clean)
 nrow(iris.clean)
 ```
 
+Visualizando quais linhas foram marcadas como outliers.
 ```{r}
 # Visualizing the actual outliers
 
@@ -40,4 +42,3 @@ print(table(idx))
 iris.outliers <- iris[idx,]
 head(iris.outliers)
 ```
-

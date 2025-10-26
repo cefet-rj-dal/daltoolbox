@@ -1,6 +1,7 @@
 Sobre o gráfico
 - Boxplot: resume distribuição por quartis e destaca outliers, comparável entre grupos.
 
+Preparação do ambiente gráfico e paleta.
 ```{r}
 # installation 
 install.packages("daltoolbox")
@@ -20,6 +21,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Dados e construção do boxplot simples e com cores por variável.
 ```{r}
 # iris dataset for the example
 head(iris)
@@ -39,4 +41,3 @@ plot(grf)
 grf <- plot_boxplot(iris, colors=colors[1:4]) + font
 plot(grf)  
 ```
-

@@ -2,6 +2,7 @@ Sobre o utilitário
 - `cla_tune`: realiza busca de hiperparâmetros para um classificador, a partir de faixas definidas em `ranges`.
 - Exemplo abaixo ajusta um `cla_svm` variando `epsilon`, `cost` e `kernel`.
 
+Preparação do ambiente.
 ```{r}
 # Tuning de Classificação 
 
@@ -12,7 +13,7 @@ install.packages("daltoolbox")
 library(daltoolbox) 
 ```
 
-
+Dados de exemplo e níveis do alvo.
 ```{r}
 # Dataset for classification
 
@@ -26,6 +27,7 @@ slevels
 
 # Building samples (training and testing)
 
+Divisão treino/teste aleatória para validação do tuning.
 ```{r}
 # preparing dataset for random sampling
 set.seed(1)
@@ -41,7 +43,7 @@ rownames(tbl) <- c("dataset", "training", "test")
 head(tbl)
 ```
 
-
+Configuração do grid de hiperparâmetros e treinamento com busca.
 ```{r}
 # Training
 tune <- cla_tune(cla_svm("Species", slevels), 
@@ -50,7 +52,7 @@ tune <- cla_tune(cla_svm("Species", slevels),
 model <- fit(tune, iris_train)
 ```
 
-
+Avaliação no treino com o melhor conjunto encontrado.
 ```{r}
 # Model adjustment
 train_prediction <- predict(model, iris_train)
@@ -60,7 +62,7 @@ train_eval <- evaluate(model, iris_train_predictand, train_prediction)
 print(train_eval$metrics)
 ```
 
-
+Avaliação no teste.
 ```{r}
 # Test
 test_prediction <- predict(model, iris_test)
@@ -72,7 +74,7 @@ test_eval <- evaluate(model, iris_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
 
-
+Outros grids de exemplo por modelo.
 ```{r}
 # Options for other models
 # knn
@@ -84,4 +86,3 @@ ranges <- list(size=1:10, decay=seq(0, 1, 0.1))
 # rf
 ranges <- list(mtry=1:3, ntree=1:10)
 ```
-

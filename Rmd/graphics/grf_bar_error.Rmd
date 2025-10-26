@@ -9,6 +9,7 @@ library(daltoolbox)
 Sobre o gráfico
 - Barras com barra de erro: adiciona incerteza/variabilidade (p.ex., desvio padrão) às barras, usando `geom_errorbar()`.
 
+Preparação do ambiente gráfico.
 ```{r}
 library(ggplot2)
 library(RColorBrewer)
@@ -20,6 +21,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Dados agregados: média e desvio padrão por espécie.
 ```{r}
 # iris dataset for the example
 head(iris)
@@ -32,6 +34,7 @@ head(data)
 ```
 
 
+Construindo barras e adicionando `geom_errorbar`.
 ```{r}
 # Bar graph with error bars
 # When bar graphs present an average behavior, it is possible to plot a dispersion around it using an error bar.
@@ -42,4 +45,3 @@ grf <- grf + geom_errorbar(aes(x=Species, ymin=mean-sd, ymax=mean+sd),
                            width=0.2, colour="darkred", alpha=0.8, size=1.1) 
 plot(grf)
 ```
-

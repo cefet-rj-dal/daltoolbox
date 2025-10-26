@@ -1,6 +1,7 @@
 Sobre a amostragem
 - `sample_stratified`: separa treino/teste e folds preservando a proporção da variável alvo (estratificação) por categoria.
 
+Preparação do ambiente.
 ```{r}
 # Stratified sampling dataset
 
@@ -11,12 +12,14 @@ install.packages("daltoolbox")
 library(daltoolbox) 
 ```
 
+Carregando dataset e visualizando distribuição de classes.
 ```{r}
 iris <- datasets::iris
 head(iris)
 table(iris$Species)
 ```
 
+Divisão estratificada em treino/teste preservando proporções de `Species`.
 ```{r}
 # Dividing a dataset with training and test
 
@@ -30,6 +33,7 @@ print(table(tt$train$Species))
 print(table(tt$test$Species))
 ```
 
+Criação de folds estratificados e verificação de distribuição.
 ```{r}
 # Dividing a dataset into folds
 
@@ -45,4 +49,3 @@ tbl <- rbind(tbl, table(f$Species))
 }
 print(tbl)
 ```
-

@@ -1,6 +1,7 @@
 Sobre o gráfico
 - Dispersão (scatter): avalia relação entre duas variáveis numéricas, com possibilidade de colorir por grupo/categoria.
 
+Preparação do ambiente gráfico e paleta de cores.
 ```{r}
 # installation 
 install.packages("daltoolbox")
@@ -20,11 +21,13 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Dados de exemplo (iris) para o gráfico.
 ```{r}
 # iris dataset for the example
 head(iris)
 ```
 
+Construindo gráfico de dispersão: selecione e renomeie colunas para `x`, `value` (y) e `variable` (cor).
 ```{r}
 # Scatter plot
 
@@ -36,8 +39,11 @@ head(iris)
 
 library(dplyr)
 
-grf <- plot_scatter(iris |> dplyr::select(x = Sepal.Length, value = Sepal.Width, variable = Species), 
-                    label_x = "Sepal.Length", label_y = "Sepal.Width", colors=colors[1:3]) + font
+grf <- plot_scatter(
+  iris |> dplyr::select(x = Sepal.Length, value = Sepal.Width, variable = Species),
+  label_x = "Sepal.Length",  # rótulo do eixo X
+  label_y = "Sepal.Width",   # rótulo do eixo Y
+  colors=colors[1:3]          # um color para cada nível de Species
+) + font
 plot(grf)
 ```
-

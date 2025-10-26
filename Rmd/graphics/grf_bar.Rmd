@@ -1,6 +1,7 @@
 Sobre o gráfico
 - Barras (bar): compara valores agregados por categorias. Útil para médias, contagens e totais por grupo.
 
+Preparação do ambiente gráfico e paleta de cores.
 ```{r}
 # installation 
 install.packages("daltoolbox")
@@ -19,6 +20,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Dados de exemplo agregados por `Species`.
 ```{r}
 # iris dataset for the example
 head(iris)
@@ -30,6 +32,7 @@ data <- iris |> group_by(Species) |> summarize(Sepal.Length=mean(Sepal.Length))
 head(data)
 ```
 
+Gráfico de barras básico e variação com barras verticais.
 ```{r}
 # Bar graph
 
@@ -47,9 +50,9 @@ grf <- grf + coord_flip()
 plot(grf)
 ```
 
+Colorindo cada barra por espécie.
 ```{r}
 # Bar graph with one color for each species
 grf <- plot_bar(data, colors=colors[1:3]) + font
 plot(grf)
 ```
-

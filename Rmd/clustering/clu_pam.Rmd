@@ -11,16 +11,19 @@ install.packages("daltoolbox")
 library(daltoolbox) 
 ```
 
+Carregando dados (`iris`).
 ```{r}
 # load dataset
 data(iris)
 ```
 
+Configuração do PAM com k=3.
 ```{r}
 # setup clustering
 model <- cluster_pam(k=3)
 ```
 
+Ajuste e rotulagem dos clusters.
 ```{r}
 # build model
 model <- fit(model, iris[,1:4])
@@ -28,9 +31,9 @@ clu <- cluster(model, iris[,1:4])
 table(clu)
 ```
 
+Avaliação externa usando `Species`.
 ```{r}
 # evaluate model using external metric
 eval <- evaluate(model, clu, iris$Species)
 eval
 ```
-

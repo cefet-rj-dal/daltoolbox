@@ -1,6 +1,7 @@
 Sobre o gráfico
 - Barras agrupadas: compara múltiplas medidas por categoria, exibindo barras lado a lado.
 
+Preparação do ambiente gráfico.
 ```{r}
 # installation 
 install.packages("daltoolbox")
@@ -20,6 +21,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Dados agregados por espécie para duas métricas.
 ```{r}
 # iris dataset for the example
 head(iris)
@@ -32,6 +34,7 @@ data <- iris |> group_by(Species) |> summarize(Sepal.Length=mean(Sepal.Length), 
 head(data)
 ```
 
+Construindo gráfico de barras agrupadas.
 ```{r}
 # Grouped barbar
 
@@ -44,4 +47,3 @@ head(data)
 grf <- plot_groupedbar(data, colors=colors[1:2]) + font
 plot(grf)
 ```
-

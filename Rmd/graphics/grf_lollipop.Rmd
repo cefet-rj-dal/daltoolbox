@@ -1,6 +1,7 @@
 Sobre o gráfico
 - Lollipop: alternativa às barras, enfatiza valores com marcador e haste; visual mais leve para comparações.
 
+Preparação do ambiente gráfico.
 ```{r}
 # installation 
 install.packages("daltoolbox")
@@ -20,6 +21,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Dados agregados por espécie e construção do gráfico.
 ```{r}
 # iris dataset for the example
 head(iris)
@@ -45,4 +47,3 @@ plot(grf)
 grf <- plot_lollipop(data, colors=colors[1], max_value_gap=0.1) + font + coord_flip() 
 plot(grf)
 ```
-

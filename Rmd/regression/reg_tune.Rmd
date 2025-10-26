@@ -2,6 +2,7 @@ Sobre o utilitário
 - `reg_tune`: busca de hiperparâmetros para modelos de regressão conforme faixas em `ranges`.
 - Exemplo: ajuste de `reg_svm` variando `epsilon`, `cost` e `kernel`.
 
+Preparação do ambiente.
 ```{r}
 # Tuning de Regressão 
 
@@ -12,6 +13,7 @@ install.packages("daltoolbox")
 library(daltoolbox) 
 ```
 
+Carregando dataset e inspeção.
 ```{r}
 # Dataset for regression analysis
 
@@ -21,11 +23,13 @@ print(t(sapply(Boston, class)))
 head(Boston)
 ```
 
+Conversão opcional para matriz.
 ```{r}
 # for performance issues, you can use matrix
 Boston <- as.matrix(Boston)
 ```
 
+Divisão treino/teste para validação do tuning.
 ```{r}
 # preparing dataset for random sampling
 set.seed(1)
@@ -35,6 +39,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
+Configuração do grid de hiperparâmetros e treinamento com busca.
 ```{r}
 # Training
 
@@ -43,6 +48,7 @@ tune <- reg_tune(reg_svm("medv"),
 model <- fit(tune, boston_train)
 ```
 
+Avaliação no treino com melhores hiperparâmetros encontrados.
 ```{r}
 # Model adjustment
 
@@ -52,6 +58,7 @@ train_eval <- evaluate(model, boston_train_predictand, train_prediction)
 print(train_eval$metrics)
 ```
 
+Avaliação no teste.
 ```{r}
 # Test
 
@@ -61,6 +68,7 @@ test_eval <- evaluate(model, boston_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
 
+Exemplos de grids para outros modelos.
 ```{r}
 # Options for other models
 
@@ -76,4 +84,3 @@ ranges <- list(size=1:10, decay=seq(0, 1, 0.1))
 # rf
 ranges <- list(mtry=1:10, ntree=1:10)
 ```
-

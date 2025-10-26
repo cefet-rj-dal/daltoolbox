@@ -1,6 +1,7 @@
 Sobre o recurso
 - Salvamento de gráfico: exemplo de exportação com `ggsave()` para PDF, controlando dimensões e unidades.
 
+Preparação do ambiente gráfico.
 ```{r}
 # installation 
 install.packages("daltoolbox")
@@ -20,6 +21,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Série sintética e gráfico a exportar.
 ```{r}
 # Synthetic time series
 
@@ -41,7 +43,7 @@ grf <- plot_series(serie, colors=colors[1:2]) + font
 plot(grf)
 ```
 
+Exportando para PDF com `ggsave`.
 ```{r}
 ggsave("series.pdf", width = 5, height = 4, units = "cm")
 ```
-

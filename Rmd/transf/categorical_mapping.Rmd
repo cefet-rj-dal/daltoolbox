@@ -14,6 +14,7 @@ install.packages("daltoolbox")
 library(daltoolbox)
 ```
 
+Aplicando mapeamento one-hot para a coluna `Species` em um data frame.
 ```{r}
 # dataset for example 
 
@@ -29,6 +30,7 @@ iris_cm <- transform(cm, iris)
 print(head(iris_cm))
 ```
 
+Aplicando o mesmo mapeamento para um data frame com única coluna categórica.
 ```{r}
 # creating categorical mapping
 # Can be made from a single column, but needs to be a data frame
@@ -41,4 +43,3 @@ head(diris)
 iris_cm <- transform(cm, diris)
 print(head(iris_cm))
 ```
-

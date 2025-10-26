@@ -1,6 +1,7 @@
 Sobre a transformação
 - `zscore`: padroniza atributos numéricos para média 0 e desvio padrão 1 (ou outros alvos, via `nmean` e `nsd`).
 
+Preparação do ambiente.
 ```{r}
 # installation 
 install.packages("daltoolbox")
@@ -9,6 +10,7 @@ install.packages("daltoolbox")
 library(daltoolbox) 
 ```
 
+Contexto e dados de exemplo (iris).
 ```{r}
 # Normalization
 
@@ -22,6 +24,7 @@ iris <- datasets::iris
 summary(iris)
 ```
 
+Aplicando Z-Score padrão (m=0, sd=1) e desnormalizando.
 ```{r}
 # Z-Score
 
@@ -36,6 +39,7 @@ ddata <- inverse_transform(norm, ndata)
 summary(ddata)
 ```
 
+Padronização para média e desvio alvo customizados.
 ```{r}
 norm <- zscore(nmean=0.5, nsd=0.5/2.698)
 norm <- fit(norm, iris)
@@ -43,8 +47,8 @@ ndata <- transform(norm, iris)
 summary(ndata)
 ```
 
+Reversão para checagem.
 ```{r}
 ddata <- inverse_transform(norm, ndata)
 summary(ddata)
 ```
-

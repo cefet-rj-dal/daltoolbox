@@ -1,6 +1,7 @@
 Sobre o gráfico
 - Radar: exibe múltiplas variáveis numéricas em eixos radiais a partir de uma origem comum; útil para perfis comparativos.
 
+Preparação do ambiente gráfico.
 ```{r}
 # installation 
 install.packages("daltoolbox")
@@ -20,6 +21,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Média por variável numérica e montagem do formato requerido para radar.
 ```{r}
 # iris dataset for the example
 head(iris)
@@ -47,4 +49,3 @@ grf <- plot_radar(data, colors=colors[1]) + font
 grf <- grf + ylim(0, NA)
 plot(grf)
 ```
-

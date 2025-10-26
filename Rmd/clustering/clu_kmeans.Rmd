@@ -12,16 +12,19 @@ install.packages("daltoolbox")
 library(daltoolbox)  
 ```
 
+Carregando dados de exemplo (`iris`).
 ```{r}
 # load dataset
 data(iris)
 ```
 
+Configuração do K-means com k=3 (uma classe por espécie em iris).
 ```{r}
 # setup clustering
 model <- cluster_kmeans(k=3)
 ```
 
+Ajuste do modelo e obtenção dos rótulos de cluster.
 ```{r}
 # build model
 model <- fit(model, iris[,1:4])
@@ -29,6 +32,7 @@ clu <- cluster(model, iris[,1:4])
 table(clu)
 ```
 
+Avaliação externa usando os rótulos verdadeiros (`Species`).
 ```{r}
 # evaluate model using external metric
 eval <- evaluate(model, clu, iris$Species)
@@ -36,6 +40,7 @@ eval
 ```
 
 
+Influência da normalização: comparar resultados após min-max.
 ```{r}
 # Influence of normalization in clustering
 
@@ -45,10 +50,10 @@ clu <- cluster(model, iris_minmax[,1:4])
 table(clu)
 ```
 
+Reavaliação com dados normalizados.
 ```{r}
 # evaluate model using external metric
 
 eval <- evaluate(model, clu, iris_minmax$Species)
 eval
 ```
-

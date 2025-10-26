@@ -1,6 +1,7 @@
 Sobre o gráfico
 - Série temporal simples: visualização exploratória de um vetor temporal com eixo x ordenado e valores y.
 
+Preparação do ambiente gráfico.
 ```{r}
 # installation 
 install.packages("daltoolbox")
@@ -20,6 +21,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
+Série sintética (seno) para exemplo e plot com `plot_ts`.
 ```{r}
 # Synthetic time series
 
@@ -35,4 +37,3 @@ y <- sin(x)
 grf <- plot_ts(x = x, y = y, color=c("red"))
 plot(grf)
 ```
-
