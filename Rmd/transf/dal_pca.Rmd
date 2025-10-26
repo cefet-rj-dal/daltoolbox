@@ -27,7 +27,7 @@ mypca <- fit(mypca, datasets::iris)
 iris.pca <- transform(mypca, iris)
 ```
 
-# Properties of PCA
+# Propriedades da PCA
 
 ```{r}
 print(head(iris.pca))
@@ -36,7 +36,7 @@ print(head(mypca$pca.transf))
 
 Definindo manualmente o número de componentes e repetindo a transformação.
 ```{r}
-# Manual establishment of number of components
+# Definição manual do número de componentes
 mypca <- dt_pca("Species", 3)
 mypca <- fit(mypca, datasets::iris)
 iris.pca <- transform(mypca, iris)
