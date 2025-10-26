@@ -14,19 +14,19 @@ library(daltoolbox)
 
 Carregando dados de exemplo (`iris`).
 ```{r}
-# load dataset
+# carregando conjunto de dados
 data(iris)
 ```
 
 Configuração do K-means com k=3 (uma classe por espécie em iris).
 ```{r}
-# setup clustering
+# configuração do método de clusterização
 model <- cluster_kmeans(k=3)
 ```
 
 Ajuste do modelo e obtenção dos rótulos de cluster.
 ```{r}
-# build model
+# ajuste do modelo e rotulagem
 model <- fit(model, iris[,1:4])
 clu <- cluster(model, iris[,1:4])
 table(clu)
