@@ -20,8 +20,8 @@ library(ggplot2)
 font <- theme(text = element_text(size=16))
 ```
 
-# Examples using data distribution
-The following examples use random variables so that different data distribution can be better viewed.
+# Exemplos com distribuições distintas
+Os exemplos a seguir usam variáveis aleatórias para facilitar a visualização de diferentes distribuições.
 
 Gerando variáveis de exemplo com diferentes distribuições.
 ```{r}
@@ -32,11 +32,11 @@ example <- data.frame(exponential = rexp(100000, rate = 1),
 head(example)
 ```
 
-# Density plot
+# Gráfico de densidade
 
-Computes and draws kernel density estimate, which is a smoothed version of the histogram. This is a useful alternative to the histogram for continuous data that comes from an underlying smooth distribution.
+Desenha a estimativa de densidade via kernel, uma versão suavizada do histograma. Útil como alternativa para dados contínuos.
 
-More information: ?geom_density (R documentation)
+Mais informações: ?geom_density (documentação do R)
 
 Construindo densidades e arranjando gráficos individuais em grade.
 ```{r}
@@ -45,9 +45,9 @@ grf <- plot_density(example, colors=colors[1:3]) + font
 plot(grf)
 ```
 
-# Arrangement of graphs
+# Arranjo de gráficos
 
-Function $grid.arrange$ is used to position previously computed charts
+A função `grid.arrange` pode dispor múltiplos gráficos previamente criados.
 
 ```{r}
 library(dplyr)

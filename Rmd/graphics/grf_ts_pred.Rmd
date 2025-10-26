@@ -38,9 +38,9 @@ prediction <- sin(x[36:41])
 
 Plotando série com ajuste e previsão.
 ```{r}
-# Series plot with predictions
+# Série temporal com previsão
 
-# A time series ploting with model adjustment and prediction values. 
+# Gráfico com valores observados, ajuste do modelo e valores previstos. 
 
 plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction)
 ```

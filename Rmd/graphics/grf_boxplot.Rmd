@@ -23,15 +23,15 @@ font <- theme(text = element_text(size=16))
 
 Dados e construção do boxplot simples e com cores por variável.
 ```{r}
-# iris dataset for the example
+# conjunto de dados iris para o exemplo
 head(iris)
 ```
 
 ```{r}
-# Box-plot
-# In descriptive statistics, a box plot is a method for graphically depicting groups of numerical data through their quartiles. Box plots may also have lines extending from the boxes (whiskers), indicating variability outside the upper and lower quartiles (outliers). 
+# Boxplot
+# Representa a distribuição por quartis; os “bigodes” indicam variabilidade fora dos quartis (e ajudam a identificar outliers).
 
-# More information: https://en.wikipedia.org/wiki/Box_plot
+# Mais informações: https://en.wikipedia.org/wiki/Box_plot
 
 grf <- plot_boxplot(iris, colors="white") + font
 plot(grf)  

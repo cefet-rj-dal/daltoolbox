@@ -11,7 +11,7 @@ library(dplyr)
 ```
 
 Sobre a técnica
-- `fit_curvature_min`: identifica ponto de joelho (curvatura mínima) em curvas crescentes para trade-off entre custo e benefício acumulado.
+- `fit_curvature_min`: calcula a curvatura pela segunda derivada de um spline suavizado sobre a sequência e retorna a posição de curvatura mínima em curvas crescentes; útil para achar um ponto de compromisso onde ganhos adicionais tornam-se marginais.
 
 Carregando dados de exemplo (PCA no dataset wine) e montando curva de variância acumulada.
 ```{r}
@@ -19,9 +19,9 @@ wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/
 head(wine)
 ```
 
-# Example: PCA components
-Cummulative variance of PCA: First dimensions have high variance. However, adding more dimensions does not bring much benefit in terms of cummulative variance. 
-The goal is to establish a trade-off.
+# Exemplo: componentes da PCA
+Variância acumulada da PCA: as primeiras dimensões concentram alta variância; adicionar muitas dimensões traz ganhos marginais. 
+O objetivo é estabelecer um ponto de compromisso (trade-off).
 
 ```{r}
 pca_res = prcomp(wine[,2:ncol(wine)], center=TRUE, scale.=TRUE)

@@ -12,7 +12,7 @@ install.packages("daltoolbox")
 library(daltoolbox) 
 ```
 
-# Dataset for regression analysis
+# Conjunto de dados para análise de regressão
 Carrega o dataset Boston e inspeciona tipos/valores.
 
 ```{r}
@@ -24,15 +24,15 @@ head(Boston)
 
 Conversão opcional para matriz (pode melhorar desempenho em alguns casos).
 ```{r}
-# for performance issues, you can use matrix
+# por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 
-# Building samples (training and testing)
+# Particionamento em treino e teste
 Divisão treino/teste aleatória e reprodutível.
 
 ```{r}
-# preparing dataset for random sampling
+# preparando amostragem aleatória
 set.seed(1)
 sr <- sample_random()
 sr <- train_test(sr, Boston)

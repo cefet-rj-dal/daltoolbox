@@ -15,7 +15,7 @@ library(daltoolbox)
 
 Carregando dataset e inspeção.
 ```{r}
-# Dataset for regression analysis
+# Conjunto de dados para análise de regressão
 
 library(MASS)
 data(Boston)
@@ -25,7 +25,7 @@ head(Boston)
 
 Conversão opcional para matriz.
 ```{r}
-# for performance issues, you can use matrix
+# por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 

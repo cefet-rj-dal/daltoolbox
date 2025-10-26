@@ -18,7 +18,7 @@ head(iris)
 ```
 
 # PCA
-PCA is a technique that finds a projection that captures the largest amount of variation in data. A seguir, aplicamos PCA e transformamos o dataset.
+A PCA encontra uma projeção que captura a maior variação possível nos dados. A seguir, aplicamos PCA e transformamos o conjunto de dados.
 
 ```{r}
 # cria e ajusta PCA usando a coluna alvo para referência

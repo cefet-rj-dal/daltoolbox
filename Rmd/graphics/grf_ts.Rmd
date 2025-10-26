@@ -30,9 +30,9 @@ y <- sin(x)
 ```
 
 ```{r}
-# ts plot
+# Gráfico de série temporal
 
-# A time series plot during exploratory analysis
+# Visualização exploratória básica de uma série temporal
 
 grf <- plot_ts(x = x, y = y, color=c("red"))
 plot(grf)

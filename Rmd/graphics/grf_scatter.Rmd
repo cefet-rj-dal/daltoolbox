@@ -23,19 +23,21 @@ font <- theme(text = element_text(size=16))
 
 Dados de exemplo (iris) para o gráfico.
 ```{r}
-# iris dataset for the example
+# conjunto de dados iris para o exemplo
 head(iris)
 ```
 
 Construindo gráfico de dispersão: selecione e renomeie colunas para `x`, `value` (y) e `variable` (cor).
 ```{r}
-# Scatter plot
+# Gráfico de dispersão
 
-# A Scatter plot is used to display values for the typical relationship between independent and dependent variables. The first column of the dataset is the independent variable, whereas the following variables are the dependent ones. 
+# Usado para visualizar a relação entre duas variáveis numéricas.
+# A primeira coluna do conjunto é tratada como variável no eixo X (independente) e a segunda no eixo Y (dependente);
+# pode-se usar uma terceira variável categórica para colorir os pontos.
 
-# The colors vectors should have the same size as the number of dependent columns. 
+# O vetor de cores deve ter o mesmo tamanho do número de níveis/grupos.
 
-# More information: https://en.wikipedia.org/wiki/Scatter_plot
+# Mais informações: https://en.wikipedia.org/wiki/Scatter_plot
 
 library(dplyr)
 
