@@ -1,6 +1,6 @@
 #'@title Outlier removal by boxplot (IQR rule)
 #'@description Removes outliers from numeric columns using Tukey's boxplot rule:
-#' values below Q1 − alpha·IQR or above Q3 + alpha·IQR are flagged as outliers.
+#' values below Q1 - alpha·IQR or above Q3 + alpha·IQR are flagged as outliers.
 #'@details The default `alpha=1.5` corresponds to the standard boxplot whiskers; `alpha=3` is used for extreme outliers.
 #'@param alpha boxplot outlier threshold (default 1.5, but can be 3.0 to remove extreme values)
 #'@return returns an outlier object

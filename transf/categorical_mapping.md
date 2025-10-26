@@ -1,5 +1,5 @@
 Sobre a transformação
-- `categ_mapping`: converte uma coluna categórica em variáveis binárias (one‑hot). Pode usar codificação com n colunas ou n−1 colunas.
+- `categ_mapping`: converte uma coluna categórica em variáveis binárias (one‑hot). Pode usar codificação com n colunas ou n-1 colunas.
 
 
 ``` r

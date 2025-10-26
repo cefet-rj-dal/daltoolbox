@@ -1,5 +1,5 @@
 Sobre a transformação
-- `outliers_boxplot`: identifica outliers por regra do boxplot (Q1 − 1.5·IQR, Q3 + 1.5·IQR) e pode removê-los de atributos numéricos.
+- `outliers_boxplot`: identifica outliers por regra do boxplot (Q1 - 1.5·IQR, Q3 + 1.5·IQR) e pode removê-los de atributos numéricos.
 
 ```{r}
 # NA and Outlier analysis

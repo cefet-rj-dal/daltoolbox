@@ -14,7 +14,7 @@ library(dplyr)
 Sobre a técnica
 - `fit_curvature_max`: calcula a curvatura pela segunda derivada de um spline suavizado e retorna a posição de curvatura máxima em curvas decrescentes; útil para escolher um ponto de compromisso onde reduções adicionais trazem pouco benefício.
 
-Exemplo sintético de curva decrescente (−log) para ilustrar o ponto de curvatura máxima.
+Exemplo sintético de curva decrescente (-log) para ilustrar o ponto de curvatura máxima.
 
 
 ``` r

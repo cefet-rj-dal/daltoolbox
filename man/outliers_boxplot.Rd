@@ -14,7 +14,7 @@ returns an outlier object
 }
 \description{
 Removes outliers from numeric columns using Tukey's boxplot rule:
-values below Q1 − alpha·IQR or above Q3 + alpha·IQR are flagged as outliers.
+values below Q1 - alpha·IQR or above Q3 + alpha·IQR are flagged as outliers.
 }
 \details{
 The default \code{alpha=1.5} corresponds to the standard boxplot whiskers; \code{alpha=3} is used for extreme outliers.
