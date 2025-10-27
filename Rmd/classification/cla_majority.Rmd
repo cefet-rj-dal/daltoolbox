@@ -1,31 +1,32 @@
-Sobre o método
-- `cla_majority`: classificador de base (baseline) que sempre prevê a classe mais frequente observada no treinamento. Útil como referência mínima de desempenho.
+About the method
+- `cla_majority`: baseline classifier that always predicts the most frequent class observed during training. Useful as a minimum performance reference.
 
-Preparação do ambiente.
+Environment setup.
 ```{r}
 # Classification using Majority class
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dados e inspeção.
+Load data and inspect.
 ```{r}
 iris <- datasets::iris
 head(iris)
 ```
 
-Níveis do alvo `Species`.
+Target `Species` levels.
 ```{r}
 # extracting the levels for the dataset
 slevels <- levels(iris$Species)
 slevels
 ```
 
-Divisão treino/teste aleatória.
+# Building train and test samples via random sampling
+Random train/test split.
 ```{r}
 # Construindo amostras (treino e teste) por amostragem aleatória
 set.seed(1)
@@ -35,7 +36,7 @@ iris_train <- sr$train
 iris_test <- sr$test
 ```
 
-Distribuição de classes por partição.
+Class distribution by split.
 ```{r}
 
 tbl <- rbind(table(iris[,"Species"]), 
@@ -45,7 +46,8 @@ rownames(tbl) <- c("dataset", "training", "test")
 head(tbl)
 ```
 
-Treinamento (estimativa da classe majoritária) e ajuste.
+# Model training
+Fit the majority class estimate and adjust.
 ```{r}
 # Treinamento do modelo
 model <- cla_majority("Species", slevels)
@@ -53,7 +55,7 @@ model <- fit(model, iris_train)
 
 ```
 
-Avaliação no treino.
+# Training evaluation
 ```{r}
 # Verificando ajuste no treino
 train_prediction <- predict(model, iris_train)
@@ -64,7 +66,7 @@ train_eval <- evaluate(model, iris_train_predictand, train_prediction)
 print(train_eval$metrics)
 ```
 
-Avaliação no teste.
+# Test evaluation
 ```{r}
 # Teste do modelo
 test_prediction <- predict(model, iris_test)

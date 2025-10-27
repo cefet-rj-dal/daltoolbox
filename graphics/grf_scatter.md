@@ -1,11 +1,11 @@
-Sobre o gráfico
-- Dispersão (scatter): avalia relação entre duas variáveis numéricas, com possibilidade de colorir por grupo/categoria.
+About the chart
+- Scatter: assesses the relationship between two numeric variables, with optional coloring by group/category.
 
-Preparação do ambiente gráfico e paleta de cores.
+Graphics environment setup and color palette.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -23,7 +23,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-Dados de exemplo (iris) para o gráfico.
+Sample data (iris) for the chart.
 
 ``` r
 # conjunto de dados iris para o exemplo
@@ -40,26 +40,26 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-Construindo gráfico de dispersão: selecione e renomeie colunas para `x`, `value` (y) e `variable` (cor).
+Build a scatter plot: select and rename columns to `x`, `value` (y), and `variable` (color).
 
 ``` r
-# Gráfico de dispersão
+# Scatter plot
 
-# Usado para visualizar a relação entre duas variáveis numéricas.
-# A primeira coluna do conjunto é tratada como variável no eixo X (independente) e a segunda no eixo Y (dependente);
-# pode-se usar uma terceira variável categórica para colorir os pontos.
+# Used to visualize the relationship between two numeric variables.
+# The first selected column is treated as X (independent) and the second as Y (dependent);
+# a third categorical variable can color the points.
 
-# O vetor de cores deve ter o mesmo tamanho do número de níveis/grupos.
+# The color vector must match the number of levels/groups.
 
-# Mais informações: https://en.wikipedia.org/wiki/Scatter_plot
+# More info: https://en.wikipedia.org/wiki/Scatter_plot
 
 library(dplyr)
 
 grf <- plot_scatter(
   iris |> dplyr::select(x = Sepal.Length, value = Sepal.Width, variable = Species),
-  label_x = "Sepal.Length",  # rótulo do eixo X
-  label_y = "Sepal.Width",   # rótulo do eixo Y
-  colors=colors[1:3]          # um color para cada nível de Species
+  label_x = "Sepal.Length",  # X-axis label
+  label_y = "Sepal.Width",   # Y-axis label
+  colors=colors[1:3]          # one color per Species level
 ) + font
 plot(grf)
 ```

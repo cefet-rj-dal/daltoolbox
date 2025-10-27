@@ -1,19 +1,19 @@
-Sobre a amostragem
-- `sample_stratified`: separa treino/teste e folds preservando a proporção da variável alvo (estratificação) por categoria.
+About sampling
+- `sample_stratified`: splits train/test and folds preserving the target variable proportion (stratification) per category.
 
-Preparação do ambiente.
+Environment setup.
 
 ``` r
 # Stratified sampling dataset
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dataset e visualizando distribuição de classes.
+Load dataset and view class distribution.
 
 ``` r
 iris <- datasets::iris
@@ -40,15 +40,15 @@ table(iris$Species)
 ##         50         50         50
 ```
 
-Divisão estratificada em treino/teste preservando proporções de `Species`.
+Stratified train/test split preserving `Species` proportions.
 
 ``` r
-# Dividindo em treino e teste
+# Split into train and test
 
-# usando amostragem estratificada
+# using stratified sampling
 tt <- train_test(sample_stratified("Species"), iris)
 
-# distribuição do treino
+# training distribution
 print(table(tt$train$Species))
 ```
 
@@ -59,7 +59,7 @@ print(table(tt$train$Species))
 ```
 
 ``` r
-# distribuição do teste
+# test distribution
 print(table(tt$test$Species))
 ```
 
@@ -69,17 +69,17 @@ print(table(tt$test$Species))
 ##         10         10         10
 ```
 
-Criação de folds estratificados e verificação de distribuição.
+Create stratified folds and check distribution.
 
 ``` r
-# Dividindo o conjunto em folds
+# Split the dataset into folds
 
-# usando amostragem estratificada
-# preparando o conjunto em quatro folds
+# using stratified sampling
+# preparing the dataset into four folds
 sample <- sample_stratified("Species")
 folds <- k_fold(sample, iris, 4)
 
-# distribuição dos folds
+# folds distribution
 tbl <- NULL
 for (f in folds) {
 tbl <- rbind(tbl, table(f$Species))

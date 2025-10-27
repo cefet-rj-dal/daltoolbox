@@ -1,11 +1,11 @@
-Sobre o gráfico
-- Densidade (kernel density): versão suavizada do histograma para variáveis contínuas; evidencia formas da distribuição.
+About the chart
+- Density (kernel density): smoothed version of the histogram for continuous variables; highlights distribution shapes.
 
-Preparação do ambiente gráfico.
+Graphics environment setup.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -22,10 +22,10 @@ library(ggplot2)
 font <- theme(text = element_text(size=16))
 ```
 
-# Exemplos com distribuições distintas
-Os exemplos a seguir usam variáveis aleatórias para facilitar a visualização de diferentes distribuições.
+Examples with distinct distributions
+The following use random variables to visualize different distributions.
 
-Gerando variáveis de exemplo com diferentes distribuições.
+Generate example variables with different distributions.
 
 ``` r
 # example4: dataset to be plotted  
@@ -45,13 +45,13 @@ head(example)
 ## 6   2.2377570 2.722793 5.408614
 ```
 
-# Gráfico de densidade
+# Density plot
 
-Desenha a estimativa de densidade via kernel, uma versão suavizada do histograma. Útil como alternativa para dados contínuos.
+Draws a kernel density estimate, a smoothed alternative to the histogram for continuous data.
 
-Mais informações: ?geom_density (documentação do R)
+More info: ?geom_density (R documentation)
 
-Construindo densidades e arranjando gráficos individuais em grade.
+Build densities and arrange individual charts in a grid.
 
 ``` r
 options(repr.plot.width=8, repr.plot.height=5)
@@ -68,9 +68,9 @@ plot(grf)
 
 ![plot of chunk unnamed-chunk-4](fig/grf_density/unnamed-chunk-4-1.png)
 
-# Arranjo de gráficos
+# Chart arrangement
 
-A função `grid.arrange` pode dispor múltiplos gráficos previamente criados.
+The `grid.arrange` function can arrange multiple previously created charts.
 
 
 ``` r
@@ -104,6 +104,24 @@ grfn <- plot_density(example |> dplyr::select(normal),
 
 ``` r
 library(gridExtra)  
+```
+
+```
+## Warning: pacote 'gridExtra' foi compilado no R versão 4.5.1
+```
+
+```
+## 
+## Anexando pacote: 'gridExtra'
+```
+
+```
+## O seguinte objeto é mascarado por 'package:dplyr':
+## 
+##     combine
+```
+
+``` r
 options(repr.plot.width=15, repr.plot.height=4)
 grid.arrange(grfe, grfu, grfn, ncol=3)
 ```

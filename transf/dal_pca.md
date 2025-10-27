@@ -1,17 +1,17 @@
-Sobre a transformação
-- `dt_pca`: Análise de Componentes Principais (PCA) para projetar dados em componentes ortogonais de maior variância. Permite definir o número de componentes.
+About the transformation
+- `dt_pca`: Principal Component Analysis (PCA) to project data onto orthogonal components with highest variance. Allows defining the number of components.
 
-Preparação do ambiente.
+Environment setup.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dados e ideia do PCA.
+Load data and PCA idea.
 
 ``` r
 # Dataset for example
@@ -30,7 +30,7 @@ head(iris)
 ```
 
 # PCA
-A PCA encontra uma projeção que captura a maior variação possível nos dados. A seguir, aplicamos PCA e transformamos o conjunto de dados.
+PCA finds a projection capturing the largest possible variance in the data. Below, we fit PCA and transform the dataset.
 
 
 ``` r
@@ -40,7 +40,7 @@ mypca <- fit(mypca, datasets::iris)
 iris.pca <- transform(mypca, iris)
 ```
 
-# Propriedades da PCA
+# PCA properties
 
 
 ``` r
@@ -69,7 +69,7 @@ print(head(mypca$pca.transf))
 ## Petal.Width   0.5648565 -0.06694199
 ```
 
-Definindo manualmente o número de componentes e repetindo a transformação.
+Manually set the number of components and repeat the transformation.
 
 ``` r
 # Definição manual do número de componentes

@@ -1,19 +1,19 @@
-Sobre o método
-- `reg_mlp`: Multilayer Perceptron (rede neural) para regressão.
-- Hiperparâmetros: `size` (unidades na camada oculta), `decay` (regularização L2).
+About the method
+- `reg_mlp`: Multilayer Perceptron (neural network) for regression.
+- Hyperparameters: `size` (hidden units), `decay` (L2 regularization).
 
-Preparação do ambiente.
+Environment setup.
 ```{r}
 # Regression MLP
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dataset Boston (MASS) e inspecionando tipos.
+Load Boston dataset (MASS) and inspect types.
 ```{r}
 # Conjunto de dados para análise de regressão
 
@@ -23,13 +23,13 @@ print(t(sapply(Boston, class)))
 head(Boston)
 ```
 
-Conversão opcional para matriz.
+Optional conversion to matrix.
 ```{r}
 # por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 
-Divisão treino/teste aleatória e reprodutível.
+Random and reproducible train/test split.
 ```{r}
 # preparing dataset for random sampling
 set.seed(1)
@@ -39,7 +39,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
-Treinamento do MLP: ajuste de `size` e `decay`.
+Train MLP: set `size` and `decay`.
 ```{r}
 # Training
 
@@ -47,7 +47,7 @@ model <- reg_mlp("medv", size=5, decay=0.54)
 model <- fit(model, boston_train)
 ```
 
-Avaliação no treino.
+Training evaluation.
 ```{r}
 # Model adjustment
 
@@ -57,7 +57,7 @@ train_eval <- evaluate(model, boston_train_predictand, train_prediction)
 print(train_eval$metrics)
 ```
 
-Avaliação no teste.
+Test evaluation.
 ```{r}
 # Test
 

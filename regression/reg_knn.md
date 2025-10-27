@@ -1,20 +1,20 @@
-Sobre o método
-- `reg_knn`: k-Nearest Neighbors para regressão. Prediz a média (ou ponderação) dos alvos dos k vizinhos mais próximos.
-- Parâmetro principal: `k`.
+About the method
+- `reg_knn`: k-Nearest Neighbors for regression. Predicts the mean (or weighted mean) of targets from the k nearest neighbors.
+- Main parameter: `k`.
 
-Preparação do ambiente.
+Environment setup.
 
 ``` r
 # Regression KNN
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dataset Boston (MASS) e inspecionando tipos.
+Load Boston dataset (MASS) and inspect types.
 
 ``` r
 # Conjunto de dados para análise de regressão
@@ -25,10 +25,8 @@ print(t(sapply(Boston, class)))
 ```
 
 ```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio  
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric"
-##      black     lstat     medv     
-## [1,] "numeric" "numeric" "numeric"
+##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black     lstat     medv     
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "numeric"
 ```
 
 ``` r
@@ -45,14 +43,14 @@ head(Boston)
 ## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
 ```
 
-Conversão opcional para matriz.
+Optional conversion to matrix.
 
 ``` r
 # por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 
-Divisão treino/teste aleatória.
+Random train/test split.
 
 ``` r
 # preparing dataset for random sampling
@@ -63,7 +61,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
-Treinamento do kNN para regressão: ajuste de `k`.
+Train kNN for regression: set `k`.
 
 ``` r
 # Training
@@ -72,7 +70,7 @@ model <- reg_knn("medv", k=5)
 model <- fit(model, boston_train)
 ```
 
-Avaliação no treino.
+Training evaluation.
 
 ``` r
 # Model adjustment
@@ -88,7 +86,7 @@ print(train_eval$metrics)
 ## 1 27.02782 0.155995 0.6997184
 ```
 
-Avaliação no teste.
+Test evaluation.
 
 ``` r
 # Test

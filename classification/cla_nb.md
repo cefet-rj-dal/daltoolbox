@@ -1,19 +1,19 @@
-Sobre o método
-- `cla_nb`: Naive Bayes para classificação. Modelo probabilístico que assume independência condicional entre atributos; simples, eficiente e frequentemente competitivo.
+About the method
+- `cla_nb`: Naive Bayes for classification. Probabilistic model assuming conditional independence among features; simple, efficient, and often competitive.
 
-Preparação do ambiente.
+Environment setup.
 
 ``` r
 # Classification using Naive Bayes
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dados e inspeção.
+Load data and inspect.
 
 ``` r
 iris <- datasets::iris
@@ -30,7 +30,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-Níveis do alvo `Species`.
+Target `Species` levels.
 
 ``` r
 # extracting the levels for the dataset
@@ -42,7 +42,8 @@ slevels
 ## [1] "setosa"     "versicolor" "virginica"
 ```
 
-Divisão treino/teste aleatória.
+# Building train and test samples via random sampling
+Random train/test split.
 
 ``` r
 # Construindo amostras (treino e teste) por amostragem aleatória
@@ -53,7 +54,7 @@ iris_train <- sr$train
 iris_test <- sr$test
 ```
 
-Distribuição de classes por partição.
+Class distribution by split.
 
 ``` r
 tbl <- rbind(table(iris[,"Species"]), 
@@ -70,7 +71,8 @@ head(tbl)
 ## test         11         12         7
 ```
 
-Treinamento do Naive Bayes.
+# Model training
+Train Naive Bayes.
 
 ``` r
 # Treinamento do modelo
@@ -78,7 +80,7 @@ model <- cla_nb("Species", slevels)
 model <- fit(model, iris_train)
 ```
 
-Avaliação no treino.
+# Training evaluation
 
 ``` r
 # Verificando ajuste no treino
@@ -95,7 +97,7 @@ print(train_eval$metrics)
 ## 1 0.9583333 39 81  0  0         1      1           1           1  1
 ```
 
-Avaliação no teste.
+# Test evaluation
 
 ``` r
 # Teste do modelo

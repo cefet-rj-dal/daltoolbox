@@ -1,19 +1,19 @@
-Sobre o método
-- `reg_knn`: k-Nearest Neighbors para regressão. Prediz a média (ou ponderação) dos alvos dos k vizinhos mais próximos.
-- Parâmetro principal: `k`.
+About the method
+- `reg_knn`: k-Nearest Neighbors for regression. Predicts the mean (or weighted mean) of targets from the k nearest neighbors.
+- Main parameter: `k`.
 
-Preparação do ambiente.
+Environment setup.
 ```{r}
 # Regression KNN
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dataset Boston (MASS) e inspecionando tipos.
+Load Boston dataset (MASS) and inspect types.
 ```{r}
 # Conjunto de dados para análise de regressão
 
@@ -23,13 +23,13 @@ print(t(sapply(Boston, class)))
 head(Boston)
 ```
 
-Conversão opcional para matriz.
+Optional conversion to matrix.
 ```{r}
 # por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 
-Divisão treino/teste aleatória.
+Random train/test split.
 ```{r}
 # preparing dataset for random sampling
 set.seed(1)
@@ -39,7 +39,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
-Treinamento do kNN para regressão: ajuste de `k`.
+Train kNN for regression: set `k`.
 ```{r}
 # Training
 
@@ -47,7 +47,7 @@ model <- reg_knn("medv", k=5)
 model <- fit(model, boston_train)
 ```
 
-Avaliação no treino.
+Training evaluation.
 ```{r}
 # Model adjustment
 
@@ -57,7 +57,7 @@ train_eval <- evaluate(model, boston_train_predictand, train_prediction)
 print(train_eval$metrics)
 ```
 
-Avaliação no teste.
+Test evaluation.
 ```{r}
 # Test
 

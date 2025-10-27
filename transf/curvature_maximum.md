@@ -1,7 +1,7 @@
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -11,10 +11,10 @@ library(ggplot2)
 library(dplyr)
 ```
 
-Sobre a técnica
-- `fit_curvature_max`: calcula a curvatura pela segunda derivada de um spline suavizado e retorna a posição de curvatura máxima em curvas decrescentes; útil para escolher um ponto de compromisso onde reduções adicionais trazem pouco benefício.
+About the technique
+- `fit_curvature_max`: computes curvature via the second derivative of a smoothed spline and returns the maximum curvature position for decreasing curves; useful to choose a trade-off point where further reductions add little benefit.
 
-Exemplo sintético de curva decrescente (-log) para ilustrar o ponto de curvatura máxima.
+Synthetic example of a decreasing curve (-log) to illustrate the maximum curvature point.
 
 
 ``` r

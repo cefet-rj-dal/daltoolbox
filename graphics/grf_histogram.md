@@ -1,11 +1,11 @@
-Sobre o gráfico
-- Histograma: distribui observações em bins ao longo do eixo x, útil para visualizar frequência e assimetrias.
+About the chart
+- Histogram: distributes observations into bins along the x-axis; useful to visualize frequency and skewness.
 
-Preparação do ambiente gráfico.
+Graphics environment setup.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -23,7 +23,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-Gerando variáveis com distribuições distintas (exponencial, uniforme, normal).
+Generate variables with distinct distributions (exponential, uniform, normal).
 
 ``` r
 # Exemplos com distribuições de dados
@@ -46,12 +46,12 @@ head(example)
 ## 6 0.290940174 3.462437 5.358632
 ```
 
-# Histograma
+# Histogram
 
-Visualiza a distribuição de uma variável contínua dividindo o eixo x em bins e contando observações em cada bin. `geom_histogram()` exibe as contagens como barras.
-Mais informações: ?geom_histogram (documentação do R)
+Visualize the distribution of a continuous variable by binning the x-axis and counting observations per bin. `geom_histogram()` displays counts as bars.
+More info: ?geom_histogram (R documentation)
 
-Construindo histogramas e organizando múltiplos gráficos lado a lado.
+Build histograms and arrange multiple charts side by side.
 
 ``` r
 library(dplyr)
@@ -71,9 +71,9 @@ plot(grf)
 
 ![plot of chunk unnamed-chunk-4](fig/grf_histogram/unnamed-chunk-4-1.png)
 
-# Arranjo de gráficos
+# Chart arrangement
 
-Use `grid.arrange` para posicionar os gráficos gerados lado a lado.
+Use `grid.arrange` to place the generated charts side by side.
 
 
 ``` r

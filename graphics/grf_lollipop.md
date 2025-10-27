@@ -1,11 +1,11 @@
-Sobre o gráfico
-- Lollipop: alternativa às barras, enfatiza valores com marcador e haste; visual mais leve para comparações.
+About the chart
+- Lollipop: alternative to bars, emphasizes values with a marker and a stem; lighter visual for comparisons.
 
-Preparação do ambiente gráfico.
+Graphics environment setup.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -23,7 +23,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-Dados agregados por espécie e construção do gráfico.
+Data aggregated by species and chart construction.
 
 ``` r
 # conjunto de dados iris para o exemplo
@@ -59,9 +59,9 @@ head(data)
 
 
 ``` r
-# Gráfico lollipop (pirulito)
+# Lollipop chart
 
-# Tem o mesmo objetivo do gráfico de barras, destacando o valor com um marcador e uma haste.
+# Same purpose as the bar chart, highlighting the value with a marker and a stem.
 
 grf <- plot_lollipop(data, colors=colors[1], max_value_gap=0.2) + font
 plot(grf)

@@ -1,26 +1,26 @@
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Sobre a técnica
-- `smoothing_freq`: discretização/suavização por frequência (quantis), gerando bins com contagens semelhantes.
+About the technique
+- `smoothing_freq`: discretization/smoothing by frequency (quantiles), producing bins with similar counts.
 
-Dados de exemplo e ideia geral.
+Sample data and general idea.
 
 ``` r
-# Discretização e suavização
-# Discretização: transformar funções, modelos, variáveis e equações contínuas em versões discretas. 
+# Discretization and smoothing
+# Discretization: transform continuous functions, models, variables, and equations into discrete versions. 
 
-# Suavização: criar uma função aproximadora para capturar padrões importantes, reduzindo ruídos e variações de alta frequência.
+# Smoothing: create an approximating function to capture important patterns, reducing noise and high-frequency variation.
 
-# É essencial definir os intervalos (bins) para viabilizar a aproximação/discretização.
+# Defining bin intervals is essential to enable the approximation/discretization.
 
-# Função geral para avaliar diferentes técnicas de suavização
+# General function to evaluate different smoothing techniques
 
 iris <- datasets::iris
 head(iris)
@@ -36,7 +36,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-Aplicando discretização por frequência e inspecionando intervalos.
+Apply frequency-based discretization and inspect intervals.
 
 ``` r
 # smoothing using regular frequency
@@ -61,7 +61,7 @@ obj$interval
 ## [1] 4.3 5.8 7.9
 ```
 
-Avaliando entropia condicional.
+Evaluate conditional entropy.
 
 ``` r
 entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
@@ -72,7 +72,7 @@ print(entro$entropy)
 ## [1] 1.097573
 ```
 
-Otimizando número de bins e aplicando novamente.
+Optimize the number of bins and apply again.
 
 ``` r
 # Optimizing the number of binnings
@@ -95,8 +95,6 @@ print(table(sl.bi))
 
 ```
 ## sl.bi
-## 4.69090909090909 5.04736842105263 5.38888888888889  5.7047619047619             6.02            6.315             6.65 
-##               22               19               18               21               15               20               18 
-## 7.31176470588235 
-##               17
+## 4.69090909090909 5.04736842105263 5.38888888888889  5.7047619047619             6.02            6.315             6.65 7.31176470588235 
+##               22               19               18               21               15               20               18               17
 ```

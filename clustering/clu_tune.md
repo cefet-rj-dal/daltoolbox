@@ -1,24 +1,24 @@
-Sobre o utilitário
-- `clu_tune`: seleciona hiperparâmetros para um método de clusterização. No exemplo, escolhe `k` para `cluster_kmeans` a partir de um intervalo.
+About the utility
+- `clu_tune`: selects hyperparameters for a clustering method. In this example, it chooses `k` for `cluster_kmeans` over a range.
 
 
 ``` r
 # Clustering - Tune Kmeans
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox)  
 ```
 
-Carregando dados (`iris`).
+Load data (`iris`).
 
 ``` r
 data(iris)
 ```
 
-Ajuste do modelo com busca em k=1..10 e extração do melhor k.
+Fit the model with a search over k=1..10 and extract the best k.
 
 ``` r
 # ajuste do modelo com busca
@@ -31,7 +31,7 @@ model$k
 ## [1] 9
 ```
 
-Geração dos rótulos de cluster com o melhor k.
+Generate cluster labels with the best k.
 
 ``` r
 # execução com melhor parâmetro
@@ -45,7 +45,7 @@ table(clu)
 ## 12  9 50 12 20  4 17 14 12
 ```
 
-Avaliação externa com `Species`.
+External evaluation with `Species`.
 
 ``` r
 # avaliação externa usando rótulos verdadeiros

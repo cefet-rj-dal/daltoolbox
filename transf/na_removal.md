@@ -1,19 +1,19 @@
-Sobre a transformação
-- Remoção de NAs: uso de `na.omit` para descartar instâncias com valores ausentes. Útil para limpeza inicial quando imputação não é desejada.
+About the transformation
+- NA removal: use `na.omit` to drop instances with missing values. Useful for initial cleanup when imputation is not desired.
 
-Preparação do ambiente.
+Environment setup.
 
 ``` r
 # NA and Outlier analysis
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Demonstração: inserindo um NA artificialmente e removendo linhas com NA.
+Demonstration: insert an artificial NA and remove rows with NA.
 
 ``` r
 # NA removal
@@ -42,7 +42,7 @@ nrow(iris)
 
 
 ``` r
-# introducing a NA to remove
+# introducing an NA to remove
 
 iris.na <- iris
 iris.na$Sepal.Length[2] <- NA
@@ -69,7 +69,7 @@ nrow(iris.na)
 
 
 ``` r
-# removing NA tuples
+# removing rows with NA
 
 iris.na.omit <- na.omit(iris.na)
 head(iris.na.omit)

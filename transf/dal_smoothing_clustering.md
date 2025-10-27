@@ -1,25 +1,25 @@
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Sobre a técnica
-- `smoothing_cluster`: discretização/suavização definindo bins por agrupamento (clusters) em vez de intervalos fixos.
+About the technique
+- `smoothing_cluster`: discretization/smoothing by defining bins via clustering instead of fixed intervals.
 
-# Discretização e suavização
-Discretização é o processo de transformar funções, modelos, variáveis e equações contínuas em contrapartes discretas. 
+# Discretization and smoothing
+Discretization transforms continuous functions, models, variables, and equations into discrete counterparts.
 
-Suavização é uma técnica que cria uma função aproximadora para capturar padrões importantes nos dados, reduzindo ruídos ou variações de alta frequência.
+Smoothing creates an approximating function to capture important patterns while reducing noise or high-frequency variation.
 
-Uma parte importante da discretização/suavização é definir os intervalos (bins) para viabilizar a aproximação.
+Defining bin intervals is an important step to enable the approximation.
 
-# Função geral para avaliar diferentes técnicas de suavização
+# General function to evaluate different smoothing techniques
 
-Dados de exemplo (`iris`) para ilustrar discretização/suavização por clusters.
+Sample data (`iris`) to illustrate clustering-based discretization/smoothing.
 
 ``` r
 iris <- datasets::iris
@@ -36,7 +36,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-Aplicando suavização por clusterização e inspecionando bins.
+Apply clustering-based smoothing and inspect bins.
 
 ``` r
 # smoothing using clustering
@@ -60,7 +60,7 @@ obj$interval
 ## [1] 4.300000 5.917272 7.900000
 ```
 
-Avaliando entropia condicional entre bins e espécie.
+Evaluate conditional entropy between bins and species.
 
 ``` r
 entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
@@ -73,7 +73,7 @@ print(entro$entropy)
 
 # Optimizing the number of binnings
 
-Otimizando o número de bins (busca em 1:20) e reaplicando o ajuste.
+Optimize the number of bins (search 1:20) and refit.
 
 ``` r
 opt_obj <- smoothing_cluster(n=1:20)
@@ -94,9 +94,7 @@ print(table(sl.bi))
 
 ```
 ## sl.bi
-## 4.52727272727273 4.92380952380952 5.13076923076923 5.44285714285714 5.72916666666667         6.215625            6.725 
-##               11               21               13               14               24               32               24 
-## 7.50909090909091 
-##               11
+## 4.52727272727273 4.92380952380952 5.13076923076923 5.44285714285714 5.72916666666667         6.215625            6.725 7.50909090909091 
+##               11               21               13               14               24               32               24               11
 ```
 

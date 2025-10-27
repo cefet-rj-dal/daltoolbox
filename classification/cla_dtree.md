@@ -1,19 +1,30 @@
-Sobre o método
-- `cla_dtree`: Árvore de decisão para classificação. Realiza divisões recursivas nas variáveis explicativas para separar classes, resultando em um modelo interpretável.
+About the method
+- `cla_dtree`: Decision Tree for classification. Recursively splits on explanatory variables to separate classes, yielding an interpretable model.
 
-Preparação do ambiente.
+Environment setup.
 
 ``` r
 # Classification using Decision Tree
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dados e inspeção.
+```
+## 
+## Anexando pacote: 'daltoolbox'
+```
+
+```
+## O seguinte objeto é mascarado por 'package:base':
+## 
+##     transform
+```
+
+Load data and inspect.
 
 ``` r
 iris <- datasets::iris
@@ -30,7 +41,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-Níveis do alvo `Species`.
+Target `Species` levels.
 
 ``` r
 # extracting the levels for the dataset
@@ -42,7 +53,8 @@ slevels
 ## [1] "setosa"     "versicolor" "virginica"
 ```
 
-Divisão treino/teste aleatória.
+# Building train and test samples via random sampling
+Random train/test split.
 
 ``` r
 # Construindo amostras (treino e teste) por amostragem aleatória
@@ -53,7 +65,7 @@ iris_train <- sr$train
 iris_test <- sr$test
 ```
 
-Distribuição de classes por partição.
+Class distribution by split.
 
 ``` r
 tbl <- rbind(table(iris[,"Species"]), 
@@ -70,7 +82,8 @@ head(tbl)
 ## test         11         12         7
 ```
 
-Treinamento da árvore de decisão.
+# Model training
+Train the decision tree.
 
 ``` r
 # Treinamento do modelo
@@ -78,7 +91,7 @@ model <- cla_dtree("Species", slevels)
 model <- fit(model, iris_train)
 ```
 
-Avaliação no treino.
+# Training evaluation
 
 ``` r
 # Verificando ajuste no treino
@@ -95,7 +108,7 @@ print(train_eval$metrics)
 ## 1    0.975 39 81  0  0         1      1           1           1  1
 ```
 
-Avaliação no teste.
+# Test evaluation
 
 ``` r
 # Teste do modelo

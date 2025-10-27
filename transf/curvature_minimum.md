@@ -1,7 +1,7 @@
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -11,10 +11,10 @@ library(ggplot2)
 library(dplyr)
 ```
 
-Sobre a técnica
-- `fit_curvature_min`: calcula a curvatura pela segunda derivada de um spline suavizado sobre a sequência e retorna a posição de curvatura mínima em curvas crescentes; útil para achar um ponto de compromisso onde ganhos adicionais tornam-se marginais.
+About the technique
+- `fit_curvature_min`: computes curvature via the second derivative of a smoothed spline over the sequence and returns the minimum curvature position for increasing curves; useful to find a trade-off point where additional gains become marginal.
 
-Carregando dados de exemplo (PCA no dataset wine) e montando curva de variância acumulada.
+Load example data (PCA on wine dataset) and build cumulative variance curve.
 
 ``` r
 wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/develop/wine.RData")))
@@ -31,9 +31,9 @@ head(wine)
 ## 6  1  14.39  1.87  2.45  14.6   96 2.50  2.52 0.30  1.98  5.25  1.02  3.58  1290
 ```
 
-# Exemplo: componentes da PCA
-Variância acumulada da PCA: as primeiras dimensões concentram alta variância; adicionar muitas dimensões traz ganhos marginais. 
-O objetivo é estabelecer um ponto de compromisso (trade-off).
+# Example: PCA components
+PCA cumulative variance: early dimensions concentrate high variance; adding too many dimensions brings marginal gains.
+The goal is to establish a trade-off point.
 
 
 ``` r
@@ -69,13 +69,13 @@ plot(grf)
 ![plot of chunk unnamed-chunk-5](fig/curvature_minimum/unnamed-chunk-5-1.png)
 
 # Minimum curvature
-If the curve is increasing, use minimum curvature analysis. 
-It brings a trade-off between having lower x values (with not so high y values) and having higher x values (not having to much increase in y values). 
+If the curve is increasing, use minimum curvature analysis.
+It brings a trade-off between having lower x values (with not-so-high y values) and higher x values (without too much increase in y values).
 
 
 ``` r
 myfit <- fit_curvature_min()
-res <- transform(myfit, y)  # retorna índice ótimo (joelho)
+res <- transform(myfit, y)  # returns optimal index (knee)
 head(res)
 ```
 

@@ -1,17 +1,17 @@
-Sobre a transformação
-- `minmax`: normaliza atributos numéricos para um intervalo (padrão 0 a 1). Útil para algoritmos sensíveis à escala.
+About the transformation
+- `minmax`: normalizes numeric attributes to a range (default 0 to 1). Useful for scale-sensitive algorithms.
 
-Preparação do ambiente.
+Environment setup.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Contexto e dados de exemplo (iris) para ilustrar normalização.
+Context and sample data (iris) to illustrate normalization.
 
 ``` r
 # Normalization
@@ -36,7 +36,7 @@ summary(iris)
 ##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500
 ```
 
-Aplicando Min-Max e inspecionando escala resultante.
+Apply Min-Max and inspect the resulting scale.
 
 ``` r
 # Min-Max 
@@ -58,7 +58,7 @@ summary(ndata)
 ##  Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.00000
 ```
 
-Reversão (desnormalização) para conferir integridade.
+Inverse transform (denormalize) to verify integrity.
 
 ``` r
 ddata <- inverse_transform(norm, ndata)

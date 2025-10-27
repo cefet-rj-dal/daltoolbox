@@ -1,10 +1,10 @@
-Sobre o gráfico
-- Barras agrupadas: compara múltiplas medidas por categoria, exibindo barras lado a lado.
+About the chart
+- Grouped bars: compares multiple measures per category, displaying side-by-side bars.
 
-Preparação do ambiente gráfico.
+Graphics environment setup.
 ```{r}
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -21,7 +21,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-Dados agregados por espécie para duas métricas.
+Data aggregated by species for two metrics.
 ```{r}
 # conjunto de dados iris para o exemplo
 head(iris)
@@ -34,13 +34,13 @@ data <- iris |> group_by(Species) |> summarize(Sepal.Length=mean(Sepal.Length), 
 head(data)
 ```
 
-Construindo gráfico de barras agrupadas.
+Build a grouped bar chart.
 ```{r}
-# Barras agrupadas
+# Grouped bars
 
-# Organiza dados em grupos para cada categoria, exibindo duas ou mais barras por grupo, coloridas por medida.
+# Organizes data into groups per category, showing two or more bars per group, colored by measure.
 
-# Mais informações: https://en.wikipedia.org/wiki/Bar_chart#Grouped_or_stacked
+# More info: https://en.wikipedia.org/wiki/Bar_chart#Grouped_or_stacked
 
 grf <- plot_groupedbar(data, colors=colors[1:2]) + font
 plot(grf)

@@ -1,11 +1,11 @@
-Sobre o recurso
-- Salvamento de gráfico: exemplo de exportação com `ggsave()` para PDF, controlando dimensões e unidades.
+About the feature
+- Chart saving: example of exporting with `ggsave()` to PDF, controlling dimensions and units.
 
-Preparação do ambiente gráfico.
+Graphics environment setup.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -23,7 +23,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-Série sintética e gráfico a exportar.
+Synthetic series and chart to export.
 
 ``` r
 # Série temporal sintética
@@ -45,11 +45,11 @@ head(serie)
 
 
 ``` r
-# Gráfico de séries
+# Series chart
 
-# Mostra pontos conectados por linhas, em eixo x ordenado (tempo/índice).
+# Shows points connected by lines, with x-axis ordered by time/index.
 
-# Mais informações: https://en.wikipedia.org/wiki/Line_chart
+# More info: https://en.wikipedia.org/wiki/Line_chart
 
 grf <- plot_series(serie, colors=colors[1:2]) + font
 plot(grf)
@@ -57,7 +57,7 @@ plot(grf)
 
 ![plot of chunk unnamed-chunk-4](fig/grf_save_pdf/unnamed-chunk-4-1.png)
 
-Exportando para PDF com `ggsave`.
+Export to PDF with `ggsave`.
 
 ``` r
 ggsave("series.pdf", width = 5, height = 4, units = "cm")

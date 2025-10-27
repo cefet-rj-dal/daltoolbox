@@ -1,11 +1,11 @@
-Sobre o gráfico
-- Série temporal com ajuste e previsão: exibe valores observados, ajuste do modelo e horizonte previsto para comparação visual.
+About the chart
+- Time series with fit and forecast: shows observed values, model fit, and forecast horizon for visual comparison.
 
-Preparação do ambiente gráfico.
+Graphics environment setup.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -23,7 +23,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-Série sintética com ruído; separando janelas de ajuste e previsão.
+Synthetic series with noise; split windows for fit and forecast.
 
 ``` r
 # Série temporal sintética
@@ -39,12 +39,12 @@ adjust <- sin(x[1:35])
 prediction <- sin(x[36:41])
 ```
 
-Plotando série com ajuste e previsão.
+Plot time series with fit and forecast.
 
 ``` r
-# Série temporal com previsão
+# Time series with forecast
 
-# Gráfico com valores observados, ajuste do modelo e valores previstos. 
+# Chart with observed values, model fit, and predicted values. 
 
 plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction)
 ```

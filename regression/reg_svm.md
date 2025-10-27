@@ -1,20 +1,20 @@
-Sobre o método
-- `reg_svm`: Support Vector Regression (SVR). Modela uma função com margem insensível a erros até `epsilon` e penaliza violações via `cost`.
-- Hiperparâmetros: `epsilon`, `cost` e `kernel` (se aplicável).
+About the method
+- `reg_svm`: Support Vector Regression (SVR). Models a function with an error-insensitive margin up to `epsilon` and penalizes violations via `cost`.
+- Hyperparameters: `epsilon`, `cost`, and `kernel` (if applicable).
 
-Preparação do ambiente.
+Environment setup.
 
 ``` r
 # Regression SVM
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dataset Boston (MASS) e inspecionando tipos.
+Load Boston dataset (MASS) and inspect types.
 
 ``` r
 # Conjunto de dados para análise de regressão
@@ -25,10 +25,8 @@ print(t(sapply(Boston, class)))
 ```
 
 ```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio  
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric"
-##      black     lstat     medv     
-## [1,] "numeric" "numeric" "numeric"
+##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black     lstat     medv     
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "numeric"
 ```
 
 ``` r
@@ -45,14 +43,14 @@ head(Boston)
 ## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
 ```
 
-Conversão opcional para matriz.
+Optional conversion to matrix.
 
 ``` r
 # por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 
-Divisão treino/teste aleatória e reprodutível.
+Random and reproducible train/test split.
 
 ``` r
 # preparing dataset for random sampling
@@ -64,7 +62,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
-Treinamento do SVR: ajuste de `epsilon` e `cost` (kernel padrão se não definido).
+Train SVR: set `epsilon` and `cost` (default kernel if not defined).
 
 ``` r
 # Training
@@ -73,7 +71,7 @@ model <- reg_svm("medv", epsilon=0.2,cost=40.000)
 model <- fit(model, boston_train)
 ```
 
-Avaliação no treino.
+Training evaluation.
 
 ``` r
 # Model adjustment
@@ -89,7 +87,7 @@ print(train_eval$metrics)
 ## 1 2.855767 0.0700268 0.9682722
 ```
 
-Avaliação no teste.
+Test evaluation.
 
 ``` r
 # Test

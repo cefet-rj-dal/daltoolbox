@@ -1,11 +1,11 @@
-Sobre o gráfico
-- Boxplot: resume distribuição por quartis e destaca outliers, comparável entre grupos.
+About the chart
+- Boxplot: summarizes distribution via quartiles and highlights outliers; comparable across groups.
 
-Preparação do ambiente gráfico e paleta.
+Graphics environment setup and palette.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -23,7 +23,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-Dados e construção do boxplot simples e com cores por variável.
+Data and construction of a simple boxplot and a colored variant.
 
 ``` r
 # conjunto de dados iris para o exemplo
@@ -43,9 +43,9 @@ head(iris)
 
 ``` r
 # Boxplot
-# Representa a distribuição por quartis; os “bigodes” indicam variabilidade fora dos quartis (e ajudam a identificar outliers).
+# Represents distribution by quartiles; “whiskers” indicate variability outside the quartiles (and help identify outliers).
 
-# Mais informações: https://en.wikipedia.org/wiki/Box_plot
+# More info: https://en.wikipedia.org/wiki/Box_plot
 
 grf <- plot_boxplot(iris, colors="white") + font
 ```

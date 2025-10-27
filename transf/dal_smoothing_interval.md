@@ -1,26 +1,26 @@
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Sobre a técnica
-- `smoothing_inter`: discretização/suavização por intervalos regulares (larguras iguais). Útil para resumir variáveis contínuas em faixas.
+About the technique
+- `smoothing_inter`: discretization/smoothing by regular intervals (equal widths). Useful to summarize continuous variables into ranges.
 
-Dados de exemplo e ideia geral de discretização/suavização.
+Sample data and general idea of discretization/smoothing.
 
 ``` r
-# Discretização e suavização
-# Discretização: transformar funções, modelos, variáveis e equações contínuas em versões discretas. 
+# Discretization and smoothing
+# Discretization: transform continuous functions, models, variables, and equations into discrete versions. 
 
-# Suavização: criar uma função aproximadora para capturar padrões importantes, reduzindo ruídos e variações de alta frequência.
+# Smoothing: create an approximating function to capture important patterns, reducing noise and high-frequency variation.
 
-# É essencial definir os intervalos (bins) para viabilizar a aproximação/discretização.
+# Defining bin intervals is essential to enable the approximation/discretization.
 
-# Função geral para avaliar diferentes técnicas de suavização
+# General function to evaluate different smoothing techniques
 
 iris <- datasets::iris
 head(iris)
@@ -36,7 +36,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-Aplicando discretização por intervalos e inspecionando os bins.
+Apply interval-based discretization and inspect bins.
 
 ``` r
 # smoothing using regular interval
@@ -60,7 +60,7 @@ obj$interval
 ## [1] 4.3 6.1 7.9
 ```
 
-Avaliando entropia condicional entre bins e espécie.
+Evaluate conditional entropy between bins and species.
 
 ``` r
 entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
@@ -71,7 +71,7 @@ print(entro$entropy)
 ## [1] 1.191734
 ```
 
-Otimizando o número de bins (busca em 1:20) e aplicando novamente.
+Optimize the number of bins (search 1:20) and apply again.
 
 ``` r
 # Optimizing the number of binnings
@@ -94,8 +94,6 @@ print(table(sl.bi))
 
 ```
 ## sl.bi
-## 4.52727272727273 5.00294117647059             5.49 5.88333333333333            6.352 6.76666666666667 7.23333333333333 
-##               11               34               20               30               25               18                6 
-## 7.71666666666667 
-##                6
+## 4.52727272727273 5.00294117647059             5.49 5.88333333333333            6.352 6.76666666666667 7.23333333333333 7.71666666666667 
+##               11               34               20               30               25               18                6                6
 ```

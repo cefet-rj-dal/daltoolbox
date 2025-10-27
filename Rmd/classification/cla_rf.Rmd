@@ -1,32 +1,33 @@
-Sobre o método
-- `cla_rf`: Random Forest para classificação. Conjunto (ensemble) de árvores de decisão com amostragem aleatória; costuma ser robusto e lidar bem com variáveis heterogêneas.
-- Hiperparâmetros: `mtry` (nº de variáveis por divisão), `ntree` (nº de árvores).
+About the method
+- `cla_rf`: Random Forest for classification. Ensemble of decision trees trained with randomness; robust and handles heterogeneous features well.
+- Hyperparameters: `mtry` (variables per split), `ntree` (number of trees).
 
-Preparação do ambiente.
+Environment setup.
 ```{r}
 # Classification using  Random Forest
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dados e inspeção.
+Load data and inspect.
 ```{r}
 iris <- datasets::iris
 head(iris)
 ```
 
-Níveis do alvo `Species`.
+Target `Species` levels.
 ```{r}
 # extracting the levels for the dataset
 slevels <- levels(iris$Species)
 slevels
 ```
 
-Divisão treino/teste aleatória.
+# Building train and test samples via random sampling
+Random train/test split.
 ```{r}
 # Construindo amostras (treino e teste) por amostragem aleatória
 set.seed(1)
@@ -36,7 +37,7 @@ iris_train <- sr$train
 iris_test <- sr$test
 ```
 
-Distribuição de classes por partição.
+Class distribution by split.
 ```{r}
 
 tbl <- rbind(table(iris[,"Species"]), 
@@ -46,7 +47,8 @@ rownames(tbl) <- c("dataset", "training", "test")
 head(tbl)
 ```
 
-Treinamento do Random Forest: ajuste de `mtry` e `ntree`.
+# Model training
+Train Random Forest: tune `mtry` and `ntree`.
 ```{r}
 # Treinamento do modelo
 model <- cla_rf("Species", slevels, mtry=3, ntree=5) # mtry: variáveis por split; ntree: nº de árvores
@@ -54,7 +56,7 @@ model <- fit(model, iris_train)
 
 ```
 
-Avaliação no treino.
+# Training evaluation
 ```{r}
 # Verificando ajuste no treino
 train_prediction <- predict(model, iris_train)
@@ -65,7 +67,7 @@ train_eval <- evaluate(model, iris_train_predictand, train_prediction)
 print(train_eval$metrics)
 ```
 
-Avaliação no teste.
+# Test evaluation
 ```{r}
 # Teste do modelo
 test_prediction <- predict(model, iris_test)

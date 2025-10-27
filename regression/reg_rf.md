@@ -1,20 +1,20 @@
 # Regression Random Forest
 
-Sobre o método
-- `reg_rf`: Random Forest para regressão. Média de muitas árvores de decisão treinadas com amostragens aleatórias; tende a reduzir variância.
-- Hiperparâmetros: `mtry` (nº de variáveis por divisão), `ntree` (nº de árvores).
+About the method
+- `reg_rf`: Random Forest for regression. Averages many decision trees trained with randomness; tends to reduce variance.
+- Hyperparameters: `mtry` (variables per split), `ntree` (number of trees).
 
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-# Conjunto de dados para análise de regressão
-Carrega o dataset Boston e inspeciona tipos/valores.
+# Dataset for regression analysis
+Load Boston dataset and inspect types/values.
 
 
 ``` r
@@ -24,10 +24,8 @@ print(t(sapply(Boston, class)))
 ```
 
 ```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio  
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric"
-##      black     lstat     medv     
-## [1,] "numeric" "numeric" "numeric"
+##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black     lstat     medv     
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "numeric"
 ```
 
 ``` r
@@ -44,15 +42,15 @@ head(Boston)
 ## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
 ```
 
-Conversão opcional para matriz (pode melhorar desempenho em alguns casos).
+# Optional conversion to matrix (may improve performance in some cases).
 
 ``` r
 # por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 
-# Particionamento em treino e teste
-Divisão treino/teste aleatória e reprodutível.
+# Train/test split
+Random and reproducible train/test split.
 
 
 ``` r
@@ -65,7 +63,7 @@ boston_test <- sr$test
 ```
 
 # Training
-Treinamento do Random Forest para prever `medv`.
+Train Random Forest to predict `medv`.
 
 
 ``` r
@@ -74,7 +72,7 @@ model <- fit(model, boston_train)
 ```
 
 # Model adjustment
-Avaliação no treino (métricas de regressão como RMSE/MAE).
+Training evaluation (regression metrics such as RMSE/MAE).
 
 
 ``` r
@@ -90,7 +88,7 @@ print(train_eval$metrics)
 ```
 
 # Test
-Avaliação no teste.
+Test evaluation.
 
 
 ``` r

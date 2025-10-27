@@ -1,11 +1,11 @@
-Sobre o recurso
-- Salvamento de gráfico: exemplo de exportação com `jpeg()`/`dev.off()` e `ggsave()` para arquivos de imagem.
+About the feature
+- Chart saving: example of exporting with `jpeg()`/`dev.off()` and `ggsave()` to image files.
 
-Preparação do ambiente gráfico.
+Graphics environment setup.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -23,7 +23,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-Série sintética e gráfico a exportar.
+Synthetic series and chart to export.
 
 ``` r
 # Série temporal sintética
@@ -45,11 +45,11 @@ head(serie)
 
 
 ``` r
-# Gráfico de séries
+# Series chart
 
-# Mostra pontos conectados por linhas, em eixo x ordenado (tempo/índice).
+# Shows points connected by lines, with x-axis ordered by time/index.
 
-# Mais informações: https://en.wikipedia.org/wiki/Line_chart
+# More info: https://en.wikipedia.org/wiki/Line_chart
 
 grf <- plot_series(serie, colors=colors[1:2]) + font
 plot(grf)
@@ -57,7 +57,7 @@ plot(grf)
 
 ![plot of chunk unnamed-chunk-4](fig/grf_save_jpg/unnamed-chunk-4-1.png)
 
-Exportando com dispositivos base (JPEG) e com `ggsave`.
+Export using base devices (JPEG) and with `ggsave`.
 
 ``` r
   jpeg("series.jpg", width = 640, height = 480)

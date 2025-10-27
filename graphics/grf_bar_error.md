@@ -1,16 +1,16 @@
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Sobre o gráfico
-- Barras com barra de erro: adiciona incerteza/variabilidade (p.ex., desvio padrão) às barras, usando `geom_errorbar()`.
+About the chart
+- Bars with error bars: add uncertainty/variability (e.g., standard deviation) to bars using `geom_errorbar()`.
 
-Preparação do ambiente gráfico.
+Graphics environment setup.
 
 ``` r
 library(ggplot2)
@@ -23,7 +23,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-Dados agregados: média e desvio padrão por espécie.
+Aggregated data: mean and standard deviation by species.
 
 ``` r
 # conjunto de dados iris para o exemplo
@@ -57,7 +57,7 @@ head(data)
 ```
 
 
-Construindo barras e adicionando `geom_errorbar`.
+Build bars and add `geom_errorbar`.
 
 ``` r
 # Bar graph with error bars
@@ -67,6 +67,16 @@ Construindo barras e adicionando `geom_errorbar`.
 grf <- plot_bar(data, colors=colors[1], alpha=1) + font
 grf <- grf + geom_errorbar(aes(x=Species, ymin=mean-sd, ymax=mean+sd), 
                            width=0.2, colour="darkred", alpha=0.8, size=1.1) 
+```
+
+```
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+```
+
+``` r
 plot(grf)
 ```
 

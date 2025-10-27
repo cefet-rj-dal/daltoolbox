@@ -1,32 +1,32 @@
-Sobre o método
-- `cluster_pam`: Partitioning Around Medoids. Similar ao k-means, mas usa medoides (pontos reais) em vez de centróides, tornando-o mais robusto a outliers.
+About the method
+- `cluster_pam`: Partitioning Around Medoids. Similar to k-means but uses medoids (real points) instead of centroids, making it more robust to outliers.
 
 
 ``` r
 # Clustering - pam
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dados (`iris`).
+Load data (`iris`).
 
 ``` r
 # carregando conjunto de dados
 data(iris)
 ```
 
-Configuração do PAM com k=3.
+Configure PAM with k=3.
 
 ``` r
 # configuração do método de clusterização
 model <- cluster_pam(k=3)
 ```
 
-Ajuste e rotulagem dos clusters.
+Fit and generate cluster labels.
 
 ``` r
 # ajuste do modelo e rotulagem
@@ -41,7 +41,7 @@ table(clu)
 ## 50 62 38
 ```
 
-Avaliação externa usando `Species`.
+External evaluation using `Species`.
 
 ``` r
 # evaluate model using external metric

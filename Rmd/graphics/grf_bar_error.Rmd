@@ -1,15 +1,15 @@
 ```{r}
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Sobre o gráfico
-- Barras com barra de erro: adiciona incerteza/variabilidade (p.ex., desvio padrão) às barras, usando `geom_errorbar()`.
+About the chart
+- Bars with error bars: add uncertainty/variability (e.g., standard deviation) to bars using `geom_errorbar()`.
 
-Preparação do ambiente gráfico.
+Graphics environment setup.
 ```{r}
 library(ggplot2)
 library(RColorBrewer)
@@ -21,7 +21,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-Dados agregados: média e desvio padrão por espécie.
+Aggregated data: mean and standard deviation by species.
 ```{r}
 # conjunto de dados iris para o exemplo
 head(iris)
@@ -34,7 +34,7 @@ head(data)
 ```
 
 
-Construindo barras e adicionando `geom_errorbar`.
+Build bars and add `geom_errorbar`.
 ```{r}
 # Bar graph with error bars
 # When bar graphs present an average behavior, it is possible to plot a dispersion around it using an error bar.

@@ -1,20 +1,20 @@
-Sobre o método
-- `reg_mlp`: Multilayer Perceptron (rede neural) para regressão.
-- Hiperparâmetros: `size` (unidades na camada oculta), `decay` (regularização L2).
+About the method
+- `reg_mlp`: Multilayer Perceptron (neural network) for regression.
+- Hyperparameters: `size` (hidden units), `decay` (L2 regularization).
 
-Preparação do ambiente.
+Environment setup.
 
 ``` r
 # Regression MLP
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dataset Boston (MASS) e inspecionando tipos.
+Load Boston dataset (MASS) and inspect types.
 
 ``` r
 # Conjunto de dados para análise de regressão
@@ -25,10 +25,8 @@ print(t(sapply(Boston, class)))
 ```
 
 ```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio  
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric"
-##      black     lstat     medv     
-## [1,] "numeric" "numeric" "numeric"
+##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black     lstat     medv     
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "numeric"
 ```
 
 ``` r
@@ -45,14 +43,14 @@ head(Boston)
 ## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
 ```
 
-Conversão opcional para matriz.
+Optional conversion to matrix.
 
 ``` r
 # por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 
-Divisão treino/teste aleatória e reprodutível.
+Random and reproducible train/test split.
 
 ``` r
 # preparing dataset for random sampling
@@ -63,7 +61,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
-Treinamento do MLP: ajuste de `size` e `decay`.
+Train MLP: set `size` and `decay`.
 
 ``` r
 # Training
@@ -72,7 +70,7 @@ model <- reg_mlp("medv", size=5, decay=0.54)
 model <- fit(model, boston_train)
 ```
 
-Avaliação no treino.
+Training evaluation.
 
 ``` r
 # Model adjustment
@@ -85,10 +83,10 @@ print(train_eval$metrics)
 
 ```
 ##        mse      smape        R2
-## 1 6.531913 0.09502499 0.9274298
+## 1 7.815809 0.09907171 0.9131656
 ```
 
-Avaliação no teste.
+Test evaluation.
 
 ``` r
 # Test
@@ -100,6 +98,6 @@ print(test_eval$metrics)
 ```
 
 ```
-##        mse     smape      R2
-## 1 23.75304 0.1676875 0.60527
+##        mse     smape        R2
+## 1 17.59761 0.1396753 0.7075616
 ```

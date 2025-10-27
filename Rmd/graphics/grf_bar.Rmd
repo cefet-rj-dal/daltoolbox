@@ -1,10 +1,10 @@
-Sobre o gráfico
-- Barras (bar): compara valores agregados por categorias. Útil para médias, contagens e totais por grupo.
+About the chart
+- Bar: compares aggregated values by categories. Useful for means, counts, and totals by group.
 
-Preparação do ambiente gráfico e paleta de cores.
+Graphics environment setup and color palette.
 ```{r}
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -20,7 +20,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-Dados de exemplo agregados por `Species`.
+Sample data aggregated by `Species`.
 ```{r}
 # conjunto de dados iris para o exemplo
 head(iris)
@@ -32,25 +32,25 @@ data <- iris |> group_by(Species) |> summarize(Sepal.Length=mean(Sepal.Length))
 head(data)
 ```
 
-Gráfico de barras básico e variação com barras verticais.
+Basic bar chart and a vertical variant.
 ```{r}
-# Gráfico de barras
+# Bar chart
 
-# Apresenta dados categóricos com barras proporcionais ao valor agregado (contagem, média, etc.).
+# Displays categorical data with bars proportional to the aggregated value (count, mean, etc.).
 
-# Mais informações: https://en.wikipedia.org/wiki/Bar_chart
+# More info: https://en.wikipedia.org/wiki/Bar_chart
 
 grf <- plot_bar(data, colors=colors[1]) + font
 plot(grf)
 ```
 
 ```{r}
-# As barras podem ser invertidas (horizontais/verticais) com coord_flip().
+# Bars can be flipped (horizontal/vertical) with coord_flip().
 grf <- grf + coord_flip()
 plot(grf)
 ```
 
-Colorindo cada barra por espécie.
+Color each bar by species.
 ```{r}
 # Bar graph with one color for each species
 grf <- plot_bar(data, colors=colors[1:3]) + font

@@ -1,11 +1,11 @@
-Sobre o gráfico
-- Pontos: semelhante à série, mas sem linhas conectando; bom para destacar observações discretas.
+About the chart
+- Points: similar to series, but without connecting lines; good to highlight discrete observations.
 
-Preparação do ambiente gráfico.
+Graphics environment setup.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -23,9 +23,9 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-# Série temporal sintética
+# Synthetic time series
 
-Gerando série sintética para exemplo e plotando apenas pontos.
+Generate a synthetic series for the example and plot points only.
 
 ``` r
 x <- seq(0, 10, 0.25)

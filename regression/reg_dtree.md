@@ -1,33 +1,45 @@
-Sobre o método
-- `reg_dtree`: árvore de decisão para regressão. Faz partições no espaço de atributos e estima valores por médias nas folhas; interpretável e capaz de modelar não linearidades.
+About the method
+- `reg_dtree`: decision tree for regression. Partitions feature space and estimates values by leaf means; interpretable and can model nonlinearities.
 
-Preparação do ambiente.
+Environment setup.
 
 ``` r
 # Regression Decision Tree
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dataset Boston (MASS) e inspecionando tipos.
+Load Boston dataset (MASS) and inspect types.
 
 ``` r
 # Conjunto de dados para análise de regressão
 
 library(MASS)
+```
+
+```
+## 
+## Anexando pacote: 'MASS'
+```
+
+```
+## O seguinte objeto é mascarado por 'package:dplyr':
+## 
+##     select
+```
+
+``` r
 data(Boston)
 print(t(sapply(Boston, class)))
 ```
 
 ```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio  
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric"
-##      black     lstat     medv     
-## [1,] "numeric" "numeric" "numeric"
+##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black     lstat     medv     
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "numeric"
 ```
 
 ``` r
@@ -44,14 +56,14 @@ head(Boston)
 ## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
 ```
 
-Conversão opcional para matriz por desempenho em alguns métodos.
+Optional conversion to matrix for performance in some methods.
 
 ``` r
 # por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 
-Divisão treino/teste aleatória.
+Random train/test split.
 
 ``` r
 # preparing dataset for random sampling
@@ -62,7 +74,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
-Treinamento do modelo de árvore de regressão para prever `medv`.
+Train regression tree model to predict `medv`.
 
 ``` r
 # Training
@@ -71,7 +83,7 @@ model <- reg_dtree("medv")
 model <- fit(model, boston_train)
 ```
 
-Avaliação no treino (métricas de regressão, ex.: RMSE, MAE).
+Training evaluation (regression metrics, e.g., RMSE, MAE).
 
 ``` r
 # Model adjustment
@@ -87,7 +99,7 @@ print(train_eval$metrics)
 ## 1 12.68065 0.1345098 0.8591168
 ```
 
-Avaliação no teste.
+Test evaluation.
 
 ``` r
 # Test

@@ -1,11 +1,11 @@
-Sobre o gráfico
-- Barras (bar): compara valores agregados por categorias. Útil para médias, contagens e totais por grupo.
+About the chart
+- Bar: compares aggregated values by categories. Useful for means, counts, and totals by group.
 
-Preparação do ambiente gráfico e paleta de cores.
+Graphics environment setup and color palette.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -15,14 +15,20 @@ library(daltoolbox)
 ``` r
 library(RColorBrewer)
 library(ggplot2)
+```
 
+```
+## Warning: pacote 'ggplot2' foi compilado no R versão 4.5.1
+```
+
+``` r
 colors <- brewer.pal(4, 'Set1')
 
 # setting the font size for all charts
 font <- theme(text = element_text(size=16))
 ```
 
-Dados de exemplo agregados por `Species`.
+Sample data aggregated by `Species`.
 
 ``` r
 # conjunto de dados iris para o exemplo
@@ -42,6 +48,30 @@ head(iris)
 
 ``` r
 library(dplyr)
+```
+
+```
+## Warning: pacote 'dplyr' foi compilado no R versão 4.5.1
+```
+
+```
+## 
+## Anexando pacote: 'dplyr'
+```
+
+```
+## Os seguintes objetos são mascarados por 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## Os seguintes objetos são mascarados por 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+``` r
 data <- iris |> group_by(Species) |> summarize(Sepal.Length=mean(Sepal.Length))
 head(data)
 ```
@@ -55,16 +85,29 @@ head(data)
 ## 3 virginica          6.59
 ```
 
-Gráfico de barras básico e variação com barras verticais.
+Basic bar chart and a vertical variant.
 
 ``` r
-# Gráfico de barras
+# Bar chart
 
-# Apresenta dados categóricos com barras proporcionais ao valor agregado (contagem, média, etc.).
+# Displays categorical data with bars proportional to the aggregated value (count, mean, etc.).
 
-# Mais informações: https://en.wikipedia.org/wiki/Bar_chart
+# More info: https://en.wikipedia.org/wiki/Bar_chart
 
 grf <- plot_bar(data, colors=colors[1]) + font
+```
+
+```
+## Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
+## ℹ Please use tidy evaluation idioms with `aes()`.
+## ℹ See also `vignette("ggplot2-in-packages")` for more information.
+## ℹ The deprecated feature was likely used in the daltoolbox package.
+##   Please report the issue at <https://github.com/cefet-rj-dal/daltoolbox/issues>.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+```
+
+``` r
 plot(grf)
 ```
 
@@ -72,14 +115,14 @@ plot(grf)
 
 
 ``` r
-# As barras podem ser invertidas (horizontais/verticais) com coord_flip().
+# Bars can be flipped (horizontal/vertical) with coord_flip().
 grf <- grf + coord_flip()
 plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-6](fig/grf_bar/unnamed-chunk-6-1.png)
 
-Colorindo cada barra por espécie.
+Color each bar by species.
 
 ``` r
 # Bar graph with one color for each species

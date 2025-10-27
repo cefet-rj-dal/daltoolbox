@@ -1,20 +1,20 @@
-Sobre o utilitário
-- `cla_tune`: realiza busca de hiperparâmetros para um classificador, a partir de faixas definidas em `ranges`.
-- Exemplo abaixo ajusta um `cla_svm` variando `epsilon`, `cost` e `kernel`.
+About the utility
+- `cla_tune`: performs hyperparameter search for a classifier over ranges defined in `ranges`.
+- The example below tunes a `cla_svm` varying `epsilon`, `cost`, and `kernel`.
 
-Preparação do ambiente.
+Environment setup.
 
 ``` r
 # Tuning de Classificação 
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Dados de exemplo e níveis do alvo.
+Sample data and target levels.
 
 ``` r
 # Conjunto de dados para classificação
@@ -43,9 +43,8 @@ slevels
 ## [1] "setosa"     "versicolor" "virginica"
 ```
 
-# Particionamento em treino e teste
-
-Divisão treino/teste aleatória para validação do tuning.
+# Train/test split
+Random split for tuning validation.
 
 ``` r
 # preparando amostragem aleatória
@@ -69,7 +68,7 @@ head(tbl)
 ## test         11         12         7
 ```
 
-Configuração do grid de hiperparâmetros e treinamento com busca.
+# Hyperparameter grid and search training
 
 ``` r
 # Treinamento com busca de hiperparâmetros
@@ -79,7 +78,7 @@ tune <- cla_tune(cla_svm("Species", slevels),
 model <- fit(tune, iris_train)
 ```
 
-Avaliação no treino com o melhor conjunto encontrado.
+# Training evaluation with the best configuration
 
 ``` r
 # Avaliação no treino
@@ -95,7 +94,7 @@ print(train_eval$metrics)
 ## 1 0.9833333 39 81  0  0         1      1           1           1  1
 ```
 
-Avaliação no teste.
+# Test evaluation
 
 ``` r
 # Avaliação no teste
@@ -113,7 +112,7 @@ print(test_eval$metrics)
 ## 1 0.9333333 11 19  0  0         1      1           1           1  1
 ```
 
-Outros grids de exemplo por modelo.
+# Example grids for other models
 
 ``` r
 # Opções de grids para outros modelos

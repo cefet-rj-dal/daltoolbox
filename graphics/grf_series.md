@@ -1,11 +1,11 @@
-Sobre o gráfico
-- Série temporal (linhas): pontos conectados por segmentos; destaca tendência e sazonalidade ao longo do tempo/eixo ordenado.
+About the chart
+- Time series (lines): points connected by segments; highlights trend and seasonality over time/ordered axis.
 
-Preparação do ambiente gráfico.
+Graphics environment setup.
 
 ``` r
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
@@ -23,7 +23,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-Série sintética (seno e cosseno deslocado) para exemplo.
+Synthetic series (sine and shifted cosine) for the example.
 
 ``` r
 # Série temporal sintética
@@ -43,16 +43,16 @@ head(serie)
 ## 6 1.25 0.9489846 5.315322
 ```
 
-Construindo gráfico de séries com duas linhas.
+Build a two-line series chart.
 
 ``` r
-# Gráfico de séries
+# Series chart
 
-# Exibe uma sequência de pontos conectados por segmentos de reta. 
+# Displays a sequence of points connected by line segments. 
 
-# Semelhante ao scatter, mas com eixo x ordenado por tempo/índice.
+# Similar to scatter, but with an x-axis ordered by time/index.
 
-# Mais informações: https://en.wikipedia.org/wiki/Line_chart
+# More info: https://en.wikipedia.org/wiki/Line_chart
 
 grf <- plot_series(serie, colors=colors[1:2]) + font
 plot(grf)

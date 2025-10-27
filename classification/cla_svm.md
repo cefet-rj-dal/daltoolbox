@@ -1,20 +1,20 @@
-Sobre o método
-- `cla_svm`: Support Vector Machine para classificação, maximizando a margem entre classes.
-- Hiperparâmetros comuns: `cost` (penalidade), `epsilon` (largura de margem no ajuste) e `kernel` (função de kernel, ex.: linear, radial, polinomial, sigmoide).
+About the method
+- `cla_svm`: Support Vector Machine for classification, maximizing the margin between classes.
+- Common hyperparameters: `cost` (penalty), `epsilon` (insensitive-margin width), and `kernel` (e.g., linear, radial, polynomial, sigmoid).
 
-Preparação do ambiente: instalação e carregamento do pacote.
+Environment setup: install and load the package.
 
 ``` r
 # Classification using Support Vector Machine
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dados de exemplo (iris) e inspeção inicial.
+Load sample data (iris) and initial inspection.
 
 ``` r
 iris <- datasets::iris
@@ -31,7 +31,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-Identificando os níveis (classes) do alvo `Species`.
+Identify the target `Species` levels.
 
 ``` r
 # extracting the levels for the dataset
@@ -43,7 +43,8 @@ slevels
 ## [1] "setosa"     "versicolor" "virginica"
 ```
 
-Divisão treino/teste com amostragem aleatória.
+# Building train and test samples via random sampling
+Random train/test split.
 
 ``` r
 # Construindo amostras (treino e teste) por amostragem aleatória
@@ -54,7 +55,7 @@ iris_train <- sr$train
 iris_test <- sr$test
 ```
 
-Verificando a distribuição de classes após a divisão.
+Check class distribution after the split.
 
 ``` r
 tbl <- rbind(table(iris[,"Species"]), 
@@ -71,7 +72,8 @@ head(tbl)
 ## test         11         12         7
 ```
 
-Treinamento do SVM: ajuste de `cost`, `epsilon` e eventualmente `kernel`.
+# Model training
+Train SVM: tune `cost`, `epsilon`, and optionally `kernel`.
 
 ``` r
 # Treinamento do modelo
@@ -79,7 +81,8 @@ model <- cla_svm("Species", slevels, epsilon=0.0, cost=20.000) # kernel padrão;
 model <- fit(model, iris_train)
 ```
 
-Avaliação no treino: previsão e métricas.
+# Training evaluation
+Predict and compute metrics.
 
 ``` r
 # Verificando ajuste no treino
@@ -96,7 +99,8 @@ print(train_eval$metrics)
 ## 1    0.975 39 81  0  0         1      1           1           1  1
 ```
 
-Avaliação no teste: previsão e métricas.
+# Test evaluation
+Predict and compute metrics.
 
 ``` r
 # Teste do modelo

@@ -1,20 +1,20 @@
-Sobre o método
-- `cla_rf`: Random Forest para classificação. Conjunto (ensemble) de árvores de decisão com amostragem aleatória; costuma ser robusto e lidar bem com variáveis heterogêneas.
-- Hiperparâmetros: `mtry` (nº de variáveis por divisão), `ntree` (nº de árvores).
+About the method
+- `cla_rf`: Random Forest for classification. Ensemble of decision trees trained with randomness; robust and handles heterogeneous features well.
+- Hyperparameters: `mtry` (variables per split), `ntree` (number of trees).
 
-Preparação do ambiente.
+Environment setup.
 
 ``` r
 # Classification using  Random Forest
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dados e inspeção.
+Load data and inspect.
 
 ``` r
 iris <- datasets::iris
@@ -31,7 +31,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-Níveis do alvo `Species`.
+Target `Species` levels.
 
 ``` r
 # extracting the levels for the dataset
@@ -43,7 +43,8 @@ slevels
 ## [1] "setosa"     "versicolor" "virginica"
 ```
 
-Divisão treino/teste aleatória.
+# Building train and test samples via random sampling
+Random train/test split.
 
 ``` r
 # Construindo amostras (treino e teste) por amostragem aleatória
@@ -54,7 +55,7 @@ iris_train <- sr$train
 iris_test <- sr$test
 ```
 
-Distribuição de classes por partição.
+Class distribution by split.
 
 ``` r
 tbl <- rbind(table(iris[,"Species"]), 
@@ -71,7 +72,8 @@ head(tbl)
 ## test         11         12         7
 ```
 
-Treinamento do Random Forest: ajuste de `mtry` e `ntree`.
+# Model training
+Train Random Forest: tune `mtry` and `ntree`.
 
 ``` r
 # Treinamento do modelo
@@ -79,7 +81,7 @@ model <- cla_rf("Species", slevels, mtry=3, ntree=5) # mtry: variáveis por spli
 model <- fit(model, iris_train)
 ```
 
-Avaliação no treino.
+# Training evaluation
 
 ``` r
 # Verificando ajuste no treino
@@ -96,7 +98,7 @@ print(train_eval$metrics)
 ## 1    0.975 39 81  0  0         1      1           1           1  1
 ```
 
-Avaliação no teste.
+# Test evaluation
 
 ``` r
 # Teste do modelo

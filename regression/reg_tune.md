@@ -1,20 +1,20 @@
-Sobre o utilitário
-- `reg_tune`: busca de hiperparâmetros para modelos de regressão conforme faixas em `ranges`.
-- Exemplo: ajuste de `reg_svm` variando `epsilon`, `cost` e `kernel`.
+About the utility
+- `reg_tune`: hyperparameter search for regression models over ranges in `ranges`.
+- Example: tuning `reg_svm` varying `epsilon`, `cost`, and `kernel`.
 
-Preparação do ambiente.
+Environment setup.
 
 ``` r
 # Tuning de Regressão 
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dataset e inspeção.
+Load dataset and inspect.
 
 ``` r
 # Conjunto de dados para análise de regressão
@@ -25,10 +25,8 @@ print(t(sapply(Boston, class)))
 ```
 
 ```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio  
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric"
-##      black     lstat     medv     
-## [1,] "numeric" "numeric" "numeric"
+##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black     lstat     medv     
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "numeric"
 ```
 
 ``` r
@@ -45,14 +43,14 @@ head(Boston)
 ## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
 ```
 
-Conversão opcional para matriz.
+Optional conversion to matrix.
 
 ``` r
 # por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 
-Divisão treino/teste para validação do tuning.
+Train/test split for tuning validation.
 
 ``` r
 # preparing dataset for random sampling
@@ -63,7 +61,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
-Configuração do grid de hiperparâmetros e treinamento com busca.
+Hyperparameter grid configuration and search training.
 
 ``` r
 # Training
@@ -73,7 +71,7 @@ tune <- reg_tune(reg_svm("medv"),
 model <- fit(tune, boston_train)
 ```
 
-Avaliação no treino com melhores hiperparâmetros encontrados.
+Training evaluation with the best hyperparameters.
 
 ``` r
 # Model adjustment
@@ -89,7 +87,7 @@ print(train_eval$metrics)
 ## 1 2.393491 0.05155025 0.9734081
 ```
 
-Avaliação no teste.
+Test evaluation.
 
 ``` r
 # Test
@@ -105,7 +103,7 @@ print(test_eval$metrics)
 ## 1 13.61128 0.1297673 0.7738067
 ```
 
-Exemplos de grids para outros modelos.
+Example grids for other models.
 
 ``` r
 # Options for other models

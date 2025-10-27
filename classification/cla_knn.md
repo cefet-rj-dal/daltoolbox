@@ -1,20 +1,20 @@
-Sobre o método
-- `cla_knn`: classificador k-Nearest Neighbors. Classifica pela maioria entre os k vizinhos mais próximos no espaço de atributos.
-- Parâmetro principal: `k` (número de vizinhos). Valores baixos tendem a ajustar mais ao ruído; valores maiores suavizam a decisão.
+About the method
+- `cla_knn`: k-Nearest Neighbors classifier. Classifies by majority vote among the k nearest neighbors in feature space.
+- Main parameter: `k` (number of neighbors). Small k may overfit noise; larger k smooths the decision boundary.
 
-Preparação do ambiente: instalação e carregamento do pacote.
+Environment setup: install and load the package.
 
 ``` r
 # Classification using KNN
 
 # installation 
-install.packages("daltoolbox")
+#install.packages("daltoolbox")
 
 # loading DAL
 library(daltoolbox) 
 ```
 
-Carregando dados de exemplo (iris) e inspeção inicial.
+Load sample data (iris) and initial inspection.
 
 ``` r
 iris <- datasets::iris
@@ -31,7 +31,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-Identificando os níveis (classes) do alvo `Species` para configurar o classificador.
+Identify target `Species` levels to configure the classifier.
 
 ``` r
 # extracting the levels for the dataset
@@ -43,7 +43,8 @@ slevels
 ## [1] "setosa"     "versicolor" "virginica"
 ```
 
-Divisão treino/teste com amostragem aleatória reprodutível.
+# Building train and test samples via random sampling
+Train/test split with reproducible random sampling.
 
 ``` r
 # Construindo amostras (treino e teste) por amostragem aleatória
@@ -54,7 +55,7 @@ iris_train <- sr$train
 iris_test <- sr$test
 ```
 
-Verificando a distribuição de classes no dataset completo, treino e teste.
+Check class distribution for full dataset, training, and test.
 
 ``` r
 tbl <- rbind(table(iris[,"Species"]), 
@@ -71,7 +72,8 @@ head(tbl)
 ## test         11         12         7
 ```
 
-Treinamento do modelo kNN: define alvo, níveis e k.
+# Model training
+Train the kNN model: set target, levels, and k.
 
 ``` r
 # Treinamento do modelo
@@ -79,7 +81,8 @@ model <- cla_knn("Species", slevels, k=1) # k=1 para vizinho mais próximo
 model <- fit(model, iris_train)
 ```
 
-Avaliação no conjunto de treino: previsão, ajuste de rótulos e métricas.
+# Training evaluation
+Predict on training set, adjust labels, and compute metrics.
 
 ``` r
 # Verificando ajuste no treino
@@ -96,7 +99,8 @@ print(train_eval$metrics)
 ## 1        1 39 81  0  0         1      1           1           1  1
 ```
 
-Teste no conjunto de teste: previsão e métricas.
+# Test evaluation
+Predict on test set and compute metrics.
 
 ``` r
 # Teste do modelo
