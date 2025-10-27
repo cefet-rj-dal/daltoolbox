@@ -18,7 +18,7 @@ library(ggplot2)
 ```
 
 ```
-## Warning: pacote 'ggplot2' foi compilado no R versão 4.5.1
+## Warning: package 'ggplot2' was built under R version 4.5.1
 ```
 
 ``` r
@@ -51,22 +51,22 @@ library(dplyr)
 ```
 
 ```
-## Warning: pacote 'dplyr' foi compilado no R versão 4.5.1
+## Warning: package 'dplyr' was built under R version 4.5.1
 ```
 
 ```
 ## 
-## Anexando pacote: 'dplyr'
+## Attaching package: 'dplyr'
 ```
 
 ```
-## Os seguintes objetos são mascarados por 'package:stats':
+## The following objects are masked from 'package:stats':
 ## 
 ##     filter, lag
 ```
 
 ```
-## Os seguintes objetos são mascarados por 'package:base':
+## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union
 ```

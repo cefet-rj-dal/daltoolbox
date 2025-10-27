@@ -15,11 +15,11 @@ library(daltoolbox)
 
 ```
 ## 
-## Anexando pacote: 'daltoolbox'
+## Attaching package: 'daltoolbox'
 ```
 
 ```
-## O seguinte objeto é mascarado por 'package:base':
+## The following object is masked from 'package:base':
 ## 
 ##     transform
 ```

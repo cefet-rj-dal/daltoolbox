@@ -23,11 +23,11 @@ library(MASS)
 
 ```
 ## 
-## Anexando pacote: 'MASS'
+## Attaching package: 'MASS'
 ```
 
 ```
-## O seguinte objeto é mascarado por 'package:dplyr':
+## The following object is masked from 'package:dplyr':
 ## 
 ##     select
 ```
