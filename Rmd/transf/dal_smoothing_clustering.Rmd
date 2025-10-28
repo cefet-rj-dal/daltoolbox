@@ -55,3 +55,5 @@ sl.bi <- transform(obj, iris$Sepal.Length)
 print(table(sl.bi))
 ```
 
+References
+- MacQueen, J. (1967). Some Methods for Classification and Analysis of Multivariate Observations.

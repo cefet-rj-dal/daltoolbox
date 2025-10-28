@@ -34,6 +34,9 @@ print(table(sl.bi))
 obj$interval
 ```
 
+References
+- Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Discretization)
+
 Evaluate conditional entropy between bins and species.
 ```{r}
 entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
