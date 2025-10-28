@@ -26,7 +26,7 @@ slevels <- levels(iris$Species)
 slevels
 ```
 
-# Building train and test samples via random sampling
+Building train and test samples via random sampling
 Random train/test split.
 ```{r}
 # Building train and test samples via random sampling
@@ -47,7 +47,7 @@ rownames(tbl) <- c("dataset", "training", "test")
 head(tbl)
 ```
 
-# Model training
+Model training
 Train Random Forest: tune `mtry` and `ntree`.
 ```{r}
 # Model training
@@ -56,7 +56,7 @@ model <- fit(model, iris_train)
 
 ```
 
-# Training evaluation
+Training evaluation
 ```{r}
 # Checking fit on training data
 train_prediction <- predict(model, iris_train)
@@ -67,7 +67,7 @@ train_eval <- evaluate(model, iris_train_predictand, train_prediction)
 print(train_eval$metrics)
 ```
 
-# Test evaluation
+Test evaluation
 ```{r}
 # Model test
 test_prediction <- predict(model, iris_test)

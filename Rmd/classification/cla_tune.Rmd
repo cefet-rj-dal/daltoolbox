@@ -25,7 +25,7 @@ slevels <- levels(iris$Species)
 slevels
 ```
 
-# Train/test split
+Train/test split
 Random split for tuning validation.
 ```{r}
 # preparing random sampling
@@ -42,7 +42,7 @@ rownames(tbl) <- c("dataset", "training", "test")
 head(tbl)
 ```
 
-# Hyperparameter grid and search training
+Hyperparameter grid and search training
 ```{r}
 # Training with hyperparameter search
 tune <- cla_tune(cla_svm("Species", slevels), 
@@ -51,7 +51,7 @@ tune <- cla_tune(cla_svm("Species", slevels),
 model <- fit(tune, iris_train)
 ```
 
-# Training evaluation with the best configuration
+Training evaluation with the best configuration
 ```{r}
 # Training evaluation
 train_prediction <- predict(model, iris_train)
@@ -61,7 +61,7 @@ train_eval <- evaluate(model, iris_train_predictand, train_prediction)
 print(train_eval$metrics)
 ```
 
-# Test evaluation
+Test evaluation
 ```{r}
 # Test evaluation
 test_prediction <- predict(model, iris_test)
@@ -73,7 +73,7 @@ test_eval <- evaluate(model, iris_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
 
-# Example grids for other models
+Example grids for other models
 ```{r}
 # Grid options for other models
 # knn

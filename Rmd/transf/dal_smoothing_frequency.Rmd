@@ -1,3 +1,6 @@
+About the technique
+- `smoothing_freq`: discretization/smoothing by frequency (quantiles), producing bins with similar counts.
+
 ```{r}
 # installation 
 #install.packages("daltoolbox")
@@ -5,9 +8,6 @@
 # loading DAL
 library(daltoolbox) 
 ```
-
-About the technique
-- `smoothing_freq`: discretization/smoothing by frequency (quantiles), producing bins with similar counts.
 
 Sample data and general idea.
 ```{r}
@@ -35,9 +35,6 @@ print(table(sl.bi))
 obj$interval
 ```
 
-References
-- Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Discretization)
-
 Evaluate conditional entropy.
 ```{r}
 entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
@@ -58,3 +55,7 @@ obj <- fit(obj, iris$Sepal.Length)
 sl.bi <- transform(obj, iris$Sepal.Length)
 print(table(sl.bi))
 ```
+
+References
+- Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Discretization)
+

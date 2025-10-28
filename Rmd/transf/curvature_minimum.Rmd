@@ -1,3 +1,6 @@
+About the technique
+- `fit_curvature_min`: computes curvature via the second derivative of a smoothed spline over the sequence and returns the minimum curvature position for increasing curves; useful to find a trade-off point where additional gains become marginal.
+
 ```{r}
 # installation 
 #install.packages("daltoolbox")
@@ -9,9 +12,6 @@ library(daltoolbox)
 library(ggplot2)
 library(dplyr)
 ```
-
-About the technique
-- `fit_curvature_min`: computes curvature via the second derivative of a smoothed spline over the sequence and returns the minimum curvature position for increasing curves; useful to find a trade-off point where additional gains become marginal.
 
 Load example data (PCA on wine dataset) and build cumulative variance curve.
 ```{r}

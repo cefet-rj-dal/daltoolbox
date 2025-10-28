@@ -46,4 +46,3 @@ print(head(iris_cm))
 References
 - Bishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer. (1-of-K/one-hot encoding)
 
-Apply the same mapping to a data frame with a single categorical column.
