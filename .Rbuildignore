@@ -17,7 +17,7 @@
 ^develop$
 ^examples$
 ^examples-r$
-^word$
+^examples-word$
 package.R
 jupyter.R
 wine.RData

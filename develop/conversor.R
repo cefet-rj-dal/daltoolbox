@@ -32,7 +32,7 @@ delete_ipynb <- function(input) {
 
 # Knit an .Rmd to .md under 'examples/', move figures to
 # '<examples-subdir>/fig/<doc-basename>/', render a Word (.docx)
-# under top-level 'word/', and also extract a pure R script under
+# under top-level 'examples-word/', and also extract a pure R script under
 # 'examples-r/'.
 convert_rmd_md <- function(input) {
   # Require needed packages; keep behavior consistent with original
@@ -50,10 +50,10 @@ convert_rmd_md <- function(input) {
   md_rel  <- gsub("^Rmd/", "", xfun::with_ext(input, "md"))
   mdfile  <- file.path("examples", md_rel)
 
-  # Output Word path goes under top-level 'word/' directory
+  # Output Word path goes under top-level 'examples-word/' directory
   # Preserve sub-structure after removing the leading 'Rmd/'
   docx_rel <- gsub("^Rmd/", "", xfun::with_ext(input, "docx"))
-  docxfile <- file.path("word", docx_rel)
+  docxfile <- file.path("examples-word", docx_rel)
 
   # Output R script path goes under top-level 'examples-r/' directory
   # Preserve sub-structure after removing the leading 'Rmd/'

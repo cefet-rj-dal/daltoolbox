@@ -23,7 +23,7 @@ font <- theme(text = element_text(size=16))
 
 Data and construction of a simple boxplot and a colored variant.
 ```{r}
-# conjunto de dados iris para o exemplo
+# iris dataset for the example
 head(iris)
 ```
 

@@ -26,7 +26,7 @@ font <- theme(text = element_text(size=16))
 Aggregated data and pie chart construction.
 
 ``` r
-# conjunto de dados iris para o exemplo
+# iris dataset for the example
 head(iris)
 ```
 
