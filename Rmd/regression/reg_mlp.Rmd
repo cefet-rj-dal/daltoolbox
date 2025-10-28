@@ -67,3 +67,5 @@ test_eval <- evaluate(model, boston_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
 
+References
+- Bishop, C. M. (1995). Neural Networks for Pattern Recognition. Oxford University Press.

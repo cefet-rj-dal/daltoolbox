@@ -78,3 +78,5 @@ iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
 print(test_eval$metrics)
 ```
 
+References
+- Breiman, L., Friedman, J., Olshen, R., and Stone, C. (1984). Classification and Regression Trees. Wadsworth.

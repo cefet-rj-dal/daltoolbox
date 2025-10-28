@@ -81,3 +81,6 @@ iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
 print(test_eval$metrics)
 ```
 
+References
+- Cortes, C. and Vapnik, V. (1995). Support-Vector Networks. Machine Learning 20(3):273–297.
+- Chang, C.-C. and Lin, C.-J. (2011). LIBSVM: A library for support vector machines.

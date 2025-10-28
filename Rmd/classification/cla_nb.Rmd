@@ -78,3 +78,5 @@ iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
 print(test_eval$metrics)
 ```
 
+References
+- Mitchell, T. (1997). Machine Learning. McGraw-Hill. (Naive Bayes)

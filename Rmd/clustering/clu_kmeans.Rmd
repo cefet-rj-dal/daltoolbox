@@ -57,3 +57,6 @@ eval <- evaluate(model, clu, iris_minmax$Species)
 eval
 ```
 
+References
+- MacQueen, J. (1967). Some Methods for Classification and Analysis of Multivariate Observations.
+- Lloyd, S. (1982). Least squares quantization in PCM.

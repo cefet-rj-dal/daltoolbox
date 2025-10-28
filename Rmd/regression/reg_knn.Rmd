@@ -67,3 +67,5 @@ test_eval <- evaluate(model, boston_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
 
+References
+- Altman, N. (1992). An Introduction to Kernel and Nearest-Neighbor Nonparametric Regression.

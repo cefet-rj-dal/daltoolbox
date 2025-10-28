@@ -66,3 +66,5 @@ test_eval <- evaluate(model, boston_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
 
+References
+- Breiman, L., Friedman, J., Olshen, R., and Stone, C. (1984). Classification and Regression Trees. Wadsworth.

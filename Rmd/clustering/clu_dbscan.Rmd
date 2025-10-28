@@ -38,3 +38,5 @@ eval <- evaluate(model, clu, iris$Species)
 eval
 ```
 
+References
+- Ester, M., Kriegel, H.-P., Sander, J., Xu, X. (1996). A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise.

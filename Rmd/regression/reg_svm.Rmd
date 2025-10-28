@@ -68,3 +68,6 @@ test_eval <- evaluate(model, boston_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
 
+References
+- Drucker, H., Burges, C., Kaufman, L., Smola, A., Vapnik, V. (1997). Support Vector Regression Machines.
+- Chang, C.-C. and Lin, C.-J. (2011). LIBSVM: A library for support vector machines.

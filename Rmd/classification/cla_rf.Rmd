@@ -79,3 +79,6 @@ iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
 print(test_eval$metrics)
 ```
 
+References
+- Breiman, L. (2001). Random Forests. Machine Learning 45(1):5–32.
+- Liaw, A. and Wiener, M. (2002). Classification and Regression by randomForest. R News.

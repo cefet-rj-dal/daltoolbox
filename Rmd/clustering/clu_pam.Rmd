@@ -38,3 +38,5 @@ eval <- evaluate(model, clu, iris$Species)
 eval
 ```
 
+References
+- Kaufman, L. and Rousseeuw, P. J. (1990). Finding Groups in Data: An Introduction to Cluster Analysis.

@@ -81,3 +81,5 @@ iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
 print(test_eval$metrics)
 ```
 
+References
+- Cover, T. and Hart, P. (1967). Nearest neighbor pattern classification. IEEE Transactions on Information Theory.

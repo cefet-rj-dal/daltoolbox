@@ -55,3 +55,5 @@ head(res)
 plot(grf + geom_vline(xintercept = res$x, linetype="dashed", color = "red", size=0.5))
 ```
 
+References
+- Satopaa, V., Albrecht, J., Irwin, D., Raghavan, B. (2011). Finding a "Kneedle" in a Haystack: Detecting Knee Points in System Behavior.
