@@ -29,7 +29,8 @@ delete_ipynb <- function(input) {
   file.remove(input)
 }
 
-# Knit an .Rmd to .md, and move figures to '<dest>/fig/<doc-basename>/'
+# Knit an .Rmd to .md, move figures to '<dest>/fig/<doc-basename>/',
+# and also render a Word (.docx) file in the same destination folder
 convert_rmd_md <- function(input) {
   # Require needed packages; keep behavior consistent with original
   if (!require("rmarkdown")) return("Missing necessary package: 'rmarkdown'")
@@ -44,6 +45,10 @@ convert_rmd_md <- function(input) {
   # Output Markdown path mirrors input but outside 'Rmd/' root
   mdfile <- xfun::with_ext(input, "md")
   mdfile <- gsub("Rmd/", "", mdfile)
+
+  # Output Word path mirrors input but outside 'Rmd/' root
+  docxfile <- xfun::with_ext(input, "docx")
+  docxfile <- gsub("Rmd/", "", docxfile)
 
   # Destination figure directory: '<md-dir>/fig/<rmd-basename>/'
   figdir <- file.path(dirname(mdfile), "fig", basename(xfun::with_ext(input, "")))
@@ -81,6 +86,15 @@ convert_rmd_md <- function(input) {
   # Optional: remove intermediate HTML if produced by other workflows
   # htmlfile <- xfun::with_ext(input, "html")
   # if (file.exists(htmlfile)) file.remove(htmlfile)
+
+  # Additionally render Word document to the same destination folder
+  # Use rmarkdown::render to produce .docx next to the generated .md
+  rmarkdown::render(
+    input,
+    output_format = "word_document",
+    output_file   = basename(docxfile),
+    output_dir    = dirname(docxfile)
+  )
 }
 
 
@@ -117,4 +131,3 @@ if (TRUE) {
 # To-do checks (manual):
 # - Search for '## Error' in outputs
 # - Search for '## Error in install.packages : Updating loaded packages'
-
