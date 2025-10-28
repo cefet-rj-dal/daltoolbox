@@ -15,6 +15,7 @@
 ^transf$
 ^Rmd$
 ^develop$
+^word$
 package.R
 jupyter.R
 wine.RData

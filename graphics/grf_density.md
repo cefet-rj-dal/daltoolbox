@@ -37,12 +37,12 @@ head(example)
 
 ```
 ##   exponential  uniform   normal
-## 1   1.4552261 2.843158 5.298216
-## 2   0.1788657 2.860798 5.059152
-## 3   0.4232511 3.150330 4.329689
-## 4   0.6887467 2.593078 5.647122
-## 5   0.7012283 3.460120 4.891822
-## 6   2.2377570 2.722793 5.408614
+## 1  1.69082915 3.110778 3.509882
+## 2  0.58784349 3.432669 5.146903
+## 3  0.03356504 3.306626 3.916641
+## 4  0.93216698 2.632631 6.592439
+## 5  1.48961047 2.743151 5.796839
+## 6  0.07589503 3.310770 5.389151
 ```
 
 # Density plot
@@ -104,24 +104,6 @@ grfn <- plot_density(example |> dplyr::select(normal),
 
 ``` r
 library(gridExtra)  
-```
-
-```
-## Warning: package 'gridExtra' was built under R version 4.5.1
-```
-
-```
-## 
-## Attaching package: 'gridExtra'
-```
-
-```
-## The following object is masked from 'package:dplyr':
-## 
-##     combine
-```
-
-``` r
 options(repr.plot.width=15, repr.plot.height=4)
 grid.arrange(grfe, grfu, grfn, ncol=3)
 ```
