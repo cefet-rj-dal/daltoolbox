@@ -33,7 +33,7 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-# PCA
+PCA
 PCA finds a projection capturing the largest possible variance in the data. Below, we fit PCA and transform the dataset.
 
 
@@ -44,7 +44,7 @@ mypca <- fit(mypca, datasets::iris)
 iris.pca <- transform(mypca, iris)
 ```
 
-# PCA properties
+PCA properties
 
 
 ``` r

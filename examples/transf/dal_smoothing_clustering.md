@@ -1,7 +1,7 @@
 About the technique
 - `smoothing_cluster`: discretization/smoothing by defining bins via clustering instead of fixed intervals.
 
-# Discretization and smoothing
+Discretization and smoothing
 Discretization transforms continuous functions, models, variables, and equations into discrete counterparts.
 
 Smoothing creates an approximating function to capture important patterns while reducing noise or high-frequency variation.
@@ -18,7 +18,7 @@ library(daltoolbox)
 ```
 
 
-# General function to evaluate different smoothing techniques
+General function to evaluate different smoothing techniques
 
 Sample data (`iris`) to illustrate clustering-based discretization/smoothing.
 
@@ -72,7 +72,7 @@ print(entro$entropy)
 ## [1] 1.12088
 ```
 
-# Optimizing the number of binnings
+Optimizing the number of binnings
 
 Optimize the number of bins (search 1:20) and refit.
 
