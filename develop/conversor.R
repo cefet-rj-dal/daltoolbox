@@ -29,8 +29,10 @@ delete_ipynb <- function(input) {
   file.remove(input)
 }
 
-# Knit an .Rmd to .md, move figures to '<dest>/fig/<doc-basename>/',
-# and also render a Word (.docx) file in the same destination folder
+# Knit an .Rmd to .md under 'examples/', move figures to
+# '<examples-subdir>/fig/<doc-basename>/', render a Word (.docx)
+# under top-level 'word/', and also extract a pure R script under
+# 'examples-r/'.
 convert_rmd_md <- function(input) {
   # Require needed packages; keep behavior consistent with original
   if (!require("rmarkdown")) return("Missing necessary package: 'rmarkdown'")
@@ -42,17 +44,29 @@ convert_rmd_md <- function(input) {
     return("Error: Invalid file format")
   }
 
-  # Output Markdown path mirrors input but outside 'Rmd/' root
-  mdfile <- xfun::with_ext(input, "md")
-  mdfile <- gsub("Rmd/", "", mdfile)
+  # Output Markdown path goes under top-level 'examples/' directory
+  # Preserve sub-structure after removing the leading 'Rmd/'
+  md_rel  <- gsub("^Rmd/", "", xfun::with_ext(input, "md"))
+  mdfile  <- file.path("examples", md_rel)
 
   # Output Word path goes under top-level 'word/' directory
   # Preserve sub-structure after removing the leading 'Rmd/'
   docx_rel <- gsub("^Rmd/", "", xfun::with_ext(input, "docx"))
   docxfile <- file.path("word", docx_rel)
 
+  # Output R script path goes under top-level 'examples-r/' directory
+  # Preserve sub-structure after removing the leading 'Rmd/'
+  r_rel  <- gsub("^Rmd/", "", xfun::with_ext(input, "R"))
+  rfile  <- file.path("examples-r", r_rel)
+
   # Destination figure directory: '<md-dir>/fig/<rmd-basename>/'
   figdir <- file.path(dirname(mdfile), "fig", basename(xfun::with_ext(input, "")))
+
+  # Ensure 'examples/' destination directory exists for the .md
+  md_dir <- dirname(mdfile)
+  if (!dir.exists(md_dir)) {
+    dir.create(md_dir, recursive = TRUE, showWarnings = FALSE)
+  }
 
   # Clean any previous temporary and destination figure folders
   unlink("figure", recursive = TRUE)   # knitr default temporary figure dir
@@ -102,6 +116,13 @@ convert_rmd_md <- function(input) {
     output_file   = basename(docxfile),
     output_dir    = dirname(docxfile)
   )
+
+  # Ensure 'examples-r/' destination directory exists and extract pure R code
+  r_dir <- dirname(rfile)
+  if (!dir.exists(r_dir)) {
+    dir.create(r_dir, recursive = TRUE, showWarnings = FALSE)
+  }
+  knitr::purl(input, output = rfile, documentation = 0, quiet = TRUE)
 }
 
 

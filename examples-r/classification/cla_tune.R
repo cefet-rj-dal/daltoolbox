@@ -1,0 +1,61 @@
+# Tuning de Classificação 
+
+# installation 
+#install.packages("daltoolbox")
+
+# loading DAL
+library(daltoolbox) 
+
+# Conjunto de dados para classificação
+
+iris <- datasets::iris
+head(iris)
+
+# extracting the levels for the dataset
+slevels <- levels(iris$Species)
+slevels
+
+# preparando amostragem aleatória
+set.seed(1)
+sr <- sample_random()
+sr <- train_test(sr, iris)
+iris_train <- sr$train
+iris_test <- sr$test
+
+tbl <- rbind(table(iris[,"Species"]),
+             table(iris_train[,"Species"]),
+             table(iris_test[,"Species"]))
+rownames(tbl) <- c("dataset", "training", "test")
+head(tbl)
+
+# Treinamento com busca de hiperparâmetros
+tune <- cla_tune(cla_svm("Species", slevels), 
+  ranges = list(epsilon=seq(0,1,0.2), cost=seq(20,100,20), kernel = c("linear", "radial", "polynomial", "sigmoid")))
+
+model <- fit(tune, iris_train)
+
+# Avaliação no treino
+train_prediction <- predict(model, iris_train)
+
+iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
+train_eval <- evaluate(model, iris_train_predictand, train_prediction)
+print(train_eval$metrics)
+
+# Avaliação no teste
+test_prediction <- predict(model, iris_test)
+
+iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
+
+# Evaluating # setosa as primary class
+test_eval <- evaluate(model, iris_test_predictand, test_prediction)
+print(test_eval$metrics)
+
+# Opções de grids para outros modelos
+# knn
+ranges <- list(k=1:20)
+
+# mlp
+ranges <- list(size=1:10, decay=seq(0, 1, 0.1))
+
+# rf
+ranges <- list(mtry=1:3, ntree=1:10)

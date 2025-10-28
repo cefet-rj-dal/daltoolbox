@@ -1,0 +1,30 @@
+# installation 
+#install.packages("daltoolbox")
+
+# loading DAL
+library(daltoolbox) 
+
+library(ggplot2)
+library(RColorBrewer)
+
+# color palette
+colors <- brewer.pal(4, 'Set1')
+
+# setting the font size for all charts
+font <- theme(text = element_text(size=16))
+
+# conjunto de dados iris para o exemplo
+head(iris)
+
+library(dplyr)
+data <- iris |> group_by(Species) |> summarize(mean=mean(Sepal.Length), sd=sd(Sepal.Length))
+head(data)
+
+# Bar graph with error bars
+# When bar graphs present an average behavior, it is possible to plot a dispersion around it using an error bar.
+# The error bar is added using $geom\_errorbar()$ function to a previously defined bar graph. 
+
+grf <- plot_bar(data, colors=colors[1], alpha=1) + font
+grf <- grf + geom_errorbar(aes(x=Species, ymin=mean-sd, ymax=mean+sd), 
+                           width=0.2, colour="darkred", alpha=0.8, size=1.1) 
+plot(grf)

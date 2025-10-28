@@ -15,6 +15,8 @@
 ^transf$
 ^Rmd$
 ^develop$
+^examples$
+^examples-r$
 ^word$
 package.R
 jupyter.R

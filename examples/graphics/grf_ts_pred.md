@@ -1,0 +1,52 @@
+About the chart
+- Time series with fit and forecast: shows observed values, model fit, and forecast horizon for visual comparison.
+
+Graphics environment setup.
+
+``` r
+# installation 
+#install.packages("daltoolbox")
+
+# loading DAL
+library(daltoolbox) 
+```
+
+
+``` r
+library(ggplot2)
+library(RColorBrewer)
+
+# color palette
+colors <- brewer.pal(4, 'Set1')
+
+# setting the font size for all charts
+font <- theme(text = element_text(size=16))
+```
+
+Synthetic series with noise; split windows for fit and forecast.
+
+``` r
+# Série temporal sintética
+
+x <- base::seq(0, 10, 0.25)
+yvalues <- sin(x) + rnorm(41,0,0.1)
+```
+
+
+``` r
+# prediction
+adjust <- sin(x[1:35])
+prediction <- sin(x[36:41])
+```
+
+Plot time series with fit and forecast.
+
+``` r
+# Time series with forecast
+
+# Chart with observed values, model fit, and predicted values. 
+
+plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction)
+```
+
+![plot of chunk unnamed-chunk-5](fig/grf_ts_pred/unnamed-chunk-5-1.png)
