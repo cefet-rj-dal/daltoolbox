@@ -44,3 +44,6 @@ grf <- plot_series(serie, colors=colors[1:2]) + font
 plot(grf)
 ```
 
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+- Hyndman, R. J., and Athanasopoulos, G. (2021). Forecasting: Principles and Practice (3rd ed.). OTexts.

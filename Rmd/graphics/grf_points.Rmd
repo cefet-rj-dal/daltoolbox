@@ -44,3 +44,6 @@ grf <- grf + font
 # Actual plot
 plot(grf)
 ```
+
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.

@@ -85,3 +85,5 @@ ranges <- list(size=1:10, decay=seq(0, 1, 0.1))
 ranges <- list(mtry=1:10, ntree=1:10)
 ```
 
+References
+- Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection. IJCAI.

@@ -49,3 +49,7 @@ grf <- plot_radar(data, colors=colors[1]) + font
 grf <- grf + ylim(0, NA)
 plot(grf)
 ```
+
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+- Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer.

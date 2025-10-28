@@ -38,3 +38,5 @@ eval <- evaluate(model, clu, iris$Species)
 eval
 ```
 
+References
+- Satopaa, V., Albrecht, J., Irwin, D., Raghavan, B. (2011). Finding a "Kneedle" in a Haystack: Detecting Knee Points in System Behavior.

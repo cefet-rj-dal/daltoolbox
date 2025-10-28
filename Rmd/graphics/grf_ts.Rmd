@@ -38,3 +38,6 @@ grf <- plot_ts(x = x, y = y, color=c("red"))
 plot(grf)
 ```
 
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+- Hyndman, R. J., and Athanasopoulos, G. (2021). Forecasting: Principles and Practice (3rd ed.). OTexts.

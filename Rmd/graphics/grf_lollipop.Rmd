@@ -43,6 +43,10 @@ grf <- plot_lollipop(data, colors=colors[1], max_value_gap=0.2) + font
 plot(grf)
 ```
 
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+- Cleveland, W. S. (1994). The Elements of Graphing Data (2nd ed.). Hobart Press.
+
 ```{r}
 grf <- plot_lollipop(data, colors=colors[1], max_value_gap=0.1) + font + coord_flip() 
 plot(grf)

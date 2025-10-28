@@ -46,3 +46,5 @@ Export to PDF with `ggsave`.
 ggsave("series.pdf", width = 5, height = 4, units = "cm")
 ```
 
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer. (ggsave)
