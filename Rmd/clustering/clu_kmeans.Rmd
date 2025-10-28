@@ -13,19 +13,19 @@ library(daltoolbox)
 
 Load sample data (`iris`).
 ```{r}
-# carregando conjunto de dados
+# loading dataset
 data(iris)
 ```
 
 Configure K-means with k=3 (one cluster per species in iris).
 ```{r}
-# configuração do método de clusterização
+# clustering method configuration
 model <- cluster_kmeans(k=3)
 ```
 
 Fit the model and obtain cluster labels.
 ```{r}
-# ajuste do modelo e rotulagem
+# model fitting and labeling
 model <- fit(model, iris[,1:4])
 clu <- cluster(model, iris[,1:4])
 table(clu)
@@ -56,3 +56,4 @@ Re-evaluation with normalized data.
 eval <- evaluate(model, clu, iris_minmax$Species)
 eval
 ```
+

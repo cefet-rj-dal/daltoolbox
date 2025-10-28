@@ -23,7 +23,7 @@ font <- theme(text = element_text(size=16))
 
 Synthetic series (sine) for the example and plot with `plot_ts`.
 ```{r}
-# Série temporal sintética
+# Synthetic time series
 
 x <- seq(0, 10, 0.25)
 y <- sin(x)
@@ -37,3 +37,4 @@ y <- sin(x)
 grf <- plot_ts(x = x, y = y, color=c("red"))
 plot(grf)
 ```
+

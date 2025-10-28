@@ -23,7 +23,7 @@ font <- theme(text = element_text(size=16))
 
 Synthetic series (sine and shifted cosine) for the example.
 ```{r}
-# Série temporal sintética
+# Synthetic time series
 
 x <- seq(0, 10, 0.25)
 serie <- data.frame(x, sin=sin(x), cosine=cos(x)+5)
@@ -43,3 +43,4 @@ Build a two-line series chart.
 grf <- plot_series(serie, colors=colors[1:2]) + font
 plot(grf)
 ```
+
