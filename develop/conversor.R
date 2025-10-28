@@ -4,6 +4,7 @@
 # - delete_ipynb: removes a .ipynb file
 # - convert_rmd_md: knits .Rmd to .md and relocates figures to a per-doc folder
 #
+#
 # Notes:
 # - Adds comments for clarity and light refactor for readability.
 # - Ensures destination figure folder exists before moving figures to avoid

@@ -1,0 +1,71 @@
+# - Leaves text outside R chunks unchanged.
+translate_comments_in_rmd_file <- function(path) {
+  if (!file.exists(path)) return(invisible(FALSE))
+  lines <- readLines(file(path, encoding = "UTF-8"))
+  in_chunk <- FALSE
+  fence_re <- "^\\s*```"  # code fence
+  r_chunk_start <- "^\\s*```\\{r(,|\\}|\\s)"  # start of R chunk
+  changed <- FALSE
+
+  for (idx in seq_along(lines)) {
+    ln <- lines[[idx]]
+    if (!in_chunk) {
+      # Enter R chunk
+      if (grepl(r_chunk_start, ln, perl = TRUE)) {
+        in_chunk <- TRUE
+      }
+      next
+    } else {
+      # Check for chunk end
+      if (grepl(fence_re, ln, perl = TRUE)) {
+        in_chunk <- FALSE
+        next
+      }
+      # Skip Quarto option comments
+      if (grepl("^\\s*#\\|", ln, perl = TRUE)) next
+
+      # Full-line comment
+      m <- regexec("^(\\s*)#(?!\\|)\\s*(.*)$", ln, perl = TRUE)
+      reg <- regmatches(ln, m)[[1]]
+      if (length(reg)) {
+        indent <- reg[[2]]
+        text <- reg[[3]]
+        if (nzchar(text)) {
+          tr <- translate_text_to_english(text)
+          if (!identical(tr, text)) {
+            lines[[idx]] <- paste0(indent, "# ", tr)
+            changed <- TRUE
+          }
+        }
+        next
+      }
+
+      # Inline trailing comment
+      pos <- first_hash_outside_quotes(ln)
+      if (pos > 0) {
+        code_part <- substr(ln, 1, pos - 1)
+        comment_part <- substr(ln, pos + 1, nchar(ln))
+        # ignore Quarto-style if mistakenly matched
+        if (!grepl("^\\|", trimws(comment_part))) {
+          text <- trimws(comment_part)
+          if (nzchar(text)) {
+            tr <- translate_text_to_english(text)
+            if (!identical(tr, text)) {
+              lines[[idx]] <- paste0(code_part, "# ", tr)
+              changed <- TRUE
+            }
+          }
+        }
+      }
+    }
+  }
+
+  if (changed) {
+    con <- file(path, encoding = "UTF-8")
+    on.exit(close(con))
+    writeLines(lines, con)
+  }
+  invisible(changed)
+}
+  # First, translate R code comments in-place to English if possible
+  translate_comments_in_rmd_file(input)

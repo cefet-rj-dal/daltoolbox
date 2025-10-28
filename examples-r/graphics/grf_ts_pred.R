@@ -1,0 +1,30 @@
+# installation 
+#install.packages("daltoolbox")
+
+# loading DAL
+library(daltoolbox) 
+
+library(ggplot2)
+library(RColorBrewer)
+
+# color palette
+colors <- brewer.pal(4, 'Set1')
+
+# setting the font size for all charts
+font <- theme(text = element_text(size=16))
+
+# Série temporal sintética
+
+x <- base::seq(0, 10, 0.25)
+yvalues <- sin(x) + rnorm(41,0,0.1)
+
+
+# prediction
+adjust <- sin(x[1:35])
+prediction <- sin(x[36:41])
+
+# Time series with forecast
+
+# Chart with observed values, model fit, and predicted values. 
+
+plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction)
