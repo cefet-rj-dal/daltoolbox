@@ -43,7 +43,7 @@ slevels
 ## [1] "setosa"     "versicolor" "virginica"
 ```
 
-# Train/test split
+Train/test split
 Random split for tuning validation.
 
 ``` r
@@ -68,7 +68,7 @@ head(tbl)
 ## test         11         12         7
 ```
 
-# Hyperparameter grid and search training
+Hyperparameter grid and search training
 
 ``` r
 # Training with hyperparameter search
@@ -78,7 +78,7 @@ tune <- cla_tune(cla_svm("Species", slevels),
 model <- fit(tune, iris_train)
 ```
 
-# Training evaluation with the best configuration
+Training evaluation with the best configuration
 
 ``` r
 # Training evaluation
@@ -94,7 +94,7 @@ print(train_eval$metrics)
 ## 1 0.9833333 39 81  0  0         1      1           1           1  1
 ```
 
-# Test evaluation
+Test evaluation
 
 ``` r
 # Test evaluation
@@ -112,7 +112,7 @@ print(test_eval$metrics)
 ## 1 0.9333333 11 19  0  0         1      1           1           1  1
 ```
 
-# Example grids for other models
+Example grids for other models
 
 ``` r
 # Grid options for other models

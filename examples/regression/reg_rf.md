@@ -1,5 +1,3 @@
-# Regression Random Forest
-
 About the method
 - `reg_rf`: Random Forest for regression. Averages many decision trees trained with randomness; tends to reduce variance.
 - Hyperparameters: `mtry` (variables per split), `ntree` (number of trees).
@@ -13,7 +11,7 @@ About the method
 library(daltoolbox) 
 ```
 
-# Dataset for regression analysis
+Dataset for regression analysis
 Load Boston dataset and inspect types/values.
 
 
@@ -42,14 +40,14 @@ head(Boston)
 ## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
 ```
 
-# Optional conversion to matrix (may improve performance in some cases).
+Optional conversion to matrix (may improve performance in some cases).
 
 ``` r
 # for performance, you can convert to matrix
 Boston <- as.matrix(Boston)
 ```
 
-# Train/test split
+Train/test split
 Random and reproducible train/test split.
 
 
@@ -62,7 +60,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 ```
 
-# Training
+Training
 Train Random Forest to predict `medv`.
 
 
@@ -71,7 +69,7 @@ model <- reg_rf("medv", mtry=7, ntree=30) # mtry: variables per split; ntree: nu
 model <- fit(model, boston_train)
 ```
 
-# Model adjustment
+Model adjustment
 Training evaluation (regression metrics such as RMSE/MAE).
 
 
@@ -87,7 +85,7 @@ print(train_eval$metrics)
 ## 1 1.358048 0.03937262 0.984912
 ```
 
-# Test
+Test
 Test evaluation.
 
 

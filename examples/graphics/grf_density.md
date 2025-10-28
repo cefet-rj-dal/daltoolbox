@@ -37,15 +37,15 @@ head(example)
 
 ```
 ##   exponential  uniform   normal
-## 1   1.3031709 2.939174 5.632033
-## 2   0.3506507 3.210620 6.161813
-## 3   3.7287251 2.861615 6.217906
-## 4   1.0444301 3.118621 4.307145
-## 5   1.1508746 3.332364 4.577749
-## 6   0.2775119 3.191805 5.162033
+## 1  1.69082915 3.110778 3.509882
+## 2  0.58784349 3.432669 5.146903
+## 3  0.03356504 3.306626 3.916641
+## 4  0.93216698 2.632631 6.592439
+## 5  1.48961047 2.743151 5.796839
+## 6  0.07589503 3.310770 5.389151
 ```
 
-# Density plot
+Density plot
 
 Draws a kernel density estimate, a smoothed alternative to the histogram for continuous data.
 
@@ -68,7 +68,7 @@ plot(grf)
 
 ![plot of chunk unnamed-chunk-4](fig/grf_density/unnamed-chunk-4-1.png)
 
-# Chart arrangement
+Chart arrangement
 
 The `grid.arrange` function can arrange multiple previously created charts.
 

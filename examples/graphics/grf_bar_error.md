@@ -1,3 +1,6 @@
+About the chart
+- Bars with error bars: add uncertainty/variability (e.g., standard deviation) to bars using `geom_errorbar()`.
+
 
 ``` r
 # installation 
@@ -6,9 +9,6 @@
 # loading DAL
 library(daltoolbox) 
 ```
-
-About the chart
-- Bars with error bars: add uncertainty/variability (e.g., standard deviation) to bars using `geom_errorbar()`.
 
 Graphics environment setup.
 

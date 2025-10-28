@@ -55,7 +55,7 @@ print(table(tt$train$Species))
 ```
 ## 
 ##     setosa versicolor  virginica 
-##         42         37         41
+##         41         40         39
 ```
 
 ``` r
@@ -66,7 +66,7 @@ print(table(tt$test$Species))
 ```
 ## 
 ##     setosa versicolor  virginica 
-##          8         13          9
+##          9         10         11
 ```
 
 Create random k-folds and check distribution per fold.
@@ -88,10 +88,10 @@ print(tbl)
 
 ```
 ##      setosa versicolor virginica
-## [1,]     16         11        10
-## [2,]      9         15        13
-## [3,]      9         13        16
-## [4,]     16         11        11
+## [1,]     15         10        12
+## [2,]     13         10        14
+## [3,]     10         16        12
+## [4,]     12         14        12
 ```
 
 References

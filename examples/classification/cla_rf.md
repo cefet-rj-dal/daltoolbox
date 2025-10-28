@@ -43,7 +43,7 @@ slevels
 ## [1] "setosa"     "versicolor" "virginica"
 ```
 
-# Building train and test samples via random sampling
+Building train and test samples via random sampling
 Random train/test split.
 
 ``` r
@@ -72,7 +72,7 @@ head(tbl)
 ## test         11         12         7
 ```
 
-# Model training
+Model training
 Train Random Forest: tune `mtry` and `ntree`.
 
 ``` r
@@ -81,7 +81,7 @@ model <- cla_rf("Species", slevels, mtry=3, ntree=5) # mtry: variables per split
 model <- fit(model, iris_train)
 ```
 
-# Training evaluation
+Training evaluation
 
 ``` r
 # Checking fit on training data
@@ -98,7 +98,7 @@ print(train_eval$metrics)
 ## 1    0.975 39 81  0  0         1      1           1           1  1
 ```
 
-# Test evaluation
+Test evaluation
 
 ``` r
 # Model test

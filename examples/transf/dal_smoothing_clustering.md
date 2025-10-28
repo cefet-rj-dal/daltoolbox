@@ -1,12 +1,3 @@
-
-``` r
-# installation 
-#install.packages("daltoolbox")
-
-# loading DAL
-library(daltoolbox) 
-```
-
 About the technique
 - `smoothing_cluster`: discretization/smoothing by defining bins via clustering instead of fixed intervals.
 
@@ -16,6 +7,16 @@ Discretization transforms continuous functions, models, variables, and equations
 Smoothing creates an approximating function to capture important patterns while reducing noise or high-frequency variation.
 
 Defining bin intervals is an important step to enable the approximation.
+
+
+``` r
+# installation 
+#install.packages("daltoolbox")
+
+# loading DAL
+library(daltoolbox) 
+```
+
 
 # General function to evaluate different smoothing techniques
 
@@ -94,8 +95,8 @@ print(table(sl.bi))
 
 ```
 ## sl.bi
-## 4.48888888888889 4.83076923076923 5.08333333333333 5.60882352941176 6.05789473684211 6.38095238095238 6.78421052631579 7.50909090909091 
-##                9               13               24               34               19               21               19               11
+## 4.52727272727273 4.92380952380952 5.13076923076923 5.44285714285714 5.72916666666667         6.215625            6.725 7.50909090909091 
+##               11               21               13               14               24               32               24               11
 ```
 
 References

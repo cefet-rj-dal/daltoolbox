@@ -43,7 +43,7 @@ slevels
 ## [1] "setosa"     "versicolor" "virginica"
 ```
 
-# Building train and test samples via random sampling
+Building train and test samples via random sampling
 Train/test split with reproducible random sampling.
 
 ``` r
@@ -72,7 +72,7 @@ head(tbl)
 ## test         11         12         7
 ```
 
-# Model training
+Model training
 Train the kNN model: set target, levels, and k.
 
 ``` r
@@ -81,7 +81,7 @@ model <- cla_knn("Species", slevels, k=1) # k=1 for nearest neighbor
 model <- fit(model, iris_train)
 ```
 
-# Training evaluation
+Training evaluation
 Predict on training set, adjust labels, and compute metrics.
 
 ``` r
@@ -99,7 +99,7 @@ print(train_eval$metrics)
 ## 1        1 39 81  0  0         1      1           1           1  1
 ```
 
-# Test evaluation
+Test evaluation
 Predict on test set and compute metrics.
 
 ``` r

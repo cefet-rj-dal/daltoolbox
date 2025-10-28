@@ -1,3 +1,6 @@
+About the technique
+- `smoothing_inter`: discretization/smoothing by regular intervals (equal widths). Useful to summarize continuous variables into ranges.
+
 
 ``` r
 # installation 
@@ -6,9 +9,6 @@
 # loading DAL
 library(daltoolbox) 
 ```
-
-About the technique
-- `smoothing_inter`: discretization/smoothing by regular intervals (equal widths). Useful to summarize continuous variables into ranges.
 
 Sample data and general idea of discretization/smoothing.
 
@@ -60,9 +60,6 @@ obj$interval
 ## [1] 4.3 6.1 7.9
 ```
 
-References
-- Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Discretization)
-
 Evaluate conditional entropy between bins and species.
 
 ``` r
@@ -100,3 +97,7 @@ print(table(sl.bi))
 ## 4.52727272727273 5.00294117647059             5.49 5.88333333333333            6.352 6.76666666666667 7.23333333333333 7.71666666666667 
 ##               11               34               20               30               25               18                6                6
 ```
+
+References
+- Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Discretization)
+

@@ -42,7 +42,7 @@ slevels
 ## [1] "setosa"     "versicolor" "virginica"
 ```
 
-# Building train and test samples via random sampling
+Building train and test samples via random sampling
 Random train/test split.
 
 ``` r
@@ -71,7 +71,7 @@ head(tbl)
 ## test         11         12         7
 ```
 
-# Model training
+Model training
 Fit the majority class estimate and adjust.
 
 ``` r
@@ -80,7 +80,7 @@ model <- cla_majority("Species", slevels)
 model <- fit(model, iris_train)
 ```
 
-# Training evaluation
+Training evaluation
 
 ``` r
 # Checking fit on training data
@@ -97,7 +97,7 @@ print(train_eval$metrics)
 ## 1 0.3583333  0 81  0 39       NaN      0           0           1 NaN
 ```
 
-# Test evaluation
+Test evaluation
 
 ``` r
 # Model test

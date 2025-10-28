@@ -38,15 +38,15 @@ head(example)
 
 ```
 ##   exponential  uniform   normal
-## 1  2.67995528 3.097139 3.993852
-## 2  0.71665488 3.021730 3.589308
-## 3  1.17524977 3.405072 5.631510
-## 4  2.07821381 2.525851 5.464672
-## 5  0.02011647 2.574570 4.149072
-## 6  2.65857340 3.030648 5.650896
+## 1   0.2185621 3.354603 3.493018
+## 2   0.1654939 3.027532 6.041039
+## 3   0.9174307 3.413446 4.195712
+## 4   1.2676509 2.837626 4.120715
+## 5   1.9322189 2.845237 3.130722
+## 6   3.4969441 2.931347 5.489231
 ```
 
-# Histogram
+Histogram
 
 Visualize the distribution of a continuous variable by binning the x-axis and counting observations per bin. `geom_histogram()` displays counts as bars.
 More info: ?geom_histogram (R documentation)
@@ -71,7 +71,7 @@ plot(grf)
 
 ![plot of chunk unnamed-chunk-4](fig/grf_histogram/unnamed-chunk-4-1.png)
 
-# Chart arrangement
+Chart arrangement
 
 Use `grid.arrange` to place the generated charts side by side.
 

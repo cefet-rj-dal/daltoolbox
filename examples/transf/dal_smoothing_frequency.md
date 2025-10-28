@@ -1,3 +1,6 @@
+About the technique
+- `smoothing_freq`: discretization/smoothing by frequency (quantiles), producing bins with similar counts.
+
 
 ``` r
 # installation 
@@ -6,9 +9,6 @@
 # loading DAL
 library(daltoolbox) 
 ```
-
-About the technique
-- `smoothing_freq`: discretization/smoothing by frequency (quantiles), producing bins with similar counts.
 
 Sample data and general idea.
 
@@ -61,9 +61,6 @@ obj$interval
 ## [1] 4.3 5.8 7.9
 ```
 
-References
-- Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Discretization)
-
 Evaluate conditional entropy.
 
 ``` r
@@ -101,3 +98,7 @@ print(table(sl.bi))
 ## 4.69090909090909 5.04736842105263 5.38888888888889  5.7047619047619             6.02            6.315             6.65 7.31176470588235 
 ##               22               19               18               21               15               20               18               17
 ```
+
+References
+- Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Discretization)
+

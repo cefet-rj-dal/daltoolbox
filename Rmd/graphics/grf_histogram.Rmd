@@ -33,7 +33,7 @@ example <- data.frame(exponential = rexp(100000, rate = 1),
 head(example)
 ```
 
-# Histogram
+Histogram
 
 Visualize the distribution of a continuous variable by binning the x-axis and counting observations per bin. `geom_histogram()` displays counts as bars.
 More info: ?geom_histogram (R documentation)
@@ -48,7 +48,7 @@ options(repr.plot.width=5, repr.plot.height=4)
 plot(grf)
 ```
 
-# Chart arrangement
+Chart arrangement
 
 Use `grid.arrange` to place the generated charts side by side.
 

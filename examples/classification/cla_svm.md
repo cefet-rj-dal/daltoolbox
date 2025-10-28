@@ -43,7 +43,7 @@ slevels
 ## [1] "setosa"     "versicolor" "virginica"
 ```
 
-# Building train and test samples via random sampling
+Building train and test samples via random sampling
 Random train/test split.
 
 ``` r
@@ -72,7 +72,7 @@ head(tbl)
 ## test         11         12         7
 ```
 
-# Model training
+Model training
 Train SVM: tune `cost`, `epsilon`, and optionally `kernel`.
 
 ``` r
@@ -81,7 +81,7 @@ model <- cla_svm("Species", slevels, epsilon=0.0, cost=20.000) # default kernel;
 model <- fit(model, iris_train)
 ```
 
-# Training evaluation
+Training evaluation
 Predict and compute metrics.
 
 ``` r
@@ -99,7 +99,7 @@ print(train_eval$metrics)
 ## 1    0.975 39 81  0  0         1      1           1           1  1
 ```
 
-# Test evaluation
+Test evaluation
 Predict and compute metrics.
 
 ``` r
