@@ -24,7 +24,7 @@ head(Boston)
 
 # Optional conversion to matrix (may improve performance in some cases).
 ```{r}
-# for performance, you can convert to matrix
+# por desempenho, você pode converter para matriz
 Boston <- as.matrix(Boston)
 ```
 
@@ -32,7 +32,7 @@ Boston <- as.matrix(Boston)
 Random and reproducible train/test split.
 
 ```{r}
-# preparing random sampling
+# preparando amostragem aleatória
 set.seed(1)
 sr <- sample_random()
 sr <- train_test(sr, Boston)
@@ -44,7 +44,7 @@ boston_test <- sr$test
 Train Random Forest to predict `medv`.
 
 ```{r}
-model <- reg_rf("medv", mtry=7, ntree=30) # mtry: variables per split; ntree: number of trees
+model <- reg_rf("medv", mtry=7, ntree=30) # mtry: variáveis por split; ntree: nº de árvores
 model <- fit(model, boston_train)
 ```
 
