@@ -9,17 +9,17 @@ data(Boston)
 print(t(sapply(Boston, class)))
 head(Boston)
 
-# por desempenho, você pode converter para matriz
+# for performance, you can convert to matrix
 Boston <- as.matrix(Boston)
 
-# preparando amostragem aleatória
+# preparing random sampling
 set.seed(1)
 sr <- sample_random()
 sr <- train_test(sr, Boston)
 boston_train <- sr$train
 boston_test <- sr$test
 
-model <- reg_rf("medv", mtry=7, ntree=30) # mtry: variáveis por split; ntree: nº de árvores
+model <- reg_rf("medv", mtry=7, ntree=30) # mtry: variables per split; ntree: number of trees
 model <- fit(model, boston_train)
 
 train_prediction <- predict(model, boston_train)

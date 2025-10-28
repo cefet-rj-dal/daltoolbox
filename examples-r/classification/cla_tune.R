@@ -1,4 +1,4 @@
-# Tuning de Classificação 
+# Classification tuning 
 
 # installation 
 #install.packages("daltoolbox")
@@ -6,7 +6,7 @@
 # loading DAL
 library(daltoolbox) 
 
-# Conjunto de dados para classificação
+# Dataset for classification
 
 iris <- datasets::iris
 head(iris)
@@ -15,7 +15,7 @@ head(iris)
 slevels <- levels(iris$Species)
 slevels
 
-# preparando amostragem aleatória
+# preparing random sampling
 set.seed(1)
 sr <- sample_random()
 sr <- train_test(sr, iris)
@@ -28,20 +28,20 @@ tbl <- rbind(table(iris[,"Species"]),
 rownames(tbl) <- c("dataset", "training", "test")
 head(tbl)
 
-# Treinamento com busca de hiperparâmetros
+# Training with hyperparameter search
 tune <- cla_tune(cla_svm("Species", slevels), 
   ranges = list(epsilon=seq(0,1,0.2), cost=seq(20,100,20), kernel = c("linear", "radial", "polynomial", "sigmoid")))
 
 model <- fit(tune, iris_train)
 
-# Avaliação no treino
+# Training evaluation
 train_prediction <- predict(model, iris_train)
 
 iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
 train_eval <- evaluate(model, iris_train_predictand, train_prediction)
 print(train_eval$metrics)
 
-# Avaliação no teste
+# Test evaluation
 test_prediction <- predict(model, iris_test)
 
 iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
@@ -50,7 +50,7 @@ iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
 test_eval <- evaluate(model, iris_test_predictand, test_prediction)
 print(test_eval$metrics)
 
-# Opções de grids para outros modelos
+# Grid options for other models
 # knn
 ranges <- list(k=1:20)
 

@@ -26,7 +26,7 @@ font <- theme(text = element_text(size=16))
 Mean per numeric variable and shaping the required format for radar.
 
 ``` r
-# conjunto de dados iris para o exemplo
+# iris dataset for the example
 head(iris)
 ```
 
@@ -73,3 +73,7 @@ plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/grf_radar/unnamed-chunk-5-1.png)
+
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+- Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer.

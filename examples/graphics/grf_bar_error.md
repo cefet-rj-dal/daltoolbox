@@ -26,7 +26,7 @@ font <- theme(text = element_text(size=16))
 Aggregated data: mean and standard deviation by species.
 
 ``` r
-# conjunto de dados iris para o exemplo
+# iris dataset for the example
 head(iris)
 ```
 
@@ -71,3 +71,6 @@ plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/grf_bar_error/unnamed-chunk-5-1.png)
+
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer. (geom_errorbar)

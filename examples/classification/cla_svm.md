@@ -47,7 +47,7 @@ slevels
 Random train/test split.
 
 ``` r
-# Construindo amostras (treino e teste) por amostragem aleatória
+# Building train and test samples via random sampling
 set.seed(1)
 sr <- sample_random()
 sr <- train_test(sr, iris)
@@ -76,8 +76,8 @@ head(tbl)
 Train SVM: tune `cost`, `epsilon`, and optionally `kernel`.
 
 ``` r
-# Treinamento do modelo
-model <- cla_svm("Species", slevels, epsilon=0.0, cost=20.000) # kernel padrão; ajuste conforme necessário
+# Model training
+model <- cla_svm("Species", slevels, epsilon=0.0, cost=20.000) # default kernel; adjust as needed
 model <- fit(model, iris_train)
 ```
 
@@ -85,10 +85,10 @@ model <- fit(model, iris_train)
 Predict and compute metrics.
 
 ``` r
-# Verificando ajuste no treino
+# Checking fit on training data
 train_prediction <- predict(model, iris_train)
 
-# Avaliação do modelo (treino)
+# Model evaluation (training)
 iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
 train_eval <- evaluate(model, iris_train_predictand, train_prediction)
 print(train_eval$metrics)
@@ -103,12 +103,12 @@ print(train_eval$metrics)
 Predict and compute metrics.
 
 ``` r
-# Teste do modelo
+# Model test
 test_prediction <- predict(model, iris_test)
 
 iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
 
-# Avaliação no teste
+# Test evaluation
  test_eval <- evaluate(model, iris_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
@@ -117,3 +117,7 @@ print(test_eval$metrics)
 ##   accuracy TP TN FP FN precision recall sensitivity specificity f1
 ## 1        1 11 19  0  0         1      1           1           1  1
 ```
+
+References
+- Cortes, C. and Vapnik, V. (1995). Support-Vector Networks. Machine Learning 20(3):273–297.
+- Chang, C.-C. and Lin, C.-J. (2011). LIBSVM: A library for support vector machines.

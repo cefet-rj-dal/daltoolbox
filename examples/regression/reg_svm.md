@@ -17,7 +17,7 @@ library(daltoolbox)
 Load Boston dataset (MASS) and inspect types.
 
 ``` r
-# Conjunto de dados para análise de regressão
+# Dataset for regression analysis
 
 library(MASS)
 data(Boston)
@@ -25,10 +25,8 @@ print(t(sapply(Boston, class)))
 ```
 
 ```
-##      crim      zn        indus     chas      nox       rm        age       dis      
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric"
-##      rad       tax       ptratio   black     lstat     medv     
-## [1,] "integer" "numeric" "numeric" "numeric" "numeric" "numeric"
+##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black     lstat     medv     
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "numeric"
 ```
 
 ``` r
@@ -48,7 +46,7 @@ head(Boston)
 Optional conversion to matrix.
 
 ``` r
-# por desempenho, você pode converter para matriz
+# for performance, you can convert to matrix
 Boston <- as.matrix(Boston)
 ```
 
@@ -104,3 +102,7 @@ print(test_eval$metrics)
 ##        mse     smape        R2
 ## 1 14.65598 0.1363336 0.7564457
 ```
+
+References
+- Drucker, H., Burges, C., Kaufman, L., Smola, A., Vapnik, V. (1997). Support Vector Regression Machines.
+- Chang, C.-C. and Lin, C.-J. (2011). LIBSVM: A library for support vector machines.

@@ -53,6 +53,7 @@ Example curve and elbow detection.
 ```{r}
 x <- seq(from=1,to=10,by=0.5)
 dat <- data.frame(x = x, value = -log(x), variable = "log")
+dat$variable <- as.factor(dat$variable)
 grf <- plot_scatter(dat, label_x = "x", label_y = "y", colors="black") + 
     theme(text = element_text(size=16))
 plot(grf)

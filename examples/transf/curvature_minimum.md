@@ -38,7 +38,7 @@ The goal is to establish a trade-off point.
 
 ``` r
 pca_res = prcomp(wine[,2:ncol(wine)], center=TRUE, scale.=TRUE)
-y <- cumsum(pca_res$sdev^2/sum(pca_res$sdev^2)) # variância acumulada
+y <- cumsum(pca_res$sdev^2/sum(pca_res$sdev^2)) # cumulative variance
 x <- 1:length(y)
 ```
 
@@ -90,3 +90,6 @@ plot(grf + geom_vline(xintercept = res$x, linetype="dashed", color = "red", size
 ```
 
 ![plot of chunk unnamed-chunk-7](fig/curvature_minimum/unnamed-chunk-7-1.png)
+
+References
+- Satopaa, V., Albrecht, J., Irwin, D., Raghavan, B. (2011). Finding a "Kneedle" in a Haystack: Detecting Knee Points in System Behavior.

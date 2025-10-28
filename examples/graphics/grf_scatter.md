@@ -65,3 +65,7 @@ plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/grf_scatter/unnamed-chunk-4-1.png)
+
+References
+- Cleveland, W. S. (1994). The Elements of Graphing Data (2nd ed.). Hobart Press.
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.

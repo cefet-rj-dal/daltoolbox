@@ -15,21 +15,21 @@ library(daltoolbox)
 Load data (`iris`).
 
 ``` r
-# carregando conjunto de dados
+# loading dataset
 data(iris)
 ```
 
 Configure DBSCAN; tune `minPts` (and `eps` if available) according to density.
 
 ``` r
-# configuração do método de clusterização
+# clustering method configuration
 model <- cluster_dbscan(minPts = 3)
 ```
 
 Fit and obtain cluster labels.
 
 ``` r
-# ajuste do modelo e rotulagem
+# model fitting and labeling
 model <- fit(model, iris[,1:4])
 clu <- cluster(model, iris[,1:4])
 table(clu)
@@ -66,3 +66,6 @@ eval
 ## $data_entropy
 ## [1] 1.584963
 ```
+
+References
+- Ester, M., Kriegel, H.-P., Sander, J., Xu, X. (1996). A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise.

@@ -6,13 +6,13 @@
 # loading DAL
 library(daltoolbox)  
 
-# carregando conjunto de dados
+# loading dataset
 data(iris)
 
-# configuração do método de clusterização
+# clustering method configuration
 model <- cluster_kmeans(k=3)
 
-# ajuste do modelo e rotulagem
+# model fitting and labeling
 model <- fit(model, iris[,1:4])
 clu <- cluster(model, iris[,1:4])
 table(clu)

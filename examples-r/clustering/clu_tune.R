@@ -8,15 +8,15 @@ library(daltoolbox)
 
 data(iris)
 
-# ajuste do modelo com busca
+# model training with hyperparameter search
 model <- clu_tune(cluster_kmeans(k = 0),  ranges = list(k = 1:10))
 model <- fit(model, iris[,1:4])
 model$k
 
-# execução com melhor parâmetro
+# run with best parameter
 clu <- cluster(model, iris[,1:4])
 table(clu)
 
-# avaliação externa usando rótulos verdadeiros
+# external evaluation using ground truth labels
 eval <- evaluate(model, clu, iris$Species)
 eval

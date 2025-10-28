@@ -8,7 +8,7 @@ library(daltoolbox)
 iris <- datasets::iris
 head(iris)
 
-# cria e ajusta PCA usando a coluna alvo para referência
+# creates and fits PCA using the target column as reference
 mypca <- dt_pca("Species")
 mypca <- fit(mypca, datasets::iris)
 iris.pca <- transform(mypca, iris)
@@ -16,7 +16,7 @@ iris.pca <- transform(mypca, iris)
 print(head(iris.pca))
 print(head(mypca$pca.transf))
 
-# Definição manual do número de componentes
+# Manual definition of the number of components
 mypca <- dt_pca("Species", 3)
 mypca <- fit(mypca, datasets::iris)
 iris.pca <- transform(mypca, iris)

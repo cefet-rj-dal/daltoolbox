@@ -47,7 +47,7 @@ slevels
 Random train/test split.
 
 ``` r
-# Construindo amostras (treino e teste) por amostragem aleatória
+# Building train and test samples via random sampling
 set.seed(1)
 sr <- sample_random()
 sr <- train_test(sr, iris)
@@ -76,7 +76,7 @@ head(tbl)
 Train MLP: set hidden layer size and regularization.
 
 ``` r
-# Treinamento do modelo
+# Model training
 model <- cla_mlp("Species", slevels, size=3, decay=0.03)
 model <- fit(model, iris_train)
 ```
@@ -84,10 +84,10 @@ model <- fit(model, iris_train)
 # Training evaluation
 
 ``` r
-# Verificando ajuste no treino
+# Checking fit on training data
 train_prediction <- predict(model, iris_train)
 
-# Avaliação do modelo (treino)
+# Model evaluation (training)
 iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
 train_eval <- evaluate(model, iris_train_predictand, train_prediction)
 print(train_eval$metrics)
@@ -101,12 +101,12 @@ print(train_eval$metrics)
 # Test evaluation
 
 ``` r
-# Teste do modelo
+# Model test
 test_prediction <- predict(model, iris_test)
 
 iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
 
-# Avaliação no teste
+# Test evaluation
  test_eval <- evaluate(model, iris_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
@@ -115,3 +115,7 @@ print(test_eval$metrics)
 ##    accuracy TP TN FP FN precision recall sensitivity specificity f1
 ## 1 0.9666667 11 19  0  0         1      1           1           1  1
 ```
+
+References
+- Rumelhart, D., Hinton, G., Williams, R. (1986). Learning representations by back-propagating errors.
+- Bishop, C. M. (1995). Neural Networks for Pattern Recognition.

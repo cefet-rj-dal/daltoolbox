@@ -1,5 +1,9 @@
 About the transformation
-- `dt_pca`: Principal Component Analysis (PCA) to project data onto orthogonal components with highest variance. Allows defining the number of components.
+- `dt_pca`: Principal Component Analysis (PCA) projects correlated variables onto orthogonal components ordered by explained variance. You can let the tool pick the number of components via an elbow heuristic or set it explicitly.
+
+Method
+- Learns principal components via an orthogonal transformation (SVD/eigendecomposition of the covariance matrix), applied to centered/scaled numeric predictors.
+- By default, the number of components is chosen via minimum-curvature (elbow) on the cumulative explained variance curve; alternatively set `components` manually.
 
 Environment setup.
 
@@ -34,7 +38,7 @@ PCA finds a projection capturing the largest possible variance in the data. Belo
 
 
 ``` r
-# cria e ajusta PCA usando a coluna alvo para referência
+# creates and fits PCA using the target column as reference
 mypca <- dt_pca("Species")
 mypca <- fit(mypca, datasets::iris)
 iris.pca <- transform(mypca, iris)
@@ -72,7 +76,7 @@ print(head(mypca$pca.transf))
 Manually set the number of components and repeat the transformation.
 
 ``` r
-# Definição manual do número de componentes
+# Manual definition of the number of components
 mypca <- dt_pca("Species", 3)
 mypca <- fit(mypca, datasets::iris)
 iris.pca <- transform(mypca, iris)
@@ -100,3 +104,7 @@ print(head(mypca$pca.transf))
 ## Petal.Length  0.5804131 -0.02449161 -0.1421264
 ## Petal.Width   0.5648565 -0.06694199 -0.6342727
 ```
+
+References
+- Pearson, K. (1901). On lines and planes of closest fit to systems of points in space.
+- Hotelling, H. (1933). Analysis of a complex of statistical variables into principal components.

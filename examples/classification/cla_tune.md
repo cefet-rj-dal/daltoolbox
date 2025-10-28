@@ -5,7 +5,7 @@ About the utility
 Environment setup.
 
 ``` r
-# Tuning de Classificação 
+# Classification tuning 
 
 # installation 
 #install.packages("daltoolbox")
@@ -17,7 +17,7 @@ library(daltoolbox)
 Sample data and target levels.
 
 ``` r
-# Conjunto de dados para classificação
+# Dataset for classification
 
 iris <- datasets::iris
 head(iris)
@@ -47,7 +47,7 @@ slevels
 Random split for tuning validation.
 
 ``` r
-# preparando amostragem aleatória
+# preparing random sampling
 set.seed(1)
 sr <- sample_random()
 sr <- train_test(sr, iris)
@@ -71,7 +71,7 @@ head(tbl)
 # Hyperparameter grid and search training
 
 ``` r
-# Treinamento com busca de hiperparâmetros
+# Training with hyperparameter search
 tune <- cla_tune(cla_svm("Species", slevels), 
   ranges = list(epsilon=seq(0,1,0.2), cost=seq(20,100,20), kernel = c("linear", "radial", "polynomial", "sigmoid")))
 
@@ -81,7 +81,7 @@ model <- fit(tune, iris_train)
 # Training evaluation with the best configuration
 
 ``` r
-# Avaliação no treino
+# Training evaluation
 train_prediction <- predict(model, iris_train)
 
 iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
@@ -97,7 +97,7 @@ print(train_eval$metrics)
 # Test evaluation
 
 ``` r
-# Avaliação no teste
+# Test evaluation
 test_prediction <- predict(model, iris_test)
 
 iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
@@ -115,7 +115,7 @@ print(test_eval$metrics)
 # Example grids for other models
 
 ``` r
-# Opções de grids para outros modelos
+# Grid options for other models
 # knn
 ranges <- list(k=1:20)
 
@@ -125,3 +125,6 @@ ranges <- list(size=1:10, decay=seq(0, 1, 0.1))
 # rf
 ranges <- list(mtry=1:3, ntree=1:10)
 ```
+
+References
+- Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection. IJCAI.
