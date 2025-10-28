@@ -65,3 +65,6 @@ options(repr.plot.width=15, repr.plot.height=4)
 grid.arrange(grfe, grfu, grfn, ncol=3)
 ```
 
+References
+- Silverman, B. W. (1986). Density Estimation for Statistics and Data Analysis. Chapman and Hall.
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.

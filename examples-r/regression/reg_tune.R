@@ -1,4 +1,4 @@
-# Tuning de Regressão 
+# Regression tuning 
 
 # installation 
 #install.packages("daltoolbox")
@@ -6,14 +6,14 @@
 # loading DAL
 library(daltoolbox) 
 
-# Conjunto de dados para análise de regressão
+# Dataset for regression analysis
 
 library(MASS)
 data(Boston)
 print(t(sapply(Boston, class)))
 head(Boston)
 
-# por desempenho, você pode converter para matriz
+# for performance, you can convert to matrix
 Boston <- as.matrix(Boston)
 
 # preparing dataset for random sampling

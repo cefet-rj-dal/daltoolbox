@@ -12,7 +12,7 @@ wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/
 head(wine)
 
 pca_res = prcomp(wine[,2:ncol(wine)], center=TRUE, scale.=TRUE)
-y <- cumsum(pca_res$sdev^2/sum(pca_res$sdev^2)) # variância acumulada
+y <- cumsum(pca_res$sdev^2/sum(pca_res$sdev^2)) # cumulative variance
 x <- 1:length(y)
 
 dat <- data.frame(x, value = y, variable = "PCA")

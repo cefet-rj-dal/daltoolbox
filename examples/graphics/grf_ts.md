@@ -26,7 +26,7 @@ font <- theme(text = element_text(size=16))
 Synthetic series (sine) for the example and plot with `plot_ts`.
 
 ``` r
-# Série temporal sintética
+# Synthetic time series
 
 x <- seq(0, 10, 0.25)
 y <- sin(x)
@@ -43,3 +43,7 @@ plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/grf_ts/unnamed-chunk-4-1.png)
+
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+- Hyndman, R. J., and Athanasopoulos, G. (2021). Forecasting: Principles and Practice (3rd ed.). OTexts.

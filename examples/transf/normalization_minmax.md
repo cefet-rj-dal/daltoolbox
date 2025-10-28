@@ -1,5 +1,12 @@
 About the transformation
-- `minmax`: normalizes numeric attributes to a range (default 0 to 1). Useful for scale-sensitive algorithms.
+- `minmax`: linearly rescales numeric attributes to a target range (default [0, 1]). Useful for scale-sensitive algorithms and models that expect bounded inputs.
+
+Method
+- For each numeric column j: `(x - min_j) / (max_j - min_j)` to map to [0, 1].
+- Constant columns (where `max_j == min_j`) map to 0 to avoid division by zero.
+
+When to use
+- Recommended for distance-based methods (e.g., k-NN), gradient methods sensitive to feature scales, or when features have different units.
 
 Environment setup.
 
@@ -74,3 +81,6 @@ summary(ddata)
 ##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800                  
 ##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500
 ```
+
+References
+- Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Normalization section)

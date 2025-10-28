@@ -42,3 +42,6 @@ print(table(idx))
 iris.outliers <- iris[idx,]
 head(iris.outliers)
 ```
+
+References
+- Tukey, J. W. (1977). Exploratory Data Analysis. Addison-Wesley.

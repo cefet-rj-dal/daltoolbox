@@ -24,7 +24,7 @@ head(Boston)
 
 # Optional conversion to matrix (may improve performance in some cases).
 ```{r}
-# por desempenho, você pode converter para matriz
+# for performance, you can convert to matrix
 Boston <- as.matrix(Boston)
 ```
 
@@ -32,7 +32,7 @@ Boston <- as.matrix(Boston)
 Random and reproducible train/test split.
 
 ```{r}
-# preparando amostragem aleatória
+# preparing random sampling
 set.seed(1)
 sr <- sample_random()
 sr <- train_test(sr, Boston)
@@ -44,7 +44,7 @@ boston_test <- sr$test
 Train Random Forest to predict `medv`.
 
 ```{r}
-model <- reg_rf("medv", mtry=7, ntree=30) # mtry: variáveis por split; ntree: nº de árvores
+model <- reg_rf("medv", mtry=7, ntree=30) # mtry: variables per split; ntree: number of trees
 model <- fit(model, boston_train)
 ```
 
@@ -68,3 +68,6 @@ test_eval <- evaluate(model, boston_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
 
+References
+- Breiman, L. (2001). Random Forests. Machine Learning 45(1):5–32.
+- Liaw, A. and Wiener, M. (2002). Classification and Regression by randomForest. R News.

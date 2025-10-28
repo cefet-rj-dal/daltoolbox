@@ -68,3 +68,6 @@ options(repr.plot.width=15, repr.plot.height=4)
 grid.arrange(grfe, grfu, grfn, ncol=3)
 ```
 
+References
+- Freedman, D., and Diaconis, P. (1981). On the histogram as a density estimator: L2 theory. Zeitschrift für Wahrscheinlichkeitstheorie und verwandte Gebiete.
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.

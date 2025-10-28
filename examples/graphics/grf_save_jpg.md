@@ -26,7 +26,7 @@ font <- theme(text = element_text(size=16))
 Synthetic series and chart to export.
 
 ``` r
-# Série temporal sintética
+# Synthetic time series
 
 x <- seq(0, 10, 0.25)
 serie <- data.frame(x, sin=sin(x), cosine=cos(x)+5)
@@ -74,3 +74,6 @@ Export using base devices (JPEG) and with `ggsave`.
 ``` r
 ggsave("series.png", width = 5, height = 4, units = "cm")
 ```
+
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer. (ggsave)

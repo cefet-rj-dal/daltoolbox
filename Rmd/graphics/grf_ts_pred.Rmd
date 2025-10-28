@@ -45,3 +45,5 @@ Plot time series with fit and forecast.
 plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction)
 ```
 
+References
+- Hyndman, R. J., and Athanasopoulos, G. (2021). Forecasting: Principles and Practice (3rd ed.). OTexts.

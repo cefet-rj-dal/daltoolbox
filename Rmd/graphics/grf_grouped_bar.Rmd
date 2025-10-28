@@ -45,3 +45,7 @@ Build a grouped bar chart.
 grf <- plot_groupedbar(data, colors=colors[1:2]) + font
 plot(grf)
 ```
+
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+- Cleveland, W. S. (1994). The Elements of Graphing Data (2nd ed.). Hobart Press.

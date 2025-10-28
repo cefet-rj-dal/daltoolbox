@@ -13,7 +13,7 @@ head(iris)
 slevels <- levels(iris$Species)
 slevels
 
-# Construindo amostras (treino e teste) por amostragem aleatória
+# Building train and test samples via random sampling
 set.seed(1)
 sr <- sample_random()
 sr <- train_test(sr, iris)
@@ -27,24 +27,24 @@ tbl <- rbind(table(iris[,"Species"]),
 rownames(tbl) <- c("dataset", "training", "test")
 head(tbl)
 
-# Treinamento do modelo
+# Model training
 model <- cla_majority("Species", slevels)
 model <- fit(model, iris_train)
 
 
-# Verificando ajuste no treino
+# Checking fit on training data
 train_prediction <- predict(model, iris_train)
 
-# Avaliação do modelo (treino)
+# Model evaluation (training)
 iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
 train_eval <- evaluate(model, iris_train_predictand, train_prediction)
 print(train_eval$metrics)
 
-# Teste do modelo
+# Model test
 test_prediction <- predict(model, iris_test)
 
 iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
 
-# Avaliação no teste
+# Test evaluation
  test_eval <- evaluate(model, iris_test_predictand, test_prediction)
 print(test_eval$metrics)

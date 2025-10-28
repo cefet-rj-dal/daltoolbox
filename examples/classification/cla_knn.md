@@ -47,7 +47,7 @@ slevels
 Train/test split with reproducible random sampling.
 
 ``` r
-# Construindo amostras (treino e teste) por amostragem aleatória
+# Building train and test samples via random sampling
 set.seed(1)
 sr <- sample_random()
 sr <- train_test(sr, iris)
@@ -76,8 +76,8 @@ head(tbl)
 Train the kNN model: set target, levels, and k.
 
 ``` r
-# Treinamento do modelo
-model <- cla_knn("Species", slevels, k=1) # k=1 para vizinho mais próximo
+# Model training
+model <- cla_knn("Species", slevels, k=1) # k=1 for nearest neighbor
 model <- fit(model, iris_train)
 ```
 
@@ -85,10 +85,10 @@ model <- fit(model, iris_train)
 Predict on training set, adjust labels, and compute metrics.
 
 ``` r
-# Verificando ajuste no treino
+# Checking fit on training data
 train_prediction <- predict(model, iris_train)
 
-# Avaliação do modelo (treino)
+# Model evaluation (training)
 iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
 train_eval <- evaluate(model, iris_train_predictand, train_prediction)
 print(train_eval$metrics)
@@ -103,12 +103,12 @@ print(train_eval$metrics)
 Predict on test set and compute metrics.
 
 ``` r
-# Teste do modelo
+# Model test
 test_prediction <- predict(model, iris_test)
 
 iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
 
-# Avaliação no teste
+# Test evaluation
  test_eval <- evaluate(model, iris_test_predictand, test_prediction)
 print(test_eval$metrics)
 ```
@@ -117,3 +117,6 @@ print(test_eval$metrics)
 ##    accuracy TP TN FP FN precision recall sensitivity specificity f1
 ## 1 0.9333333 11 19  0  0         1      1           1           1  1
 ```
+
+References
+- Cover, T. and Hart, P. (1967). Nearest neighbor pattern classification. IEEE Transactions on Information Theory.

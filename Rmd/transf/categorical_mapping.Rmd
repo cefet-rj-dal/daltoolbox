@@ -30,7 +30,6 @@ iris_cm <- transform(cm, iris)
 print(head(iris_cm))
 ```
 
-Apply the same mapping to a data frame with a single categorical column.
 ```{r}
 # creating the categorical mapping
 # It can be done from a single column, but it must be a data frame
@@ -43,3 +42,8 @@ head(diris)
 iris_cm <- transform(cm, diris)
 print(head(iris_cm))
 ```
+
+References
+- Bishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer. (1-of-K/one-hot encoding)
+
+Apply the same mapping to a data frame with a single categorical column.

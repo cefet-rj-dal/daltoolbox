@@ -13,8 +13,8 @@ colors <- brewer.pal(4, 'Set1')
 # setting the font size for all charts
 font <- theme(text = element_text(size=16))
 
-# Exemplos com distribuições de dados
-# Usamos variáveis aleatórias para facilitar a visualização de diferentes distribuições.
+# Examples with data distributions
+# We use random variables to facilitate visualization of different distributions.
 
 # example: dataset to be plotted  
 example <- data.frame(exponential = rexp(100000, rate = 1), 

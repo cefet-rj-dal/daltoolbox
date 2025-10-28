@@ -52,3 +52,5 @@ Export using base devices (JPEG) and with `ggsave`.
 ggsave("series.png", width = 5, height = 4, units = "cm")
 ```
 
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer. (ggsave)

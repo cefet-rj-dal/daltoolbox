@@ -72,3 +72,7 @@ plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/grf_stacked_bar/unnamed-chunk-5-1.png)
+
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+- Cleveland, W. S. (1994). The Elements of Graphing Data (2nd ed.). Hobart Press.

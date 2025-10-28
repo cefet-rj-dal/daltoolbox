@@ -41,3 +41,7 @@ plot(grf)
 grf <- plot_boxplot(iris, colors=colors[1:4]) + font
 plot(grf)  
 ```
+
+References
+- Tukey, J. W. (1977). Exploratory Data Analysis. Addison-Wesley.
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.

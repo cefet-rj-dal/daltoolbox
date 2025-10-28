@@ -15,21 +15,21 @@ library(daltoolbox)
 Load data (`iris`).
 
 ``` r
-# carregando conjunto de dados
+# loading dataset
 data(iris)
 ```
 
 Configure PAM with k=3.
 
 ``` r
-# configuração do método de clusterização
+# clustering method configuration
 model <- cluster_pam(k=3)
 ```
 
 Fit and generate cluster labels.
 
 ``` r
-# ajuste do modelo e rotulagem
+# model fitting and labeling
 model <- fit(model, iris[,1:4])
 clu <- cluster(model, iris[,1:4])
 table(clu)
@@ -64,3 +64,6 @@ eval
 ## $data_entropy
 ## [1] 1.584963
 ```
+
+References
+- Kaufman, L. and Rousseeuw, P. J. (1990). Finding Groups in Data: An Introduction to Cluster Analysis.

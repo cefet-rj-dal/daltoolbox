@@ -49,3 +49,7 @@ grf <- plot_scatter(
 ) + font
 plot(grf)
 ```
+
+References
+- Cleveland, W. S. (1994). The Elements of Graphing Data (2nd ed.). Hobart Press.
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.

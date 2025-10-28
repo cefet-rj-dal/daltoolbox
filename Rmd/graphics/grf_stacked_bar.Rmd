@@ -46,3 +46,7 @@ grf <- plot_stackedbar(data, colors=colors[1:2]) + font
 grf <- grf + theme(axis.text.x = element_text(angle=90, hjust=1))
 plot(grf)
 ```
+
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+- Cleveland, W. S. (1994). The Elements of Graphing Data (2nd ed.). Hobart Press.

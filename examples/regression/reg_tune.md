@@ -5,7 +5,7 @@ About the utility
 Environment setup.
 
 ``` r
-# Tuning de Regressão 
+# Regression tuning 
 
 # installation 
 #install.packages("daltoolbox")
@@ -17,7 +17,7 @@ library(daltoolbox)
 Load dataset and inspect.
 
 ``` r
-# Conjunto de dados para análise de regressão
+# Dataset for regression analysis
 
 library(MASS)
 data(Boston)
@@ -25,10 +25,8 @@ print(t(sapply(Boston, class)))
 ```
 
 ```
-##      crim      zn        indus     chas      nox       rm        age       dis      
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric"
-##      rad       tax       ptratio   black     lstat     medv     
-## [1,] "integer" "numeric" "numeric" "numeric" "numeric" "numeric"
+##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black     lstat     medv     
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "numeric"
 ```
 
 ``` r
@@ -48,7 +46,7 @@ head(Boston)
 Optional conversion to matrix.
 
 ``` r
-# por desempenho, você pode converter para matriz
+# for performance, you can convert to matrix
 Boston <- as.matrix(Boston)
 ```
 
@@ -122,3 +120,6 @@ ranges <- list(size=1:10, decay=seq(0, 1, 0.1))
 # rf
 ranges <- list(mtry=1:10, ntree=1:10)
 ```
+
+References
+- Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection. IJCAI.

@@ -79,3 +79,6 @@ head(iris.outliers)
 ## 34          5.5         4.2          1.4         0.2     setosa
 ## 61          5.0         2.0          3.5         1.0 versicolor
 ```
+
+References
+- Tukey, J. W. (1977). Exploratory Data Analysis. Addison-Wesley.

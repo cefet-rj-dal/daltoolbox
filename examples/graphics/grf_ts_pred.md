@@ -26,7 +26,7 @@ font <- theme(text = element_text(size=16))
 Synthetic series with noise; split windows for fit and forecast.
 
 ``` r
-# Série temporal sintética
+# Synthetic time series
 
 x <- base::seq(0, 10, 0.25)
 yvalues <- sin(x) + rnorm(41,0,0.1)
@@ -50,3 +50,6 @@ plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/grf_ts_pred/unnamed-chunk-5-1.png)
+
+References
+- Hyndman, R. J., and Athanasopoulos, G. (2021). Forecasting: Principles and Practice (3rd ed.). OTexts.

@@ -92,3 +92,9 @@ nrow(iris.na.omit)
 ```
 ## [1] 149
 ```
+
+Method
+- `na.omit` removes rows with any missing values; use with care as it may bias results if missingness is not completely at random.
+
+References
+- Little, R. J. A., and Rubin, D. B. (2002). Statistical Analysis with Missing Data (2nd ed.). Wiley.

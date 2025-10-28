@@ -48,3 +48,6 @@ tbl <- rbind(tbl, table(f$Species))
 }
 print(tbl)
 ```
+
+References
+- Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection. IJCAI.

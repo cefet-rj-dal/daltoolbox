@@ -13,7 +13,7 @@ colors <- brewer.pal(4, 'Set1')
 # setting the font size for all charts
 font <- theme(text = element_text(size=16))
 
-# Série temporal sintética
+# Synthetic time series
 
 x <- seq(0, 10, 0.25)
 serie <- data.frame(x, sin=sin(x), cosine=cos(x)+5)

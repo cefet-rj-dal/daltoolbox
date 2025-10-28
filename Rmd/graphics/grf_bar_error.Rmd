@@ -45,3 +45,6 @@ grf <- grf + geom_errorbar(aes(x=Species, ymin=mean-sd, ymax=mean+sd),
                            width=0.2, colour="darkred", alpha=0.8, size=1.1) 
 plot(grf)
 ```
+
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer. (geom_errorbar)

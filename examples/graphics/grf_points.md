@@ -60,3 +60,6 @@ plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/grf_points/unnamed-chunk-4-1.png)
+
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.

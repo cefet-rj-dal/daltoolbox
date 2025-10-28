@@ -39,3 +39,6 @@ print(table(idx))
 iris.outliers <- iris[idx,]
 head(iris.outliers)
 ```
+
+References
+- Pukelsheim, F. (1994). The Three Sigma Rule. The American Statistician 48(2):88–91.
