@@ -46,9 +46,10 @@ convert_rmd_md <- function(input) {
   mdfile <- xfun::with_ext(input, "md")
   mdfile <- gsub("Rmd/", "", mdfile)
 
-  # Output Word path mirrors input but outside 'Rmd/' root
-  docxfile <- xfun::with_ext(input, "docx")
-  docxfile <- gsub("Rmd/", "", docxfile)
+  # Output Word path goes under top-level 'word/' directory
+  # Preserve sub-structure after removing the leading 'Rmd/'
+  docx_rel <- gsub("^Rmd/", "", xfun::with_ext(input, "docx"))
+  docxfile <- file.path("word", docx_rel)
 
   # Destination figure directory: '<md-dir>/fig/<rmd-basename>/'
   figdir <- file.path(dirname(mdfile), "fig", basename(xfun::with_ext(input, "")))
@@ -87,8 +88,14 @@ convert_rmd_md <- function(input) {
   # htmlfile <- xfun::with_ext(input, "html")
   # if (file.exists(htmlfile)) file.remove(htmlfile)
 
-  # Additionally render Word document to the same destination folder
-  # Use rmarkdown::render to produce .docx next to the generated .md
+  # Ensure 'word/' destination directory exists for the .docx
+  docx_dir <- dirname(docxfile)
+  if (!dir.exists(docx_dir)) {
+    dir.create(docx_dir, recursive = TRUE, showWarnings = FALSE)
+  }
+
+  # Additionally render Word document into the 'word/' destination
+  # Use rmarkdown::render to produce .docx under word/
   rmarkdown::render(
     input,
     output_format = "word_document",
