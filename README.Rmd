@@ -26,15 +26,15 @@ As research experiments grow in scale and complexity, data analytics demands too
 
 ## Examples
 
-Graphics: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/graphics/>
+Graphics: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/graphics/>
 
-Transformation: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/transf/>
+Transformation: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/transf/>
 
-Classification: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/classification/>
+Classification: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/classification/>
 
-Clustering: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/clustering/>
+Clustering: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/clustering/>
 
-Regression: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/regression/>
+Regression: <https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/regression/>
 
 The examples are organized according to general (data preprocessing),
 clustering, classification, regression, and time series functions.

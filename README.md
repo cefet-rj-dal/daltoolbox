@@ -28,19 +28,19 @@ usability, extensibility, and reproducibility in data science.
 ## Examples
 
 Graphics:
-<https://github.com/cefet-rj-dal/daltoolbox/tree/main/graphics/>
+<https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/graphics/>
 
 Transformation:
-<https://github.com/cefet-rj-dal/daltoolbox/tree/main/transf/>
+<https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/transf/>
 
 Classification:
-<https://github.com/cefet-rj-dal/daltoolbox/tree/main/classification/>
+<https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/classification/>
 
 Clustering:
-<https://github.com/cefet-rj-dal/daltoolbox/tree/main/clustering/>
+<https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/clustering/>
 
 Regression:
-<https://github.com/cefet-rj-dal/daltoolbox/tree/main/regression/>
+<https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/regression/>
 
 The examples are organized according to general (data preprocessing),
 clustering, classification, regression, and time series functions.
