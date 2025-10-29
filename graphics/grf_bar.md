@@ -25,7 +25,7 @@ font <- theme(text = element_text(size=16))
 Sample data aggregated by `Species`.
 
 ``` r
-# conjunto de dados iris para o exemplo
+# iris dataset for the example
 head(iris)
 ```
 
@@ -88,3 +88,7 @@ plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-7](fig/grf_bar/unnamed-chunk-7-1.png)
+
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+- Cleveland, W. S. (1994). The Elements of Graphing Data (2nd ed.). Hobart Press.

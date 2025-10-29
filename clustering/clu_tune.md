@@ -21,7 +21,7 @@ data(iris)
 Fit the model with a search over k=1..10 and extract the best k.
 
 ``` r
-# ajuste do modelo com busca
+# model training with hyperparameter search
 model <- clu_tune(cluster_kmeans(k = 0),  ranges = list(k = 1:10))
 model <- fit(model, iris[,1:4])
 model$k
@@ -34,7 +34,7 @@ model$k
 Generate cluster labels with the best k.
 
 ``` r
-# execução com melhor parâmetro
+# run with best parameter
 clu <- cluster(model, iris[,1:4])
 table(clu)
 ```
@@ -48,7 +48,7 @@ table(clu)
 External evaluation with `Species`.
 
 ``` r
-# avaliação externa usando rótulos verdadeiros
+# external evaluation using ground truth labels
 eval <- evaluate(model, clu, iris$Species)
 eval
 ```
@@ -72,3 +72,6 @@ eval
 ## $data_entropy
 ## [1] 1.584963
 ```
+
+References
+- Satopaa, V., Albrecht, J., Irwin, D., Raghavan, B. (2011). Finding a "Kneedle" in a Haystack: Detecting Knee Points in System Behavior.

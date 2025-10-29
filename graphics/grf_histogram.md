@@ -26,8 +26,8 @@ font <- theme(text = element_text(size=16))
 Generate variables with distinct distributions (exponential, uniform, normal).
 
 ``` r
-# Exemplos com distribuições de dados
-# Usamos variáveis aleatórias para facilitar a visualização de diferentes distribuições.
+# Examples with data distributions
+# We use random variables to facilitate visualization of different distributions.
 
 # example: dataset to be plotted  
 example <- data.frame(exponential = rexp(100000, rate = 1), 
@@ -46,7 +46,7 @@ head(example)
 ## 6   3.4969441 2.931347 5.489231
 ```
 
-# Histogram
+Histogram
 
 Visualize the distribution of a continuous variable by binning the x-axis and counting observations per bin. `geom_histogram()` displays counts as bars.
 More info: ?geom_histogram (R documentation)
@@ -71,7 +71,7 @@ plot(grf)
 
 ![plot of chunk unnamed-chunk-4](fig/grf_histogram/unnamed-chunk-4-1.png)
 
-# Chart arrangement
+Chart arrangement
 
 Use `grid.arrange` to place the generated charts side by side.
 
@@ -113,3 +113,6 @@ grid.arrange(grfe, grfu, grfn, ncol=3)
 
 ![plot of chunk unnamed-chunk-6](fig/grf_histogram/unnamed-chunk-6-1.png)
 
+References
+- Freedman, D., and Diaconis, P. (1981). On the histogram as a density estimator: L2 theory. Zeitschrift für Wahrscheinlichkeitstheorie und verwandte Gebiete.
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.

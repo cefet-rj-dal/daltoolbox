@@ -16,23 +16,9 @@ library(daltoolbox)
 Load Boston dataset (MASS) and inspect types.
 
 ``` r
-# Conjunto de dados para análise de regressão
+# Dataset for regression analysis
 
 library(MASS)
-```
-
-```
-## 
-## Attaching package: 'MASS'
-```
-
-```
-## The following object is masked from 'package:dplyr':
-## 
-##     select
-```
-
-``` r
 data(Boston)
 print(t(sapply(Boston, class)))
 ```
@@ -59,7 +45,7 @@ head(Boston)
 Optional conversion to matrix for performance in some methods.
 
 ``` r
-# por desempenho, você pode converter para matriz
+# for performance, you can convert to matrix
 Boston <- as.matrix(Boston)
 ```
 
@@ -114,3 +100,6 @@ print(test_eval$metrics)
 ##        mse     smape        R2
 ## 1 29.38142 0.1642396 0.5117372
 ```
+
+References
+- Breiman, L., Friedman, J., Olshen, R., and Stone, C. (1984). Classification and Regression Trees. Wadsworth.

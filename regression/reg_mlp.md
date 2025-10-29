@@ -17,7 +17,7 @@ library(daltoolbox)
 Load Boston dataset (MASS) and inspect types.
 
 ``` r
-# Conjunto de dados para análise de regressão
+# Dataset for regression analysis
 
 library(MASS)
 data(Boston)
@@ -46,7 +46,7 @@ head(Boston)
 Optional conversion to matrix.
 
 ``` r
-# por desempenho, você pode converter para matriz
+# for performance, you can convert to matrix
 Boston <- as.matrix(Boston)
 ```
 
@@ -101,3 +101,6 @@ print(test_eval$metrics)
 ##        mse     smape        R2
 ## 1 17.59761 0.1396753 0.7075616
 ```
+
+References
+- Bishop, C. M. (1995). Neural Networks for Pattern Recognition. Oxford University Press.

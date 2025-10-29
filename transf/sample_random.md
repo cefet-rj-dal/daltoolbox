@@ -93,3 +93,6 @@ print(tbl)
 ## [3,]     10         16        12
 ## [4,]     12         14        12
 ```
+
+References
+- Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection. IJCAI.

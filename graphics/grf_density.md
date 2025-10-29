@@ -45,7 +45,7 @@ head(example)
 ## 6  0.07589503 3.310770 5.389151
 ```
 
-# Density plot
+Density plot
 
 Draws a kernel density estimate, a smoothed alternative to the histogram for continuous data.
 
@@ -68,7 +68,7 @@ plot(grf)
 
 ![plot of chunk unnamed-chunk-4](fig/grf_density/unnamed-chunk-4-1.png)
 
-# Chart arrangement
+Chart arrangement
 
 The `grid.arrange` function can arrange multiple previously created charts.
 
@@ -110,3 +110,6 @@ grid.arrange(grfe, grfu, grfn, ncol=3)
 
 ![plot of chunk unnamed-chunk-6](fig/grf_density/unnamed-chunk-6-1.png)
 
+References
+- Silverman, B. W. (1986). Density Estimation for Statistics and Data Analysis. Chapman and Hall.
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.

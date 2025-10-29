@@ -26,7 +26,7 @@ font <- theme(text = element_text(size=16))
 Aggregated data and pie chart construction.
 
 ``` r
-# conjunto de dados iris para o exemplo
+# iris dataset for the example
 head(iris)
 ```
 
@@ -69,3 +69,7 @@ plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/grf_pie/unnamed-chunk-5-1.png)
+
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+- Tufte, E. R. (2001). The Visual Display of Quantitative Information (2nd ed.). Graphics Press.

@@ -53,7 +53,6 @@ print(head(iris_cm))
 ## 6             1                 0                0
 ```
 
-Apply the same mapping to a data frame with a single categorical column.
 
 ``` r
 # creating the categorical mapping
@@ -88,3 +87,7 @@ print(head(iris_cm))
 ## 5             1                 0                0
 ## 6             1                 0                0
 ```
+
+References
+- Bishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer. (1-of-K/one-hot encoding)
+

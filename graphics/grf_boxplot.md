@@ -26,7 +26,7 @@ font <- theme(text = element_text(size=16))
 Data and construction of a simple boxplot and a colored variant.
 
 ``` r
-# conjunto de dados iris para o exemplo
+# iris dataset for the example
 head(iris)
 ```
 
@@ -84,3 +84,7 @@ plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/grf_boxplot/unnamed-chunk-5-1.png)
+
+References
+- Tukey, J. W. (1977). Exploratory Data Analysis. Addison-Wesley.
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.

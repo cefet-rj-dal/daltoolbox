@@ -17,7 +17,7 @@ library(daltoolbox)
 Load Boston dataset (MASS) and inspect types.
 
 ``` r
-# Conjunto de dados para análise de regressão
+# Dataset for regression analysis
 
 library(MASS)
 data(Boston)
@@ -46,7 +46,7 @@ head(Boston)
 Optional conversion to matrix.
 
 ``` r
-# por desempenho, você pode converter para matriz
+# for performance, you can convert to matrix
 Boston <- as.matrix(Boston)
 ```
 
@@ -101,3 +101,6 @@ print(test_eval$metrics)
 ##       mse     smape       R2
 ## 1 26.9483 0.1791238 0.552171
 ```
+
+References
+- Altman, N. (1992). An Introduction to Kernel and Nearest-Neighbor Nonparametric Regression.

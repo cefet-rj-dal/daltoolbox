@@ -1,5 +1,12 @@
 About the transformation
-- `zscore`: standardizes numeric attributes to mean 0 and std dev 1 (or other targets via `nmean` and `nsd`).
+- `zscore`: standardizes numeric attributes to zero mean and unit variance. You can also rescale to a target mean (`nmean`) and standard deviation (`nsd`).
+
+Method
+- For each numeric column j: `(x - mean_j) / sd_j` and optionally `* nsd + nmean`.
+- Constant columns (zero variance) map to `nmean`.
+
+When to use
+- Useful to equalize scale across features and as input to scale-sensitive models (e.g., k-NN, SVM with RBF kernel, PCA).
 
 Environment setup.
 
@@ -36,7 +43,7 @@ summary(iris)
 ##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500
 ```
 
-Apply standard Z-Score (m=0, sd=1) and inverse-transform.
+Apply standard Z-Score (mean = 0, sd = 1) and inverse-transform.
 
 ``` r
 # Z-Score
@@ -74,7 +81,7 @@ summary(ddata)
 ##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500
 ```
 
-Standardization to custom target mean and std.
+Standardization to custom target mean and standard deviation.
 
 ``` r
 norm <- zscore(nmean=0.5, nsd=0.5/2.698)
@@ -109,3 +116,6 @@ summary(ddata)
 ##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800                  
 ##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500
 ```
+
+References
+- Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Standardization)

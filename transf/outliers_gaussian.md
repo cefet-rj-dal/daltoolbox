@@ -73,3 +73,6 @@ head(iris.outliers)
 ##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ## 16          5.7         4.4          1.5         0.4  setosa
 ```
+
+References
+- Pukelsheim, F. (1994). The Three Sigma Rule. The American Statistician 48(2):88–91.

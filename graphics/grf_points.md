@@ -23,7 +23,7 @@ colors <- brewer.pal(4, 'Set1')
 font <- theme(text = element_text(size=16))
 ```
 
-# Synthetic time series
+Synthetic time series
 
 Generate a synthetic series for the example and plot points only.
 
@@ -60,3 +60,6 @@ plot(grf)
 ```
 
 ![plot of chunk unnamed-chunk-4](fig/grf_points/unnamed-chunk-4-1.png)
+
+References
+- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
