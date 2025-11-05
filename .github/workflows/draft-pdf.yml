@@ -1,28 +1,37 @@
-name Draft PDF
+name: Draft PDF
+
 on:
   push:
     paths:
       - paper/**
       - .github/workflows/draft-pdf.yml
 
-jobs
-  paper
-    runs-on ubuntu-latest
-    name Paper Draft
-    steps
-      - name Checkout
-        uses actionscheckout@v4
-      - name Build draft PDF
-        uses openjournalsopenjournals-draft-action@master
-        with
-          journal joss
-          # This should be the path to the paper within your repo.
-          paper-path paper.md
-      - name Upload
-        uses actionsupload-artifact@v4
-        with
-          name paper
-          # This is the output path where Pandoc will write the compiled
-          # PDF. Note, this should be the same directory as the input
-          # paper.md
-          path paper.pdf
+jobs:
+  paper:
+    runs-on: ubuntu-latest
+    name: Paper Draft
+
+    # Permissão explícita de escrita no repositório (boa prática)
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build draft PDF
+        uses: openjournals/openjournals-draft-action@v1.0
+        with:
+          journal: joss
+          # Caminho do paper relativo à raiz do repositório
+          paper-path: paper/paper.md
+
+      # (Opcional mas recomendado) Ver o status antes de commitar
+      - name: Show git status (debug)
+        run: git status
+
+      - name: Commit PDF to repository
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: '(auto) Update JOSS paper PDF'
+          # Caminho do PDF que foi gerado; o inara
