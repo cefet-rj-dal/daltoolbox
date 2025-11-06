@@ -13,6 +13,17 @@ Environment setup.
 library(daltoolbox) 
 ```
 
+```
+## 
+## Attaching package: 'daltoolbox'
+```
+
+```
+## The following object is masked from 'package:base':
+## 
+##     transform
+```
+
 Load data and inspect.
 
 ``` r

@@ -104,6 +104,24 @@ grfn <- plot_density(example |> dplyr::select(normal),
 
 ``` r
 library(gridExtra)  
+```
+
+```
+## Warning: package 'gridExtra' was built under R version 4.5.1
+```
+
+```
+## 
+## Attaching package: 'gridExtra'
+```
+
+```
+## The following object is masked from 'package:dplyr':
+## 
+##     combine
+```
+
+``` r
 options(repr.plot.width=15, repr.plot.height=4)
 grid.arrange(grfe, grfu, grfn, ncol=3)
 ```

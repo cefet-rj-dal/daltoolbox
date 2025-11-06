@@ -15,7 +15,13 @@ library(daltoolbox)
 ``` r
 library(RColorBrewer)
 library(ggplot2)
+```
 
+```
+## Warning: package 'ggplot2' was built under R version 4.5.1
+```
+
+``` r
 colors <- brewer.pal(4, 'Set1')
 
 # setting the font size for all charts
@@ -42,6 +48,30 @@ head(iris)
 
 ``` r
 library(dplyr)
+```
+
+```
+## Warning: package 'dplyr' was built under R version 4.5.1
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+``` r
 data <- iris |> group_by(Species) |> summarize(Sepal.Length=mean(Sepal.Length))
 head(data)
 ```
@@ -65,6 +95,19 @@ Basic bar chart and a vertical variant.
 # More info: https://en.wikipedia.org/wiki/Bar_chart
 
 grf <- plot_bar(data, colors=colors[1]) + font
+```
+
+```
+## Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
+## ℹ Please use tidy evaluation idioms with `aes()`.
+## ℹ See also `vignette("ggplot2-in-packages")` for more information.
+## ℹ The deprecated feature was likely used in the daltoolbox package.
+##   Please report the issue at <https://github.com/cefet-rj-dal/daltoolbox/issues>.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+```
+
+``` r
 plot(grf)
 ```
 
