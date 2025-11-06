@@ -14,7 +14,7 @@ authors:
     orcid: 0009-0000-6564-8770
     affiliation: 1
   - name: Diego Carvalho
-    orcid: 00000-0003-1592-6327
+    orcid: 0000-0003-1592-6327
     affiliation: 1
   - name: Diego Salles
     orcid: 0009-0008-7397-067X
@@ -54,10 +54,11 @@ affiliations:
     index: 4
   - name: Petróleo Brasileiro S.A. (Petrobras), Brazil
     index: 5
+bibliography: paper.bib
 repository: https://github.com/cefet-rj-dal/daltoolbox
 documentation: https://cefet-rj-dal.github.io/daltoolbox/
 license: MIT
-keywords: [data analytics, experiment lines, machine learning, workflow, reproducibility]
+tags: [data analytics, experiment lines, machine learning, workflow, reproducibility]
 date: 2025-11-01
 ---
 
