@@ -1,10 +1,10 @@
-# Exemplos Rmd
+# Rmd Examples
 
-Esta pasta reúne os exemplos em R Markdown organizados por tema. Cada subpasta possui um `README.Rmd` com a lista de exemplos e uma breve descrição.
+This directory contains example R Markdown files for daltoolbox: modeling, visualization, and data preparation.
 
-- [Classificação](classification/README.md): árvores de decisão, k‑NN, MLP, Naive Bayes, Random Forest, SVM e exemplos de ajuste de hiperparâmetros.
-- [Agrupamento (Clustering)](clustering/README.md): DBSCAN (densidade), k‑means, PAM (medoides) e seleção de hiperparâmetros.
-- [Gráficos](graphics/README.md): barras (simples, agrupadas, empilhadas), boxplot, densidade, histograma, pizza, lollipop, pontos, dispersão, radar, séries temporais e exemplos de exportação (JPG/PDF).
-- [Regressão](regression/README.md): árvores de decisão, k‑NN, MLP, Random Forest, SVR e ajuste de hiperparâmetros.
-- [Transformações (Preprocessamento)](transf/README.md): normalização (min‑max, z‑score), remoção de NAs, amostragem (aleatória, estratificada), detecção de outliers (boxplot, gaussiana), suavização (intervalo, frequência, clusterização), PCA e pontos de curvatura.
+- [Classification](./classification/README.md) — 8 examples (e.g., cla_dtree, cla_knn, cla_majority). Supervised classification algorithms and tuning.
+- [Clustering](./clustering/README.md) — 4 examples (e.g., clu_dbscan, clu_kmeans, clu_pam). Unsupervised clustering methods and model selection.
+- [Graphics](./graphics/README.md) — 17 examples (e.g., grf_bar_error, grf_bar, grf_boxplot). Chart examples with ggplot2 and helpers.
+- [Regression](./regression/README.md) — 6 examples (e.g., reg_dtree, reg_knn, reg_mlp). Supervised regression algorithms and tuning.
+- [Transformations](./transf/README.md) — 14 examples (e.g., categorical_mapping, curvature_maximum, curvature_minimum). Data preparation and transformation utilities.
 

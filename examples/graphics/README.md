@@ -1,22 +1,22 @@
-# Gráficos
+# Graphics Examples
 
-Lista de exemplos de gráficos com breve descrição e link para cada `.Rmd`.
+Chart examples with ggplot2 and helpers.
 
-- [grf_bar_error](grf_bar_error.md): Barras com barras de erro; adiciona incerteza/variabilidade (ex.: desvio‑padrão).
-- [grf_bar](grf_bar.md): Barra; compara valores agregados por categoria (médias, contagens, totais).
-- [grf_boxplot](grf_boxplot.md): Boxplot; resume distribuição por quartis e destaca outliers; comparável entre grupos.
-- [grf_density](grf_density.md): Densidade (kernel); versão suavizada do histograma para variáveis contínuas.
-- [grf_grouped_bar](grf_grouped_bar.md): Barras agrupadas; compara múltiplas medidas por categoria lado a lado.
-- [grf_histogram](grf_histogram.md): Histograma; distribui observações em bins ao longo do eixo x; visualiza frequência e assimetria.
-- [grf_lollipop](grf_lollipop.md): Lollipop; alternativa às barras, enfatiza valores com marcador e haste; visual mais leve.
-- [grf_pie](grf_pie.md): Pizza; representa proporções de um total; use com poucas categorias.
-- [grf_points](grf_points.md): Pontos; semelhante a séries porém sem linhas; destaca observações discretas.
-- [grf_radar](grf_radar.md): Radar; múltiplas variáveis em eixos radiais; útil para perfis comparativos.
-- [grf_save_jpg](grf_save_jpg.md): Salvando gráfico; exporta com `jpeg()`/`dev.off()` e `ggsave()`.
-- [grf_save_pdf](grf_save_pdf.md): Salvando gráfico; exporta com `ggsave()` para PDF controlando dimensões.
-- [grf_scatter](grf_scatter.md): Dispersão; relação entre duas variáveis numéricas, com cor opcional por grupo.
-- [grf_series](grf_series.md): Séries temporais (linhas); pontos conectados; destaca tendência e sazonalidade.
-- [grf_stacked_bar](grf_stacked_bar.md): Barras empilhadas; mostra composição por categoria; útil para proporções cumulativas.
-- [grf_ts_pred](grf_ts_pred.md): Série temporal com ajuste e previsão; compara observados, ajuste e horizonte de previsão.
-- [grf_ts](grf_ts.md): Série temporal simples; visualização exploratória de um vetor temporal.
+- [grf_bar_error.md](grf_bar_error.md) — Bars with error bars: add uncertainty/variability (e.g., standard deviation) to bars using `geom_errorbar()`.
+- [grf_bar.md](grf_bar.md) — Bar: compares aggregated values by categories. Useful for means, counts, and totals by group.
+- [grf_boxplot.md](grf_boxplot.md) — Boxplot: summarizes distribution via quartiles and highlights outliers; comparable across groups.
+- [grf_density.md](grf_density.md) — Density (kernel density): smoothed version of the histogram for continuous variables; highlights distribution shapes.
+- [grf_grouped_bar.md](grf_grouped_bar.md) — Grouped bars: compares multiple measures per category, displaying side-by-side bars.
+- [grf_histogram.md](grf_histogram.md) — Histogram: distributes observations into bins along the x-axis; useful to visualize frequency and skewness.
+- [grf_lollipop.md](grf_lollipop.md) — Lollipop: alternative to bars, emphasizes values with a marker and a stem; lighter visual for comparisons.
+- [grf_pie.md](grf_pie.md) — Pie: represents proportions of a total. Use sparingly and with few categories when angles are easy to compare.
+- [grf_points.md](grf_points.md) — Points: similar to series, but without connecting lines; good to highlight discrete observations.
+- [grf_radar.md](grf_radar.md) — Radar: displays multiple numeric variables on radial axes from a common origin; useful for comparative profiles.
+- [grf_save_jpg.md](grf_save_jpg.md) — Chart saving: example of exporting with `jpeg()`/`dev.off()` and `ggsave()` to image files.
+- [grf_save_pdf.md](grf_save_pdf.md) — Chart saving: example of exporting with `ggsave()` to PDF, controlling dimensions and units.
+- [grf_scatter.md](grf_scatter.md) — Scatter: assesses the relationship between two numeric variables, with optional coloring by group/category.
+- [grf_series.md](grf_series.md) — Time series (lines): points connected by segments; highlights trend and seasonality over time/ordered axis.
+- [grf_stacked_bar.md](grf_stacked_bar.md) — Stacked bars: shows each category's composition by summing groups; useful for cumulative proportions.
+- [grf_ts_pred.md](grf_ts_pred.md) — Time series with fit and forecast: shows observed values, model fit, and forecast horizon for visual comparison.
+- [grf_ts.md](grf_ts.md) — Simple time series: exploratory visualization of a temporal vector with ordered x-axis and y values.
 

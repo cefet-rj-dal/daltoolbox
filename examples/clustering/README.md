@@ -1,9 +1,9 @@
-# Agrupamento (Clustering)
+# Clustering Examples
 
-Lista de exemplos de clusterização com breve descrição e link para cada `.Rmd`.
+Unsupervised clustering methods and model selection.
 
-- [clu_dbscan](clu_dbscan.md): Método baseado em densidade; identifica regiões densas e ruído; detecta clusters de formas arbitrárias.
-- [clu_kmeans](clu_kmeans.md): Particiona em k grupos minimizando variância intra‑cluster; sensível à escala.
-- [clu_pam](clu_pam.md): Partitioning Around Medoids; usa medoides (pontos reais), mais robusto a outliers.
-- [clu_tune](clu_tune.md): Seleção de hiperparâmetros para clusterização (ex.: escolhe k para k‑means).
+- [clu_dbscan.md](clu_dbscan.md) — `cluster_dbscan`: density-based method. Identifies dense regions separated by sparse areas; detects noise and arbitrarily shaped clusters.
+- [clu_kmeans.md](clu_kmeans.md) — `cluster_kmeans`: partitions data into k groups by minimizing within-cluster variance. Sensitive to scale; normalization can improve results.
+- [clu_pam.md](clu_pam.md) — `cluster_pam`: Partitioning Around Medoids. Similar to k-means but uses medoids (real points) instead of centroids, making it more robust to outliers.
+- [clu_tune.md](clu_tune.md) — `clu_tune`: selects hyperparameters for a clustering method. In this example, it chooses `k` for `cluster_kmeans` over a range.
 
