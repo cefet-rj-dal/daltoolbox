@@ -107,10 +107,6 @@ library(gridExtra)
 ```
 
 ```
-## Warning: package 'gridExtra' was built under R version 4.5.1
-```
-
-```
 ## 
 ## Attaching package: 'gridExtra'
 ```

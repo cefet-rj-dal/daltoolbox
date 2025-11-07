@@ -22,10 +22,10 @@ print(t(sapply(Boston, class)))
 ```
 
 ```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black     lstat    
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric"
-##      medv     
-## [1,] "numeric"
+##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio  
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric"
+##      black     lstat     medv     
+## [1,] "numeric" "numeric" "numeric"
 ```
 
 ``` r

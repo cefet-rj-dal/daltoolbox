@@ -25,10 +25,10 @@ print(t(sapply(Boston, class)))
 ```
 
 ```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black     lstat    
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric"
-##      medv     
-## [1,] "numeric"
+##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio  
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric"
+##      black     lstat     medv     
+## [1,] "numeric" "numeric" "numeric"
 ```
 
 ``` r
@@ -85,7 +85,7 @@ print(train_eval$metrics)
 
 ```
 ##        mse      smape        R2
-## 1 7.815809 0.09907171 0.9131656
+## 1 6.531913 0.09502499 0.9274298
 ```
 
 Test evaluation.
@@ -100,8 +100,8 @@ print(test_eval$metrics)
 ```
 
 ```
-##        mse     smape        R2
-## 1 17.59761 0.1396753 0.7075616
+##        mse     smape      R2
+## 1 23.75304 0.1676875 0.60527
 ```
 
 References
