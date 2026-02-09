@@ -1,1 +1,0 @@
-A zipped file would be larger than the 200MB limit. Please, get the 3W dataset on https://github.com/ricardovvargas/3w_dataset.
