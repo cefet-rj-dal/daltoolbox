@@ -31,7 +31,9 @@ plot_bar <- function(data, label_x = "", label_y = "", colors = NULL, alpha=1) {
   # ensure first column is categorical for discrete bars
   if (!is.factor(series[,1]))
     series[,1] <- as.factor(series[,1])
-  grf <- ggplot2::ggplot(series, ggplot2::aes_string(x=colnames(series)[1], y=colnames(series)[2]))
+  x <- y <- NULL
+  colnames(series)[1:2] <- c("x", "y")
+  grf <- ggplot2::ggplot(series, ggplot2::aes(x = x, y = y))
   if (!is.null(colors)) {
     # fixed fill color
     grf <- grf + ggplot2::geom_bar(stat = "identity", fill=colors, alpha=alpha)

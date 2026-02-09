@@ -23,7 +23,7 @@ plot_pair <- function(data, cnames, title = NULL, clabel = NULL, colors = NULL) 
   }
 
   if (!is.null(clabel)) {
-    grf <- GGally::ggpairs(data, columns = icol, ggplot2::aes_string(colour = clabel, alpha = 0.4)) +
+    grf <- GGally::ggpairs(data, columns = icol, ggplot2::aes(colour = data[[clabel]], alpha = 0.4)) +
       ggplot2::theme_bw(base_size = 10)
     if (!is.null(colors)) {
       grf <- grf + ggplot2::scale_color_manual(values = colors)

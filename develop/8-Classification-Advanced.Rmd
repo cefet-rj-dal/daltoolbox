@@ -1,0 +1,306 @@
+# Classificação Avançada
+
+## Visão Geral
+Esta seção cobre métodos avançados para classificação: redes neurais, SVM, ensembles, seleção de atributos e tópicos como desbalanceamento, multiclasse, semi-supervisão e transferência.  
+Slides: 1–45.
+
+## Configuração
+
+```{r}
+# Slides 1–3: contexto
+require_pkg <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    stop(sprintf("Pacote '%s' nao instalado. Instale com install.packages('%s').", pkg, pkg))
+  }
+  invisible(TRUE)
+}
+
+pkgs <- c("daltoolbox", "nnet", "ipred", "randomForest", "e1071", "glmnet", "rpart", "adabag", "xgboost")
+invisible(lapply(pkgs, require_pkg))
+
+suppressPackageStartupMessages({
+  library(daltoolbox)
+  library(nnet)
+  library(ipred)
+  library(randomForest)
+  library(e1071)
+  library(glmnet)
+  library(rpart)
+  library(adabag)
+  library(xgboost)
+})
+
+# Dataset base
+iris <- datasets::iris
+head(iris)
+
+# Preparacao treino/teste
+set.seed(1)
+sr <- sample_random()
+sr <- train_test(sr, iris)
+iris_train <- sr$train
+iris_test <- sr$test
+slevels <- levels(iris$Species)
+
+# Helper: avaliacao DALToolbox
+# Slides 20–24: avaliacao comparativa
+
+eval_model <- function(model, train, test, target_col) {
+  train_prediction <- predict(model, train)
+  train_predictand <- adjust_class_label(train[, target_col])
+  train_eval <- evaluate(model, train_predictand, train_prediction)
+  print(train_eval$metrics)
+
+  test_prediction <- predict(model, test)
+  test_predictand <- adjust_class_label(test[, target_col])
+  test_eval <- evaluate(model, test_predictand, test_prediction)
+  print(test_eval$metrics)
+
+  list(
+    train_prediction = train_prediction,
+    train_predictand = train_predictand,
+    test_prediction = test_prediction,
+    test_predictand = test_predictand
+  )
+}
+```
+
+## Redes Neurais (MLP)
+Redes feed-forward multicamadas modelam relações não lineares e podem atuar como classificadores potentes, ajustando pesos via backpropagation.  
+Slides: 2–8.
+
+```{r}
+# Slides 2–8: MLP
+model_mlp <- cla_mlp("Species", slevels, size = 3, decay = 0.03)
+model_mlp <- fit(model_mlp, iris_train)
+res_mlp <- eval_model(model_mlp, iris_train, iris_test, "Species")
+```
+
+## Support Vector Machines (SVM)
+SVMs buscam hiperplanos de margem máxima e usam kernels para separação não linear em espaços de alta dimensionalidade.  
+Slides: 9–19.
+
+```{r}
+# Slides 9–19: SVM
+model_svm <- cla_svm("Species", slevels, epsilon = 0.0, cost = 20.000)
+model_svm <- fit(model_svm, iris_train)
+res_svm <- eval_model(model_svm, iris_train, iris_test, "Species")
+```
+
+## Ensembles
+Métodos ensemble combinam modelos para reduzir variância e melhorar desempenho. Bagging agrega vários modelos treinados em amostras bootstrap; Random Forest introduz aleatoriedade adicional na seleção de atributos.  
+Slides: 20–24.
+
+```{r}
+# Slides 20–24: Bagging e Random Forest
+# Bagging com arvores (ipred)
+set.seed(1)
+bag_model <- ipred::bagging(Species ~ ., data = iris_train, nbagg = 25, coob = TRUE)
+# Avaliacao do bagging
+bag_pred_train <- predict(bag_model, iris_train, type = "class")
+bag_pred_test <- predict(bag_model, iris_test, type = "class")
+
+bag_train_acc <- mean(bag_pred_train == iris_train$Species)
+bag_test_acc <- mean(bag_pred_test == iris_test$Species)
+bag_train_acc
+bag_test_acc
+
+# Random Forest (daltoolbox)
+model_rf <- cla_rf("Species", slevels, mtry = 3, ntree = 50)
+model_rf <- fit(model_rf, iris_train)
+res_rf <- eval_model(model_rf, iris_train, iris_test, "Species")
+```
+
+## Boosting
+Boosting combina modelos fracos sequencialmente, enfatizando exemplos difíceis em iterações posteriores.  
+Slides: 25.
+
+```{r}
+# Slide 25: Boosting
+if (requireNamespace("adabag", quietly = TRUE)) {
+  suppressPackageStartupMessages(library(adabag))
+  set.seed(1)
+  boost_model <- adabag::boosting(Species ~ ., data = iris_train, mfinal = 50)
+  boost_pred <- predict(boost_model, newdata = iris_test)
+  boost_acc <- mean(boost_pred$class == iris_test$Species)
+  boost_acc
+} else {
+  message("Pacote 'adabag' nao instalado: exemplo de boosting omitido.")
+}
+```
+
+## XGBoost
+XGBoost é um método de boosting eficiente baseado em árvores.  
+Slides: 25.
+
+```{r}
+# XGBoost (daltoolbox)
+if (requireNamespace("xgboost", quietly = TRUE)) {
+  model_xgb <- cla_xgboost("Species", nrounds = 20)
+  model_xgb <- fit(model_xgb, iris_train)
+  res_xgb <- eval_model(model_xgb, iris_train, iris_test, "Species")
+} else {
+  message("Pacote 'xgboost' nao instalado: exemplo omitido.")
+}
+```
+
+## Seleção de Atributos
+Em alta dimensionalidade, selecionar atributos relevantes melhora generalização e interpretabilidade.  
+Slides: 26–36.
+
+```{r}
+# Slides 26–36: selecao de atributos
+# Dataset binario para alguns metodos
+iris_bin <- iris
+iris_bin$IsVersicolor <- factor(ifelse(iris_bin$Species == "versicolor", "versicolor", "not_versicolor"))
+
+# Slide 32: Information Gain (discretizacao simples)
+entropy <- function(y) {
+  p <- prop.table(table(y))
+  -sum(p * log2(p))
+}
+
+make_bins <- function(x, bins = 3) {
+  q <- quantile(x, probs = seq(0, 1, length.out = bins + 1), na.rm = TRUE)
+  q <- unique(q)
+  if (length(q) < 2) {
+    return(factor(rep("all", length(x))))
+  }
+  cut(x, breaks = q, include.lowest = TRUE)
+}
+
+info_gain <- function(x, y, bins = 3) {
+  if (is.numeric(x)) {
+    x <- make_bins(x, bins = bins)
+  }
+  total <- entropy(y)
+  cond <- 0
+  for (lvl in levels(x)) {
+    idx <- which(x == lvl)
+    if (length(idx) > 0) {
+      cond <- cond + (length(idx) / length(y)) * entropy(y[idx])
+    }
+  }
+  total - cond
+}
+
+ig_scores <- sapply(iris[, 1:4], info_gain, y = iris$Species)
+ig_scores[!is.finite(ig_scores)] <- 0
+ig_scores
+
+# Slide 33: Forward Stepwise Selection (glm binario)
+full_glm <- glm(IsVersicolor ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width,
+                data = iris_bin, family = binomial)
+null_glm <- glm(IsVersicolor ~ 1, data = iris_bin, family = binomial)
+step_model <- step(null_glm, scope = list(lower = null_glm, upper = full_glm), direction = "forward", trace = 0)
+summary(step_model)
+
+# Slide 34: LASSO (glmnet)
+X <- as.matrix(iris[, 1:4])
+y <- ifelse(iris$Species == "versicolor", 1, 0)
+set.seed(1)
+cv_fit <- cv.glmnet(X, y, family = "binomial", alpha = 1)
+coef(cv_fit, s = "lambda.min")
+
+# Slide 35: CFS (correlation-based)
+# CFS simples: correlacao com classe (numerica) e penalidade por correlacao entre features
+class_num <- as.numeric(iris$Species)
+cor_cf <- abs(cor(iris[, 1:4], class_num))
+cor_ff <- abs(cor(iris[, 1:4]))
+mean_cf <- mean(cor_cf)
+mean_ff <- mean(cor_ff[upper.tri(cor_ff)])
+cfs_score <- mean_cf / sqrt(mean_ff + 1e-6)
+cfs_score
+
+# Slide 36: RELIEF simplificado (binario)
+relief_simple <- function(df, target, m = 50) {
+  X <- as.matrix(df)
+  y <- target
+  n <- nrow(X)
+  w <- rep(0, ncol(X))
+  set.seed(1)
+  idxs <- sample(seq_len(n), size = min(m, n))
+  for (i in idxs) {
+    xi <- X[i, , drop = FALSE]
+    yi <- y[i]
+    # distancias
+    d <- rowSums((X - matrix(xi, n, ncol(X), byrow = TRUE))^2)
+    same <- which(y == yi & seq_len(n) != i)
+    diff <- which(y != yi)
+    nh <- same[which.min(d[same])]
+    nm <- diff[which.min(d[diff])]
+    w <- w - abs(X[i, ] - X[nh, ]) + abs(X[i, ] - X[nm, ])
+  }
+  w
+}
+
+relief_w <- relief_simple(iris_bin[, 1:4], iris_bin$IsVersicolor)
+relief_w
+```
+
+## Tópicos Avançados
+Inclui desbalanceamento, multiclasse, semi-supervisão e transferência.  
+Slides: 37–43.
+
+```{r}
+# Slides 37–40: topicos avancados
+# Imbalanced: downsample simples
+set.seed(1)
+idx_pos <- which(iris_bin$IsVersicolor == "versicolor")
+idx_neg <- which(iris_bin$IsVersicolor == "not_versicolor")
+idx_neg_down <- sample(idx_neg, length(idx_pos))
+iris_bal <- iris_bin[c(idx_pos, idx_neg_down), ]
+
+bal_glm <- glm(IsVersicolor ~ Petal.Length + Petal.Width, data = iris_bal, family = binomial)
+summary(bal_glm)
+
+# Multiclasse: modelo multinomial (nnet)
+multinom_model <- nnet::multinom(Species ~ ., data = iris_train, trace = FALSE)
+multinom_pred <- predict(multinom_model, iris_test)
+mean(multinom_pred == iris_test$Species)
+
+# Slide 41: semi-supervisionado (pseudo-label simples)
+set.seed(1)
+mask <- sample(seq_len(nrow(iris_train)), size = floor(0.5 * nrow(iris_train)))
+semi_train <- iris_train
+semi_train$Species[mask] <- NA
+
+labeled <- semi_train[!is.na(semi_train$Species), ]
+unlabeled <- semi_train[is.na(semi_train$Species), ]
+
+semi_model <- nnet::multinom(Species ~ ., data = labeled, trace = FALSE)
+probs <- predict(semi_model, unlabeled, type = "probs")
+pseudo <- colnames(probs)[apply(probs, 1, which.max)]
+# adiciona pseudo-rotulos
+unlabeled$Species <- factor(pseudo, levels = levels(iris$Species))
+semi_aug <- rbind(labeled, unlabeled)
+
+semi_model2 <- nnet::multinom(Species ~ ., data = semi_aug, trace = FALSE)
+semi_pred <- predict(semi_model2, iris_test)
+mean(semi_pred == iris_test$Species)
+
+# Slides 42–43: Transfer Learning (exemplo conceitual)
+# Reuso de um modelo treinado (ajuste fino com subconjunto)
+pre_model <- nnet::multinom(Species ~ ., data = iris_train, trace = FALSE)
+
+fine_idx <- sample(seq_len(nrow(iris_train)), size = 20)
+fine_train <- iris_train[fine_idx, ]
+
+fine_model <- nnet::multinom(Species ~ ., data = fine_train, trace = FALSE)
+
+pre_pred <- predict(pre_model, iris_test)
+fine_pred <- predict(fine_model, iris_test)
+
+mean(pre_pred == iris_test$Species)
+mean(fine_pred == iris_test$Species)
+```
+
+## Referências
+- Han, J., Pei, J., & Tong, H. (2022). *Data Mining: Concepts and Techniques* (4th ed.). Morgan Kaufmann.
+- Bishop, C. M. (2006). *Pattern Recognition and Machine Learning*. Springer.
+- Cortes, C., & Vapnik, V. (1995). Support-Vector Networks. *Machine Learning*, 20(3), 273–297.
+- Breiman, L. (1996). Bagging predictors. *Machine Learning*, 24(2), 123–140.
+- Breiman, L. (2001). Random Forests. *Machine Learning*, 45(1), 5–32.
+- Freund, Y., & Schapire, R. (1997). A decision-theoretic generalization of on-line learning and an application to boosting. *Journal of Computer and System Sciences*, 55(1), 119–139.
+- Tibshirani, R. (1996). Regression shrinkage and selection via the Lasso. *Journal of the Royal Statistical Society B*, 58(1), 267–288.
+- Kohavi, R. (1995). A study of cross-validation and bootstrap for accuracy estimation and model selection. *IJCAI*.

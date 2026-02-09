@@ -1,0 +1,241 @@
+# Regressão - Fundamentos e Modelos
+
+Exemplos alinhados aos slides de `4-Regressao.pdf`.  
+Cada chunk indica o **slide** correspondente.
+
+## Configuração
+
+```{r libraries}
+# Slides 1–7: conceitos e taxonomia
+require_pkg <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    stop(sprintf("Pacote '%s' nao instalado. Instale com install.packages('%s').", pkg, pkg))
+  }
+  invisible(TRUE)
+}
+
+pkgs <- c("daltoolbox", "ggplot2", "dplyr", "MASS")
+invisible(lapply(pkgs, require_pkg))
+
+suppressPackageStartupMessages({
+  library(daltoolbox)
+  library(ggplot2)
+  library(dplyr)
+  library(MASS)
+})
+```
+
+## Dataset e divisão treino/teste
+
+```{r data}
+# Slide 10: Boston Housing Dataset
+data(Boston)
+str(Boston)
+head(Boston)
+```
+
+```{r split}
+# Slide 10: preparação treino/teste
+set.seed(1)
+idx <- sample(seq_len(nrow(Boston)), size = floor(0.7 * nrow(Boston)))
+train <- Boston[idx, ]
+test <- Boston[-idx, ]
+
+rmse <- function(y, yhat) sqrt(mean((y - yhat)^2))
+mae <- function(y, yhat) mean(abs(y - yhat))
+```
+
+## Regressão linear simples
+
+```{r simple_lm}
+# Slides 8 e 11: regressão linear simples e ajuste
+lm_simple <- lm(medv ~ lstat, data = train)
+summary(lm_simple)
+
+pred_simple <- predict(lm_simple, newdata = test)
+rmse(test$medv, pred_simple)
+mae(test$medv, pred_simple)
+```
+
+```{r plot_simple}
+# Slide 17: visualização do ajuste
+ggplot(train, aes(x = lstat, y = medv)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  labs(title = "Regressao Linear Simples: medv ~ lstat")
+```
+
+```{r intervals}
+# Slide 16: intervalos de predição e confiança
+pred_int <- predict(lm_simple, newdata = test, interval = "prediction")
+head(pred_int)
+
+conf_int <- predict(lm_simple, newdata = test, interval = "confidence")
+head(conf_int)
+```
+
+```{r diagnostics}
+# Slide 18: diagnóstico visual
+par(mfrow = c(2, 2))
+plot(lm_simple)
+par(mfrow = c(1, 1))
+```
+
+## Regressão polinomial
+
+```{r poly_reg}
+# Slides 21–26: regressão polinomial e overfitting
+lm_poly2 <- lm(medv ~ poly(lstat, 2, raw = TRUE), data = train)
+summary(lm_poly2)
+anova(lm_simple, lm_poly2)
+```
+
+```{r plot_poly}
+# Slide 23: visualização da regressão polinomial
+grid <- data.frame(lstat = seq(min(train$lstat), max(train$lstat), length.out = 200))
+grid$pred <- predict(lm_poly2, newdata = grid)
+
+ggplot(train, aes(x = lstat, y = medv)) +
+  geom_point(alpha = 0.5) +
+  geom_line(data = grid, aes(x = lstat, y = pred), color = "blue", linewidth = 1) +
+  labs(title = "Regressao Polinomial (grau 2): medv ~ lstat")
+```
+
+## Regressão múltipla
+
+```{r multiple_reg}
+# Slides 27–29: regressão múltipla e interpretação
+lm_multi <- lm(medv ~ lstat + rm + ptratio, data = train)
+summary(lm_multi)
+
+pred_multi <- predict(lm_multi, newdata = test)
+rmse(test$medv, pred_multi)
+mae(test$medv, pred_multi)
+```
+
+```{r anova_multi}
+# Slide 30: ANOVA para regressão múltipla
+lm_multi2 <- lm(medv ~ lstat + rm + ptratio + nox, data = train)
+anova(lm_multi, lm_multi2)
+```
+
+```{r vif}
+# Slide 31: multicolinearidade (VIF)
+vif_calc <- function(model) {
+  X <- model.matrix(model)[, -1, drop = FALSE]
+  vifs <- numeric(ncol(X))
+  names(vifs) <- colnames(X)
+  for (j in seq_len(ncol(X))) {
+    y <- X[, j]
+    x <- X[, -j, drop = FALSE]
+    r2 <- summary(lm(y ~ x))$r.squared
+    vifs[j] <- 1 / (1 - r2)
+  }
+  vifs
+}
+vif_calc(lm_multi2)
+```
+
+```{r surface}
+# Slide 32: superfície de regressão múltipla
+grid2 <- expand.grid(
+  lstat = seq(min(train$lstat), max(train$lstat), length.out = 30),
+  rm = seq(min(train$rm), max(train$rm), length.out = 30),
+  ptratio = mean(train$ptratio),
+  nox = mean(train$nox)
+)
+grid2$pred <- predict(lm_multi2, newdata = grid2)
+
+ggplot(grid2, aes(x = lstat, y = rm, z = pred)) +
+  geom_contour_filled() +
+  labs(title = "Superficie de Regressao (medv ~ lstat + rm + ptratio + nox)")
+```
+
+```{r high_dim}
+# Slide 33: alta dimensionalidade
+lm_full <- lm(medv ~ ., data = train)
+summary(lm_full)
+```
+
+## Modelos supervisionados (DALToolbox)
+
+```{r dal_prep}
+# Slides 19–20: extensões da regressão linear (modelos mais complexos)
+# Complemento prático com DALToolbox
+Boston_m <- as.matrix(Boston)
+set.seed(1)
+sr <- sample_random()
+sr <- train_test(sr, Boston_m)
+boston_train <- sr$train
+boston_test <- sr$test
+```
+
+```{r dal_dtree}
+# Slide 7: taxonomia (árvore de regressão)
+model_dtree <- reg_dtree("medv")
+model_dtree <- fit(model_dtree, boston_train)
+train_pred <- predict(model_dtree, boston_train)
+evaluate(model_dtree, boston_train[, "medv"], train_pred)$metrics
+test_pred <- predict(model_dtree, boston_test)
+evaluate(model_dtree, boston_test[, "medv"], test_pred)$metrics
+```
+
+```{r dal_knn}
+# Slide 7: taxonomia (kNN para regressão)
+model_knn <- reg_knn("medv", k = 5)
+model_knn <- fit(model_knn, boston_train)
+train_pred <- predict(model_knn, boston_train)
+evaluate(model_knn, boston_train[, "medv"], train_pred)$metrics
+test_pred <- predict(model_knn, boston_test)
+evaluate(model_knn, boston_test[, "medv"], test_pred)$metrics
+```
+
+```{r dal_mlp}
+# Slide 7: taxonomia (MLP para regressão)
+model_mlp <- reg_mlp("medv", size = 5, decay = 0.54)
+model_mlp <- fit(model_mlp, boston_train)
+train_pred <- predict(model_mlp, boston_train)
+evaluate(model_mlp, boston_train[, "medv"], train_pred)$metrics
+test_pred <- predict(model_mlp, boston_test)
+evaluate(model_mlp, boston_test[, "medv"], test_pred)$metrics
+```
+
+```{r dal_rf}
+# Slide 7: taxonomia (Random Forest para regressão)
+model_rf <- reg_rf("medv", mtry = 7, ntree = 30)
+model_rf <- fit(model_rf, boston_train)
+train_pred <- predict(model_rf, boston_train)
+evaluate(model_rf, boston_train[, "medv"], train_pred)$metrics
+test_pred <- predict(model_rf, boston_test)
+evaluate(model_rf, boston_test[, "medv"], test_pred)$metrics
+```
+
+```{r dal_svm}
+# Slide 7: taxonomia (SVR)
+model_svm <- reg_svm("medv", epsilon = 0.2, cost = 40.000)
+model_svm <- fit(model_svm, boston_train)
+train_pred <- predict(model_svm, boston_train)
+evaluate(model_svm, boston_train[, "medv"], train_pred)$metrics
+test_pred <- predict(model_svm, boston_test)
+evaluate(model_svm, boston_test[, "medv"], test_pred)$metrics
+```
+
+```{r dal_tune}
+# Slide 19: extensões e ajuste de modelos (tuning)
+tune <- reg_tune(
+  reg_svm("medv"),
+  ranges = list(seq(0, 1, 0.2), cost = seq(20, 100, 20), kernel = c("radial"))
+)
+model_tuned <- fit(tune, boston_train)
+train_pred <- predict(model_tuned, boston_train)
+evaluate(model_tuned, boston_train[, "medv"], train_pred)$metrics
+test_pred <- predict(model_tuned, boston_test)
+evaluate(model_tuned, boston_test[, "medv"], test_pred)$metrics
+```
+
+## Referências
+- Montgomery, D. C., Peck, E. A., Vining, G. (2012). *Introduction to Linear Regression Analysis*.
+- James, G., Witten, D., Hastie, T., Tibshirani, R. (2021). *An Introduction to Statistical Learning*.
+- Draper, N. R., Smith, H. (1998). *Applied Regression Analysis*.
+- Breiman, L. (2001). Random Forests. *Machine Learning*.
+- Drucker, H. et al. (1997). Support Vector Regression Machines.

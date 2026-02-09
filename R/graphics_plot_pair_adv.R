@@ -27,7 +27,7 @@ plot_pair_adv <- function(data, cnames, title = NULL, clabel = NULL, colors = NU
   }
 
   if (!is.null(clabel)) {
-    grf <- GGally::ggpairs(data, columns = icol, ggplot2::aes_string(colour = "clabel", alpha = 0.4)) + ggplot2::theme_bw(base_size = 10)
+    grf <- GGally::ggpairs(data, columns = icol, ggplot2::aes(colour = clabel, alpha = 0.4)) + ggplot2::theme_bw(base_size = 10)
     if (!is.null(colors)) {
       for (i in 1:grf$nrow) {
         for (j in 1:grf$ncol) {

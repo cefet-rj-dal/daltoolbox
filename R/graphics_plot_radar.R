@@ -31,9 +31,11 @@ plot_radar <- function(data, label_x = "", label_y = "", colors = NULL) {
   if (!is.factor(series[,1]))
     series[,1] <- as.factor(series[,1])
   series$group <- 1
-  grf <- ggplot2::ggplot(series, ggplot2::aes_string(x=colnames(series)[1], y=colnames(series)[2], group="group")) +
+  x <- y <- group <- NULL
+  colnames(series)[1:2] <- c("x", "y")
+  grf <- ggplot2::ggplot(series, ggplot2::aes(x = x, y = y, group = group)) +
     ggplot2::geom_point(size=2, color=colors) +
-    ggplot2::geom_polygon(size = 1, alpha= 0.1, color=colors) +
+    ggplot2::geom_polygon(linewidth = 1, alpha= 0.1, color=colors) +
     ggplot2::theme_light() +
     ggplot2::coord_polar()
   return(grf)

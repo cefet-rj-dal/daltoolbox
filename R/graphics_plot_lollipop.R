@@ -47,7 +47,7 @@ plot_lollipop <- function(data, label_x = "", label_y = "", colors = NULL, color
   data$value <- round(data$value)
 
   grf <- ggplot2::ggplot(data=data, ggplot2::aes(x=x, y=value, label=value)) +
-    ggplot2::geom_segment( ggplot2::aes(x=x, xend=x, y=min_value, yend=(value-max_value_gap)), color=colors, size=1) +
+    ggplot2::geom_segment( ggplot2::aes(x=x, xend=x, y=min_value, yend=(value-max_value_gap)), color=colors, linewidth=1) +
     ggplot2::geom_text(color=color_text, size=size_text) +
     ggplot2::geom_point(color=colors, size=size_ball, alpha=alpha_ball) +
     ggplot2::theme_light() +

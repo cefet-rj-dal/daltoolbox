@@ -29,8 +29,11 @@ Depends: R (>= 4.1.0),
   mclust
 RoxygenNote: 7.3.3
 Imports: 
+  methods,
   FNN, 
   caret, 
+  arules,
+  arulesSequences,
   class, 
   cluster, 
   dbscan, 
@@ -42,5 +45,12 @@ Imports:
   reshape, 
   tree
 Suggests:
+  adabag,
+  glmnet,
+  ipred,
+  xgboost,
+  arulesViz,
   GGally,
-  igraph
+  igraph,
+  rpart,
+  MASS
