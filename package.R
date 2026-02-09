@@ -20,6 +20,12 @@ if (FALSE) {
 
 if (FALSE) {
   library(devtools)
+  devtools::load_all()
+  devtools::run_examples()
+}
+
+if (FALSE) {
+  library(devtools)
   document()
   load_all()
 }

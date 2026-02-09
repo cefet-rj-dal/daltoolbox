@@ -1,0 +1,188 @@
+# Clustering
+
+## Visão Geral
+Clustering é aprendizado não supervisionado que agrupa observações por similaridade. A qualidade depende de escolha de métricas, escalas e do algoritmo.  
+Slides: 1–12.
+
+## Configuração
+
+```{r}
+# Slides 1–4: contexto e exemplos
+require_pkg <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    stop(sprintf("Pacote '%s' nao instalado. Instale com install.packages('%s').", pkg, pkg))
+  }
+  invisible(TRUE)
+}
+
+pkgs <- c("daltoolbox", "ggplot2", "cluster", "mclust", "e1071", "igraph")
+invisible(lapply(pkgs, require_pkg))
+
+suppressPackageStartupMessages({
+  library(daltoolbox)
+  library(ggplot2)
+  library(cluster)
+  library(mclust)
+  library(e1071)
+  library(igraph)
+})
+
+# Slide 4: dataset de exemplo
+iris <- datasets::iris
+head(iris)
+
+# Preparacao
+X <- iris[, 1:4]
+```
+
+## K-means
+Algoritmo de particionamento que minimiza a variância intra-cluster. Sensível a escala e outliers.  
+Slides: 25–29.
+
+```{r}
+# Slides 25–29: K-means
+model_km <- cluster_kmeans(k = 3)
+model_km <- daltoolbox::fit(model_km, X)
+clu_km <- daltoolbox::cluster(model_km, X)
+table(clu_km)
+
+eval_km <- daltoolbox::evaluate(model_km, clu_km, iris$Species)
+eval_km
+```
+
+### Normalização
+Normalização reduz o efeito de escalas diferentes e pode melhorar a separação.  
+Slides: 29.
+
+```{r}
+# Slide 29: normalizacao
+iris_minmax <- transform(daltoolbox::fit(minmax(), iris), iris)
+model_km <- daltoolbox::fit(model_km, iris_minmax[, 1:4])
+clu_km <- daltoolbox::cluster(model_km, iris_minmax[, 1:4])
+eval_km_norm <- daltoolbox::evaluate(model_km, clu_km, iris_minmax$Species)
+eval_km_norm
+```
+
+## K-medoids (PAM)
+Semelhante ao k-means, mas usa medoids (pontos reais) como centros, sendo mais robusto a outliers.  
+Slides: 30–31.
+
+```{r}
+# Slide 30–31: K-medoids (PAM)
+model_pam <- cluster_pam(k = 3)
+model_pam <- daltoolbox::fit(model_pam, X)
+clu_pam <- daltoolbox::cluster(model_pam, X)
+table(clu_pam)
+
+eval_pam <- daltoolbox::evaluate(model_pam, clu_pam, iris$Species)
+eval_pam
+```
+
+## Clustering Hierárquico
+Constrói uma árvore de agrupamentos (dendrograma). Pode ser aglomerativo (bottom-up) ou divisivo (top-down).  
+Slides: 32–35.
+
+```{r}
+# Slides 32–35: Clustering hierarquico e dendrograma (base R)
+# Distancia euclidiana e metodo de Ward
+model_hc <- cluster_hclust(k = 3, method = "ward.D2", dist = "euclidean", scale = TRUE)
+model_hc <- daltoolbox::fit(model_hc, X)
+grf <- plot_dendrogram(model_hc$hc)
+plot(grf)
+
+# Cortando em 3 grupos
+hc_groups <- daltoolbox::cluster(model_hc, X)
+table(hc_groups)
+```
+
+## DBSCAN
+Método baseado em densidade que detecta clusters de formato arbitrário e identifica ruído.  
+Slides: 36–41.
+
+```{r}
+# Slides 36–41: DBSCAN
+model_db <- cluster_dbscan(minPts = 3)
+model_db <- daltoolbox::fit(model_db, X)
+clu_db <- daltoolbox::cluster(model_db, X)
+table(clu_db)
+
+eval_db <- daltoolbox::evaluate(model_db, clu_db, iris$Species)
+eval_db
+```
+
+## Avaliação e Seleção de Modelos
+Critérios externos podem ser usados quando rótulos são conhecidos. Ajuste de hiperparâmetros ajuda a escolher k.  
+Slides: 42–45.
+
+```{r}
+# Slides 42–45: avaliacao e escolha de modelos
+# Ajuste automatico de k para k-means
+model_tune <- clu_tune(cluster_kmeans(k = 0), ranges = list(k = 2:10))
+model_tune <- daltoolbox::fit(model_tune, X)
+model_tune$k
+
+clu_tune <- daltoolbox::cluster(model_tune, X)
+eval_tune <- daltoolbox::evaluate(model_tune, clu_tune, iris$Species)
+eval_tune
+```
+
+## Clustering Probabilístico (GMM)
+Modelos de mistura assumem que os dados vêm de distribuições (ex.: Gaussianas). O EM estima parâmetros e probabilidades a posteriori.  
+Slides: 47–56.
+
+```{r}
+# Slides 47–56: clustering probabilistico (GMM via mclust)
+set.seed(1)
+model_gmm <- cluster_gmm()
+model_gmm <- daltoolbox::fit(model_gmm, X)
+clu_gmm <- daltoolbox::cluster(model_gmm, X)
+
+# classificação
+table(clu_gmm)
+
+# log-likelihood (EM)
+head(model_gmm$model$loglik)
+```
+
+## Clustering Fuzzy
+Permite que cada ponto pertença a múltiplos clusters com diferentes graus de pertinência.  
+Slides: 50–51.
+
+```{r}
+# Slides 50–51: clustering fuzzy (cmeans)
+set.seed(1)
+model_fuzzy <- cluster_cmeans(centers = 3, m = 2)
+model_fuzzy <- daltoolbox::fit(model_fuzzy, X)
+clu_fuzzy <- daltoolbox::cluster(model_fuzzy, X)
+
+table(clu_fuzzy)
+```
+
+## Clustering em Grafos
+Comunidades em redes podem ser detectadas por métodos como Louvain.  
+Slides: 63–64.
+
+```{r}
+# Slides 63–64: clustering de grafos e redes (exemplo simples)
+set.seed(1)
+g <- igraph::sample_gnp(n = 20, p = 0.15)
+model_louvain <- cluster_louvain_graph()
+model_louvain <- daltoolbox::fit(model_louvain, g)
+comm <- daltoolbox::cluster(model_louvain, g)
+length(unique(comm))
+
+# Grupos de comunidade
+comm
+```
+
+## Referências
+- Han, J., Pei, J., & Tong, H. (2022). *Data Mining: Concepts and Techniques* (4th ed.). Morgan Kaufmann.
+- MacQueen, J. (1967). Some Methods for Classification and Analysis of Multivariate Observations. *Proc. 5th Berkeley Symposium*.
+- Kaufman, L., & Rousseeuw, P. (1990). *Finding Groups in Data*. Wiley.
+- Ester, M., Kriegel, H.-P., Sander, J., & Xu, X. (1996). DBSCAN. *KDD*.
+- Fraley, C., & Raftery, A. (2002). Model-based clustering. *JASA*, 97(458), 611–631.
+- Zadeh, L. (1965). Fuzzy sets. *Information and Control*, 8(3), 338–353.
+- Blondel, V. et al. (2008). Fast unfolding of communities in large networks. *J. Statistical Mechanics*.
+
+
+

@@ -1,6 +1,6 @@
 Package: daltoolbox
 Title: Leveraging Experiment Lines to Data Analytics 
-Version: 1.2.747
+Version: 1.3.707
 Authors@R: 
   c(    person(given = "Eduardo", family = "Ogasawara", role = c("aut", "ths", "cre"), 
                email = "eogasawara@ieee.org", comment = c(ORCID = "0000-0002-0466-0626")),
@@ -25,7 +25,8 @@ URL: https://cefet-rj-dal.github.io/daltoolbox/, https://github.com/cefet-rj-dal
 BugReports: https://github.com/cefet-rj-dal/daltoolbox/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-Depends: R (>= 4.1.0)
+Depends: R (>= 4.1.0),
+  mclust
 RoxygenNote: 7.3.3
 Imports: 
   FNN, 
@@ -40,3 +41,6 @@ Imports:
   randomForest,
   reshape, 
   tree
+Suggests:
+  GGally,
+  igraph
