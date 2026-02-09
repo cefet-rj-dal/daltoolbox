@@ -26,6 +26,9 @@ cluster_gmm <- function(G = NULL, modelNames = NULL) {
 #'@importFrom mclust Mclust
 #'@exportS3Method fit cluster_gmm
 fit.cluster_gmm <- function(obj, data, ...) {
+  if (!requireNamespace("mclust", quietly = TRUE)) {
+    stop("Package 'mclust' is required for cluster_gmm.", call. = FALSE)
+  }
   obj$model <- mclust::Mclust(data, G = obj$G, modelNames = obj$modelNames)
   return(obj)
 }
