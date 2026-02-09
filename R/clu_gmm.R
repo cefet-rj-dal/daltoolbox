@@ -29,6 +29,7 @@ fit.cluster_gmm <- function(obj, data, ...) {
   if (!requireNamespace("mclust", quietly = TRUE)) {
     stop("Package 'mclust' is required for cluster_gmm.", call. = FALSE)
   }
+  mclustBIC <- get("mclustBIC", asNamespace("mclust"))
   obj$model <- mclust::Mclust(data, G = obj$G, modelNames = obj$modelNames)
   return(obj)
 }
