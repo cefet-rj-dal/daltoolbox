@@ -24,6 +24,7 @@ cluster_gmm <- function(G = NULL, modelNames = NULL) {
 }
 
 #'@importFrom mclust Mclust
+#'@importFrom utils getFromNamespace
 #'@exportS3Method fit cluster_gmm
 fit.cluster_gmm <- function(obj, data, ...) {
   f <- getFromNamespace("Mclust", "mclust")

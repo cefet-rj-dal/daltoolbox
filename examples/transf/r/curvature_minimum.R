@@ -8,7 +8,7 @@ library(daltoolbox)
 library(ggplot2)
 library(dplyr)
 
-wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/develop/wine.RData")))
+wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/wine.RData")))
 head(wine)
 
 pca_res = prcomp(wine[,2:ncol(wine)], center=TRUE, scale.=TRUE)
@@ -28,3 +28,4 @@ res <- transform(myfit, y)  # returns optimal index (knee)
 head(res)
 
 plot(grf + geom_vline(xintercept = res$x, linetype="dashed", color = "red", size=0.5))
+

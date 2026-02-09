@@ -17,7 +17,7 @@ library(dplyr)
 Load example data (PCA on wine dataset) and build cumulative variance curve.
 
 ``` r
-wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/develop/wine.RData")))
+wine <- get(load(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/wine.RData")))
 head(wine)
 ```
 
@@ -93,3 +93,4 @@ plot(grf + geom_vline(xintercept = res$x, linetype="dashed", color = "red", size
 
 References
 - Satopaa, V., Albrecht, J., Irwin, D., Raghavan, B. (2011). Finding a "Kneedle" in a Haystack: Detecting Knee Points in System Behavior.
+
