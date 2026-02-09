@@ -13,7 +13,7 @@ hierarchy_cut(attribute, breaks, labels = NULL, new_attribute = NULL)
 
 \item{labels}{optional labels for the cut intervals}
 
-\item{new_attribute}{name of the new attribute (default: \verb{<attribute>.Level})}
+\item{new_attribute}{name of the new attribute (default: \code{\textless attribute\textgreater.Level})}
 }
 \value{
 returns an object of class \code{hierarchy_cut}

@@ -3,7 +3,7 @@
 #'@param attribute numeric attribute to discretize
 #'@param breaks numeric breakpoints for `cut`
 #'@param labels optional labels for the cut intervals
-#'@param new_attribute name of the new attribute (default: \\verb{<attribute>.Level})
+#'@param new_attribute name of the new attribute (default: \\code{\\textless attribute\\textgreater.Level})
 #'@return returns an object of class `hierarchy_cut`
 #'@examples
 #'data(iris)
