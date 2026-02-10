@@ -7,7 +7,7 @@
 #'@examples
 #'if (requireNamespace("xgboost", quietly = TRUE)) {
 #'  data(iris)
-#'  model <- cla_xgboost("Species", nrounds = 20)
+#'  model <- cla_xgboost("Species", nrounds = 5)
 #'  model <- fit(model, iris)
 #'  pred <- predict(model, iris)
 #'  table(pred, iris$Species)
