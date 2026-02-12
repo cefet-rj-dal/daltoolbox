@@ -8,7 +8,17 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 A mineração de padrões frequentes busca regularidades em dados transacionais e sequenciais. A partir de padrões frequentes, derivam-se regras de associação com medidas como suporte, confiança e lift.  
 Slides: 1–5.
 
+## Como ler este roteiro
+O fluxo está organizado em quatro passos:
+1. preparar dados transacionais;
+2. minerar itemsets e regras;
+3. reduzir redundância e priorizar padrões úteis;
+4. avançar para sequências e grafos.
+Em cada etapa, compare sempre volume de padrões versus interpretabilidade.
+
 ## Configuração
+
+Nesta abertura, carregamos pacotes para mineração, visualização e variantes estruturadas (sequências/grafos).
 
 ```{r}
 # Slides 1–3: contexto
@@ -23,6 +33,8 @@ library(arulesSequences)
 library(igraph)
 ```
 
+Antes de minerar, inspecionamos dimensão e amostra dos dados para entender cardinalidade e tipos de atributos.
+
 ```{r}
 # Slide 2–4: exemplo transacional
 data(AdultUCI)
@@ -35,6 +47,8 @@ head(myAdultUCI)
 A discretização e a criação de níveis agregados ajudam a reduzir a cardinalidade e a revelar padrões em diferentes granularidades.  
 Slides: 5–9.
 
+Começamos com limpeza mínima para evitar que ruído estrutural distorça suporte e confiança.
+
 ```{r}
 # Limpeza básica e remoção de atributos
 na_obj <- na_removal()
@@ -44,8 +58,10 @@ myAdultUCI$fnlwgt <- NULL
 myAdultUCI$"education-num" <- NULL
 ```
 
+Na sequência, aplicamos hierarquia conceitual e binning para elevar interpretabilidade sem perder padrão global.
+
 ```{r}
-# Conceptual Hierarchy and Binning com transformações do DALToolbox
+# Hierarquia conceitual e binning com transformacoes do DALToolbox
 hc_age <- hierarchy_cut(
   attribute = "age",
   breaks = c(15, 25, 45, 65, 100),
@@ -99,13 +115,15 @@ Dados transacionais são a base para Apriori, ECLAT e regras de associação.
 Slides: 2–5.
 
 ```{r}
-# Convert to transactions
+# Conversao para transacoes
 AdultTrans <- as(myAdultUCI, "transactions")
 ```
 
 ## Apriori
 Apriori explora a propriedade anti-monótona do suporte para gerar e podar candidatos.  
 Slides: 10–20.
+
+Leitura recomendada: filtre primeiro por suporte/confianca e depois priorize por lift.
 
 ```{r}
 # A Priori
@@ -119,6 +137,8 @@ rules <- discover(pm_apriori, AdultTrans)
 inspect(rules)
 ```
 
+Converter para `data.frame` facilita ranking, filtro e comparação de regras.
+
 ```{r}
 rules_a <- as(rules, "data.frame")
 head(rules_a)
@@ -127,6 +147,8 @@ head(rules_a)
 ## ECLAT e Itemsets Frequentes
 ECLAT usa representação vertical, eficiente para contagem de suportes.  
 Slides: 22–24.
+
+Aqui vale comparar com Apriori: ECLAT foca itemsets; Apriori já pode produzir regras.
 
 ```{r}
 # ECLAT (itemsets frequentes)
@@ -139,6 +161,8 @@ inspect(head(sort(itemsets_eclat, by = "support")))
 ## Padrões Fechados e Max-Padrões
 Padrões fechados preservam suporte; max-padrões reduzem ainda mais o volume, mas perdem detalhes.  
 Slides: 6–9.
+
+Esses dois conjuntos ajudam a compactar resultados sem perder o sinal principal.
 
 ```{r}
 # Padrões fechados e max-padrões
@@ -154,10 +178,12 @@ Além de suporte e confiança, métricas como lift, leverage e conviction ajudam
 Slides: 4–5, 21.
 
 ```{r}
-# Analysis of Rules
+# Analise das regras
 imrules <- interestMeasure(rules, transactions = AdultTrans)
 head(imrules)
 ```
+
+No bloco seguinte, ordenamos por lift para destacar associações potencialmente mais informativas.
 
 ```{r}
 imrules2 <- interestMeasure(rules, c("support", "confidence", "lift", "leverage", "conviction"), AdultTrans)
@@ -169,7 +195,7 @@ Redução de redundância evita regras repetitivas ou pouco informativas.
 Slides: 21–24.
 
 ```{r}
-# Removing redundant rules
+# Removendo regras redundantes
 nrules <- rules[!is.redundant(rules)]
 
 arules::inspect(nrules)
@@ -179,8 +205,10 @@ arules::inspect(nrules)
 Analisar quais transações suportam regras ajuda a validar padrões.  
 Slides: 4–5.
 
+Primeiro avaliamos cobertura de uma regra; depois ampliamos para múltiplas regras.
+
 ```{r}
-# Showing the transactions that support the rules
+# Mostrando as transacoes que suportam as regras
 st <- supportingTransactions(nrules[1], AdultTrans)
 trans <- unique(st@data@i)
 length(trans)
@@ -188,7 +216,7 @@ print(c(length(trans)/length(AdultTrans), nrules[1]@quality$support))
 ```
 
 ```{r}
-# Supporting transactions for multiple rules
+# Transacoes de suporte para multiplas regras
 st <- supportingTransactions(nrules[1:2], AdultTrans)
 trans <- unique(st@data@i)
 length(trans)
@@ -199,8 +227,10 @@ print(c(length(trans)/length(AdultTrans), nrules[1:2]@quality$support))
 Visualizações auxiliam a interpretação de padrões descobertos.  
 Slides: 21.
 
+Use os dois gráficos de forma complementar: visão global e visão relacional (paracoord).
+
 ```{r}
-# Rules visualization
+# Visualizacao de regras
 options(repr.plot.width=10, repr.plot.height=5)
 plot(rules)
 ```
@@ -213,6 +243,8 @@ plot(rules, method="paracoord", control=list(reorder=TRUE))
 ## Padrões Raros e Negativos
 Padrões raros podem ser estratégicos; padrões negativos indicam correlação inversa (lift < 1).  
 Slides: 39.
+
+Esta etapa é útil para detectar exceções e comportamentos menos frequentes.
 
 ```{r}
 # Padrões raros e negativos
@@ -227,6 +259,8 @@ inspect(head(neg_rules))
 ## Associações Multi-Nível e Multi-Dimensionais
 Regras podem incorporar dimensões adicionais, como atributos demográficos, com suportes adequados por nível.  
 Slides: 30–35.
+
+Aqui adicionamos uma dimensão semântica (`edu_level`) para extrair regras mais interpretáveis por perfil.
 
 ```{r}
 # Associações multi-nível e multi-dimensionais
@@ -257,11 +291,15 @@ inspect(rules_md)
 Padrões sequenciais estendem itemsets para ordem temporal. SPADE é uma abordagem vertical eficiente.  
 Slides: 46–62.
 
+Diferença-chave: em sequências, a ordem dos eventos influencia o padrão encontrado.
+
 ```{r}
-# Sequence Mining
+# Mineracao de sequencias
 x <- read_baskets(con = system.file("misc", "zaki.txt", package = "arulesSequences"), info = c("sequenceID","eventID","SIZE"))
 as(x, "data.frame")
 ```
+
+Com os dados carregados, executamos o SPADE para descobrir padrões sequenciais frequentes.
 
 ```{r}
 pm_cspade <- pat_cspade(parameter = list(support = 0.4), control = list(verbose = TRUE))
@@ -270,12 +308,14 @@ s1 <- discover(pm_cspade, x)
 as(s1, "data.frame")
 ```
 
-## Graph Pattern Mining (Exemplo)
+## Mineração de Padrões em Grafos (Exemplo)
 Em grafos, padrões frequentes são subgrafos recorrentes. Aqui mostramos contagem de subgrafos como ilustração.  
 Slides: 63–64.
 
+Encerramos com grafos para mostrar que o conceito de padrão frequente se estende a estruturas relacionais.
+
 ```{r}
-# Graph Pattern Mining (toy example)
+# Mineracao de padroes em grafos (exemplo simples)
 
 g1 <- make_ring(4)
 g2 <- make_full_graph(3)
