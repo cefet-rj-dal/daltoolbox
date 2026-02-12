@@ -10,7 +10,7 @@
 #')
 #'pm <- pat_cspade(parameter = list(support = 0.4))
 #'pm <- fit(pm, x)
-#'seqs <- discover(pm)
+#'seqs <- discover(pm, x)
 #'as(seqs, "data.frame")
 #'@export
 pat_cspade <- function(parameter = list(support = 0.4),
@@ -24,9 +24,9 @@ pat_cspade <- function(parameter = list(support = 0.4),
 
 #'@importFrom arulesSequences cspade
 #'@exportS3Method discover pat_cspade
-discover.pat_cspade <- function(obj, data = NULL, ...) {
-  if (is.null(data)) data <- obj$data
-  if (is.null(data)) stop("pat_cspade: data is required.")
+discover.pat_cspade <- function(obj, data, ...) {
+  if (missing(data)) stop("pat_cspade: data is required.")
+  validate_pattern_schema(obj, data)
   if (!inherits(data, "transactions")) {
     stop("pat_cspade: data must be a 'transactions' object (from arulesSequences::read_baskets).")
   }

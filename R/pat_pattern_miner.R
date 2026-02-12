@@ -31,8 +31,30 @@ discover.default <- function(obj, ...) {
   return(list())
 }
 
+# Infer a lightweight schema signature without keeping the dataset in memory.
+pattern_schema <- function(data) {
+  if (inherits(data, "transactions")) {
+    return(sort(arules::itemLabels(data)))
+  }
+  if (is.data.frame(data) || is.matrix(data)) {
+    return(sort(colnames(data)))
+  }
+  stop("pattern_miner: unsupported data type for schema inference.")
+}
+
+validate_pattern_schema <- function(obj, data) {
+  if (is.null(obj$schema)) {
+    return(invisible(TRUE))
+  }
+  current <- pattern_schema(data)
+  if (!identical(obj$schema, current)) {
+    stop("pattern_miner: discover data schema differs from fit schema.")
+  }
+  invisible(TRUE)
+}
+
 #'@exportS3Method fit pattern_miner
 fit.pattern_miner <- function(obj, data, ...) {
-  obj$data <- data
+  obj$schema <- pattern_schema(data)
   return(obj)
 }

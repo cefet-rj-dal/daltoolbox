@@ -1,3 +1,7 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+```
+
 # Mineração de Padrões
 
 ## Visão Geral
@@ -32,37 +36,60 @@ A discretização e a criação de níveis agregados ajudam a reduzir a cardinal
 Slides: 5–9.
 
 ```{r}
-# Removing attributes
+# Limpeza básica e remoção de atributos
+na_obj <- na_removal()
+myAdultUCI <- transform(na_obj, myAdultUCI)
+
 myAdultUCI$fnlwgt <- NULL
 myAdultUCI$"education-num" <- NULL
 ```
 
 ```{r}
-# Conceptual Hierarchy and Binning
-print(0)
+# Conceptual Hierarchy and Binning com transformações do DALToolbox
+hc_age <- hierarchy_cut(
+  attribute = "age",
+  breaks = c(15, 25, 45, 65, 100),
+  labels = c("Young", "Middle-aged", "Senior", "Old"),
+  new_attribute = "age_level"
+)
+myAdultUCI <- transform(hc_age, myAdultUCI)
+myAdultUCI$age <- ordered(myAdultUCI$age_level, levels = c("Young", "Middle-aged", "Senior", "Old"))
+myAdultUCI$age_level <- NULL
 
-myAdultUCI$age <- ordered(cut(myAdultUCI$age, c(15,25,45,65,100)),
-                              labels = c("Young", "Middle-aged", "Senior", "Old"))
+hc_hours <- hierarchy_cut(
+  attribute = "hours-per-week",
+  breaks = c(0, 25, 40, 60, 168),
+  labels = c("Part-time", "Full-time", "Over-time", "Workaholic"),
+  new_attribute = "hours_level"
+)
+myAdultUCI <- transform(hc_hours, myAdultUCI)
+myAdultUCI$"hours-per-week" <- ordered(
+  myAdultUCI$hours_level,
+  levels = c("Part-time", "Full-time", "Over-time", "Workaholic")
+)
+myAdultUCI$hours_level <- NULL
 
-print(1)
+gain_positive_median <- median(myAdultUCI$"capital-gain"[myAdultUCI$"capital-gain" > 0])
+hc_gain <- hierarchy_cut(
+  attribute = "capital-gain",
+  breaks = c(-Inf, 0, gain_positive_median, Inf),
+  labels = c("None", "Low", "High"),
+  new_attribute = "capital_gain_level"
+)
+myAdultUCI <- transform(hc_gain, myAdultUCI)
+myAdultUCI$"capital-gain" <- ordered(myAdultUCI$capital_gain_level, levels = c("None", "Low", "High"))
+myAdultUCI$capital_gain_level <- NULL
 
-myAdultUCI$"hours-per-week" <- ordered(cut(myAdultUCI$"hours-per-week",
-                                             c(0,25,40,60,168)),
-                                         labels = c("Part-time", "Full-time", "Over-time", "Workaholic"))
-
-print(2)
-
-myAdultUCI$"capital-gain" <- ordered(cut(myAdultUCI$"capital-gain",
-                                           c(-Inf,0,median(myAdultUCI$"capital-gain"[myAdultUCI$"capital-gain">0]),
-                                             Inf)), labels = c("None", "Low", "High"))
-
-print(3)
-
-myAdultUCI$"capital-loss" <- ordered(cut(myAdultUCI$"capital-loss",
-                                           c(-Inf,0, median(myAdultUCI$"capital-loss"[myAdultUCI$"capital-loss">0]),
-                                             Inf)), labels = c("None", "Low", "High"))
-
-print(4)
+loss_positive_median <- median(myAdultUCI$"capital-loss"[myAdultUCI$"capital-loss" > 0])
+hc_loss <- hierarchy_cut(
+  attribute = "capital-loss",
+  breaks = c(-Inf, 0, loss_positive_median, Inf),
+  labels = c("None", "Low", "High"),
+  new_attribute = "capital_loss_level"
+)
+myAdultUCI <- transform(hc_loss, myAdultUCI)
+myAdultUCI$"capital-loss" <- ordered(myAdultUCI$capital_loss_level, levels = c("None", "Low", "High"))
+myAdultUCI$capital_loss_level <- NULL
 
 head(myAdultUCI)
 ```
@@ -82,8 +109,13 @@ Slides: 10–20.
 
 ```{r}
 # A Priori
-rules <- apriori(AdultTrans, parameter=list(supp = 0.5, conf = 0.9, minlen=2, maxlen= 10, target = "rules"),
-                 appearance=list(rhs = c("capital-gain=None"), default="lhs"), control=NULL)
+pm_apriori <- pat_apriori(
+  parameter = list(supp = 0.5, conf = 0.9, minlen = 2, maxlen = 10, target = "rules"),
+  appearance = list(rhs = c("capital-gain=None"), default = "lhs"),
+  control = NULL
+)
+pm_apriori <- fit(pm_apriori, AdultTrans)
+rules <- discover(pm_apriori, AdultTrans)
 inspect(rules)
 ```
 
@@ -98,7 +130,9 @@ Slides: 22–24.
 
 ```{r}
 # ECLAT (itemsets frequentes)
-itemsets_eclat <- eclat(AdultTrans, parameter = list(supp = 0.5, maxlen = 3))
+pm_eclat <- pat_eclat(parameter = list(supp = 0.5, maxlen = 3))
+pm_eclat <- fit(pm_eclat, AdultTrans)
+itemsets_eclat <- discover(pm_eclat, AdultTrans)
 inspect(head(sort(itemsets_eclat, by = "support")))
 ```
 
@@ -182,7 +216,9 @@ Slides: 39.
 
 ```{r}
 # Padrões raros e negativos
-rare_rules <- apriori(AdultTrans, parameter = list(supp = 0.05, conf = 0.6, minlen = 2, maxlen = 3))
+pm_apriori_rare <- pat_apriori(parameter = list(supp = 0.05, conf = 0.6, minlen = 2, maxlen = 3))
+pm_apriori_rare <- fit(pm_apriori_rare, AdultTrans)
+rare_rules <- discover(pm_apriori_rare, AdultTrans)
 neg_rules <- subset(rare_rules, lift < 1)
 length(neg_rules)
 inspect(head(neg_rules))
@@ -195,15 +231,25 @@ Slides: 30–35.
 ```{r}
 # Associações multi-nível e multi-dimensionais
 adult_ml <- myAdultUCI
-adult_ml$edu_level <- factor(ifelse(adult_ml$education %in% c("Bachelors", "Masters", "Doctorate", "Prof-school"),
-                                    "Higher", "Lower"))
+fg_edu <- feature_generation(
+  edu_level = ifelse(
+    education %in% c("Bachelors", "Masters", "Doctorate", "Prof-school"),
+    "Higher",
+    "Lower"
+  )
+)
+adult_ml <- transform(fg_edu, adult_ml)
+adult_ml$edu_level <- factor(adult_ml$edu_level)
 
 AdultTransML <- as(adult_ml, "transactions")
 income_labels <- paste0("income=", levels(adult_ml$income))
 
-rules_md <- apriori(AdultTransML,
-                    parameter = list(supp = 0.2, conf = 0.6, minlen = 2, maxlen = 3),
-                    appearance = list(rhs = income_labels, default = "lhs"))
+pm_apriori_md <- pat_apriori(
+  parameter = list(supp = 0.2, conf = 0.6, minlen = 2, maxlen = 3),
+  appearance = list(rhs = income_labels, default = "lhs")
+)
+pm_apriori_md <- fit(pm_apriori_md, AdultTransML)
+rules_md <- discover(pm_apriori_md, AdultTransML)
 inspect(rules_md)
 ```
 
@@ -218,7 +264,9 @@ as(x, "data.frame")
 ```
 
 ```{r}
-s1 <- cspade(x, parameter = list(support = 0.4), control = list(verbose = TRUE))
+pm_cspade <- pat_cspade(parameter = list(support = 0.4), control = list(verbose = TRUE))
+pm_cspade <- fit(pm_cspade, x)
+s1 <- discover(pm_cspade, x)
 as(s1, "data.frame")
 ```
 

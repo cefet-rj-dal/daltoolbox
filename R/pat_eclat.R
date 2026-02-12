@@ -8,7 +8,7 @@
 #'trans <- suppressWarnings(methods::as(as.data.frame(AdultUCI), "transactions"))
 #'pm <- pat_eclat(parameter = list(supp = 0.5, maxlen = 3))
 #'pm <- fit(pm, trans)
-#'itemsets <- discover(pm)
+#'itemsets <- discover(pm, trans)
 #'arules::inspect(itemsets[1:6])
 #'@export
 pat_eclat <- function(parameter = list(supp = 0.5, maxlen = 3),
@@ -23,9 +23,9 @@ pat_eclat <- function(parameter = list(supp = 0.5, maxlen = 3),
 #'@importFrom arules eclat
 #'@importFrom methods as
 #'@exportS3Method discover pat_eclat
-discover.pat_eclat <- function(obj, data = NULL, ...) {
-  if (is.null(data)) data <- obj$data
-  if (is.null(data)) stop("pat_eclat: data is required.")
+discover.pat_eclat <- function(obj, data, ...) {
+  if (missing(data)) stop("pat_eclat: data is required.")
+  validate_pattern_schema(obj, data)
   if (!inherits(data, "transactions")) {
     data <- methods::as(data, "transactions")
   }

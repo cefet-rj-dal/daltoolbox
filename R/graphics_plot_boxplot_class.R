@@ -31,16 +31,17 @@ plot_boxplot_class <- function(data, class_label, label_x = "", label_y = "", co
   colnames(data)[1] <- "x"
   if (!is.factor(data$x))
     data$x <- as.factor(data$x)
-  grf <- ggplot2::ggplot(data=data, ggplot2::aes(y = value, x = x))
-  if (!is.null(colors)) {
-    grf <- grf + ggplot2::geom_boxplot(fill=colors)
-  }
-  else {
+  if (!is.null(colors) && length(colors) > 1) {
+    grf <- ggplot2::ggplot(data = data, ggplot2::aes(y = value, x = x, fill = x))
     grf <- grf + ggplot2::geom_boxplot()
-  }
-  grf <- grf + ggplot2::labs(color=levels(data$x))
-  if (!is.null(colors)) {
-    grf <- grf + ggplot2::scale_fill_manual(levels(data$x), values = colors)
+    grf <- grf + ggplot2::scale_fill_manual(values = colors)
+  } else {
+    grf <- ggplot2::ggplot(data = data, ggplot2::aes(y = value, x = x))
+    if (!is.null(colors)) {
+      grf <- grf + ggplot2::geom_boxplot(fill = colors[1])
+    } else {
+      grf <- grf + ggplot2::geom_boxplot()
+    }
   }
   grf <- grf + ggplot2::theme_bw(base_size = 10)
   grf <- grf + ggplot2::theme(panel.grid.minor = ggplot2::element_blank()) + ggplot2::theme(legend.position = "bottom")

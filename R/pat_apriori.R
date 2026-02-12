@@ -11,7 +11,7 @@
 #'  supp = 0.5, conf = 0.9, minlen = 2, maxlen = 10, target = "rules"
 #'))
 #'pm <- fit(pm, trans)
-#'rules <- discover(pm)
+#'rules <- discover(pm, trans)
 #'arules::inspect(rules)
 #'@export
 pat_apriori <- function(parameter = list(supp = 0.5, conf = 0.9, minlen = 2, maxlen = 10, target = "rules"),
@@ -28,9 +28,9 @@ pat_apriori <- function(parameter = list(supp = 0.5, conf = 0.9, minlen = 2, max
 #'@importFrom arules apriori
 #'@importFrom methods as
 #'@exportS3Method discover pat_apriori
-discover.pat_apriori <- function(obj, data = NULL, ...) {
-  if (is.null(data)) data <- obj$data
-  if (is.null(data)) stop("pat_apriori: data is required.")
+discover.pat_apriori <- function(obj, data, ...) {
+  if (missing(data)) stop("pat_apriori: data is required.")
+  validate_pattern_schema(obj, data)
   if (!inherits(data, "transactions")) {
     data <- methods::as(data, "transactions")
   }

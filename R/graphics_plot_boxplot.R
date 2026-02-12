@@ -28,16 +28,17 @@ plot_boxplot <- function(data, label_x = "", label_y = "", colors = NULL, barwid
   variable <- 0
   cnames <- colnames(data)
   series <- reshape::melt(as.data.frame(data))
-  grf <- ggplot2::ggplot( ggplot2::aes(y = value, x = variable), data = series)
-  if (!is.null(colors)) {
-    grf <- grf + ggplot2::geom_boxplot(fill = colors, width=barwidth)
-  }
-  else {
-    grf <- grf + ggplot2::geom_boxplot(width=barwidth)
-  }
-  grf <- grf + ggplot2::labs(color=cnames)
-  if (!is.null(colors)) {
-    grf <- grf + ggplot2::scale_fill_manual(cnames, values = colors)
+  if (!is.null(colors) && length(colors) > 1) {
+    grf <- ggplot2::ggplot(ggplot2::aes(y = value, x = variable, fill = variable), data = series)
+    grf <- grf + ggplot2::geom_boxplot(width = barwidth)
+    grf <- grf + ggplot2::scale_fill_manual(values = colors)
+  } else {
+    grf <- ggplot2::ggplot(ggplot2::aes(y = value, x = variable), data = series)
+    if (!is.null(colors)) {
+      grf <- grf + ggplot2::geom_boxplot(fill = colors[1], width = barwidth)
+    } else {
+      grf <- grf + ggplot2::geom_boxplot(width = barwidth)
+    }
   }
   grf <- grf + ggplot2::theme_bw(base_size = 10)
   grf <- grf + ggplot2::theme(panel.grid.minor = ggplot2::element_blank()) + ggplot2::theme(legend.position = "bottom")
