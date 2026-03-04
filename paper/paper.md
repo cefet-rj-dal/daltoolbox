@@ -64,7 +64,7 @@ date: 2025-11-01
 
 # Summary
 
-The **daltoolbox** package provides an open-source framework for constructing modular and reproducible data analytics workflows in R. The toolbox operationalizes the concept of *Experiment Lines (EL)* [@Marinho2017], enabling the definition of experiment families through configurable combinations of preprocessing, modeling, and evaluation components. By explicitly modeling workflow variability and optionality, daltoolbox allows researchers and practitioners to systematically explore alternative analytical pipelines while maintaining a consistent execution structure. The package integrates seamlessly with existing R and Python libraries, promoting interoperability and transparency in experimental data analysis. This approach bridges concepts from software product line engineering and data analytics experimentation.
+The **daltoolbox** package provides an open-source framework for constructing modular and reproducible data analytics workflows in R. The toolbox operationalizes the concept of *Experiment Lines (EL)* [@Marinho2017], enabling the definition of experiment families in which multiple analytical pipelines are derived from a shared workflow structure. These pipelines are constructed through configurable combinations of preprocessing, modeling, and evaluation components. By explicitly modeling workflow variability and optionality, daltoolbox allows researchers and practitioners to systematically explore alternative analytical pipelines while maintaining a consistent execution structure. The package integrates seamlessly with existing R and Python libraries, promoting interoperability and transparency in experimental data analysis. This approach bridges concepts from software product line engineering and data analytics experimentation.
 
 # Background
 
@@ -90,11 +90,11 @@ In contrast, daltoolbox focuses on explicit modeling of variability and optional
 
 # Software Design
 
-The core class model is centered on the abstract `DAL` type, which defines the lifecycle methods `fit(d: Data): DAL` and `action(d: Data): Data`. As illustrated in Figure 1, this contract is specialized by the `Transform` and `Learner` abstractions, allowing preprocessing and learning components to be composed within a consistent execution framework. The `action` method represents the execution step and is implemented by derived components (e.g., `transform` in transformations and `predict` in predictors).
+The architecture follows a separation-of-concerns principle, isolating data transformations, learning algorithms, and prediction mechanisms while maintaining a unified interface. The core class model is centered on the abstract `DAL` type, which defines the lifecycle methods `fit(d: Data): DAL` and `action(d: Data): Data`. As illustrated in Figure 1, this contract is specialized by the `Transform` and `Learner` abstractions, allowing preprocessing and learning components to be composed within a consistent execution framework. The `action` method represents the execution step and is implemented by derived components (e.g., `transform` in transformations and `predict` in predictors).
 
 ![Figure 1: Class diagram of daltoolbox core abstractions and specializations.](../docs/reference/figures/software_design.png)
 
-The `Transform` abstraction encapsulates data manipulation operations through `transform(d: Data): Data` and `inverse(d: Data): Data`. The `Learner` abstraction focuses on model assessment via `evaluate(R: Data, E: Data): Eval`. Hyperparameter exploration is represented by the `Tune` element (`range: Range`), which can be associated with both transformations and learners.
+Transformations follow a fit–transform execution pattern, similar to that adopted in modern machine learning frameworks. In this model, statistical parameters are learned during the `fit` stage and subsequently applied to data through `transform`, ensuring consistent preprocessing across training and evaluation phases. The `Learner` abstraction focuses on model assessment via `evaluate(R: Data, E: Data): Eval`. Hyperparameter exploration is represented by the `Tune` element (`range: Range`), which can be associated with both transformations and learners.
 
 Prediction responsibilities are separated into the `Predictor` abstraction (`predict(d: Data): Data`), with `Regression` and `Classification` as concrete specializations. For unsupervised learning, the `Clusterer` abstraction extends `Learner` and includes algorithms such as `dbScan`, `PAM`, and `kmeans`.
 
@@ -102,7 +102,7 @@ This hierarchy makes workflow variability explicit at the software design level,
 
 # Main Features
 
-daltoolbox provides a unified API that supports data transformation, classification, regression, and clustering tasks within a consistent workflow structure. The toolbox explicitly models optional and variable workflow components, enabling users to systematically explore alternative preprocessing strategies and learning algorithms. 
+daltoolbox provides a unified API that supports data transformation, classification, regression, and clustering tasks within a consistent workflow structure. The toolbox explicitly models workflow variability and optionality, enabling users to systematically explore alternative preprocessing strategies and learning algorithms. 
 
 The framework includes modular operators for scaling, normalization, and dimensionality reduction, as well as utilities for visualization and model comparison. Its design allows easy substitution of preprocessing and modeling steps without requiring code refactoring. In addition, daltoolbox interoperates with external R and Python libraries and is distributed with comprehensive documentation and automated tests under the MIT license.
 
@@ -118,7 +118,7 @@ As an open-source project, daltoolbox promotes collaboration across institutions
 # Example Usage
 
 ```r
-# Define a tiny workflow runner once
+# Define a reusable workflow representing an experiment structure
 DemoWorkflow <- function(model, prep, train, test) {
   prep  <- fit(prep, train)
   train <- transform(prep, train)
@@ -126,18 +126,19 @@ DemoWorkflow <- function(model, prep, train, test) {
   predict(model, test)
 }
 
-# Scenario A: skip transformation (no-op) + KNN
+# Experiment Line: different pipelines derived from the same workflow
+
+# Scenario A — no preprocessing + KNN
 prep_a  <- dal_transform()  # no-op transformer
 model_a <- cla_knn("rain", levels = c("yes", "no"), k = 3)
 preds_a <- DemoWorkflow(model_a, prep_a, train, test)
 
-# Scenario B: min-max normalization + Random Forest
+# Scenario B — min-max normalization + Random Forest
 prep_b  <- minmax()
 model_b <- cla_rf("rain", levels = c("yes", "no"))
 preds_b <- DemoWorkflow(model_b, prep_b, train, test)
 ```
-
-This pattern shows how a single workflow function enables testing alternative pipelines by switching only the `prep` or `model` component, without refactoring code.
+This pattern illustrates how experiment lines can be implemented by defining a reusable experiment structure while varying preprocessing or modeling components across experimental configurations.
 
 # AI usage disclosure
 
