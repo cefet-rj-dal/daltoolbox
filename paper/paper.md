@@ -64,25 +64,25 @@ date: 2025-11-01
 
 # Summary
 
-The **daltoolbox** package provides an open-source framework for constructing modular and reproducible data analytics workflows in R. The toolbox operationalizes the concept of *Experiment Lines (EL)* [@Marinho2017], enabling the definition of experiment families in which multiple analytical pipelines derive from a shared workflow structure. These pipelines arise from configurable combinations of preprocessing, modeling, and evaluation components. By explicitly modeling workflow variability and optionality, daltoolbox enables researchers and practitioners to explore alternative analytical pipelines systematically while maintaining a consistent execution structure. The package integrates with existing R and Python libraries, promoting interoperability and transparency in experimental data analysis. This approach bridges concepts from software product line engineering and data analytics experimentation.
+The **daltoolbox** package provides an open-source framework for constructing modular and reproducible **data analytics workflows** in R. The toolbox operationalizes the concept of *Experiment Lines (EL)* [@Marinho2017], enabling the definition of experiment families in which multiple analytical workflows derive from a shared workflow structure. These workflows arise from configurable combinations of preprocessing, modeling, and evaluation components. By explicitly modeling workflow variability and optionality, daltoolbox enables researchers and practitioners to explore alternative analytical workflows systematically while maintaining a consistent execution structure. The package integrates with existing R and Python libraries, promoting interoperability and transparency in experimental data analysis. This approach bridges concepts from software product line engineering and data analytics experimentation.
 
 # Background
 
-The rapid expansion of data-driven research across domains such as finance, healthcare, and environmental sciences increases the demand for tools that support reproducibility, modularity, and experimental flexibility. In many studies, analysts construct and compare multiple workflows that differ in preprocessing strategies, learning algorithms, or evaluation procedures. Managing this variability with traditional scripts leads to duplicated code, fragile pipelines, and limited traceability of experimental decisions. Although scientific workflow systems improve reproducibility and pipeline management, many emphasize fixed execution pipelines and provide limited support for systematic exploration of alternative configurations during experimentation.
+The rapid expansion of data-driven research across domains such as finance, healthcare, and environmental sciences increases the demand for tools that support reproducibility, modularity, and experimental flexibility. In many studies, analysts construct and compare multiple **data analytics workflows** that differ in preprocessing strategies, learning algorithms, or evaluation procedures. Managing this variability with traditional scripts leads to duplicated code, fragile workflows, and limited traceability of experimental decisions. Although scientific workflow systems improve reproducibility and workflow management, many emphasize fixed execution workflows and provide limited support for systematic exploration of alternative configurations during experimentation.
 
-The concept of *Experiment Lines* (EL) [@Marinho2017], inspired by software product line engineering, addresses this limitation by introducing explicit modeling of **variability** (alternative components) and **optionality** (configurable presence or absence of steps). daltoolbox applies these principles to data analytics workflows, enabling structured experimentation while preserving reproducibility.
+The concept of *Experiment Lines (EL)* [@Marinho2017], inspired by software product line engineering, addresses this limitation by introducing explicit modeling of **variability** (alternative components) and **optionality** (configurable presence or absence of steps). daltoolbox applies these principles to **data analytics workflows**, enabling structured experimentation while preserving reproducibility.
 
 # Statement of Need
 
-Data analytics workflows require systematic evaluation of multiple preprocessing techniques, learning algorithms, and evaluation strategies. Managing these alternatives produces duplicated code, fragmented workflow definitions, and reduced traceability of experimental configurations, which hinders reproducibility.
+**Data analytics workflows** require systematic evaluation of multiple preprocessing techniques, learning algorithms, and evaluation strategies. Managing these alternatives produces duplicated code, fragmented workflow definitions, and reduced traceability of experimental configurations, which hinders reproducibility.
 
-The **daltoolbox** package addresses this problem by providing a unified interface for defining modular and configurable workflows. Through explicit modeling of workflow components, users combine, replace, or omit transformations and learning algorithms while preserving a consistent experimental structure.
+The **daltoolbox** package addresses this problem by providing a unified interface for defining modular and configurable workflows. Through explicit modeling of workflow components, users combine, replace, or omit transformations and learning algorithms while preserving a consistent experimental workflow structure.
 
 The primary audience includes researchers, educators, and data practitioners who require transparent and reproducible experimentation environments for tasks such as classification, regression, clustering, and time series prediction. By simplifying exploration of analytical alternatives, daltoolbox enables systematic experimentation with minimal changes to workflow code.
 
 # State of the Field
 
-Several tools support construction of machine learning workflows. Visual environments such as **WEKA** [@Witten2016], **Orange** [@Demsar2013], and **KNIME** [@Berthold2009] provide accessible interfaces for education and prototyping but offer limited flexibility for dynamic workflow reconfiguration. Frameworks such as **Scikit-learn** [@Pedregosa2011] and **MLlib** [@Meng2016] provide robust APIs for building pipelines, yet they emphasize static pipeline compositions rather than explicit modeling of workflow variability.
+Several tools support construction of **data analytics workflows**. Visual environments such as **WEKA** [@Witten2016], **Orange** [@Demsar2013], and **KNIME** [@Berthold2009] provide accessible interfaces for education and prototyping but offer limited flexibility for dynamic workflow reconfiguration. Frameworks such as **Scikit-learn** [@Pedregosa2011] and **MLlib** [@Meng2016] provide robust APIs for building workflows, yet they emphasize static workflow compositions rather than explicit modeling of workflow variability.
 
 Automated machine learning systems, including **Auto-WEKA** [@Kotthoff2017] and **Auto-sklearn** [@Feurer2015], automate model selection and hyperparameter optimization. Although effective for performance optimization, these systems reduce transparency and user control over experimental design.
 
@@ -90,7 +90,7 @@ In contrast, daltoolbox focuses on explicit modeling of variability and optional
 
 # Software Design
 
-The architecture follows a separation-of-concerns principle, isolating data transformations, learning algorithms, and prediction mechanisms while maintaining a unified interface. The core class model centers on the abstract `DAL` type, which defines the lifecycle methods `fit(d: Data): DAL` and `action(d: Data): Data`. As illustrated in Figure 1, this contract specializes into the `Transform` and `Learner` abstractions, allowing preprocessing and learning components to compose within a consistent execution framework. The `action` method represents the execution step and derived components implement it, for example through `transform` in transformations and `predict` in predictors.
+The architecture follows a separation-of-concerns principle, isolating data transformations, learning algorithms, and prediction mechanisms while maintaining a unified interface. The core class model centers on the abstract `DAL` type, which defines the lifecycle methods `fit(d: Data): DAL` and `action(d: Data): Data`. As illustrated in Figure 1, this contract specializes into the `Transform` and `Learner` abstractions, allowing preprocessing and learning components to compose within a consistent workflow execution framework. The `action` method represents the execution step and derived components implement it, for example through `transform` in transformations and `predict` in predictors.
 
 ![Figure 1: Class diagram of daltoolbox core abstractions and specializations.](../docs/reference/figures/software_design.png)
 
@@ -104,13 +104,13 @@ This hierarchy makes workflow variability explicit in the software design, enabl
 
 daltoolbox provides a unified API that supports data transformation, classification, regression, and clustering tasks within a consistent workflow structure. The toolbox models workflow variability and optionality explicitly, enabling systematic exploration of alternative preprocessing strategies and learning algorithms.
 
-The framework includes modular operators for scaling, normalization, and dimensionality reduction, as well as utilities for visualization and model comparison. Its design allows substitution of preprocessing and modeling steps without code refactoring. In addition, daltoolbox interoperates with external R and Python libraries and includes comprehensive documentation and automated tests under the MIT license.
+The framework includes modular operators for scaling, normalization, and dimensionality reduction, as well as utilities for visualization and model comparison. Its design allows substitution of preprocessing and modeling steps without workflow refactoring. In addition, daltoolbox interoperates with external R and Python libraries and includes comprehensive documentation and automated tests under the MIT license.
 
 # Research Impact Statement
 
-The **daltoolbox** supports studies that require systematic comparison of analytical pipeline alternatives. By making workflow variability explicit, the framework reduces code duplication and improves traceability of experimental decisions.
+The **daltoolbox** supports studies that require systematic comparison of analytical workflow alternatives. By making workflow variability explicit, the framework reduces code duplication and improves traceability of experimental decisions.
 
-In academic settings, the toolbox facilitates reproducible research and provides a transparent environment for teaching data analytics workflows. In applied contexts, it accelerates model development and evaluation cycles while maintaining transparency in analytical workflows.
+In academic settings, the toolbox facilitates reproducible research and provides a transparent environment for teaching **data analytics workflows**. In applied contexts, it accelerates model development and evaluation cycles while maintaining transparency in analytical workflows.
 
 As open-source software, daltoolbox promotes collaboration across institutions and encourages reuse and continuous evolution of analytical methods within the data science community.
 
@@ -125,7 +125,7 @@ DemoWorkflow <- function(model, prep, train, test) {
   predict(model, test)
 }
 
-# Experiment Line: different pipelines derived from the same workflow
+# Experiment Line: different workflows derived from the same workflow structure
 
 # Scenario A — no preprocessing + KNN
 prep_a  <- dal_transform()  # no-op transformer
@@ -137,6 +137,7 @@ prep_b  <- minmax()
 model_b <- cla_rf("rain", levels = c("yes", "no"))
 preds_b <- DemoWorkflow(model_b, prep_b, train, test)
 ```
+
 This pattern illustrates how experiment lines can be implemented by defining a reusable experiment structure while varying preprocessing or modeling components across experimental configurations.
 
 # AI usage disclosure
