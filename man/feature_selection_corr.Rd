@@ -4,10 +4,14 @@
 \alias{feature_selection_corr}
 \title{Feature selection by correlation}
 \usage{
-feature_selection_corr(cutoff = 0.9)
+feature_selection_corr(cutoff = 0.9, features = NULL, keep = NULL)
 }
 \arguments{
 \item{cutoff}{correlation cutoff in [0, 1] above which one feature is removed}
+
+\item{features}{optional vector of feature names to consider (default: all numeric columns)}
+
+\item{keep}{optional vector of columns that should always be kept in \code{transform()}}
 }
 \value{
 returns an object of class \code{feature_selection_corr}
@@ -23,5 +27,6 @@ data(iris)
 fs <- feature_selection_corr(cutoff = 0.9)
 fs <- fit(fs, iris)
 iris_fs <- transform(fs, iris)
+fs$selected
 names(iris_fs)
 }

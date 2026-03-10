@@ -13,6 +13,7 @@
 #'bal <- bal_oversampling("Species", method = "smote", seed = 123)
 #'iris_bal <- transform(bal, iris_imb)
 #'table(iris_bal$Species)
+#'@importFrom utils head
 #'@export
 bal_oversampling <- function(attribute, method = c("smote", "random"), k = 5, seed = NULL) {
   obj <- dal_transform()

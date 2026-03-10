@@ -19,6 +19,7 @@
 #'fs$selected
 #'iris_fs <- transform(fs, iris_bin)
 #'names(iris_fs)
+#'@importFrom utils head
 #'@export
 feature_selection_info_gain <- function(attribute, features = NULL, top = NULL, cutoff = 0, bins = 3) {
   obj <- dal_transform()

@@ -19,6 +19,7 @@
 #'fs <- fit(fs, iris_bin)
 #'fs$selected
 #'transform(fs, iris_bin) |> names()
+#'@importFrom utils head
 #'@export
 feature_selection_relief <- function(attribute, features = NULL, top = NULL, cutoff = NULL, m = 50, seed = 1) {
   obj <- dal_transform()

@@ -24,6 +24,6 @@ x <- arulesSequences::read_baskets(
 )
 pm <- pat_cspade(parameter = list(support = 0.4))
 pm <- fit(pm, x)
-seqs <- discover(pm)
+seqs <- discover(pm, x)
 as(seqs, "data.frame")
 }

@@ -30,6 +30,6 @@ pm <- pat_apriori(parameter = list(
  supp = 0.5, conf = 0.9, minlen = 2, maxlen = 10, target = "rules"
 ))
 pm <- fit(pm, trans)
-rules <- discover(pm)
+rules <- discover(pm, trans)
 arules::inspect(rules)
 }
