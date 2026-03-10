@@ -1,0 +1,66 @@
+## Custom SMOTE Outside the Package
+
+This example shows how to create an ad hoc transformation outside `daltoolbox` by defining a custom class in the example itself. The implementation below mirrors the previous `smotefamily::SMOTE`-based approach without adding code to the package namespace.
+
+```{r}
+# installation
+# install.packages(c("daltoolbox", "smotefamily"))
+
+library(daltoolbox)
+```
+
+```{r}
+smote_custom <- function(attribute) {
+  obj <- daltoolbox::dal_transform()
+  obj$attribute <- attribute
+  class(obj) <- append("smote_custom", class(obj))
+  obj
+}
+
+transform.smote_custom <- function(obj, data, ...) {
+  if (!requireNamespace("smotefamily", quietly = TRUE)) {
+    stop("This example requires the 'smotefamily' package.")
+  }
+
+  data <- data.frame(data, check.names = FALSE)
+  j <- match(obj$attribute, colnames(data))
+  x <- sort(table(data[, obj$attribute]))
+  result <- data[data[obj$attribute] == names(x)[length(x)], , drop = FALSE]
+
+  for (i in seq_len(length(x) - 1)) {
+    small_name <- names(x)[i]
+    large_name <- names(x)[length(x)]
+    small <- data[, obj$attribute] == small_name
+    large <- data[, obj$attribute] == large_name
+    data_smote <- data[small | large, , drop = FALSE]
+    output <- data_smote[, j] == large_name
+    data_smote <- data_smote[, -j, drop = FALSE]
+    syn_data <- smotefamily::SMOTE(data_smote, output)$syn_data
+
+    if (nrow(syn_data) > 0) {
+      syn_data$class <- NULL
+      syn_data[obj$attribute] <- data[small, j][1]
+      result <- rbind(result, data[small, , drop = FALSE])
+      result <- rbind(result, syn_data)
+    }
+  }
+
+  rownames(result) <- NULL
+  result
+}
+```
+
+```{r}
+iris_imb <- datasets::iris[c(1:50, 51:71, 101:111), ]
+table(iris_imb$Species)
+```
+
+```{r}
+bal <- smote_custom("Species")
+iris_bal <- transform(bal, iris_imb)
+table(iris_bal$Species)
+head(iris_bal)
+```
+
+References
+- Chawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: Synthetic Minority Over-sampling Technique.

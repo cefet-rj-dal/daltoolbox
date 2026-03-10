@@ -1,0 +1,22 @@
+## Random Class Undersampling
+
+Random undersampling reduces all classes to the minority count by sampling without replacement.
+
+```{r}
+# installation
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+```{r}
+iris_imb <- datasets::iris[c(1:50, 51:71, 101:111), ]
+table(iris_imb$Species)
+```
+
+```{r}
+bal <- bal_subsampling("Species", seed = 123)
+iris_bal <- transform(bal, iris_imb)
+table(iris_bal$Species)
+head(iris_bal)
+```

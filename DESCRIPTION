@@ -4,7 +4,7 @@ Version: 1.3.717
 Authors@R: 
   c(    person(given = "Eduardo", family = "Ogasawara", role = c("aut", "ths", "cre"), 
                email = "eogasawara@ieee.org", comment = c(ORCID = "0000-0002-0466-0626")),
-        person(given = "Ana Carolina", family = "Sá", role = c("aut"), email = "ana.silva.17@aluno.cefet-rj.br"),
+        person(given = "Ana Carolina", family = "SÃƒÂ¡", role = c("aut"), email = "ana.silva.17@aluno.cefet-rj.br"),
         person(given = "Antonio", family = "Castro", role = c("aut"), email = "antonio.castro@eic.cefet-rj.br"),
         person(given = "Caio", family = "Santos", role = c("aut"), email = "caio.souza.4@aluno.cefet-rj.br"),
         person(given = "Diego", family = "Carvalho", role = c("ctb"), email = "d.carvalho@ieee.org"),
@@ -47,6 +47,7 @@ Imports:
 Suggests:
   adabag,
   glmnet,
+  leaps,
   ipred,
   xgboost,
   arulesViz,
