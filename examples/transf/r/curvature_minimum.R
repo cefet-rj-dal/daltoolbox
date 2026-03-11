@@ -28,4 +28,3 @@ res <- transform(myfit, y)  # returns optimal index (knee)
 head(res)
 
 plot(grf + geom_vline(xintercept = res$x, linetype="dashed", color = "red", size=0.5))
-
