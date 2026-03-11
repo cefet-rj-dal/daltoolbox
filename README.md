@@ -33,6 +33,9 @@ Graphics:
 Transformation:
 <https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/transf/>
 
+Custom:
+<https://github.com/cefet-rj-dal/daltoolbox/tree/main/Rmd/custom/>
+
 Classification:
 <https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/classification/>
 
@@ -43,7 +46,8 @@ Regression:
 <https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/regression/>
 
 The examples are organized according to general (data preprocessing),
-clustering, classification, regression, and time series functions.
+custom extensions, clustering, classification, regression, and time
+series functions.
 
 ------------------------------------------------------------------------
 

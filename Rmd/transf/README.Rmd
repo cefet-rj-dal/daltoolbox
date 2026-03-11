@@ -7,7 +7,6 @@ Data preparation and transformation utilities.
 - [curvature_minimum.md](curvature_minimum.md) - `fit_curvature_min`: computes curvature via the second derivative of a smoothed spline over the sequence and returns the minimum curvature position for increasing curves; useful to find a trade-off point where additional gains become marginal.
 - [sample_oversampling.md](sample_oversampling.md) - `bal_oversampling`: class oversampling with random replication or local SMOTE.
 - [sample_subsampling.md](sample_subsampling.md) - `bal_subsampling`: random class undersampling to the minority count.
-- [custom_smote_external.md](custom_smote_external.md) - `smote_custom`: ad hoc custom transformation defined in the example itself, using `smotefamily` outside the package namespace.
 - [dal_pca.md](dal_pca.md) - `dt_pca`: Principal Component Analysis (PCA) projects correlated variables onto orthogonal components ordered by explained variance. You can let the tool pick the number of components via an elbow heuristic or set it explicitly.
 - [dal_smoothing_clustering.md](dal_smoothing_clustering.md) - `smoothing_cluster`: discretization/smoothing by defining bins via clustering instead of fixed intervals.
 - [dal_smoothing_frequency.md](dal_smoothing_frequency.md) - `smoothing_freq`: discretization/smoothing by frequency (quantiles), producing bins with similar counts.

@@ -1,6 +1,8 @@
-## Custom SMOTE Outside the Package
+## Custom Transformation
 
-This example shows how to create an ad hoc transformation outside `daltoolbox` by defining a custom class in the example itself. The implementation below mirrors the previous `smotefamily::SMOTE`-based approach without adding code to the package namespace.
+The primary goal of this example is to show how to create a custom transformation that fits naturally into the `daltoolbox` Experiment Line workflow. The customization procedure is intentionally simple: define a constructor, store configuration values in the object, implement the expected S3 method, and keep the rest of the analytical flow unchanged.
+
+This highlights an important point of the framework. The data-mining method may be sophisticated, but the integration contract remains small and uniform. In this concrete example, the custom transformation uses `smotefamily::SMOTE` to perform synthetic oversampling outside the `daltoolbox` namespace.
 
 ```{r}
 # installation
