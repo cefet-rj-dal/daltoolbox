@@ -1,0 +1,97 @@
+## Custom Transformation
+
+The primary goal of this example is to show how to create a custom transformation that fits naturally into the `daltoolbox` Experiment Line workflow. The customization procedure is intentionally simple: define a constructor, store configuration values in the object, implement the expected S3 method, and keep the rest of the analytical flow unchanged.
+
+This highlights an important point of the framework. The data-mining method may be sophisticated, but the integration contract remains small and uniform. In this concrete example, the custom transformation uses `smotefamily::SMOTE` to perform synthetic oversampling outside the `daltoolbox` namespace.
+
+
+``` r
+# installation
+# install.packages(c("daltoolbox", "smotefamily"))
+
+library(daltoolbox)
+```
+
+
+``` r
+smote_custom <- function(attribute) {
+  obj <- daltoolbox::dal_transform()
+  obj$attribute <- attribute
+  class(obj) <- append("smote_custom", class(obj))
+  obj
+}
+
+transform.smote_custom <- function(obj, data, ...) {
+  if (!requireNamespace("smotefamily", quietly = TRUE)) {
+    stop("This example requires the 'smotefamily' package.")
+  }
+
+  data <- data.frame(data, check.names = FALSE)
+  j <- match(obj$attribute, colnames(data))
+  x <- sort(table(data[, obj$attribute]))
+  result <- data[data[obj$attribute] == names(x)[length(x)], , drop = FALSE]
+
+  for (i in seq_len(length(x) - 1)) {
+    small_name <- names(x)[i]
+    large_name <- names(x)[length(x)]
+    small <- data[, obj$attribute] == small_name
+    large <- data[, obj$attribute] == large_name
+    data_smote <- data[small | large, , drop = FALSE]
+    output <- data_smote[, j] == large_name
+    data_smote <- data_smote[, -j, drop = FALSE]
+    syn_data <- smotefamily::SMOTE(data_smote, output)$syn_data
+
+    if (nrow(syn_data) > 0) {
+      syn_data$class <- NULL
+      syn_data[obj$attribute] <- data[small, j][1]
+      result <- rbind(result, data[small, , drop = FALSE])
+      result <- rbind(result, syn_data)
+    }
+  }
+
+  rownames(result) <- NULL
+  result
+}
+```
+
+
+``` r
+iris_imb <- datasets::iris[c(1:50, 51:71, 101:111), ]
+table(iris_imb$Species)
+```
+
+```
+## 
+##     setosa versicolor  virginica 
+##         50         21         11
+```
+
+
+``` r
+bal <- smote_custom("Species")
+iris_bal <- transform(bal, iris_imb)
+table(iris_bal$Species)
+```
+
+```
+## 
+##     setosa versicolor  virginica 
+##         50         42         44
+```
+
+``` r
+head(iris_bal)
+```
+
+```
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+```
+
+References
+- Chawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: Synthetic Minority Over-sampling Technique.
