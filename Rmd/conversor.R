@@ -160,6 +160,9 @@ convert_rmd_r <- function(input) {
 
   paths <- build_output_paths(input)
   rfile <- paths$rfile
+  if (basename(rfile) == "README.R") {
+    return(invisible(NULL))
+  }
   r_dir <- dirname(rfile)
   if (!dir.exists(r_dir)) {
     dir.create(r_dir, recursive = TRUE, showWarnings = FALSE)
