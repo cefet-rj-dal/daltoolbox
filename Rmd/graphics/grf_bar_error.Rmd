@@ -41,7 +41,7 @@ Build bars and add `geom_errorbar`.
 # The error bar is added using $geom\_errorbar()$ function to a previously defined bar graph. 
 
 grf <- plot_bar(data, colors=colors[1], alpha=1) + font
-grf <- grf + geom_errorbar(aes(x=Species, ymin=mean-sd, ymax=mean+sd), 
+grf <- grf + geom_errorbar(aes(x=x, ymin=y-sd, ymax=y+sd), 
                            width=0.2, colour="darkred", alpha=0.8, size=1.1) 
 plot(grf)
 ```
