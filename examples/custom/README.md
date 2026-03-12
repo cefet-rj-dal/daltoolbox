@@ -1,12 +1,24 @@
 # Custom Examples
 
-This section is dedicated to one of the most important ideas in `daltoolbox`: extending the Experiment Line workflow with custom components while preserving the same overall structure.
+This section now organizes custom examples by extension role. That makes the progression more natural for learning because the reader first sees how to extend preprocessing, then supervised learners, and only after that unsupervised components.
 
-The objective here is didactic. These examples show that integrating a new transformation, classifier, regressor, or clusterer does not require changing the framework itself. Instead, the customization is centered on a small and predictable contract: define an object, store its configuration, and implement the expected methods.
+The unifying idea is always the same: `daltoolbox` keeps the workflow stable while the user plugs in a new backend through a small integration contract.
 
-These are good examples for readers who want to understand the extensibility of the package rather than just its built-in methods. A natural reading order is transformation, classification, regression, and then clustering.
+## Custom Data Preparation
 
-- [custom_transformation.md](/examples/custom/custom_transformation.md) - `smote_custom`: shows how to create a custom transformation with a constructor and `transform()`, using `smotefamily::SMOTE` as the concrete example.
-- [custom_classification.md](/examples/custom/custom_classification.md) - `cla_rsnns_custom`: shows how to create a custom classifier with constructor, `fit()`, and `predict()`, using `RSNNS::mlp`.
-- [custom_regression.md](/examples/custom/custom_regression.md) - `reg_rsnns_custom`: shows how to create a custom regressor with constructor, `fit()`, and `predict()`, using `RSNNS::mlp` with linear output.
-- [custom_clustering.md](/examples/custom/custom_clustering.md) - `cluster_agnes_custom`: shows how to create a custom clusterer with constructor, `fit()`, and `cluster()`, using `cluster::agnes`.
+Start here to see the lightest kind of extension: transforming the data before modeling.
+
+- [01-custom-transformation.md](/examples/custom/01-custom-transformation.md) - `smote_custom`: shows how to create a custom transformation with a constructor and `transform()`, using `smotefamily::SMOTE` as the concrete example.
+
+## Custom Supervised Learners
+
+These examples show how to integrate custom classifiers and regressors while preserving the same `fit()` and prediction logic seen in built-in examples.
+
+- [02-custom-classification.md](/examples/custom/02-custom-classification.md) - `cla_rsnns_custom`: shows how to create a custom classifier with constructor, `fit()`, and `predict()`, using `RSNNS::mlp`.
+- [03-custom-regression.md](/examples/custom/03-custom-regression.md) - `reg_rsnns_custom`: shows how to create a custom regressor with constructor, `fit()`, and `predict()`, using `RSNNS::mlp` with linear output.
+
+## Custom Unsupervised Components
+
+Finish here to see how the same integration contract extends to clustering.
+
+- [04-custom-clustering.md](/examples/custom/04-custom-clustering.md) - `cluster_agnes_custom`: shows how to create a custom clusterer with constructor, `fit()`, and `cluster()`, using `cluster::agnes`.

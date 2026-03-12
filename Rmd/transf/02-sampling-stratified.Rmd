@@ -1,0 +1,56 @@
+About sampling
+- `sample_stratified`: splits train/test and folds preserving the target variable proportion (stratification) per category.
+
+Didactic goal: focus on what changes in the dataset after each operation. In preprocessing examples, understanding the effect of the transformation is as important as learning the function name.
+
+Environment setup.
+```{r}
+# Stratified sampling dataset
+
+# installation 
+#install.packages("daltoolbox")
+
+# loading DAL
+library(daltoolbox) 
+```
+
+Load dataset and view class distribution.
+```{r}
+iris <- datasets::iris
+head(iris)
+table(iris$Species)
+```
+
+Stratified train/test split preserving `Species` proportions.
+```{r}
+# Split into train and test
+
+# using stratified sampling
+tt <- train_test(sample_stratified("Species"), iris)
+
+# training distribution
+print(table(tt$train$Species))
+
+# test distribution
+print(table(tt$test$Species))
+```
+
+Create stratified folds and check distribution.
+```{r}
+# Split the dataset into folds
+
+# using stratified sampling
+# preparing the dataset into four folds
+sample <- sample_stratified("Species")
+folds <- k_fold(sample, iris, 4)
+
+# folds distribution
+tbl <- NULL
+for (f in folds) {
+tbl <- rbind(tbl, table(f$Species))
+}
+print(tbl)
+```
+
+References
+- Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection. IJCAI. (advocates stratified sampling)

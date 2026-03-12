@@ -1,0 +1,66 @@
+About sampling
+- `sample_random`: splits train/test sets and creates folds via random draws, preserving only expected proportions on average.
+
+This example is especially useful for beginners because it shows that data mining quality starts before model fitting. A weak split can compromise even a good learner.
+
+Didactic goal: interpret sampling as an experimental design choice, not as a routine preamble.
+
+Environment setup.
+```{r}
+# Sampling dataset
+
+# installation 
+#install.packages("daltoolbox")
+
+# loading DAL
+library(daltoolbox) 
+```
+
+Load dataset and view class distribution.
+```{r}
+iris <- datasets::iris
+head(iris)
+table(iris$Species)
+```
+
+Split into train/test with random sampling (distributions may vary by draw).
+```{r}
+# Split into train and test
+
+# using random sampling
+tt <- train_test(sample_random(), iris)
+
+# training distribution
+print(table(tt$train$Species))
+
+# test distribution
+print(table(tt$test$Species))
+```
+
+What to observe
+- The training and test class counts are close to the original distribution, but not guaranteed to match it exactly.
+- This variability is the main reason random sampling can behave differently across repeated runs.
+
+Create random k-folds and check distribution per fold.
+```{r}
+# Split the dataset into folds
+
+# preparing the dataset into four folds
+sample <- sample_random()
+folds <- k_fold(sample, iris, 4)
+
+# folds distribution
+tbl <- NULL
+for (f in folds) {
+tbl <- rbind(tbl, table(f$Species))
+}
+print(tbl)
+```
+
+Common mistakes
+- Assuming random sampling preserves class proportions perfectly in every split.
+- Comparing models built on different random partitions without controlling the seed.
+- Using random sampling in a clearly imbalanced problem when stratified sampling would be more stable.
+
+References
+- Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection. IJCAI.

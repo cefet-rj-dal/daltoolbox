@@ -1,0 +1,43 @@
+## Tutorial 04 - Preprocessing Basics
+
+After the initial cleaning stage, the next question is how to make the attributes more suitable for modeling. Two common operations are scaling numeric variables and reducing redundancy among predictors.
+
+This tutorial introduces both ideas in a compact way: normalization changes the scale, while correlation-based selection simplifies the feature set.
+
+```{r}
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+Begin by inspecting the original scale of the `iris` attributes. Notice that each numeric column has a different range.
+```{r}
+iris <- datasets::iris
+summary(iris)
+```
+
+Apply min-max normalization so that all numeric attributes are placed on a comparable scale. This is especially important for methods that are sensitive to distances or magnitudes.
+```{r}
+norm <- minmax()
+norm <- fit(norm, iris)
+iris_norm <- transform(norm, iris)
+
+summary(iris_norm)
+```
+
+Once the variables are normalized, check whether some attributes are strongly redundant. Correlation-based feature selection can help simplify the dataset without manually inspecting each pair of variables.
+```{r}
+fs <- feature_selection_corr(cutoff = 0.9)
+fs <- fit(fs, iris_norm)
+```
+
+Transform the dataset and compare the set of columns before and after selection. This shows the practical effect of the preprocessing step.
+```{r}
+iris_fs <- transform(fs, iris_norm)
+
+names(iris_norm)
+names(iris_fs)
+head(iris_fs)
+```
+
+A beginner-friendly interpretation is: normalization prepares the scale, and feature selection prepares the structure of the data.

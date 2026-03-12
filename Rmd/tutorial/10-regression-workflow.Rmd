@@ -1,0 +1,46 @@
+## Tutorial 10 - Regression Workflow
+
+The Experiment Line idea is not limited to classification. In regression, the target becomes numeric, but the main stages remain the same: split, fit, predict, and evaluate.
+
+This tutorial helps the learner see that the framework is stable even when the analytical task changes.
+
+```{r}
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+library(MASS)
+```
+
+Load a numeric prediction problem. The goal is to predict `medv`, a continuous outcome.
+```{r}
+data(Boston)
+head(Boston)
+
+Boston <- as.matrix(Boston)
+```
+
+Create train and test partitions.
+```{r}
+set.seed(1)
+sr <- sample_random()
+sr <- train_test(sr, Boston)
+
+boston_train <- sr$train
+boston_test <- sr$test
+```
+
+Fit a regression tree and inspect both training and test errors.
+```{r}
+model <- reg_dtree("medv")
+model <- fit(model, boston_train)
+
+train_prediction <- predict(model, boston_train)
+train_eval <- evaluate(model, boston_train[, "medv"], train_prediction)
+train_eval$metrics
+
+test_prediction <- predict(model, boston_test)
+test_eval <- evaluate(model, boston_test[, "medv"], test_prediction)
+test_eval$metrics
+```
+
+From a teaching perspective, this is a useful turning point: the workflow is familiar, but the interpretation of the metrics now belongs to regression rather than classification.

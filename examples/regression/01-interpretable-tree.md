@@ -1,0 +1,127 @@
+About the method
+- `reg_dtree`: decision tree for regression. Partitions feature space and estimates values by leaf means; interpretable and can model nonlinearities.
+
+This example helps the reader move from classification intuition to numeric prediction without changing the overall Experiment Line structure.
+
+Didactic goal: notice what stays the same in the workflow and what changes in the interpretation when the target becomes continuous.
+
+Environment setup.
+
+``` r
+# Regression Decision Tree
+
+# installation 
+#install.packages("daltoolbox")
+
+# loading DAL
+library(daltoolbox) 
+```
+
+Load Boston dataset (MASS) and inspect types.
+
+``` r
+# Dataset for regression analysis
+
+library(MASS)
+data(Boston)
+print(t(sapply(Boston, class)))
+```
+
+```
+##      crim      zn        indus     chas      nox       rm        age      
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric"
+##      dis       rad       tax       ptratio   black     lstat     medv     
+## [1,] "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "numeric"
+```
+
+``` r
+head(Boston)
+```
+
+```
+##      crim zn indus chas   nox    rm  age    dis rad tax ptratio  black lstat
+## 1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3 396.90  4.98
+## 2 0.02731  0  7.07    0 0.469 6.421 78.9 4.9671   2 242    17.8 396.90  9.14
+## 3 0.02729  0  7.07    0 0.469 7.185 61.1 4.9671   2 242    17.8 392.83  4.03
+## 4 0.03237  0  2.18    0 0.458 6.998 45.8 6.0622   3 222    18.7 394.63  2.94
+## 5 0.06905  0  2.18    0 0.458 7.147 54.2 6.0622   3 222    18.7 396.90  5.33
+## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21
+##   medv
+## 1 24.0
+## 2 21.6
+## 3 34.7
+## 4 33.4
+## 5 36.2
+## 6 28.7
+```
+
+Optional conversion to matrix for performance in some methods.
+
+``` r
+# for performance, you can convert to matrix
+Boston <- as.matrix(Boston)
+```
+
+Random train/test split.
+
+``` r
+# preparing dataset for random sampling
+set.seed(1)
+sr <- sample_random()
+sr <- train_test(sr, Boston)
+boston_train <- sr$train
+boston_test <- sr$test
+```
+
+Train regression tree model to predict `medv`.
+
+``` r
+# Training
+
+model <- reg_dtree("medv")
+model <- fit(model, boston_train)
+```
+
+What to observe
+- The learner definition is still compact, even though the target is numeric.
+- The main conceptual change is in the evaluation stage, not in the fitting logic.
+
+Training evaluation (regression metrics, e.g., RMSE, MAE).
+
+``` r
+# Model adjustment
+
+train_prediction <- predict(model, boston_train)
+boston_train_predictand <- boston_train[,"medv"]
+train_eval <- evaluate(model, boston_train_predictand, train_prediction)
+print(train_eval$metrics)
+```
+
+```
+##        mse     smape        R2
+## 1 12.68065 0.1345098 0.8591168
+```
+
+Test evaluation.
+
+``` r
+# Test
+
+test_prediction <- predict(model, boston_test)
+boston_test_predictand <- boston_test[,"medv"]
+test_eval <- evaluate(model, boston_test_predictand, test_prediction)
+print(test_eval$metrics)
+```
+
+```
+##        mse     smape        R2
+## 1 29.38142 0.1642396 0.5117372
+```
+
+Common mistakes
+- Interpreting regression metrics with the same intuition used for classification accuracy.
+- Ignoring the scale of the target variable when reading RMSE or MAE.
+- Treating a good training error as evidence of good predictive performance.
+
+References
+- Breiman, L., Friedman, J., Olshen, R., and Stone, C. (1984). Classification and Regression Trees. Wadsworth.

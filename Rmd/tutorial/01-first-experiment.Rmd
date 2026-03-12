@@ -1,0 +1,49 @@
+## Tutorial 01 - First Experiment
+
+The first objective is simple: understand the basic rhythm of a `daltoolbox` experiment. In most supervised tasks, the same cycle appears again and again: prepare the data, split it, configure a learner, fit the model, predict on unseen cases, and evaluate the result.
+
+This tutorial intentionally uses a small and familiar dataset so the reader can focus on the workflow rather than on the domain.
+
+```{r}
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+Start by loading a dataset and identifying the target variable. In classification, it is important to know the possible class labels before training a learner.
+```{r}
+iris <- datasets::iris
+head(iris)
+
+slevels <- levels(iris$Species)
+slevels
+```
+
+Now create a training set and a test set. The training data is used to fit the learner; the test data is used later to estimate how the model behaves on new cases.
+```{r}
+set.seed(1)
+sr <- sample_random()
+sr <- train_test(sr, iris)
+
+iris_train <- sr$train
+iris_test <- sr$test
+```
+
+With the split ready, define a first learner. A decision tree is a good starting point because it is fast and easy to interpret.
+```{r}
+model <- cla_dtree("Species", slevels)
+model <- fit(model, iris_train)
+```
+
+After training, always check performance on both the training data and the test data. The comparison helps reveal whether the learner is simply memorizing the training set or generalizing in a reasonable way.
+```{r}
+train_prediction <- predict(model, iris_train)
+train_eval <- evaluate(model, adjust_class_label(iris_train$Species), train_prediction)
+train_eval$metrics
+
+test_prediction <- predict(model, iris_test)
+test_eval <- evaluate(model, adjust_class_label(iris_test$Species), test_prediction)
+test_eval$metrics
+```
+
+This structure is the foundation of the package. The later tutorials mainly change the sampling strategy, the preprocessing steps, or the learner itself, but the overall logic remains stable.

@@ -1,0 +1,63 @@
+## Tutorial 09 - End-to-End Classification Pipeline
+
+So far, the tutorials have introduced the pieces separately. This tutorial puts several of them together into one coherent classification pipeline: split the data, normalize the numeric attributes, fit a learner, and evaluate the result.
+
+This is closer to the way `daltoolbox` is used in a real study.
+
+
+``` r
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+Load the data and create a stratified split. The split comes first because preprocessing objects should usually be fit on training data, not on the full dataset.
+
+``` r
+iris <- datasets::iris
+slevels <- levels(iris$Species)
+
+set.seed(1)
+sr <- train_test(sample_stratified("Species"), iris)
+iris_train <- sr$train
+iris_test <- sr$test
+```
+
+Fit the normalization object using only the training data, then apply the same transformation to both training and test sets. This is an important experimental detail because it avoids leaking information from the test data into the training process.
+
+``` r
+norm <- minmax()
+norm <- fit(norm, iris_train)
+
+iris_train_norm <- transform(norm, iris_train)
+iris_test_norm <- transform(norm, iris_test)
+```
+
+With the transformed data ready, fit a classifier and evaluate it.
+
+``` r
+model <- cla_knn("Species", slevels, k = 5)
+model <- fit(model, iris_train_norm)
+
+train_prediction <- predict(model, iris_train_norm)
+train_eval <- evaluate(model, adjust_class_label(iris_train_norm$Species), train_prediction)
+train_eval$metrics
+```
+
+```
+##   accuracy TP TN FP FN precision recall sensitivity specificity f1
+## 1        1 40 80  0  0         1      1           1           1  1
+```
+
+``` r
+test_prediction <- predict(model, iris_test_norm)
+test_eval <- evaluate(model, adjust_class_label(iris_test_norm$Species), test_prediction)
+test_eval$metrics
+```
+
+```
+##    accuracy TP TN FP FN precision recall sensitivity specificity f1
+## 1 0.9666667 10 20  0  0         1      1           1           1  1
+```
+
+For learners who are sensitive to scale, this kind of complete preparation-and-modeling sequence is often more realistic than a raw-data example.

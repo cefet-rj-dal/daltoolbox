@@ -8,6 +8,7 @@ If you are new to the package, a good path is to start with the transformation e
 
 The links below point to the generated Markdown files under `examples/`, which are the rendered outputs intended for reading.
 
+- [Tutorials](/examples/tutorial/README.md) - 13 tutorials organized as a guided path from first workflow to custom extension.
 - [Classification](/examples/classification/README.md) - 8 examples (e.g., cla_dtree, cla_knn, cla_majority). Supervised classification algorithms and tuning.
 - [Clustering](/examples/clustering/README.md) - 4 examples (e.g., clu_dbscan, clu_kmeans, clu_pam). Unsupervised clustering methods and model selection.
 - [Custom](/examples/custom/README.md) - 4 examples (e.g., custom_transformation, custom_classification, custom_clustering). Didactic examples showing how to integrate external methods into the Experiment Line workflow.

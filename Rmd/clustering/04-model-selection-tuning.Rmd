@@ -1,0 +1,44 @@
+About the utility
+- `clu_tune`: selects hyperparameters for a clustering method. In this example, it chooses `k` for `cluster_kmeans` over a range.
+
+```{r}
+# Clustering - Tune Kmeans
+
+# installation 
+#install.packages("daltoolbox")
+
+# loading DAL
+library(daltoolbox)  
+```
+
+Didactic goal: read this example as an unsupervised workflow. The emphasis is not on predicting a known label during training, but on understanding how the method groups the data and how preprocessing affects that grouping.
+
+Load data (`iris`).
+```{r}
+data(iris)
+```
+
+Fit the model with a search over k=1..10 and extract the best k.
+```{r}
+# model training with hyperparameter search
+model <- clu_tune(cluster_kmeans(k = 0),  ranges = list(k = 1:10))
+model <- fit(model, iris[,1:4])
+model$k
+```
+
+Generate cluster labels with the best k.
+```{r}
+# run with best parameter
+clu <- cluster(model, iris[,1:4])
+table(clu)
+```
+
+External evaluation with `Species`.
+```{r}
+# external evaluation using ground truth labels
+eval <- evaluate(model, clu, iris$Species)
+eval
+```
+
+References
+- Satopaa, V., Albrecht, J., Irwin, D., Raghavan, B. (2011). Finding a "Kneedle" in a Haystack: Detecting Knee Points in System Behavior.

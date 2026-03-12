@@ -1,0 +1,48 @@
+## Tutorial 03 - Data Quality and Cleaning
+
+In real projects, modeling rarely starts on a perfectly clean table. Missing values, unusual observations, and categorical attributes often need attention before the first learner is trained. This tutorial introduces that preparation mindset.
+
+The purpose is not to exhaust every cleaning strategy, but to show that `daltoolbox` treats these steps as explicit workflow operations rather than ad hoc edits.
+
+```{r}
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+Create a small didactic dataset with missing values. A synthetic example is useful here because the effect of cleaning becomes easier to see.
+```{r}
+small <- iris[1:12, ]
+small$Sepal.Length[c(3, 8)] <- NA
+small$Sepal.Width[5] <- NA
+small
+```
+
+A first simple option is to remove incomplete rows. This is not always the best strategy in practice, but it is an important baseline cleaning operation.
+```{r}
+small_complete <- na.omit(small)
+small_complete
+```
+
+Now inspect a basic outlier strategy on a numeric attribute. The point is to show that the analyst can explicitly choose how to detect suspicious observations before modeling.
+```{r}
+out <- outliers_boxplot(features = c("Sepal.Length"))
+out <- fit(out, iris)
+outliers_found <- transform(out, iris)
+head(outliers_found)
+```
+
+Categorical attributes may also need transformation before some learners can use them effectively. The next block shows one-hot style mapping on a toy categorical column.
+```{r}
+cat_data <- data.frame(
+  color = factor(c("red", "blue", "green", "red")),
+  value = c(10, 20, 15, 12)
+)
+
+mapper <- categ_mapping(features = "color")
+mapper <- fit(mapper, cat_data)
+cat_encoded <- transform(mapper, cat_data)
+cat_encoded
+```
+
+From a teaching perspective, this tutorial matters because many beginners jump directly to modeling. In practice, data quality decisions often shape the experiment before the learner ever sees the data.

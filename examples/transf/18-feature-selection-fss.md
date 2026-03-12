@@ -1,0 +1,38 @@
+## Feature Selection with Forward Stepwise Subset Search
+
+Forward stepwise subset search starts with no predictors and adds the feature that most improves the current regression model. This implementation keeps the subset with the highest adjusted R-squared.
+
+
+``` r
+# installation
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+
+``` r
+iris <- datasets::iris
+```
+
+
+``` r
+if (requireNamespace("leaps", quietly = TRUE)) {
+  fs <- feature_selection_fss("Sepal.Length")
+  fs <- fit(fs, iris)
+
+  print(fs$selected)
+  print(fs$ranking)
+
+  iris_fs <- transform(fs, iris)
+  head(iris_fs)
+}
+```
+
+```
+## Error in `feature_selection_fss()`:
+## ! could not find function "feature_selection_fss"
+```
+
+References
+- Hastie, T., Tibshirani, R., and Friedman, J. (2009). The Elements of Statistical Learning.

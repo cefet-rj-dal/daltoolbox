@@ -1,0 +1,67 @@
+## Tutorial 07 - Model Comparison
+
+Once the baseline and the evaluation logic are clear, the next step is to compare multiple learners under the same conditions. The important idea is fairness: same dataset, same split, same metrics, different models.
+
+This is where `daltoolbox` becomes useful as an experimental framework rather than just a collection of isolated functions.
+
+
+``` r
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+Prepare one shared train/test split. This keeps the comparison controlled.
+
+``` r
+iris <- datasets::iris
+slevels <- levels(iris$Species)
+
+set.seed(1)
+sr <- train_test(sample_stratified("Species"), iris)
+iris_train <- sr$train
+iris_test <- sr$test
+```
+
+Define a small group of learners. The set mixes a baseline, a local method, a tree, and an ensemble so the reader sees different model families.
+
+``` r
+models <- list(
+  majority = cla_majority("Species", slevels),
+  tree = cla_dtree("Species", slevels),
+  knn = cla_knn("Species", slevels, k = 5),
+  rf = cla_rf("Species", slevels, mtry = 2, ntree = 10)
+)
+```
+
+Fit and evaluate each learner using the same protocol.
+
+``` r
+results <- lapply(models, function(model) {
+  fitted <- fit(model, iris_train)
+  pred <- predict(fitted, iris_test)
+  evaluate(fitted, adjust_class_label(iris_test$Species), pred)$metrics
+})
+
+results
+```
+
+```
+## $majority
+##    accuracy TP TN FP FN precision recall sensitivity specificity  f1
+## 1 0.3333333 10  0 20  0 0.3333333      1           1           0 0.5
+## 
+## $tree
+##    accuracy TP TN FP FN precision recall sensitivity specificity f1
+## 1 0.9666667 10 20  0  0         1      1           1           1  1
+## 
+## $knn
+##    accuracy TP TN FP FN precision recall sensitivity specificity f1
+## 1 0.9666667 10 20  0  0         1      1           1           1  1
+## 
+## $rf
+##    accuracy TP TN FP FN precision recall sensitivity specificity f1
+## 1 0.9666667 10 20  0  0         1      1           1           1  1
+```
+
+At this stage, the main pedagogical gain is methodological: the learner changes, but the experiment design stays stable.

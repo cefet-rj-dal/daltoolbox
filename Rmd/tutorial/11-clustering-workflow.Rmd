@@ -1,0 +1,43 @@
+## Tutorial 11 - Clustering Workflow
+
+Clustering changes the analytical setting because there is no explicit target to predict during training. Even so, the workflow is still structured: choose a method, fit it, obtain cluster assignments, and inspect the result.
+
+This tutorial also reinforces a recurring lesson from data mining: preprocessing can change unsupervised results substantially.
+
+```{r}
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+Use only the numeric attributes of `iris` for clustering.
+```{r}
+iris <- datasets::iris
+x <- iris[, 1:4]
+```
+
+Run K-means on the original scale.
+```{r}
+model <- cluster_kmeans(k = 3)
+model <- fit(model, x)
+clu <- cluster(model, x)
+
+table(clu)
+evaluate(model, clu, iris$Species)
+```
+
+Now normalize the data and repeat the same clustering procedure. Because the method is unchanged, any difference is due mainly to the representation of the data.
+```{r}
+norm <- fit(minmax(), iris)
+iris_norm <- transform(norm, iris)
+x_norm <- iris_norm[, 1:4]
+
+model_norm <- cluster_kmeans(k = 3)
+model_norm <- fit(model_norm, x_norm)
+clu_norm <- cluster(model_norm, x_norm)
+
+table(clu_norm)
+evaluate(model_norm, clu_norm, iris$Species)
+```
+
+This is an important lesson for beginners: in unsupervised learning, the data representation can matter as much as the algorithm.

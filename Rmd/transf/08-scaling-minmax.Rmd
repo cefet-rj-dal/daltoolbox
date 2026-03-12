@@ -1,0 +1,65 @@
+About the transformation
+- `minmax`: linearly rescales numeric attributes to a target range (default [0, 1]). Useful for scale-sensitive algorithms and models that expect bounded inputs.
+
+Method
+- For each numeric column j: `(x - min_j) / (max_j - min_j)` to map to [0, 1].
+- Constant columns (where `max_j == min_j`) map to 0 to avoid division by zero.
+
+When to use
+- Recommended for distance-based methods (e.g., k-NN), gradient methods sensitive to feature scales, or when features have different units.
+
+Didactic goal: focus on what changes in the dataset after each operation. In preprocessing examples, understanding the effect of the transformation is as important as learning the function name.
+
+In practice, this is one of the most common preprocessing steps before distance-based or scale-sensitive learners. The value of the example is not only the call to `minmax()`, but the before/after comparison.
+
+Environment setup.
+```{r}
+# installation 
+#install.packages("daltoolbox")
+
+# loading DAL
+library(daltoolbox) 
+```
+
+Context and sample data (iris) to illustrate normalization.
+```{r}
+# Normalization
+
+# Normalization is a technique used to equal strength among variables. 
+
+# It is also important to apply it as an input for some machine learning methods. 
+
+# Example
+
+iris <- datasets::iris  
+summary(iris)
+```
+
+Apply Min-Max and inspect the resulting scale.
+```{r}
+# Min-Max 
+# Adjust numeric values to 0 (minimum value) - 1 (maximum value).
+
+norm <- minmax()
+norm <- fit(norm, iris)
+ndata <- transform(norm, iris)
+summary(ndata)
+```
+
+What to observe
+- Numeric attributes that originally had different ranges are now placed on a common scale.
+- The categorical target remains untouched, which is what you usually want in supervised tasks.
+
+Inverse transform (denormalize) to verify integrity.
+```{r}
+ddata <- inverse_transform(norm, ndata)
+summary(ddata)
+```
+
+Common mistakes
+- Fitting the normalization object on the full dataset before the train/test split.
+- Expecting normalization to improve every model equally.
+- Forgetting that interpretability changes when the variables are shown only in the transformed scale.
+
+References
+- Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Normalization section)

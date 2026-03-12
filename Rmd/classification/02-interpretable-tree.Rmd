@@ -1,0 +1,95 @@
+About the method
+- `cla_dtree`: Decision Tree for classification. Recursively splits on explanatory variables to separate classes, yielding an interpretable model.
+
+This example is a good entry point for classification in `daltoolbox` because the learner is easy to explain and the workflow is fully visible from start to finish.
+
+Didactic goal: use the tree as a way to learn the whole supervised workflow, not only the classifier constructor.
+
+Environment setup.
+```{r}
+# Classification using Decision Tree
+
+# installation 
+#install.packages("daltoolbox")
+
+# loading DAL
+library(daltoolbox) 
+```
+
+Load data and inspect.
+```{r}
+iris <- datasets::iris
+head(iris)
+```
+
+Target `Species` levels.
+```{r}
+# extracting the levels for the dataset
+slevels <- levels(iris$Species)
+slevels
+```
+
+Building train and test samples via random sampling
+Random train/test split.
+```{r}
+# Building train and test samples via random sampling
+set.seed(1)
+sr <- sample_random()
+sr <- train_test(sr, iris)
+iris_train <- sr$train
+iris_test <- sr$test
+```
+
+Class distribution by split.
+```{r}
+
+tbl <- rbind(table(iris[,"Species"]), 
+             table(iris_train[,"Species"]), 
+             table(iris_test[,"Species"]))
+rownames(tbl) <- c("dataset", "training", "test")
+head(tbl)
+```
+
+Model training
+Train the decision tree.
+```{r}
+# Model training
+model <- cla_dtree("Species", slevels)
+model <- fit(model, iris_train)
+
+```
+
+Training evaluation
+```{r}
+# Checking fit on training data
+train_prediction <- predict(model, iris_train)
+
+# Model evaluation (training)
+iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
+train_eval <- evaluate(model, iris_train_predictand, train_prediction)
+print(train_eval$metrics)
+```
+
+What to observe
+- The training metrics usually look slightly better than the test metrics because the tree was fit on this same data.
+- A decision tree is often useful as a first model because you can explain its behavior more easily than that of a black-box learner.
+
+Test evaluation
+```{r}
+# Model test
+test_prediction <- predict(model, iris_test)
+
+iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
+
+# Test evaluation
+ test_eval <- evaluate(model, iris_test_predictand, test_prediction)
+print(test_eval$metrics)
+```
+
+Common mistakes
+- Reading the training metric as if it were the final quality estimate.
+- Forgetting to preserve the target levels before fitting the classifier.
+- Comparing this result with another model trained on a different split.
+
+References
+- Breiman, L., Friedman, J., Olshen, R., and Stone, C. (1984). Classification and Regression Trees. Wadsworth.
