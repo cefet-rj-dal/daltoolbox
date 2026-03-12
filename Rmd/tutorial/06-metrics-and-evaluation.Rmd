@@ -39,7 +39,7 @@ test_eval$metrics
 
 It is also useful to inspect the confusion matrix. While a single score summarizes performance, the confusion matrix shows which classes are being confused with one another.
 ```{r}
-table(predicted = test_prediction, observed = sr$test$Species)
+table(predicted = test_eval$prediction, observed = sr$test$Species)
 ```
 
 For beginners, one interpretation rule helps a lot: if training results are much better than test results, the model may be too adapted to the training data.
