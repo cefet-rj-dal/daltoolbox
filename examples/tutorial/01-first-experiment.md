@@ -11,17 +11,6 @@ This tutorial intentionally uses a small and familiar dataset so the reader can 
 library(daltoolbox)
 ```
 
-```
-## 
-## Attaching package: 'daltoolbox'
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     transform
-```
-
 Start by loading a dataset and identifying the target variable. In classification, it is important to know the possible class labels before training a learner.
 
 ``` r

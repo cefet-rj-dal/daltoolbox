@@ -23,20 +23,18 @@ fs <- feature_selection_stepwise(
   direction = "forward",
   family = stats::binomial
 )
-```
-
-```
-## Error in `feature_selection_stepwise()`:
-## ! could not find function "feature_selection_stepwise"
-```
-
-``` r
 fs <- fit(fs, iris)
 ```
 
 ```
-## Error:
-## ! object 'fs' not found
+## Warning: glm.fit: algorithm did not converge
+## Warning: glm.fit: algorithm did not converge
+## Warning: glm.fit: algorithm did not converge
+## Warning: glm.fit: algorithm did not converge
+## Warning: glm.fit: algorithm did not converge
+## Warning: glm.fit: algorithm did not converge
+## Warning: glm.fit: algorithm did not converge
+## Warning: glm.fit: algorithm did not converge
 ```
 
 ``` r
@@ -44,8 +42,7 @@ print(fs$selected)
 ```
 
 ```
-## Error:
-## ! object 'fs' not found
+## [1] "Species"
 ```
 
 ``` r
@@ -53,27 +50,24 @@ print(fs$ranking)
 ```
 
 ```
-## Error:
-## ! object 'fs' not found
+##   feature score
+## 1 Species     1
 ```
 
 
 ``` r
 iris_fs <- transform(fs, iris)
-```
-
-```
-## Error:
-## ! object 'fs' not found
-```
-
-``` r
 head(iris_fs)
 ```
 
 ```
-## Error:
-## ! object 'iris_fs' not found
+##   IsVersicolor Species
+## 1           no  setosa
+## 2           no  setosa
+## 3           no  setosa
+## 4           no  setosa
+## 5           no  setosa
+## 6           no  setosa
 ```
 
 References

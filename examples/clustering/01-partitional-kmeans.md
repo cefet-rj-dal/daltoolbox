@@ -42,7 +42,7 @@ table(clu)
 ```
 ## clu
 ##  1  2  3 
-## 50 62 38
+## 96 33 21
 ```
 
 External evaluation using true labels (`Species`).
@@ -58,12 +58,12 @@ eval
 ## # A tibble: 3 × 4
 ##   x        ce   qtd    ceg
 ##   <fct> <dbl> <int>  <dbl>
-## 1 1     0        50 0     
-## 2 2     0.771    62 0.319 
-## 3 3     0.297    38 0.0754
+## 1 1     0.999    96 0.639 
+## 2 2     0        33 0     
+## 3 3     0.702    21 0.0983
 ## 
 ## $clustering_entropy
-## [1] 0.3938863
+## [1] 0.7375436
 ## 
 ## $data_entropy
 ## [1] 1.584963
@@ -88,7 +88,7 @@ table(clu)
 ```
 ## clu
 ##  1  2  3 
-## 50 39 61
+## 39 50 61
 ```
 
 Re-evaluation with normalized data.
@@ -105,8 +105,8 @@ eval
 ## # A tibble: 3 × 4
 ##   x        ce   qtd   ceg
 ##   <fct> <dbl> <int> <dbl>
-## 1 1     0        50 0    
-## 2 2     0.391    39 0.102
+## 1 1     0.391    39 0.102
+## 2 2     0        50 0    
 ## 3 3     0.777    61 0.316
 ## 
 ## $clustering_entropy

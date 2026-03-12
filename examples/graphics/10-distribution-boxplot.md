@@ -58,12 +58,6 @@ grf <- plot_boxplot(iris, colors="white") + font
 plot(grf)  
 ```
 
-```
-## Ignoring unknown labels:
-## • colour : "c(\"Sepal.Length\", \"Sepal.Width\", \"Petal.Length\",
-##   \"Petal.Width\", \"Species\")"
-```
-
 ![plot of chunk unnamed-chunk-4](fig/10-distribution-boxplot/unnamed-chunk-4-1.png)
 
 
@@ -77,12 +71,6 @@ grf <- plot_boxplot(iris, colors=colors[1:4]) + font
 
 ``` r
 plot(grf)  
-```
-
-```
-## Ignoring unknown labels:
-## • colour : "c(\"Sepal.Length\", \"Sepal.Width\", \"Petal.Length\",
-##   \"Petal.Width\", \"Species\")"
 ```
 
 ![plot of chunk unnamed-chunk-5](fig/10-distribution-boxplot/unnamed-chunk-5-1.png)

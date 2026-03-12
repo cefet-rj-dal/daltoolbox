@@ -19,29 +19,13 @@ iris$Species <- factor(iris$Species)
 
 ``` r
 fs <- feature_selection_info_gain("Species", top = 2)
-```
-
-```
-## Error in `feature_selection_info_gain()`:
-## ! could not find function "feature_selection_info_gain"
-```
-
-``` r
 fs <- fit(fs, iris)
-```
 
-```
-## Error:
-## ! object 'fs' not found
-```
-
-``` r
 print(fs$selected)
 ```
 
 ```
-## Error:
-## ! object 'fs' not found
+## [1] "Sepal.Width"  "Sepal.Length"
 ```
 
 ``` r
@@ -49,27 +33,27 @@ print(fs$ranking)
 ```
 
 ```
-## Error:
-## ! object 'fs' not found
+##        feature     score
+## 1  Sepal.Width 0.3571324
+## 2 Sepal.Length 0.0000000
+## 3 Petal.Length 0.0000000
+## 4  Petal.Width 0.0000000
 ```
 
 
 ``` r
 iris_fs <- transform(fs, iris)
-```
-
-```
-## Error:
-## ! object 'fs' not found
-```
-
-``` r
 head(iris_fs)
 ```
 
 ```
-## Error:
-## ! object 'iris_fs' not found
+##   Species Sepal.Width Sepal.Length
+## 1  setosa         3.5          5.1
+## 2  setosa         3.0          4.9
+## 3  setosa         3.2          4.7
+## 4  setosa         3.1          4.6
+## 5  setosa         3.6          5.0
+## 6  setosa         3.9          5.4
 ```
 
 References

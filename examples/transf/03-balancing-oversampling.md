@@ -25,57 +25,27 @@ table(iris_imb$Species)
 
 ``` r
 bal_random <- bal_oversampling("Species", method = "random", seed = 123)
-```
-
-```
-## Error in `bal_oversampling()`:
-## ! could not find function "bal_oversampling"
-```
-
-``` r
 iris_random <- transform(bal_random, iris_imb)
-```
-
-```
-## Error:
-## ! object 'bal_random' not found
-```
-
-``` r
 table(iris_random$Species)
 ```
 
 ```
-## Error:
-## ! object 'iris_random' not found
+## 
+##     setosa versicolor  virginica 
+##         50         50         50
 ```
 
 
 ``` r
 bal_smote <- bal_oversampling("Species", method = "smote", k = 3, seed = 123)
-```
-
-```
-## Error in `bal_oversampling()`:
-## ! could not find function "bal_oversampling"
-```
-
-``` r
 iris_smote <- transform(bal_smote, iris_imb)
-```
-
-```
-## Error:
-## ! object 'bal_smote' not found
-```
-
-``` r
 table(iris_smote$Species)
 ```
 
 ```
-## Error:
-## ! object 'iris_smote' not found
+## 
+##     setosa versicolor  virginica 
+##         50         50         50
 ```
 
 ``` r
@@ -83,6 +53,11 @@ head(iris_smote)
 ```
 
 ```
-## Error:
-## ! object 'iris_smote' not found
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
 ```

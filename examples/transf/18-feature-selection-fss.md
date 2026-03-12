@@ -30,8 +30,21 @@ if (requireNamespace("leaps", quietly = TRUE)) {
 ```
 
 ```
-## Error in `feature_selection_fss()`:
-## ! could not find function "feature_selection_fss"
+## [1] "Sepal.Width"  "Petal.Length" "Petal.Width" 
+##        feature score
+## 1  Sepal.Width     1
+## 2 Petal.Length     2
+## 3  Petal.Width     3
+```
+
+```
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1          5.1         3.5          1.4         0.2
+## 2          4.9         3.0          1.4         0.2
+## 3          4.7         3.2          1.3         0.2
+## 4          4.6         3.1          1.5         0.2
+## 5          5.0         3.6          1.4         0.2
+## 6          5.4         3.9          1.7         0.4
 ```
 
 References

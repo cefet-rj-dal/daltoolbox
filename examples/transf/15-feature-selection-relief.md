@@ -19,29 +19,13 @@ iris$Species <- factor(iris$Species)
 
 ``` r
 fs <- feature_selection_relief("Species", top = 2, m = 50, seed = 1)
-```
-
-```
-## Error in `feature_selection_relief()`:
-## ! could not find function "feature_selection_relief"
-```
-
-``` r
 fs <- fit(fs, iris)
-```
 
-```
-## Error:
-## ! object 'fs' not found
-```
-
-``` r
 print(fs$selected)
 ```
 
 ```
-## Error:
-## ! object 'fs' not found
+## [1] "Petal.Width"  "Petal.Length"
 ```
 
 ``` r
@@ -49,27 +33,27 @@ print(fs$ranking)
 ```
 
 ```
-## Error:
-## ! object 'fs' not found
+##        feature     score
+## 1  Petal.Width 0.2108333
+## 2 Petal.Length 0.1633898
+## 3  Sepal.Width 0.1508333
+## 4 Sepal.Length 0.0600000
 ```
 
 
 ``` r
 iris_fs <- transform(fs, iris)
-```
-
-```
-## Error:
-## ! object 'fs' not found
-```
-
-``` r
 head(iris_fs)
 ```
 
 ```
-## Error:
-## ! object 'iris_fs' not found
+##   Species Petal.Width Petal.Length
+## 1  setosa         0.2          1.4
+## 2  setosa         0.2          1.4
+## 3  setosa         0.2          1.3
+## 4  setosa         0.2          1.5
+## 5  setosa         0.2          1.4
+## 6  setosa         0.4          1.7
 ```
 
 References

@@ -30,8 +30,21 @@ if (requireNamespace("glmnet", quietly = TRUE)) {
 ```
 
 ```
-## Error in `feature_selection_lasso()`:
-## ! could not find function "feature_selection_lasso"
+## [1] "Sepal.Width"  "Petal.Length" "Petal.Width" 
+##                   feature     score
+## Petal.Length Petal.Length 0.6967400
+## Sepal.Width   Sepal.Width 0.6453987
+## Petal.Width   Petal.Width 0.5291831
+```
+
+```
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1          5.1         3.5          1.4         0.2
+## 2          4.9         3.0          1.4         0.2
+## 3          4.7         3.2          1.3         0.2
+## 4          4.6         3.1          1.5         0.2
+## 5          5.0         3.6          1.4         0.2
+## 6          5.4         3.9          1.7         0.4
 ```
 
 References

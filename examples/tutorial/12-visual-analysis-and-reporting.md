@@ -10,42 +10,8 @@ This tutorial uses one exploratory plot and one compact reporting table as a bri
 
 library(daltoolbox)
 library(ggplot2)
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 4.5.2
-```
-
-``` r
 library(RColorBrewer)
 library(dplyr)
-```
-
-```
-## Warning: package 'dplyr' was built under R version 4.5.2
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following object is masked from 'package:MASS':
-## 
-##     select
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
 ```
 
 Prepare a color palette and a shared theme so the plot is easier to read.

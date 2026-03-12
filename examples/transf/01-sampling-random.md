@@ -59,7 +59,7 @@ print(table(tt$train$Species))
 ```
 ## 
 ##     setosa versicolor  virginica 
-##         39         39         42
+##         33         42         45
 ```
 
 ``` r
@@ -70,7 +70,7 @@ print(table(tt$test$Species))
 ```
 ## 
 ##     setosa versicolor  virginica 
-##         11         11          8
+##         17          8          5
 ```
 
 What to observe
@@ -96,10 +96,10 @@ print(tbl)
 
 ```
 ##      setosa versicolor virginica
-## [1,]     11         12        14
-## [2,]     13          7        17
-## [3,]     14         16         8
-## [4,]     12         15        11
+## [1,]     14         17         6
+## [2,]     14          7        16
+## [3,]     10         15        13
+## [4,]     12         11        15
 ```
 
 Common mistakes

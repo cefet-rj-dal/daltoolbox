@@ -96,7 +96,7 @@ test_eval$metrics
 
 ```
 ##    accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1 0.9666667 11 19  0  0         1      1           1           1  1
+## 1 0.9333333 11 19  0  0         1      1           1           1  1
 ```
 
 Common mistakes
