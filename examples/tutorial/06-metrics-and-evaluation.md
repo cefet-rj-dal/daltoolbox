@@ -61,8 +61,8 @@ table(predicted = test_eval$prediction, observed = sr$test$Species)
 ##             observed
 ## predicted    setosa versicolor virginica
 ##   setosa         11          0         0
-##   versicolor      0         13         0
-##   virginica       0          1         5
+##   versicolor      0         12         1
+##   virginica       0          0         6
 ```
 
 For beginners, one interpretation rule helps a lot: if training results are much better than test results, the model may be too adapted to the training data.
