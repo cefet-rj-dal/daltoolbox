@@ -59,39 +59,20 @@ small_complete
 Now inspect a basic outlier strategy on a numeric attribute. The point is to show that the analyst can explicitly choose how to detect suspicious observations before modeling.
 
 ``` r
-out <- outliers_boxplot(features = c("Sepal.Length"))
-```
-
-```
-## Error in `outliers_boxplot()`:
-## ! unused argument (features = c("Sepal.Length"))
-```
-
-``` r
+out <- outliers_boxplot()
 out <- fit(out, iris)
-```
-
-```
-## Error:
-## ! object 'out' not found
-```
-
-``` r
 outliers_found <- transform(out, iris)
-```
-
-```
-## Error:
-## ! object 'out' not found
-```
-
-``` r
 head(outliers_found)
 ```
 
 ```
-## Error:
-## ! object 'outliers_found' not found
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
 Categorical attributes may also need transformation before some learners can use them effectively. The next block shows one-hot style mapping on a toy categorical column.
@@ -102,39 +83,17 @@ cat_data <- data.frame(
   value = c(10, 20, 15, 12)
 )
 
-mapper <- categ_mapping(features = "color")
-```
-
-```
-## Error in `categ_mapping()`:
-## ! unused argument (features = "color")
-```
-
-``` r
-mapper <- fit(mapper, cat_data)
-```
-
-```
-## Error:
-## ! object 'mapper' not found
-```
-
-``` r
+mapper <- categ_mapping("color")
 cat_encoded <- transform(mapper, cat_data)
-```
-
-```
-## Error:
-## ! object 'mapper' not found
-```
-
-``` r
 cat_encoded
 ```
 
 ```
-## Error:
-## ! object 'cat_encoded' not found
+##   colorblue colorgreen colorred
+## 1         0          0        1
+## 2         1          0        0
+## 3         0          1        0
+## 4         0          0        1
 ```
 
 From a teaching perspective, this tutorial matters because many beginners jump directly to modeling. In practice, data quality decisions often shape the experiment before the learner ever sees the data.

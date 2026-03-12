@@ -26,7 +26,7 @@ small_complete
 
 Now inspect a basic outlier strategy on a numeric attribute. The point is to show that the analyst can explicitly choose how to detect suspicious observations before modeling.
 ```{r}
-out <- outliers_boxplot(features = c("Sepal.Length"))
+out <- outliers_boxplot()
 out <- fit(out, iris)
 outliers_found <- transform(out, iris)
 head(outliers_found)
@@ -39,8 +39,7 @@ cat_data <- data.frame(
   value = c(10, 20, 15, 12)
 )
 
-mapper <- categ_mapping(features = "color")
-mapper <- fit(mapper, cat_data)
+mapper <- categ_mapping("color")
 cat_encoded <- transform(mapper, cat_data)
 cat_encoded
 ```
