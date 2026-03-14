@@ -4,38 +4,48 @@ This section now organizes transformations by analytical purpose. That change ma
 
 The question to keep in mind while reading is always the same: what is changing in the dataset, and why would that change improve the next stage of the workflow?
 
-## Sampling and Balance
+## Sampling
 
-These examples are useful when the first challenge is creating representative partitions or correcting class imbalance.
+These examples are useful when the first challenge is creating representative partitions before any other transformation.
 
 - [01-sampling-random.md](/examples/transf/01-sampling-random.md) - `sample_random`: splits train/test sets and creates folds via random draws, preserving only expected proportions on average.
 - [02-sampling-stratified.md](/examples/transf/02-sampling-stratified.md) - `sample_stratified`: splits train/test and folds preserving the target variable proportion (stratification) per category.
-- [03-balancing-oversampling.md](/examples/transf/03-balancing-oversampling.md) - `bal_oversampling`: class oversampling with random replication or local SMOTE.
-- [04-balancing-subsampling.md](/examples/transf/04-balancing-subsampling.md) - `bal_subsampling`: random class undersampling to the minority count.
 
 ## Cleaning and Data Quality
 
 These examples address missing values and unusual observations before the modeling stage begins.
 
-- [05-cleaning-na-removal.md](/examples/transf/05-cleaning-na-removal.md) - NA removal: use `na.omit` to drop instances with missing values. Useful for initial cleanup when imputation is not desired.
-- [06-cleaning-outliers-boxplot.md](/examples/transf/06-cleaning-outliers-boxplot.md) - `outliers_boxplot`: identifies outliers by the boxplot rule (Q1 - 1.5*IQR, Q3 + 1.5*IQR) and can remove them from numeric attributes.
-- [07-cleaning-outliers-gaussian.md](/examples/transf/07-cleaning-outliers-gaussian.md) - `outliers_gaussian`: flags as outliers values beyond mean +/- 3 standard deviations, assuming approximately normal distribution.
+- [03-cleaning-na-removal.md](/examples/transf/03-cleaning-na-removal.md) - NA removal: use `na.omit` to drop instances with missing values. Useful for initial cleanup when imputation is not desired.
+- [04-cleaning-outliers-boxplot.md](/examples/transf/04-cleaning-outliers-boxplot.md) - `outliers_boxplot`: identifies outliers by the boxplot rule (Q1 - 1.5*IQR, Q3 + 1.5*IQR) and can remove them from numeric attributes.
+- [05-cleaning-outliers-gaussian.md](/examples/transf/05-cleaning-outliers-gaussian.md) - `outliers_gaussian`: flags as outliers values beyond mean +/- 3 standard deviations, assuming approximately normal distribution.
 
-## Scaling and Encoding
+## Scaling
 
-These examples make attributes more suitable for downstream learners by changing scale or representation.
+These examples make numeric attributes more suitable for downstream learners by changing their scale.
 
-- [08-scaling-minmax.md](/examples/transf/08-scaling-minmax.md) - `minmax`: linearly rescales numeric attributes to a target range (default [0, 1]). Useful for scale-sensitive algorithms and models that expect bounded inputs.
-- [09-scaling-zscore.md](/examples/transf/09-scaling-zscore.md) - `zscore`: standardizes numeric attributes to zero mean and unit variance. You can also rescale to a target mean (`nmean`) and standard deviation (`nsd`).
-- [10-encoding-categorical-mapping.md](/examples/transf/10-encoding-categorical-mapping.md) - `categ_mapping`: converts a categorical column into binary variables (one-hot). Can use n columns or n-1 columns.
+- [06-scaling-minmax.md](/examples/transf/06-scaling-minmax.md) - `minmax`: linearly rescales numeric attributes to a target range (default [0, 1]). Useful for scale-sensitive algorithms and models that expect bounded inputs.
+- [07-scaling-zscore.md](/examples/transf/07-scaling-zscore.md) - `zscore`: standardizes numeric attributes to zero mean and unit variance. You can also rescale to a target mean (`nmean`) and standard deviation (`nsd`).
+
+## Encoding
+
+These examples change the representation of attributes so downstream learners can consume categorical inputs safely.
+
+- [08-encoding-categorical-mapping.md](/examples/transf/08-encoding-categorical-mapping.md) - `categ_mapping`: converts a categorical column into binary variables (one-hot). Can use n columns or n-1 columns.
 
 ## Smoothing and Discretization
 
 These examples summarize continuous values into intervals, frequencies, or cluster-defined bins.
 
-- [11-smoothing-interval.md](/examples/transf/11-smoothing-interval.md) - `smoothing_inter`: discretization/smoothing by regular intervals (equal widths). Useful to summarize continuous variables into ranges.
-- [12-smoothing-frequency.md](/examples/transf/12-smoothing-frequency.md) - `smoothing_freq`: discretization/smoothing by frequency (quantiles), producing bins with similar counts.
-- [13-smoothing-clustering.md](/examples/transf/13-smoothing-clustering.md) - `smoothing_cluster`: discretization/smoothing by defining bins via clustering instead of fixed intervals.
+- [09-smoothing-interval.md](/examples/transf/09-smoothing-interval.md) - `smoothing_inter`: discretization/smoothing by regular intervals (equal widths). Useful to summarize continuous variables into ranges.
+- [10-smoothing-frequency.md](/examples/transf/10-smoothing-frequency.md) - `smoothing_freq`: discretization/smoothing by frequency (quantiles), producing bins with similar counts.
+- [11-smoothing-clustering.md](/examples/transf/11-smoothing-clustering.md) - `smoothing_cluster`: discretization/smoothing by defining bins via clustering instead of fixed intervals.
+
+## Balancing
+
+These examples correct class imbalance after the earlier variable transformations are already defined.
+
+- [12-balancing-oversampling.md](/examples/transf/12-balancing-oversampling.md) - `bal_oversampling`: class oversampling with random replication or local SMOTE.
+- [13-balancing-subsampling.md](/examples/transf/13-balancing-subsampling.md) - `bal_subsampling`: random class undersampling to the minority count.
 
 ## Feature Selection
 
