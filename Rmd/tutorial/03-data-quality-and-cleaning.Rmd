@@ -24,6 +24,14 @@ small_complete <- na.omit(small)
 small_complete
 ```
 
+When row removal is too aggressive, a basic imputation strategy is often a better baseline. In `daltoolbox`, numeric columns can be imputed with a robust summary such as the median, while categorical columns use the most frequent observed value.
+```{r}
+imp <- imputation_basic()
+imp <- fit(imp, small)
+small_imputed <- transform(imp, small)
+small_imputed
+```
+
 Now inspect a basic outlier strategy on a numeric attribute. The point is to show that the analyst can explicitly choose how to detect suspicious observations before modeling.
 ```{r}
 out <- outliers_boxplot()
