@@ -26,7 +26,7 @@ small_complete
 
 When row removal is too aggressive, a basic imputation strategy is often a better baseline. In `daltoolbox`, numeric columns can be imputed with a robust summary such as the median, while categorical columns use the most frequent observed value.
 ```{r}
-imp <- imputation_basic()
+imp <- imputation_simple()
 imp <- fit(imp, small)
 small_imputed <- transform(imp, small)
 small_imputed

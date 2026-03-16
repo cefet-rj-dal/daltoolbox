@@ -7,23 +7,38 @@
 imputation_simple(method = c("median", "mean"), cols = NULL)
 }
 \arguments{
-\item{method}{imputation method: "median" or "mean"}
+\item{method}{imputation method for numeric columns: "median" or "mean"}
 
-\item{cols}{optional vector of column names to impute (default: all numeric columns)}
+\item{cols}{optional vector of column names to impute (default: all supported columns)}
 }
 \value{
 returns an object of class \code{imputation_simple}
 }
 \description{
-Impute missing values in numeric columns using the mean or median.
+Impute missing values in mixed datasets using simple statistics.
+}
+\details{
+Numeric columns are imputed with the mean or median. Factor, character,
+logical, and ordered columns are imputed with the mode (most frequent observed value).
+This class is intended as a low-complexity baseline for preprocessing workflows.
+The default recommendation of median for numeric variables follows standard data
+preprocessing guidance because it is less sensitive to outliers than the mean,
+while mode imputation is the usual baseline for categorical attributes.
+}
+\references{
+Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques.
+
+Little, R. J. A., Rubin, D. B. (2019). Statistical Analysis with Missing Data.
 }
 \examples{
 data(iris)
 iris_na <- iris
 iris_na$Sepal.Length[c(2, 10, 25)] <- NA
+iris_na$Species[c(3, 15)] <- NA
 
 imp <- imputation_simple(method = "median")
 imp <- fit(imp, iris_na)
 iris_imp <- transform(imp, iris_na)
 summary(iris_imp$Sepal.Length)
+table(iris_imp$Species, useNA = "ifany")
 }
