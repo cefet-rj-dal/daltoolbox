@@ -5,6 +5,7 @@ The primary goal of this example is to show how to create a custom transformatio
 This highlights an important point of the framework. The data-mining method may be sophisticated, but the integration contract remains small and uniform. In this concrete example, the custom transformation uses `smotefamily::SMOTE` to perform synthetic oversampling outside the `daltoolbox` namespace.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation
 # install.packages(c("daltoolbox", "smotefamily"))
 

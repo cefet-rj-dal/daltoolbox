@@ -4,6 +4,7 @@ About the method
 
 Environment setup: install and load the package.
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Classification using Support Vector Machine
 
 # installation 
@@ -32,7 +33,7 @@ Building train and test samples via random sampling
 Random train/test split.
 ```{r}
 # Building train and test samples via random sampling
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, iris)
 iris_train <- sr$train
@@ -54,6 +55,7 @@ Train SVM: tune `cost`, `epsilon`, and optionally `kernel`.
 ```{r}
 # Model training
 model <- cla_svm("Species", slevels, epsilon=0.0, cost=20.000) # default kernel; adjust as needed
+set_example_seed()
 model <- fit(model, iris_train)
 
 ```

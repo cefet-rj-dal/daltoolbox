@@ -4,6 +4,7 @@ About the method
 
 Environment setup: install and load the package.
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Classification using KNN
 
 # installation 
@@ -32,7 +33,7 @@ Building train and test samples via random sampling
 Train/test split with reproducible random sampling.
 ```{r}
 # Building train and test samples via random sampling
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, iris)
 iris_train <- sr$train
@@ -54,6 +55,7 @@ Train the kNN model: set target, levels, and k.
 ```{r}
 # Model training
 model <- cla_knn("Species", slevels, k=1) # k=1 for nearest neighbor
+set_example_seed()
 model <- fit(model, iris_train)
 
 ```

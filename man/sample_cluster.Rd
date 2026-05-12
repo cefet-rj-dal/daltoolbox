@@ -4,14 +4,12 @@
 \alias{sample_cluster}
 \title{Cluster sampling}
 \usage{
-sample_cluster(attribute, n_clusters, seed = NULL)
+sample_cluster(attribute, n_clusters)
 }
 \arguments{
 \item{attribute}{cluster attribute name}
 
 \item{n_clusters}{number of clusters to sample}
-
-\item{seed}{optional random seed for reproducibility}
 }
 \value{
 returns an object of class \code{sample_cluster}
@@ -21,7 +19,7 @@ Sample entire clusters defined by a categorical attribute.
 }
 \examples{
 data(iris)
-sc <- sample_cluster("Species", n_clusters = 2, seed = 123)
+sc <- sample_cluster("Species", n_clusters = 2)
 iris_sc <- transform(sc, iris)
 table(iris_sc$Species)
 }

@@ -5,6 +5,7 @@ After the initial cleaning stage, the next question is how to make the attribute
 This tutorial introduces both ideas in a compact way: normalization changes the scale, while correlation-based selection simplifies the feature set.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -19,6 +20,7 @@ summary(iris)
 Apply min-max normalization so that all numeric attributes are placed on a comparable scale. This is especially important for methods that are sensitive to distances or magnitudes.
 ```{r}
 norm <- minmax()
+set_example_seed()
 norm <- fit(norm, iris)
 iris_norm <- transform(norm, iris)
 
@@ -28,6 +30,7 @@ summary(iris_norm)
 Once the variables are normalized, check whether some attributes are strongly redundant. Correlation-based feature selection can help simplify the dataset without manually inspecting each pair of variables.
 ```{r}
 fs <- feature_selection_corr(cutoff = 0.9)
+set_example_seed()
 fs <- fit(fs, iris_norm)
 ```
 

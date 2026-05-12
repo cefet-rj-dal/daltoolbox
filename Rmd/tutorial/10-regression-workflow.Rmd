@@ -5,6 +5,7 @@ The Experiment Line idea is not limited to classification. In regression, the ta
 This tutorial helps the learner see that the framework is stable even when the analytical task changes.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -21,7 +22,7 @@ Boston <- as.matrix(Boston)
 
 Create train and test partitions.
 ```{r}
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, Boston)
 
@@ -32,6 +33,7 @@ boston_test <- sr$test
 Fit a regression tree and inspect both training and test errors.
 ```{r}
 model <- reg_dtree("medv")
+set_example_seed()
 model <- fit(model, boston_train)
 
 train_prediction <- predict(model, boston_train)

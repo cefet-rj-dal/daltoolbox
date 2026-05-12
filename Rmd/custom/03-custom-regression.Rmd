@@ -5,6 +5,7 @@ The primary goal of this example is to show how to build a custom regressor that
 This makes the separation of concerns explicit. The regression algorithm can be complex, but the integration contract is intentionally small. In this concrete example, the custom regressor uses `RSNNS::mlp` with linear output.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation
 # install.packages(c("daltoolbox", "RSNNS", "MASS"))
 
@@ -55,7 +56,7 @@ predict.reg_rsnns_custom <- function(object, x, ...) {
 library(MASS)
 data(Boston)
 
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, Boston)
 boston_train <- sr$train
@@ -64,6 +65,7 @@ boston_test <- sr$test
 
 ```{r}
 model <- reg_rsnns_custom("medv", size = 6, learn_rate = 0.05, maxit = 200)
+set_example_seed()
 model <- fit(model, boston_train)
 
 train_prediction <- predict(model, boston_train)

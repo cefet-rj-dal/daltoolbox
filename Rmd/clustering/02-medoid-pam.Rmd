@@ -2,6 +2,7 @@ About the method
 - `cluster_pam`: Partitioning Around Medoids. Similar to k-means but uses medoids (real points) instead of centroids, making it more robust to outliers.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Clustering - pam
 
 # installation 
@@ -28,6 +29,7 @@ model <- cluster_pam(k=3)
 Fit and generate cluster labels.
 ```{r}
 # model fitting and labeling
+set_example_seed()
 model <- fit(model, iris[,1:4])
 clu <- cluster(model, iris[,1:4])
 table(clu)

@@ -2,6 +2,7 @@ About the chart
 - Bars with error bars: add uncertainty/variability (e.g., standard deviation) to bars using `geom_errorbar()`.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation 
 #install.packages("daltoolbox")
 

@@ -2,6 +2,7 @@ About the method
 - `cluster_dbscan`: density-based method. Identifies dense regions separated by sparse areas; detects noise and arbitrarily shaped clusters.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Clustering - dbscan
 
 # installation 
@@ -28,6 +29,7 @@ model <- cluster_dbscan(minPts = 3)
 Fit and obtain cluster labels.
 ```{r}
 # model fitting and labeling
+set_example_seed()
 model <- fit(model, iris[,1:4])
 clu <- cluster(model, iris[,1:4])
 table(clu)

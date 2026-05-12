@@ -5,6 +5,7 @@ Once the baseline and the evaluation logic are clear, the next step is to compar
 This is where `daltoolbox` becomes useful as an experimental framework rather than just a collection of isolated functions.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -15,7 +16,7 @@ Prepare one shared train/test split. This keeps the comparison controlled.
 iris <- datasets::iris
 slevels <- levels(iris$Species)
 
-set.seed(1)
+set_example_seed()
 sr <- train_test(sample_stratified("Species"), iris)
 iris_train <- sr$train
 iris_test <- sr$test
@@ -34,6 +35,7 @@ models <- list(
 Fit and evaluate each learner using the same protocol.
 ```{r}
 results <- lapply(models, function(model) {
+set_example_seed()
   fitted <- fit(model, iris_train)
   pred <- predict(fitted, iris_test)
   evaluate(fitted, adjust_class_label(iris_test$Species), pred)$metrics

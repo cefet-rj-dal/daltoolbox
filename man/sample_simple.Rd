@@ -4,7 +4,7 @@
 \alias{sample_simple}
 \title{Simple sampling}
 \usage{
-sample_simple(size, replace = FALSE, prob = NULL, seed = NULL)
+sample_simple(size, replace = FALSE, prob = NULL)
 }
 \arguments{
 \item{size}{number of samples to draw}
@@ -12,8 +12,6 @@ sample_simple(size, replace = FALSE, prob = NULL, seed = NULL)
 \item{replace}{logical; sample with replacement if TRUE}
 
 \item{prob}{optional vector of sampling probabilities}
-
-\item{seed}{optional random seed for reproducibility}
 }
 \value{
 returns an object of class \code{sample_simple}
@@ -23,8 +21,8 @@ Sample rows or elements with or without replacement.
 }
 \examples{
 data(iris)
-srswor <- sample_simple(size = 10, replace = FALSE, seed = 123)
-srswr <- sample_simple(size = 10, replace = TRUE, seed = 123)
+srswor <- sample_simple(size = 10, replace = FALSE)
+srswr <- sample_simple(size = 10, replace = TRUE)
 sample_wor <- transform(srswor, iris$Sepal.Length)
 sample_wr <- transform(srswr, iris$Sepal.Length)
 sample_wor

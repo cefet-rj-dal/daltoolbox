@@ -7,6 +7,7 @@ Didactic goal: use the tree as a way to learn the whole supervised workflow, not
 
 Environment setup.
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Classification using Decision Tree
 
 # installation 
@@ -33,7 +34,7 @@ Building train and test samples via random sampling
 Random train/test split.
 ```{r}
 # Building train and test samples via random sampling
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, iris)
 iris_train <- sr$train
@@ -55,6 +56,7 @@ Train the decision tree.
 ```{r}
 # Model training
 model <- cla_dtree("Species", slevels)
+set_example_seed()
 model <- fit(model, iris_train)
 
 ```

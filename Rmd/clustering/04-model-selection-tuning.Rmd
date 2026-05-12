@@ -2,6 +2,7 @@ About the utility
 - `clu_tune`: selects hyperparameters for a clustering method. In this example, it chooses `k` for `cluster_kmeans` over a range.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Clustering - Tune Kmeans
 
 # installation 
@@ -22,6 +23,7 @@ Fit the model with a search over k=1..10 and extract the best k.
 ```{r}
 # model training with hyperparameter search
 model <- clu_tune(cluster_kmeans(k = 0),  ranges = list(k = 1:10))
+set_example_seed()
 model <- fit(model, iris[,1:4])
 model$k
 ```

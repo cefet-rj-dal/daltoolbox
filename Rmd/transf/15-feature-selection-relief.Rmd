@@ -3,6 +3,7 @@
 Relief estimates feature relevance by comparing each observation with its nearest hit and nearest miss. The method is useful for ranking predictors in classification problems.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation
 # install.packages("daltoolbox")
 
@@ -15,7 +16,8 @@ iris$Species <- factor(iris$Species)
 ```
 
 ```{r}
-fs <- feature_selection_relief("Species", top = 2, m = 50, seed = 1)
+fs <- feature_selection_relief("Species", top = 2, m = 50)
+set_example_seed()
 fs <- fit(fs, iris)
 
 print(fs$selected)

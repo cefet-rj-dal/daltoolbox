@@ -5,6 +5,7 @@ In real projects, modeling rarely starts on a perfectly clean table. Missing val
 The purpose is not to exhaust every cleaning strategy, but to show that `daltoolbox` treats these steps as explicit workflow operations rather than ad hoc edits.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -27,6 +28,7 @@ small_complete
 When row removal is too aggressive, a basic imputation strategy is often a better baseline. In `daltoolbox`, numeric columns can be imputed with a robust summary such as the median, while categorical columns use the most frequent observed value.
 ```{r}
 imp <- imputation_simple()
+set_example_seed()
 imp <- fit(imp, small)
 small_imputed <- transform(imp, small)
 small_imputed
@@ -35,6 +37,7 @@ small_imputed
 Now inspect a basic outlier strategy on a numeric attribute. The point is to show that the analyst can explicitly choose how to detect suspicious observations before modeling.
 ```{r}
 out <- outliers_boxplot()
+set_example_seed()
 out <- fit(out, iris)
 outliers_found <- transform(out, iris)
 head(outliers_found)

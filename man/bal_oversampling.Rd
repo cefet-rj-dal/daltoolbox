@@ -4,7 +4,7 @@
 \alias{bal_oversampling}
 \title{Random or SMOTE-based class oversampling}
 \usage{
-bal_oversampling(attribute, method = c("smote", "random"), k = 5, seed = NULL)
+bal_oversampling(attribute, method = c("smote", "random"), k = 5)
 }
 \arguments{
 \item{attribute}{target class attribute name}
@@ -12,8 +12,6 @@ bal_oversampling(attribute, method = c("smote", "random"), k = 5, seed = NULL)
 \item{method}{oversampling strategy: \code{"smote"} or \code{"random"}}
 
 \item{k}{number of nearest neighbors used by the SMOTE strategy}
-
-\item{seed}{optional random seed for reproducibility}
 }
 \value{
 returns an object of class \code{bal_oversampling}
@@ -24,7 +22,7 @@ Balance class distributions by randomly replicating minority examples or by gene
 \examples{
 data(iris)
 iris_imb <- iris[c(1:50, 51:71, 101:111), ]
-bal <- bal_oversampling("Species", method = "smote", seed = 123)
+bal <- bal_oversampling("Species", method = "smote")
 iris_bal <- transform(bal, iris_imb)
 table(iris_bal$Species)
 }

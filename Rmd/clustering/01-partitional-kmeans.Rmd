@@ -4,6 +4,7 @@ About the method
 This is one of the best examples for learning unsupervised analysis because the method is simple but the interpretation depends heavily on preprocessing choices.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Clustering - Kmeans
 
 # installation 
@@ -30,6 +31,7 @@ model <- cluster_kmeans(k=3)
 Fit the model and obtain cluster labels.
 ```{r}
 # model fitting and labeling
+set_example_seed()
 model <- fit(model, iris[,1:4])
 clu <- cluster(model, iris[,1:4])
 table(clu)
@@ -52,6 +54,7 @@ Effect of normalization: compare results after min-max.
 # Influence of normalization in clustering
 
 iris_minmax <- transform(fit(minmax(), iris), iris)
+set_example_seed()
 model <- fit(model, iris_minmax[,1:4])
 clu <- cluster(model, iris_minmax[,1:4])
 table(clu)

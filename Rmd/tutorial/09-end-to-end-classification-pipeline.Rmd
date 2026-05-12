@@ -5,6 +5,7 @@ So far, the tutorials have introduced the pieces separately. This tutorial puts 
 This is closer to the way `daltoolbox` is used in a real study.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -15,7 +16,7 @@ Load the data and create a stratified split. The split comes first because prepr
 iris <- datasets::iris
 slevels <- levels(iris$Species)
 
-set.seed(1)
+set_example_seed()
 sr <- train_test(sample_stratified("Species"), iris)
 iris_train <- sr$train
 iris_test <- sr$test
@@ -24,6 +25,7 @@ iris_test <- sr$test
 Fit the normalization object using only the training data, then apply the same transformation to both training and test sets. This is an important experimental detail because it avoids leaking information from the test data into the training process.
 ```{r}
 norm <- minmax()
+set_example_seed()
 norm <- fit(norm, iris_train)
 
 iris_train_norm <- transform(norm, iris_train)
@@ -33,6 +35,7 @@ iris_test_norm <- transform(norm, iris_test)
 With the transformed data ready, fit a classifier and evaluate it.
 ```{r}
 model <- cla_knn("Species", slevels, k = 5)
+set_example_seed()
 model <- fit(model, iris_train_norm)
 
 train_prediction <- predict(model, iris_train_norm)

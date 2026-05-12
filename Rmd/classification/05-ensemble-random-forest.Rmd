@@ -6,6 +6,7 @@ Didactic goal: read this example as a complete supervised-learning cycle. Pay at
 
 Environment setup.
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Classification using  Random Forest
 
 # installation 
@@ -32,7 +33,7 @@ Building train and test samples via random sampling
 Random train/test split.
 ```{r}
 # Building train and test samples via random sampling
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, iris)
 iris_train <- sr$train
@@ -54,6 +55,7 @@ Train Random Forest: tune `mtry` and `ntree`.
 ```{r}
 # Model training
 model <- cla_rf("Species", slevels, mtry=3, ntree=5) # mtry: variables per split; ntree: number of trees
+set_example_seed()
 model <- fit(model, iris_train)
 
 ```

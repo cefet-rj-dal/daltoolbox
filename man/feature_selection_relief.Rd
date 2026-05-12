@@ -9,8 +9,7 @@ feature_selection_relief(
   features = NULL,
   top = NULL,
   cutoff = NULL,
-  m = 50,
-  seed = 1
+  m = 50
 )
 }
 \arguments{
@@ -23,8 +22,6 @@ feature_selection_relief(
 \item{cutoff}{optional minimum RELIEF weight to keep a feature}
 
 \item{m}{number of sampled instances for RELIEF updates}
-
-\item{seed}{random seed for sampling}
 }
 \value{
 returns an object of class \code{feature_selection_relief}

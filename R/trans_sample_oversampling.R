@@ -3,24 +3,22 @@
 #'@param attribute target class attribute name
 #'@param method oversampling strategy: `"smote"` or `"random"`
 #'@param k number of nearest neighbors used by the SMOTE strategy
-#'@param seed optional random seed for reproducibility
 #'@return returns an object of class `bal_oversampling`
 #'@references
 #' Chawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: Synthetic Minority Over-sampling Technique.
 #'@examples
 #'data(iris)
 #'iris_imb <- iris[c(1:50, 51:71, 101:111), ]
-#'bal <- bal_oversampling("Species", method = "smote", seed = 123)
+#'bal <- bal_oversampling("Species", method = "smote")
 #'iris_bal <- transform(bal, iris_imb)
 #'table(iris_bal$Species)
 #'@importFrom utils head
 #'@export
-bal_oversampling <- function(attribute, method = c("smote", "random"), k = 5, seed = NULL) {
+bal_oversampling <- function(attribute, method = c("smote", "random"), k = 5) {
   obj <- dal_transform()
   obj$attribute <- attribute
   obj$method <- match.arg(method)
   obj$k <- as.integer(k)
-  obj$seed <- seed
   class(obj) <- append("bal_oversampling", class(obj))
   return(obj)
 }
@@ -101,9 +99,6 @@ transform.bal_oversampling <- function(obj, data, ...) {
   attribute <- obj$attribute
   if (is.null(attribute) || !attribute %in% names(data)) {
     stop("bal_oversampling: attribute not found in data.")
-  }
-  if (!is.null(obj$seed)) {
-    set.seed(obj$seed)
   }
 
   counts <- table(data[[attribute]])

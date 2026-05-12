@@ -5,6 +5,7 @@ The primary goal of this example is to show how a clustering method can be custo
 This is the practical value of the framework: even when the algorithm comes from outside the package, the workflow remains stable and easy to read. In this concrete example, the custom clusterer uses `cluster::agnes`, an agglomerative hierarchical clustering method.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation
 # install.packages("daltoolbox")
 
@@ -59,6 +60,7 @@ cluster.cluster_agnes_custom <- function(obj, data, ...) {
 ```{r}
 iris <- datasets::iris
 model <- cluster_agnes_custom(k = 3, method = "ward")
+set_example_seed()
 model <- fit(model, iris[, 1:4])
 clu <- cluster(model, iris[, 1:4])
 table(clu)

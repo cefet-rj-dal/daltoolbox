@@ -6,6 +6,7 @@ Didactic goal: read this example as a numeric-prediction workflow. The main lear
 
 Environment setup.
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Regression SVM
 
 # installation 
@@ -35,7 +36,7 @@ Random and reproducible train/test split.
 ```{r}
 # preparing dataset for random sampling
 
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, Boston)
 boston_train <- sr$train
@@ -47,6 +48,7 @@ Train SVR: set `epsilon` and `cost` (default kernel if not defined).
 # Training
 
 model <- reg_svm("medv", epsilon=0.2,cost=40.000)
+set_example_seed()
 model <- fit(model, boston_train)
 ```
 

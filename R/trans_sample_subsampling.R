@@ -1,19 +1,17 @@
 #'@title Random class undersampling
 #'@description Balance class distributions by randomly reducing all classes to the minority count.
 #'@param attribute target class attribute name
-#'@param seed optional random seed for reproducibility
 #'@return returns an object of class `bal_subsampling`
 #'@examples
 #'data(iris)
 #'iris_imb <- iris[c(1:50, 51:71, 101:111), ]
-#'bal <- bal_subsampling("Species", seed = 123)
+#'bal <- bal_subsampling("Species")
 #'iris_bal <- transform(bal, iris_imb)
 #'table(iris_bal$Species)
 #'@export
-bal_subsampling <- function(attribute, seed = NULL) {
+bal_subsampling <- function(attribute) {
   obj <- dal_transform()
   obj$attribute <- attribute
-  obj$seed <- seed
   class(obj) <- append("bal_subsampling", class(obj))
   return(obj)
 }
@@ -24,9 +22,6 @@ transform.bal_subsampling <- function(obj, data, ...) {
   attribute <- obj$attribute
   if (is.null(attribute) || !attribute %in% names(data)) {
     stop("bal_subsampling: attribute not found in data.")
-  }
-  if (!is.null(obj$seed)) {
-    set.seed(obj$seed)
   }
 
   counts <- sort(table(data[[attribute]]))

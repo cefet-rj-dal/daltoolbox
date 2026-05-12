@@ -6,7 +6,6 @@
 #'@param top optional number of top features to keep
 #'@param cutoff optional minimum RELIEF weight to keep a feature
 #'@param m number of sampled instances for RELIEF updates
-#'@param seed random seed for sampling
 #'@return returns an object of class `feature_selection_relief`
 #'@examples
 #'data(iris)
@@ -21,14 +20,13 @@
 #'transform(fs, iris_bin) |> names()
 #'@importFrom utils head
 #'@export
-feature_selection_relief <- function(attribute, features = NULL, top = NULL, cutoff = NULL, m = 50, seed = 1) {
+feature_selection_relief <- function(attribute, features = NULL, top = NULL, cutoff = NULL, m = 50) {
   obj <- dal_transform()
   obj$attribute <- attribute
   obj$features <- features
   obj$top <- top
   obj$cutoff <- cutoff
   obj$m <- m
-  obj$seed <- seed
   class(obj) <- append("feature_selection_relief", class(obj))
   return(obj)
 }
@@ -74,7 +72,6 @@ fit.feature_selection_relief <- function(obj, data, ...) {
 
   n <- nrow(X)
   m <- min(obj$m, n)
-  set.seed(obj$seed)
   idxs <- sample(seq_len(n), size = m)
   w <- rep(0, ncol(X))
 

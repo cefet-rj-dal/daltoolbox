@@ -5,6 +5,7 @@ Running `evaluate()` is easy; interpreting the result is where learning starts. 
 The goal is to help the reader connect the numbers to a model's behavior instead of treating metrics as output to copy and paste.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -15,11 +16,12 @@ Train a decision tree on a standard split so we can focus on the evaluation stag
 iris <- datasets::iris
 slevels <- levels(iris$Species)
 
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, iris)
 
 model <- cla_dtree("Species", slevels)
+set_example_seed()
 model <- fit(model, sr$train)
 ```
 

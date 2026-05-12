@@ -4,14 +4,12 @@
 \alias{sample_balance}
 \title{Class balancing (up/down sampling)}
 \usage{
-sample_balance(attribute, method = c("down", "up"), seed = NULL)
+sample_balance(attribute, method = c("down", "up"))
 }
 \arguments{
 \item{attribute}{target class attribute name}
 
 \item{method}{balancing method: "down" or "up"}
-
-\item{seed}{optional random seed for reproducibility}
 }
 \value{
 returns an object of class \code{sample_balance}
@@ -22,7 +20,7 @@ Balance class distribution using up-sampling or down-sampling.
 \examples{
 data(iris)
 iris_imb <- iris[iris$Species != "setosa", ]
-sb <- sample_balance("Species", method = "down", seed = 123)
+sb <- sample_balance("Species", method = "down")
 iris_bal <- transform(sb, iris_imb)
 table(iris_bal$Species)
 }

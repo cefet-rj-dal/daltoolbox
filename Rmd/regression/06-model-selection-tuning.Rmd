@@ -6,6 +6,7 @@ Didactic goal: read this example as a numeric-prediction workflow. The main lear
 
 Environment setup.
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Regression tuning 
 
 # installation 
@@ -34,7 +35,7 @@ Boston <- as.matrix(Boston)
 Train/test split for tuning validation.
 ```{r}
 # preparing dataset for random sampling
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, Boston)
 boston_train <- sr$train
@@ -47,6 +48,7 @@ Hyperparameter grid configuration and search training.
 
 tune <- reg_tune(reg_svm("medv"), 
           ranges = list(seq(0,1,0.2), cost=seq(20,100,20), kernel = c("radial")))
+set_example_seed()
 model <- fit(tune, boston_train)
 ```
 

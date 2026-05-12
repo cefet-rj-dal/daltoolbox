@@ -3,6 +3,7 @@ About the method
 - Hyperparameters: `mtry` (variables per split), `ntree` (number of trees).
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation 
 #install.packages("daltoolbox")
 
@@ -31,7 +32,7 @@ Random and reproducible train/test split.
 
 ```{r}
 # preparing random sampling
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, Boston)
 boston_train <- sr$train
@@ -43,6 +44,7 @@ Train Random Forest to predict `medv`.
 
 ```{r}
 model <- reg_rf("medv", mtry=7, ntree=30) # mtry: variables per split; ntree: number of trees
+set_example_seed()
 model <- fit(model, boston_train)
 ```
 

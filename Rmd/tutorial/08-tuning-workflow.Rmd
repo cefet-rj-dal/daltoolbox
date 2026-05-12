@@ -5,6 +5,7 @@ After comparing default learners, it becomes natural to ask whether one of them 
 This tutorial shows tuning as a disciplined extension of the same workflow, not as a separate world.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -15,7 +16,7 @@ Prepare the classification problem.
 iris <- datasets::iris
 slevels <- levels(iris$Species)
 
-set.seed(1)
+set_example_seed()
 sr <- train_test(sample_random(), iris)
 iris_train <- sr$train
 iris_test <- sr$test
@@ -32,6 +33,7 @@ tune <- cla_tune(
   )
 )
 
+set_example_seed()
 model <- fit(tune, iris_train)
 ```
 

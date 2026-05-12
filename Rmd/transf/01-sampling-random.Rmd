@@ -7,6 +7,7 @@ Didactic goal: interpret sampling as an experimental design choice, not as a rou
 
 Environment setup.
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Sampling dataset
 
 # installation 

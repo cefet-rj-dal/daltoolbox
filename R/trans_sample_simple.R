@@ -3,32 +3,27 @@
 #'@param size number of samples to draw
 #'@param replace logical; sample with replacement if TRUE
 #'@param prob optional vector of sampling probabilities
-#'@param seed optional random seed for reproducibility
 #'@return returns an object of class `sample_simple`
 #'@examples
 #'data(iris)
-#'srswor <- sample_simple(size = 10, replace = FALSE, seed = 123)
-#'srswr <- sample_simple(size = 10, replace = TRUE, seed = 123)
+#'srswor <- sample_simple(size = 10, replace = FALSE)
+#'srswr <- sample_simple(size = 10, replace = TRUE)
 #'sample_wor <- transform(srswor, iris$Sepal.Length)
 #'sample_wr <- transform(srswr, iris$Sepal.Length)
 #'sample_wor
 #'sample_wr
 #'@export
-sample_simple <- function(size, replace = FALSE, prob = NULL, seed = NULL) {
+sample_simple <- function(size, replace = FALSE, prob = NULL) {
   obj <- dal_transform()
   obj$size <- size
   obj$replace <- replace
   obj$prob <- prob
-  obj$seed <- seed
   class(obj) <- append("sample_simple", class(obj))
   return(obj)
 }
 
 #'@exportS3Method transform sample_simple
 transform.sample_simple <- function(obj, data, ...) {
-  if (!is.null(obj$seed)) {
-    set.seed(obj$seed)
-  }
   size <- obj$size
   replace <- obj$replace
   prob <- obj$prob

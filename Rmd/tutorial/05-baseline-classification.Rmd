@@ -5,6 +5,7 @@ A baseline is one of the healthiest habits in experimental work. Before testing 
 This tutorial compares a naive baseline with a more expressive but still interpretable classifier.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -15,7 +16,7 @@ Prepare the problem once so both learners face exactly the same data.
 iris <- datasets::iris
 slevels <- levels(iris$Species)
 
-set.seed(1)
+set_example_seed()
 sr <- train_test(sample_stratified("Species"), iris)
 iris_train <- sr$train
 iris_test <- sr$test
@@ -24,6 +25,7 @@ iris_test <- sr$test
 Train the majority classifier. It always predicts the most frequent class seen during training, so it is intentionally weak but very informative as a minimum benchmark.
 ```{r}
 baseline <- cla_majority("Species", slevels)
+set_example_seed()
 baseline <- fit(baseline, iris_train)
 
 baseline_pred <- predict(baseline, iris_test)
@@ -34,6 +36,7 @@ baseline_eval$metrics
 Now train a decision tree on the same split. Because the experimental conditions are unchanged, any improvement is easier to interpret.
 ```{r}
 tree <- cla_dtree("Species", slevels)
+set_example_seed()
 tree <- fit(tree, iris_train)
 
 tree_pred <- predict(tree, iris_test)

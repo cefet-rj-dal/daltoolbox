@@ -5,6 +5,7 @@ One of the strongest ideas in `daltoolbox` is extensibility. A researcher may wa
 This tutorial revisits that idea with a compact custom classifier based on `RSNNS::mlp`. The important lesson is not the specific backend; it is the integration pattern.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages(c("daltoolbox", "RSNNS"))
 
 library(daltoolbox)
@@ -65,11 +66,12 @@ Finally, use the custom learner exactly as you would use a built-in learner. Thi
 iris <- datasets::iris
 slevels <- levels(iris$Species)
 
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, iris)
 
 model <- cla_rsnns_custom("Species", slevels, size = 5, learn_rate = 0.1, maxit = 150)
+set_example_seed()
 model <- fit(model, sr$train)
 
 prediction <- predict(model, sr$test)

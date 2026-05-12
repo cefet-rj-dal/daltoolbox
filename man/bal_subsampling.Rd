@@ -4,12 +4,10 @@
 \alias{bal_subsampling}
 \title{Random class undersampling}
 \usage{
-bal_subsampling(attribute, seed = NULL)
+bal_subsampling(attribute)
 }
 \arguments{
 \item{attribute}{target class attribute name}
-
-\item{seed}{optional random seed for reproducibility}
 }
 \value{
 returns an object of class \code{bal_subsampling}
@@ -20,7 +18,7 @@ Balance class distributions by randomly reducing all classes to the minority cou
 \examples{
 data(iris)
 iris_imb <- iris[c(1:50, 51:71, 101:111), ]
-bal <- bal_subsampling("Species", seed = 123)
+bal <- bal_subsampling("Species")
 iris_bal <- transform(bal, iris_imb)
 table(iris_bal$Species)
 }

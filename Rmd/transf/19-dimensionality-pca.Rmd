@@ -9,6 +9,7 @@ Didactic goal: focus on what changes in the dataset after each operation. In pre
 
 Environment setup.
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation 
 #install.packages("daltoolbox")
 
@@ -29,6 +30,7 @@ PCA finds a projection capturing the largest possible variance in the data. Belo
 ```{r}
 # creates and fits PCA using the target column as reference
 mypca <- dt_pca("Species")
+set_example_seed()
 mypca <- fit(mypca, datasets::iris)
 iris.pca <- transform(mypca, iris)
 ```
@@ -44,6 +46,7 @@ Manually set the number of components and repeat the transformation.
 ```{r}
 # Manual definition of the number of components
 mypca <- dt_pca("Species", 3)
+set_example_seed()
 mypca <- fit(mypca, datasets::iris)
 iris.pca <- transform(mypca, iris)
 print(head(iris.pca))

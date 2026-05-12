@@ -5,6 +5,7 @@ The first objective is simple: understand the basic rhythm of a `daltoolbox` exp
 This tutorial intentionally uses a small and familiar dataset so the reader can focus on the workflow rather than on the domain.
 
 ```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -21,7 +22,7 @@ slevels
 
 Now create a training set and a test set. The training data is used to fit the learner; the test data is used later to estimate how the model behaves on new cases.
 ```{r}
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, iris)
 
@@ -32,6 +33,7 @@ iris_test <- sr$test
 With the split ready, define a first learner. A decision tree is a good starting point because it is fast and easy to interpret.
 ```{r}
 model <- cla_dtree("Species", slevels)
+set_example_seed()
 model <- fit(model, iris_train)
 ```
 
