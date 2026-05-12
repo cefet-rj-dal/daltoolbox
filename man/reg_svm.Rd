@@ -4,7 +4,12 @@
 \alias{reg_svm}
 \title{SVM for regression}
 \usage{
-reg_svm(attribute, epsilon = 0.1, cost = 10, kernel = "radial")
+reg_svm(
+  attribute,
+  epsilon = 0.1,
+  cost = 10,
+  kernel = c("radial", "linear", "polynomial", "sigmoid")
+)
 }
 \arguments{
 \item{attribute}{attribute target to model building}

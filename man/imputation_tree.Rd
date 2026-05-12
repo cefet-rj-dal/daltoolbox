@@ -30,16 +30,6 @@ This design follows the general variable-by-variable iterative imputation strate
 the literature and adopts the ordering by missingness used in \code{missForest}, while keeping
 the implementation lightweight through single-tree models.
 }
-\references{
-Breiman, L., Friedman, J., Olshen, R., Stone, C. (1984).
-Classification and Regression Trees. Wadsworth.
-
-Stekhoven, D. J., Buhlmann, P. (2012). MissForest: non-parametric missing value
-imputation for mixed-type data. Bioinformatics, 28(1), 112-118.
-
-van Buuren, S., Groothuis-Oudshoorn, K. (2011). mice: Multivariate Imputation by
-Chained Equations in R. Journal of Statistical Software, 45(3), 1-67.
-}
 \examples{
 data(iris)
 iris_na <- iris
@@ -52,4 +42,14 @@ imp <- fit(imp, iris_na)
 iris_imp <- transform(imp, iris_na)
 summary(iris_imp$Sepal.Length)
 table(iris_imp$Species, useNA = "ifany")
+}
+\references{
+Breiman, L., Friedman, J., Olshen, R., Stone, C. (1984).
+Classification and Regression Trees. Wadsworth.
+
+Stekhoven, D. J., Buhlmann, P. (2012). MissForest: non-parametric missing value
+imputation for mixed-type data. Bioinformatics, 28(1), 112-118.
+
+van Buuren, S., Groothuis-Oudshoorn, K. (2011). mice: Multivariate Imputation by
+Chained Equations in R. Journal of Statistical Software, 45(3), 1-67.
 }

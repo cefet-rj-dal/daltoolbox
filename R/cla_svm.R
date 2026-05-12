@@ -30,9 +30,10 @@
 #'test_eval <- evaluate(model, predictand, prediction)
 #'test_eval$metrics
 #'@export
-cla_svm <- function(attribute, slevels, epsilon=0.1, cost=10, kernel="radial") {
+cla_svm <- function(attribute, slevels, epsilon=0.1, cost=10, kernel = c("radial", "linear", "polynomial", "sigmoid")) {
   #kernel: linear, radial, polynomial, sigmoid
   #studio: https://rpubs.com/Kushan/296706
+  kernel <- match.arg(kernel)
   obj <- classification(attribute, slevels)
   obj$kernel <- kernel
   obj$epsilon <- epsilon

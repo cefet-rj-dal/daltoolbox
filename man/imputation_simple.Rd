@@ -25,11 +25,6 @@ The default recommendation of median for numeric variables follows standard data
 preprocessing guidance because it is less sensitive to outliers than the mean,
 while mode imputation is the usual baseline for categorical attributes.
 }
-\references{
-Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques.
-
-Little, R. J. A., Rubin, D. B. (2019). Statistical Analysis with Missing Data.
-}
 \examples{
 data(iris)
 iris_na <- iris
@@ -41,4 +36,9 @@ imp <- fit(imp, iris_na)
 iris_imp <- transform(imp, iris_na)
 summary(iris_imp$Sepal.Length)
 table(iris_imp$Species, useNA = "ifany")
+}
+\references{
+Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques.
+
+Little, R. J. A., Rubin, D. B. (2019). Statistical Analysis with Missing Data.
 }

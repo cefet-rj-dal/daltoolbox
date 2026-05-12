@@ -7,8 +7,9 @@
 cluster_hclust(
   k = 2,
   h = NULL,
-  method = "ward.D2",
-  dist = "euclidean",
+  method = c("ward.D2", "ward.D", "single", "complete", "average", "mcquitty", "median",
+    "centroid"),
+  dist = c("euclidean", "maximum", "manhattan", "canberra", "binary", "minkowski"),
   scale = TRUE
 )
 }

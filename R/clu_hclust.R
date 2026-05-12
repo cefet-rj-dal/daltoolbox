@@ -17,7 +17,12 @@
 #'clu <- cluster(model, iris[,1:4])
 #'table(clu)
 #'@export
-cluster_hclust <- function(k = 2, h = NULL, method = "ward.D2", dist = "euclidean", scale = TRUE) {
+cluster_hclust <- function(k = 2, h = NULL,
+                           method = c("ward.D2", "ward.D", "single", "complete", "average", "mcquitty", "median", "centroid"),
+                           dist = c("euclidean", "maximum", "manhattan", "canberra", "binary", "minkowski"),
+                           scale = TRUE) {
+  method <- match.arg(method)
+  dist <- match.arg(dist)
   obj <- clusterer()
   obj$k <- k
   obj$h <- h

@@ -28,8 +28,9 @@
 #'test_eval <- evaluate(model, test_predictand, test_prediction)
 #'test_eval$metrics
 #'@export
-reg_svm <- function(attribute, epsilon=0.1, cost=10, kernel="radial") {
+reg_svm <- function(attribute, epsilon=0.1, cost=10, kernel = c("radial", "linear", "polynomial", "sigmoid")) {
   #analisar: https://rpubs.com/Kushan/296706
+  kernel <- match.arg(kernel)
   obj <- regression(attribute)
   obj$kernel <- kernel
   obj$epsilon <- epsilon
