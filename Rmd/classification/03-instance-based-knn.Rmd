@@ -61,14 +61,13 @@ model <- fit(model, iris_train)
 ```
 
 Training evaluation
-Predict on training set, adjust labels, and compute metrics.
+Predict on training set and compute metrics from the class-score output.
 ```{r}
 # Checking fit on training data
 train_prediction <- predict(model, iris_train)
 
 # Model evaluation (training)
-iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
-train_eval <- evaluate(model, iris_train_predictand, train_prediction)
+train_eval <- evaluate(model, iris_train[,"Species"], train_prediction)
 print(train_eval$metrics)
 ```
 
@@ -78,10 +77,8 @@ Predict on test set and compute metrics.
 # Model test
 test_prediction <- predict(model, iris_test)
 
-iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
-
 # Test evaluation
- test_eval <- evaluate(model, iris_test_predictand, test_prediction)
+ test_eval <- evaluate(model, iris_test[,"Species"], test_prediction)
 print(test_eval$metrics)
 ```
 

@@ -7,38 +7,81 @@
 #'@examples
 #'#See ?cla_dtree for a classification example using a decision tree
 #'@export
-classification <- function(attribute, slevels) {
+classification <- function(attribute, slevels = NULL) {
   obj <- predictor()
   class(obj) <- append("classification", class(obj))
   obj$attribute <- attribute
   obj$slevels <- slevels
   # internal numeric indices for class levels
-  obj$ilevels <- 1:length(slevels)
+  obj$ilevels <- if (is.null(slevels)) integer(0) else seq_along(slevels)
   return(obj)
+}
+
+prepare_classification_data <- function(obj, data) {
+  data <- adjust_data.frame(data)
+  attr <- obj$attribute
+  if (is.null(attr) || !attr %in% names(data)) {
+    stop(sprintf("%s: attribute not found in data.", class(obj)[1]), call. = FALSE)
+  }
+
+  if (is.null(obj$slevels)) {
+    y <- data[[attr]]
+    if (is.factor(y)) {
+      obj$slevels <- levels(y)
+    } else {
+      obj$slevels <- unique(as.character(y))
+    }
+  }
+
+  obj$ilevels <- seq_along(obj$slevels)
+  data[, attr] <- adjust_factor(data[, attr], obj$ilevels, obj$slevels)
+  obj <- fit.predictor(obj, data)
+
+  list(obj = obj, data = data)
+}
+
+prediction_as_factor <- function(prediction, slevels) {
+  if (is.factor(prediction)) {
+    return(factor(prediction, levels = slevels))
+  }
+
+  if (is.data.frame(prediction) || is.matrix(prediction)) {
+    prediction <- as.matrix(prediction)
+    if (!is.null(colnames(prediction))) {
+      prediction <- prediction[, slevels, drop = FALSE]
+    }
+    y <- apply(prediction, 1, nnet::which.is.max)
+    return(factor(slevels[y], slevels))
+  }
+
+  factor(prediction, levels = slevels)
+}
+
+prediction_as_probability <- function(prediction, slevels) {
+  if (is.factor(prediction) || is.vector(prediction)) {
+    return(adjust_class_label(factor(prediction, levels = slevels)))
+  }
+
+  if (is.data.frame(prediction) || is.matrix(prediction)) {
+    prediction <- as.matrix(prediction)
+    if (!is.null(colnames(prediction))) {
+      prediction <- prediction[, slevels, drop = FALSE]
+    }
+    return(prediction)
+  }
+
+  adjust_class_label(factor(prediction, levels = slevels))
 }
 
 
 #'@importFrom nnet which.is.max
 #'@exportS3Method evaluate classification
 evaluate.classification <- function(obj, data, prediction, ref = 1, ...) {
-  variables_as_factor <- function(prediction, s_levels) {
-    y <- apply(prediction, 1, nnet::which.is.max)
-    yfact <- factor(s_levels[y], s_levels)
-    return(yfact)
-  }
-  variables_as_probability <- function(prediction) {
-    y <- apply(prediction, 1, max)
-    return(y)
-  }
-
-
-  # accept either factor labels or probability matrix for data
-  data_f <- data
-  if (!is.factor(data_f))
-    data_f <- variables_as_factor(data_f, obj$slevels)
-
-  pred_f <- variables_as_factor(prediction, obj$slevels)
-  pred_p <- variables_as_probability(prediction)
+  # accept either labels or probability matrix for data and prediction
+  data_f <- prediction_as_factor(data, obj$slevels)
+  pred_f <- prediction_as_factor(prediction, obj$slevels)
+  pred_scores <- prediction_as_probability(prediction, obj$slevels)
+  pred_p <- apply(pred_scores, 1, max)
 
   result <- list(data=data_f, prediction=pred_f, probability=pred_p)
 

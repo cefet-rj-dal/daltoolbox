@@ -32,18 +32,18 @@ iris_train_norm <- transform(norm, iris_train)
 iris_test_norm <- transform(norm, iris_test)
 ```
 
-With the transformed data ready, fit a classifier and evaluate it.
+With the transformed data ready, fit a classifier and evaluate it. The classifier returns one score column per class, which is the native classification format used by `daltoolbox`.
 ```{r}
 model <- cla_knn("Species", slevels, k = 5)
 set_example_seed()
 model <- fit(model, iris_train_norm)
 
 train_prediction <- predict(model, iris_train_norm)
-train_eval <- evaluate(model, adjust_class_label(iris_train_norm$Species), train_prediction)
+train_eval <- evaluate(model, iris_train_norm$Species, train_prediction)
 train_eval$metrics
 
 test_prediction <- predict(model, iris_test_norm)
-test_eval <- evaluate(model, adjust_class_label(iris_test_norm$Species), test_prediction)
+test_eval <- evaluate(model, iris_test_norm$Species, test_prediction)
 test_eval$metrics
 ```
 

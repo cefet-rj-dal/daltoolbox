@@ -47,7 +47,7 @@ set_example_seed()
 model <- fit(model, tt$train)
 
 prediction <- predict(model, tt$test)
-eval <- evaluate(model, adjust_class_label(tt$test$Species), prediction)
+eval <- evaluate(model, tt$test$Species, prediction)
 eval$metrics
 ```
 

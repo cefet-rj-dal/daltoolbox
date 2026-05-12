@@ -35,7 +35,7 @@ gr <- plot_scatter(
 plot(gr)
 ```
 
-Now create a small comparison table that could appear in a report. The exact numbers are less important than the idea of communicating results in a compact and reproducible way.
+Now create a small comparison table that could appear in a report. The exact numbers are less important than the idea of communicating results in a compact and reproducible way. Each learner returns class scores, and `evaluate()` summarizes them into the reporting metrics.
 ```{r}
 set_example_seed()
 sr <- train_test(sample_stratified("Species"), iris)
@@ -50,7 +50,7 @@ report <- lapply(names(models), function(name) {
 set_example_seed()
   fitted <- fit(models[[name]], sr$train)
   pred <- predict(fitted, sr$test)
-  metrics <- evaluate(fitted, adjust_class_label(sr$test$Species), pred)$metrics
+  metrics <- evaluate(fitted, sr$test$Species, pred)$metrics
   data.frame(model = name, t(metrics), check.names = FALSE)
 })
 

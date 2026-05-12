@@ -19,8 +19,7 @@
 #'table(pred, iris_bin$IsVersicolor)
 #'@export
 cla_glm <- function(attribute, positive, features = NULL, threshold = 0.5) {
-  obj <- dal_learner()
-  obj$attribute <- attribute
+  obj <- classification(attribute)
   obj$positive <- positive
   obj$features <- features
   obj$threshold <- threshold
@@ -32,20 +31,24 @@ cla_glm <- function(attribute, positive, features = NULL, threshold = 0.5) {
 #'@importFrom stats glm binomial
 #'@exportS3Method fit cla_glm
 fit.cla_glm <- function(obj, data, ...) {
-  data <- adjust_data.frame(data)
+  prepared <- prepare_classification_data(obj, data)
+  obj <- prepared$obj
+  data <- prepared$data
   attr <- obj$attribute
-  if (is.null(attr) || !attr %in% names(data)) {
-    stop("cla_glm: attribute not found in data.")
-  }
   features <- obj$features
   if (is.null(features)) {
-    features <- setdiff(names(data), attr)
+    features <- obj$x
+  }
+  if (length(obj$slevels) != 2) {
+    stop("cla_glm supports only binary classification.", call. = FALSE)
+  }
+  if (!obj$positive %in% obj$slevels) {
+    stop("cla_glm: positive class must be one of the target levels.", call. = FALSE)
   }
   formula <- stats::formula(
     paste(attr, "~", paste(features, collapse = " + "))
   )
   obj$model <- stats::glm(formula, data = data, family = binomial)
-  obj$levels <- levels(data[[attr]])
   return(obj)
 }
 
@@ -53,7 +56,13 @@ fit.cla_glm <- function(obj, data, ...) {
 #'@exportS3Method predict cla_glm
 predict.cla_glm <- function(object, newdata, ...) {
   newdata <- adjust_data.frame(newdata)
-  prob <- stats::predict(object$model, newdata = newdata, type = "response")
-  pred <- ifelse(prob >= object$threshold, object$positive, setdiff(object$levels, object$positive)[1])
-  factor(pred, levels = object$levels)
+  x <- newdata[, object$x, drop = FALSE]
+  prob <- stats::predict(object$model, newdata = x, type = "response")
+  prediction <- matrix(0, nrow = length(prob), ncol = length(object$slevels))
+  colnames(prediction) <- object$slevels
+  pos_idx <- match(object$positive, object$slevels)
+  neg_idx <- setdiff(seq_along(object$slevels), pos_idx)
+  prediction[, pos_idx] <- prob
+  prediction[, neg_idx] <- 1 - prob
+  as.data.frame(prediction)
 }

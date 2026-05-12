@@ -11,8 +11,7 @@
 #'table(pred, iris$Species)
 #'@export
 cla_multinom <- function(attribute, features = NULL) {
-  obj <- dal_learner()
-  obj$attribute <- attribute
+  obj <- classification(attribute)
   obj$features <- features
   obj$model <- NULL
   class(obj) <- append("cla_multinom", class(obj))
@@ -22,20 +21,18 @@ cla_multinom <- function(attribute, features = NULL) {
 #'@importFrom nnet multinom
 #'@exportS3Method fit cla_multinom
 fit.cla_multinom <- function(obj, data, ...) {
-  data <- adjust_data.frame(data)
+  prepared <- prepare_classification_data(obj, data)
+  obj <- prepared$obj
+  data <- prepared$data
   attr <- obj$attribute
-  if (is.null(attr) || !attr %in% names(data)) {
-    stop("cla_multinom: attribute not found in data.")
-  }
   features <- obj$features
   if (is.null(features)) {
-    features <- setdiff(names(data), attr)
+    features <- obj$x
   }
   formula <- stats::formula(
     paste(attr, "~", paste(features, collapse = " + "))
   )
   obj$model <- nnet::multinom(formula, data = data, trace = FALSE)
-  obj$levels <- levels(data[[attr]])
   return(obj)
 }
 
@@ -43,6 +40,12 @@ fit.cla_multinom <- function(obj, data, ...) {
 #'@exportS3Method predict cla_multinom
 predict.cla_multinom <- function(object, newdata, ...) {
   newdata <- adjust_data.frame(newdata)
-  pred <- stats::predict(object$model, newdata = newdata)
-  factor(pred, levels = object$levels)
+  x <- newdata[, object$x, drop = FALSE]
+  prediction <- stats::predict(object$model, newdata = x, type = "probs")
+  if (is.null(dim(prediction))) {
+    prediction <- cbind(1 - prediction, prediction)
+  }
+  prediction <- as.matrix(prediction)
+  colnames(prediction) <- object$slevels
+  as.data.frame(prediction)
 }

@@ -13,8 +13,7 @@
 #'}
 #'@export
 cla_boosting <- function(attribute, mfinal = 50) {
-  obj <- dal_learner()
-  obj$attribute <- attribute
+  obj <- classification(attribute)
   obj$mfinal <- mfinal
   obj$model <- NULL
   class(obj) <- append("cla_boosting", class(obj))
@@ -26,11 +25,12 @@ fit.cla_boosting <- function(obj, data, ...) {
   if (!requireNamespace("adabag", quietly = TRUE)) {
     stop("cla_boosting requires the 'adabag' package. Install with install.packages('adabag').")
   }
-  data <- adjust_data.frame(data)
+  prepared <- prepare_classification_data(obj, data)
+  obj <- prepared$obj
+  data <- prepared$data
   attr <- obj$attribute
   formula <- stats::formula(paste(attr, "~ ."))
   obj$model <- adabag::boosting(formula, data = data, mfinal = obj$mfinal)
-  obj$levels <- levels(data[[attr]])
   return(obj)
 }
 
@@ -38,6 +38,9 @@ fit.cla_boosting <- function(obj, data, ...) {
 #'@exportS3Method predict cla_boosting
 predict.cla_boosting <- function(object, newdata, ...) {
   newdata <- adjust_data.frame(newdata)
-  pred <- stats::predict(object$model, newdata = newdata)$class
-  factor(pred, levels = object$levels)
+  x <- newdata[, object$x, drop = FALSE]
+  prediction <- stats::predict(object$model, newdata = x)$prob
+  prediction <- as.data.frame(prediction)
+  colnames(prediction) <- object$slevels
+  prediction
 }

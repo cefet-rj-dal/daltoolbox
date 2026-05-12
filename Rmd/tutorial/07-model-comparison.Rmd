@@ -38,7 +38,7 @@ results <- lapply(models, function(model) {
 set_example_seed()
   fitted <- fit(model, iris_train)
   pred <- predict(fitted, iris_test)
-  evaluate(fitted, adjust_class_label(iris_test$Species), pred)$metrics
+  evaluate(fitted, iris_test$Species, pred)$metrics
 })
 
 results

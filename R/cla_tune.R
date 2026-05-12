@@ -63,7 +63,7 @@ fit.cla_tune <- function(obj, data, ...) {
 
   evaluate_metric <- function(model, data) {
     # predict on same feature set; metric computed via evaluate()
-    x <- as.matrix(data[,model$x])
+    x <- data[,model$x, drop = FALSE]
     y <- adjust_class_label(data[,model$attribute])
     prediction <- stats::predict(model, x)
     metric <- evaluate(model, y, prediction)$metrics[1,obj$metric]

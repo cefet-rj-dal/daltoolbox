@@ -37,14 +37,14 @@ set_example_seed()
 model <- fit(model, iris_train)
 ```
 
-After training, always check performance on both the training data and the test data. The comparison helps reveal whether the learner is simply memorizing the training set or generalizing in a reasonable way.
+After training, always check performance on both the training data and the test data. The comparison helps reveal whether the learner is simply memorizing the training set or generalizing in a reasonable way. In the classification API, `predict()` returns class scores, so `evaluate()` can be called directly with the original factor labels.
 ```{r}
 train_prediction <- predict(model, iris_train)
-train_eval <- evaluate(model, adjust_class_label(iris_train$Species), train_prediction)
+train_eval <- evaluate(model, iris_train$Species, train_prediction)
 train_eval$metrics
 
 test_prediction <- predict(model, iris_test)
-test_eval <- evaluate(model, adjust_class_label(iris_test$Species), test_prediction)
+test_eval <- evaluate(model, iris_test$Species, test_prediction)
 test_eval$metrics
 ```
 

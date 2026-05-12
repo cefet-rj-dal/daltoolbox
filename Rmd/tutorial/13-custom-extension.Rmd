@@ -49,7 +49,7 @@ fit.cla_rsnns_custom <- function(obj, data, ...) {
 }
 ```
 
-Implement `predict()` so the fitted object returns outputs in the format expected by the framework.
+Implement `predict()` so the fitted object returns outputs in the format expected by the framework: one row per case and one column per class.
 ```{r}
 predict.cla_rsnns_custom <- function(object, x, ...) {
   x <- daltoolbox::adjust_data.frame(x)
