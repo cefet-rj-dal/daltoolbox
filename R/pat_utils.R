@@ -1,5 +1,11 @@
 #'@title Pattern mining utilities
 #'@description Utility object that groups filtering helpers and evaluation metrics for pattern mining.
+#'@details
+#' The object groups two kinds of helpers:
+#'
+#' - quality-filter builders such as `quality_min()` and `quality_max()`
+#' - descriptive metrics for discovered patterns such as pattern count, mean support,
+#'   mean confidence, mean lift, mean length, and retained ratio after filtering
 #'@return returns a `patutils` object
 #'@examples
 #'utils <- patutils()

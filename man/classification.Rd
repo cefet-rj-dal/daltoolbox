@@ -4,7 +4,7 @@
 \alias{classification}
 \title{Classification base class}
 \usage{
-classification(attribute, slevels)
+classification(attribute, slevels = NULL)
 }
 \arguments{
 \item{attribute}{attribute target to model building}

@@ -5,17 +5,47 @@
 \title{Apriori rules}
 \usage{
 pat_apriori(
-  parameter = list(supp = 0.5, conf = 0.9, minlen = 2, maxlen = 10, target = "rules"),
-  appearance = NULL,
-  control = NULL
+  target = c("rules", "frequent itemsets"),
+  supp = 0.5,
+  conf = 0.9,
+  minlen = 2,
+  maxlen = 10,
+  lhs = NULL,
+  rhs = NULL,
+  include = NULL,
+  exclude = NULL,
+  quality_filter = NULL,
+  control = NULL,
+  parameter = NULL,
+  appearance = NULL
 )
 }
 \arguments{
-\item{parameter}{list of parameters passed to \code{arules::apriori}}
+\item{target}{mining target: \code{"rules"} or \code{"frequent itemsets"}}
 
-\item{appearance}{list of item appearance constraints}
+\item{supp}{minimum support threshold}
+
+\item{conf}{minimum confidence threshold for rules}
+
+\item{minlen}{minimum pattern length}
+
+\item{maxlen}{maximum pattern length}
+
+\item{lhs}{optional vector of items constrained to the left-hand side of rules}
+
+\item{rhs}{optional vector of items constrained to the right-hand side of rules}
+
+\item{include}{optional vector of items allowed in the discovered patterns}
+
+\item{exclude}{optional vector of items forbidden in the discovered patterns}
+
+\item{quality_filter}{optional quality filter created with \code{patutils()}}
 
 \item{control}{list of control parameters}
+
+\item{parameter}{legacy list of parameters passed to \code{arules::apriori}}
+
+\item{appearance}{legacy list of item appearance constraints}
 }
 \value{
 returns a \code{pat_apriori} object
@@ -27,11 +57,19 @@ Frequent itemsets and association rules using \code{arules::apriori}.
 if (requireNamespace("arules", quietly = TRUE)) {
  data("AdultUCI", package = "arules")
  trans <- suppressWarnings(methods::as(as.data.frame(AdultUCI), "transactions"))
- pm <- pat_apriori(parameter = list(
-   supp = 0.5, conf = 0.9, minlen = 2, maxlen = 10, target = "rules"
- ))
+ utils <- patutils()
+ pm <- pat_apriori(
+   target = "rules",
+   supp = 0.5,
+   conf = 0.9,
+   minlen = 2,
+   maxlen = 4,
+   rhs = c("native-country=United-States"),
+   quality_filter = utils$quality_min(confidence = 0.95)
+ )
  pm <- fit(pm, trans)
  rules <- discover(pm, trans)
- arules::inspect(rules)
+ eval <- evaluate(pm, rules)
+ eval$metrics
 }
 }

@@ -7,6 +7,7 @@
 #'@param maxgap maximum gap between successive events
 #'@param quality_filter optional quality filter created with `patutils()`
 #'@param control list of control parameters
+#'@param parameter legacy list of parameters passed to `arulesSequences::cspade`
 #'@return returns a `pat_cspade` object
 #'@examples
 #'if (requireNamespace("arulesSequences", quietly = TRUE)) {

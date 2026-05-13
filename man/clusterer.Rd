@@ -12,6 +12,16 @@ returns a \code{clusterer} object
 \description{
 Base class for clustering algorithms and related evaluation utilities.
 }
+\details{
+The object stores shared state and defaults used by clustering methods.
+Current algorithms may still differ in how much they use this state, but the
+goal is to standardize future implementations around:
+\itemize{
+\item \code{fit()} learning and storing model state
+\item \code{cluster()} producing labels from a fitted model
+\item configurable internal/external metrics and selection helpers via \code{cluutils()}
+}
+}
 \examples{
 #See ?cluster_kmeans for an example of transformation
 }

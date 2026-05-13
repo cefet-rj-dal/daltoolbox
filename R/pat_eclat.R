@@ -7,6 +7,7 @@
 #'@param exclude optional vector of items forbidden in the discovered itemsets
 #'@param quality_filter optional quality filter created with `patutils()`
 #'@param control list of control parameters
+#'@param parameter legacy list of parameters passed to `arules::eclat`
 #'@return returns a `pat_eclat` object
 #'@examples
 #'if (requireNamespace("arules", quietly = TRUE)) {

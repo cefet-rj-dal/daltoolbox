@@ -23,7 +23,7 @@ Tune clustering hyperparameters by evaluating an intrinsic metric over a paramet
 data(iris)
 
 # fit model
-model <- clu_tune(cluster_kmeans(k = 0), ranges = list(k = 1:10))
+model <- clu_tune(cluster_kmeans(k = 2), ranges = list(k = 2:10))
 
 model <- fit(model, iris[,1:4])
 model$k

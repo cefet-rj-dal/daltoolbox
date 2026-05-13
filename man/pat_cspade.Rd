@@ -4,12 +4,33 @@
 \alias{pat_cspade}
 \title{cSPADE sequences}
 \usage{
-pat_cspade(parameter = list(support = 0.4), control = list(verbose = TRUE))
+pat_cspade(
+  support = 0.4,
+  maxsize = NULL,
+  maxlen = NULL,
+  mingap = NULL,
+  maxgap = NULL,
+  quality_filter = NULL,
+  control = list(verbose = TRUE),
+  parameter = NULL
+)
 }
 \arguments{
-\item{parameter}{list of parameters passed to \code{arulesSequences::cspade}}
+\item{support}{minimum support threshold}
+
+\item{maxsize}{maximum number of items per event}
+
+\item{maxlen}{maximum number of events per sequence}
+
+\item{mingap}{minimum gap between successive events}
+
+\item{maxgap}{maximum gap between successive events}
+
+\item{quality_filter}{optional quality filter created with \code{patutils()}}
 
 \item{control}{list of control parameters}
+
+\item{parameter}{legacy list of parameters passed to \code{arulesSequences::cspade}}
 }
 \value{
 returns a \code{pat_cspade} object
@@ -23,9 +44,15 @@ if (requireNamespace("arulesSequences", quietly = TRUE)) {
    con = system.file("misc", "zaki.txt", package = "arulesSequences"),
    info = c("sequenceID", "eventID", "SIZE")
  )
- pm <- pat_cspade(parameter = list(support = 0.4))
+ utils <- patutils()
+ pm <- pat_cspade(
+   support = 0.4,
+   maxlen = 3,
+   quality_filter = utils$quality_min(support = 0.5)
+ )
  pm <- fit(pm, x)
  seqs <- discover(pm, x)
- as(seqs, "data.frame")
+ eval <- evaluate(pm, seqs)
+ eval$metrics
 }
 }

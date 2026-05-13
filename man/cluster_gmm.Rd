@@ -22,11 +22,13 @@ Fits a Gaussian mixture model and returns the MAP classification.
 The fitted model is stored in \code{obj$model}. Requires the \code{mclust} package.
 }
 \examples{
-data(iris)
-model <- cluster_gmm(G = 3)
-model <- fit(model, iris[,1:4])
-clu <- cluster(model, iris[,1:4])
-table(clu)
+if (requireNamespace("mclust", quietly = TRUE)) {
+ data(iris)
+ model <- cluster_gmm(G = 3)
+ model <- fit(model, iris[,1:4])
+ clu <- cluster(model, iris[,1:4])
+ table(clu)
+}
 }
 \references{
 Fraley, C., & Raftery, A. E. (2002). Model-based clustering. \emph{JASA}.
