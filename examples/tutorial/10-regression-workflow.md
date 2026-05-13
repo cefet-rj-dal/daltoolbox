@@ -73,4 +73,4 @@ test_eval$metrics
 ## 1 19.02943 0.1689264 0.8146707
 ```
 
-From a teaching perspective, this is a useful turning point: the workflow is familiar, but the interpretation of the metrics now belongs to regression rather than classification.
+From a teaching perspective, this is a useful turning point: the workflow is familiar, but the interpretation of the metrics now belongs to regression rather than classification. This same `fit() -> predict() -> evaluate()` contract is also what allows formula-based models such as `reg_lm()` and tuning wrappers such as `reg_tune()` to integrate into the same Experiment Line.
