@@ -17,10 +17,11 @@ Classification tree using \code{rpart::rpart}.
 }
 \examples{
 if (requireNamespace("rpart", quietly = TRUE)) {
- data(iris)
- model <- cla_rpart("Species")
- model <- fit(model, iris)
- pred <- predict(model, iris)
- table(pred, iris$Species)
+  data(iris)
+  model <- cla_rpart("Species")
+  model <- fit(model, iris)
+  pred <- predict(model, iris)
+  eval <- evaluate(model, adjust_class_label(iris$Species), pred)
+  eval$metrics
 }
 }

@@ -19,12 +19,17 @@ Logistic regression with L1 penalty using \code{glmnet::cv.glmnet}.
 }
 \examples{
 if (requireNamespace("glmnet", quietly = TRUE)) {
- data(iris)
- iris_bin <- iris
- iris_bin$IsVersicolor <- ifelse(iris_bin$Species == "versicolor", 1, 0)
- model <- cla_glmnet("IsVersicolor")
- model <- fit(model, iris_bin)
- pred <- predict(model, iris_bin)
- table(pred, iris_bin$IsVersicolor)
+  data(iris)
+  iris_bin <- iris
+  iris_bin$IsVersicolor <- factor(ifelse(
+    iris_bin$Species == "versicolor",
+    "versicolor",
+    "not_versicolor"
+  ))
+  model <- cla_glmnet("IsVersicolor")
+  model <- fit(model, iris_bin)
+  pred <- predict(model, iris_bin)
+  eval <- evaluate(model, adjust_class_label(iris_bin$IsVersicolor), pred)
+  eval$metrics
 }
 }

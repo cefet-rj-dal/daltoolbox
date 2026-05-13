@@ -152,7 +152,7 @@ fit.imputation_tree <- function(obj, data, ...) {
   initial_model <- fit(initial_model, data)
   work <- transform(initial_model, data)
 
-  models <- setNames(vector("list", length(order)), order)
+  models <- stats::setNames(vector("list", length(order)), order)
   if (length(order) > 0) {
     for (iter in seq_len(obj$maxit)) {
       changed <- FALSE

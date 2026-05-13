@@ -19,10 +19,11 @@ Boosting classifier using \code{adabag::boosting}.
 }
 \examples{
 if (requireNamespace("adabag", quietly = TRUE)) {
- data(iris)
- model <- cla_boosting("Species", mfinal = 10)
- model <- fit(model, iris)
- pred <- predict(model, iris)
- table(pred, iris$Species)
+  data(iris)
+  model <- cla_boosting("Species", mfinal = 10)
+  model <- fit(model, iris)
+  pred <- predict(model, iris)
+  eval <- evaluate(model, adjust_class_label(iris$Species), pred)
+  eval$metrics
 }
 }

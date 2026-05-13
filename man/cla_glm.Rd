@@ -32,5 +32,6 @@ iris_bin$IsVersicolor <- factor(ifelse(
 model <- cla_glm("IsVersicolor", positive = "versicolor")
 model <- suppressWarnings(fit(model, iris_bin))
 pred <- predict(model, iris_bin)
-table(pred, iris_bin$IsVersicolor)
+eval <- evaluate(model, adjust_class_label(iris_bin$IsVersicolor), pred)
+eval$metrics
 }

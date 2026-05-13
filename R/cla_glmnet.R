@@ -7,11 +7,16 @@
 #'if (requireNamespace("glmnet", quietly = TRUE)) {
 #'  data(iris)
 #'  iris_bin <- iris
-#'  iris_bin$IsVersicolor <- ifelse(iris_bin$Species == "versicolor", 1, 0)
+#'  iris_bin$IsVersicolor <- factor(ifelse(
+#'    iris_bin$Species == "versicolor",
+#'    "versicolor",
+#'    "not_versicolor"
+#'  ))
 #'  model <- cla_glmnet("IsVersicolor")
 #'  model <- fit(model, iris_bin)
 #'  pred <- predict(model, iris_bin)
-#'  table(pred, iris_bin$IsVersicolor)
+#'  eval <- evaluate(model, adjust_class_label(iris_bin$IsVersicolor), pred)
+#'  eval$metrics
 #'}
 #'@export
 cla_glmnet <- function(attribute, lambda = c("lambda.min", "lambda.1se")) {
@@ -45,8 +50,8 @@ predict.cla_glmnet <- function(object, newdata, ...) {
   x <- data.matrix(newdata[, object$x, drop = FALSE])
   prob <- as.numeric(stats::predict(object$model, newx = x, s = object$lambda, type = "response"))
   prediction <- data.frame(
-    setNames(list(1 - prob), object$slevels[1]),
-    setNames(list(prob), object$slevels[2]),
+    stats::setNames(list(1 - prob), object$slevels[1]),
+    stats::setNames(list(prob), object$slevels[2]),
     check.names = FALSE
   )
   prediction

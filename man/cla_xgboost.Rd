@@ -29,9 +29,10 @@ if (requireNamespace("xgboost", quietly = TRUE)) {
    "Species",
    params = list(max_depth = 1, nthread = 1),
    nrounds = 1
- )
- model <- fit(model, iris)
- pred <- predict(model, iris)
- table(pred, iris$Species)
+  )
+  model <- fit(model, iris)
+  pred <- predict(model, iris)
+  eval <- evaluate(model, adjust_class_label(iris$Species), pred)
+  eval$metrics
 }
 }
