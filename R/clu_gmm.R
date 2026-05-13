@@ -8,11 +8,13 @@
 #'@references
 #' Fraley, C., & Raftery, A. E. (2002). Model-based clustering. *JASA*.
 #'@examples
-#'data(iris)
-#'model <- cluster_gmm(G = 3)
-#'model <- fit(model, iris[,1:4])
-#'clu <- cluster(model, iris[,1:4])
-#'table(clu)
+#'if (requireNamespace("mclust", quietly = TRUE)) {
+#'  data(iris)
+#'  model <- cluster_gmm(G = 3)
+#'  model <- fit(model, iris[,1:4])
+#'  clu <- cluster(model, iris[,1:4])
+#'  table(clu)
+#'}
 #'@export
 cluster_gmm <- function(G = NULL, modelNames = NULL) {
   obj <- clusterer()
@@ -39,7 +41,11 @@ fit.cluster_gmm <- function(obj, data, ...) {
   prepared <- clusterer_prepare_fit(obj, data)
   obj <- prepared$obj
   data <- prepared$data
-  obj$model <- mclust::Mclust(data, G = obj$G, modelNames = obj$modelNames)
+  mclust_ns <- asNamespace("mclust")
+  obj$model <- eval(
+    bquote(Mclust(.(data), G = .(obj$G), modelNames = .(obj$modelNames))),
+    envir = mclust_ns
+  )
   return(obj)
 }
 
