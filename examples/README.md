@@ -17,6 +17,7 @@ If you are new to `daltoolbox`, start with the tutorials. If you already know th
 - [Classification](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/classification/) - baseline models, core classifier families, and model selection.
 - [Regression](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/regression/) - interpretable models, nonlinear learners, and tuning for numeric prediction.
 - [Clustering](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/clustering/) - partitional, medoid-based, density-based methods, and clustering model selection.
+- [Pattern mining](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/patterns/) - association rules, frequent itemsets, sequential patterns, and descriptive evaluation of discovered patterns.
 - [Graphics](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/graphics/) - comparison, distribution, relationship, time-oriented, and export-focused visualizations.
 - [Custom extensions](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/custom/) - examples showing how to integrate new transformations, classifiers, regressors, and clustering methods into the Experiment Line workflow.
 
