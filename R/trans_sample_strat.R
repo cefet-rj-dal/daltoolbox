@@ -1,25 +1,31 @@
-#'@title Stratified sampling
-#'@description Train/test split and k‑fold partitioning that preserve the target class proportions (strata).
-#'@param attribute attribute target to model building
-#'@return returns an object of class `sample_stratified`
-#'@examples
-#'#using stratified sampling
-#'sample <- sample_stratified("Species")
-#'tt <- train_test(sample, iris)
+#' @title Stratified Sampling
+#' @description Train/test split and k-fold partitioning that preserve the
+#'   target class proportions.
+#' @details Use this sampler when the response distribution matters, especially
+#'   in imbalanced classification problems. Compared with simple random
+#'   sampling, it reduces the chance that one split will overrepresent or
+#'   underrepresent a class by accident.
+#' @param attribute Name of the target attribute whose class proportions should
+#'   be preserved.
+#' @return An object of class `sample_stratified`.
+#' @examples
+#' # using stratified sampling
+#' sample <- sample_stratified("Species")
+#' tt <- train_test(sample, iris)
 #'
-#'# distribution of train
-#'table(tt$train$Species)
+#' # distribution of train
+#' table(tt$train$Species)
 #'
-#'# preparing dataset into four folds
-#'folds <- k_fold(sample, iris, 4)
+#' # preparing dataset into four folds
+#' folds <- k_fold(sample, iris, 4)
 #'
-#'# distribution of folds
-#'tbl <- NULL
-#'for (f in folds) {
-#'  tbl <- rbind(tbl, table(f$Species))
-#'}
-#'head(tbl)
-#'@export
+#' # distribution of folds
+#' tbl <- NULL
+#' for (f in folds) {
+#'   tbl <- rbind(tbl, table(f$Species))
+#' }
+#' head(tbl)
+#' @export
 sample_stratified <- function(attribute) {
   obj <- sample_random()
   obj$attribute <- attribute
@@ -27,20 +33,19 @@ sample_stratified <- function(attribute) {
   return(obj)
 }
 
-#'@importFrom caret createDataPartition
-#'@exportS3Method train_test sample_stratified
-train_test.sample_stratified <- function(obj, data, perc=0.8, ...) {
-  predictors_name <- setdiff(colnames(data), obj$attribute)
+#' @importFrom caret createDataPartition
+#' @exportS3Method train_test sample_stratified
+train_test.sample_stratified <- function(obj, data, perc = 0.8, ...) {
   predictand <- data[,obj$attribute]
 
   # maintain class distribution in train/test via stratification
-  idx <- caret::createDataPartition(predictand, p=perc, list=FALSE)
+  idx <- caret::createDataPartition(predictand, p = perc, list = FALSE)
   train <- data[idx,]
   test <- data[-idx,]
-  return (list(train=train, test=test))
+  return(list(train = train, test = test))
 }
 
-#'@exportS3Method k_fold sample_stratified
+#' @exportS3Method k_fold sample_stratified
 k_fold.sample_stratified <- function(obj, data, k) {
   folds <- list()
   samp <- list()
@@ -54,5 +59,5 @@ k_fold.sample_stratified <- function(obj, data, k) {
     p = 1.0 / k
   }
   folds <- append(folds, list(samp$test))
-  return (folds)
+  return(folds)
 }

@@ -1,0 +1,63 @@
+About the utility
+- `reg_tune`: hyperparameter search for regression models over ranges defined in `ranges`.
+- In this example the tuned base learner is `reg_svm`.
+
+Didactic goal: preserve the same regression line of experiment and treat tuning as a change in model configuration rather than as a separate workflow.
+
+Environment setup.
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+Load data and inspect.
+```{r}
+data(Boston)
+head(Boston)
+```
+
+Target `medv` and reproducible train/test split.
+```{r}
+set_example_seed()
+sr <- train_test(sample_random(), Boston)
+boston_train <- sr$train
+boston_test <- sr$test
+```
+
+Model configuration and fitting.
+```{r}
+tune <- reg_tune(
+  reg_svm("medv"),
+  ranges = list(
+    epsilon = seq(0, 1, 0.2),
+    cost = seq(20, 100, 20),
+    kernel = c("radial")
+  )
+)
+
+set_example_seed()
+model <- fit(tune, boston_train)
+```
+
+Training evaluation.
+```{r}
+train_prediction <- predict(model, boston_train)
+train_eval <- evaluate(model, boston_train[, "medv"], train_prediction)
+train_eval$metrics
+```
+
+Test evaluation.
+```{r}
+test_prediction <- predict(model, boston_test)
+test_eval <- evaluate(model, boston_test[, "medv"], test_prediction)
+test_eval$metrics
+```
+
+What to observe
+- The workflow is still split, fit, predict, and evaluate.
+- Tuning changes how the regressor is chosen, not how the line of experiment is structured.
+
+References
+- Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection.

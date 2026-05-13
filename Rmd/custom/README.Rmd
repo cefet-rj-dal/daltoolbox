@@ -1,24 +1,23 @@
-# Custom Examples
+# Custom Extension Examples
 
-This section now organizes custom examples by extension role. That makes the progression more natural for learning because the reader first sees how to extend preprocessing, then supervised learners, and only after that unsupervised components.
+This folder explains how to extend `daltoolbox` without breaking the package workflow. The numbering now uses wide semantic gaps because each example belongs to a different extension family and should be read as a separate contract: transformation, classification, regression, and clustering.
 
-The unifying idea is always the same: `daltoolbox` keeps the workflow stable while the user plugs in a new backend through a small integration contract.
+The didactic idea is simple: once you understand the constructor and the required S3 method for one family, the others become easier to adapt.
 
-## Custom Data Preparation
+## Data Transformation
 
-Start here to see the lightest kind of extension: transforming the data before modeling.
+- [01-custom-transformation.md](/examples/custom/01-custom-transformation.md) - create a custom transformation object and implement `transform()`.
 
-- [01-custom-transformation.md](/examples/custom/01-custom-transformation.md) - `smote_custom`: shows how to create a custom transformation with a constructor and `transform()`, using `smotefamily::SMOTE` as the concrete example.
+## Custom Learners
 
-## Custom Supervised Learners
+- [10-custom-classification.md](/examples/custom/10-custom-classification.md) - create a custom classifier that fits and predicts inside the DAL interface.
+- [20-custom-regression.md](/examples/custom/20-custom-regression.md) - create a custom regressor while preserving the same experiment contract.
+- [30-custom-clustering.md](/examples/custom/30-custom-clustering.md) - create a custom clustering method that integrates with unsupervised workflows.
 
-These examples show how to integrate custom classifiers and regressors while preserving the same `fit()` and prediction logic seen in built-in examples.
+## Base Contracts
 
-- [02-custom-classification.md](/examples/custom/02-custom-classification.md) - `cla_rsnns_custom`: shows how to create a custom classifier with constructor, `fit()`, and `predict()`, using `RSNNS::mlp`.
-- [03-custom-regression.md](/examples/custom/03-custom-regression.md) - `reg_rsnns_custom`: shows how to create a custom regressor with constructor, `fit()`, and `predict()`, using `RSNNS::mlp` with linear output.
+These examples document the minimal interfaces that specialized implementations inherit from.
 
-## Custom Unsupervised Components
-
-Finish here to see how the same integration contract extends to clustering.
-
-- [04-custom-clustering.md](/examples/custom/04-custom-clustering.md) - `cluster_agnes_custom`: shows how to create a custom clusterer with constructor, `fit()`, and `cluster()`, using `cluster::agnes`.
+- [40-autoencoder-base-encoder.md](/examples/custom/40-autoencoder-base-encoder.md) - inspect the encoder-only autoencoder base contract.
+- [41-autoencoder-base-encoder-decoder.md](/examples/custom/41-autoencoder-base-encoder-decoder.md) - inspect the encoder-decoder autoencoder base contract.
+- [50-pattern-miner-base.md](/examples/custom/50-pattern-miner-base.md) - inspect the common pattern-miner workflow and slots.

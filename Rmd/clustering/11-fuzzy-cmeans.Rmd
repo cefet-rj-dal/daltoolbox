@@ -1,0 +1,47 @@
+About the method
+- `cluster_cmeans`: fuzzy c-means clustering, which keeps membership degrees instead of only hard assignments.
+
+Didactic goal: keep the same clustering line of experiment and change only the notion of assignment from hard clusters to soft memberships.
+
+Environment setup.
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+Load data and separate predictors from the reference labels used only for interpretation.
+```{r}
+iris <- datasets::iris
+x <- iris[, 1:4]
+ref <- iris$Species
+head(x)
+```
+
+Model configuration.
+```{r}
+model <- cluster_cmeans(centers = 3, m = 2)
+```
+
+Fit the model and obtain cluster labels.
+```{r}
+set_example_seed()
+model <- fit(model, x)
+clu <- cluster(model, x)
+table(clu)
+```
+
+Evaluate the partition.
+```{r}
+eval <- evaluate(model, clu, ref)
+eval
+```
+
+Inspect the membership matrix attached to the result.
+```{r}
+head(attr(clu, "membership"))
+```
+
+References
+- Bezdek, J. C. (1981). Pattern Recognition with Fuzzy Objective Function Algorithms.

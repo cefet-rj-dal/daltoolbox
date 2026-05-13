@@ -1,0 +1,26 @@
+About the transformation
+- `feature_generation`: creates new attributes from named expressions over existing columns.
+
+Didactic goal: reinforce that preprocessing is not only about cleaning or scaling. Feature generation changes the representation itself and can make patterns easier for downstream learners to capture.
+
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+```{r}
+gen <- feature_generation(
+  Sepal.Area = Sepal.Length * Sepal.Width,
+  Petal.Area = Petal.Length * Petal.Width,
+  Sepal.Ratio = Sepal.Length / Sepal.Width
+)
+
+iris_feat <- transform(gen, datasets::iris)
+head(iris_feat)
+```
+
+What to observe
+- Generated attributes become regular columns in the transformed dataset.
+- This is often one of the most impactful preprocessing steps in practice because it injects domain-informed structure.

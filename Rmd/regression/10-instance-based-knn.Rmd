@@ -1,0 +1,51 @@
+About the method
+- `reg_knn`: k-Nearest Neighbors for regression. Predicts a value from the target values of nearby cases.
+- Main parameter: `k`.
+
+Didactic goal: keep the same regression line of experiment and change only the learner to a local neighborhood method.
+
+Environment setup.
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+Load data and inspect.
+```{r}
+data(Boston)
+head(Boston)
+```
+
+Target `medv` and reproducible train/test split.
+```{r}
+set_example_seed()
+sr <- train_test(sample_random(), Boston)
+boston_train <- sr$train
+boston_test <- sr$test
+```
+
+Model configuration and fitting.
+```{r}
+model <- reg_knn("medv", k = 5)
+set_example_seed()
+model <- fit(model, boston_train)
+```
+
+Training evaluation.
+```{r}
+train_prediction <- predict(model, boston_train)
+train_eval <- evaluate(model, boston_train[, "medv"], train_prediction)
+train_eval$metrics
+```
+
+Test evaluation.
+```{r}
+test_prediction <- predict(model, boston_test)
+test_eval <- evaluate(model, boston_test[, "medv"], test_prediction)
+test_eval$metrics
+```
+
+References
+- Altman, N. (1992). An Introduction to Kernel and Nearest-Neighbor Nonparametric Regression.

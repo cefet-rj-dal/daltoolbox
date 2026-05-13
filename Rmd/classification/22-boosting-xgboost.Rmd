@@ -1,0 +1,76 @@
+About the method
+- `cla_xgboost`: gradient boosting classifier using the `xgboost` backend.
+
+Didactic goal: keep the multiclass classification line of experiment fixed and show how a more configurable boosting engine still fits the same DAL workflow.
+
+Environment setup.
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages(c("daltoolbox", "xgboost"))
+
+library(daltoolbox)
+```
+
+Load data and inspect.
+```{r}
+iris <- datasets::iris
+head(iris)
+```
+
+Target `Species` levels and reproducible train/test split.
+```{r}
+slevels <- levels(iris$Species)
+
+set_example_seed()
+sr <- train_test(sample_random(), iris)
+iris_train <- sr$train
+iris_test <- sr$test
+```
+
+Class distribution by split.
+```{r}
+tbl <- rbind(
+  table(iris[, "Species"]),
+  table(iris_train[, "Species"]),
+  table(iris_test[, "Species"])
+)
+rownames(tbl) <- c("dataset", "training", "test")
+tbl
+```
+
+Model configuration and fitting.
+```{r}
+if (requireNamespace("xgboost", quietly = TRUE)) {
+  model <- cla_xgboost(
+    "Species",
+    params = list(max_depth = 2, eta = 0.2, nthread = 1),
+    nrounds = 5
+  )
+  model <- fit(model, iris_train)
+}
+```
+
+Training evaluation.
+```{r}
+if (requireNamespace("xgboost", quietly = TRUE)) {
+  train_prediction <- predict(model, iris_train)
+  train_eval <- evaluate(model, iris_train[, "Species"], train_prediction)
+  train_eval$metrics
+}
+```
+
+Test evaluation.
+```{r}
+if (requireNamespace("xgboost", quietly = TRUE)) {
+  test_prediction <- predict(model, iris_test)
+  test_eval <- evaluate(model, iris_test[, "Species"], test_prediction)
+  test_eval$metrics
+}
+```
+
+What to observe
+- The experiment body is the same as in the other multiclass classification examples.
+- The method-specific change is in the boosting engine and its configuration, not in the workflow.
+
+References
+- Chen, T., and Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System.

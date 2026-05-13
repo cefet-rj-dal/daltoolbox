@@ -1,0 +1,26 @@
+About the transformation
+- `sample_simple`: simple random sampling over rows or vector elements, with or without replacement.
+
+Didactic goal: distinguish basic sampling of records from train/test partitioning. This object is useful when the task is to extract a subset, not to organize an experimental protocol.
+
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+Draw one sample without replacement and another with replacement.
+```{r}
+srswor <- sample_simple(size = 10, replace = FALSE)
+srswr <- sample_simple(size = 10, replace = TRUE)
+
+sample_wor <- transform(srswor, datasets::iris$Sepal.Length)
+sample_wr <- transform(srswr, datasets::iris$Sepal.Length)
+
+sample_wor
+sample_wr
+```
+
+References
+- Cochran, W. G. (1977). Sampling Techniques.

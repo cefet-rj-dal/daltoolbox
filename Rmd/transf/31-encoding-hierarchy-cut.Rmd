@@ -1,0 +1,23 @@
+About the transformation
+- `hierarchy_cut`: converts a numeric attribute into ordered categories defined by cut points.
+
+Didactic goal: show how a continuous variable can be turned into a simple hierarchy that is easier to interpret, summarize, or use downstream as a categorical descriptor.
+
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+```{r}
+hc <- hierarchy_cut(
+  "Sepal.Length",
+  breaks = c(-Inf, 5.5, 6.5, Inf),
+  labels = c("short", "medium", "long")
+)
+
+iris_h <- transform(hc, datasets::iris)
+table(iris_h$Sepal.Length.Level)
+head(iris_h[, c("Sepal.Length", "Sepal.Length.Level")])
+```

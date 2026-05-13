@@ -1,0 +1,64 @@
+About the method
+- `cla_mlp`: Multilayer Perceptron for classification.
+- Main parameters: `size` and `decay`.
+
+Didactic goal: keep the same classification line of experiment and change only the learner to a neural model.
+
+Environment setup.
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+Load data and inspect.
+```{r}
+iris <- datasets::iris
+head(iris)
+```
+
+Target `Species` levels and reproducible train/test split.
+```{r}
+slevels <- levels(iris$Species)
+
+set_example_seed()
+sr <- train_test(sample_random(), iris)
+iris_train <- sr$train
+iris_test <- sr$test
+```
+
+Class distribution by split.
+```{r}
+tbl <- rbind(
+  table(iris[, "Species"]),
+  table(iris_train[, "Species"]),
+  table(iris_test[, "Species"])
+)
+rownames(tbl) <- c("dataset", "training", "test")
+tbl
+```
+
+Model configuration and fitting.
+```{r}
+model <- cla_mlp("Species", slevels, size = 3, decay = 0.03)
+set_example_seed()
+model <- fit(model, iris_train)
+```
+
+Training evaluation.
+```{r}
+train_prediction <- predict(model, iris_train)
+train_eval <- evaluate(model, iris_train[, "Species"], train_prediction)
+train_eval$metrics
+```
+
+Test evaluation.
+```{r}
+test_prediction <- predict(model, iris_test)
+test_eval <- evaluate(model, iris_test[, "Species"], test_prediction)
+test_eval$metrics
+```
+
+References
+- Bishop, C. M. (1995). Neural Networks for Pattern Recognition.

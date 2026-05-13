@@ -1,0 +1,77 @@
+About the method
+- `cla_glmnet`: L1-regularized logistic regression for binary classification.
+
+Didactic goal: keep the same binary classification line of experiment used for `cla_glm` and change only the learner and its regularization choice.
+
+Environment setup.
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages(c("daltoolbox", "glmnet"))
+
+library(daltoolbox)
+```
+
+Load data, derive a binary target, and inspect.
+```{r}
+iris_bin <- datasets::iris
+iris_bin$IsVersicolor <- factor(ifelse(
+  iris_bin$Species == "versicolor",
+  "versicolor",
+  "not_versicolor"
+))
+head(iris_bin)
+```
+
+Target levels and reproducible stratified split.
+```{r}
+slevels <- levels(iris_bin$IsVersicolor)
+
+set_example_seed()
+sr <- train_test(sample_stratified("IsVersicolor"), iris_bin)
+iris_train <- sr$train
+iris_test <- sr$test
+```
+
+Class distribution by split.
+```{r}
+tbl <- rbind(
+  table(iris_bin[, "IsVersicolor"]),
+  table(iris_train[, "IsVersicolor"]),
+  table(iris_test[, "IsVersicolor"])
+)
+rownames(tbl) <- c("dataset", "training", "test")
+tbl
+```
+
+Model configuration and fitting.
+```{r}
+if (requireNamespace("glmnet", quietly = TRUE)) {
+  model <- cla_glmnet("IsVersicolor", lambda = "lambda.1se")
+  model <- fit(model, iris_train)
+}
+```
+
+Training evaluation.
+```{r}
+if (requireNamespace("glmnet", quietly = TRUE)) {
+  train_prediction <- predict(model, iris_train)
+  train_eval <- evaluate(model, iris_train[, "IsVersicolor"], train_prediction)
+  train_eval$metrics
+}
+```
+
+Test evaluation.
+```{r}
+if (requireNamespace("glmnet", quietly = TRUE)) {
+  test_prediction <- predict(model, iris_test)
+  test_eval <- evaluate(model, iris_test[, "IsVersicolor"], test_prediction)
+  test_eval$metrics
+}
+```
+
+What to observe
+- The binary experiment structure is unchanged from `cla_glm`.
+- The key method-specific choice is how the penalized solution is selected through `lambda`.
+
+References
+- Friedman, J., Hastie, T., and Tibshirani, R. (2010). Regularization Paths for Generalized Linear Models via Coordinate Descent.

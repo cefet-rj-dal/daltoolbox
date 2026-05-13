@@ -1,6 +1,6 @@
-#'@title Pattern miner
-#'@description Base class for frequent pattern and sequence mining.
-#'@details
+#' @title Pattern Miner
+#' @description Base class for frequent pattern and sequence mining.
+#' @details
 #' Pattern miners follow a lightweight Experiment Line:
 #'
 #' - `fit()` validates the mining input and stores a schema signature
@@ -10,8 +10,11 @@
 #' Different miners may normalize their inputs differently (for example, item
 #' transactions versus sequence transactions), but the base contract remains the
 #' same.
-#'@return returns a `pattern_miner` object
-#'@export
+#' @return A `pattern_miner` object.
+#' @examples
+#' miner <- pattern_miner()
+#' class(miner)
+#' @export
 pattern_miner <- function() {
   obj <- dal_learner()
   utils <- patutils()
@@ -34,7 +37,7 @@ pattern_miner <- function() {
   return(obj)
 }
 
-#'@exportS3Method action pattern_miner
+#' @exportS3Method action pattern_miner
 action.pattern_miner <- function(obj, ...) {
   thiscall <- match.call(expand.dots = TRUE)
   thiscall[[1]] <- as.name("discover")
@@ -42,17 +45,17 @@ action.pattern_miner <- function(obj, ...) {
   return(result)
 }
 
-#'@title Discover
-#'@description Generic for pattern discovery.
-#'@param obj a `pattern_miner` object
-#'@param ... optional arguments
-#'@return discovered patterns
-#'@export
+#' @title Discover
+#' @description Generic for pattern discovery.
+#' @param obj A `pattern_miner` object.
+#' @param ... Optional arguments passed to the concrete discovery method.
+#' @return Discovered patterns in the representation used by the mining engine.
+#' @export
 discover <- function(obj, ...) {
   UseMethod("discover")
 }
 
-#'@exportS3Method discover default
+#' @exportS3Method discover default
 discover.default <- function(obj, ...) {
   return(list())
 }
@@ -173,12 +176,12 @@ validate_pattern_schema <- function(obj, data) {
   invisible(TRUE)
 }
 
-#'@exportS3Method fit pattern_miner
+#' @exportS3Method fit pattern_miner
 fit.pattern_miner <- function(obj, data, ...) {
   pattern_miner_mark_fitted(obj, data)
 }
 
-#'@exportS3Method evaluate pattern_miner
+#' @exportS3Method evaluate pattern_miner
 evaluate.pattern_miner <- function(obj, patterns, ...) {
   utils <- if (!is.null(obj$pat_utils)) obj$pat_utils else patutils()
   metrics <- obj$eval_metrics

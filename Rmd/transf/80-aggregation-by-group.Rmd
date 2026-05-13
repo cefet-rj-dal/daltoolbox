@@ -1,0 +1,23 @@
+About the transformation
+- `aggregation`: summarizes a dataset by groups through named aggregation expressions.
+
+Didactic goal: show that some DAL transformations are not instance-level edits but dataset-level restructuring steps. Aggregation is useful before plotting, reporting, and grouped comparison.
+
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+```{r}
+agg <- aggregation(
+  "Species",
+  mean_sepal = mean(Sepal.Length),
+  sd_sepal = sd(Sepal.Length),
+  n = n()
+)
+
+iris_agg <- transform(agg, datasets::iris)
+iris_agg
+```

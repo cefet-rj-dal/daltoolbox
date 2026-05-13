@@ -1,0 +1,53 @@
+About the method
+- `pat_eclat`: frequent itemset mining. The goal is to identify groups of items that often appear together.
+
+Didactic goal: keep the same pattern-mining line of experiment and change only the discovered object type, from directional rules to unordered itemsets.
+
+Environment setup.
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages(c("daltoolbox", "arules"))
+
+library(daltoolbox)
+```
+
+Load transactional data.
+```{r}
+data("AdultUCI", package = "arules")
+adult_df <- as.data.frame(AdultUCI)
+head(adult_df)
+```
+
+Model configuration.
+```{r}
+utils <- patutils()
+
+pm <- pat_eclat(
+  supp = 0.5,
+  maxlen = 3,
+  include = c("sex=Male", "income=small", "marital-status=Married-civ-spouse"),
+  quality_filter = utils$quality_min(support = 0.55)
+)
+```
+
+Fit and discover patterns.
+```{r}
+pm <- fit(pm, adult_df)
+itemsets <- discover(pm, adult_df)
+length(itemsets)
+```
+
+Evaluate the discovered patterns.
+```{r}
+eval <- evaluate(pm, itemsets)
+eval$metrics
+```
+
+Inspect a few patterns.
+```{r}
+arules::inspect(itemsets[1:min(6, length(itemsets))])
+```
+
+What to observe
+- The workflow is unchanged from the rule-mining example.
+- The main semantic change is that the result is now a set of itemsets, not a set of directional implications.

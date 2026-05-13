@@ -1,0 +1,26 @@
+About the chart
+- `plot_pair_adv`: advanced pair plot with manual class coloring.
+
+Didactic goal: show a slightly richer multivariate inspection where the palette is controlled explicitly, which is useful for presentation-ready comparisons.
+
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages(c("daltoolbox", "GGally", "RColorBrewer"))
+
+library(daltoolbox)
+library(RColorBrewer)
+```
+
+```{r}
+if (requireNamespace("GGally", quietly = TRUE)) {
+  colors <- brewer.pal(3, "Set1")
+  grf <- plot_pair_adv(
+    datasets::iris,
+    cnames = colnames(datasets::iris)[1:4],
+    title = "Iris advanced pair plot",
+    clabel = "Species",
+    colors = colors
+  )
+  print(grf)
+}
+```

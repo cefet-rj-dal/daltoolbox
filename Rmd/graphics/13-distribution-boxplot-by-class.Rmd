@@ -1,0 +1,24 @@
+About the chart
+- `plot_boxplot_class`: boxplots of one numeric attribute grouped by a class label.
+
+Didactic goal: complement the plain boxplot example with a grouped version. This is often the more useful view when the analytical question is how the distribution changes across classes.
+
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+library(ggplot2)
+library(RColorBrewer)
+```
+
+```{r}
+colors <- brewer.pal(3, "Set1")
+
+grf <- plot_boxplot_class(
+  datasets::iris[, c("Sepal.Width", "Species")],
+  class_label = "Species",
+  colors = colors
+)
+plot(grf)
+```

@@ -1,33 +1,20 @@
 # Regression Examples
 
-This section reorganizes regression examples as a sequence of modeling ideas. Instead of listing methods only by their class names, the examples are grouped according to the kind of predictive reasoning they illustrate.
+This section organizes regression examples as a progression of modeling ideas. The numbering now leaves semantic gaps so the collection is easier to scan by family: interpretable models, local methods, ensembles, margin-based regression, neural learners, and tuning.
 
-For learners, the main question here is: how do numeric prediction workflows stay stable while the modeling assumptions change?
+If you are learning numeric prediction in `daltoolbox`, read the examples in order. The early notebooks help build intuition before the later ones introduce stronger nonlinear models and hyperparameter search.
 
-## Interpretable Starting Point
+## Interpretable Start
 
-Begin with a learner that is easy to explain and useful for understanding the flow of regression experiments.
+- [01-interpretable-tree.md](/examples/regression/01-interpretable-tree.md) - `reg_dtree`: regression tree with rule-like splits and easy inspection.
 
-- [01-interpretable-tree.md](/examples/regression/01-interpretable-tree.md) - `reg_dtree`: decision tree for regression. Partitions feature space and estimates values by leaf means; interpretable and can model nonlinearities.
+## Core Regression Families
 
-## Neighborhood and Ensemble Models
-
-These examples move to methods that either borrow information from nearby observations or aggregate many weak predictors.
-
-- [02-instance-based-knn.md](/examples/regression/02-instance-based-knn.md) - `reg_knn`: k-Nearest Neighbors for regression. Predicts the mean (or weighted mean) of targets from the k nearest neighbors.
-- [03-ensemble-random-forest.md](/examples/regression/03-ensemble-random-forest.md) - `reg_rf`: Random Forest for regression. Averages many decision trees trained with randomness; tends to reduce variance.
-
-## Flexible Nonlinear Models
-
-These learners are useful when the relationship between predictors and target is more complex and less easily explained by a single tree.
-
-- [04-margin-svm.md](/examples/regression/04-margin-svm.md) - `reg_svm`: Support Vector Regression (SVR). Models a function with an error-insensitive margin up to `epsilon` and penalizes violations via `cost`.
-- [05-neural-mlp.md](/examples/regression/05-neural-mlp.md) - `reg_mlp`: Multilayer Perceptron (neural network) for regression.
-
-Formula-based linear regression with `reg_lm()` follows the same `fit()`, `predict()`, and `evaluate()` contract, even though it is not shown as a separate numbered example in this sequence.
+- [10-instance-based-knn.md](/examples/regression/10-instance-based-knn.md) - `reg_knn`: local prediction by nearby cases.
+- [20-ensemble-random-forest.md](/examples/regression/20-ensemble-random-forest.md) - `reg_rf`: tree ensemble for robust nonlinear regression.
+- [30-margin-svm.md](/examples/regression/30-margin-svm.md) - `reg_svm`: support vector regression with margin-based fitting.
+- [40-neural-mlp.md](/examples/regression/40-neural-mlp.md) - `reg_mlp`: multilayer perceptron for nonlinear numeric prediction.
 
 ## Model Selection
 
-The final example shows how tuning fits into the same regression workflow without changing the underlying experimental logic.
-
-- [06-model-selection-tuning.md](/examples/regression/06-model-selection-tuning.md) - `reg_tune`: hyperparameter search for regression models over ranges in `ranges`.
+- [50-model-selection-tuning.md](/examples/regression/50-model-selection-tuning.md) - `reg_tune`: searches hyperparameter settings for regression models in a reproducible workflow.

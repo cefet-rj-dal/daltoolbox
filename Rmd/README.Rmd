@@ -1,31 +1,30 @@
 # daltoolbox Examples
 
-The examples are reorganized to support two complementary entry points:
+The examples now support two complementary entry points:
 
 - a guided tutorial track for readers who want to learn the workflow step by step
-- thematic example collections for readers who want to inspect a specific family of methods
+- thematic collections for readers who want to inspect one family of methods at a time
 
-If you are new to `daltoolbox`, start with the tutorials. If you already know the package structure, the thematic collections remain available and were reorganized with more didactic descriptions.
+If you are new to `daltoolbox`, start with the tutorials. If you already know the basic Experiment Line, jump directly to the thematic collections.
 
-### Guided tutorial track
+## Guided Tutorial Track
 
-- [Tutorials](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/tutorial/) - a 13-part learning sequence covering first experiment, sampling, data quality, preprocessing, baselines, metrics, model comparison, tuning, end-to-end pipelines, regression, clustering, visual analysis, and custom extensions.
+- [Tutorials](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/tutorial/) - a structured path with semantic numbering blocks for foundations, classification study, workflow transfer, and extension.
 
-### Thematic example collections
+## Thematic Example Collections
 
-- [Transformations](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/transf/) - sampling, balancing, cleaning, scaling, encoding, smoothing, feature selection, dimensionality reduction, and curvature-based heuristics.
-- [Classification](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/classification/) - baseline models, core classifier families, and model selection.
-- [Regression](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/regression/) - interpretable models, nonlinear learners, and tuning for numeric prediction.
-- [Clustering](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/clustering/) - partitional, medoid-based, density-based methods, and clustering model selection.
-- [Pattern mining](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/patterns/) - association rules, frequent itemsets, sequential patterns, and descriptive evaluation of discovered patterns.
+- [Transformations](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/transf/) - sampling, cleaning, scaling, encoding, smoothing, balancing, feature selection, and dimensionality reduction.
+- [Classification](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/classification/) - foundations, core learner families, and model selection.
+- [Regression](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/regression/) - interpretable models, nonlinear learners, and tuning.
+- [Clustering](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/clustering/) - partition-based methods, density-based clustering, and tuning.
+- [Pattern mining](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/patterns/) - association rules, itemsets, and sequential patterns.
 - [Graphics](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/graphics/) - comparison, distribution, relationship, time-oriented, and export-focused visualizations.
-- [Custom extensions](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/custom/) - examples showing how to integrate new transformations, classifiers, regressors, and clustering methods into the Experiment Line workflow.
+- [Custom extensions](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/custom/) - examples showing how to add new transformations and learners while preserving the DAL workflow.
 
-### Documentation design
+## Documentation Design
 
-The examples were revised to be more useful for learning:
+The example corpus now follows a clearer didactic convention:
 
-- files inside each collection are now numbered in a suggested reading order
-- category `README` files group examples by subject rather than only by class name
-- many examples now include more explanation between code blocks, including interpretation hints and common mistakes
-
+- numbering uses semantic gaps so related examples stay grouped by topic
+- each subfolder `README` explains the intended reading order instead of acting only as a catalog
+- the weaker examples are being brought closer to the same teaching style used in the strongest notebooks

@@ -1,0 +1,51 @@
+About the method
+- `reg_rf`: Random Forest for regression.
+- Main parameters: `mtry` and `ntree`.
+
+Didactic goal: keep the same regression line of experiment and change only the learner to a tree ensemble.
+
+Environment setup.
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+Load data and inspect.
+```{r}
+data(Boston)
+head(Boston)
+```
+
+Target `medv` and reproducible train/test split.
+```{r}
+set_example_seed()
+sr <- train_test(sample_random(), Boston)
+boston_train <- sr$train
+boston_test <- sr$test
+```
+
+Model configuration and fitting.
+```{r}
+model <- reg_rf("medv", mtry = 7, ntree = 30)
+set_example_seed()
+model <- fit(model, boston_train)
+```
+
+Training evaluation.
+```{r}
+train_prediction <- predict(model, boston_train)
+train_eval <- evaluate(model, boston_train[, "medv"], train_prediction)
+train_eval$metrics
+```
+
+Test evaluation.
+```{r}
+test_prediction <- predict(model, boston_test)
+test_eval <- evaluate(model, boston_test[, "medv"], test_prediction)
+test_eval$metrics
+```
+
+References
+- Breiman, L. (2001). Random Forests.

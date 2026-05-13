@@ -1,0 +1,50 @@
+About the method
+- `cluster_dbscan`: density-based clustering that identifies dense regions and can label sparse points as noise.
+
+Didactic goal: keep the same clustering line of experiment and change only the grouping principle, from partitioning all cases to detecting dense neighborhoods.
+
+Environment setup.
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+Load data and separate predictors from the reference labels used only for interpretation.
+```{r}
+iris <- datasets::iris
+x <- iris[, 1:4]
+ref <- iris$Species
+head(x)
+```
+
+Model configuration.
+```{r}
+model <- cluster_dbscan(minPts = 3)
+model$eval_external <- list(
+  model$clu_utils$metric_entropy,
+  model$clu_utils$metric_purity
+)
+```
+
+Fit the model and obtain cluster labels.
+```{r}
+set_example_seed()
+model <- fit(model, x)
+clu <- cluster(model, x)
+table(clu)
+```
+
+Evaluate the partition.
+```{r}
+eval <- evaluate(model, clu, ref)
+eval
+```
+
+What to observe
+- The workflow is the same as in the partition-based methods.
+- The method-specific difference is that DBSCAN may leave some cases as noise instead of forcing all observations into clusters.
+
+References
+- Ester, M., Kriegel, H.-P., Sander, J., and Xu, X. (1996). A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise.

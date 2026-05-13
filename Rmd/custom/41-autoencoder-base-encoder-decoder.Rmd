@@ -1,0 +1,24 @@
+## Autoencoder Base Encoder-Decoder
+
+This example shows the role of `autoenc_base_ed` as a base contract for transformations that both compress and reconstruct the input. The default implementation is again identity-based, so the emphasis stays on the interface.
+
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+```{r}
+x <- as.matrix(datasets::iris[, 1:4])
+
+aed <- autoenc_base_ed(input_size = 4, encoding_size = 2)
+aed <- fit(aed, x)
+x_rec <- transform(aed, x)
+
+dim(x_rec)
+head(x_rec)
+```
+
+References
+- Hinton, G. E., and Salakhutdinov, R. R. (2006). Reducing the Dimensionality of Data with Neural Networks.
