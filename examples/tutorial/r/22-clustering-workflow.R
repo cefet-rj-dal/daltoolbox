@@ -7,8 +7,6 @@ iris <- datasets::iris
 x <- iris[, 1:4]
 
 model <- cluster_kmeans(k = 3)
-model$eval_internal <- list(model$clu_utils$metric_silhouette)
-model$eval_external <- list(model$clu_utils$metric_entropy)
 set_example_seed()
 model <- fit(model, x)
 clu <- cluster(model, x)
@@ -22,8 +20,6 @@ iris_norm <- transform(norm, iris)
 x_norm <- iris_norm[, 1:4]
 
 model_norm <- cluster_kmeans(k = 3)
-model_norm$eval_internal <- list(model_norm$clu_utils$metric_silhouette)
-model_norm$eval_external <- list(model_norm$clu_utils$metric_entropy)
 set_example_seed()
 model_norm <- fit(model_norm, x_norm)
 clu_norm <- cluster(model_norm, x_norm)

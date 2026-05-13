@@ -31,7 +31,7 @@ head(x)
 ## 6          5.4         3.9          1.7         0.4
 ```
 
-Model configuration.
+Model configuration. The evaluation lists are customized here for a didactic reason: `silhouette` is a compact way to discuss cohesion and separation in centroid-based partitions, `davies_bouldin` adds a second internal view based on cluster scatter and separation, and `entropy` plus `purity` make the external comparison with `iris$Species` easy to read. This is a deliberate simplification of the default evaluation set of `cluster_kmeans()`.
 
 ``` r
 model <- cluster_kmeans(k = 3)
@@ -96,3 +96,6 @@ What to observe
 
 References
 - MacQueen, J. (1967). Some Methods for Classification and Analysis of Multivariate Observations.
+- Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
+- Davies, D. L., and Bouldin, D. W. (1979). A cluster separation measure.
+- Zhao, Y., and Karypis, G. (2001). Criterion functions for document clustering.

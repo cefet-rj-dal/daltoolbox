@@ -23,9 +23,9 @@ if (requireNamespace("igraph", quietly = TRUE)) {
 ```
 
 ```
-## IGRAPH 5fd0724 U--- 20 28 -- Erdos-Renyi (gnp) graph
+## IGRAPH 7c919d3 U--- 20 28 -- Erdos-Renyi (gnp) graph
 ## + attr: name (g/c), type (g/c), loops (g/l), p (g/n)
-## + edges from 5fd0724:
+## + edges from 7c919d3:
 ##  [1]  2-- 3  2-- 4  1-- 5  4-- 5  1-- 7  6-- 7  4-- 8  5-- 8  1-- 9  5-- 9  6-- 9  7-- 9  7--11  4--12  6--14 13--14  2--15
 ## [18]  8--15  9--15 13--15  8--16  9--16 11--16  3--17  5--17  3--18 17--18  8--19
 ```

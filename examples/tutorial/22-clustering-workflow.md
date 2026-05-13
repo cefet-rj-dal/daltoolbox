@@ -23,8 +23,6 @@ Run K-means on the original scale.
 
 ``` r
 model <- cluster_kmeans(k = 3)
-model$eval_internal <- list(model$clu_utils$metric_silhouette)
-model$eval_external <- list(model$clu_utils$metric_entropy)
 set_example_seed()
 model <- fit(model, x)
 clu <- cluster(model, x)
@@ -58,9 +56,13 @@ evaluate(model, clu, iris$Species)
 ## [1] 1.584963
 ## 
 ## $metrics
-##       metric     value     goal     type
-## 1 silhouette 0.5528190 maximize internal
-## 2    entropy 0.3938863 minimize external
+##                metric      value     goal     type
+## 1          silhouette  0.5528190 maximize internal
+## 2      davies_bouldin  0.6619715 minimize internal
+## 3   calinski_harabasz 11.2836215 maximize internal
+## 4             entropy  0.3938863 minimize external
+## 5              purity  0.8933333 maximize external
+## 6 adjusted_rand_index  0.7302383 maximize external
 ```
 
 Now normalize the data and repeat the same clustering procedure. Because the method is unchanged, any difference is due mainly to the representation of the data.
@@ -72,8 +74,6 @@ iris_norm <- transform(norm, iris)
 x_norm <- iris_norm[, 1:4]
 
 model_norm <- cluster_kmeans(k = 3)
-model_norm$eval_internal <- list(model_norm$clu_utils$metric_silhouette)
-model_norm$eval_external <- list(model_norm$clu_utils$metric_entropy)
 set_example_seed()
 model_norm <- fit(model_norm, x_norm)
 clu_norm <- cluster(model_norm, x_norm)
@@ -107,9 +107,15 @@ evaluate(model_norm, clu_norm, iris$Species)
 ## [1] 1.584963
 ## 
 ## $metrics
-##       metric     value     goal     type
-## 1 silhouette 0.5047688 maximize internal
-## 2    entropy 0.4177655 minimize external
+##                metric      value     goal     type
+## 1          silhouette  0.5047688 maximize internal
+## 2      davies_bouldin  0.7602771 minimize internal
+## 3   calinski_harabasz 66.8931252 maximize internal
+## 4             entropy  0.4177655 minimize external
+## 5              purity  0.8866667 maximize external
+## 6 adjusted_rand_index  0.7163421 maximize external
 ```
 
 This is an important lesson for beginners: in unsupervised learning, the data representation can matter as much as the algorithm.
+
+The evaluation used above is the default evaluation of `cluster_kmeans()`. These metric lists can be customized, but that is optional and is better treated as a separate modeling choice.

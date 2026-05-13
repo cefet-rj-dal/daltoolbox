@@ -31,7 +31,7 @@ head(x)
 ## 6          5.4         3.9          1.7         0.4
 ```
 
-Model configuration.
+Model configuration. The evaluation lists are customized here for a didactic reason: `silhouette` and `davies_bouldin` help compare the medoid partition through cohesion and separation, while `entropy` and `purity` make the external comparison with `iris$Species` easy to interpret. This keeps the discussion close to the k-means example so the reader can focus on the difference between centroids and medoids.
 
 ``` r
 model <- cluster_pam(k = 3)
@@ -96,3 +96,6 @@ What to observe
 
 References
 - Kaufman, L., and Rousseeuw, P. J. (1990). Finding Groups in Data.
+- Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
+- Davies, D. L., and Bouldin, D. W. (1979). A cluster separation measure.
+- Zhao, Y., and Karypis, G. (2001). Criterion functions for document clustering.

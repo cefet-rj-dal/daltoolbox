@@ -32,7 +32,7 @@ head(x)
 ## 6          5.4         3.9          1.7         0.4
 ```
 
-Model configuration and tuning setup.
+Model configuration and tuning setup. Here the example intentionally customizes the evaluation lists to keep tuning centered on one internal metric (`silhouette`) and one external reference metric (`entropy`). This is a didactic simplification, not a requirement of clustering workflows. The motivation is to tune `k` against a compact internal criterion of cohesion/separation while still reporting an external interpretation score against `iris$Species`.
 
 ``` r
 base_model <- cluster_kmeans(k = 2)
@@ -102,3 +102,5 @@ What to observe
 
 References
 - Satopaa, V., Albrecht, J., Irwin, D., and Raghavan, B. (2011). Finding a "Kneedle" in a Haystack.
+- Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
+- Shannon, C. E. (1948). A mathematical theory of communication.

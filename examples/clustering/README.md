@@ -28,6 +28,7 @@ This block widens the clustering perspective beyond hard partitions. These metho
 
 ## Model Selection
 
-This final example is kept apart because it is about choosing configurations, not only understanding a single clustering family.
+This final block separates evaluation customization from hyperparameter search. The first example shows how to change metric lists explicitly; the second uses those ideas inside the tuning workflow.
 
+- [19-custom-evaluation.md](/examples/clustering/19-custom-evaluation.md) - inspect default clustering metrics and replace them with a custom evaluation set.
 - [20-model-selection-tuning.md](/examples/clustering/20-model-selection-tuning.md) - `clu_tune`: compares clustering configurations through the DAL tuning workflow.

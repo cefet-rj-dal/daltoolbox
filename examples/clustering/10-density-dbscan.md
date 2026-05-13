@@ -31,7 +31,7 @@ head(x)
 ## 6          5.4         3.9          1.7         0.4
 ```
 
-Model configuration.
+Model configuration. The external evaluation list is customized here for a didactic reason: `entropy` summarizes how mixed each discovered region is relative to `iris$Species`, and `purity` offers a complementary, easier-to-read agreement score. The internal DBSCAN default remains method-specific, centered on the number of noise points rather than on a centroid-based criterion.
 
 ``` r
 model <- cluster_dbscan(minPts = 3)
@@ -93,3 +93,4 @@ What to observe
 
 References
 - Ester, M., Kriegel, H.-P., Sander, J., and Xu, X. (1996). A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise.
+- Zhao, Y., and Karypis, G. (2001). Criterion functions for document clustering.

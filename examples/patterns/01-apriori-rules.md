@@ -74,7 +74,7 @@ rules <- discover(pm, trans)
 ```
 
 ```
-##  done [0.00s].
+##  done [0.01s].
 ## writing ... [0 rule(s)] done [0.00s].
 ## creating S4 object  ... done [0.00s].
 ```
