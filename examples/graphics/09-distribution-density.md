@@ -4,6 +4,7 @@ About the chart
 Graphics environment setup.
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation 
 #install.packages("daltoolbox")
 
@@ -37,12 +38,12 @@ head(example)
 
 ```
 ##   exponential  uniform   normal
-## 1   1.4637206 3.455148 4.630319
-## 2   0.4663201 2.993767 3.326800
-## 3   2.8007761 2.581836 7.493531
-## 4   0.7207741 2.717562 2.930433
-## 5   2.0369439 3.327043 4.585704
-## 6   0.1001134 2.710376 4.702176
+## 1   0.7739627 3.205294 5.892116
+## 2   0.2994734 2.868113 5.155478
+## 3   0.4810232 2.678372 4.332598
+## 4   1.8302383 2.800657 6.772819
+## 5   0.7525840 2.550007 4.374387
+## 6   0.4990995 2.545011 5.755205
 ```
 
 Density plot

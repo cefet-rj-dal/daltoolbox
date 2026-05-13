@@ -4,6 +4,7 @@ Random undersampling reduces all classes to the minority count by sampling witho
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation
 # install.packages("daltoolbox")
 
@@ -24,7 +25,8 @@ table(iris_imb$Species)
 
 
 ``` r
-bal <- bal_subsampling("Species", seed = 123)
+set_example_seed()
+bal <- bal_subsampling("Species")
 iris_bal <- transform(bal, iris_imb)
 table(iris_bal$Species)
 ```
@@ -41,10 +43,10 @@ head(iris_bal)
 
 ```
 ##   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
-## 1          7.1         3.0          5.9         2.1 virginica
-## 2          6.5         3.2          5.1         2.0 virginica
-## 3          5.8         2.7          5.1         1.9 virginica
-## 4          7.6         3.0          6.6         2.1 virginica
-## 5          7.2         3.6          6.1         2.5 virginica
-## 6          6.5         3.0          5.8         2.2 virginica
+## 1          6.3         3.3          6.0         2.5 virginica
+## 2          6.5         3.0          5.8         2.2 virginica
+## 3          6.5         3.2          5.1         2.0 virginica
+## 4          6.7         2.5          5.8         1.8 virginica
+## 5          5.8         2.7          5.1         1.9 virginica
+## 6          6.3         2.9          5.6         1.8 virginica
 ```

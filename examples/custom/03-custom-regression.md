@@ -6,6 +6,7 @@ This makes the separation of concerns explicit. The regression algorithm can be 
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation
 # install.packages(c("daltoolbox", "RSNNS", "MASS"))
 
@@ -58,7 +59,7 @@ predict.reg_rsnns_custom <- function(object, x, ...) {
 library(MASS)
 data(Boston)
 
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, Boston)
 boston_train <- sr$train
@@ -68,6 +69,7 @@ boston_test <- sr$test
 
 ``` r
 model <- reg_rsnns_custom("medv", size = 6, learn_rate = 0.05, maxit = 200)
+set_example_seed()
 model <- fit(model, boston_train)
 
 train_prediction <- predict(model, boston_train)
@@ -76,8 +78,8 @@ train_eval$metrics
 ```
 
 ```
-##       mse     smape         R2
-## 1 108.643 0.3691343 -0.2070335
+##        mse     smape          R2
+## 1 84.45911 0.2868254 -0.06142155
 ```
 
 
@@ -89,7 +91,7 @@ test_eval$metrics
 
 ```
 ##        mse     smape         R2
-## 1 95.48156 0.3782586 -0.5867202
+## 1 113.5485 0.3272549 -0.1058588
 ```
 
 References

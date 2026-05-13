@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation
 # install.packages("daltoolbox")
 
@@ -7,6 +8,7 @@ iris <- datasets::iris
 
 if (requireNamespace("glmnet", quietly = TRUE)) {
   fs <- feature_selection_lasso("Sepal.Length")
+set_example_seed()
   fs <- fit(fs, iris)
 
   print(fs$selected)

@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation 
 #install.packages("daltoolbox")
 
@@ -19,6 +20,7 @@ summary(iris)
 # Adjust numeric values to 0 (minimum value) - 1 (maximum value).
 
 norm <- minmax()
+set_example_seed()
 norm <- fit(norm, iris)
 ndata <- transform(norm, iris)
 summary(ndata)

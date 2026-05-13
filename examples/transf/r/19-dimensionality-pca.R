@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation 
 #install.packages("daltoolbox")
 
@@ -10,6 +11,7 @@ head(iris)
 
 # creates and fits PCA using the target column as reference
 mypca <- dt_pca("Species")
+set_example_seed()
 mypca <- fit(mypca, datasets::iris)
 iris.pca <- transform(mypca, iris)
 
@@ -18,6 +20,7 @@ print(head(mypca$pca.transf))
 
 # Manual definition of the number of components
 mypca <- dt_pca("Species", 3)
+set_example_seed()
 mypca <- fit(mypca, datasets::iris)
 iris.pca <- transform(mypca, iris)
 print(head(iris.pca))

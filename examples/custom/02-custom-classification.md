@@ -1,15 +1,17 @@
 ## Custom Classification
 
-The primary goal of this example is to show how a classifier can be customized with very little integration code. The procedure is always the same: define a constructor to hold the configuration, implement `fit()` to train the model, implement `predict()` to return outputs in the expected format, and then reuse the same Experiment Line workflow for sampling and evaluation.
+The primary goal of this example is to show how a classifier can be customized with very little integration code. The procedure is always the same: define a constructor to hold the configuration, implement `fit()` to train the model, implement `predict()` to return a class-score table in the expected format, and then reuse the same Experiment Line workflow for sampling and evaluation.
 
 This is one of the main advantages of the framework: the complexity of the mining method stays in the external backend, while the complexity of integrating that method into the workflow stays low and predictable. In this concrete example, the custom classifier uses `RSNNS::mlp`.
 
 What to observe
 - The code is split into constructor, `fit()`, and `predict()`, which makes the integration contract explicit.
 - After that contract is implemented, the downstream workflow looks almost identical to a built-in learner example.
+- For classification, `predict()` should expose one column per class rather than only hard labels.
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation
 # install.packages(c("daltoolbox", "RSNNS"))
 
@@ -65,7 +67,7 @@ predict.cla_rsnns_custom <- function(object, x, ...) {
 iris <- datasets::iris
 slevels <- levels(iris$Species)
 
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, iris)
 iris_train <- sr$train
@@ -75,6 +77,7 @@ iris_test <- sr$test
 
 ``` r
 model <- cla_rsnns_custom("Species", slevels, size = 5, learn_rate = 0.1, maxit = 150)
+set_example_seed()
 model <- fit(model, iris_train)
 
 train_prediction <- predict(model, iris_train)
@@ -84,7 +87,7 @@ train_eval$metrics
 
 ```
 ##    accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1 0.9583333 39 81  0  0         1      1           1           1  1
+## 1 0.9666667 41 79  0  0         1      1           1           1  1
 ```
 
 
@@ -95,13 +98,13 @@ test_eval$metrics
 ```
 
 ```
-##    accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1 0.9333333 11 19  0  0         1      1           1           1  1
+##   accuracy TP TN FP FN precision recall sensitivity specificity f1
+## 1        1  9 21  0  0         1      1           1           1  1
 ```
 
 Common mistakes
 - Mixing custom object definition with experiment code until both become hard to maintain.
-- Returning predictions in a format that `evaluate()` does not expect.
+- Returning hard labels only, instead of the class-score format expected by `evaluate()`.
 - Assuming that integrating an external backend removes the need for the same train/test discipline used in built-in examples.
 
 References

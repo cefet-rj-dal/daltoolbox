@@ -6,7 +6,7 @@ The examples below still work as references, but the grouping is designed to ans
 
 ## Foundations
 
-These examples establish the minimum logic of a classification experiment: create a split, fit a learner, generate predictions, and evaluate the outcome.
+These examples establish the minimum logic of a classification experiment: create a split, fit a learner, generate class scores or probabilities, and evaluate the outcome.
 
 - [01-baseline-majority.md](/examples/classification/01-baseline-majority.md) - `cla_majority`: baseline classifier that always predicts the most frequent class observed during training. Useful as a minimum performance reference.
 - [02-interpretable-tree.md](/examples/classification/02-interpretable-tree.md) - `cla_dtree`: Decision Tree for classification. Recursively splits on explanatory variables to separate classes, yielding an interpretable model.

@@ -7,6 +7,7 @@ Didactic goal: read this example as a numeric-prediction workflow. The main lear
 Environment setup.
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Regression KNN
 
 # installation 
@@ -27,10 +28,10 @@ print(t(sapply(Boston, class)))
 ```
 
 ```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black    
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric"
-##      lstat     medv     
-## [1,] "numeric" "numeric"
+##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio  
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric"
+##      black     lstat     medv     
+## [1,] "numeric" "numeric" "numeric"
 ```
 
 ``` r
@@ -58,7 +59,7 @@ Random train/test split.
 
 ``` r
 # preparing dataset for random sampling
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, Boston)
 boston_train <- sr$train
@@ -71,6 +72,7 @@ Train kNN for regression: set `k`.
 # Training
 
 model <- reg_knn("medv", k=5)
+set_example_seed()
 model <- fit(model, boston_train)
 ```
 
@@ -86,8 +88,8 @@ print(train_eval$metrics)
 ```
 
 ```
-##        mse    smape        R2
-## 1 27.02782 0.155995 0.6997184
+##       mse     smape        R2
+## 1 22.5602 0.1477883 0.7164796
 ```
 
 Test evaluation.
@@ -102,8 +104,8 @@ print(test_eval$metrics)
 ```
 
 ```
-##       mse     smape       R2
-## 1 26.9483 0.1791238 0.552171
+##       mse     smape        R2
+## 1 43.0607 0.1873742 0.5806281
 ```
 
 References

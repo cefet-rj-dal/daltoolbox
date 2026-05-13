@@ -6,6 +6,7 @@ The purpose is not to exhaust every cleaning strategy, but to show that `daltool
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -56,10 +57,37 @@ small_complete
 ## 12          4.8         3.4          1.6         0.2  setosa
 ```
 
+When row removal is too aggressive, a basic imputation strategy is often a better baseline. In `daltoolbox`, numeric columns can be imputed with a robust summary such as the median, while categorical columns use the most frequent observed value.
+
+``` r
+imp <- imputation_simple()
+set_example_seed()
+imp <- fit(imp, small)
+small_imputed <- transform(imp, small)
+small_imputed
+```
+
+```
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1           5.1         3.5          1.4         0.2  setosa
+## 2           4.9         3.0          1.4         0.2  setosa
+## 3           4.9         3.2          1.3         0.2  setosa
+## 4           4.6         3.1          1.5         0.2  setosa
+## 5           5.0         3.4          1.4         0.2  setosa
+## 6           5.4         3.9          1.7         0.4  setosa
+## 7           4.6         3.4          1.4         0.3  setosa
+## 8           4.9         3.4          1.5         0.2  setosa
+## 9           4.4         2.9          1.4         0.2  setosa
+## 10          4.9         3.1          1.5         0.1  setosa
+## 11          5.4         3.7          1.5         0.2  setosa
+## 12          4.8         3.4          1.6         0.2  setosa
+```
+
 Now inspect a basic outlier strategy on a numeric attribute. The point is to show that the analyst can explicitly choose how to detect suspicious observations before modeling.
 
 ``` r
 out <- outliers_boxplot()
+set_example_seed()
 out <- fit(out, iris)
 outliers_found <- transform(out, iris)
 head(outliers_found)

@@ -6,6 +6,7 @@ This is where `daltoolbox` becomes useful as an experimental framework rather th
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -17,7 +18,7 @@ Prepare one shared train/test split. This keeps the comparison controlled.
 iris <- datasets::iris
 slevels <- levels(iris$Species)
 
-set.seed(1)
+set_example_seed()
 sr <- train_test(sample_stratified("Species"), iris)
 iris_train <- sr$train
 iris_test <- sr$test
@@ -38,9 +39,10 @@ Fit and evaluate each learner using the same protocol.
 
 ``` r
 results <- lapply(models, function(model) {
+set_example_seed()
   fitted <- fit(model, iris_train)
   pred <- predict(fitted, iris_test)
-  evaluate(fitted, adjust_class_label(iris_test$Species), pred)$metrics
+  evaluate(fitted, iris_test$Species, pred)$metrics
 })
 
 results
@@ -53,15 +55,15 @@ results
 ## 
 ## $tree
 ##    accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1 0.9666667 10 20  0  0         1      1           1           1  1
+## 1 0.9333333 10 20  0  0         1      1           1           1  1
 ## 
 ## $knn
-##    accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1 0.9666667 10 20  0  0         1      1           1           1  1
+##   accuracy TP TN FP FN precision recall sensitivity specificity f1
+## 1      0.9 10 20  0  0         1      1           1           1  1
 ## 
 ## $rf
 ##    accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1 0.9666667 10 20  0  0         1      1           1           1  1
+## 1 0.9333333 10 20  0  0         1      1           1           1  1
 ```
 
 At this stage, the main pedagogical gain is methodological: the learner changes, but the experiment design stays stable.

@@ -4,6 +4,7 @@ About the chart
 Graphics environment setup.
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation 
 #install.packages("daltoolbox")
 
@@ -38,12 +39,12 @@ head(example)
 
 ```
 ##   exponential  uniform   normal
-## 1   0.3802541 2.672549 4.142595
-## 2   1.8413447 2.685516 3.757571
-## 3   0.6684775 2.518460 6.033234
-## 4   0.2368660 2.982172 5.830689
-## 5   1.1976367 2.787674 4.415032
-## 6   0.2536577 2.961168 5.742998
+## 1   0.1983368 3.259554 4.896481
+## 2   0.6608953 3.171106 5.187828
+## 3   0.2834910 3.423250 4.389551
+## 4   0.0381919 2.531736 3.741199
+## 5   0.4731766 2.619622 4.529254
+## 6   1.4636271 2.730006 4.735878
 ```
 
 Histogram

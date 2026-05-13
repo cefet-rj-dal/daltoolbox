@@ -6,6 +6,7 @@ This tutorial intentionally uses a small and familiar dataset so the reader can 
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -40,7 +41,7 @@ slevels
 Now create a training set and a test set. The training data is used to fit the learner; the test data is used later to estimate how the model behaves on new cases.
 
 ``` r
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, iris)
 
@@ -52,31 +53,32 @@ With the split ready, define a first learner. A decision tree is a good starting
 
 ``` r
 model <- cla_dtree("Species", slevels)
+set_example_seed()
 model <- fit(model, iris_train)
 ```
 
-After training, always check performance on both the training data and the test data. The comparison helps reveal whether the learner is simply memorizing the training set or generalizing in a reasonable way.
+After training, always check performance on both the training data and the test data. The comparison helps reveal whether the learner is simply memorizing the training set or generalizing in a reasonable way. In the classification API, `predict()` returns class scores, so `evaluate()` can be called directly with the original factor labels.
 
 ``` r
 train_prediction <- predict(model, iris_train)
-train_eval <- evaluate(model, adjust_class_label(iris_train$Species), train_prediction)
+train_eval <- evaluate(model, iris_train$Species, train_prediction)
 train_eval$metrics
 ```
 
 ```
-##   accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1    0.975 39 81  0  0         1      1           1           1  1
+##    accuracy TP TN FP FN precision recall sensitivity specificity f1
+## 1 0.9666667 41 79  0  0         1      1           1           1  1
 ```
 
 ``` r
 test_prediction <- predict(model, iris_test)
-test_eval <- evaluate(model, adjust_class_label(iris_test$Species), test_prediction)
+test_eval <- evaluate(model, iris_test$Species, test_prediction)
 test_eval$metrics
 ```
 
 ```
 ##    accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1 0.9666667 11 19  0  0         1      1           1           1  1
+## 1 0.9666667  9 21  0  0         1      1           1           1  1
 ```
 
 This structure is the foundation of the package. The later tutorials mainly change the sampling strategy, the preprocessing steps, or the learner itself, but the overall logic remains stable.

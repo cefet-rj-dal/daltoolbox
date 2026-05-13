@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Regression tuning 
 
 # installation 
@@ -17,7 +18,7 @@ head(Boston)
 Boston <- as.matrix(Boston)
 
 # preparing dataset for random sampling
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, Boston)
 boston_train <- sr$train
@@ -27,6 +28,7 @@ boston_test <- sr$test
 
 tune <- reg_tune(reg_svm("medv"), 
           ranges = list(seq(0,1,0.2), cost=seq(20,100,20), kernel = c("radial")))
+set_example_seed()
 model <- fit(tune, boston_train)
 
 # Model adjustment

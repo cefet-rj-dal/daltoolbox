@@ -5,6 +5,7 @@ About the method
 Environment setup: install and load the package.
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Classification using Support Vector Machine
 
 # installation 
@@ -50,7 +51,7 @@ Random train/test split.
 
 ``` r
 # Building train and test samples via random sampling
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, iris)
 iris_train <- sr$train
@@ -70,8 +71,8 @@ head(tbl)
 ```
 ##          setosa versicolor virginica
 ## dataset      50         50        50
-## training     39         38        43
-## test         11         12         7
+## training     41         39        40
+## test          9         11        10
 ```
 
 Model training
@@ -80,25 +81,25 @@ Train SVM: tune `cost`, `epsilon`, and optionally `kernel`.
 ``` r
 # Model training
 model <- cla_svm("Species", slevels, epsilon=0.0, cost=20.000) # default kernel; adjust as needed
+set_example_seed()
 model <- fit(model, iris_train)
 ```
 
 Training evaluation
-Predict and compute metrics.
+Predict and compute metrics from the returned class scores.
 
 ``` r
 # Checking fit on training data
 train_prediction <- predict(model, iris_train)
 
 # Model evaluation (training)
-iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
-train_eval <- evaluate(model, iris_train_predictand, train_prediction)
+train_eval <- evaluate(model, iris_train[,"Species"], train_prediction)
 print(train_eval$metrics)
 ```
 
 ```
-##   accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1    0.975 39 81  0  0         1      1           1           1  1
+##    accuracy TP TN FP FN precision recall sensitivity specificity f1
+## 1 0.9916667 41 79  0  0         1      1           1           1  1
 ```
 
 Test evaluation
@@ -108,16 +109,14 @@ Predict and compute metrics.
 # Model test
 test_prediction <- predict(model, iris_test)
 
-iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
-
 # Test evaluation
- test_eval <- evaluate(model, iris_test_predictand, test_prediction)
+ test_eval <- evaluate(model, iris_test[,"Species"], test_prediction)
 print(test_eval$metrics)
 ```
 
 ```
-##   accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1        1 11 19  0  0         1      1           1           1  1
+##    accuracy TP TN FP FN precision recall sensitivity specificity f1
+## 1 0.9333333  9 21  0  0         1      1           1           1  1
 ```
 
 References

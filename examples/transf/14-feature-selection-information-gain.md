@@ -4,6 +4,7 @@ Information Gain measures the reduction in target entropy provided by each featu
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation
 # install.packages("daltoolbox")
 
@@ -19,6 +20,7 @@ iris$Species <- factor(iris$Species)
 
 ``` r
 fs <- feature_selection_info_gain("Species", top = 2)
+set_example_seed()
 fs <- fit(fs, iris)
 
 print(fs$selected)

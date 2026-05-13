@@ -6,6 +6,7 @@ Didactic goal: focus on what changes in the dataset after each operation. In pre
 Environment setup.
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Stratified sampling dataset
 
 # installation 

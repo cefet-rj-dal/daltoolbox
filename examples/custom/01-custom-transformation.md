@@ -6,6 +6,7 @@ This highlights an important point of the framework. The data-mining method may 
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation
 # install.packages(c("daltoolbox", "smotefamily"))
 

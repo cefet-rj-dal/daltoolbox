@@ -3,6 +3,7 @@ About the technique
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation 
 #install.packages("daltoolbox")
 
@@ -41,6 +42,7 @@ Apply interval-based discretization and inspect bins.
 ``` r
 # smoothing using regular interval
 obj <- smoothing_inter(n = 2)  
+set_example_seed()
 obj <- fit(obj, iris$Sepal.Length)
 sl.bi <- transform(obj, iris$Sepal.Length)
 print(table(sl.bi))
@@ -77,6 +79,7 @@ Optimize the number of bins (search 1:20) and apply again.
 # Optimizing the number of binnings
 
 opt_obj <- smoothing_inter(n=1:20)
+set_example_seed()
 obj <- fit(opt_obj, iris$Sepal.Length)
 obj$n
 ```
@@ -87,6 +90,7 @@ obj$n
 
 
 ``` r
+set_example_seed()
 obj <- fit(obj, iris$Sepal.Length)
 sl.bi <- transform(obj, iris$Sepal.Length)
 print(table(sl.bi))

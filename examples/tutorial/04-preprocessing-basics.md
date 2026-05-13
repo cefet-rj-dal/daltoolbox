@@ -6,6 +6,7 @@ This tutorial introduces both ideas in a compact way: normalization changes the 
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -32,6 +33,7 @@ Apply min-max normalization so that all numeric attributes are placed on a compa
 
 ``` r
 norm <- minmax()
+set_example_seed()
 norm <- fit(norm, iris)
 iris_norm <- transform(norm, iris)
 
@@ -52,6 +54,7 @@ Once the variables are normalized, check whether some attributes are strongly re
 
 ``` r
 fs <- feature_selection_corr(cutoff = 0.9)
+set_example_seed()
 fs <- fit(fs, iris_norm)
 ```
 

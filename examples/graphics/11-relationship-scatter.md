@@ -8,6 +8,7 @@ Didactic goal: learn to use the chart for reasoning about the data, not only for
 Graphics environment setup and color palette.
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation 
 #install.packages("daltoolbox")
 

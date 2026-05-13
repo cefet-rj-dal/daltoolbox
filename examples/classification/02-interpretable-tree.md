@@ -8,6 +8,7 @@ Didactic goal: use the tree as a way to learn the whole supervised workflow, not
 Environment setup.
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Classification using Decision Tree
 
 # installation 
@@ -51,7 +52,7 @@ Random train/test split.
 
 ``` r
 # Building train and test samples via random sampling
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, iris)
 iris_train <- sr$train
@@ -71,8 +72,8 @@ head(tbl)
 ```
 ##          setosa versicolor virginica
 ## dataset      50         50        50
-## training     39         38        43
-## test         11         12         7
+## training     41         39        40
+## test          9         11        10
 ```
 
 Model training
@@ -81,6 +82,7 @@ Train the decision tree.
 ``` r
 # Model training
 model <- cla_dtree("Species", slevels)
+set_example_seed()
 model <- fit(model, iris_train)
 ```
 
@@ -91,14 +93,13 @@ Training evaluation
 train_prediction <- predict(model, iris_train)
 
 # Model evaluation (training)
-iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
-train_eval <- evaluate(model, iris_train_predictand, train_prediction)
+train_eval <- evaluate(model, iris_train[,"Species"], train_prediction)
 print(train_eval$metrics)
 ```
 
 ```
-##   accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1    0.975 39 81  0  0         1      1           1           1  1
+##    accuracy TP TN FP FN precision recall sensitivity specificity f1
+## 1 0.9666667 41 79  0  0         1      1           1           1  1
 ```
 
 What to observe
@@ -111,16 +112,14 @@ Test evaluation
 # Model test
 test_prediction <- predict(model, iris_test)
 
-iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
-
 # Test evaluation
- test_eval <- evaluate(model, iris_test_predictand, test_prediction)
+ test_eval <- evaluate(model, iris_test[,"Species"], test_prediction)
 print(test_eval$metrics)
 ```
 
 ```
 ##    accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1 0.9666667 11 19  0  0         1      1           1           1  1
+## 1 0.9666667  9 21  0  0         1      1           1           1  1
 ```
 
 Common mistakes

@@ -1,8 +1,10 @@
 About the utility
-- `clu_tune`: selects hyperparameters for a clustering method. In this example, it chooses `k` for `cluster_kmeans` over a range.
+- `clu_tune`: selects hyperparameters for a clustering method.
+- In this example, it chooses `k` for `cluster_kmeans` over a range, using the metric and selector configured in the base model.
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Clustering - Tune Kmeans
 
 # installation 
@@ -20,17 +22,23 @@ Load data (`iris`).
 data(iris)
 ```
 
-Fit the model with a search over k=1..10 and extract the best k.
+Fit the model with a search over `k = 2..10` and extract the best k.
 
 ``` r
 # model training with hyperparameter search
-model <- clu_tune(cluster_kmeans(k = 0),  ranges = list(k = 1:10))
+base_model <- cluster_kmeans(k = 2)
+base_model$metric <- base_model$clu_utils$metric_silhouette
+base_model$selector <- base_model$clu_utils$selector_best
+base_model$eval_internal <- list(base_model$clu_utils$metric_silhouette)
+base_model$eval_external <- list(base_model$clu_utils$metric_entropy)
+model <- clu_tune(base_model, ranges = list(k = 2:10))
+set_example_seed()
 model <- fit(model, iris[,1:4])
 model$k
 ```
 
 ```
-## [1] 9
+## [1] 2
 ```
 
 Generate cluster labels with the best k.
@@ -43,38 +51,36 @@ table(clu)
 
 ```
 ## clu
-##  1  2  3  4  5  6  7  8  9 
-## 12  9 50 12 20  4 17 14 12
+##  1  2 
+## 97 53
 ```
 
-External evaluation with `Species`.
+Evaluate the tuned result internally and externally.
 
 ``` r
-# external evaluation using ground truth labels
+# internal and external evaluation
 eval <- evaluate(model, clu, iris$Species)
 eval
 ```
 
 ```
 ## $clusters_entropy
-## # A tibble: 9 × 4
-##   x        ce   qtd    ceg
-##   <fct> <dbl> <int>  <dbl>
-## 1 1     0        12 0     
-## 2 2     0         9 0     
-## 3 3     0        50 0     
-## 4 4     0        12 0     
-## 5 5     0.286    20 0.0382
-## 6 6     0         4 0     
-## 7 7     0.672    17 0.0762
-## 8 8     0        14 0     
-## 9 9     0        12 0     
+## # A tibble: 2 × 4
+##   x        ce   qtd   ceg
+##   <fct> <dbl> <int> <dbl>
+## 1 1     0.999    97 0.646
+## 2 2     0.314    53 0.111
 ## 
 ## $clustering_entropy
-## [1] 0.1143797
+## [1] 0.757101
 ## 
 ## $data_entropy
 ## [1] 1.584963
+## 
+## $metrics
+##       metric     value     goal     type
+## 1 silhouette 0.6810462 maximize internal
+## 2    entropy 0.7571010 minimize external
 ```
 
 References

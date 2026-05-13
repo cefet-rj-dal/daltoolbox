@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # NA and Outlier analysis
 
 # installation 
@@ -18,6 +19,7 @@ library(daltoolbox)
 
 # Example outlier removal code
 out_obj <- outliers_boxplot() # outlier analysis class
+set_example_seed()
 out_obj <- fit(out_obj, iris) # computes limits via quartiles and IQR
 iris.clean <- transform(out_obj, iris) # returns cleaned dataset
 

@@ -10,6 +10,7 @@ Defining bin intervals is an important step to enable the approximation.
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation 
 #install.packages("daltoolbox")
 
@@ -42,6 +43,7 @@ Apply clustering-based smoothing and inspect bins.
 ``` r
 # smoothing using clustering
 obj <- smoothing_cluster(n = 2)  
+set_example_seed()
 obj <- fit(obj, iris$Sepal.Length)
 sl.bi <- transform(obj, iris$Sepal.Length)
 print(table(sl.bi))
@@ -78,6 +80,7 @@ Optimize the number of bins (search 1:20) and refit.
 
 ``` r
 opt_obj <- smoothing_cluster(n=1:20)
+set_example_seed()
 obj <- fit(opt_obj, iris$Sepal.Length)
 obj$n
 ```
@@ -88,6 +91,7 @@ obj$n
 
 
 ``` r
+set_example_seed()
 obj <- fit(obj, iris$Sepal.Length)
 sl.bi <- transform(obj, iris$Sepal.Length)
 print(table(sl.bi))
@@ -95,10 +99,10 @@ print(table(sl.bi))
 
 ```
 ## sl.bi
-## 4.69090909090909 5.14666666666667 5.67741935483871         6.215625             6.62            6.875 7.23333333333333 
-##               22               30               31               32               15                8                6 
-## 7.71666666666667 
-##                6
+##              4.4 4.70909090909091 5.04666666666667 5.60882352941176             6.02            6.352 6.78421052631579 
+##                5               11               30               34               15               25               19 
+## 7.50909090909091 
+##               11
 ```
 
 References

@@ -3,6 +3,7 @@ About the method
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Clustering - pam
 
 # installation 
@@ -26,12 +27,21 @@ Configure PAM with k=3.
 ``` r
 # clustering method configuration
 model <- cluster_pam(k=3)
+model$eval_internal <- list(
+  model$clu_utils$metric_silhouette,
+  model$clu_utils$metric_davies_bouldin
+)
+model$eval_external <- list(
+  model$clu_utils$metric_entropy,
+  model$clu_utils$metric_purity
+)
 ```
 
 Fit and generate cluster labels.
 
 ``` r
 # model fitting and labeling
+set_example_seed()
 model <- fit(model, iris[,1:4])
 clu <- cluster(model, iris[,1:4])
 table(clu)
@@ -43,10 +53,10 @@ table(clu)
 ## 50 62 38
 ```
 
-External evaluation using `Species`.
+Internal and external evaluation.
 
 ``` r
-# evaluate model using external metric
+# evaluate model using internal and external metrics
 eval <- evaluate(model, clu, iris$Species)
 eval
 ```
@@ -65,6 +75,13 @@ eval
 ## 
 ## $data_entropy
 ## [1] 1.584963
+## 
+## $metrics
+##           metric     value     goal     type
+## 1     silhouette 0.5528190 maximize internal
+## 2 davies_bouldin 0.6619715 minimize internal
+## 3        entropy 0.3938863 minimize external
+## 4         purity 0.8933333 maximize external
 ```
 
 References

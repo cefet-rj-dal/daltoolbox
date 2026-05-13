@@ -6,6 +6,7 @@ This tutorial uses one exploratory plot and one compact reporting table as a bri
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages(c("daltoolbox", "ggplot2", "RColorBrewer", "dplyr"))
 
 library(daltoolbox)
@@ -39,10 +40,10 @@ plot(gr)
 
 ![plot of chunk unnamed-chunk-3](fig/12-visual-analysis-and-reporting/unnamed-chunk-3-1.png)
 
-Now create a small comparison table that could appear in a report. The exact numbers are less important than the idea of communicating results in a compact and reproducible way.
+Now create a small comparison table that could appear in a report. The exact numbers are less important than the idea of communicating results in a compact and reproducible way. Each learner returns class scores, and `evaluate()` summarizes them into the reporting metrics.
 
 ``` r
-set.seed(1)
+set_example_seed()
 sr <- train_test(sample_stratified("Species"), iris)
 slevels <- levels(iris$Species)
 
@@ -52,9 +53,10 @@ models <- list(
 )
 
 report <- lapply(names(models), function(name) {
+set_example_seed()
   fitted <- fit(models[[name]], sr$train)
   pred <- predict(fitted, sr$test)
-  metrics <- evaluate(fitted, adjust_class_label(sr$test$Species), pred)$metrics
+  metrics <- evaluate(fitted, sr$test$Species, pred)$metrics
   data.frame(model = name, t(metrics), check.names = FALSE)
 })
 
@@ -73,7 +75,7 @@ do.call(rbind, report)
 ## sensitivity  majority  1.0000000
 ## specificity  majority  0.0000000
 ## f1           majority  0.5000000
-## accuracy1        tree  0.9666667
+## accuracy1        tree  0.9333333
 ## TP1              tree 10.0000000
 ## TN1              tree 20.0000000
 ## FP1              tree  0.0000000

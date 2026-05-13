@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation 
 #install.packages("daltoolbox")
 
@@ -20,6 +21,7 @@ summary(iris)
 # Adjust values to 0 (mean), 1 (variance).
 
 norm <- zscore()
+set_example_seed()
 norm <- fit(norm, iris)
 ndata <- transform(norm, iris)
 summary(ndata)
@@ -28,6 +30,7 @@ ddata <- inverse_transform(norm, ndata)
 summary(ddata)
 
 norm <- zscore(nmean=0.5, nsd=0.5/2.698)
+set_example_seed()
 norm <- fit(norm, iris)
 ndata <- transform(norm, iris)
 summary(ndata)

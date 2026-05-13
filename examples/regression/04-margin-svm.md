@@ -7,6 +7,7 @@ Didactic goal: read this example as a numeric-prediction workflow. The main lear
 Environment setup.
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Regression SVM
 
 # installation 
@@ -27,10 +28,10 @@ print(t(sapply(Boston, class)))
 ```
 
 ```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black    
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric"
-##      lstat     medv     
-## [1,] "numeric" "numeric"
+##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio  
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric"
+##      black     lstat     medv     
+## [1,] "numeric" "numeric" "numeric"
 ```
 
 ``` r
@@ -59,7 +60,7 @@ Random and reproducible train/test split.
 ``` r
 # preparing dataset for random sampling
 
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, Boston)
 boston_train <- sr$train
@@ -72,6 +73,7 @@ Train SVR: set `epsilon` and `cost` (default kernel if not defined).
 # Training
 
 model <- reg_svm("medv", epsilon=0.2,cost=40.000)
+set_example_seed()
 model <- fit(model, boston_train)
 ```
 
@@ -87,8 +89,8 @@ print(train_eval$metrics)
 ```
 
 ```
-##        mse     smape        R2
-## 1 2.855767 0.0700268 0.9682722
+##        mse      smape        R2
+## 1 3.093724 0.07190626 0.9611203
 ```
 
 Test evaluation.
@@ -103,8 +105,8 @@ print(test_eval$metrics)
 ```
 
 ```
-##        mse     smape        R2
-## 1 14.65598 0.1363336 0.7564457
+##        mse    smape        R2
+## 1 9.927719 0.105222 0.9033131
 ```
 
 References

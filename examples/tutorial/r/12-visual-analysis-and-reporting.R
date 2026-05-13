@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages(c("daltoolbox", "ggplot2", "RColorBrewer", "dplyr"))
 
 library(daltoolbox)
@@ -20,7 +21,7 @@ gr <- plot_scatter(
 
 plot(gr)
 
-set.seed(1)
+set_example_seed()
 sr <- train_test(sample_stratified("Species"), iris)
 slevels <- levels(iris$Species)
 
@@ -30,9 +31,10 @@ models <- list(
 )
 
 report <- lapply(names(models), function(name) {
+set_example_seed()
   fitted <- fit(models[[name]], sr$train)
   pred <- predict(fitted, sr$test)
-  metrics <- evaluate(fitted, adjust_class_label(sr$test$Species), pred)$metrics
+  metrics <- evaluate(fitted, sr$test$Species, pred)$metrics
   data.frame(model = name, t(metrics), check.names = FALSE)
 })
 

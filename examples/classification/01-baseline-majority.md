@@ -6,6 +6,7 @@ Didactic goal: read this example as a complete supervised-learning cycle. Pay at
 Environment setup.
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Classification using Majority class
 
 # installation 
@@ -13,17 +14,6 @@ Environment setup.
 
 # loading DAL
 library(daltoolbox) 
-```
-
-```
-## 
-## Attaching package: 'daltoolbox'
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     transform
 ```
 
 Load data and inspect.
@@ -60,7 +50,7 @@ Random train/test split.
 
 ``` r
 # Building train and test samples via random sampling
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, iris)
 iris_train <- sr$train
@@ -80,8 +70,8 @@ head(tbl)
 ```
 ##          setosa versicolor virginica
 ## dataset      50         50        50
-## training     39         38        43
-## test         11         12         7
+## training     41         39        40
+## test          9         11        10
 ```
 
 Model training
@@ -90,24 +80,25 @@ Fit the majority class estimate and adjust.
 ``` r
 # Model training
 model <- cla_majority("Species", slevels)
+set_example_seed()
 model <- fit(model, iris_train)
 ```
 
 Training evaluation
+`predict()` returns a score column for each class, so `evaluate()` can receive the original factor labels directly.
 
 ``` r
 # Checking fit on training data
 train_prediction <- predict(model, iris_train)
 
 # Model evaluation (training)
-iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
-train_eval <- evaluate(model, iris_train_predictand, train_prediction)
+train_eval <- evaluate(model, iris_train[,"Species"], train_prediction)
 print(train_eval$metrics)
 ```
 
 ```
-##    accuracy TP TN FP FN precision recall sensitivity specificity  f1
-## 1 0.3583333  0 81  0 39       NaN      0           0           1 NaN
+##    accuracy TP TN FP FN precision recall sensitivity specificity        f1
+## 1 0.3416667 41  0 79  0 0.3416667      1           1           0 0.5093168
 ```
 
 Test evaluation
@@ -116,16 +107,14 @@ Test evaluation
 # Model test
 test_prediction <- predict(model, iris_test)
 
-iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
-
 # Test evaluation
- test_eval <- evaluate(model, iris_test_predictand, test_prediction)
+ test_eval <- evaluate(model, iris_test[,"Species"], test_prediction)
 print(test_eval$metrics)
 ```
 
 ```
-##    accuracy TP TN FP FN precision recall sensitivity specificity  f1
-## 1 0.2333333  0 19  0 11       NaN      0           0           1 NaN
+##   accuracy TP TN FP FN precision recall sensitivity specificity        f1
+## 1      0.3  9  0 21  0       0.3      1           1           0 0.4615385
 ```
 
 References

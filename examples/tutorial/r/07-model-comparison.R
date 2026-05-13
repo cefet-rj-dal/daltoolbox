@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -5,7 +6,7 @@ library(daltoolbox)
 iris <- datasets::iris
 slevels <- levels(iris$Species)
 
-set.seed(1)
+set_example_seed()
 sr <- train_test(sample_stratified("Species"), iris)
 iris_train <- sr$train
 iris_test <- sr$test
@@ -18,9 +19,10 @@ models <- list(
 )
 
 results <- lapply(models, function(model) {
+set_example_seed()
   fitted <- fit(model, iris_train)
   pred <- predict(fitted, iris_test)
-  evaluate(fitted, adjust_class_label(iris_test$Species), pred)$metrics
+  evaluate(fitted, iris_test$Species, pred)$metrics
 })
 
 results

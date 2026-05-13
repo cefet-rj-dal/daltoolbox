@@ -4,8 +4,11 @@ The primary goal of this example is to show how a clustering method can be custo
 
 This is the practical value of the framework: even when the algorithm comes from outside the package, the workflow remains stable and easy to read. In this concrete example, the custom clusterer uses `cluster::agnes`, an agglomerative hierarchical clustering method.
 
+In the current clustering API, evaluation is configured in the object itself. The custom method therefore needs to preserve the same contract: `fit()` stores state, `cluster()` uses that state, and `evaluate()` reads the metric lists stored in the object.
+
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation
 # install.packages("daltoolbox")
 
@@ -14,17 +17,26 @@ library(daltoolbox)
 
 
 ``` r
-cluster_agnes_custom <- function(k = 3, method = "ward", metric = "euclidean", scale = TRUE) {
+cluster_agnes_custom <- function(k = 3, method = "ward", dist = "euclidean", scale = TRUE) {
   obj <- daltoolbox::clusterer()
+  obj$eval_internal <- list(
+    obj$clu_utils$metric_silhouette,
+    obj$clu_utils$metric_davies_bouldin
+  )
+  obj$eval_external <- list(
+    obj$clu_utils$metric_entropy
+  )
   obj$k <- k
   obj$method <- method
-  obj$metric <- metric
+  obj$dist <- dist
   obj$scale <- scale
   class(obj) <- append("cluster_agnes_custom", class(obj))
   obj
 }
 
 fit.cluster_agnes_custom <- function(obj, data, ...) {
+  obj$train_data <- data
+  obj$fitted <- TRUE
   x <- as.matrix(data)
   storage.mode(x) <- "double"
 
@@ -32,13 +44,13 @@ fit.cluster_agnes_custom <- function(obj, data, ...) {
     x <- scale(x)
   }
 
-  obj$model <- cluster::agnes(x, diss = FALSE, metric = obj$metric, method = obj$method)
+  obj$model <- cluster::agnes(x, diss = FALSE, metric = obj$dist, method = obj$method)
   obj
 }
 
 cluster.cluster_agnes_custom <- function(obj, data, ...) {
-  if (is.null(obj$model)) {
-    obj <- fit(obj, data)
+  if (!isTRUE(obj$fitted) || is.null(obj$model)) {
+    stop("cluster_agnes_custom must be fitted before clustering.", call. = FALSE)
   }
 
   x <- as.matrix(data)
@@ -62,6 +74,7 @@ cluster.cluster_agnes_custom <- function(obj, data, ...) {
 ``` r
 iris <- datasets::iris
 model <- cluster_agnes_custom(k = 3, method = "ward")
+set_example_seed()
 model <- fit(model, iris[, 1:4])
 clu <- cluster(model, iris[, 1:4])
 table(clu)
@@ -93,6 +106,12 @@ eval
 ## 
 ## $data_entropy
 ## [1] 1.584963
+## 
+## $metrics
+##           metric     value     goal     type
+## 1     silhouette 0.5030502 maximize internal
+## 2 davies_bouldin 0.6826395 minimize internal
+## 3        entropy 0.5422445 minimize external
 ```
 
 References

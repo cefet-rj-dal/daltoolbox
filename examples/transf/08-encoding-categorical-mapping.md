@@ -3,6 +3,7 @@ About the transformation
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Categorical mapping
 # A categorical attribute with $n$ distinct values can be mapped into $n$ binary (one‑hot) attributes.
 

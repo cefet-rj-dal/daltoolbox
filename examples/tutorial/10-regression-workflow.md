@@ -6,6 +6,7 @@ This tutorial helps the learner see that the framework is stable even when the a
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -36,7 +37,7 @@ Boston <- as.matrix(Boston)
 Create train and test partitions.
 
 ``` r
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, Boston)
 
@@ -48,6 +49,7 @@ Fit a regression tree and inspect both training and test errors.
 
 ``` r
 model <- reg_dtree("medv")
+set_example_seed()
 model <- fit(model, boston_train)
 
 train_prediction <- predict(model, boston_train)
@@ -56,8 +58,8 @@ train_eval$metrics
 ```
 
 ```
-##        mse     smape        R2
-## 1 12.68065 0.1345098 0.8591168
+##        mse     smape      R2
+## 1 15.68278 0.1408692 0.80291
 ```
 
 ``` r
@@ -68,7 +70,7 @@ test_eval$metrics
 
 ```
 ##        mse     smape        R2
-## 1 29.38142 0.1642396 0.5117372
+## 1 19.02943 0.1689264 0.8146707
 ```
 
 From a teaching perspective, this is a useful turning point: the workflow is familiar, but the interpretation of the metrics now belongs to regression rather than classification.

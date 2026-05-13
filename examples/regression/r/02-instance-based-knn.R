@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Regression KNN
 
 # installation 
@@ -17,7 +18,7 @@ head(Boston)
 Boston <- as.matrix(Boston)
 
 # preparing dataset for random sampling
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, Boston)
 boston_train <- sr$train
@@ -26,6 +27,7 @@ boston_test <- sr$test
 # Training
 
 model <- reg_knn("medv", k=5)
+set_example_seed()
 model <- fit(model, boston_train)
 
 # Model adjustment

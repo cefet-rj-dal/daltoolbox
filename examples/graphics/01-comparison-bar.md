@@ -6,6 +6,7 @@ Didactic goal: treat the plot as an analytical tool, not as decoration. Pay atte
 Graphics environment setup and color palette.
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation 
 #install.packages("daltoolbox")
 

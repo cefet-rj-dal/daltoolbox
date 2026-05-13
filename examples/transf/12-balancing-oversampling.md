@@ -4,6 +4,7 @@ This example balances minority classes either by random replication or by synthe
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation
 # install.packages("daltoolbox")
 
@@ -24,7 +25,8 @@ table(iris_imb$Species)
 
 
 ``` r
-bal_random <- bal_oversampling("Species", method = "random", seed = 123)
+set_example_seed()
+bal_random <- bal_oversampling("Species", method = "random")
 iris_random <- transform(bal_random, iris_imb)
 table(iris_random$Species)
 ```
@@ -37,7 +39,8 @@ table(iris_random$Species)
 
 
 ``` r
-bal_smote <- bal_oversampling("Species", method = "smote", k = 3, seed = 123)
+set_example_seed()
+bal_smote <- bal_oversampling("Species", method = "smote", k = 3)
 iris_smote <- transform(bal_smote, iris_imb)
 table(iris_smote$Species)
 ```

@@ -6,6 +6,7 @@ This is closer to the way `daltoolbox` is used in a real study.
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -17,7 +18,7 @@ Load the data and create a stratified split. The split comes first because prepr
 iris <- datasets::iris
 slevels <- levels(iris$Species)
 
-set.seed(1)
+set_example_seed()
 sr <- train_test(sample_stratified("Species"), iris)
 iris_train <- sr$train
 iris_test <- sr$test
@@ -27,20 +28,22 @@ Fit the normalization object using only the training data, then apply the same t
 
 ``` r
 norm <- minmax()
+set_example_seed()
 norm <- fit(norm, iris_train)
 
 iris_train_norm <- transform(norm, iris_train)
 iris_test_norm <- transform(norm, iris_test)
 ```
 
-With the transformed data ready, fit a classifier and evaluate it.
+With the transformed data ready, fit a classifier and evaluate it. The classifier returns one score column per class, which is the native classification format used by `daltoolbox`.
 
 ``` r
 model <- cla_knn("Species", slevels, k = 5)
+set_example_seed()
 model <- fit(model, iris_train_norm)
 
 train_prediction <- predict(model, iris_train_norm)
-train_eval <- evaluate(model, adjust_class_label(iris_train_norm$Species), train_prediction)
+train_eval <- evaluate(model, iris_train_norm$Species, train_prediction)
 train_eval$metrics
 ```
 
@@ -51,13 +54,13 @@ train_eval$metrics
 
 ``` r
 test_prediction <- predict(model, iris_test_norm)
-test_eval <- evaluate(model, adjust_class_label(iris_test_norm$Species), test_prediction)
+test_eval <- evaluate(model, iris_test_norm$Species, test_prediction)
 test_eval$metrics
 ```
 
 ```
-##    accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1 0.9666667 10 20  0  0         1      1           1           1  1
+##   accuracy TP TN FP FN precision recall sensitivity specificity f1
+## 1      0.9 10 20  0  0         1      1           1           1  1
 ```
 
 For learners who are sensitive to scale, this kind of complete preparation-and-modeling sequence is often more realistic than a raw-data example.

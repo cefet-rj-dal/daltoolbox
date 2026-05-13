@@ -6,6 +6,7 @@ This tutorial explains why stratified sampling is often preferable when the targ
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -27,7 +28,7 @@ table(iris$Species)
 Next build a stratified train/test split. Stratification tries to keep the class proportions similar in both subsets.
 
 ``` r
-set.seed(1)
+set_example_seed()
 tt <- train_test(sample_stratified("Species"), iris)
 
 table(tt$train$Species)
@@ -76,10 +77,11 @@ To connect sampling with modeling, fit a simple baseline on the stratified split
 slevels <- levels(iris$Species)
 
 model <- cla_majority("Species", slevels)
+set_example_seed()
 model <- fit(model, tt$train)
 
 prediction <- predict(model, tt$test)
-eval <- evaluate(model, adjust_class_label(tt$test$Species), prediction)
+eval <- evaluate(model, tt$test$Species, prediction)
 eval$metrics
 ```
 

@@ -7,6 +7,7 @@ Didactic goal: read this example as a numeric-prediction workflow. The main lear
 Environment setup.
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Regression tuning 
 
 # installation 
@@ -27,10 +28,10 @@ print(t(sapply(Boston, class)))
 ```
 
 ```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black    
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric"
-##      lstat     medv     
-## [1,] "numeric" "numeric"
+##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio  
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric"
+##      black     lstat     medv     
+## [1,] "numeric" "numeric" "numeric"
 ```
 
 ``` r
@@ -58,7 +59,7 @@ Train/test split for tuning validation.
 
 ``` r
 # preparing dataset for random sampling
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, Boston)
 boston_train <- sr$train
@@ -72,6 +73,7 @@ Hyperparameter grid configuration and search training.
 
 tune <- reg_tune(reg_svm("medv"), 
           ranges = list(seq(0,1,0.2), cost=seq(20,100,20), kernel = c("radial")))
+set_example_seed()
 model <- fit(tune, boston_train)
 ```
 
@@ -88,7 +90,7 @@ print(train_eval$metrics)
 
 ```
 ##        mse      smape        R2
-## 1 2.393491 0.05155025 0.9734081
+## 1 2.126669 0.05007261 0.9732736
 ```
 
 Test evaluation.
@@ -104,7 +106,7 @@ print(test_eval$metrics)
 
 ```
 ##        mse     smape        R2
-## 1 13.61128 0.1297673 0.7738067
+## 1 9.302181 0.1046432 0.9094052
 ```
 
 Example grids for other models.

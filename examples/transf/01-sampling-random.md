@@ -8,6 +8,7 @@ Didactic goal: interpret sampling as an experimental design choice, not as a rou
 Environment setup.
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Sampling dataset
 
 # installation 
@@ -59,7 +60,7 @@ print(table(tt$train$Species))
 ```
 ## 
 ##     setosa versicolor  virginica 
-##         33         42         45
+##         41         40         39
 ```
 
 ``` r
@@ -70,7 +71,7 @@ print(table(tt$test$Species))
 ```
 ## 
 ##     setosa versicolor  virginica 
-##         17          8          5
+##          9         10         11
 ```
 
 What to observe
@@ -96,10 +97,10 @@ print(tbl)
 
 ```
 ##      setosa versicolor virginica
-## [1,]     14         17         6
-## [2,]     14          7        16
-## [3,]     10         15        13
-## [4,]     12         11        15
+## [1,]     10         12        15
+## [2,]     13         13        11
+## [3,]     14         13        11
+## [4,]     13         12        13
 ```
 
 Common mistakes

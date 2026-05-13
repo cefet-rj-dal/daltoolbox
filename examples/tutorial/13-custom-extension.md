@@ -6,6 +6,7 @@ This tutorial revisits that idea with a compact custom classifier based on `RSNN
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages(c("daltoolbox", "RSNNS"))
 
 library(daltoolbox)
@@ -51,7 +52,7 @@ fit.cla_rsnns_custom <- function(obj, data, ...) {
 }
 ```
 
-Implement `predict()` so the fitted object returns outputs in the format expected by the framework.
+Implement `predict()` so the fitted object returns outputs in the format expected by the framework: one row per case and one column per class.
 
 ``` r
 predict.cla_rsnns_custom <- function(object, x, ...) {
@@ -70,11 +71,12 @@ Finally, use the custom learner exactly as you would use a built-in learner. Thi
 iris <- datasets::iris
 slevels <- levels(iris$Species)
 
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, iris)
 
 model <- cla_rsnns_custom("Species", slevels, size = 5, learn_rate = 0.1, maxit = 150)
+set_example_seed()
 model <- fit(model, sr$train)
 
 prediction <- predict(model, sr$test)
@@ -83,8 +85,8 @@ eval$metrics
 ```
 
 ```
-##    accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1 0.9333333 11 19  0  0         1      1           1           1  1
+##   accuracy TP TN FP FN precision recall sensitivity specificity f1
+## 1        1  9 21  0  0         1      1           1           1  1
 ```
 
 The core message is that extending the framework should not require rewriting the entire experimental workflow.

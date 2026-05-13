@@ -9,6 +9,7 @@ Didactic goal: understand tuning as an extension of the same experimental struct
 Environment setup.
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Classification tuning 
 
 # installation 
@@ -52,7 +53,7 @@ Random split for tuning validation.
 
 ``` r
 # preparing random sampling
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, iris)
 iris_train <- sr$train
@@ -68,8 +69,8 @@ head(tbl)
 ```
 ##          setosa versicolor virginica
 ## dataset      50         50        50
-## training     39         38        43
-## test         11         12         7
+## training     41         39        40
+## test          9         11        10
 ```
 
 Hyperparameter grid and search training
@@ -79,6 +80,7 @@ Hyperparameter grid and search training
 tune <- cla_tune(cla_svm("Species", slevels), 
   ranges = list(epsilon=seq(0,1,0.2), cost=seq(20,100,20), kernel = c("linear", "radial", "polynomial", "sigmoid")))
 
+set_example_seed()
 model <- fit(tune, iris_train)
 ```
 
@@ -91,15 +93,13 @@ Training evaluation with the best configuration
 ``` r
 # Training evaluation
 train_prediction <- predict(model, iris_train)
-
-iris_train_predictand <- adjust_class_label(iris_train[,"Species"])
-train_eval <- evaluate(model, iris_train_predictand, train_prediction)
+train_eval <- evaluate(model, iris_train[,"Species"], train_prediction)
 print(train_eval$metrics)
 ```
 
 ```
 ##    accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1 0.9833333 39 81  0  0         1      1           1           1  1
+## 1 0.9833333 41 79  0  0         1      1           1           1  1
 ```
 
 Test evaluation
@@ -108,16 +108,14 @@ Test evaluation
 # Test evaluation
 test_prediction <- predict(model, iris_test)
 
-iris_test_predictand <- adjust_class_label(iris_test[,"Species"])
-
 # Evaluating # setosa as primary class
-test_eval <- evaluate(model, iris_test_predictand, test_prediction)
+test_eval <- evaluate(model, iris_test[,"Species"], test_prediction)
 print(test_eval$metrics)
 ```
 
 ```
 ##    accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1 0.9333333 11 19  0  0         1      1           1           1  1
+## 1 0.9666667  9 21  0  0         1      1           1           1  1
 ```
 
 Common mistakes

@@ -6,6 +6,7 @@ This tutorial shows tuning as a disciplined extension of the same workflow, not 
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -17,7 +18,7 @@ Prepare the classification problem.
 iris <- datasets::iris
 slevels <- levels(iris$Species)
 
-set.seed(1)
+set_example_seed()
 sr <- train_test(sample_random(), iris)
 iris_train <- sr$train
 iris_test <- sr$test
@@ -35,31 +36,32 @@ tune <- cla_tune(
   )
 )
 
+set_example_seed()
 model <- fit(tune, iris_train)
 ```
 
-Check the tuned model on both the training and test data. As before, the interpretation depends on comparing both views of performance.
+Check the tuned model on both the training and test data. As before, the interpretation depends on comparing both views of performance. The tuned classifier keeps the same output contract as the untuned ones: `predict()` returns class scores and `evaluate()` can consume the original labels.
 
 ``` r
 train_prediction <- predict(model, iris_train)
-train_eval <- evaluate(model, adjust_class_label(iris_train$Species), train_prediction)
+train_eval <- evaluate(model, iris_train$Species, train_prediction)
 train_eval$metrics
 ```
 
 ```
 ##    accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1 0.9833333 39 81  0  0         1      1           1           1  1
+## 1 0.9833333 41 79  0  0         1      1           1           1  1
 ```
 
 ``` r
 test_prediction <- predict(model, iris_test)
-test_eval <- evaluate(model, adjust_class_label(iris_test$Species), test_prediction)
+test_eval <- evaluate(model, iris_test$Species, test_prediction)
 test_eval$metrics
 ```
 
 ```
 ##    accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1 0.9666667 11 19  0  0         1      1           1           1  1
+## 1 0.9666667  9 21  0  0         1      1           1           1  1
 ```
 
 A good learning takeaway is that tuning should refine a solid workflow, not replace careful sampling and evaluation.

@@ -4,6 +4,7 @@ About the method
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation 
 #install.packages("daltoolbox")
 
@@ -22,10 +23,10 @@ print(t(sapply(Boston, class)))
 ```
 
 ```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black    
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric"
-##      lstat     medv     
-## [1,] "numeric" "numeric"
+##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio  
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric"
+##      black     lstat     medv     
+## [1,] "numeric" "numeric" "numeric"
 ```
 
 ``` r
@@ -55,7 +56,7 @@ Random and reproducible train/test split.
 
 ``` r
 # preparing random sampling
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, Boston)
 boston_train <- sr$train
@@ -68,6 +69,7 @@ Train Random Forest to predict `medv`.
 
 ``` r
 model <- reg_rf("medv", mtry=7, ntree=30) # mtry: variables per split; ntree: number of trees
+set_example_seed()
 model <- fit(model, boston_train)
 ```
 
@@ -83,8 +85,8 @@ print(train_eval$metrics)
 ```
 
 ```
-##        mse      smape       R2
-## 1 1.358048 0.03937262 0.984912
+##        mse      smape        R2
+## 1 1.603413 0.04054869 0.9798495
 ```
 
 Test
@@ -100,7 +102,7 @@ print(test_eval$metrics)
 
 ```
 ##        mse     smape        R2
-## 1 14.60407 0.1220641 0.7573084
+## 1 11.15578 0.1062616 0.8913529
 ```
 
 References

@@ -4,6 +4,7 @@ Relief estimates feature relevance by comparing each observation with its neares
 
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation
 # install.packages("daltoolbox")
 
@@ -18,7 +19,8 @@ iris$Species <- factor(iris$Species)
 
 
 ``` r
-fs <- feature_selection_relief("Species", top = 2, m = 50, seed = 1)
+fs <- feature_selection_relief("Species", top = 2, m = 50)
+set_example_seed()
 fs <- fit(fs, iris)
 
 print(fs$selected)
@@ -33,11 +35,11 @@ print(fs$ranking)
 ```
 
 ```
-##        feature     score
-## 1  Petal.Width 0.2108333
-## 2 Petal.Length 0.1633898
-## 3  Sepal.Width 0.1508333
-## 4 Sepal.Length 0.0600000
+##        feature      score
+## 1  Petal.Width 0.18416667
+## 2 Petal.Length 0.15525424
+## 3  Sepal.Width 0.13250000
+## 4 Sepal.Length 0.05055556
 ```
 
 

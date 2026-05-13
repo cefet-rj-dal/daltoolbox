@@ -8,6 +8,7 @@ Didactic goal: notice what stays the same in the workflow and what changes in th
 Environment setup.
 
 ``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Regression Decision Tree
 
 # installation 
@@ -28,10 +29,10 @@ print(t(sapply(Boston, class)))
 ```
 
 ```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black    
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric"
-##      lstat     medv     
-## [1,] "numeric" "numeric"
+##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio  
+## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric"
+##      black     lstat     medv     
+## [1,] "numeric" "numeric" "numeric"
 ```
 
 ``` r
@@ -59,7 +60,7 @@ Random train/test split.
 
 ``` r
 # preparing dataset for random sampling
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, Boston)
 boston_train <- sr$train
@@ -72,6 +73,7 @@ Train regression tree model to predict `medv`.
 # Training
 
 model <- reg_dtree("medv")
+set_example_seed()
 model <- fit(model, boston_train)
 ```
 
@@ -91,8 +93,8 @@ print(train_eval$metrics)
 ```
 
 ```
-##        mse     smape        R2
-## 1 12.68065 0.1345098 0.8591168
+##        mse     smape      R2
+## 1 15.68278 0.1408692 0.80291
 ```
 
 Test evaluation.
@@ -108,7 +110,7 @@ print(test_eval$metrics)
 
 ```
 ##        mse     smape        R2
-## 1 29.38142 0.1642396 0.5117372
+## 1 19.02943 0.1689264 0.8146707
 ```
 
 Common mistakes

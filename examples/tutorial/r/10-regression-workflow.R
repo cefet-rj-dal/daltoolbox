@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # install.packages("daltoolbox")
 
 library(daltoolbox)
@@ -8,7 +9,7 @@ head(Boston)
 
 Boston <- as.matrix(Boston)
 
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, Boston)
 
@@ -16,6 +17,7 @@ boston_train <- sr$train
 boston_test <- sr$test
 
 model <- reg_dtree("medv")
+set_example_seed()
 model <- fit(model, boston_train)
 
 train_prediction <- predict(model, boston_train)

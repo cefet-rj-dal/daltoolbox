@@ -1,3 +1,4 @@
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation
 # install.packages(c("daltoolbox", "RSNNS"))
 
@@ -47,13 +48,14 @@ predict.cla_rsnns_custom <- function(object, x, ...) {
 iris <- datasets::iris
 slevels <- levels(iris$Species)
 
-set.seed(1)
+set_example_seed()
 sr <- sample_random()
 sr <- train_test(sr, iris)
 iris_train <- sr$train
 iris_test <- sr$test
 
 model <- cla_rsnns_custom("Species", slevels, size = 5, learn_rate = 0.1, maxit = 150)
+set_example_seed()
 model <- fit(model, iris_train)
 
 train_prediction <- predict(model, iris_train)
