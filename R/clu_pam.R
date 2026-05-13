@@ -1,10 +1,27 @@
 #'@title PAM (Partitioning Around Medoids)
 #'@description Clustering around representative data points (medoids) using `cluster::pam`.
 #'@details More robust to outliers than k‑means. The intrinsic metric reported is the within‑cluster SSE to medoids.
+#'
+#' The base `clusterer()` uses `wcss` as a generic default, but
+#' `cluster_pam()` specializes that choice because PAM is commonly compared
+#' through partition quality indices that balance cohesion and separation.
+#'
+#' Default evaluation in `cluster_pam()` is:
+#'
+#' - main metric: `metric_silhouette()`
+#' - internal evaluation: `silhouette`, `davies_bouldin`, `calinski_harabasz`
+#' - external evaluation: `entropy`, `purity`, `adjusted_rand_index`
+#'
+#' The generic `wcss` fallback is not used as the main metric because PAM is not
+#' optimized around centroids and is usually interpreted through medoid-based
+#' partition quality rather than only through within-cluster dispersion.
 #'@param k the number of clusters to generate.
 #'@return returns PAM object.
 #'@references
 #' Kaufman, L. and Rousseeuw, P. J. (1990). Finding Groups in Data: An Introduction to Cluster Analysis.
+#' Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
+#' Davies, D. L., & Bouldin, D. W. (1979). A cluster separation measure.
+#' Calinski, T., & Harabasz, J. (1974). A dendrite method for cluster analysis.
 #'@examples
 #'# setup clustering
 #'model <- cluster_pam(k = 3)

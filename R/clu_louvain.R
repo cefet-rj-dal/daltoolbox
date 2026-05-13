@@ -2,11 +2,28 @@
 #'@description Graph community detection using `igraph::cluster_louvain`.
 #'@details Accepts an `igraph` object and returns community memberships.
 #' Requires the `igraph` package.
+#'
+#' The base `clusterer()` uses `wcss` and `entropy` as generic defaults, but
+#' `cluster_louvain_graph()` specializes both because graph community detection
+#' is not a point-to-centroid clustering problem.
+#'
+#' Default evaluation in `cluster_louvain_graph()` is:
+#'
+#' - main metric: `metric_modularity()`
+#' - internal evaluation: `modularity`
+#' - external evaluation: none
+#'
+#' The general `wcss` fallback is not used because graph communities are judged
+#' by network connectivity structure, not by geometric dispersion. The generic
+#' external `entropy` default is also not kept because this class operates on an
+#' `igraph` object and has no natural reference labels unless the user supplies
+#' an external comparison separately.
 #'@param weights optional edge weights to pass to `cluster_louvain`
 #'@return returns a Louvain clustering object.
 #'@references
 #' Blondel, V. D., Guillaume, J.-L., Lambiotte, R., & Lefebvre, E. (2008).
 #' Fast unfolding of communities in large networks. *J. Statistical Mechanics*.
+#' Newman, M. E. J. (2006). Modularity and community structure in networks.
 #'@examples
 #'if (requireNamespace("igraph", quietly = TRUE)) {
 #'  g <- igraph::sample_gnp(n = 20, p = 0.15)

@@ -9,6 +9,23 @@
 #' - `fit()` learning and storing model state
 #' - `cluster()` producing labels from a fitted model
 #' - configurable internal/external metrics and selection helpers via `cluutils()`
+#'
+#' The base defaults are intentionally generic:
+#'
+#' - `metric = metric_wcss()`
+#' - `eval_internal = list(metric_wcss)`
+#' - `eval_external = list(metric_entropy)`
+#'
+#' These defaults provide a common contract for simple partition-based clustering,
+#' but they are not imposed on all subclasses. Concrete clustering methods can
+#' replace them when another metric is more faithful to the algorithm. For
+#' example, centroid and medoid methods often prefer separation-based indices
+#' such as silhouette, density-based methods may prefer counting noise points,
+#' mixture models naturally expose log-likelihood, and graph community detection
+#' is better described by modularity.
+#'
+#' Therefore, users should treat the `clusterer()` defaults as a shared fallback,
+#' not as the final evaluation policy for every `cluster_*` implementation.
 #'@return returns a `clusterer` object
 #'@examples
 #'#See ?cluster_kmeans for an example of transformation

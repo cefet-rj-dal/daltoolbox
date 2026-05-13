@@ -2,11 +2,25 @@
 #'@description Model-based clustering using `mclust::Mclust`.
 #'@details Fits a Gaussian mixture model and returns the MAP classification.
 #' The fitted model is stored in `obj$model`. Requires the `mclust` package.
+#'
+#' The base `clusterer()` uses `wcss` as a generic default, but
+#' `cluster_gmm()` specializes that choice because GMM is a probabilistic model
+#' with an explicit likelihood function.
+#'
+#' Default evaluation in `cluster_gmm()` is:
+#'
+#' - main metric: `metric_loglik()`
+#' - internal evaluation: `loglik`
+#' - external evaluation: `entropy`, `purity`, `adjusted_rand_index`
+#'
+#' The general `wcss` fallback is not used as the main metric because it does
+#' not represent the fit criterion optimized by the mixture model.
 #'@param G number of mixture components (clusters). If NULL, `Mclust` chooses.
 #'@param modelNames optional character vector of model names passed to `Mclust`.
 #'@return returns a GMM clustering object.
 #'@references
 #' Fraley, C., & Raftery, A. E. (2002). Model-based clustering. *JASA*.
+#' Banfield, J. D., & Raftery, A. E. (1993). Model-based Gaussian and non-Gaussian clustering.
 #'@examples
 #'if (requireNamespace("mclust", quietly = TRUE)) {
 #'  data(iris)

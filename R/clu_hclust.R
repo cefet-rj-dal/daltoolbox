@@ -2,6 +2,20 @@
 #'@description Agglomerative hierarchical clustering using `stats::hclust`.
 #'@details Computes a distance matrix (optionally after scaling) and builds a dendrogram. Clusters are
 #' obtained by cutting the tree with `k` (number of clusters) or `h` (height).
+#'
+#' The base `clusterer()` uses `wcss` as a generic default, but
+#' `cluster_hclust()` specializes that choice because a hierarchical partition
+#' is obtained from a dendrogram and is better judged through
+#' separation/cohesion indices than through a centroid-style fallback alone.
+#'
+#' Default evaluation in `cluster_hclust()` is:
+#'
+#' - main metric: `metric_silhouette()`
+#' - internal evaluation: `silhouette`, `davies_bouldin`, `calinski_harabasz`
+#' - external evaluation: `entropy`, `purity`, `adjusted_rand_index`
+#'
+#' The general `wcss` fallback is not kept as the main metric because the method
+#' is not fitted by directly minimizing that criterion.
 #'@param k number of clusters to cut the tree (default 2)
 #'@param h height to cut the tree (optional; if provided, overrides `k`)
 #'@param method linkage method passed to `stats::hclust` (default "ward.D2")
@@ -10,6 +24,9 @@
 #'@return returns a hierarchical clustering object.
 #'@references
 #' Johnson, S. C. (1967). Hierarchical clustering schemes. Psychometrika.
+#' Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
+#' Davies, D. L., & Bouldin, D. W. (1979). A cluster separation measure.
+#' Calinski, T., & Harabasz, J. (1974). A dendrite method for cluster analysis.
 #'@examples
 #'data(iris)
 #'model <- cluster_hclust(k = 3)
