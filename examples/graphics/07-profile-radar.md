@@ -73,6 +73,22 @@ grf <- grf + ylim(0, NA)
 plot(grf)
 ```
 
+```
+## Warning: Removed 1080 rows containing missing values or values outside the scale range (`geom_path()`).
+```
+
+```
+## Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_segment()`).
+```
+
+```
+## Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_point()`).
+```
+
+```
+## Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_text()`).
+```
+
 ![plot of chunk unnamed-chunk-5](fig/07-profile-radar/unnamed-chunk-5-1.png)
 
 References

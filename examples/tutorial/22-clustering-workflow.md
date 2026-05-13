@@ -56,6 +56,11 @@ evaluate(model, clu, iris$Species)
 ## 
 ## $data_entropy
 ## [1] 1.584963
+## 
+## $metrics
+##       metric     value     goal     type
+## 1 silhouette 0.5528190 maximize internal
+## 2    entropy 0.3938863 minimize external
 ```
 
 Now normalize the data and repeat the same clustering procedure. Because the method is unchanged, any difference is due mainly to the representation of the data.
@@ -100,6 +105,11 @@ evaluate(model_norm, clu_norm, iris$Species)
 ## 
 ## $data_entropy
 ## [1] 1.584963
+## 
+## $metrics
+##       metric     value     goal     type
+## 1 silhouette 0.5047688 maximize internal
+## 2    entropy 0.4177655 minimize external
 ```
 
 This is an important lesson for beginners: in unsupervised learning, the data representation can matter as much as the algorithm.

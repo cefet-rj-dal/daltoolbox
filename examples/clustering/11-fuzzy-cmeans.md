@@ -73,6 +73,14 @@ eval
 ## 
 ## $data_entropy
 ## [1] 1.584963
+## 
+## $metrics
+##                metric     value     goal     type
+## 1          silhouette 0.5495175 maximize internal
+## 2         withinerror 0.4033714 minimize    model
+## 3             entropy 0.4040967 minimize external
+## 4              purity 0.8933333 maximize external
+## 5 adjusted_rand_index 0.7294203 maximize external
 ```
 
 Inspect the membership matrix attached to the result.

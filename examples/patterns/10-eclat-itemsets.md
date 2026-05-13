@@ -41,25 +41,13 @@ Model configuration.
 
 ``` r
 utils <- patutils()
-```
 
-```
-## Error in `patutils()`:
-## ! could not find function "patutils"
-```
-
-``` r
 pm <- pat_eclat(
   supp = 0.5,
   maxlen = 3,
   include = c("sex=Male", "income=small", "marital-status=Married-civ-spouse"),
   quality_filter = utils$quality_min(support = 0.55)
 )
-```
-
-```
-## Error in `pat_eclat()`:
-## ! unused arguments (supp = 0.5, maxlen = 3, include = c("sex=Male", "income=small", "marital-status=Married-civ-spouse"), quality_filter = utils$quality_min(support = 0.55))
 ```
 
 Fit and discover patterns.
@@ -69,8 +57,22 @@ pm <- fit(pm, adult_df)
 ```
 
 ```
-## Error:
-## ! object 'pm' not found
+## Warning: Column(s) 1, 3, 5, 11, 12, 13 not logical or factor. Applying default discretization (see '? discretizeDF').
+```
+
+```
+## Warning in discretize(x = c(2174L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 14084L, 5178L, : The calculated breaks are: 0, 0, 0, 99999
+##   Only unique breaks are used reducing the number of intervals. Look at ? discretize for details.
+```
+
+```
+## Warning in discretize(x = c(0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, : The calculated breaks are: 0, 0, 0, 4356
+##   Only unique breaks are used reducing the number of intervals. Look at ? discretize for details.
+```
+
+```
+## Warning in discretize(x = c(40L, 13L, 40L, 40L, 40L, 40L, 16L, 45L, 50L, : The calculated breaks are: 1, 40, 40, 99
+##   Only unique breaks are used reducing the number of intervals. Look at ? discretize for details.
 ```
 
 ``` r
@@ -78,8 +80,43 @@ itemsets <- discover(pm, adult_df)
 ```
 
 ```
-## Error:
-## ! object 'pm' not found
+## Warning: Column(s) 1, 3, 5, 11, 12, 13 not logical or factor. Applying default discretization (see '? discretizeDF').
+```
+
+```
+## Warning in discretize(x = c(2174L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 14084L, 5178L, : The calculated breaks are: 0, 0, 0, 99999
+##   Only unique breaks are used reducing the number of intervals. Look at ? discretize for details.
+```
+
+```
+## Warning in discretize(x = c(0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, : The calculated breaks are: 0, 0, 0, 4356
+##   Only unique breaks are used reducing the number of intervals. Look at ? discretize for details.
+```
+
+```
+## Warning in discretize(x = c(40L, 13L, 40L, 40L, 40L, 40L, 16L, 45L, 50L, : The calculated breaks are: 1, 40, 40, 99
+##   Only unique breaks are used reducing the number of intervals. Look at ? discretize for details.
+```
+
+```
+## Eclat
+## 
+## parameter specification:
+##  tidLists support minlen maxlen            target  ext
+##     FALSE     0.5      1      3 frequent itemsets TRUE
+## 
+## algorithmic control:
+##  sparse sort verbose
+##       7   -2    TRUE
+## 
+## Absolute minimum support count: 24421 
+## 
+## create itemset ... 
+## set transactions ...[114 item(s), 48842 transaction(s)] done [0.03s].
+## sorting and recoding items ... [9 item(s)] done [0.00s].
+## creating bit matrix ... [9 row(s), 48842 column(s)] done [0.00s].
+## writing  ... [61 set(s)] done [0.00s].
+## Creating S4 object  ... done [0.00s].
 ```
 
 ``` r
@@ -87,28 +124,22 @@ length(itemsets)
 ```
 
 ```
-## Error:
-## ! object 'itemsets' not found
+## [1] 1
 ```
 
 Evaluate the discovered patterns.
 
 ``` r
 eval <- evaluate(pm, itemsets)
-```
-
-```
-## Error:
-## ! object 'pm' not found
-```
-
-``` r
 eval$metrics
 ```
 
 ```
-## Error in `eval$metrics`:
-## ! object of type 'closure' is not subsettable
+##           metric      value      type
+## 1  pattern_count 1.00000000 intrinsic
+## 2   mean_support 0.66848204 intrinsic
+## 3    mean_length 1.00000000 intrinsic
+## 4 retained_ratio 0.01639344    filter
 ```
 
 Inspect a few patterns.
@@ -122,8 +153,8 @@ if (length(itemsets) == 0) {
 ```
 
 ```
-## Error:
-## ! object 'itemsets' not found
+##     items      support  count
+## [1] {sex=Male} 0.668482 32650
 ```
 
 What to observe

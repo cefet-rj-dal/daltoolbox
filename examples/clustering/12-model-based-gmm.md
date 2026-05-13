@@ -115,6 +115,13 @@ if (requireNamespace("mclust", quietly = TRUE)) {
 ## 
 ## $data_entropy
 ## [1] 1.584963
+## 
+## $metrics
+##                metric        value     goal     type
+## 1              loglik -186.0740479 maximize    model
+## 2             entropy    0.1611489 minimize external
+## 3              purity    0.9666667 maximize external
+## 4 adjusted_rand_index    0.9038742 maximize external
 ```
 
 References
