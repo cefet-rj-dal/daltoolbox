@@ -18,12 +18,14 @@ returns a \code{pat_cspade} object
 Sequential pattern mining using \code{arulesSequences::cspade}.
 }
 \examples{
-x <- arulesSequences::read_baskets(
- con = system.file("misc", "zaki.txt", package = "arulesSequences"),
- info = c("sequenceID", "eventID", "SIZE")
-)
-pm <- pat_cspade(parameter = list(support = 0.4))
-pm <- fit(pm, x)
-seqs <- discover(pm, x)
-as(seqs, "data.frame")
+if (requireNamespace("arulesSequences", quietly = TRUE)) {
+ x <- arulesSequences::read_baskets(
+   con = system.file("misc", "zaki.txt", package = "arulesSequences"),
+   info = c("sequenceID", "eventID", "SIZE")
+ )
+ pm <- pat_cspade(parameter = list(support = 0.4))
+ pm <- fit(pm, x)
+ seqs <- discover(pm, x)
+ as(seqs, "data.frame")
+}
 }

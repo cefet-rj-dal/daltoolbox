@@ -18,10 +18,12 @@ returns a \code{pat_eclat} object
 Frequent itemsets using \code{arules::eclat}.
 }
 \examples{
-data("AdultUCI", package = "arules")
-trans <- suppressWarnings(methods::as(as.data.frame(AdultUCI), "transactions"))
-pm <- pat_eclat(parameter = list(supp = 0.5, maxlen = 3))
-pm <- fit(pm, trans)
-itemsets <- discover(pm, trans)
-arules::inspect(itemsets[1:6])
+if (requireNamespace("arules", quietly = TRUE)) {
+ data("AdultUCI", package = "arules")
+ trans <- suppressWarnings(methods::as(as.data.frame(AdultUCI), "transactions"))
+ pm <- pat_eclat(parameter = list(supp = 0.5, maxlen = 3))
+ pm <- fit(pm, trans)
+ itemsets <- discover(pm, trans)
+ arules::inspect(itemsets[1:6])
+}
 }

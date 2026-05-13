@@ -1,0 +1,61 @@
+About the method
+- `pat_eclat`: frequent itemset mining. Unlike association rules, the result is not directional; the goal is to identify groups of items that often appear together.
+
+Didactic goal: read this example as a structural co-occurrence analysis. The important point is how support, maximum length, and item filters control the combinatorial search.
+
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# Pattern mining - eclat itemsets
+
+# installation
+# install.packages(c("daltoolbox", "arules"))
+
+library(daltoolbox)
+```
+
+Load the same transactional dataset used for rule mining.
+```{r}
+data("AdultUCI", package = "arules")
+adult_df <- as.data.frame(AdultUCI)
+head(adult_df)
+```
+
+Configure the miner with item filters and quality filtering.
+```{r}
+utils <- patutils()
+
+pm <- pat_eclat(
+  supp = 0.5,
+  maxlen = 3,
+  include = c("sex=Male", "income=small", "marital-status=Married-civ-spouse"),
+  quality_filter = utils$quality_min(support = 0.55)
+)
+```
+
+Fit and discover itemsets. Here the `fit()` step accepts a regular data frame and normalizes it internally to transactions.
+```{r}
+pm <- fit(pm, adult_df)
+itemsets <- discover(pm, adult_df)
+length(itemsets)
+```
+
+Evaluate the itemsets.
+```{r}
+eval <- evaluate(pm, itemsets)
+eval$metrics
+```
+
+Inspect a few itemsets.
+```{r}
+arules::inspect(itemsets[1:min(6, length(itemsets))])
+```
+
+What to observe
+- `include` and `exclude` act as DAL-level filters over the discovered itemsets.
+- This makes the miner easier to adapt to an analytical question without exposing the user directly to engine-specific syntax.
+- `evaluate()` now reports descriptive quality summaries for the mined patterns, not predictive error.
+
+Common mistakes
+- Confusing frequent itemsets with rules; itemsets do not imply direction.
+- Setting `supp` too low on rich transactional data and generating an unmanageable number of combinations.
+- Forgetting that coercing regular data to transactions may discretize non-categorical columns.

@@ -12,3 +12,15 @@ returns a \code{pattern_miner} object
 \description{
 Base class for frequent pattern and sequence mining.
 }
+\details{
+Pattern miners follow a lightweight Experiment Line:
+
+\itemize{
+  \item \code{fit()} validates the mining input and stores a schema signature
+  \item \code{discover()} runs the mining algorithm on data compatible with that schema
+}
+
+Different miners may normalize their inputs differently (for example, item
+transactions versus sequence transactions), but the base contract remains the
+same.
+}

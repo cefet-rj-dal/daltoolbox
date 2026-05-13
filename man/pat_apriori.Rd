@@ -24,12 +24,14 @@ returns a \code{pat_apriori} object
 Frequent itemsets and association rules using \code{arules::apriori}.
 }
 \examples{
-data("AdultUCI", package = "arules")
-trans <- suppressWarnings(methods::as(as.data.frame(AdultUCI), "transactions"))
-pm <- pat_apriori(parameter = list(
- supp = 0.5, conf = 0.9, minlen = 2, maxlen = 10, target = "rules"
-))
-pm <- fit(pm, trans)
-rules <- discover(pm, trans)
-arules::inspect(rules)
+if (requireNamespace("arules", quietly = TRUE)) {
+ data("AdultUCI", package = "arules")
+ trans <- suppressWarnings(methods::as(as.data.frame(AdultUCI), "transactions"))
+ pm <- pat_apriori(parameter = list(
+   supp = 0.5, conf = 0.9, minlen = 2, maxlen = 10, target = "rules"
+ ))
+ pm <- fit(pm, trans)
+ rules <- discover(pm, trans)
+ arules::inspect(rules)
+}
 }
