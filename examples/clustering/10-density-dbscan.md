@@ -79,12 +79,6 @@ eval
 ## 
 ## $data_entropy
 ## [1] 1.584963
-## 
-## $metrics
-##         metric      value     goal     type
-## 1 noise_points 26.0000000 minimize internal
-## 2      entropy  0.3037218 minimize external
-## 3       purity  0.9266667 maximize external
 ```
 
 What to observe

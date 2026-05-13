@@ -83,8 +83,7 @@ if (requireNamespace("xgboost", quietly = TRUE)) {
 ```
 
 ```
-##   accuracy TP TN FP FN precision    recall sensitivity specificity  f1
-## 1      0.3 12 52 27 29 0.3076923 0.2926829   0.2926829   0.6582278 0.3
+## NULL
 ```
 
 Test evaluation.
@@ -98,8 +97,7 @@ if (requireNamespace("xgboost", quietly = TRUE)) {
 ```
 
 ```
-##    accuracy TP TN FP FN precision    recall sensitivity specificity        f1
-## 1 0.2666667  1 12  9  8       0.1 0.1111111   0.1111111   0.5714286 0.1052632
+## NULL
 ```
 
 What to observe

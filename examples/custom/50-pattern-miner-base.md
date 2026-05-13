@@ -25,7 +25,7 @@ names(miner)
 ```
 
 ```
-## [1] "fitted"       "pat_utils"    "eval_metrics" "pattern_kind"
+## NULL
 ```
 
 ``` r
@@ -33,7 +33,7 @@ miner$pattern_kind
 ```
 
 ```
-## [1] "patterns"
+## NULL
 ```
 
 What to observe

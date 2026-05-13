@@ -32,7 +32,14 @@ Model configuration.
 
 ``` r
 utils <- patutils()
+```
 
+```
+## Error in `patutils()`:
+## ! could not find function "patutils"
+```
+
+``` r
 pm <- pat_cspade(
   support = 0.4,
   maxlen = 3,
@@ -41,31 +48,58 @@ pm <- pat_cspade(
 )
 ```
 
+```
+## Error in `pat_cspade()`:
+## ! unused arguments (support = 0.4, maxlen = 3, quality_filter = utils$quality_min(support = 0.5))
+```
+
 Fit and discover patterns.
 
 ``` r
 pm <- fit(pm, x)
+```
+
+```
+## Error:
+## ! object 'pm' not found
+```
+
+``` r
 seqs <- discover(pm, x)
+```
+
+```
+## Error:
+## ! object 'pm' not found
+```
+
+``` r
 length(seqs)
 ```
 
 ```
-## [1] 18
+## Error:
+## ! object 'seqs' not found
 ```
 
 Evaluate the discovered patterns.
 
 ``` r
 eval <- evaluate(pm, seqs)
+```
+
+```
+## Error:
+## ! object 'pm' not found
+```
+
+``` r
 eval$metrics
 ```
 
 ```
-##           metric      value      type
-## 1  pattern_count 18.0000000 intrinsic
-## 2   mean_support  0.6527778 intrinsic
-## 3    mean_length  1.7222222 intrinsic
-## 4 retained_ratio  1.0000000    filter
+## Error in `eval$metrics`:
+## ! object of type 'closure' is not subsettable
 ```
 
 Inspect a few patterns.
@@ -75,13 +109,8 @@ head(as(seqs, "data.frame"))
 ```
 
 ```
-##   sequence support
-## 1    <{A}>    1.00
-## 2    <{B}>    1.00
-## 3    <{D}>    0.50
-## 4    <{F}>    1.00
-## 5  <{A,F}>    0.75
-## 6  <{B,F}>    1.00
+## Error:
+## ! object 'seqs' not found
 ```
 
 What to observe

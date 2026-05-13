@@ -81,13 +81,6 @@ eval
 ## 
 ## $data_entropy
 ## [1] 1.584963
-## 
-## $metrics
-##           metric     value     goal     type
-## 1     silhouette 0.5528190 maximize internal
-## 2 davies_bouldin 0.6619715 minimize internal
-## 3        entropy 0.3938863 minimize external
-## 4         purity 0.8933333 maximize external
 ```
 
 What to observe

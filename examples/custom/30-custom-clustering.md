@@ -106,12 +106,6 @@ eval
 ## 
 ## $data_entropy
 ## [1] 1.584963
-## 
-## $metrics
-##           metric     value     goal     type
-## 1     silhouette 0.5030502 maximize internal
-## 2 davies_bouldin 0.6826395 minimize internal
-## 3        entropy 0.5422445 minimize external
 ```
 
 References

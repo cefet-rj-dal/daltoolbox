@@ -54,8 +54,7 @@ train_eval$metrics
 ```
 
 ```
-##        mse     smape        R2
-## 1 21.79902 0.1640558 0.7260455
+## NULL
 ```
 
 Test evaluation.
@@ -67,8 +66,7 @@ test_eval$metrics
 ```
 
 ```
-##        mse     smape        R2
-## 1 22.92349 0.1591423 0.7767461
+## NULL
 ```
 
 What to observe

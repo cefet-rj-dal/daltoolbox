@@ -72,15 +72,6 @@ eval
 ## 
 ## $data_entropy
 ## [1] 1.584963
-## 
-## $metrics
-##                metric      value     goal     type
-## 1          silhouette  0.5030502 maximize internal
-## 2      davies_bouldin  0.6826395 minimize internal
-## 3   calinski_harabasz 11.0271758 maximize internal
-## 4             entropy  0.5422445 minimize external
-## 5              purity  0.8266667 maximize external
-## 6 adjusted_rand_index  0.6153230 maximize external
 ```
 
 Inspect the hierarchy graphically.

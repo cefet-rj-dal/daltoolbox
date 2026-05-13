@@ -36,15 +36,38 @@ summary(iris_na)
 
 ``` r
 imp <- imputation_tree(maxit = 3)
-imp <- fit(imp, iris_na)
-iris_imp <- transform(imp, iris_na)
+```
 
+```
+## Error in `imputation_tree()`:
+## ! could not find function "imputation_tree"
+```
+
+``` r
+imp <- fit(imp, iris_na)
+```
+
+```
+## Error:
+## ! object 'imp' not found
+```
+
+``` r
+iris_imp <- transform(imp, iris_na)
+```
+
+```
+## Error:
+## ! object 'imp' not found
+```
+
+``` r
 summary(iris_imp$Sepal.Length)
 ```
 
 ```
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   4.300   5.100   5.800   5.843   6.400   7.900
+## Error:
+## ! object 'iris_imp' not found
 ```
 
 ``` r
@@ -52,9 +75,8 @@ table(iris_imp$Species, useNA = "ifany")
 ```
 
 ```
-## 
-##     setosa versicolor  virginica 
-##         50         50         50
+## Error:
+## ! object 'iris_imp' not found
 ```
 
 References
