@@ -89,6 +89,11 @@ eval
 ## 
 ## $data_entropy
 ## [1] 1.584963
+## 
+## $metrics
+##       metric     value     goal     type
+## 1 silhouette 0.6810462 maximize internal
+## 2    entropy 0.7571010 minimize external
 ```
 
 What to observe

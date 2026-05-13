@@ -84,7 +84,8 @@ if (requireNamespace("glmnet", quietly = TRUE)) {
 ```
 
 ```
-## NULL
+##    accuracy TP TN FP FN precision recall sensitivity specificity        f1
+## 1 0.9416667 77 36  4  3 0.9506173 0.9625      0.9625         0.9 0.9565217
 ```
 
 Test evaluation.
@@ -98,7 +99,8 @@ if (requireNamespace("glmnet", quietly = TRUE)) {
 ```
 
 ```
-## NULL
+##    accuracy TP TN FP FN precision recall sensitivity specificity        f1
+## 1 0.9333333 18 10  0  2         1    0.9         0.9           1 0.9473684
 ```
 
 What to observe

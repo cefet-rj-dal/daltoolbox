@@ -75,7 +75,8 @@ train_eval$metrics
 ```
 
 ```
-## NULL
+##    accuracy TP TN FP FN precision recall sensitivity specificity f1
+## 1 0.9916667 41 79  0  0         1      1           1           1  1
 ```
 
 Test evaluation.
@@ -87,7 +88,8 @@ test_eval$metrics
 ```
 
 ```
-## NULL
+##    accuracy TP TN FP FN precision recall sensitivity specificity f1
+## 1 0.9666667  9 21  0  0         1      1           1           1  1
 ```
 
 What to observe
