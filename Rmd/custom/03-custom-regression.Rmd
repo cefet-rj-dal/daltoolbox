@@ -4,6 +4,8 @@ The primary goal of this example is to show how to build a custom regressor that
 
 This makes the separation of concerns explicit. The regression algorithm can be complex, but the integration contract is intentionally small. In this concrete example, the custom regressor uses `RSNNS::mlp` with linear output.
 
+The important structural point is that custom regressors should inherit from `regression(attribute)`, so they participate in the same evaluation and tuning workflow as the native `reg_*` models.
+
 ```{r}
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation

@@ -50,7 +50,7 @@ fit.reg_rf <- function(obj, data, ...) {
 
   # default mtry heuristic if not provided
   if (is.null(obj$mtry))
-    obj$mtry <- ceiling(ncol(data)/3)
+    obj$mtry <- max(1, ceiling(length(obj$x)/3))
 
   # split into features (x) and target (y)
   x <- data[,obj$x]

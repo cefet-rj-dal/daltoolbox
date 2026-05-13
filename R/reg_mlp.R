@@ -44,7 +44,7 @@ fit.reg_mlp <- function(obj, data, ...) {
 
   # default hidden size heuristic if not provided
   if (is.null(obj$size))
-    obj$size <- ceiling(ncol(data)/3)
+    obj$size <- max(1, ceiling(length(obj$x)/3))
 
   # split features/target
   x <- data[,obj$x]

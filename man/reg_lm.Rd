@@ -27,18 +27,21 @@ if (requireNamespace("MASS", quietly = TRUE)) {
  model_simple <- reg_lm(formula = medv ~ lstat)
  model_simple <- fit(model_simple, Boston)
  pred_simple <- predict(model_simple, Boston)
- head(pred_simple)
+ eval_simple <- evaluate(model_simple, Boston$medv, pred_simple)
+ eval_simple$metrics
 
  # Polynomial regression (degree 2)
  model_poly <- reg_lm(formula = medv ~ poly(lstat, 2, raw = TRUE))
  model_poly <- fit(model_poly, Boston)
  pred_poly <- predict(model_poly, Boston)
- head(pred_poly)
+ eval_poly <- evaluate(model_poly, Boston$medv, pred_poly)
+ eval_poly$metrics
 
  # Multiple regression
  model_multi <- reg_lm(formula = medv ~ lstat + rm + ptratio)
  model_multi <- fit(model_multi, Boston)
  pred_multi <- predict(model_multi, Boston)
- head(pred_multi)
+ eval_multi <- evaluate(model_multi, Boston$medv, pred_multi)
+ eval_multi$metrics
 }
 }

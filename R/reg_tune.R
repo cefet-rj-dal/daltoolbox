@@ -18,7 +18,7 @@
 #'tune <- reg_tune(reg_mlp("medv"), folds=3, ranges = list(size=c(3), decay=c(0.1,0.5)))
 #'
 #'# hyper parameter optimization
-#'model <- fit(tune, train, ranges)
+#'model <- fit(tune, train)
 #'
 #'test_prediction <- predict(model, test)
 #'test_predictand <- test[,"medv"]
@@ -54,7 +54,7 @@ fit.reg_tune <- function(obj, data, ...) {
 
   evaluate_error <- function(model, data) {
     # compute MSE via evaluate()
-    x <- as.matrix(data[,model$x])
+    x <- data
     y <- data[,model$attribute]
     prediction <- as.vector(stats::predict(model, x))
     error <- evaluate(model, y, prediction)$mse

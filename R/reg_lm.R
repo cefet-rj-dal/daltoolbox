@@ -12,25 +12,27 @@
 #'  model_simple <- reg_lm(formula = medv ~ lstat)
 #'  model_simple <- fit(model_simple, Boston)
 #'  pred_simple <- predict(model_simple, Boston)
-#'  head(pred_simple)
+#'  eval_simple <- evaluate(model_simple, Boston$medv, pred_simple)
+#'  eval_simple$metrics
 #'
 #'  # Polynomial regression (degree 2)
 #'  model_poly <- reg_lm(formula = medv ~ poly(lstat, 2, raw = TRUE))
 #'  model_poly <- fit(model_poly, Boston)
 #'  pred_poly <- predict(model_poly, Boston)
-#'  head(pred_poly)
+#'  eval_poly <- evaluate(model_poly, Boston$medv, pred_poly)
+#'  eval_poly$metrics
 #'
 #'  # Multiple regression
 #'  model_multi <- reg_lm(formula = medv ~ lstat + rm + ptratio)
 #'  model_multi <- fit(model_multi, Boston)
 #'  pred_multi <- predict(model_multi, Boston)
-#'  head(pred_multi)
+#'  eval_multi <- evaluate(model_multi, Boston$medv, pred_multi)
+#'  eval_multi$metrics
 #'}
 #'@export
 reg_lm <- function(formula = NULL, attribute = NULL, features = NULL) {
-  obj <- dal_learner()
+  obj <- regression(attribute)
   obj$formula <- formula
-  obj$attribute <- attribute
   obj$features <- features
   obj$model <- NULL
   class(obj) <- append("reg_lm", class(obj))
@@ -52,6 +54,14 @@ fit.reg_lm <- function(obj, data, ...) {
     obj$formula <- stats::formula(
       paste(obj$attribute, "~", paste(features, collapse = " + "))
     )
+    obj <- fit.predictor(obj, data)
+  } else {
+    formula_vars <- all.vars(obj$formula)
+    obj$attribute <- formula_vars[1]
+    obj$x <- intersect(formula_vars[-1], names(data))
+    if (length(obj$x) == 0) {
+      obj$x <- setdiff(names(data), obj$attribute)
+    }
   }
   obj$model <- stats::lm(obj$formula, data = data)
   return(obj)

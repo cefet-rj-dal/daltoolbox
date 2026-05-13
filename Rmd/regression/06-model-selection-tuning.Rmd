@@ -52,6 +52,8 @@ set_example_seed()
 model <- fit(tune, boston_train)
 ```
 
+The tuning object keeps the parameter grid internally, so the Experiment Line remains the same: configure the object, call `fit()`, then reuse `predict()` and `evaluate()` on the selected model.
+
 Training evaluation with the best hyperparameters.
 ```{r}
 # Model adjustment

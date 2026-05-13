@@ -14,6 +14,9 @@ regression <- function(attribute) {
 
 #'@exportS3Method evaluate regression
 evaluate.regression <- function(obj, values, prediction, ...) {
+  values <- as.numeric(values)
+  prediction <- as.numeric(prediction)
+
   MSE <- function (actual, prediction) {
     if (length(actual) != length(prediction))
       stop("actual and prediction have different lengths")

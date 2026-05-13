@@ -24,6 +24,8 @@ These learners are useful when the relationship between predictors and target is
 - [04-margin-svm.md](/examples/regression/04-margin-svm.md) - `reg_svm`: Support Vector Regression (SVR). Models a function with an error-insensitive margin up to `epsilon` and penalizes violations via `cost`.
 - [05-neural-mlp.md](/examples/regression/05-neural-mlp.md) - `reg_mlp`: Multilayer Perceptron (neural network) for regression.
 
+Formula-based linear regression with `reg_lm()` follows the same `fit()`, `predict()`, and `evaluate()` contract, even though it is not shown as a separate numbered example in this sequence.
+
 ## Model Selection
 
 The final example shows how tuning fits into the same regression workflow without changing the underlying experimental logic.
