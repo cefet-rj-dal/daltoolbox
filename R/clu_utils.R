@@ -67,7 +67,12 @@ cluutils <- function() {
     if (is.null(value)) {
       value <- attr(cluster, "metric", exact = TRUE)
     }
-    if (is.null(value)) value <- default
+    if (!is.null(value) && length(value) > 1) {
+      value <- as.numeric(value)
+      value <- value[!is.na(value)]
+      value <- if (length(value) == 0) default else value[length(value)]
+    }
+    if (is.null(value) || length(value) == 0) value <- default
     metric_result(metric, value, goal, type)
   }
 

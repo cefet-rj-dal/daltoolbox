@@ -61,9 +61,22 @@ clusterer_require_fitted <- function(obj) {
   return(obj)
 }
 
+clusterer_metric_value <- function(value) {
+  if (is.null(value) || length(value) == 0) {
+    return(NA_real_)
+  }
+  value <- as.numeric(value)
+  value <- value[!is.na(value)]
+  if (length(value) == 0) {
+    return(NA_real_)
+  }
+  value[length(value)]
+}
+
 clusterer_attach_metric <- function(cluster, value, metric) {
+  value <- clusterer_metric_value(value)
   if (!is.na(value)) {
-    attr(cluster, "metric") <- as.numeric(value)
+    attr(cluster, "metric") <- value
   }
   attr(cluster, "metric_name") <- metric
   return(cluster)
