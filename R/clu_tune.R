@@ -10,14 +10,18 @@
 #'data(iris)
 #'
 #'# fit model
-#'model <- clu_tune(cluster_kmeans(k = 0), ranges = list(k = 1:10))
+#'model <- clu_tune(cluster_kmeans(k = 2), ranges = list(k = 2:10))
 #'
 #'model <- fit(model, iris[,1:4])
 #'model$k
 #'@export
 clu_tune <- function(base_model, folds=10, ranges=NULL) {
   obj <- dal_tune(base_model, folds, ranges)
+  utils <- if (!is.null(base_model$clu_utils)) base_model$clu_utils else cluutils()
   obj$base_model <- base_model
+  obj$metric <- base_model$metric
+  obj$selector <- base_model$selector
+  obj$clu_utils <- utils
   obj$name <- ""
   class(obj) <- append("clu_tune", class(obj))
   return(obj)
@@ -28,11 +32,11 @@ clu_tune <- function(base_model, folds=10, ranges=NULL) {
 #'@exportS3Method fit clu_tune
 fit.clu_tune <- function(obj, data, ...) {
 
-  build_cluster <- function(obj, ranges, data) {
+  build_model <- function(obj, ranges, data) {
     model <- obj$base_model
     model <- set_params(model, ranges)
-    result <- cluster(model, data)
-    return(result)
+    model <- fit(model, data)
+    return(model)
   }
 
   prepare_ranges <- function(obj, ranges) {
@@ -46,33 +50,48 @@ fit.clu_tune <- function(obj, data, ...) {
 
   obj <- prepare_ranges(obj, ranges)
   ranges <- obj$ranges
-  ranges$metric <- NA
+  hyperparameters <- ranges
+  hyperparameters$metric <- NA
+  hyperparameters$goal <- NA_character_
+  hyperparameters$msg <- ""
 
   n <- nrow(ranges)
   i <- 1
-  if (n > 1) {
-    msg <- rep("", n) # store errors per configuration
-    for (i in 1:n) {
-      err <- tryCatch(
-        {
-          clu <- build_cluster(obj, ranges[i,], data)
-          ranges$metric[i] <- attr(clu, "metric")
-          ""
-        },
-        error = function(cond) {
-          err <- sprintf("tune: %s", as.character(cond))
-        }
-      )
-      if (err != "") {
-        msg[i] <- err
+
+  for (i in 1:n) {
+    err <- tryCatch(
+      {
+        model <- build_model(obj, ranges[i,], data)
+        clu <- cluster(model, model$train_data)
+        metric_res <- obj$metric(data = model$train_data, cluster = clu, obj = model)
+        hyperparameters$metric[i] <- metric_res$value
+        hyperparameters$goal[i] <- metric_res$goal
+        ""
+      },
+      error = function(cond) {
+        sprintf("tune: %s", as.character(cond))
       }
+    )
+    if (err != "") {
+      hyperparameters$msg[i] <- err
+      hyperparameters$metric[i] <- NA_real_
     }
-    # choose parameter at the elbow of metric curve (max curvature)
-    myfit <- fit_curvature_max()
-    res <- transform(myfit, ranges$metric)
-    i <- res$x
   }
-  model <- set_params(obj$base_model, ranges[i,])
+
+  valid <- hyperparameters$msg == ""
+  if (sum(valid) > 1) {
+    goal <- hyperparameters$goal[which(valid)[1]]
+    selected <- obj$selector(hyperparameters$metric, goal = goal)
+    if (!is.na(selected)) {
+      i <- selected
+    }
+  } else if (sum(valid) == 1) {
+    i <- which(valid)[1]
+  }
+
+  model <- build_model(obj, ranges[i, ], data)
+  attr(model, "params") <- as.list(ranges[i, ])
+  attr(model, "hyperparameters") <- hyperparameters
   return(model)
 }
 

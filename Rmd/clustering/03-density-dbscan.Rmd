@@ -24,6 +24,10 @@ Configure DBSCAN; tune `minPts` (and `eps` if available) according to density.
 ```{r}
 # clustering method configuration
 model <- cluster_dbscan(minPts = 3)
+model$eval_external <- list(
+  model$clu_utils$metric_entropy,
+  model$clu_utils$metric_purity
+)
 ```
 
 Fit and obtain cluster labels.
@@ -35,9 +39,9 @@ clu <- cluster(model, iris[,1:4])
 table(clu)
 ```
 
-External evaluation using `Species` (note: DBSCAN may mark noise).
+External evaluation using `Species`, plus the internal count of noise points used by the default DBSCAN configuration.
 ```{r}
-# evaluate model using external metric
+# evaluate model using internal and external metrics
 eval <- evaluate(model, clu, iris$Species)
 eval
 ```

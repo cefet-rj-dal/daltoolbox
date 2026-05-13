@@ -16,9 +16,16 @@
 #'@export
 cluster_gmm <- function(G = NULL, modelNames = NULL) {
   obj <- clusterer()
+  utils <- obj$clu_utils
   obj$G <- G
   obj$modelNames <- modelNames
   obj$model <- NULL
+  obj$metric <- utils$metric_loglik
+  obj$metric_name <- "loglik"
+  obj$selector <- utils$selector_best
+  obj$selector_name <- "best"
+  obj$eval_internal <- list(utils$metric_loglik)
+  obj$eval_external <- list(utils$metric_entropy, utils$metric_purity, utils$metric_adjusted_rand_index)
   class(obj) <- append("cluster_gmm", class(obj))
   return(obj)
 }
@@ -29,19 +36,22 @@ fit.cluster_gmm <- function(obj, data, ...) {
   if (!requireNamespace("mclust", quietly = TRUE)) {
     stop("Package 'mclust' is required for cluster_gmm.", call. = FALSE)
   }
-  mclustBIC <- get("mclustBIC", asNamespace("mclust"))
+  prepared <- clusterer_prepare_fit(obj, data)
+  obj <- prepared$obj
+  data <- prepared$data
   obj$model <- mclust::Mclust(data, G = obj$G, modelNames = obj$modelNames)
   return(obj)
 }
 
 #'@exportS3Method cluster cluster_gmm
 cluster.cluster_gmm <- function(obj, data, ...) {
-  if (is.null(obj$model)) {
-    obj <- fit(obj, data)
+  obj <- clusterer_require_fitted(obj)
+  if (!identical(adjust_data.frame(data), obj$train_data)) {
+    stop("cluster_gmm does not support clustering new data after fit().", call. = FALSE)
   }
   cluster <- obj$model$classification
   if (!is.null(obj$model$loglik)) {
-    attr(cluster, "metric") <- obj$model$loglik
+    cluster <- clusterer_attach_metric(cluster, obj$model$loglik, obj$metric_name)
   }
   return(cluster)
 }

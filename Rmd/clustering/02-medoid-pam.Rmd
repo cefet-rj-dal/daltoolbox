@@ -24,6 +24,14 @@ Configure PAM with k=3.
 ```{r}
 # clustering method configuration
 model <- cluster_pam(k=3)
+model$eval_internal <- list(
+  model$clu_utils$metric_silhouette,
+  model$clu_utils$metric_davies_bouldin
+)
+model$eval_external <- list(
+  model$clu_utils$metric_entropy,
+  model$clu_utils$metric_purity
+)
 ```
 
 Fit and generate cluster labels.
@@ -35,9 +43,9 @@ clu <- cluster(model, iris[,1:4])
 table(clu)
 ```
 
-External evaluation using `Species`.
+Internal and external evaluation.
 ```{r}
-# evaluate model using external metric
+# evaluate model using internal and external metrics
 eval <- evaluate(model, clu, iris$Species)
 eval
 ```

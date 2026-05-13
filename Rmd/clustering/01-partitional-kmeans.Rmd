@@ -26,6 +26,14 @@ Configure K-means with k=3 (one cluster per species in iris).
 ```{r}
 # clustering method configuration
 model <- cluster_kmeans(k=3)
+model$eval_internal <- list(
+  model$clu_utils$metric_silhouette,
+  model$clu_utils$metric_davies_bouldin
+)
+model$eval_external <- list(
+  model$clu_utils$metric_entropy,
+  model$clu_utils$metric_purity
+)
 ```
 
 Fit the model and obtain cluster labels.
@@ -37,9 +45,9 @@ clu <- cluster(model, iris[,1:4])
 table(clu)
 ```
 
-External evaluation using true labels (`Species`).
+Evaluate the result using the metric configuration stored in the model. Internal metrics use only the data and the partition; external metrics compare the partition with a reference label kept aside for interpretation.
 ```{r}
-# evaluate model using external metric
+# evaluate model using internal and external metrics
 eval <- evaluate(model, clu, iris$Species)
 eval
 ```
@@ -62,8 +70,7 @@ table(clu)
 
 Re-evaluation with normalized data.
 ```{r}
-# evaluate model using external metric
-
+# evaluate model using internal and external metrics
 eval <- evaluate(model, clu, iris_minmax$Species)
 eval
 ```

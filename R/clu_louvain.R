@@ -18,8 +18,15 @@
 #'@export
 cluster_louvain_graph <- function(weights = NULL) {
   obj <- clusterer()
+  utils <- obj$clu_utils
   obj$weights <- weights
   obj$model <- NULL
+  obj$metric <- utils$metric_modularity
+  obj$metric_name <- "modularity"
+  obj$selector <- utils$selector_best
+  obj$selector_name <- "best"
+  obj$eval_internal <- list(utils$metric_modularity)
+  obj$eval_external <- list()
   class(obj) <- append("cluster_louvain_graph", class(obj))
   return(obj)
 }
@@ -32,18 +39,22 @@ fit.cluster_louvain_graph <- function(obj, data, ...) {
   if (!igraph::is_igraph(data)) {
     stop("cluster_louvain_graph: 'data' deve ser um objeto igraph.")
   }
+  prepared <- clusterer_prepare_fit(obj, data)
+  obj <- prepared$obj
+  data <- prepared$data
   obj$model <- igraph::cluster_louvain(data, weights = obj$weights)
   return(obj)
 }
 
 #'@exportS3Method cluster cluster_louvain_graph
 cluster.cluster_louvain_graph <- function(obj, data, ...) {
-  if (is.null(obj$model)) {
-    obj <- fit(obj, data)
+  obj <- clusterer_require_fitted(obj)
+  if (!identical(data, obj$train_data)) {
+    stop("cluster_louvain_graph does not support clustering a new graph after fit().", call. = FALSE)
   }
   cluster <- igraph::membership(obj$model)
   if (!is.null(obj$model$modularity)) {
-    attr(cluster, "metric") <- obj$model$modularity
+    cluster <- clusterer_attach_metric(cluster, obj$model$modularity, obj$metric_name)
   }
   return(cluster)
 }

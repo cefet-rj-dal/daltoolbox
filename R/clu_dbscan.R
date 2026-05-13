@@ -25,8 +25,15 @@
 #'@export
 cluster_dbscan <- function(minPts = 3, eps = NULL) {
   obj <- clusterer()
+  utils <- obj$clu_utils
   obj$minPts <- minPts
   obj$eps <- eps
+  obj$metric <- utils$metric_noise_points
+  obj$metric_name <- "noise_points"
+  obj$selector <- utils$selector_best
+  obj$selector_name <- "best"
+  obj$eval_internal <- list(utils$metric_noise_points)
+  obj$eval_external <- list(utils$metric_entropy, utils$metric_purity, utils$metric_adjusted_rand_index)
 
   class(obj) <- append("cluster_dbscan", class(obj))
   return(obj)
@@ -43,6 +50,9 @@ cluster_dbscan <- function(minPts = 3, eps = NULL) {
 #'@importFrom dbscan kNNdist
 #'@exportS3Method fit cluster_dbscan
 fit.cluster_dbscan <- function(obj, data, ...) {
+  prepared <- clusterer_prepare_fit(obj, data)
+  obj <- prepared$obj
+  data <- prepared$data
   if (is.null(obj$eps)) {
     # sort k-NN distances and pick epsilon at elbow (max curvature)
     t <- sort(dbscan::kNNdist(data, k = obj$minPts))
@@ -51,6 +61,7 @@ fit.cluster_dbscan <- function(obj, data, ...) {
     res <- transform(myfit, y)
     obj$eps <- res$y
   }
+  obj$model <- dbscan::dbscan(data, eps = obj$eps, minPts = obj$minPts)
   return(obj)
 }
 
@@ -58,13 +69,16 @@ fit.cluster_dbscan <- function(obj, data, ...) {
 #'@importFrom dbscan dbscan
 #'@exportS3Method cluster cluster_dbscan
 cluster.cluster_dbscan <- function(obj, data, ...) {
-  db_cluster <- dbscan::dbscan(data, eps = obj$eps, minPts = obj$minPts)
-  cluster <- db_cluster$cluster
+  obj <- clusterer_require_fitted(obj)
+  if (!identical(adjust_data.frame(data), obj$train_data)) {
+    stop("cluster_dbscan does not support clustering new data after fit().", call. = FALSE)
+  }
+  cluster <- obj$model$cluster
 
   #intrinsic quality metric
   # number of noise points (cluster 0)
   null_cluster <- length(cluster[cluster==0])
-  attr(cluster, "metric") <- null_cluster
+  cluster <- clusterer_attach_metric(cluster, null_cluster, obj$metric_name)
 
   return(cluster)
 }

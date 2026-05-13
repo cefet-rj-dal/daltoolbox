@@ -26,28 +26,48 @@
 #'@export
 cluster_kmeans <- function(k = 1) {
   obj <- clusterer()
+  utils <- obj$clu_utils
   obj$k <- k
+  obj$metric <- utils$metric_silhouette
+  obj$metric_name <- "silhouette"
+  obj$selector <- utils$selector_best
+  obj$selector_name <- "best"
+  obj$eval_internal <- list(utils$metric_silhouette, utils$metric_davies_bouldin, utils$metric_calinski_harabasz)
+  obj$eval_external <- list(utils$metric_entropy, utils$metric_purity, utils$metric_adjusted_rand_index)
   class(obj) <- append("cluster_kmeans", class(obj))
   return(obj)
 }
 
 #'@importFrom stats kmeans
+#'@exportS3Method fit cluster_kmeans
+fit.cluster_kmeans <- function(obj, data, ...) {
+  prepared <- clusterer_prepare_fit(obj, data)
+  obj <- prepared$obj
+  data <- prepared$data
+
+  x <- as.matrix(data)
+  storage.mode(x) <- "double"
+  obj$model <- stats::kmeans(x = x, centers = obj$k)
+  return(obj)
+}
+
 #'@exportS3Method cluster cluster_kmeans
 cluster.cluster_kmeans <- function(obj, data, ...) {
-  k <- obj$k
-  k_cluster <- stats::kmeans(x = data, centers = k)
-  cluster <- k_cluster$cluster
+  obj <- clusterer_require_fitted(obj)
+  x <- clusterer_prepare_cluster_data(obj, data)
+  x <- as.matrix(x)
+  storage.mode(x) <- "double"
 
-  #intrinsic quality metric
-  dist <- 0
-  for (i in 1:k) {
-    idx <- i == k_cluster$cluster
-    center <- k_cluster$centers[i,]
-    # sum of squared distances within clusters
-    dist <- dist + sum(rowSums((data[idx,] - center)^2))
+  if (identical(x, as.matrix(obj$train_data))) {
+    cluster <- obj$model$cluster
+    metric <- obj$metric(data = obj$train_data, cluster = cluster, obj = obj)$value
+    return(clusterer_attach_metric(cluster, metric, obj$metric_name))
   }
-  attr(cluster, "metric") <- dist
 
+  centers <- obj$model$centers
+  dmat <- sapply(seq_len(nrow(centers)), function(i) rowSums(sweep(x, 2, centers[i, ], "-")^2))
+  cluster <- max.col(-dmat, ties.method = "first")
+  cluster <- clusterer_attach_metric(cluster, NA_real_, obj$metric_name)
   return(cluster)
 }
 

@@ -19,6 +19,6 @@ This example shows a different idea of grouping: dense regions separated by spar
 
 ## Model Selection
 
-The last example shows that even in unsupervised learning, hyperparameters such as the number of clusters can be explored systematically.
+The last example shows that even in unsupervised learning, hyperparameters such as the number of clusters can be explored systematically through metric and selector properties stored in the clustering object itself.
 
-- [04-model-selection-tuning.md](/examples/clustering/04-model-selection-tuning.md) - `clu_tune`: selects hyperparameters for a clustering method. In this example, it chooses `k` for `cluster_kmeans` over a range.
+- [04-model-selection-tuning.md](/examples/clustering/04-model-selection-tuning.md) - `clu_tune`: selects hyperparameters for a clustering method. In this example, it chooses `k` for `cluster_kmeans` over a range using the metric and selector configured in the base model.

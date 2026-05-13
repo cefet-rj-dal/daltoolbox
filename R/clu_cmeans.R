@@ -18,11 +18,18 @@
 #'@export
 cluster_cmeans <- function(centers = 2, m = 2, iter = 100, dist = "euclidean") {
   obj <- clusterer()
+  utils <- obj$clu_utils
   obj$centers <- centers
   obj$m <- m
   obj$iter <- iter
   obj$dist <- dist
   obj$model <- NULL
+  obj$metric <- utils$metric_silhouette
+  obj$metric_name <- "silhouette"
+  obj$selector <- utils$selector_best
+  obj$selector_name <- "best"
+  obj$eval_internal <- list(utils$metric_silhouette, utils$metric_withinerror)
+  obj$eval_external <- list(utils$metric_entropy, utils$metric_purity, utils$metric_adjusted_rand_index)
   class(obj) <- append("cluster_cmeans", class(obj))
   return(obj)
 }
@@ -30,6 +37,9 @@ cluster_cmeans <- function(centers = 2, m = 2, iter = 100, dist = "euclidean") {
 #'@importFrom e1071 cmeans
 #'@exportS3Method fit cluster_cmeans
 fit.cluster_cmeans <- function(obj, data, ...) {
+  prepared <- clusterer_prepare_fit(obj, data)
+  obj <- prepared$obj
+  data <- prepared$data
   obj$model <- e1071::cmeans(
     data,
     centers = obj$centers,
@@ -42,14 +52,14 @@ fit.cluster_cmeans <- function(obj, data, ...) {
 
 #'@exportS3Method cluster cluster_cmeans
 cluster.cluster_cmeans <- function(obj, data, ...) {
-  if (is.null(obj$model)) {
-    obj <- fit(obj, data)
+  obj <- clusterer_require_fitted(obj)
+  if (!identical(adjust_data.frame(data), obj$train_data)) {
+    stop("cluster_cmeans does not support clustering new data after fit().", call. = FALSE)
   }
   model <- obj$model
   cluster <- model$cluster
   attr(cluster, "membership") <- model$membership
-  if (!is.null(model$withinerror)) {
-    attr(cluster, "metric") <- model$withinerror
-  }
+  metric <- obj$metric(data = obj$train_data, cluster = cluster, obj = obj)$value
+  cluster <- clusterer_attach_metric(cluster, metric, obj$metric_name)
   return(cluster)
 }

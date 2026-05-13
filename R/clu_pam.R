@@ -23,28 +23,46 @@
 #'@export
 cluster_pam <- function(k = 1) {
   obj <- clusterer()
+  utils <- obj$clu_utils
   obj$k <- k
+  obj$metric <- utils$metric_silhouette
+  obj$metric_name <- "silhouette"
+  obj$selector <- utils$selector_best
+  obj$selector_name <- "best"
+  obj$eval_internal <- list(utils$metric_silhouette, utils$metric_davies_bouldin, utils$metric_calinski_harabasz)
+  obj$eval_external <- list(utils$metric_entropy, utils$metric_purity, utils$metric_adjusted_rand_index)
 
   class(obj) <- append("cluster_pam", class(obj))
   return(obj)
 }
 
 #'@importFrom cluster pam
+#'@exportS3Method fit cluster_pam
+fit.cluster_pam <- function(obj, data, ...) {
+  prepared <- clusterer_prepare_fit(obj, data)
+  obj <- prepared$obj
+  data <- prepared$data
+
+  obj$model <- cluster::pam(data, obj$k)
+  return(obj)
+}
+
 #'@exportS3Method cluster cluster_pam
 cluster.cluster_pam <- function(obj, data, ...) {
-  pam_cluster <- cluster::pam(data, obj$k)
-  cluster <- pam_cluster$cluster
+  obj <- clusterer_require_fitted(obj)
+  x <- clusterer_prepare_cluster_data(obj, data)
 
-  #intrinsic quality metric
-  dist <- 0
-  for (i in 1:obj$k) {
-    idx <- i==pam_cluster$clustering
-    center <- pam_cluster$medoids[i,]
-    # sum of squared distances to medoids
-    dist <- dist + sum(rowSums((data[idx,] - center)^2))
+  if (identical(x, obj$train_data)) {
+    cluster <- obj$model$clustering
+    metric <- obj$metric(data = obj$train_data, cluster = cluster, obj = obj)$value
+    return(clusterer_attach_metric(cluster, metric, obj$metric_name))
   }
 
-  attr(cluster, "metric") <- dist
+  x <- as.matrix(x)
+  medoids <- as.matrix(obj$model$medoids)
+  dmat <- sapply(seq_len(nrow(medoids)), function(i) rowSums(sweep(x, 2, medoids[i, ], "-")^2))
+  cluster <- max.col(-dmat, ties.method = "first")
+  cluster <- clusterer_attach_metric(cluster, NA_real_, obj$metric_name)
   return(cluster)
 }
 
