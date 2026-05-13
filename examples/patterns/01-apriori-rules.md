@@ -62,7 +62,7 @@ rules <- discover(pm, trans)
 ## Absolute minimum support count: 24421 
 ## 
 ## set item appearances ...[1 item(s)] done [0.00s].
-## set transactions ...[114 item(s), 48842 transaction(s)] done [0.03s].
+## set transactions ...[114 item(s), 48842 transaction(s)] done [0.04s].
 ## sorting and recoding items ... [9 item(s)] done [0.00s].
 ## creating transaction tree ... done [0.01s].
 ## checking subsets of size 1 2 3 4
@@ -74,9 +74,9 @@ rules <- discover(pm, trans)
 ```
 
 ```
-##  done [0.02s].
+##  done [0.00s].
 ## writing ... [0 rule(s)] done [0.00s].
-## creating S4 object  ... done [0.01s].
+## creating S4 object  ... done [0.00s].
 ```
 
 ``` r
