@@ -64,3 +64,8 @@ test_eval$metrics
 ```
 
 For learners who are sensitive to scale, this kind of complete preparation-and-modeling sequence is often more realistic than a raw-data example.
+
+What to observe
+- The split happens before preprocessing because preprocessing objects should learn only from training data.
+- The same fitted normalization object is reused on both training and test sets.
+- This sequence is a compact template for many real classification studies in `daltoolbox`.

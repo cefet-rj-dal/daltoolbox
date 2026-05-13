@@ -1,21 +1,15 @@
 About the method
-- `cla_dtree`: Decision Tree for classification. Recursively splits on explanatory variables to separate classes, yielding an interpretable model.
+- `cla_dtree`: decision tree for classification. Recursively splits explanatory variables to separate classes, yielding an interpretable model.
 
-This example is a good entry point for classification in `daltoolbox` because the learner is easy to explain and the workflow is fully visible from start to finish.
-
-Didactic goal: use the tree as a way to learn the whole supervised workflow, not only the classifier constructor.
+Didactic goal: keep exactly the same classification line of experiment introduced by the baseline and change only the learner to an interpretable supervised model.
 
 Environment setup.
 
 ``` r
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# Classification using Decision Tree
+# install.packages("daltoolbox")
 
-# installation 
-#install.packages("daltoolbox")
-
-# loading DAL
-library(daltoolbox) 
+library(daltoolbox)
 ```
 
 Load data and inspect.
@@ -35,26 +29,13 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-Target `Species` levels.
+Target `Species` levels and reproducible train/test split.
 
 ``` r
-# extracting the levels for the dataset
 slevels <- levels(iris$Species)
-slevels
-```
 
-```
-## [1] "setosa"     "versicolor" "virginica"
-```
-
-Building train and test samples via random sampling
-Random train/test split.
-
-``` r
-# Building train and test samples via random sampling
 set_example_seed()
-sr <- sample_random()
-sr <- train_test(sr, iris)
+sr <- train_test(sample_random(), iris)
 iris_train <- sr$train
 iris_test <- sr$test
 ```
@@ -62,11 +43,13 @@ iris_test <- sr$test
 Class distribution by split.
 
 ``` r
-tbl <- rbind(table(iris[,"Species"]), 
-             table(iris_train[,"Species"]), 
-             table(iris_test[,"Species"]))
+tbl <- rbind(
+  table(iris[, "Species"]),
+  table(iris_train[, "Species"]),
+  table(iris_test[, "Species"])
+)
 rownames(tbl) <- c("dataset", "training", "test")
-head(tbl)
+tbl
 ```
 
 ```
@@ -76,25 +59,20 @@ head(tbl)
 ## test          9         11        10
 ```
 
-Model training
-Train the decision tree.
+Model configuration and fitting.
 
 ``` r
-# Model training
 model <- cla_dtree("Species", slevels)
 set_example_seed()
 model <- fit(model, iris_train)
 ```
 
-Training evaluation
+Training evaluation.
 
 ``` r
-# Checking fit on training data
 train_prediction <- predict(model, iris_train)
-
-# Model evaluation (training)
-train_eval <- evaluate(model, iris_train[,"Species"], train_prediction)
-print(train_eval$metrics)
+train_eval <- evaluate(model, iris_train[, "Species"], train_prediction)
+train_eval$metrics
 ```
 
 ```
@@ -102,19 +80,12 @@ print(train_eval$metrics)
 ## 1 0.9666667 41 79  0  0         1      1           1           1  1
 ```
 
-What to observe
-- The training metrics usually look slightly better than the test metrics because the tree was fit on this same data.
-- A decision tree is often useful as a first model because you can explain its behavior more easily than that of a black-box learner.
-
-Test evaluation
+Test evaluation.
 
 ``` r
-# Model test
 test_prediction <- predict(model, iris_test)
-
-# Test evaluation
- test_eval <- evaluate(model, iris_test[,"Species"], test_prediction)
-print(test_eval$metrics)
+test_eval <- evaluate(model, iris_test[, "Species"], test_prediction)
+test_eval$metrics
 ```
 
 ```
@@ -122,10 +93,9 @@ print(test_eval$metrics)
 ## 1 0.9666667  9 21  0  0         1      1           1           1  1
 ```
 
-Common mistakes
-- Reading the training metric as if it were the final quality estimate.
-- Forgetting to preserve the target levels before fitting the classifier.
-- Comparing this result with another model trained on a different split.
+What to observe
+- The experiment structure is unchanged from the baseline example.
+- The difference now is that the learner can express feature-based decision rules instead of only the majority class.
 
 References
-- Breiman, L., Friedman, J., Olshen, R., and Stone, C. (1984). Classification and Regression Trees. Wadsworth.
+- Breiman, L., Friedman, J., Olshen, R., and Stone, C. (1984). Classification and Regression Trees.

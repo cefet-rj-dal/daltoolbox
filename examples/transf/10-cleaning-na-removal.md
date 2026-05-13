@@ -1,5 +1,5 @@
 About the transformation
-- NA removal: use `na.omit` to drop instances with missing values. Useful for initial cleanup when imputation is not desired.
+- `na_removal`: drops rows with missing values. Useful for initial cleanup when imputation is not desired.
 - Use with care as it may bias results if missingness is not completely at random.
 
 Didactic goal: focus on what changes in the dataset after each operation. In preprocessing examples, understanding the effect of the transformation is as important as learning the function name.
@@ -71,11 +71,13 @@ nrow(iris.na)
 ## [1] 150
 ```
 
+Apply the DAL transformation object instead of calling a base helper directly.
 
 ``` r
 # removing rows with NA
 
-iris.na.omit <- na.omit(iris.na)
+tr <- na_removal()
+iris.na.omit <- transform(tr, iris.na)
 head(iris.na.omit)
 ```
 

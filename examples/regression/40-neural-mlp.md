@@ -1,40 +1,22 @@
 About the method
-- `reg_mlp`: Multilayer Perceptron (neural network) for regression.
-- Hyperparameters: `size` (hidden units), `decay` (L2 regularization).
+- `reg_mlp`: Multilayer Perceptron for regression.
+- Main parameters: `size` and `decay`.
 
-Didactic goal: read this example as a numeric-prediction workflow. The main learning point is that the Experiment Line stays stable even though the target is continuous and the evaluation now focuses on regression errors.
+Didactic goal: keep the same regression line of experiment and change only the learner to a neural regressor.
 
 Environment setup.
 
 ``` r
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# Regression MLP
+# install.packages("daltoolbox")
 
-# installation 
-#install.packages("daltoolbox")
-
-# loading DAL
-library(daltoolbox) 
+library(daltoolbox)
 ```
 
-Load Boston dataset (MASS) and inspect types.
+Load data and inspect.
 
 ``` r
-# Dataset for regression analysis
-
-library(MASS)
 data(Boston)
-print(t(sapply(Boston, class)))
-```
-
-```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black    
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric"
-##      lstat     medv     
-## [1,] "numeric" "numeric"
-```
-
-``` r
 head(Boston)
 ```
 
@@ -48,30 +30,19 @@ head(Boston)
 ## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
 ```
 
-Optional conversion to matrix.
+Target `medv` and reproducible train/test split.
 
 ``` r
-# for performance, you can convert to matrix
-Boston <- as.matrix(Boston)
-```
-
-Random and reproducible train/test split.
-
-``` r
-# preparing dataset for random sampling
 set_example_seed()
-sr <- sample_random()
-sr <- train_test(sr, Boston)
+sr <- train_test(sample_random(), Boston)
 boston_train <- sr$train
 boston_test <- sr$test
 ```
 
-Train MLP: set `size` and `decay`.
+Model configuration and fitting.
 
 ``` r
-# Training
-
-model <- reg_mlp("medv", size=5, decay=0.54)
+model <- reg_mlp("medv", size = 5, decay = 0.54)
 set_example_seed()
 model <- fit(model, boston_train)
 ```
@@ -79,12 +50,9 @@ model <- fit(model, boston_train)
 Training evaluation.
 
 ``` r
-# Model adjustment
-
 train_prediction <- predict(model, boston_train)
-boston_train_predictand <- boston_train[,"medv"]
-train_eval <- evaluate(model, boston_train_predictand, train_prediction)
-print(train_eval$metrics)
+train_eval <- evaluate(model, boston_train[, "medv"], train_prediction)
+train_eval$metrics
 ```
 
 ```
@@ -95,12 +63,9 @@ print(train_eval$metrics)
 Test evaluation.
 
 ``` r
-# Test
-
 test_prediction <- predict(model, boston_test)
-boston_test_predictand <- boston_test[,"medv"]
-test_eval <- evaluate(model, boston_test_predictand, test_prediction)
-print(test_eval$metrics)
+test_eval <- evaluate(model, boston_test[, "medv"], test_prediction)
+test_eval$metrics
 ```
 
 ```
@@ -109,4 +74,4 @@ print(test_eval$metrics)
 ```
 
 References
-- Bishop, C. M. (1995). Neural Networks for Pattern Recognition. Oxford University Press.
+- Bishop, C. M. (1995). Neural Networks for Pattern Recognition.

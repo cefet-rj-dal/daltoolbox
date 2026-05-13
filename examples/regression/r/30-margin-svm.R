@@ -1,46 +1,24 @@
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# Regression SVM
+# install.packages("daltoolbox")
 
-# installation 
-#install.packages("daltoolbox")
+library(daltoolbox)
 
-# loading DAL
-library(daltoolbox) 
-
-# Dataset for regression analysis
-
-library(MASS)
 data(Boston)
-print(t(sapply(Boston, class)))
 head(Boston)
 
-# for performance, you can convert to matrix
-Boston <- as.matrix(Boston)
-
-# preparing dataset for random sampling
-
 set_example_seed()
-sr <- sample_random()
-sr <- train_test(sr, Boston)
+sr <- train_test(sample_random(), Boston)
 boston_train <- sr$train
 boston_test <- sr$test
 
-# Training
-
-model <- reg_svm("medv", epsilon=0.2,cost=40.000)
+model <- reg_svm("medv", epsilon = 0.2, cost = 40.0)
 set_example_seed()
 model <- fit(model, boston_train)
 
-# Model adjustment
-
 train_prediction <- predict(model, boston_train)
-boston_train_predictand <- boston_train[,"medv"]
-train_eval <- evaluate(model, boston_train_predictand, train_prediction)
-print(train_eval$metrics)
-
-# Test
+train_eval <- evaluate(model, boston_train[, "medv"], train_prediction)
+train_eval$metrics
 
 test_prediction <- predict(model, boston_test)
-boston_test_predictand <- boston_test[,"medv"]
-test_eval <- evaluate(model, boston_test_predictand, test_prediction)
-print(test_eval$metrics)
+test_eval <- evaluate(model, boston_test[, "medv"], test_prediction)
+test_eval$metrics

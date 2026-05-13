@@ -10,6 +10,7 @@ If you are learning numeric prediction in `daltoolbox`, read the examples in ord
 
 ## Core Regression Families
 
+- [11-linear-model.md](/examples/regression/11-linear-model.md) - `reg_lm`: linear regression baseline for numeric prediction.
 - [10-instance-based-knn.md](/examples/regression/10-instance-based-knn.md) - `reg_knn`: local prediction by nearby cases.
 - [20-ensemble-random-forest.md](/examples/regression/20-ensemble-random-forest.md) - `reg_rf`: tree ensemble for robust nonlinear regression.
 - [30-margin-svm.md](/examples/regression/30-margin-svm.md) - `reg_svm`: support vector regression with margin-based fitting.

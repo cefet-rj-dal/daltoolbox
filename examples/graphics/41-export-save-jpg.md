@@ -56,7 +56,7 @@ grf <- plot_series(serie, colors=colors[1:2]) + font
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-4](fig/17-export-save-jpg/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](fig/41-export-save-jpg/unnamed-chunk-4-1.png)
 
 Export using base devices (JPEG) and with `ggsave`.
 

@@ -1,7 +1,4 @@
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# Pattern mining - eclat itemsets
-
-# installation
 # install.packages(c("daltoolbox", "arules"))
 
 library(daltoolbox)

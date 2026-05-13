@@ -1,32 +1,40 @@
 About the method
-- `cluster_pam`: Partitioning Around Medoids. Similar to k-means but uses medoids (real points) instead of centroids, making it more robust to outliers.
+- `cluster_pam`: Partitioning Around Medoids. Similar to k-means, but uses medoids instead of centroids.
 
+Didactic goal: keep the same clustering line of experiment and change only the partitioning strategy.
+
+Environment setup.
 
 ``` r
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# Clustering - pam
+# install.packages("daltoolbox")
 
-# installation 
-#install.packages("daltoolbox")
-
-# loading DAL
-library(daltoolbox) 
+library(daltoolbox)
 ```
 
-Didactic goal: read this example as an unsupervised workflow. The emphasis is not on predicting a known label during training, but on understanding how the method groups the data and how preprocessing affects that grouping.
-
-Load data (`iris`).
+Load data and separate predictors from the reference labels used only for interpretation.
 
 ``` r
-# loading dataset
-data(iris)
+iris <- datasets::iris
+x <- iris[, 1:4]
+ref <- iris$Species
+head(x)
 ```
 
-Configure PAM with k=3.
+```
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1          5.1         3.5          1.4         0.2
+## 2          4.9         3.0          1.4         0.2
+## 3          4.7         3.2          1.3         0.2
+## 4          4.6         3.1          1.5         0.2
+## 5          5.0         3.6          1.4         0.2
+## 6          5.4         3.9          1.7         0.4
+```
+
+Model configuration.
 
 ``` r
-# clustering method configuration
-model <- cluster_pam(k=3)
+model <- cluster_pam(k = 3)
 model$eval_internal <- list(
   model$clu_utils$metric_silhouette,
   model$clu_utils$metric_davies_bouldin
@@ -37,13 +45,12 @@ model$eval_external <- list(
 )
 ```
 
-Fit and generate cluster labels.
+Fit the model and obtain cluster labels.
 
 ``` r
-# model fitting and labeling
 set_example_seed()
-model <- fit(model, iris[,1:4])
-clu <- cluster(model, iris[,1:4])
+model <- fit(model, x)
+clu <- cluster(model, x)
 table(clu)
 ```
 
@@ -53,11 +60,10 @@ table(clu)
 ## 50 62 38
 ```
 
-Internal and external evaluation.
+Evaluate the partition.
 
 ``` r
-# evaluate model using internal and external metrics
-eval <- evaluate(model, clu, iris$Species)
+eval <- evaluate(model, clu, ref)
 eval
 ```
 
@@ -84,5 +90,9 @@ eval
 ## 4         purity 0.8933333 maximize external
 ```
 
+What to observe
+- The workflow is unchanged from k-means.
+- The method-specific difference is that medoids are actual observations, which can make the partition more robust to outliers.
+
 References
-- Kaufman, L. and Rousseeuw, P. J. (1990). Finding Groups in Data: An Introduction to Cluster Analysis.
+- Kaufman, L., and Rousseeuw, P. J. (1990). Finding Groups in Data.

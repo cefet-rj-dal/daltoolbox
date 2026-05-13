@@ -1,0 +1,19 @@
+Conversion run started at 2026-05-13 02:51:29
+Working directory: /home/gpca/daltoolbox
+
+================================================================================
+[2026-05-13 02:53:14] rmd->docx
+file: Rmd/patterns/01-apriori-rules.Rmd
+message: error in evaluating the argument 'x' in selecting a method for function 'inspect': subscript out of bounds
+call: h(simpleError(msg, call))
+stack:
+001: source("~/daltoolbox/Rmd/conversor.R")
+002: withVisible(eval(ei, envir))
+003: eval(ei, envir)
+004: eval(ei, envir)
+005: run_phase(texs, "rmd->docx", convert_rmd_docx)
+006: tryCatch({     converter(input)     list(ok = TRUE, input = input, phase = phase, message = NULL) }, error = function(err) {     record_condition(phase, input, err)     list(ok = FALSE, input = input, phase = phase, message = conditionMessage(err)) })
+007: tryCatchList(expr, classes, parentenv, handlers)
+008: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+009: value[[3L]](cond)
+010: record_condition(phase, input, err)

@@ -67,7 +67,7 @@ grf <- plot_scatter(dat, label_x = "dimensions", label_y = "cumulative variance"
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-5](fig/20-curvature-minimum/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5](fig/71-curvature-minimum/unnamed-chunk-5-1.png)
 
 # Minimum curvature
 If the curve is increasing, use minimum curvature analysis.
@@ -90,7 +90,7 @@ head(res)
 plot(grf + geom_vline(xintercept = res$x, linetype="dashed", color = "red", size=0.5))
 ```
 
-![plot of chunk unnamed-chunk-7](fig/20-curvature-minimum/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-7](fig/71-curvature-minimum/unnamed-chunk-7-1.png)
 
 References
 - Satopaa, V., Albrecht, J., Irwin, D., Raghavan, B. (2011). Finding a "Kneedle" in a Haystack: Detecting Knee Points in System Behavior.

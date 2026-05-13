@@ -59,7 +59,7 @@ grf <- plot_series(serie, colors=colors[1:2]) + font
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-4](fig/13-time-series-lines/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](fig/30-time-series-lines/unnamed-chunk-4-1.png)
 
 References
 - Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.

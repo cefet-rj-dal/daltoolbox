@@ -1,35 +1,22 @@
 About the method
-- `reg_rf`: Random Forest for regression. Averages many decision trees trained with randomness; tends to reduce variance.
-- Hyperparameters: `mtry` (variables per split), `ntree` (number of trees).
+- `reg_rf`: Random Forest for regression.
+- Main parameters: `mtry` and `ntree`.
 
+Didactic goal: keep the same regression line of experiment and change only the learner to a tree ensemble.
+
+Environment setup.
 
 ``` r
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# installation 
-#install.packages("daltoolbox")
+# install.packages("daltoolbox")
 
-# loading DAL
-library(daltoolbox) 
+library(daltoolbox)
 ```
 
-Dataset for regression analysis
-Load Boston dataset and inspect types/values.
-
+Load data and inspect.
 
 ``` r
-library(MASS)
 data(Boston)
-print(t(sapply(Boston, class)))
-```
-
-```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black    
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric"
-##      lstat     medv     
-## [1,] "numeric" "numeric"
-```
-
-``` r
 head(Boston)
 ```
 
@@ -43,45 +30,29 @@ head(Boston)
 ## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
 ```
 
-Optional conversion to matrix (may improve performance in some cases).
+Target `medv` and reproducible train/test split.
 
 ``` r
-# for performance, you can convert to matrix
-Boston <- as.matrix(Boston)
-```
-
-Train/test split
-Random and reproducible train/test split.
-
-
-``` r
-# preparing random sampling
 set_example_seed()
-sr <- sample_random()
-sr <- train_test(sr, Boston)
+sr <- train_test(sample_random(), Boston)
 boston_train <- sr$train
 boston_test <- sr$test
 ```
 
-Training
-Train Random Forest to predict `medv`.
-
+Model configuration and fitting.
 
 ``` r
-model <- reg_rf("medv", mtry=7, ntree=30) # mtry: variables per split; ntree: number of trees
+model <- reg_rf("medv", mtry = 7, ntree = 30)
 set_example_seed()
 model <- fit(model, boston_train)
 ```
 
-Model adjustment
-Training evaluation (regression metrics such as RMSE/MAE).
-
+Training evaluation.
 
 ``` r
 train_prediction <- predict(model, boston_train)
-boston_train_predictand <- boston_train[,"medv"]
-train_eval <- evaluate(model, boston_train_predictand, train_prediction)
-print(train_eval$metrics)
+train_eval <- evaluate(model, boston_train[, "medv"], train_prediction)
+train_eval$metrics
 ```
 
 ```
@@ -89,15 +60,12 @@ print(train_eval$metrics)
 ## 1 1.603413 0.04054869 0.9798495
 ```
 
-Test
 Test evaluation.
-
 
 ``` r
 test_prediction <- predict(model, boston_test)
-boston_test_predictand <- boston_test[,"medv"]
-test_eval <- evaluate(model, boston_test_predictand, test_prediction)
-print(test_eval$metrics)
+test_eval <- evaluate(model, boston_test[, "medv"], test_prediction)
+test_eval$metrics
 ```
 
 ```
@@ -106,5 +74,4 @@ print(test_eval$metrics)
 ```
 
 References
-- Breiman, L. (2001). Random Forests. Machine Learning 45(1):5–32.
-- Liaw, A. and Wiener, M. (2002). Classification and Regression by randomForest. R News.
+- Breiman, L. (2001). Random Forests.

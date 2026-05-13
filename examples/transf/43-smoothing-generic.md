@@ -1,0 +1,46 @@
+About the transformation
+- `smoothing`: base family behind the concrete smoothing strategies.
+
+Didactic goal: expose the role of the base object. The concrete classes such as `smoothing_inter`, `smoothing_freq`, and `smoothing_cluster` inherit from this family, but the base constructor is where the generic tuning logic lives.
+
+
+``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+Use the base constructor with multiple candidate values for `n`, then attach the equal-interval strategy to let the built-in tuning helper choose a smoothing level.
+
+``` r
+obj <- smoothing(n = c(2, 3, 4, 5))
+class(obj) <- append("smoothing_inter", class(obj))
+
+set_example_seed()
+obj <- fit(obj, datasets::iris$Sepal.Length)
+smooth_values <- transform(obj, datasets::iris$Sepal.Length)
+
+head(smooth_values)
+```
+
+```
+##        2        1        1        1        1        2 
+## 5.417073 4.787500 4.787500 4.787500 4.787500 5.417073
+```
+
+``` r
+obj$n
+```
+
+```
+## [1] 2
+```
+
+``` r
+obj$interval
+```
+
+```
+## [1] 4.30 5.02 5.74 6.46 7.18 7.90
+```

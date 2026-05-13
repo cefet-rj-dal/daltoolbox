@@ -59,7 +59,7 @@ grf <- plot_boxplot(iris, colors="white") + font
 plot(grf)  
 ```
 
-![plot of chunk unnamed-chunk-4](fig/10-distribution-boxplot/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](fig/12-distribution-boxplot/unnamed-chunk-4-1.png)
 
 
 ``` r
@@ -74,7 +74,7 @@ grf <- plot_boxplot(iris, colors=colors[1:4]) + font
 plot(grf)  
 ```
 
-![plot of chunk unnamed-chunk-5](fig/10-distribution-boxplot/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5](fig/12-distribution-boxplot/unnamed-chunk-5-1.png)
 
 References
 - Tukey, J. W. (1977). Exploratory Data Analysis. Addison-Wesley.

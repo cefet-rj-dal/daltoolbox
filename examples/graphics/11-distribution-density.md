@@ -67,7 +67,7 @@ grf <- plot_density(example, colors=colors[1:3]) + font
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-4](fig/09-distribution-density/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](fig/11-distribution-density/unnamed-chunk-4-1.png)
 
 Chart arrangement
 
@@ -109,7 +109,7 @@ options(repr.plot.width=15, repr.plot.height=4)
 grid.arrange(grfe, grfu, grfn, ncol=3)
 ```
 
-![plot of chunk unnamed-chunk-6](fig/09-distribution-density/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-6](fig/11-distribution-density/unnamed-chunk-6-1.png)
 
 References
 - Silverman, B. W. (1986). Density Estimation for Statistics and Data Analysis. Chapman and Hall.

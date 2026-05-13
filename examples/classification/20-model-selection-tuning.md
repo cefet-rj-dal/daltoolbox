@@ -1,29 +1,21 @@
 About the utility
 - `cla_tune`: performs hyperparameter search for a classifier over ranges defined in `ranges`.
-- The example below tunes a `cla_svm` varying `epsilon`, `cost`, and `kernel`.
+- In this example the tuned base learner is `cla_svm`.
 
-This example is less about SVM itself and more about disciplined experimentation. The important question is how to search for better configurations without losing the logic of a fair evaluation workflow.
-
-Didactic goal: understand tuning as an extension of the same experimental structure, not as a separate process detached from sampling and evaluation.
+Didactic goal: preserve the same classification line of experiment and treat tuning as a change in model configuration rather than as a separate workflow.
 
 Environment setup.
 
 ``` r
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# Classification tuning 
+# install.packages("daltoolbox")
 
-# installation 
-#install.packages("daltoolbox")
-
-# loading DAL
-library(daltoolbox) 
+library(daltoolbox)
 ```
 
-Sample data and target levels.
+Load data and inspect.
 
 ``` r
-# Dataset for classification
-
 iris <- datasets::iris
 head(iris)
 ```
@@ -38,32 +30,27 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
+Target `Species` levels and reproducible train/test split.
+
 ``` r
-# extracting the levels for the dataset
 slevels <- levels(iris$Species)
-slevels
-```
 
-```
-## [1] "setosa"     "versicolor" "virginica"
-```
-
-Train/test split
-Random split for tuning validation.
-
-``` r
-# preparing random sampling
 set_example_seed()
-sr <- sample_random()
-sr <- train_test(sr, iris)
+sr <- train_test(sample_random(), iris)
 iris_train <- sr$train
 iris_test <- sr$test
+```
 
-tbl <- rbind(table(iris[,"Species"]),
-             table(iris_train[,"Species"]),
-             table(iris_test[,"Species"]))
+Class distribution by split.
+
+``` r
+tbl <- rbind(
+  table(iris[, "Species"]),
+  table(iris_train[, "Species"]),
+  table(iris_test[, "Species"])
+)
 rownames(tbl) <- c("dataset", "training", "test")
-head(tbl)
+tbl
 ```
 
 ```
@@ -73,28 +60,28 @@ head(tbl)
 ## test          9         11        10
 ```
 
-Hyperparameter grid and search training
+Model configuration and fitting.
 
 ``` r
-# Training with hyperparameter search
-tune <- cla_tune(cla_svm("Species", slevels), 
-  ranges = list(epsilon=seq(0,1,0.2), cost=seq(20,100,20), kernel = c("linear", "radial", "polynomial", "sigmoid")))
+tune <- cla_tune(
+  cla_svm("Species", slevels),
+  ranges = list(
+    epsilon = seq(0, 1, 0.2),
+    cost = seq(20, 100, 20),
+    kernel = c("linear", "radial", "polynomial", "sigmoid")
+  )
+)
 
 set_example_seed()
 model <- fit(tune, iris_train)
 ```
 
-What to observe
-- The grid makes the search space explicit, which is useful for reproducibility.
-- A larger grid is not automatically better; it only increases the search effort.
-
-Training evaluation with the best configuration
+Training evaluation.
 
 ``` r
-# Training evaluation
 train_prediction <- predict(model, iris_train)
-train_eval <- evaluate(model, iris_train[,"Species"], train_prediction)
-print(train_eval$metrics)
+train_eval <- evaluate(model, iris_train[, "Species"], train_prediction)
+train_eval$metrics
 ```
 
 ```
@@ -102,15 +89,12 @@ print(train_eval$metrics)
 ## 1 0.9833333 41 79  0  0         1      1           1           1  1
 ```
 
-Test evaluation
+Test evaluation.
 
 ``` r
-# Test evaluation
 test_prediction <- predict(model, iris_test)
-
-# Evaluating # setosa as primary class
-test_eval <- evaluate(model, iris_test[,"Species"], test_prediction)
-print(test_eval$metrics)
+test_eval <- evaluate(model, iris_test[, "Species"], test_prediction)
+test_eval$metrics
 ```
 
 ```
@@ -118,24 +102,9 @@ print(test_eval$metrics)
 ## 1 0.9666667  9 21  0  0         1      1           1           1  1
 ```
 
-Common mistakes
-- Using tuning without first defining a stable sampling protocol.
-- Interpreting the tuned model only by the training metrics.
-- Creating a very large search space before understanding the meaning of the hyperparameters.
-
-Example grids for other models
-
-``` r
-# Grid options for other models
-# knn
-ranges <- list(k=1:20)
-
-# mlp
-ranges <- list(size=1:10, decay=seq(0, 1, 0.1))
-
-# rf
-ranges <- list(mtry=1:3, ntree=1:10)
-```
+What to observe
+- The experiment body is still split, fit, predict, and evaluate.
+- Tuning changes how the model is selected, not how the experiment is read.
 
 References
-- Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection. IJCAI.
+- Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection.

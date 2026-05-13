@@ -1,23 +1,19 @@
 About the method
-- `cla_svm`: Support Vector Machine for classification, maximizing the margin between classes.
-- Common hyperparameters: `cost` (penalty), `epsilon` (insensitive-margin width), and `kernel` (e.g., linear, radial, polynomial, sigmoid).
+- `cla_svm`: Support Vector Machine for classification.
+- Main parameters: `cost`, `epsilon`, and `kernel`.
 
-Environment setup: install and load the package.
+Didactic goal: keep the same classification line of experiment and change only the learner to a margin-based classifier.
+
+Environment setup.
 
 ``` r
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# Classification using Support Vector Machine
+# install.packages("daltoolbox")
 
-# installation 
-#install.packages("daltoolbox")
-
-# loading DAL
-library(daltoolbox) 
+library(daltoolbox)
 ```
 
-Didactic goal: read this example as a complete supervised-learning cycle. Pay attention not only to the learner call, but also to how the target is identified, how the split is created, and how training and test results should be interpreted separately.
-
-Load sample data (iris) and initial inspection.
+Load data and inspect.
 
 ``` r
 iris <- datasets::iris
@@ -34,38 +30,27 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-Identify the target `Species` levels.
+Target `Species` levels and reproducible train/test split.
 
 ``` r
-# extracting the levels for the dataset
 slevels <- levels(iris$Species)
-slevels
-```
 
-```
-## [1] "setosa"     "versicolor" "virginica"
-```
-
-Building train and test samples via random sampling
-Random train/test split.
-
-``` r
-# Building train and test samples via random sampling
 set_example_seed()
-sr <- sample_random()
-sr <- train_test(sr, iris)
+sr <- train_test(sample_random(), iris)
 iris_train <- sr$train
 iris_test <- sr$test
 ```
 
-Check class distribution after the split.
+Class distribution by split.
 
 ``` r
-tbl <- rbind(table(iris[,"Species"]), 
-             table(iris_train[,"Species"]), 
-             table(iris_test[,"Species"]))
+tbl <- rbind(
+  table(iris[, "Species"]),
+  table(iris_train[, "Species"]),
+  table(iris_test[, "Species"])
+)
 rownames(tbl) <- c("dataset", "training", "test")
-head(tbl)
+tbl
 ```
 
 ```
@@ -75,26 +60,20 @@ head(tbl)
 ## test          9         11        10
 ```
 
-Model training
-Train SVM: tune `cost`, `epsilon`, and optionally `kernel`.
+Model configuration and fitting.
 
 ``` r
-# Model training
-model <- cla_svm("Species", slevels, epsilon=0.0, cost=20.000) # default kernel; adjust as needed
+model <- cla_svm("Species", slevels, epsilon = 0.0, cost = 20.0)
 set_example_seed()
 model <- fit(model, iris_train)
 ```
 
-Training evaluation
-Predict and compute metrics from the returned class scores.
+Training evaluation.
 
 ``` r
-# Checking fit on training data
 train_prediction <- predict(model, iris_train)
-
-# Model evaluation (training)
-train_eval <- evaluate(model, iris_train[,"Species"], train_prediction)
-print(train_eval$metrics)
+train_eval <- evaluate(model, iris_train[, "Species"], train_prediction)
+train_eval$metrics
 ```
 
 ```
@@ -102,16 +81,12 @@ print(train_eval$metrics)
 ## 1 0.9916667 41 79  0  0         1      1           1           1  1
 ```
 
-Test evaluation
-Predict and compute metrics.
+Test evaluation.
 
 ``` r
-# Model test
 test_prediction <- predict(model, iris_test)
-
-# Test evaluation
- test_eval <- evaluate(model, iris_test[,"Species"], test_prediction)
-print(test_eval$metrics)
+test_eval <- evaluate(model, iris_test[, "Species"], test_prediction)
+test_eval$metrics
 ```
 
 ```
@@ -120,5 +95,4 @@ print(test_eval$metrics)
 ```
 
 References
-- Cortes, C. and Vapnik, V. (1995). Support-Vector Networks. Machine Learning 20(3):273–297.
-- Chang, C.-C. and Lin, C.-J. (2011). LIBSVM: A library for support vector machines.
+- Cortes, C., and Vapnik, V. (1995). Support-Vector Networks.

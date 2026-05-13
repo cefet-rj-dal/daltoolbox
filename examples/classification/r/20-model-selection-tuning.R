@@ -1,59 +1,42 @@
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# Classification tuning 
+# install.packages("daltoolbox")
 
-# installation 
-#install.packages("daltoolbox")
-
-# loading DAL
-library(daltoolbox) 
-
-# Dataset for classification
+library(daltoolbox)
 
 iris <- datasets::iris
 head(iris)
 
-# extracting the levels for the dataset
 slevels <- levels(iris$Species)
-slevels
 
-# preparing random sampling
 set_example_seed()
-sr <- sample_random()
-sr <- train_test(sr, iris)
+sr <- train_test(sample_random(), iris)
 iris_train <- sr$train
 iris_test <- sr$test
 
-tbl <- rbind(table(iris[,"Species"]),
-             table(iris_train[,"Species"]),
-             table(iris_test[,"Species"]))
+tbl <- rbind(
+  table(iris[, "Species"]),
+  table(iris_train[, "Species"]),
+  table(iris_test[, "Species"])
+)
 rownames(tbl) <- c("dataset", "training", "test")
-head(tbl)
+tbl
 
-# Training with hyperparameter search
-tune <- cla_tune(cla_svm("Species", slevels), 
-  ranges = list(epsilon=seq(0,1,0.2), cost=seq(20,100,20), kernel = c("linear", "radial", "polynomial", "sigmoid")))
+tune <- cla_tune(
+  cla_svm("Species", slevels),
+  ranges = list(
+    epsilon = seq(0, 1, 0.2),
+    cost = seq(20, 100, 20),
+    kernel = c("linear", "radial", "polynomial", "sigmoid")
+  )
+)
 
 set_example_seed()
 model <- fit(tune, iris_train)
 
-# Training evaluation
 train_prediction <- predict(model, iris_train)
-train_eval <- evaluate(model, iris_train[,"Species"], train_prediction)
-print(train_eval$metrics)
+train_eval <- evaluate(model, iris_train[, "Species"], train_prediction)
+train_eval$metrics
 
-# Test evaluation
 test_prediction <- predict(model, iris_test)
-
-# Evaluating # setosa as primary class
-test_eval <- evaluate(model, iris_test[,"Species"], test_prediction)
-print(test_eval$metrics)
-
-# Grid options for other models
-# knn
-ranges <- list(k=1:20)
-
-# mlp
-ranges <- list(size=1:10, decay=seq(0, 1, 0.1))
-
-# rf
-ranges <- list(mtry=1:3, ntree=1:10)
+test_eval <- evaluate(model, iris_test[, "Species"], test_prediction)
+test_eval$metrics

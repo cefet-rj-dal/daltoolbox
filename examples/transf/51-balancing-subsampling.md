@@ -2,6 +2,8 @@
 
 Random undersampling reduces all classes to the minority count by sampling without replacement.
 
+Didactic goal: show the fastest way to reduce class imbalance and highlight its tradeoff. Undersampling is simple and often effective, but it discards information from the majority class to achieve balance.
+
 
 ``` r
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
@@ -11,6 +13,7 @@ source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examp
 library(daltoolbox)
 ```
 
+Create an imbalanced dataset so the class reduction effect is easy to inspect.
 
 ``` r
 iris_imb <- datasets::iris[c(1:50, 51:71, 101:111), ]
@@ -23,6 +26,7 @@ table(iris_imb$Species)
 ##         50         21         11
 ```
 
+Apply undersampling and inspect the new class distribution.
 
 ``` r
 set_example_seed()
@@ -50,3 +54,11 @@ head(iris_bal)
 ## 5          5.8         2.7          5.1         1.9 virginica
 ## 6          6.3         2.9          5.6         1.8 virginica
 ```
+
+What to observe
+- The balanced result is obtained by removing majority-class rows, not by creating new minority rows.
+- This makes undersampling computationally cheap, but potentially more lossy than oversampling.
+- As with any balancing transformation, apply it to training data only.
+
+References
+- He, H., and Garcia, E. A. (2009). Learning from Imbalanced Data. IEEE Transactions on Knowledge and Data Engineering.

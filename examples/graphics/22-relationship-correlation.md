@@ -1,0 +1,20 @@
+About the chart
+- `plot_correlation`: correlation heatmap for numeric variables.
+
+Didactic goal: show a compact view of pairwise association before jumping into model fitting. Correlation plots are especially useful for redundancy inspection and feature-screening conversations.
+
+
+``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+
+``` r
+grf <- plot_correlation(datasets::iris[, 1:4], reorder = "hclust")
+plot(grf)
+```
+
+![plot of chunk unnamed-chunk-2](fig/22-relationship-correlation/unnamed-chunk-2-1.png)

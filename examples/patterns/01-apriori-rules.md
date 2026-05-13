@@ -1,14 +1,12 @@
 About the method
-- `pat_apriori`: association-rule mining with semantic configuration in the object. Instead of sending raw engine lists, the user configures support, confidence, length, left-hand side, right-hand side, and optional quality filters as properties of the miner.
+- `pat_apriori`: association-rule mining with semantic configuration stored in the miner object.
 
-Didactic goal: read this example as a descriptive workflow. The value is not in predicting a target, but in understanding how the configuration of the search space changes the rules that survive.
+Didactic goal: establish the standard pattern-mining line of experiment used throughout this family: load data, configure the miner, `fit()`, `discover()`, `evaluate()`, and inspect the patterns.
 
+Environment setup.
 
 ``` r
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# Pattern mining - apriori rules
-
-# installation
 # install.packages(c("daltoolbox", "arules"))
 
 library(daltoolbox)
@@ -27,7 +25,7 @@ summary(trans)
 ##        48842 transactions           S4
 ```
 
-Configure the miner with semantic properties instead of raw engine arguments.
+Model configuration.
 
 ``` r
 utils <- patutils()
@@ -43,7 +41,7 @@ pm <- pat_apriori(
 )
 ```
 
-Fit the miner and discover rules.
+Fit and discover patterns.
 
 ``` r
 pm <- fit(pm, trans)
@@ -76,9 +74,9 @@ rules <- discover(pm, trans)
 ```
 
 ```
-##  done [0.03s].
+##  done [0.02s].
 ## writing ... [0 rule(s)] done [0.00s].
-## creating S4 object  ... done [0.00s].
+## creating S4 object  ... done [0.01s].
 ```
 
 ``` r
@@ -89,7 +87,7 @@ length(rules)
 ## [1] 0
 ```
 
-Evaluate the discovered rules using the metrics configured by the object family.
+Evaluate the discovered patterns.
 
 ``` r
 eval <- evaluate(pm, rules)
@@ -106,7 +104,7 @@ eval$metrics
 ## 6  retained_ratio    NA    filter
 ```
 
-Inspect a few rules.
+Inspect a few patterns.
 
 ``` r
 arules::inspect(rules[1:min(6, length(rules))])
@@ -118,11 +116,5 @@ arules::inspect(rules[1:min(6, length(rules))])
 ```
 
 What to observe
-- `fit()` records the schema and compiles the engine configuration from semantic properties such as `supp`, `conf`, `lhs`, and `rhs`.
-- `discover()` applies the mining engine and then optional quality filtering.
-- `evaluate()` summarizes how many rules survived and how strong they are on average.
-
-Common mistakes
-- Treating `confidence` as if it were a predictive guarantee rather than a descriptive conditional frequency.
-- Using a very restrictive `rhs` together with high `supp` and high `conf`, which may eliminate almost all rules.
-- Interpreting large rule sets without any post-filtering.
+- The standard pattern-mining workflow is different from prediction, but it is still structured and reproducible.
+- Later pattern examples will keep this same body and only change the pattern family and configuration.

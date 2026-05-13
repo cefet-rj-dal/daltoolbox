@@ -38,7 +38,7 @@ gr <- plot_scatter(
 plot(gr)
 ```
 
-![plot of chunk unnamed-chunk-3](fig/12-visual-analysis-and-reporting/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-3](fig/30-visual-analysis-and-reporting/unnamed-chunk-3-1.png)
 
 Now create a small comparison table that could appear in a report. The exact numbers are less important than the idea of communicating results in a compact and reproducible way. Each learner returns class scores, and `evaluate()` summarizes them into the reporting metrics.
 
@@ -88,3 +88,8 @@ do.call(rbind, report)
 ```
 
 For teaching purposes, this tutorial shows that analysis and communication should be treated as part of the same workflow.
+
+What to observe
+- The plot supports interpretation before model choice, not only after modeling.
+- The compact report table makes different learners easier to compare in a reproducible way.
+- Visualization and reporting are part of the experiment design, not only presentation after the fact.

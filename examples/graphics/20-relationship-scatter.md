@@ -69,7 +69,7 @@ grf <- plot_scatter(
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-4](fig/11-relationship-scatter/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](fig/20-relationship-scatter/unnamed-chunk-4-1.png)
 
 What to observe
 - The column names are adapted to the plotting helper, which is a useful reminder that visualization often starts with data organization.

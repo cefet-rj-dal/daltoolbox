@@ -50,7 +50,7 @@ Plot time series with fit and forecast.
 plot_ts_pred(y=yvalues, yadj=adjust, ypre=prediction)
 ```
 
-![plot of chunk unnamed-chunk-5](fig/15-time-series-forecast/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5](fig/32-time-series-forecast/unnamed-chunk-5-1.png)
 
 References
 - Hyndman, R. J., and Athanasopoulos, G. (2021). Forecasting: Principles and Practice (3rd ed.). OTexts.

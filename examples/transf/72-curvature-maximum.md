@@ -43,7 +43,7 @@ grf <- plot_scatter(dat, label_x = "dimensions", label_y = "cumulative variance"
 plot(grf + geom_vline(xintercept = dat$x[res$x], linetype="dashed", color = "red", size=0.5))
 ```
 
-![plot of chunk unnamed-chunk-3](fig/21-curvature-maximum/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-3](fig/72-curvature-maximum/unnamed-chunk-3-1.png)
 
 About the technique
 - `fit_curvature_max`: computes curvature via the second derivative of a smoothed spline over the sequence and returns the maximum curvature position (elbow) for decreasing or concave curves; useful to identify a knee where diminishing returns begin.
@@ -75,7 +75,7 @@ grf <- plot_scatter(dat, label_x = "x", label_y = "y", colors="black") +
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-5](fig/21-curvature-maximum/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5](fig/72-curvature-maximum/unnamed-chunk-5-1.png)
 
 ``` r
 myfit <- fit_curvature_max()
@@ -92,7 +92,7 @@ res
 plot(grf + geom_vline(xintercept = res$x, linetype="dashed", color = "red", size=0.5))
 ```
 
-![plot of chunk unnamed-chunk-5](fig/21-curvature-maximum/unnamed-chunk-5-2.png)
+![plot of chunk unnamed-chunk-5](fig/72-curvature-maximum/unnamed-chunk-5-2.png)
 
 References
 - Satopaa, V., Albrecht, J., Irwin, D., Raghavan, B. (2011). Finding a "Kneedle" in a Haystack: Detecting Knee Points in System Behavior.

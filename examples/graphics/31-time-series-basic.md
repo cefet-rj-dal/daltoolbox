@@ -43,7 +43,7 @@ grf <- plot_ts(x = x, y = y, color=c("red"))
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-4](fig/14-time-series-basic/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](fig/31-time-series-basic/unnamed-chunk-4-1.png)
 
 References
 - Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.

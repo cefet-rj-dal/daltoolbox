@@ -1,20 +1,18 @@
 About the method
-- `pat_cspade`: sequential pattern mining. The central analytical question is no longer “which items co-occur?” but “which ordered event structures recur often enough to matter?”
+- `pat_cspade`: sequential pattern mining, where the analytical question is about recurring ordered event structures.
 
-Didactic goal: read this example as a sequence-discovery workflow. The most important lesson is that order-sensitive mining can still follow the same Experiment Line: configure the object, fit it, discover patterns, evaluate the result.
+Didactic goal: keep the same pattern-mining line of experiment and change only the data type and pattern family so the reader can compare item co-occurrence with event order.
 
+Environment setup.
 
 ``` r
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# Pattern mining - cspade sequences
-
-# installation
 # install.packages(c("daltoolbox", "arulesSequences"))
 
 library(daltoolbox)
 ```
 
-Load sequence transactions from the example dataset distributed with `arulesSequences`.
+Load sequence transactions.
 
 ``` r
 x <- arulesSequences::read_baskets(
@@ -30,7 +28,7 @@ x
 ##  8 items (columns)
 ```
 
-Configure the miner with support and sequence-size restrictions.
+Model configuration.
 
 ``` r
 utils <- patutils()
@@ -43,7 +41,7 @@ pm <- pat_cspade(
 )
 ```
 
-Fit and discover sequential patterns.
+Fit and discover patterns.
 
 ``` r
 pm <- fit(pm, x)
@@ -55,7 +53,7 @@ length(seqs)
 ## [1] 18
 ```
 
-Evaluate the resulting sequence set.
+Evaluate the discovered patterns.
 
 ``` r
 eval <- evaluate(pm, seqs)
@@ -87,11 +85,5 @@ head(as(seqs, "data.frame"))
 ```
 
 What to observe
-- `support` remains central, but now the patterns are ordered structures rather than unordered itemsets.
-- `maxlen` controls sequence complexity and can be decisive for keeping the result interpretable.
-- `evaluate()` summarizes the discovered sequence family without pretending that this is a supervised learning problem.
-
-Common mistakes
-- Reading sequential patterns as if they were ordinary association rules.
-- Using very loose support thresholds and letting the number of sequences explode.
-- Ignoring sequence length when interpreting the result.
+- The workflow is unchanged from the other pattern-mining examples.
+- The main semantic change is that order now matters, so the discovered structures are sequences rather than itemsets or rules.

@@ -1,17 +1,14 @@
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# Clustering - pam
+# install.packages("daltoolbox")
 
-# installation 
-#install.packages("daltoolbox")
+library(daltoolbox)
 
-# loading DAL
-library(daltoolbox) 
+iris <- datasets::iris
+x <- iris[, 1:4]
+ref <- iris$Species
+head(x)
 
-# loading dataset
-data(iris)
-
-# clustering method configuration
-model <- cluster_pam(k=3)
+model <- cluster_pam(k = 3)
 model$eval_internal <- list(
   model$clu_utils$metric_silhouette,
   model$clu_utils$metric_davies_bouldin
@@ -21,12 +18,10 @@ model$eval_external <- list(
   model$clu_utils$metric_purity
 )
 
-# model fitting and labeling
 set_example_seed()
-model <- fit(model, iris[,1:4])
-clu <- cluster(model, iris[,1:4])
+model <- fit(model, x)
+clu <- cluster(model, x)
 table(clu)
 
-# evaluate model using internal and external metrics
-eval <- evaluate(model, clu, iris$Species)
+eval <- evaluate(model, clu, ref)
 eval

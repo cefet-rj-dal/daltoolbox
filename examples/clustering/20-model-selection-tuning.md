@@ -1,39 +1,54 @@
 About the utility
 - `clu_tune`: selects hyperparameters for a clustering method.
-- In this example, it chooses `k` for `cluster_kmeans` over a range, using the metric and selector configured in the base model.
+- In this example the tuned base model is `cluster_kmeans`.
 
+Didactic goal: preserve the same clustering line of experiment and treat tuning as a change in configuration rather than as a different workflow.
+
+Environment setup.
 
 ``` r
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# Clustering - Tune Kmeans
+# install.packages("daltoolbox")
 
-# installation 
-#install.packages("daltoolbox")
-
-# loading DAL
-library(daltoolbox)  
+library(daltoolbox)
 ```
 
-Didactic goal: read this example as an unsupervised workflow. The emphasis is not on predicting a known label during training, but on understanding how the method groups the data and how preprocessing affects that grouping.
-
-Load data (`iris`).
+Load data and separate predictors from the reference labels used only for interpretation.
 
 ``` r
-data(iris)
+iris <- datasets::iris
+x <- iris[, 1:4]
+ref <- iris$Species
+head(x)
 ```
 
-Fit the model with a search over `k = 2..10` and extract the best k.
+```
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1          5.1         3.5          1.4         0.2
+## 2          4.9         3.0          1.4         0.2
+## 3          4.7         3.2          1.3         0.2
+## 4          4.6         3.1          1.5         0.2
+## 5          5.0         3.6          1.4         0.2
+## 6          5.4         3.9          1.7         0.4
+```
+
+Model configuration and tuning setup.
 
 ``` r
-# model training with hyperparameter search
 base_model <- cluster_kmeans(k = 2)
 base_model$metric <- base_model$clu_utils$metric_silhouette
 base_model$selector <- base_model$clu_utils$selector_best
 base_model$eval_internal <- list(base_model$clu_utils$metric_silhouette)
 base_model$eval_external <- list(base_model$clu_utils$metric_entropy)
+
 model <- clu_tune(base_model, ranges = list(k = 2:10))
+```
+
+Fit the tuned model and inspect the selected configuration.
+
+``` r
 set_example_seed()
-model <- fit(model, iris[,1:4])
+model <- fit(model, x)
 model$k
 ```
 
@@ -41,11 +56,10 @@ model$k
 ## [1] 2
 ```
 
-Generate cluster labels with the best k.
+Generate cluster labels with the selected configuration.
 
 ``` r
-# run with best parameter
-clu <- cluster(model, iris[,1:4])
+clu <- cluster(model, x)
 table(clu)
 ```
 
@@ -55,11 +69,10 @@ table(clu)
 ## 97 53
 ```
 
-Evaluate the tuned result internally and externally.
+Evaluate the tuned partition.
 
 ``` r
-# internal and external evaluation
-eval <- evaluate(model, clu, iris$Species)
+eval <- evaluate(model, clu, ref)
 eval
 ```
 
@@ -83,5 +96,9 @@ eval
 ## 2    entropy 0.7571010 minimize external
 ```
 
+What to observe
+- The workflow is still configure, fit, cluster, and evaluate.
+- Tuning changes how the clustering configuration is chosen, not how the experiment is read.
+
 References
-- Satopaa, V., Albrecht, J., Irwin, D., Raghavan, B. (2011). Finding a "Kneedle" in a Haystack: Detecting Knee Points in System Behavior.
+- Satopaa, V., Albrecht, J., Irwin, D., and Raghavan, B. (2011). Finding a "Kneedle" in a Haystack.

@@ -1,0 +1,27 @@
+About the chart
+- `plot_density_class`: density curves grouped by class.
+
+Didactic goal: show how grouped density views help compare overlap and separation between classes more smoothly than grouped histograms.
+
+
+``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+library(RColorBrewer)
+```
+
+
+``` r
+colors <- brewer.pal(3, "Set1")
+
+grf <- plot_density_class(
+  datasets::iris[, c("Sepal.Width", "Species")],
+  class_label = "Species",
+  colors = colors
+)
+plot(grf)
+```
+
+![plot of chunk unnamed-chunk-2](fig/14-distribution-density-by-class/unnamed-chunk-2-1.png)

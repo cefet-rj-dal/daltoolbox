@@ -1,19 +1,15 @@
 About the method
 - `cla_majority`: baseline classifier that always predicts the most frequent class observed during training. Useful as a minimum performance reference.
 
-Didactic goal: read this example as a complete supervised-learning cycle. Pay attention not only to the learner call, but also to how the target is identified, how the split is created, and how training and test results should be interpreted separately.
+Didactic goal: establish the standard classification line of experiment used throughout this family of examples. Later files should be read as variations of this same workflow.
 
 Environment setup.
 
 ``` r
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# Classification using Majority class
+# install.packages("daltoolbox")
 
-# installation 
-#install.packages("daltoolbox")
-
-# loading DAL
-library(daltoolbox) 
+library(daltoolbox)
 ```
 
 Load data and inspect.
@@ -33,26 +29,13 @@ head(iris)
 ## 6          5.4         3.9          1.7         0.4  setosa
 ```
 
-Target `Species` levels.
+Target `Species` levels and reproducible train/test split.
 
 ``` r
-# extracting the levels for the dataset
 slevels <- levels(iris$Species)
-slevels
-```
 
-```
-## [1] "setosa"     "versicolor" "virginica"
-```
-
-Building train and test samples via random sampling
-Random train/test split.
-
-``` r
-# Building train and test samples via random sampling
 set_example_seed()
-sr <- sample_random()
-sr <- train_test(sr, iris)
+sr <- train_test(sample_random(), iris)
 iris_train <- sr$train
 iris_test <- sr$test
 ```
@@ -60,11 +43,13 @@ iris_test <- sr$test
 Class distribution by split.
 
 ``` r
-tbl <- rbind(table(iris[,"Species"]), 
-             table(iris_train[,"Species"]), 
-             table(iris_test[,"Species"]))
+tbl <- rbind(
+  table(iris[, "Species"]),
+  table(iris_train[, "Species"]),
+  table(iris_test[, "Species"])
+)
 rownames(tbl) <- c("dataset", "training", "test")
-head(tbl)
+tbl
 ```
 
 ```
@@ -74,26 +59,20 @@ head(tbl)
 ## test          9         11        10
 ```
 
-Model training
-Fit the majority class estimate and adjust.
+Model configuration and fitting.
 
 ``` r
-# Model training
 model <- cla_majority("Species", slevels)
 set_example_seed()
 model <- fit(model, iris_train)
 ```
 
-Training evaluation
-`predict()` returns a score column for each class, so `evaluate()` can receive the original factor labels directly.
+Training evaluation.
 
 ``` r
-# Checking fit on training data
 train_prediction <- predict(model, iris_train)
-
-# Model evaluation (training)
-train_eval <- evaluate(model, iris_train[,"Species"], train_prediction)
-print(train_eval$metrics)
+train_eval <- evaluate(model, iris_train[, "Species"], train_prediction)
+train_eval$metrics
 ```
 
 ```
@@ -101,15 +80,12 @@ print(train_eval$metrics)
 ## 1 0.3416667 41  0 79  0 0.3416667      1           1           0 0.5093168
 ```
 
-Test evaluation
+Test evaluation.
 
 ``` r
-# Model test
 test_prediction <- predict(model, iris_test)
-
-# Test evaluation
- test_eval <- evaluate(model, iris_test[,"Species"], test_prediction)
-print(test_eval$metrics)
+test_eval <- evaluate(model, iris_test[, "Species"], test_prediction)
+test_eval$metrics
 ```
 
 ```
@@ -117,5 +93,9 @@ print(test_eval$metrics)
 ## 1      0.3  9  0 21  0       0.3      1           1           0 0.4615385
 ```
 
+What to observe
+- This learner defines the minimum bar that stronger classifiers should beat.
+- The line of experiment already contains everything needed for the later classification examples.
+
 References
-- Witten, I. H., Frank, E., Hall, M. A., and Pal, C. J. (2016). Data Mining: Practical Machine Learning Tools and Techniques (4th ed.). Morgan Kaufmann. (ZeroR/majority-class baseline)
+- Witten, I. H., Frank, E., Hall, M. A., and Pal, C. J. (2016). Data Mining: Practical Machine Learning Tools and Techniques (4th ed.).

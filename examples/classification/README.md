@@ -20,9 +20,21 @@ This block groups learners by different modeling ideas so the reader can compare
 - [12-ensemble-random-forest.md](/examples/classification/12-ensemble-random-forest.md) - `cla_rf`: ensemble of randomized decision trees.
 - [13-margin-svm.md](/examples/classification/13-margin-svm.md) - `cla_svm`: support vector machine for margin-based class separation.
 - [14-neural-mlp.md](/examples/classification/14-neural-mlp.md) - `cla_mlp`: multilayer perceptron for nonlinear classification.
+- [15-ensemble-bagging.md](/examples/classification/15-ensemble-bagging.md) - `cla_bagging`: bootstrap aggregation of tree learners.
+- [16-ensemble-boosting.md](/examples/classification/16-ensemble-boosting.md) - `cla_boosting`: sequential ensemble that focuses on hard cases.
+- [17-linear-logistic-glm.md](/examples/classification/17-linear-logistic-glm.md) - `cla_glm`: binary logistic regression through the GLM framework.
+- [18-linear-logistic-glmnet.md](/examples/classification/18-linear-logistic-glmnet.md) - `cla_glmnet`: L1-regularized logistic regression.
+- [19-probabilistic-multinomial.md](/examples/classification/19-probabilistic-multinomial.md) - `cla_multinom`: multinomial logistic regression for multiclass problems.
 
 ## Model Selection
 
 This final block isolates hyperparameter search from the learner-introduction examples. That separation helps the reader first understand what a learner does before adding the extra layer of search strategy and comparison.
 
 - [20-model-selection-tuning.md](/examples/classification/20-model-selection-tuning.md) - `cla_tune`: searches hyperparameter ranges while preserving the same Experiment Line workflow.
+
+## Additional Backends
+
+These examples keep the same classification task but switch backend implementation, which is useful for readers comparing DAL wrappers rather than only statistical families.
+
+- [21-tree-rpart.md](/examples/classification/21-tree-rpart.md) - `cla_rpart`: CART classification tree with the `rpart` backend.
+- [22-boosting-xgboost.md](/examples/classification/22-boosting-xgboost.md) - `cla_xgboost`: gradient boosting classifier with `xgboost`.

@@ -23,6 +23,8 @@ These plots are useful when the reader wants to inspect spread, skewness, outlie
 - [10-distribution-histogram.md](/examples/graphics/10-distribution-histogram.md) - histogram for binned frequency inspection.
 - [11-distribution-density.md](/examples/graphics/11-distribution-density.md) - kernel density curve for smoothed distribution shapes.
 - [12-distribution-boxplot.md](/examples/graphics/12-distribution-boxplot.md) - boxplot for quartiles, spread, and outliers.
+- [13-distribution-boxplot-by-class.md](/examples/graphics/13-distribution-boxplot-by-class.md) - grouped boxplots for class-wise distribution comparison.
+- [14-distribution-density-by-class.md](/examples/graphics/14-distribution-density-by-class.md) - grouped density curves for overlap and separation inspection.
 
 ## Relationships Between Variables
 
@@ -30,6 +32,12 @@ These plots help investigate association, overlap, and separation among variable
 
 - [20-relationship-scatter.md](/examples/graphics/20-relationship-scatter.md) - scatter plot for two numeric variables.
 - [21-relationship-points.md](/examples/graphics/21-relationship-points.md) - point plot for discrete or index-based observations without connecting lines.
+- [22-relationship-correlation.md](/examples/graphics/22-relationship-correlation.md) - correlation heatmap for compact association inspection.
+- [23-relationship-pair.md](/examples/graphics/23-relationship-pair.md) - scatter matrix for several numeric variables.
+- [24-relationship-pair-advanced.md](/examples/graphics/24-relationship-pair-advanced.md) - scatter matrix with explicit class palette control.
+- [25-relationship-parallel.md](/examples/graphics/25-relationship-parallel.md) - parallel coordinates for multivariate profile comparison.
+- [26-relationship-pixel.md](/examples/graphics/26-relationship-pixel.md) - pixel-oriented matrix visualization.
+- [27-relationship-dendrogram.md](/examples/graphics/27-relationship-dendrogram.md) - dendrogram view of hierarchical structure.
 
 ## Time-Oriented Views
 

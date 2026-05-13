@@ -1,20 +1,18 @@
 About the method
-- `pat_eclat`: frequent itemset mining. Unlike association rules, the result is not directional; the goal is to identify groups of items that often appear together.
+- `pat_eclat`: frequent itemset mining. The goal is to identify groups of items that often appear together.
 
-Didactic goal: read this example as a structural co-occurrence analysis. The important point is how support, maximum length, and item filters control the combinatorial search.
+Didactic goal: keep the same pattern-mining line of experiment and change only the discovered object type, from directional rules to unordered itemsets.
 
+Environment setup.
 
 ``` r
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# Pattern mining - eclat itemsets
-
-# installation
 # install.packages(c("daltoolbox", "arules"))
 
 library(daltoolbox)
 ```
 
-Load the same transactional dataset used for rule mining.
+Load transactional data.
 
 ``` r
 data("AdultUCI", package = "arules")
@@ -39,7 +37,7 @@ head(adult_df)
 ## 6            0            0             40  United-States  small
 ```
 
-Configure the miner with item filters and quality filtering.
+Model configuration.
 
 ``` r
 utils <- patutils()
@@ -52,7 +50,7 @@ pm <- pat_eclat(
 )
 ```
 
-Fit and discover itemsets. Here the `fit()` step accepts a regular data frame and normalizes it internally to transactions.
+Fit and discover patterns.
 
 ``` r
 pm <- fit(pm, adult_df)
@@ -129,7 +127,7 @@ length(itemsets)
 ## [1] 1
 ```
 
-Evaluate the itemsets.
+Evaluate the discovered patterns.
 
 ``` r
 eval <- evaluate(pm, itemsets)
@@ -144,7 +142,7 @@ eval$metrics
 ## 4 retained_ratio 0.01639344    filter
 ```
 
-Inspect a few itemsets.
+Inspect a few patterns.
 
 ``` r
 arules::inspect(itemsets[1:min(6, length(itemsets))])
@@ -156,11 +154,5 @@ arules::inspect(itemsets[1:min(6, length(itemsets))])
 ```
 
 What to observe
-- `include` and `exclude` act as DAL-level filters over the discovered itemsets.
-- This makes the miner easier to adapt to an analytical question without exposing the user directly to engine-specific syntax.
-- `evaluate()` now reports descriptive quality summaries for the mined patterns, not predictive error.
-
-Common mistakes
-- Confusing frequent itemsets with rules; itemsets do not imply direction.
-- Setting `supp` too low on rich transactional data and generating an unmanageable number of combinations.
-- Forgetting that coercing regular data to transactions may discretize non-categorical columns.
+- The workflow is unchanged from the rule-mining example.
+- The main semantic change is that the result is now a set of itemsets, not a set of directional implications.

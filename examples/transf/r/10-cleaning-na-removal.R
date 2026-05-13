@@ -22,6 +22,7 @@ nrow(iris.na)
 
 # removing rows with NA
 
-iris.na.omit <- na.omit(iris.na)
+tr <- na_removal()
+iris.na.omit <- transform(tr, iris.na)
 head(iris.na.omit)
 nrow(iris.na.omit)

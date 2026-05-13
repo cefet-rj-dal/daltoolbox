@@ -1,40 +1,22 @@
 About the utility
-- `reg_tune`: hyperparameter search for regression models over ranges in `ranges`.
-- Example: tuning `reg_svm` varying `epsilon`, `cost`, and `kernel`.
+- `reg_tune`: hyperparameter search for regression models over ranges defined in `ranges`.
+- In this example the tuned base learner is `reg_svm`.
 
-Didactic goal: read this example as a numeric-prediction workflow. The main learning point is that the Experiment Line stays stable even though the target is continuous and the evaluation now focuses on regression errors.
+Didactic goal: preserve the same regression line of experiment and treat tuning as a change in model configuration rather than as a separate workflow.
 
 Environment setup.
 
 ``` r
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# Regression tuning 
+# install.packages("daltoolbox")
 
-# installation 
-#install.packages("daltoolbox")
-
-# loading DAL
-library(daltoolbox) 
+library(daltoolbox)
 ```
 
-Load dataset and inspect.
+Load data and inspect.
 
 ``` r
-# Dataset for regression analysis
-
-library(MASS)
 data(Boston)
-print(t(sapply(Boston, class)))
-```
-
-```
-##      crim      zn        indus     chas      nox       rm        age       dis       rad       tax       ptratio   black    
-## [1,] "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric" "numeric" "integer" "numeric" "numeric" "numeric"
-##      lstat     medv     
-## [1,] "numeric" "numeric"
-```
-
-``` r
 head(Boston)
 ```
 
@@ -48,86 +30,60 @@ head(Boston)
 ## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
 ```
 
-Optional conversion to matrix.
+Target `medv` and reproducible train/test split.
 
 ``` r
-# for performance, you can convert to matrix
-Boston <- as.matrix(Boston)
-```
-
-Train/test split for tuning validation.
-
-``` r
-# preparing dataset for random sampling
 set_example_seed()
-sr <- sample_random()
-sr <- train_test(sr, Boston)
+sr <- train_test(sample_random(), Boston)
 boston_train <- sr$train
 boston_test <- sr$test
 ```
 
-Hyperparameter grid configuration and search training.
+Model configuration and fitting.
 
 ``` r
-# Training
+tune <- reg_tune(
+  reg_svm("medv"),
+  ranges = list(
+    epsilon = seq(0, 1, 0.2),
+    cost = seq(20, 100, 20),
+    kernel = c("radial")
+  )
+)
 
-tune <- reg_tune(reg_svm("medv"), 
-          ranges = list(seq(0,1,0.2), cost=seq(20,100,20), kernel = c("radial")))
 set_example_seed()
 model <- fit(tune, boston_train)
 ```
 
-The tuning object keeps the parameter grid internally, so the Experiment Line remains the same: configure the object, call `fit()`, then reuse `predict()` and `evaluate()` on the selected model.
-
-Training evaluation with the best hyperparameters.
+Training evaluation.
 
 ``` r
-# Model adjustment
-
 train_prediction <- predict(model, boston_train)
-boston_train_predictand <- boston_train[,"medv"]
-train_eval <- evaluate(model, boston_train_predictand, train_prediction)
-print(train_eval$metrics)
+train_eval <- evaluate(model, boston_train[, "medv"], train_prediction)
+train_eval$metrics
 ```
 
 ```
 ##        mse      smape        R2
-## 1 2.126669 0.05007261 0.9732736
+## 1 3.093724 0.07190626 0.9611203
 ```
 
 Test evaluation.
 
 ``` r
-# Test
-
 test_prediction <- predict(model, boston_test)
-boston_test_predictand <- boston_test[,"medv"]
-test_eval <- evaluate(model, boston_test_predictand, test_prediction)
-print(test_eval$metrics)
+test_eval <- evaluate(model, boston_test[, "medv"], test_prediction)
+test_eval$metrics
 ```
 
 ```
-##        mse     smape        R2
-## 1 9.302181 0.1046432 0.9094052
+##        mse    smape        R2
+## 1 9.927719 0.105222 0.9033131
 ```
 
-Example grids for other models.
-
-``` r
-# Options for other models
-
-# svm
-ranges <- list(seq(0,1,0.2), cost=seq(20,100,20), kernel = c("linear", "radial", "polynomial", "sigmoid"))
-
-# knn
-ranges <- list(k=1:20)
-
-# mlp
-ranges <- list(size=1:10, decay=seq(0, 1, 0.1))
-
-# rf
-ranges <- list(mtry=1:10, ntree=1:10)
-```
+What to observe
+- The workflow is still split, fit, predict, and evaluate.
+- Tuning changes how the regressor is chosen, not how the line of experiment is structured.
 
 References
-- Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection. IJCAI.
+- Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection.
