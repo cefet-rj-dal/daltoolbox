@@ -22,3 +22,5 @@
 package.R
 jupyter.R
 wine.RData
+^\.positai$
+^\.claude$
