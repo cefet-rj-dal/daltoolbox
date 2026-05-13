@@ -26,4 +26,8 @@ length(rules)
 eval <- evaluate(pm, rules)
 eval$metrics
 
-arules::inspect(rules[1:min(6, length(rules))])
+if (length(rules) == 0) {
+  cat("No rules remained after the quality filter. Lower the thresholds if you want to inspect some candidates.\n")
+} else {
+  arules::inspect(rules[seq_len(min(6, length(rules)))])
+}

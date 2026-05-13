@@ -23,4 +23,8 @@ length(itemsets)
 eval <- evaluate(pm, itemsets)
 eval$metrics
 
-arules::inspect(itemsets[1:min(6, length(itemsets))])
+if (length(itemsets) == 0) {
+  cat("No itemsets remained after the quality filter. Lower the thresholds if you want to inspect some candidates.\n")
+} else {
+  arules::inspect(itemsets[seq_len(min(6, length(itemsets)))])
+}

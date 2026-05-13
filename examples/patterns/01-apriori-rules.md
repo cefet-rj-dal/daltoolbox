@@ -107,12 +107,15 @@ eval$metrics
 Inspect a few patterns.
 
 ``` r
-arules::inspect(rules[1:min(6, length(rules))])
+if (length(rules) == 0) {
+  cat("No rules remained after the quality filter. Lower the thresholds if you want to inspect some candidates.\n")
+} else {
+  arules::inspect(rules[seq_len(min(6, length(rules)))])
+}
 ```
 
 ```
-## Error in `h()`:
-## ! error in evaluating the argument 'x' in selecting a method for function 'inspect': subscript out of bounds
+## No rules remained after the quality filter. Lower the thresholds if you want to inspect some candidates.
 ```
 
 What to observe
