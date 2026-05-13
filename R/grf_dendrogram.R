@@ -40,11 +40,10 @@ plot_dendrogram <- function(hc, labels = TRUE, label_size = 3, title = NULL) {
 
     children <- lapply(node, build)
     xs <- vapply(children, function(ch) ch$x, numeric(1))
-    ys <- vapply(children, function(ch) ch$y, numeric(1))
     y <- attr(node, "height")
     x <- mean(xs)
 
-    segs <- do.call(
+    node_segs <- do.call(
       rbind,
       lapply(children, function(ch) {
         data.frame(
@@ -53,13 +52,20 @@ plot_dendrogram <- function(hc, labels = TRUE, label_size = 3, title = NULL) {
         )
       })
     )
-    segs <- rbind(
-      segs,
+    node_segs <- rbind(
+      node_segs,
       data.frame(
         x = min(xs), y = y,
         xend = max(xs), yend = y
       )
     )
+
+    child_segs <- Filter(Negate(is.null), lapply(children, function(ch) ch$segments))
+    segs <- if (length(child_segs) == 0) {
+      node_segs
+    } else {
+      do.call(rbind, c(child_segs, list(node_segs)))
+    }
 
     labs <- do.call(rbind, lapply(children, function(ch) ch$labels))
     return(list(x = x, y = y, segments = segs, labels = labs))
@@ -68,25 +74,31 @@ plot_dendrogram <- function(hc, labels = TRUE, label_size = 3, title = NULL) {
   built <- build(dend)
   segs <- built$segments
   labs <- built$labels
+  label_offset <- if (nrow(segs) > 0) max(segs$yend) * 0.02 else 0
 
   grf <- ggplot2::ggplot(segs, ggplot2::aes(x = x, y = y, xend = xend, yend = yend)) +
     ggplot2::geom_segment(linewidth = 0.3) +
     ggplot2::theme_minimal(base_size = 12) +
     ggplot2::theme(
       panel.grid = ggplot2::element_blank(),
+      axis.text.x = ggplot2::element_blank(),
+      axis.ticks.x = ggplot2::element_blank(),
       axis.text.y = ggplot2::element_blank(),
-      axis.ticks.y = ggplot2::element_blank()
+      axis.ticks.y = ggplot2::element_blank(),
+      plot.margin = ggplot2::margin(10, 10, 40, 10)
     ) +
+    ggplot2::coord_cartesian(clip = "off") +
     ggplot2::xlab(NULL) +
     ggplot2::ylab(NULL)
 
   if (labels) {
     grf <- grf + ggplot2::geom_text(
       data = labs,
-      ggplot2::aes(x = x, y = y, label = label),
+      ggplot2::aes(x = x, y = y - label_offset, label = label),
       angle = 90,
       hjust = 1,
-      size = label_size
+      size = label_size,
+      check_overlap = TRUE
     )
   }
 

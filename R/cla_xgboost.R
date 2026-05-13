@@ -60,9 +60,17 @@ predict.cla_xgboost <- function(object, newdata, ...) {
   dtest <- xgboost::xgb.DMatrix(data = x)
   preds <- predict(object$model, dtest)
   if (length(object$slevels) == 2) {
-    prediction <- cbind(1 - preds, preds)
+    if (is.matrix(preds)) {
+      prediction <- preds
+    } else {
+      prediction <- cbind(1 - preds, preds)
+    }
   } else {
-    prediction <- matrix(preds, ncol = length(object$slevels), byrow = TRUE)
+    if (is.matrix(preds)) {
+      prediction <- preds
+    } else {
+      prediction <- matrix(preds, ncol = length(object$slevels), byrow = TRUE)
+    }
   }
   prediction <- as.data.frame(prediction)
   colnames(prediction) <- object$slevels
