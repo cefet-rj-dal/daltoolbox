@@ -41,45 +41,46 @@ Fit the model and obtain cluster labels.
 
 ``` r
 set_example_seed()
-model <- fit(model, x)
-clu <- cluster(model, x)
-```
-
-```
-## Error in `cluster.default()`:
-## ! only implemented for resamples objects
-```
-
-``` r
+model <- daltoolbox::fit(model, x)
+clu <- daltoolbox::cluster(model, x)
 table(clu)
 ```
 
 ```
-## Error:
-## ! object 'clu' not found
+## clu
+##  1  2  3 
+## 50 60 40
 ```
 
 Evaluate the partition.
 
 ``` r
-eval <- evaluate(model, clu, ref)
-```
-
-```
-## Error:
-## ! object 'clu' not found
-```
-
-``` r
+eval <- daltoolbox::evaluate(model, clu, ref)
 eval
 ```
 
 ```
-## function (expr, envir = parent.frame(), enclos = if (is.list(envir) || 
-##     is.pairlist(envir)) parent.frame() else baseenv()) 
-## .Internal(eval(expr, envir, enclos))
-## <bytecode: 0x57adf7f87c10>
-## <environment: namespace:base>
+## $clusters_entropy
+## # A tibble: 3 × 4
+##   x        ce   qtd   ceg
+##   <fct> <dbl> <int> <dbl>
+## 1 1     0        50 0    
+## 2 2     0.754    60 0.302
+## 3 3     0.384    40 0.102
+## 
+## $clustering_entropy
+## [1] 0.4040967
+## 
+## $data_entropy
+## [1] 1.584963
+## 
+## $metrics
+##                metric     value     goal     type
+## 1          silhouette 0.5495175 maximize internal
+## 2         withinerror 0.4033714 minimize    model
+## 3             entropy 0.4040967 minimize external
+## 4              purity 0.8933333 maximize external
+## 5 adjusted_rand_index 0.7294203 maximize external
 ```
 
 Inspect the membership matrix attached to the result.
@@ -89,8 +90,13 @@ head(attr(clu, "membership"))
 ```
 
 ```
-## Error in `h()`:
-## ! error in evaluating the argument 'x' in selecting a method for function 'head': object 'clu' not found
+##              1           2           3
+## [1,] 0.9966236 0.002304388 0.001072020
+## [2,] 0.9758508 0.016650843 0.007498391
+## [3,] 0.9798248 0.013760371 0.006414865
+## [4,] 0.9674251 0.022466803 0.010108106
+## [5,] 0.9944703 0.003761757 0.001767929
+## [6,] 0.9345703 0.044809020 0.020620672
 ```
 
 References

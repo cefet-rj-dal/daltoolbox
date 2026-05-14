@@ -17,11 +17,11 @@ base_model$eval_external <- list(base_model$clu_utils$metric_entropy)
 model <- clu_tune(base_model, ranges = list(k = 2:10))
 
 set_example_seed()
-model <- fit(model, x)
+model <- daltoolbox::fit(model, x)
 model$k
 
-clu <- cluster(model, x)
+clu <- daltoolbox::cluster(model, x)
 table(clu)
 
-eval <- evaluate(model, clu, ref)
+eval <- daltoolbox::evaluate(model, clu, ref)
 eval

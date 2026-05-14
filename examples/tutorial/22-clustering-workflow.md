@@ -24,68 +24,96 @@ Run K-means on the original scale.
 ``` r
 model <- cluster_kmeans(k = 3)
 set_example_seed()
-model <- fit(model, x)
-clu <- cluster(model, x)
-```
+model <- daltoolbox::fit(model, x)
+clu <- daltoolbox::cluster(model, x)
 
-```
-## Error in `cluster.default()`:
-## ! only implemented for resamples objects
-```
-
-``` r
 table(clu)
 ```
 
 ```
-## Error:
-## ! object 'clu' not found
+## clu
+##  1  2  3 
+## 50 62 38
 ```
 
 ``` r
-evaluate(model, clu, iris$Species)
+daltoolbox::evaluate(model, clu, iris$Species)
 ```
 
 ```
-## Error:
-## ! object 'clu' not found
+## $clusters_entropy
+## # A tibble: 3 × 4
+##   x        ce   qtd    ceg
+##   <fct> <dbl> <int>  <dbl>
+## 1 1     0        50 0     
+## 2 2     0.771    62 0.319 
+## 3 3     0.297    38 0.0754
+## 
+## $clustering_entropy
+## [1] 0.3938863
+## 
+## $data_entropy
+## [1] 1.584963
+## 
+## $metrics
+##                metric      value     goal     type
+## 1          silhouette  0.5528190 maximize internal
+## 2      davies_bouldin  0.6619715 minimize internal
+## 3   calinski_harabasz 11.2836215 maximize internal
+## 4             entropy  0.3938863 minimize external
+## 5              purity  0.8933333 maximize external
+## 6 adjusted_rand_index  0.7302383 maximize external
 ```
 
 Now normalize the data and repeat the same clustering procedure. Because the method is unchanged, any difference is due mainly to the representation of the data.
 
 ``` r
 set_example_seed()
-norm <- fit(minmax(), iris)
-iris_norm <- transform(norm, iris)
+norm <- daltoolbox::fit(minmax(), iris)
+iris_norm <- daltoolbox::transform(norm, iris)
 x_norm <- iris_norm[, 1:4]
 
 model_norm <- cluster_kmeans(k = 3)
 set_example_seed()
-model_norm <- fit(model_norm, x_norm)
-clu_norm <- cluster(model_norm, x_norm)
-```
+model_norm <- daltoolbox::fit(model_norm, x_norm)
+clu_norm <- daltoolbox::cluster(model_norm, x_norm)
 
-```
-## Error in `cluster.default()`:
-## ! only implemented for resamples objects
-```
-
-``` r
 table(clu_norm)
 ```
 
 ```
-## Error:
-## ! object 'clu_norm' not found
+## clu_norm
+##  1  2  3 
+## 50 61 39
 ```
 
 ``` r
-evaluate(model_norm, clu_norm, iris$Species)
+daltoolbox::evaluate(model_norm, clu_norm, iris$Species)
 ```
 
 ```
-## Error:
-## ! object 'clu_norm' not found
+## $clusters_entropy
+## # A tibble: 3 × 4
+##   x        ce   qtd   ceg
+##   <fct> <dbl> <int> <dbl>
+## 1 1     0        50 0    
+## 2 2     0.777    61 0.316
+## 3 3     0.391    39 0.102
+## 
+## $clustering_entropy
+## [1] 0.4177655
+## 
+## $data_entropy
+## [1] 1.584963
+## 
+## $metrics
+##                metric      value     goal     type
+## 1          silhouette  0.5047688 maximize internal
+## 2      davies_bouldin  0.7602771 minimize internal
+## 3   calinski_harabasz 66.8931252 maximize internal
+## 4             entropy  0.4177655 minimize external
+## 5              purity  0.8866667 maximize external
+## 6 adjusted_rand_index  0.7163421 maximize external
 ```
 
 This is an important lesson for beginners: in unsupervised learning, the data representation can matter as much as the algorithm.

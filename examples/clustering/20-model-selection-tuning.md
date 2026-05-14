@@ -48,7 +48,7 @@ Fit the tuned model and inspect the selected configuration.
 
 ``` r
 set_example_seed()
-model <- fit(model, x)
+model <- daltoolbox::fit(model, x)
 model$k
 ```
 
@@ -59,44 +59,41 @@ model$k
 Generate cluster labels with the selected configuration.
 
 ``` r
-clu <- cluster(model, x)
-```
-
-```
-## Error in `cluster.default()`:
-## ! only implemented for resamples objects
-```
-
-``` r
+clu <- daltoolbox::cluster(model, x)
 table(clu)
 ```
 
 ```
-## Error:
-## ! object 'clu' not found
+## clu
+##  1  2 
+## 97 53
 ```
 
 Evaluate the tuned partition.
 
 ``` r
-eval <- evaluate(model, clu, ref)
-```
-
-```
-## Error:
-## ! object 'clu' not found
-```
-
-``` r
+eval <- daltoolbox::evaluate(model, clu, ref)
 eval
 ```
 
 ```
-## function (expr, envir = parent.frame(), enclos = if (is.list(envir) || 
-##     is.pairlist(envir)) parent.frame() else baseenv()) 
-## .Internal(eval(expr, envir, enclos))
-## <bytecode: 0x57adf7f87c10>
-## <environment: namespace:base>
+## $clusters_entropy
+## # A tibble: 2 × 4
+##   x        ce   qtd   ceg
+##   <fct> <dbl> <int> <dbl>
+## 1 1     0.999    97 0.646
+## 2 2     0.314    53 0.111
+## 
+## $clustering_entropy
+## [1] 0.757101
+## 
+## $data_entropy
+## [1] 1.584963
+## 
+## $metrics
+##       metric     value     goal     type
+## 1 silhouette 0.6810462 maximize internal
+## 2    entropy 0.7571010 minimize external
 ```
 
 What to observe

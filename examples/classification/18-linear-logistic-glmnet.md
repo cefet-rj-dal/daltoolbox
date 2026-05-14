@@ -13,14 +13,6 @@ library(daltoolbox)
 library(glmnet)
 ```
 
-```
-## Loading required package: Matrix
-```
-
-```
-## Loaded glmnet 5.0
-```
-
 Load data, derive a binary target, and inspect.
 
 ``` r

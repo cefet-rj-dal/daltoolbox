@@ -25,12 +25,12 @@ metric_names <- function(model, x, clu, ref = NULL) {
 
 model_default <- cluster_kmeans(k = 3)
 set_example_seed()
-model_default <- fit(model_default, x)
-clu_default <- cluster(model_default, x)
+model_default <- daltoolbox::fit(model_default, x)
+clu_default <- daltoolbox::cluster(model_default, x)
 
 metric_names(model_default, x, clu_default, ref)
 
-eval_default <- evaluate(model_default, clu_default, ref)
+eval_default <- daltoolbox::evaluate(model_default, clu_default, ref)
 eval_default$metrics
 
 model_custom <- cluster_kmeans(k = 3)
@@ -38,12 +38,12 @@ model_custom$eval_internal <- list(model_custom$clu_utils$metric_silhouette)
 model_custom$eval_external <- list(model_custom$clu_utils$metric_entropy)
 
 set_example_seed()
-model_custom <- fit(model_custom, x)
-clu_custom <- cluster(model_custom, x)
+model_custom <- daltoolbox::fit(model_custom, x)
+clu_custom <- daltoolbox::cluster(model_custom, x)
 
 metric_names(model_custom, x, clu_custom, ref)
 
-eval_custom <- evaluate(model_custom, clu_custom, ref)
+eval_custom <- daltoolbox::evaluate(model_custom, clu_custom, ref)
 eval_custom$metrics
 
 grep("^metric_", names(model_custom$clu_utils), value = TRUE)

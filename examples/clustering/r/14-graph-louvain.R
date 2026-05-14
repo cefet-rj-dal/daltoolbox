@@ -10,8 +10,8 @@ g
 
 model <- cluster_louvain_graph()
 
-model <- fit(model, g)
-clu <- cluster(model, g)
+model <- daltoolbox::fit(model, g)
+clu <- daltoolbox::cluster(model, g)
 table(clu)
 
 attr(clu, "modularity")

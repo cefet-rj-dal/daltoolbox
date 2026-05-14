@@ -13,29 +13,6 @@ library(daltoolbox)
 library(igraph)
 ```
 
-```
-## 
-## Attaching package: 'igraph'
-```
-
-```
-## The following object is masked from 'package:daltoolbox':
-## 
-##     plot_dendrogram
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     decompose, spectrum
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     union
-```
-
 Create a graph for the example.
 
 ``` r
@@ -45,9 +22,9 @@ g
 ```
 
 ```
-## IGRAPH dde82c6 U--- 20 28 -- Erdos-Renyi (gnp) graph
+## IGRAPH 84eb31d U--- 20 28 -- Erdos-Renyi (gnp) graph
 ## + attr: name (g/c), type (g/c), loops (g/l), p (g/n)
-## + edges from dde82c6:
+## + edges from 84eb31d:
 ##  [1]  2-- 3  2-- 4  1-- 5  4-- 5  1-- 7  6-- 7  4-- 8  5-- 8  1-- 9  5-- 9  6-- 9  7-- 9  7--11  4--12  6--14 13--14  2--15
 ## [18]  8--15  9--15 13--15  8--16  9--16 11--16  3--17  5--17  3--18 17--18  8--19
 ```
@@ -61,22 +38,15 @@ model <- cluster_louvain_graph()
 Fit the model and obtain community labels.
 
 ``` r
-model <- fit(model, g)
-clu <- cluster(model, g)
-```
-
-```
-## Error in `cluster.default()`:
-## ! only implemented for resamples objects
-```
-
-``` r
+model <- daltoolbox::fit(model, g)
+clu <- daltoolbox::cluster(model, g)
 table(clu)
 ```
 
 ```
-## Error:
-## ! object 'clu' not found
+## clu
+## 1 2 3 4 5 6 
+## 7 6 3 1 2 1
 ```
 
 Inspect the modularity attached to the result.
@@ -86,8 +56,7 @@ attr(clu, "modularity")
 ```
 
 ```
-## Error:
-## ! object 'clu' not found
+## NULL
 ```
 
 Optional graph view for interpretation.
@@ -101,10 +70,7 @@ plot(
 )
 ```
 
-```
-## Error:
-## ! object 'clu' not found
-```
+![plot of chunk unnamed-chunk-6](fig/14-graph-louvain/unnamed-chunk-6-1.png)
 
 What to observe
 - The DAL workflow is still configure, fit, and cluster, but there is no feature matrix such as `iris[, 1:4]`.

@@ -11,11 +11,11 @@ head(x)
 model <- cluster_cmeans(centers = 3, m = 2)
 
 set_example_seed()
-model <- fit(model, x)
-clu <- cluster(model, x)
+model <- daltoolbox::fit(model, x)
+clu <- daltoolbox::cluster(model, x)
 table(clu)
 
-eval <- evaluate(model, clu, ref)
+eval <- daltoolbox::evaluate(model, clu, ref)
 eval
 
 head(attr(clu, "membership"))

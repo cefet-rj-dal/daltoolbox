@@ -45,45 +45,46 @@ Fit the model and obtain cluster labels.
 
 ``` r
 set_example_seed()
-model <- fit(model, x)
-clu <- cluster(model, x)
-```
-
-```
-## Error in `cluster.default()`:
-## ! only implemented for resamples objects
-```
-
-``` r
+model <- daltoolbox::fit(model, x)
+clu <- daltoolbox::cluster(model, x)
 table(clu)
 ```
 
 ```
-## Error:
-## ! object 'clu' not found
+## clu
+##  0  1  2  3  4 
+## 26 47 38  4 35
 ```
 
 Evaluate the partition.
 
 ``` r
-eval <- evaluate(model, clu, ref)
-```
-
-```
-## Error:
-## ! object 'clu' not found
-```
-
-``` r
+eval <- daltoolbox::evaluate(model, clu, ref)
 eval
 ```
 
 ```
-## function (expr, envir = parent.frame(), enclos = if (is.list(envir) || 
-##     is.pairlist(envir)) parent.frame() else baseenv()) 
-## .Internal(eval(expr, envir, enclos))
-## <bytecode: 0x57adf7f87c10>
-## <environment: namespace:base>
+## $clusters_entropy
+## # A tibble: 5 × 4
+##   x        ce   qtd    ceg
+##   <fct> <dbl> <int>  <dbl>
+## 1 0     1.18     26 0.205 
+## 2 1     0        47 0     
+## 3 2     0        38 0     
+## 4 3     0         4 0     
+## 5 4     0.422    35 0.0985
+## 
+## $clustering_entropy
+## [1] 0.3037218
+## 
+## $data_entropy
+## [1] 1.584963
+## 
+## $metrics
+##         metric      value     goal     type
+## 1 noise_points 26.0000000 minimize internal
+## 2      entropy  0.3037218 minimize external
+## 3       purity  0.9266667 maximize external
 ```
 
 What to observe

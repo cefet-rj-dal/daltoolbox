@@ -40,51 +40,53 @@ model <- cluster_hclust(k = 3, method = "ward.D2")
 Fit the model and obtain cluster labels.
 
 ``` r
-model <- fit(model, x)
-clu <- cluster(model, x)
-```
-
-```
-## Error in `cluster.default()`:
-## ! only implemented for resamples objects
-```
-
-``` r
+model <- daltoolbox::fit(model, x)
+clu <- daltoolbox::cluster(model, x)
 table(clu)
 ```
 
 ```
-## Error:
-## ! object 'clu' not found
+## clu
+##  1  2  3 
+## 49 30 71
 ```
 
 Evaluate the partition.
 
 ``` r
-eval <- evaluate(model, clu, ref)
-```
-
-```
-## Error:
-## ! object 'clu' not found
-```
-
-``` r
+eval <- daltoolbox::evaluate(model, clu, ref)
 eval
 ```
 
 ```
-## function (expr, envir = parent.frame(), enclos = if (is.list(envir) || 
-##     is.pairlist(envir)) parent.frame() else baseenv()) 
-## .Internal(eval(expr, envir, enclos))
-## <bytecode: 0x57adf7f87c10>
-## <environment: namespace:base>
+## $clusters_entropy
+## # A tibble: 3 × 4
+##   x        ce   qtd   ceg
+##   <fct> <dbl> <int> <dbl>
+## 1 1     0        49 0    
+## 2 2     0.561    30 0.112
+## 3 3     0.909    71 0.430
+## 
+## $clustering_entropy
+## [1] 0.5422445
+## 
+## $data_entropy
+## [1] 1.584963
+## 
+## $metrics
+##                metric      value     goal     type
+## 1          silhouette  0.5030502 maximize internal
+## 2      davies_bouldin  0.6826395 minimize internal
+## 3   calinski_harabasz 11.0271758 maximize internal
+## 4             entropy  0.5422445 minimize external
+## 5              purity  0.8266667 maximize external
+## 6 adjusted_rand_index  0.6153230 maximize external
 ```
 
 Inspect the hierarchy graphically.
 
 ``` r
-grf <- plot_dendrogram(model$hc, title = "Hierarchical clustering of iris")
+grf <- daltoolbox::plot_dendrogram(model$hc, title = "Hierarchical clustering of iris")
 plot(grf)
 ```
 

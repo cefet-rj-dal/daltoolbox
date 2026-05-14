@@ -10,12 +10,12 @@ head(x)
 
 model <- cluster_hclust(k = 3, method = "ward.D2")
 
-model <- fit(model, x)
-clu <- cluster(model, x)
+model <- daltoolbox::fit(model, x)
+clu <- daltoolbox::cluster(model, x)
 table(clu)
 
-eval <- evaluate(model, clu, ref)
+eval <- daltoolbox::evaluate(model, clu, ref)
 eval
 
-grf <- plot_dendrogram(model$hc, title = "Hierarchical clustering of iris")
+grf <- daltoolbox::plot_dendrogram(model$hc, title = "Hierarchical clustering of iris")
 plot(grf)

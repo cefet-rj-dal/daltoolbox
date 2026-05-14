@@ -8,21 +8,21 @@ x <- iris[, 1:4]
 
 model <- cluster_kmeans(k = 3)
 set_example_seed()
-model <- fit(model, x)
-clu <- cluster(model, x)
+model <- daltoolbox::fit(model, x)
+clu <- daltoolbox::cluster(model, x)
 
 table(clu)
-evaluate(model, clu, iris$Species)
+daltoolbox::evaluate(model, clu, iris$Species)
 
 set_example_seed()
-norm <- fit(minmax(), iris)
-iris_norm <- transform(norm, iris)
+norm <- daltoolbox::fit(minmax(), iris)
+iris_norm <- daltoolbox::transform(norm, iris)
 x_norm <- iris_norm[, 1:4]
 
 model_norm <- cluster_kmeans(k = 3)
 set_example_seed()
-model_norm <- fit(model_norm, x_norm)
-clu_norm <- cluster(model_norm, x_norm)
+model_norm <- daltoolbox::fit(model_norm, x_norm)
+clu_norm <- daltoolbox::cluster(model_norm, x_norm)
 
 table(clu_norm)
-evaluate(model_norm, clu_norm, iris$Species)
+daltoolbox::evaluate(model_norm, clu_norm, iris$Species)
