@@ -112,7 +112,7 @@ itemsets <- discover(pm, adult_df)
 ## Absolute minimum support count: 24421 
 ## 
 ## create itemset ... 
-## set transactions ...[114 item(s), 48842 transaction(s)] done [0.03s].
+## set transactions ...[114 item(s), 48842 transaction(s)] done [0.04s].
 ## sorting and recoding items ... [9 item(s)] done [0.00s].
 ## creating bit matrix ... [9 row(s), 48842 column(s)] done [0.00s].
 ## writing  ... [61 set(s)] done [0.00s].

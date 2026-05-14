@@ -62,15 +62,15 @@ rules <- discover(pm, trans)
 ## Absolute minimum support count: 24421 
 ## 
 ## set item appearances ...[1 item(s)] done [0.00s].
-## set transactions ...[114 item(s), 48842 transaction(s)] done [0.03s].
+## set transactions ...[114 item(s), 48842 transaction(s)] done [0.04s].
 ## sorting and recoding items ... [9 item(s)] done [0.00s].
 ## creating transaction tree ... done [0.01s].
 ## checking subsets of size 1 2 3 4
 ```
 
 ```
-## Warning in arules::apriori(data, parameter = obj$engine_parameter, appearance = obj$engine_appearance, : Mining stopped (maxlen
-## reached). Only patterns up to a length of 4 returned!
+## Warning in arules::apriori(data, parameter = obj$engine_parameter, appearance = obj$engine_appearance, : Mining stopped
+## (maxlen reached). Only patterns up to a length of 4 returned!
 ```
 
 ```

@@ -25,6 +25,16 @@ iris <- datasets::iris
 head(iris)
 ```
 
+```
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+```
+
 Apply k-means quantization and inspect bins.
 
 ``` r
@@ -33,7 +43,20 @@ set_example_seed()
 obj <- fit(obj, iris$Sepal.Length)
 sl.bi <- transform(obj, iris$Sepal.Length)
 print(table(sl.bi))
+```
+
+```
+## sl.bi
+## 5.19875    6.58 
+##      80      70
+```
+
+``` r
 obj$interval
+```
+
+```
+## [1] 4.300000 5.889375 7.900000
 ```
 
 Evaluate conditional entropy between bins and species after the quantization step.
@@ -42,6 +65,10 @@ Evaluate conditional entropy between bins and species after the quantization ste
 bins <- cut(iris$Sepal.Length, unique(obj$interval.adj), FALSE, include.lowest = TRUE)
 entro <- evaluate(obj, bins, iris$Species)
 print(entro$entropy)
+```
+
+```
+## [1] 1.097573
 ```
 
 Optimizing the number of binnings
@@ -55,11 +82,24 @@ obj <- fit(opt_obj, iris$Sepal.Length)
 obj$n
 ```
 
+```
+## [1] 8
+```
+
+
 ``` r
 set_example_seed()
 obj <- fit(obj, iris$Sepal.Length)
 sl.bi <- transform(obj, iris$Sepal.Length)
 print(table(sl.bi))
+```
+
+```
+## sl.bi
+##              4.4 4.70909090909091 5.04666666666667 5.60882352941176             6.02            6.352 6.78421052631579 
+##                5               11               30               34               15               25               19 
+## 7.50909090909091 
+##               11
 ```
 
 References

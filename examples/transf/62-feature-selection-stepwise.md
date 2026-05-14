@@ -17,6 +17,16 @@ data(Boston)
 head(Boston)
 ```
 
+```
+##      crim zn indus chas   nox    rm  age    dis rad tax ptratio  black lstat medv
+## 1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3 396.90  4.98 24.0
+## 2 0.02731  0  7.07    0 0.469 6.421 78.9 4.9671   2 242    17.8 396.90  9.14 21.6
+## 3 0.02729  0  7.07    0 0.469 7.185 61.1 4.9671   2 242    17.8 392.83  4.03 34.7
+## 4 0.03237  0  2.18    0 0.458 6.998 45.8 6.0622   3 222    18.7 394.63  2.94 33.4
+## 5 0.06905  0  2.18    0 0.458 7.147 54.2 6.0622   3 222    18.7 396.90  5.33 36.2
+## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21 28.7
+```
+
 
 ``` r
 fs <- feature_selection_stepwise(
@@ -26,15 +36,12 @@ fs <- feature_selection_stepwise(
 )
 set_example_seed()
 fs <- fit(fs, Boston)
-```
 
-```
 print(fs$selected)
 ```
 
 ```
-##  [1] "lstat"   "rm"      "ptratio" "dis"     "nox"     "chas"    "black"  
-##  [8] "zn"      "crim"    "rad"     "tax"
+##  [1] "lstat"   "rm"      "ptratio" "dis"     "nox"     "chas"    "black"   "zn"      "crim"    "rad"     "tax"
 ```
 
 ``` r
