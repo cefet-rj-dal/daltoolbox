@@ -10,7 +10,7 @@ cluster_data <- iris[, c("Sepal.Length", "Species")]
 head(cluster_data)
 
 # smoothing using class-aware clustering
-obj <- smoothing_cluster("Species", n = 2)
+obj <- smoothing_cluster("Species", n = 3)
 set_example_seed()
 obj <- fit(obj, cluster_data)
 sl.bi <- transform(obj, iris$Sepal.Length)
@@ -21,7 +21,7 @@ bins <- cut(iris$Sepal.Length, unique(obj$interval.adj), FALSE, include.lowest =
 entro <- evaluate(obj, bins, iris$Species)
 print(entro$entropy)
 
-opt_obj <- smoothing_cluster("Species", n=1:20)
+opt_obj <- smoothing_cluster("Species", n=1:8)
 set_example_seed()
 obj <- fit(opt_obj, cluster_data)
 obj$n

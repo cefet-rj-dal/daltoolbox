@@ -29,21 +29,22 @@ head(Boston)
 
 
 ``` r
-if (requireNamespace("glmnet", quietly = TRUE)) {
-  fs <- feature_selection_lasso("medv")
-  set_example_seed()
-  fs <- fit(fs, Boston)
+fs <- feature_selection_lasso("medv")
+set_example_seed()
+fs <- fit(fs, Boston)
 
-  print(fs$selected)
-  print(fs$ranking)
-
-  boston_fs <- transform(fs, Boston)
-  head(boston_fs)
-}
+print(fs$selected)
 ```
 
 ```
-##  [1] "crim"    "zn"      "chas"    "nox"     "rm"      "dis"     "rad"     "tax"     "ptratio" "black"   "lstat"  
+##  [1] "crim"    "zn"      "chas"    "nox"     "rm"      "dis"     "rad"     "tax"     "ptratio" "black"   "lstat"
+```
+
+``` r
+print(fs$ranking)
+```
+
+```
 ##         feature        score
 ## nox         nox 16.562664331
 ## rm           rm  3.851646315
@@ -56,6 +57,11 @@ if (requireNamespace("glmnet", quietly = TRUE)) {
 ## zn           zn  0.042486737
 ## tax         tax  0.010286456
 ## black     black  0.009089735
+```
+
+``` r
+boston_fs <- transform(fs, Boston)
+head(boston_fs)
 ```
 
 ```
