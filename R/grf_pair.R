@@ -16,6 +16,7 @@ plot_pair <- function(data, cnames, title = NULL, clabel = NULL, colors = NULL) 
     stop("plot_pair requires the 'GGally' package. Install with install.packages('GGally').")
   }
 
+  .class_label <- NULL
   plot_data <- as.data.frame(data)
   icol <- match(cnames, colnames(data))
   icol <- icol[!is.na(icol)]
