@@ -1,7 +1,7 @@
 About the method
 - `pat_eclat`: frequent itemset mining. The goal is to identify groups of items that often appear together.
 
-Didactic goal: keep the same pattern-mining line of experiment and change only the discovered object type, from directional rules to unordered itemsets.
+Didactic goal: show item-level filtering explicitly. Here the mining threshold defines the candidate pool, `include`/`exclude` restrict the item vocabulary, and the quality filter keeps only the strongest surviving itemsets.
 
 Environment setup.
 ```{r}
@@ -14,8 +14,8 @@ library(daltoolbox)
 Load transactional data.
 ```{r}
 data("AdultUCI", package = "arules")
-adult_df <- as.data.frame(AdultUCI)
-head(adult_df)
+trans <- suppressWarnings(methods::as(as.data.frame(AdultUCI), "transactions"))
+summary(trans)
 ```
 
 Model configuration.
@@ -23,17 +23,19 @@ Model configuration.
 utils <- patutils()
 
 pm <- pat_eclat(
-  supp = 0.5,
+  supp = 0.2,
   maxlen = 3,
-  include = c("sex=Male", "income=small", "marital-status=Married-civ-spouse"),
-  quality_filter = utils$quality_min(support = 0.55)
+  include = c("sex=Male", "income=small", "marital-status=Married-civ-spouse", "race=White"),
+  exclude = c("income=small"),
+  quality_filter = utils$quality_min(support = 0.4),
+  control = list(verbose = FALSE)
 )
 ```
 
 Fit and discover patterns.
 ```{r}
-pm <- fit(pm, adult_df)
-itemsets <- discover(pm, adult_df)
+pm <- fit(pm, trans)
+itemsets <- discover(pm, trans)
 length(itemsets)
 ```
 
@@ -45,13 +47,11 @@ eval$metrics
 
 Inspect a few patterns.
 ```{r}
-if (length(itemsets) == 0) {
-  cat("No itemsets remained after the quality filter. Lower the thresholds if you want to inspect some candidates.\n")
-} else {
-  arules::inspect(itemsets[seq_len(min(6, length(itemsets)))])
-}
+ord <- order(arules::quality(itemsets)$support, decreasing = TRUE)
+arules::inspect(itemsets[ord])
 ```
 
 What to observe
-- The workflow is unchanged from the rule-mining example.
-- The main semantic change is that the result is now a set of itemsets, not a set of directional implications.
+- `include` and `exclude` act as semantic filters over which items may appear in the result.
+- The quality filter is a second stage: it keeps only the itemsets that are still strong after the structural filtering.
+- Itemsets are not directional rules. They capture co-occurrence, not implication.

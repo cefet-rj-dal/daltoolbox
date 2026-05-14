@@ -40,12 +40,14 @@ if (requireNamespace("arules", quietly = TRUE)) {
  data("AdultUCI", package = "arules")
  trans <- suppressWarnings(methods::as(as.data.frame(AdultUCI), "transactions"))
  utils <- patutils()
- pm <- pat_eclat(
-   supp = 0.5,
-   maxlen = 3,
-   include = c("sex=Male", "income=small"),
-   quality_filter = utils$quality_min(support = 0.55)
- )
+  pm <- pat_eclat(
+    supp = 0.2,
+    maxlen = 3,
+    include = c("sex=Male", "income=small", "marital-status=Married-civ-spouse", "race=White"),
+    exclude = c("income=small"),
+    quality_filter = utils$quality_min(support = 0.4),
+    control = list(verbose = FALSE)
+  )
  pm <- fit(pm, trans)
  itemsets <- discover(pm, trans)
  eval <- evaluate(pm, itemsets)

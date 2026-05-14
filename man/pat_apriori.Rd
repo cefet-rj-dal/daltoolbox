@@ -54,15 +54,16 @@ if (requireNamespace("arules", quietly = TRUE)) {
  utils <- patutils()
  pm <- pat_apriori(
    target = "rules",
-   supp = 0.5,
-   conf = 0.9,
+   supp = 0.2,
+   conf = 0.85,
    minlen = 2,
-   maxlen = 4,
+   maxlen = 3,
    rhs = c("native-country=United-States"),
-   quality_filter = utils$quality_min(confidence = 0.95)
+   quality_filter = utils$quality_min(confidence = 0.9, lift = 1.03),
+   control = list(verbose = FALSE)
  )
  pm <- fit(pm, trans)
- rules <- discover(pm, trans)
+ rules <- suppressWarnings(discover(pm, trans))
  eval <- evaluate(pm, rules)
  eval$metrics
 }

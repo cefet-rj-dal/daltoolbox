@@ -8,13 +8,13 @@ The didactic question here is different from classification and regression: how 
 
 Start here if you want directional patterns with left-hand side and right-hand side interpretation.
 
-- [01-apriori-rules.md](/examples/patterns/01-apriori-rules.md) - `pat_apriori`: discovers association rules and evaluates them with support, confidence, lift, and retained-pattern summaries.
+- [01-apriori-rules.md](/examples/patterns/01-apriori-rules.md) - `pat_apriori`: directional rules with a fixed consequent (`rhs`) and explicit filtering by confidence and lift.
 
-## Frequent Itemsets
+## Filtering and Constraints
 
-Move next to itemset discovery, where the focus is on what appears together rather than on directional implication.
+Before sequence mining, it helps to separate two kinds of intelligence: directional rules and filtered co-occurrence structures.
 
-- [10-eclat-itemsets.md](/examples/patterns/10-eclat-itemsets.md) - `pat_eclat`: mines frequent itemsets and shows how include/exclude filters guide interpretation.
+- [10-eclat-itemsets.md](/examples/patterns/10-eclat-itemsets.md) - `pat_eclat`: itemset mining with `include`, `exclude`, and post-mining support filtering.
 
 ## Sequential Patterns
 

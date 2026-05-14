@@ -11,23 +11,21 @@ utils <- patutils()
 
 pm <- pat_apriori(
   target = "rules",
-  supp = 0.5,
-  conf = 0.9,
+  supp = 0.2,
+  conf = 0.85,
   minlen = 2,
-  maxlen = 4,
-  rhs = c("income=small"),
-  quality_filter = utils$quality_min(confidence = 0.95, lift = 1.05)
+  maxlen = 3,
+  rhs = c("native-country=United-States"),
+  quality_filter = utils$quality_min(confidence = 0.9, lift = 1.03),
+  control = list(verbose = FALSE)
 )
 
 pm <- fit(pm, trans)
-rules <- discover(pm, trans)
+rules <- suppressWarnings(discover(pm, trans))
 length(rules)
 
 eval <- evaluate(pm, rules)
 eval$metrics
 
-if (length(rules) == 0) {
-  cat("No rules remained after the quality filter. Lower the thresholds if you want to inspect some candidates.\n")
-} else {
-  arules::inspect(rules[seq_len(min(6, length(rules)))])
-}
+ord <- order(arules::quality(rules)$lift, arules::quality(rules)$confidence, decreasing = TRUE)
+arules::inspect(rules[head(ord, 6)])

@@ -1,7 +1,7 @@
 About the method
 - `pat_apriori`: association-rule mining with semantic configuration stored in the miner object.
 
-Didactic goal: establish the standard pattern-mining line of experiment used throughout this family: load data, configure the miner, `fit()`, `discover()`, `evaluate()`, and inspect the patterns.
+Didactic goal: establish the standard pattern-mining line of experiment used throughout this family with a directional rule example: fixed `rhs`, explicit confidence threshold, and quality filtering by lift.
 
 Environment setup.
 
@@ -32,12 +32,13 @@ utils <- patutils()
 
 pm <- pat_apriori(
   target = "rules",
-  supp = 0.5,
-  conf = 0.9,
+  supp = 0.2,
+  conf = 0.85,
   minlen = 2,
-  maxlen = 4,
-  rhs = c("income=small"),
-  quality_filter = utils$quality_min(confidence = 0.95, lift = 1.05)
+  maxlen = 3,
+  rhs = c("native-country=United-States"),
+  quality_filter = utils$quality_min(confidence = 0.9, lift = 1.03),
+  control = list(verbose = FALSE)
 )
 ```
 
@@ -45,38 +46,7 @@ Fit and discover patterns.
 
 ``` r
 pm <- fit(pm, trans)
-rules <- discover(pm, trans)
-```
-
-```
-## Apriori
-## 
-## Parameter specification:
-##  confidence minval smax arem  aval originalSupport maxtime support minlen maxlen target  ext
-##         0.9    0.1    1 none FALSE            TRUE       5     0.5      2      4  rules TRUE
-## 
-## Algorithmic control:
-##  filter tree heap memopt load sort verbose
-##     0.1 TRUE TRUE  FALSE TRUE    2    TRUE
-## 
-## Absolute minimum support count: 24421 
-## 
-## set item appearances ...[1 item(s)] done [0.00s].
-## set transactions ...[114 item(s), 48842 transaction(s)] done [0.04s].
-## sorting and recoding items ... [9 item(s)] done [0.00s].
-## creating transaction tree ... done [0.01s].
-## checking subsets of size 1 2 3 4
-```
-
-```
-## Warning in arules::apriori(data, parameter = obj$engine_parameter, appearance = obj$engine_appearance, : Mining stopped
-## (maxlen reached). Only patterns up to a length of 4 returned!
-```
-
-```
-##  done [0.01s].
-## writing ... [0 rule(s)] done [0.00s].
-## creating S4 object  ... done [0.00s].
+rules <- suppressWarnings(discover(pm, trans))
 ```
 
 ``` r
@@ -84,7 +54,7 @@ length(rules)
 ```
 
 ```
-## [1] 0
+## [1] 15
 ```
 
 Evaluate the discovered patterns.
@@ -95,29 +65,40 @@ eval$metrics
 ```
 
 ```
-##            metric value      type
-## 1   pattern_count     0 intrinsic
-## 2    mean_support   NaN intrinsic
-## 3 mean_confidence   NaN intrinsic
-## 4       mean_lift   NaN intrinsic
-## 5     mean_length    NA intrinsic
-## 6  retained_ratio    NA    filter
+##            metric      value      type
+## 1   pattern_count 15.0000000 intrinsic
+## 2    mean_support  0.2536069 intrinsic
+## 3 mean_confidence  0.9312326 intrinsic
+## 4       mean_lift  1.0376726 intrinsic
+## 5     mean_length  2.9333333 intrinsic
+## 6  retained_ratio  0.1181102    filter
 ```
 
 Inspect a few patterns.
 
 ``` r
-if (length(rules) == 0) {
-  cat("No rules remained after the quality filter. Lower the thresholds if you want to inspect some candidates.\n")
-} else {
-  arules::inspect(rules[seq_len(min(6, length(rules)))])
-}
+ord <- order(arules::quality(rules)$lift, arules::quality(rules)$confidence, decreasing = TRUE)
+arules::inspect(rules[head(ord, 6)])
 ```
 
 ```
-## No rules remained after the quality filter. Lower the thresholds if you want to inspect some candidates.
+##     lhs                              rhs                              support confidence  coverage     lift count
+## [1] {fnlwgt=[1.23e+04,1.41e+05),                                                                                 
+##      race=White}                  => {native-country=United-States} 0.2746612  0.9513510 0.2887064 1.060090 13415
+## [2] {education=HS-grad,                                                                                          
+##      race=White}                  => {native-country=United-States} 0.2578314  0.9406887 0.2740879 1.048210 12593
+## [3] {education-num=[9,10),                                                                                       
+##      race=White}                  => {native-country=United-States} 0.2578314  0.9406887 0.2740879 1.048210 12593
+## [4] {education-num=[10,16],                                                                                      
+##      race=White}                  => {native-country=United-States} 0.4448016  0.9398252 0.4732812 1.047247 21725
+## [5] {fnlwgt=[1.41e+05,2.11e+05),                                                                                 
+##      race=White}                  => {native-country=United-States} 0.2713648  0.9293878 0.2919823 1.035617 13254
+## [6] {relationship=Not-in-family,                                                                                 
+##      race=White}                  => {native-country=United-States} 0.2053560  0.9282739 0.2212235 1.034376 10030
 ```
 
 What to observe
-- The standard pattern-mining workflow is different from prediction, but it is still structured and reproducible.
+- The thresholds matter a lot. A didactic example should be configured to return some rules, not an empty result.
+- Constraining the `rhs` is useful when you want rules that explain a specific consequent.
+- `lift` works as a second filter on top of support and confidence, removing rules that are frequent but not especially informative.
 - Later pattern examples will keep this same body and only change the pattern family and configuration.
