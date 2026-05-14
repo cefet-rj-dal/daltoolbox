@@ -19,10 +19,13 @@ plot_radar(data, label_x = "", label_y = "", colors = NULL)
 returns a ggplot2::ggplot graphic
 }
 \description{
-Radar (spider) chart for a single profile of variables using polar coordinates.
+Radar (spider) chart for a single profile of variables using radial axes.
 }
 \details{
 Expects a two‑column data.frame with variable names in the first column and numeric values in the second.
+The graphic is built as an n-sided polygon, where n is the number of variables, so at least three
+variables are required. The function already sets the drawing limits for the full polygon; adding
+\code{ylim()} or other Cartesian clipping after the fact can hide part of the radar.
 }
 \examples{
 data <- data.frame(name = "Petal.Length", value = mean(iris$Petal.Length))
@@ -30,6 +33,6 @@ data <- rbind(data, data.frame(name = "Petal.Width", value = mean(iris$Petal.Wid
 data <- rbind(data, data.frame(name = "Sepal.Length", value = mean(iris$Sepal.Length)))
 data <- rbind(data, data.frame(name = "Sepal.Width", value = mean(iris$Sepal.Width)))
 
-grf <- plot_radar(data, colors="red") + ggplot2::ylim(0, NA)
+grf <- plot_radar(data, colors = "red")
 plot(grf)
 }

@@ -1,6 +1,9 @@
 #'@title Plot radar
-#'@description Radar (spider) chart for a single profile of variables using polar coordinates.
+#'@description Radar (spider) chart for a single profile of variables using radial axes.
 #'@details Expects a two‑column data.frame with variable names in the first column and numeric values in the second.
+#' The graphic is built as an n-sided polygon, where n is the number of variables, so at least three
+#' variables are required. The function already sets the drawing limits for the full polygon; adding
+#' `ylim()` or other Cartesian clipping after the fact can hide part of the radar.
 #'@param data two‑column data.frame: variable name and value
 #'@param label_x x‑axis label (unused; variable names are shown around the circle)
 #'@param label_y y‑axis label
@@ -12,7 +15,7 @@
 #'data <- rbind(data, data.frame(name = "Sepal.Length", value = mean(iris$Sepal.Length)))
 #'data <- rbind(data, data.frame(name = "Sepal.Width", value = mean(iris$Sepal.Width)))
 #'
-#'grf <- plot_radar(data, colors="red") + ggplot2::ylim(0, NA)
+#'grf <- plot_radar(data, colors = "red")
 #'plot(grf)
 #'@importFrom ggplot2 ggplot
 #'@importFrom ggplot2 aes
@@ -38,6 +41,9 @@ plot_radar <- function(data, label_x = "", label_y = "", colors = NULL) {
   series$value <- as.numeric(series$value)
   if (any(is.na(series$value))) {
     stop("'data' second column must be numeric")
+  }
+  if (nrow(series) < 3) {
+    stop("'data' must contain at least three variables for a radar chart")
   }
 
   if (is.null(colors)) {

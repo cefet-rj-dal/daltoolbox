@@ -13,5 +13,5 @@ if (requireNamespace("GGally", quietly = TRUE)) {
     clabel = "Species",
     colors = colors
   )
-  print(grf)
+  suppressMessages(suppressWarnings(print(grf)))
 }

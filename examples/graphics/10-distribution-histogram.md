@@ -121,7 +121,7 @@ library(gridExtra)
 ```
 
 ``` r
-options(repr.plot.width=15, repr.plot.height=4)
+options(repr.plot.width=18, repr.plot.height=3.2)
 grid.arrange(grfe, grfu, grfn, ncol=3)
 ```
 

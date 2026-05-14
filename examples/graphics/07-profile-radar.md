@@ -69,27 +69,14 @@ head(data)
 # More info: https://en.wikipedia.org/wiki/Radar_chart
 
 grf <- plot_radar(data, colors=colors[1]) + font
-grf <- grf + ylim(0, NA)
 plot(grf)
 ```
 
-```
-## Warning: Removed 1080 rows containing missing values or values outside the scale range (`geom_path()`).
-```
-
-```
-## Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_segment()`).
-```
-
-```
-## Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_point()`).
-```
-
-```
-## Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_text()`).
-```
-
 ![plot of chunk unnamed-chunk-5](fig/07-profile-radar/unnamed-chunk-5-1.png)
+
+What to observe
+- With four variables, the profile is a quadrilateral. In general, the radar profile is an n-sided polygon, where n is the number of variables.
+- `plot_radar()` already sets the full drawing area, so adding `ylim()` can incorrectly cut the lower half of the figure.
 
 References
 - Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.

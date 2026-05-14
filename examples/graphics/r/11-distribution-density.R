@@ -32,5 +32,5 @@ grfn <- plot_density(example |> dplyr::select(normal),
                      label_x = "normal", color=colors[3]) + font 
 
 library(gridExtra)  
-options(repr.plot.width=15, repr.plot.height=4)
+options(repr.plot.width=18, repr.plot.height=3.2)
 grid.arrange(grfe, grfu, grfn, ncol=3)

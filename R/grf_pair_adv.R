@@ -16,18 +16,27 @@ plot_pair_adv <- function(data, cnames, title = NULL, clabel = NULL, colors = NU
     stop("plot_pair_adv requires the 'GGally' package. Install with install.packages('GGally').")
   }
 
+  plot_data <- as.data.frame(data)
   if (!is.null(clabel)) {
-    data$clabel <- data[, clabel]
+    if (!clabel %in% colnames(plot_data)) {
+      stop("plot_pair_adv: 'clabel' is not a valid column in 'data'.")
+    }
+    plot_data$clabel <- plot_data[[clabel]]
     cnames <- c(cnames, "clabel")
   }
-  icol <- match(cnames, colnames(data))
+  icol <- match(cnames, colnames(plot_data))
   icol <- icol[!is.na(icol)]
   if (length(icol) == 0) {
     stop("plot_pair_adv: no valid columns in 'cnames'.")
   }
 
   if (!is.null(clabel)) {
-    grf <- GGally::ggpairs(data, columns = icol, ggplot2::aes(colour = clabel, alpha = 0.4)) + ggplot2::theme_bw(base_size = 10)
+    grf <- GGally::ggpairs(
+      plot_data,
+      columns = icol,
+      mapping = ggplot2::aes(colour = clabel, alpha = 0.4),
+      progress = FALSE
+    ) + ggplot2::theme_bw(base_size = 10)
     if (!is.null(colors)) {
       for (i in 1:grf$nrow) {
         for (j in 1:grf$ncol) {
@@ -36,7 +45,7 @@ plot_pair_adv <- function(data, cnames, title = NULL, clabel = NULL, colors = NU
       }
     }
   } else {
-    grf <- GGally::ggpairs(data, columns = icol) + ggplot2::theme_bw(base_size = 10)
+    grf <- GGally::ggpairs(plot_data, columns = icol, progress = FALSE) + ggplot2::theme_bw(base_size = 10)
   }
   if (!is.null(title)) grf <- grf + ggplot2::ggtitle(title)
   grf

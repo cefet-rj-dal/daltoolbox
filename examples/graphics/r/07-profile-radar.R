@@ -33,5 +33,4 @@ head(data)
 # More info: https://en.wikipedia.org/wiki/Radar_chart
 
 grf <- plot_radar(data, colors=colors[1]) + font
-grf <- grf + ylim(0, NA)
 plot(grf)
