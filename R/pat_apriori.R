@@ -11,8 +11,6 @@
 #'@param exclude optional vector of items forbidden in the discovered patterns
 #'@param quality_filter optional quality filter created with `patutils()`
 #'@param control list of control parameters
-#'@param parameter legacy list of parameters passed to `arules::apriori`
-#'@param appearance legacy list of item appearance constraints
 #'@return returns a `pat_apriori` object
 #'@examples
 #'if (requireNamespace("arules", quietly = TRUE)) {
@@ -44,9 +42,7 @@ pat_apriori <- function(target = c("rules", "frequent itemsets"),
                         include = NULL,
                         exclude = NULL,
                         quality_filter = NULL,
-                        control = NULL,
-                        parameter = NULL,
-                        appearance = NULL) {
+                        control = NULL) {
   target <- match.arg(target)
   obj <- pattern_miner()
   utils <- obj$pat_utils
@@ -61,8 +57,6 @@ pat_apriori <- function(target = c("rules", "frequent itemsets"),
   obj$exclude <- exclude
   obj$quality_filter <- quality_filter
   obj$control <- control
-  obj$parameter <- parameter
-  obj$appearance <- appearance
   obj$pattern_kind <- if (target == "rules") "rules" else "itemsets"
   obj$eval_metrics <- list(
     utils$metric_pattern_count,
@@ -78,21 +72,6 @@ pat_apriori <- function(target = c("rules", "frequent itemsets"),
 
 pat_apriori_compile <- function(obj) {
   utils <- obj$pat_utils
-  if (!is.null(obj$parameter)) {
-    legacy <- obj$parameter
-    if (!is.null(legacy$supp)) obj$supp <- legacy$supp
-    if (!is.null(legacy$conf)) obj$conf <- legacy$conf
-    if (!is.null(legacy$minlen)) obj$minlen <- legacy$minlen
-    if (!is.null(legacy$maxlen)) obj$maxlen <- legacy$maxlen
-    if (!is.null(legacy$target)) obj$target <- legacy$target
-    obj$pattern_kind <- if (obj$target == "rules") "rules" else "itemsets"
-  }
-
-  if (!is.null(obj$appearance)) {
-    if (!is.null(obj$appearance$lhs)) obj$lhs <- obj$appearance$lhs
-    if (!is.null(obj$appearance$rhs)) obj$rhs <- obj$appearance$rhs
-  }
-
   if (!is.null(obj$lhs) && obj$target != "rules") {
     stop("pat_apriori: 'lhs' is only valid when target = 'rules'.", call. = FALSE)
   }

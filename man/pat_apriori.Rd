@@ -15,9 +15,7 @@ pat_apriori(
   include = NULL,
   exclude = NULL,
   quality_filter = NULL,
-  control = NULL,
-  parameter = NULL,
-  appearance = NULL
+  control = NULL
 )
 }
 \arguments{
@@ -42,10 +40,6 @@ pat_apriori(
 \item{quality_filter}{optional quality filter created with \code{patutils()}}
 
 \item{control}{list of control parameters}
-
-\item{parameter}{legacy list of parameters passed to \code{arules::apriori}}
-
-\item{appearance}{legacy list of item appearance constraints}
 }
 \value{
 returns a \code{pat_apriori} object

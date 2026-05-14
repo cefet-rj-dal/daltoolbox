@@ -1,5 +1,5 @@
 About the technique
-- `smoothing_cluster`: discretization/smoothing by defining bins via clustering instead of fixed intervals.
+- `smoothing_cluster`: discretization/smoothing by class-aware clustering, so the grouping is influenced by the target class.
 
 Discretization and smoothing
 Discretization transforms continuous functions, models, variables, and equations into discrete counterparts.
@@ -19,32 +19,31 @@ library(daltoolbox)
 ```
 
 
-General function to evaluate different smoothing techniques
-
-Sample data (`iris`) to illustrate clustering-based discretization/smoothing.
+Sample data (`iris`) to illustrate supervised clustering-based discretization/smoothing.
 
 ``` r
 iris <- datasets::iris
-head(iris)
+cluster_data <- iris[, c("Sepal.Length", "Species")]
+head(cluster_data)
 ```
 
 ```
-##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa
+##   Sepal.Length Species
+## 1          5.1  setosa
+## 2          4.9  setosa
+## 3          4.7  setosa
+## 4          4.6  setosa
+## 5          5.0  setosa
+## 6          5.4  setosa
 ```
 
 Apply clustering-based smoothing and inspect bins.
 
 ``` r
-# smoothing using clustering
-obj <- smoothing_cluster(n = 2)  
+# smoothing using class-aware clustering
+obj <- smoothing_cluster("Species", n = 2)
 set_example_seed()
-obj <- fit(obj, iris$Sepal.Length)
+obj <- fit(obj, cluster_data)
 sl.bi <- transform(obj, iris$Sepal.Length)
 print(table(sl.bi))
 ```
@@ -66,7 +65,8 @@ obj$interval
 Evaluate conditional entropy between bins and species.
 
 ``` r
-entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
+bins <- cut(iris$Sepal.Length, unique(obj$interval.adj), FALSE, include.lowest = TRUE)
+entro <- evaluate(obj, bins, iris$Species)
 print(entro$entropy)
 ```
 
@@ -76,12 +76,12 @@ print(entro$entropy)
 
 Optimizing the number of binnings
 
-Optimize the number of bins (search 1:20) and refit.
+Optimize the number of bins by minimizing conditional entropy (search 1:20) and refit.
 
 ``` r
-opt_obj <- smoothing_cluster(n=1:20)
+opt_obj <- smoothing_cluster("Species", n=1:20)
 set_example_seed()
-obj <- fit(opt_obj, iris$Sepal.Length)
+obj <- fit(opt_obj, cluster_data)
 obj$n
 ```
 
@@ -92,7 +92,7 @@ obj$n
 
 ``` r
 set_example_seed()
-obj <- fit(obj, iris$Sepal.Length)
+obj <- fit(obj, cluster_data)
 sl.bi <- transform(obj, iris$Sepal.Length)
 print(table(sl.bi))
 ```
@@ -106,4 +106,4 @@ print(table(sl.bi))
 ```
 
 References
-- MacQueen, J. (1967). Some Methods for Classification and Analysis of Multivariate Observations.
+- Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Discretization)

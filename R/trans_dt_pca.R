@@ -3,7 +3,8 @@
 #' Transforms correlated variables into orthogonal principal components ordered by explained variance.
 #'@details Fits PCA on (optionally) the numeric predictors only (excluding `attribute` when provided),
 #' removes constant columns, and selects the number of components by an elbow rule (minimum curvature)
-#' unless `components` is set explicitly.
+#' unless `components` is set explicitly. New data are projected with the same centering
+#' and scaling learned during `fit()`.
 #'@param attribute target attribute to model building
 #'@param components number of components for PCA
 #'@return returns an object of class `dt_pca`
@@ -50,7 +51,8 @@ fit.dt_pca <- function(obj, data, ...) {
       remove <- cbind(remove, j)
   }
   nums[remove] <- FALSE
-  data = as.matrix(data[ , nums])
+  feature_names <- names(nums[nums])
+  data <- as.matrix(data[, feature_names, drop = FALSE])
 
   pca_res <- stats::prcomp(data, center=TRUE, scale.=TRUE)
 
@@ -63,8 +65,9 @@ fit.dt_pca <- function(obj, data, ...) {
 
   }
 
-  obj$pca.transf <- as.matrix(pca_res$rotation[, 1:obj$components])
-  obj$nums <- nums
+  obj$pca <- pca_res
+  obj$pca.transf <- as.matrix(pca_res$rotation[, 1:obj$components, drop = FALSE])
+  obj$feature_names <- feature_names
 
   return(obj)
 }
@@ -72,8 +75,8 @@ fit.dt_pca <- function(obj, data, ...) {
 #'@exportS3Method transform dt_pca
 transform.dt_pca <- function(obj, data, ...) {
   attribute <- obj$attribute
-  pca.transf <- obj$pca.transf
-  nums <- obj$nums
+  pca <- obj$pca
+  feature_names <- obj$feature_names
 
   data <- data.frame(data)
   if (!is.null(attribute)) {
@@ -81,11 +84,18 @@ transform.dt_pca <- function(obj, data, ...) {
     predictand <- data[,attribute]
     data[,attribute] <- NULL
   }
-  data = as.matrix(data[ , nums])
+  missing_features <- setdiff(feature_names, names(data))
+  if (length(missing_features) > 0) {
+    stop(paste0(
+      "dt_pca: missing numeric predictor columns in transform data: ",
+      paste(missing_features, collapse = ", ")
+    ))
+  }
+  data <- data[, feature_names, drop = FALSE]
 
-  # project to principal components
-  data = data %*% pca.transf
-  data = data.frame(data)
+  # project with the training centering/scaling learned by prcomp
+  data <- stats::predict(pca, newdata = data)[, seq_len(obj$components), drop = FALSE]
+  data <- data.frame(data)
   if (!is.null(attribute)){
     # reattach predictand
     data[,attribute] <- predictand

@@ -19,14 +19,15 @@ Selects predictors using L1-regularized regression.
 }
 \details{
 Fits a lasso path with \code{glmnet} and keeps predictors with non-zero coefficients at \code{lambda.min}.
+The target attribute must be numeric.
 }
 \examples{
 if (requireNamespace("glmnet", quietly = TRUE)) {
- data(iris)
- fs <- feature_selection_lasso("Sepal.Length")
- fs <- fit(fs, iris)
+ data(Boston)
+ fs <- feature_selection_lasso("medv")
+ fs <- fit(fs, Boston)
  fs$selected
- iris_fs <- transform(fs, iris)
- names(iris_fs)
+ boston_fs <- transform(fs, Boston)
+ names(boston_fs)
 }
 }

@@ -4,19 +4,19 @@ source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examp
 
 library(daltoolbox)
 
-iris <- datasets::iris
-iris$IsVersicolor <- factor(ifelse(iris$Species == "versicolor", "yes", "no"))
+data(Boston)
+head(Boston)
 
 fs <- feature_selection_stepwise(
-  "IsVersicolor",
+  "medv",
   direction = "forward",
-  family = stats::binomial
+  family = stats::gaussian
 )
 set_example_seed()
-fs <- fit(fs, iris)
+fs <- fit(fs, Boston)
 
 print(fs$selected)
 print(fs$ranking)
 
-iris_fs <- transform(fs, iris)
-head(iris_fs)
+boston_fs <- transform(fs, Boston)
+head(boston_fs)

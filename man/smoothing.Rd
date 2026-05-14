@@ -13,12 +13,14 @@ smoothing(n)
 returns an object of class \code{smoothing}
 }
 \description{
-Family of smoothing methods that reduce noise by replacing values with the mean of a bin/cluster.
-Supported strategies: equal‑interval bins, equal‑frequency (quantile) bins, and clustering‑based bins (k‑means).
+Family of smoothing methods that reduce noise by replacing values with the mean of a bin.
+Supported strategies include equal‑interval bins, equal‑frequency (quantile) bins,
+k-means quantization, and class-aware clustering.
 }
 \details{
-The smoothing level is controlled by \code{n} (number of bins/levels). The helper \code{tune()} can choose
-an \code{n} by locating the elbow (maximum curvature) of the MSE curve across candidates. After \code{fit()},
+The smoothing level is controlled by \code{n} (number of bins/levels). The base helper \code{tune()}
+chooses \code{n} by locating the elbow (maximum curvature) of the MSE curve across candidates.
+Concrete subclasses may override that criterion when supervision is required. After \code{fit()},
 values are mapped to bin means via \code{transform()}.
 }
 \examples{
@@ -29,6 +31,7 @@ sl.bi <- transform(obj, iris$Sepal.Length)
 table(sl.bi)
 obj$interval
 
-entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
+bins <- cut(iris$Sepal.Length, unique(obj$interval.adj), FALSE, include.lowest = TRUE)
+entro <- evaluate(obj, bins, iris$Species)
 entro$entropy
 }

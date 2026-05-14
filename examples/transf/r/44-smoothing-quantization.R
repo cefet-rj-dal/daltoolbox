@@ -6,13 +6,11 @@ source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examp
 library(daltoolbox) 
 
 iris <- datasets::iris
-cluster_data <- iris[, c("Sepal.Length", "Species")]
-head(cluster_data)
+head(iris)
 
-# smoothing using class-aware clustering
-obj <- smoothing_cluster("Species", n = 2)
+obj <- smoothing_quantization(n = 2)
 set_example_seed()
-obj <- fit(obj, cluster_data)
+obj <- fit(obj, iris$Sepal.Length)
 sl.bi <- transform(obj, iris$Sepal.Length)
 print(table(sl.bi))
 obj$interval
@@ -21,12 +19,12 @@ bins <- cut(iris$Sepal.Length, unique(obj$interval.adj), FALSE, include.lowest =
 entro <- evaluate(obj, bins, iris$Species)
 print(entro$entropy)
 
-opt_obj <- smoothing_cluster("Species", n=1:20)
+opt_obj <- smoothing_quantization(n=1:20)
 set_example_seed()
-obj <- fit(opt_obj, cluster_data)
+obj <- fit(opt_obj, iris$Sepal.Length)
 obj$n
 
 set_example_seed()
-obj <- fit(obj, cluster_data)
+obj <- fit(obj, iris$Sepal.Length)
 sl.bi <- transform(obj, iris$Sepal.Length)
 print(table(sl.bi))

@@ -24,7 +24,8 @@ sl.bi <- transform(obj, iris$Sepal.Length)
 table(sl.bi)
 obj$interval
 
-entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
+bins <- cut(iris$Sepal.Length, unique(obj$interval.adj), FALSE, include.lowest = TRUE)
+entro <- evaluate(obj, bins, iris$Species)
 entro$entropy
 }
 \references{

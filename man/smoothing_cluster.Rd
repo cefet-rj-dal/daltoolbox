@@ -2,31 +2,36 @@
 % Please edit documentation in R/trans_smoothing_cluster.R
 \name{smoothing_cluster}
 \alias{smoothing_cluster}
-\title{Smoothing by clustering (k-means)}
+\title{Smoothing by class-aware clustering}
 \usage{
-smoothing_cluster(n)
+smoothing_cluster(class_label, n)
 }
 \arguments{
+\item{class_label}{name of the class attribute}
+
 \item{n}{number of bins}
 }
 \value{
 returns an object of class \code{smoothing_cluster}
 }
 \description{
-Quantize a numeric vector into \code{n} levels using k‑means on the values and
-replace each value by its cluster mean (vector quantization).
+Discretize a numeric attribute into \code{n} bins by clustering the attribute together
+with a one-hot representation of the class label, then projecting the clusters back to
+ordered cut points on the numeric axis.
 }
 \examples{
 data(iris)
-obj <- smoothing_cluster(n = 2)
-obj <- fit(obj, iris$Sepal.Length)
+cluster_data <- iris[, c("Sepal.Length", "Species")]
+obj <- smoothing_cluster("Species", n = 2)
+obj <- fit(obj, cluster_data)
 sl.bi <- transform(obj, iris$Sepal.Length)
 table(sl.bi)
 obj$interval
 
-entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
+bins <- cut(iris$Sepal.Length, unique(obj$interval.adj), FALSE, include.lowest = TRUE)
+entro <- evaluate(obj, bins, iris$Species)
 entro$entropy
 }
 \references{
-MacQueen, J. (1967). Some Methods for classification and Analysis of Multivariate Observations.
+Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Discretization)
 }

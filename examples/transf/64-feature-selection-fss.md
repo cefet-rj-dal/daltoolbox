@@ -13,40 +13,50 @@ library(daltoolbox)
 
 
 ``` r
-iris <- datasets::iris
+data(Boston)
+head(Boston)
 ```
 
 
 ``` r
 if (requireNamespace("leaps", quietly = TRUE)) {
-  fs <- feature_selection_fss("Sepal.Length")
-set_example_seed()
-  fs <- fit(fs, iris)
+  fs <- feature_selection_fss("medv")
+  set_example_seed()
+  fs <- fit(fs, Boston)
 
   print(fs$selected)
   print(fs$ranking)
 
-  iris_fs <- transform(fs, iris)
-  head(iris_fs)
+  boston_fs <- transform(fs, Boston)
+  head(boston_fs)
 }
 ```
 
 ```
-## [1] "Sepal.Width"  "Petal.Length" "Petal.Width" 
-##        feature score
-## 1  Sepal.Width     1
-## 2 Petal.Length     2
-## 3  Petal.Width     3
+##  [1] "crim"    "zn"      "chas"    "nox"     "rm"      "dis"     "rad"    
+##  [8] "tax"     "ptratio" "black"   "lstat"  
+##    feature score
+## 1     crim     1
+## 2       zn     2
+## 3     chas     3
+## 4      nox     4
+## 5       rm     5
+## 6      dis     6
+## 7      rad     7
+## 8      tax     8
+## 9  ptratio     9
+## 10   black    10
+## 11   lstat    11
 ```
 
 ```
-##   Sepal.Length Sepal.Width Petal.Length Petal.Width
-## 1          5.1         3.5          1.4         0.2
-## 2          4.9         3.0          1.4         0.2
-## 3          4.7         3.2          1.3         0.2
-## 4          4.6         3.1          1.5         0.2
-## 5          5.0         3.6          1.4         0.2
-## 6          5.4         3.9          1.7         0.4
+##   medv    crim zn chas   nox    rm    dis rad tax ptratio  black lstat
+## 1 24.0 0.00632 18    0 0.538 6.575 4.0900   1 296    15.3 396.90  4.98
+## 2 21.6 0.02731  0    0 0.469 6.421 4.9671   2 242    17.8 396.90  9.14
+## 3 34.7 0.02729  0    0 0.469 7.185 4.9671   2 242    17.8 392.83  4.03
+## 4 33.4 0.03237  0    0 0.458 6.998 6.0622   3 222    18.7 394.63  2.94
+## 5 36.2 0.06905  0    0 0.458 7.147 6.0622   3 222    18.7 396.90  5.33
+## 6 28.7 0.02985  0    0 0.458 6.430 6.0622   3 222    18.7 394.12  5.21
 ```
 
 References

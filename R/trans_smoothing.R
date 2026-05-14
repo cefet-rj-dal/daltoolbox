@@ -1,8 +1,10 @@
 #'@title Smoothing (binning/quantization)
-#'@description Family of smoothing methods that reduce noise by replacing values with the mean of a bin/cluster.
-#' Supported strategies: equal‑interval bins, equal‑frequency (quantile) bins, and clustering‑based bins (k‑means).
-#'@details The smoothing level is controlled by `n` (number of bins/levels). The helper `tune()` can choose
-#' an `n` by locating the elbow (maximum curvature) of the MSE curve across candidates. After `fit()`,
+#'@description Family of smoothing methods that reduce noise by replacing values with the mean of a bin.
+#' Supported strategies include equal‑interval bins, equal‑frequency (quantile) bins,
+#' k-means quantization, and class-aware clustering.
+#'@details The smoothing level is controlled by `n` (number of bins/levels). The base helper `tune()`
+#' chooses `n` by locating the elbow (maximum curvature) of the MSE curve across candidates.
+#' Concrete subclasses may override that criterion when supervision is required. After `fit()`,
 #' values are mapped to bin means via `transform()`.
 #'@param n number of bins
 #'@return returns an object of class `smoothing`
@@ -14,7 +16,8 @@
 #'table(sl.bi)
 #'obj$interval
 #'
-#'entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
+#'bins <- cut(iris$Sepal.Length, unique(obj$interval.adj), FALSE, include.lowest = TRUE)
+#'entro <- evaluate(obj, bins, iris$Species)
 #'entro$entropy
 #'@export
 smoothing <- function(n) {
@@ -89,7 +92,7 @@ evaluate.smoothing <- function(obj, data, attribute, ...) {
     # global entropy weighted by cluster sizes
     tbl$ceg <- tbl$ce*tbl$qtd/length(obj$data)
     obj$entropy_clusters <- tbl
-    obj$entropy <- sum(obj$entropy$ceg)
+    obj$entropy <- sum(tbl$ceg)
 
     options(dplyr.summarise.inform = value)
     return(obj)

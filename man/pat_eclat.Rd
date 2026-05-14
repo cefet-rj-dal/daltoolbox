@@ -11,8 +11,7 @@ pat_eclat(
   include = NULL,
   exclude = NULL,
   quality_filter = NULL,
-  control = NULL,
-  parameter = NULL
+  control = NULL
 )
 }
 \arguments{
@@ -29,8 +28,6 @@ pat_eclat(
 \item{quality_filter}{optional quality filter created with \code{patutils()}}
 
 \item{control}{list of control parameters}
-
-\item{parameter}{legacy list of parameters passed to \code{arules::eclat}}
 }
 \value{
 returns a \code{pat_eclat} object

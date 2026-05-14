@@ -1,17 +1,18 @@
 #'@title Feature selection by lasso
 #'@description Selects predictors using L1-regularized regression.
 #'@details Fits a lasso path with `glmnet` and keeps predictors with non-zero coefficients at `lambda.min`.
+#' The target attribute must be numeric.
 #'@param attribute target attribute name
 #'@param features optional vector of feature names (default: all numeric columns except `attribute`)
 #'@return returns an object of class `feature_selection_lasso`
 #'@examples
 #'if (requireNamespace("glmnet", quietly = TRUE)) {
-#'  data(iris)
-#'  fs <- feature_selection_lasso("Sepal.Length")
-#'  fs <- fit(fs, iris)
+#'  data(Boston)
+#'  fs <- feature_selection_lasso("medv")
+#'  fs <- fit(fs, Boston)
 #'  fs$selected
-#'  iris_fs <- transform(fs, iris)
-#'  names(iris_fs)
+#'  boston_fs <- transform(fs, Boston)
+#'  names(boston_fs)
 #'}
 #'@export
 feature_selection_lasso <- function(attribute, features = NULL) {
@@ -35,7 +36,7 @@ fit.feature_selection_lasso <- function(obj, data, ...) {
   }
 
   if (!is.numeric(data[[attr]])) {
-    data[[attr]] <- as.numeric(data[[attr]])
+    stop("feature_selection_lasso: target attribute must be numeric.")
   }
 
   features <- obj$features

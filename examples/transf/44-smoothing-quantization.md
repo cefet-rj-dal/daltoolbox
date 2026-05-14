@@ -1,5 +1,5 @@
 About the technique
-- `smoothing_cluster`: discretization/smoothing by class-aware clustering, so the grouping is influenced by the target class.
+- `smoothing_quantization`: discretization/smoothing by one-dimensional k-means quantization, without using the class label.
 
 Discretization and smoothing
 Discretization transforms continuous functions, models, variables, and equations into discrete counterparts.
@@ -8,7 +8,8 @@ Smoothing creates an approximating function to capture important patterns while 
 
 Defining bin intervals is an important step to enable the approximation.
 
-```{r}
+
+``` r
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # installation 
 #install.packages("daltoolbox")
@@ -17,27 +18,27 @@ source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examp
 library(daltoolbox) 
 ```
 
+Sample data (`iris`) to illustrate one-dimensional quantization.
 
-Sample data (`iris`) to illustrate supervised clustering-based discretization/smoothing.
-```{r}
+``` r
 iris <- datasets::iris
-cluster_data <- iris[, c("Sepal.Length", "Species")]
-head(cluster_data)
+head(iris)
 ```
 
-Apply clustering-based smoothing and inspect bins.
-```{r}
-# smoothing using class-aware clustering
-obj <- smoothing_cluster("Species", n = 2)
+Apply k-means quantization and inspect bins.
+
+``` r
+obj <- smoothing_quantization(n = 2)
 set_example_seed()
-obj <- fit(obj, cluster_data)
+obj <- fit(obj, iris$Sepal.Length)
 sl.bi <- transform(obj, iris$Sepal.Length)
 print(table(sl.bi))
 obj$interval
 ```
 
-Evaluate conditional entropy between bins and species.
-```{r}
+Evaluate conditional entropy between bins and species after the quantization step.
+
+``` r
 bins <- cut(iris$Sepal.Length, unique(obj$interval.adj), FALSE, include.lowest = TRUE)
 entro <- evaluate(obj, bins, iris$Species)
 print(entro$entropy)
@@ -45,20 +46,21 @@ print(entro$entropy)
 
 Optimizing the number of binnings
 
-Optimize the number of bins by minimizing conditional entropy (search 1:20) and refit.
-```{r}
-opt_obj <- smoothing_cluster("Species", n=1:20)
+Optimize the number of bins by the MSE elbow heuristic (search 1:20) and refit.
+
+``` r
+opt_obj <- smoothing_quantization(n=1:20)
 set_example_seed()
-obj <- fit(opt_obj, cluster_data)
+obj <- fit(opt_obj, iris$Sepal.Length)
 obj$n
 ```
 
-```{r}
+``` r
 set_example_seed()
-obj <- fit(obj, cluster_data)
+obj <- fit(obj, iris$Sepal.Length)
 sl.bi <- transform(obj, iris$Sepal.Length)
 print(table(sl.bi))
 ```
 
 References
-- Han, J., Kamber, M., Pei, J. (2011). Data Mining: Concepts and Techniques. (Discretization)
+- MacQueen, J. (1967). Some Methods for Classification and Analysis of Multivariate Observations.

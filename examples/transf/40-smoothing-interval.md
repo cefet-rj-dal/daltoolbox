@@ -65,7 +65,8 @@ obj$interval
 Evaluate conditional entropy between bins and species.
 
 ``` r
-entro <- evaluate(obj, as.factor(names(sl.bi)), iris$Species)
+bins <- cut(iris$Sepal.Length, unique(obj$interval.adj), FALSE, include.lowest = TRUE)
+entro <- evaluate(obj, bins, iris$Species)
 print(entro$entropy)
 ```
 

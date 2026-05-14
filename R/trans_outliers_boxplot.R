@@ -35,22 +35,20 @@ fit.outliers_boxplot <- function(obj, data, ...) {
   if(is.matrix(data) || is.data.frame(data)) {
     lower_threshold <- rep(NA, ncol(data))
     higher_threshold <- rep(NA, ncol(data))
-    if (nrow(data) >= 30) {
-      for (i in 1:ncol(data)) {
-        if (is.numeric(data[,i])) {
-          # quartiles for IQR-based thresholds
-          q <- stats::quantile(data[,i])
-          IQR <- q[4] - q[2]
-          lower_threshold[i] <- q[2] - obj$alpha*IQR
-          higher_threshold[i] <- q[4] + obj$alpha*IQR
-        }
+    for (i in 1:ncol(data)) {
+      if (is.numeric(data[,i])) {
+        # quartiles for IQR-based thresholds
+        q <- stats::quantile(data[,i], na.rm = TRUE)
+        IQR <- q[4] - q[2]
+        lower_threshold[i] <- q[2] - obj$alpha*IQR
+        higher_threshold[i] <- q[4] + obj$alpha*IQR
       }
     }
   }
   else {
-    if ((length(data) >= 30) && is.numeric(data)) {
+    if (is.numeric(data)) {
       # vector input: same IQR logic
-      q <- stats::quantile(data)
+      q <- stats::quantile(data, na.rm = TRUE)
       IQR <- q[4] - q[2]
       lower_threshold <- q[2] - obj$alpha*IQR
       higher_threshold <- q[4] + obj$alpha*IQR

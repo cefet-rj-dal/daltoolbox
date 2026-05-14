@@ -1,17 +1,18 @@
 #'@title Feature selection by forward stepwise search
 #'@description Selects numeric predictors using forward stepwise subset search.
 #'@details Uses `leaps::regsubsets` and keeps the subset with the highest adjusted R-squared.
+#' The target attribute must be numeric.
 #'@param attribute target attribute name
 #'@param features optional vector of feature names (default: all columns except `attribute`)
 #'@return returns an object of class `feature_selection_fss`
 #'@examples
 #'if (requireNamespace("leaps", quietly = TRUE)) {
-#'  data(iris)
-#'  fs <- feature_selection_fss("Sepal.Length")
-#'  fs <- fit(fs, iris)
+#'  data(Boston)
+#'  fs <- feature_selection_fss("medv")
+#'  fs <- fit(fs, Boston)
 #'  fs$selected
-#'  iris_fs <- transform(fs, iris)
-#'  names(iris_fs)
+#'  boston_fs <- transform(fs, Boston)
+#'  names(boston_fs)
 #'}
 #'@export
 feature_selection_fss <- function(attribute, features = NULL) {
@@ -35,7 +36,7 @@ fit.feature_selection_fss <- function(obj, data, ...) {
   }
 
   if (!is.numeric(data[[attr]])) {
-    data[[attr]] <- as.numeric(data[[attr]])
+    stop("feature_selection_fss: target attribute must be numeric.")
   }
 
   features <- obj$features

@@ -34,23 +34,21 @@ fit.outliers_gaussian <- function(obj, data, ...) {
   if(is.matrix(data) || is.data.frame(data)) {
     lower_threshold <- rep(NA, ncol(data))
     higher_threshold <- rep(NA, ncol(data))
-    if (nrow(data) >= 30) {
-      for (i in 1:ncol(data)) {
-        if (is.numeric(data[,i])) {
-          # mean ± alpha * sd per numeric column
-          q <- base::mean(data[,i])
-          s <- stats::sd(data[,i])
-          lower_threshold[i] <- q - obj$alpha*s
-          higher_threshold[i] <-  q + obj$alpha*s
-        }
+    for (i in 1:ncol(data)) {
+      if (is.numeric(data[,i])) {
+        # mean ± alpha * sd per numeric column
+        q <- base::mean(data[,i], na.rm = TRUE)
+        s <- stats::sd(data[,i], na.rm = TRUE)
+        lower_threshold[i] <- q - obj$alpha*s
+        higher_threshold[i] <-  q + obj$alpha*s
       }
     }
   }
   else {
-    if ((length(data) >= 30) && is.numeric(data)) {
+    if (is.numeric(data)) {
       # vector input: mean ± alpha * sd
-      q <- mean(data)
-      s <- sd(data)
+      q <- mean(data, na.rm = TRUE)
+      s <- sd(data, na.rm = TRUE)
       lower_threshold <- q - obj$alpha*s
       higher_threshold <-  q + obj$alpha*s
     }

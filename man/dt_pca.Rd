@@ -21,7 +21,8 @@ Transforms correlated variables into orthogonal principal components ordered by 
 \details{
 Fits PCA on (optionally) the numeric predictors only (excluding \code{attribute} when provided),
 removes constant columns, and selects the number of components by an elbow rule (minimum curvature)
-unless \code{components} is set explicitly.
+unless \code{components} is set explicitly. New data are projected with the same centering
+and scaling learned during \code{fit()}.
 }
 \examples{
 mypca <- dt_pca("Species")

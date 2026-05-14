@@ -12,7 +12,7 @@ These examples are useful when the first challenge is creating representative pa
 - [02-sampling-stratified.md](/examples/transf/02-sampling-stratified.md) - `sample_stratified`: train/test split and folds preserving target proportions.
 - [03-sampling-simple.md](/examples/transf/03-sampling-simple.md) - `sample_simple`: direct random extraction of rows or vector elements.
 - [04-sampling-balance.md](/examples/transf/04-sampling-balance.md) - `sample_balance`: up-sampling or down-sampling through the sampling interface.
-- [05-sampling-cluster.md](/examples/transf/05-sampling-cluster.md) - `sample_cluster`: select entire groups defined by a categorical attribute.
+- [05-sampling-groups.md](/examples/transf/05-sampling-groups.md) - `sample_groups`: select entire groups defined by a categorical attribute using cluster sampling.
 
 ## Cleaning and Data Quality
 
@@ -21,7 +21,7 @@ These examples address missing values and unusual observations before the modeli
 - [10-cleaning-na-removal.md](/examples/transf/10-cleaning-na-removal.md) - remove rows with missing values through `na.omit`.
 - [11-cleaning-outliers-boxplot.md](/examples/transf/11-cleaning-outliers-boxplot.md) - detect outliers by the IQR boxplot rule.
 - [12-cleaning-outliers-gaussian.md](/examples/transf/12-cleaning-outliers-gaussian.md) - flag outliers through Gaussian distance from the mean.
-- [13-cleaning-imputation-tree.md](/examples/transf/13-cleaning-imputation-tree.md) - `imputation_tree`: iterative model-based imputation for mixed data.
+- [13-cleaning-imputation-tree.md](/examples/transf/13-cleaning-imputation-tree.md) - `imputation_tree`: tree-based predictive imputation for one target column.
 
 ## Scaling
 
@@ -44,8 +44,9 @@ These examples summarize continuous values into intervals, frequencies, or clust
 
 - [40-smoothing-interval.md](/examples/transf/40-smoothing-interval.md) - `smoothing_inter`: discretization by equal-width intervals.
 - [41-smoothing-frequency.md](/examples/transf/41-smoothing-frequency.md) - `smoothing_freq`: discretization by frequency-balanced bins.
-- [42-smoothing-clustering.md](/examples/transf/42-smoothing-clustering.md) - `smoothing_cluster`: discretization guided by clustering structure.
+- [42-smoothing-clustering.md](/examples/transf/42-smoothing-clustering.md) - `smoothing_cluster`: class-aware discretization guided by clustering and the target label.
 - [43-smoothing-generic.md](/examples/transf/43-smoothing-generic.md) - `smoothing`: base family and tuning logic behind the smoothing variants.
+- [44-smoothing-quantization.md](/examples/transf/44-smoothing-quantization.md) - `smoothing_quantization`: one-dimensional k-means quantization without class supervision.
 
 ## Balancing
 

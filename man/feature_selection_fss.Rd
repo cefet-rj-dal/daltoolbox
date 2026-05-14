@@ -19,14 +19,15 @@ Selects numeric predictors using forward stepwise subset search.
 }
 \details{
 Uses \code{leaps::regsubsets} and keeps the subset with the highest adjusted R-squared.
+The target attribute must be numeric.
 }
 \examples{
 if (requireNamespace("leaps", quietly = TRUE)) {
- data(iris)
- fs <- feature_selection_fss("Sepal.Length")
- fs <- fit(fs, iris)
+ data(Boston)
+ fs <- feature_selection_fss("medv")
+ fs <- fit(fs, Boston)
  fs$selected
- iris_fs <- transform(fs, iris)
- names(iris_fs)
+ boston_fs <- transform(fs, Boston)
+ names(boston_fs)
 }
 }

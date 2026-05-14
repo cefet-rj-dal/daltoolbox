@@ -7,7 +7,6 @@
 #'@param exclude optional vector of items forbidden in the discovered itemsets
 #'@param quality_filter optional quality filter created with `patutils()`
 #'@param control list of control parameters
-#'@param parameter legacy list of parameters passed to `arules::eclat`
 #'@return returns a `pat_eclat` object
 #'@examples
 #'if (requireNamespace("arules", quietly = TRUE)) {
@@ -32,8 +31,7 @@ pat_eclat <- function(supp = 0.5,
                       include = NULL,
                       exclude = NULL,
                       quality_filter = NULL,
-                      control = NULL,
-                      parameter = NULL) {
+                      control = NULL) {
   obj <- pattern_miner()
   utils <- obj$pat_utils
   obj$supp <- supp
@@ -43,7 +41,6 @@ pat_eclat <- function(supp = 0.5,
   obj$exclude <- exclude
   obj$quality_filter <- quality_filter
   obj$control <- control
-  obj$parameter <- parameter
   obj$pattern_kind <- "itemsets"
   obj$eval_metrics <- list(
     utils$metric_pattern_count,
@@ -56,13 +53,6 @@ pat_eclat <- function(supp = 0.5,
 }
 
 pat_eclat_compile <- function(obj) {
-  if (!is.null(obj$parameter)) {
-    legacy <- obj$parameter
-    if (!is.null(legacy$supp)) obj$supp <- legacy$supp
-    if (!is.null(legacy$minlen)) obj$minlen <- legacy$minlen
-    if (!is.null(legacy$maxlen)) obj$maxlen <- legacy$maxlen
-  }
-
   obj$engine_parameter <- list(
     supp = obj$supp,
     minlen = obj$minlen,

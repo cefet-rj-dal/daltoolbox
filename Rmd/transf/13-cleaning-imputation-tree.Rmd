@@ -1,7 +1,7 @@
 About the transformation
-- `imputation_tree`: iterative tree-based imputation for mixed datasets.
+- `imputation_tree`: tree-based predictive imputation for one target column at a time.
 
-Didactic goal: contrast model-based imputation with simpler fill rules such as mean or median replacement. The method uses other attributes to predict missing values, which usually makes the imputation more context-aware.
+Didactic goal: contrast model-based imputation with simpler fill rules such as mean or median replacement. The method uses other attributes to predict missing values in one target column, which keeps the API simple and makes the modeling role explicit.
 
 ```{r}
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
@@ -10,24 +10,23 @@ source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examp
 library(daltoolbox)
 ```
 
-Create a dataset with missing values in both numeric and categorical columns.
+Create a dataset with missing values in one target column.
 ```{r}
 iris_na <- datasets::iris
 iris_na$Sepal.Length[c(2, 10, 25)] <- NA
-iris_na$Petal.Width[c(5, 11)] <- NA
-iris_na$Species[c(3, 15)] <- NA
 
 summary(iris_na)
 ```
 
 ```{r}
-imp <- imputation_tree(maxit = 3)
+imp <- imputation_tree("Sepal.Length")
 imp <- fit(imp, iris_na)
 iris_imp <- transform(imp, iris_na)
 
 summary(iris_imp$Sepal.Length)
-table(iris_imp$Species, useNA = "ifany")
+sum(is.na(iris_imp$Sepal.Length))
 ```
 
 References
-- Stekhoven, D. J., and Buhlmann, P. (2012). MissForest: non-parametric missing value imputation for mixed-type data.
+- Breiman, L., Friedman, J., Olshen, R., Stone, C. (1984). Classification and Regression Trees.
+- van Buuren, S., and Groothuis-Oudshoorn, K. (2011). mice: Multivariate Imputation by Chained Equations in R.

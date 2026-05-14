@@ -1,6 +1,7 @@
 #'@title Feature selection by stepwise model selection
 #'@description Select features using stepwise search over generalized linear models.
 #'@details Supports forward, backward, and both directions via `stats::step`.
+#' With the default `binomial` family, the target should represent a binary outcome.
 #'@param attribute target attribute name
 #'@param features optional vector of feature names (default: all columns except `attribute`)
 #'@param direction stepwise direction: "forward", "backward", or "both"
@@ -8,16 +9,11 @@
 #'@param trace level of tracing from `stats::step`
 #'@return returns an object of class `feature_selection_stepwise`
 #'@examples
-#'data(iris)
-#'fg <- feature_generation(
-#'  IsVersicolor = ifelse(Species == "versicolor", "versicolor", "not_versicolor")
-#')
-#'iris_bin <- transform(fg, iris)
-#'iris_bin$IsVersicolor <- factor(iris_bin$IsVersicolor)
-#'fs <- feature_selection_stepwise("IsVersicolor", direction = "forward")
-#'fs <- fit(fs, iris_bin)
+#'data(Boston)
+#'fs <- feature_selection_stepwise("medv", direction = "forward", family = stats::gaussian)
+#'fs <- fit(fs, Boston)
 #'fs$selected
-#'transform(fs, iris_bin) |> names()
+#'transform(fs, Boston) |> names()
 #'@export
 feature_selection_stepwise <- function(attribute, features = NULL, direction = "forward", family = stats::binomial, trace = 0) {
   obj <- dal_transform()

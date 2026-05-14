@@ -1,13 +1,11 @@
 About the transformation
-- `categ_mapping`: converts a categorical column into binary variables (one‑hot). Can use n columns or n-1 columns.
+- `categ_mapping`: converts a categorical column into binary variables (one‑hot), using one output column per category.
 
 
 ``` r
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
 # Categorical mapping
 # A categorical attribute with $n$ distinct values can be mapped into $n$ binary (one‑hot) attributes.
-
-# It is also possible to map into $n-1$ binary attributes: the case where all binary attributes are zero represents the last categorical value (not explicit in columns).
 
 # installation 
 #install.packages("daltoolbox")

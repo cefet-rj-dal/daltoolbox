@@ -1,7 +1,7 @@
 About the transformation
 - `smoothing`: base family behind the concrete smoothing strategies.
 
-Didactic goal: expose the role of the base object. The concrete classes such as `smoothing_inter`, `smoothing_freq`, and `smoothing_cluster` inherit from this family, but the base constructor is where the generic tuning logic lives.
+Didactic goal: expose the role of the base object. The concrete classes such as `smoothing_inter`, `smoothing_freq`, `smoothing_quantization`, and `smoothing_cluster` inherit from this family, but the base constructor is where the generic tuning logic lives.
 
 
 ``` r

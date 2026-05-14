@@ -7,7 +7,6 @@
 #'@param maxgap maximum gap between successive events
 #'@param quality_filter optional quality filter created with `patutils()`
 #'@param control list of control parameters
-#'@param parameter legacy list of parameters passed to `arulesSequences::cspade`
 #'@return returns a `pat_cspade` object
 #'@examples
 #'if (requireNamespace("arulesSequences", quietly = TRUE)) {
@@ -33,8 +32,7 @@ pat_cspade <- function(support = 0.4,
                        mingap = NULL,
                        maxgap = NULL,
                        quality_filter = NULL,
-                       control = list(verbose = TRUE),
-                       parameter = NULL) {
+                       control = list(verbose = TRUE)) {
   obj <- pattern_miner()
   utils <- obj$pat_utils
   obj$support <- support
@@ -44,7 +42,6 @@ pat_cspade <- function(support = 0.4,
   obj$maxgap <- maxgap
   obj$quality_filter <- quality_filter
   obj$control <- control
-  obj$parameter <- parameter
   obj$pattern_kind <- "sequences"
   obj$eval_metrics <- list(
     utils$metric_pattern_count,
@@ -57,15 +54,6 @@ pat_cspade <- function(support = 0.4,
 }
 
 pat_cspade_compile <- function(obj) {
-  if (!is.null(obj$parameter)) {
-    legacy <- obj$parameter
-    if (!is.null(legacy$support)) obj$support <- legacy$support
-    if (!is.null(legacy$maxsize)) obj$maxsize <- legacy$maxsize
-    if (!is.null(legacy$maxlen)) obj$maxlen <- legacy$maxlen
-    if (!is.null(legacy$mingap)) obj$mingap <- legacy$mingap
-    if (!is.null(legacy$maxgap)) obj$maxgap <- legacy$maxgap
-  }
-
   obj$engine_parameter <- list(support = obj$support)
   if (!is.null(obj$maxsize)) obj$engine_parameter$maxsize <- obj$maxsize
   if (!is.null(obj$maxlen)) obj$engine_parameter$maxlen <- obj$maxlen

@@ -11,8 +11,7 @@ pat_cspade(
   mingap = NULL,
   maxgap = NULL,
   quality_filter = NULL,
-  control = list(verbose = TRUE),
-  parameter = NULL
+  control = list(verbose = TRUE)
 )
 }
 \arguments{
@@ -29,8 +28,6 @@ pat_cspade(
 \item{quality_filter}{optional quality filter created with \code{patutils()}}
 
 \item{control}{list of control parameters}
-
-\item{parameter}{legacy list of parameters passed to \code{arulesSequences::cspade}}
 }
 \value{
 returns a \code{pat_cspade} object
