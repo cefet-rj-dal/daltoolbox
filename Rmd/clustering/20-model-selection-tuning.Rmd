@@ -34,19 +34,19 @@ model <- clu_tune(base_model, ranges = list(k = 2:10))
 Fit the tuned model and inspect the selected configuration.
 ```{r}
 set_example_seed()
-model <- fit(model, x)
+model <- daltoolbox::fit(model, x)
 model$k
 ```
 
 Generate cluster labels with the selected configuration.
 ```{r}
-clu <- cluster(model, x)
+clu <- daltoolbox::cluster(model, x)
 table(clu)
 ```
 
 Evaluate the tuned partition.
 ```{r}
-eval <- evaluate(model, clu, ref)
+eval <- daltoolbox::evaluate(model, clu, ref)
 eval
 ```
 

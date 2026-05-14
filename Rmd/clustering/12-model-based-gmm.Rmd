@@ -27,14 +27,14 @@ model <- cluster_gmm(G = 3)
 
 Fit the model and obtain cluster labels.
 ```{r}
-model <- fit(model, x)
-clu <- cluster(model, x)
+model <- daltoolbox::fit(model, x)
+clu <- daltoolbox::cluster(model, x)
 table(clu)
 ```
 
 Evaluate the partition.
 ```{r}
-eval <- evaluate(model, clu, ref)
+eval <- daltoolbox::evaluate(model, clu, ref)
 eval
 ```
 

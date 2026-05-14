@@ -26,8 +26,8 @@ model <- cluster_louvain_graph()
 
 Fit the model and obtain community labels.
 ```{r}
-model <- fit(model, g)
-clu <- cluster(model, g)
+model <- daltoolbox::fit(model, g)
+clu <- daltoolbox::cluster(model, g)
 table(clu)
 ```
 
