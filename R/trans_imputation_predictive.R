@@ -53,7 +53,7 @@ imputation_predictive_resolve <- function(obj, data) {
 
   target_kind <- imputation_simple_kind(data[[target]])
   source_kinds <- vapply(data[, sources, drop = FALSE], imputation_simple_kind, character(1))
-  all_kinds <- c(base::setNames(target_kind, target), source_kinds)
+  all_kinds <- c(stats::setNames(target_kind, target), source_kinds)
   levels_map <- lapply(c(target, sources), function(col) {
     imputation_tree_get_levels(data[[col]], all_kinds[[col]])
   })
