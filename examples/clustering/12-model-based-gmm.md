@@ -10,6 +10,27 @@ source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examp
 # install.packages(c("daltoolbox", "mclust"))
 
 library(daltoolbox)
+library(mclust)
+```
+
+```
+##                    __           __ 
+##    ____ ___  _____/ /_  _______/ /_
+##   / __ `__ \/ ___/ / / / / ___/ __/
+##  / / / / / / /__/ / /_/ (__  ) /_  
+## /_/ /_/ /_/\___/_/\__,_/____/\__/   version 6.1.2
+## Type 'citation("mclust")' for citing this R package in publications.
+```
+
+```
+## 
+## Attaching package: 'mclust'
+```
+
+```
+## The following object is masked from 'package:dplyr':
+## 
+##     count
 ```
 
 Load data and separate predictors from the reference labels used only for interpretation.
@@ -34,19 +55,13 @@ head(x)
 Model configuration.
 
 ``` r
-if (requireNamespace("mclust", quietly = TRUE)) {
-  model <- cluster_gmm(G = 3)
-}
+model <- cluster_gmm(G = 3)
 ```
 
 Fit the model and obtain cluster labels.
 
 ``` r
-if (requireNamespace("mclust", quietly = TRUE)) {
-  model <- fit(model, x)
-  clu <- cluster(model, x)
-  table(clu)
-}
+model <- fit(model, x)
 ```
 
 ```
@@ -86,42 +101,45 @@ if (requireNamespace("mclust", quietly = TRUE)) {
   |==================================================================================================================| 100%
 ```
 
+``` r
+clu <- cluster(model, x)
 ```
-## clu
-##  1  2  3 
-## 50 45 55
+
+```
+## Error in `cluster.default()`:
+## ! only implemented for resamples objects
+```
+
+``` r
+table(clu)
+```
+
+```
+## Error:
+## ! object 'clu' not found
 ```
 
 Evaluate the partition.
 
 ``` r
-if (requireNamespace("mclust", quietly = TRUE)) {
-  eval <- evaluate(model, clu, ref)
-  eval
-}
+eval <- evaluate(model, clu, ref)
 ```
 
 ```
-## $clusters_entropy
-## # A tibble: 3 × 4
-##   x        ce   qtd   ceg
-##   <fct> <dbl> <int> <dbl>
-## 1 1     0        50 0    
-## 2 2     0        45 0    
-## 3 3     0.439    55 0.161
-## 
-## $clustering_entropy
-## [1] 0.1611489
-## 
-## $data_entropy
-## [1] 1.584963
-## 
-## $metrics
-##                metric        value     goal     type
-## 1              loglik -186.0740479 maximize    model
-## 2             entropy    0.1611489 minimize external
-## 3              purity    0.9666667 maximize external
-## 4 adjusted_rand_index    0.9038742 maximize external
+## Error:
+## ! object 'clu' not found
+```
+
+``` r
+eval
+```
+
+```
+## function (expr, envir = parent.frame(), enclos = if (is.list(envir) || 
+##     is.pairlist(envir)) parent.frame() else baseenv()) 
+## .Internal(eval(expr, envir, enclos))
+## <bytecode: 0x5c28c1546c10>
+## <environment: namespace:base>
 ```
 
 References

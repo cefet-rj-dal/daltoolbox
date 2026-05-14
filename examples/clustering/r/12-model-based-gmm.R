@@ -2,23 +2,18 @@ source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examp
 # install.packages(c("daltoolbox", "mclust"))
 
 library(daltoolbox)
+library(mclust)
 
 iris <- datasets::iris
 x <- iris[, 1:4]
 ref <- iris$Species
 head(x)
 
-if (requireNamespace("mclust", quietly = TRUE)) {
-  model <- cluster_gmm(G = 3)
-}
+model <- cluster_gmm(G = 3)
 
-if (requireNamespace("mclust", quietly = TRUE)) {
-  model <- fit(model, x)
-  clu <- cluster(model, x)
-  table(clu)
-}
+model <- fit(model, x)
+clu <- cluster(model, x)
+table(clu)
 
-if (requireNamespace("mclust", quietly = TRUE)) {
-  eval <- evaluate(model, clu, ref)
-  eval
-}
+eval <- evaluate(model, clu, ref)
+eval

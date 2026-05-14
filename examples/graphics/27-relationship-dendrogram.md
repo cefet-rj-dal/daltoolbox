@@ -16,7 +16,18 @@ library(daltoolbox)
 options(repr.plot.width = 9, repr.plot.height = 4.5)
 hc <- hclust(dist(scale(datasets::iris[, 1:4])), method = "ward.D2")
 grf <- plot_dendrogram(hc, title = "Iris dendrogram")
+```
+
+```
+## Error in `UseMethod()`:
+## ! no applicable method for 'plot_dendrogram' applied to an object of class "hclust"
+```
+
+``` r
 plot(grf)
 ```
 
-![plot of chunk unnamed-chunk-2](fig/27-relationship-dendrogram/unnamed-chunk-2-1.png)
+```
+## Error:
+## ! object 'grf' not found
+```

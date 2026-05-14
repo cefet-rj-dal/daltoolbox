@@ -9,19 +9,18 @@ source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examp
 # install.packages(c("daltoolbox", "GGally"))
 
 library(daltoolbox)
+library(GGally)
 ```
 
 
 ``` r
-if (requireNamespace("GGally", quietly = TRUE)) {
-  grf <- plot_pair(
-    datasets::iris,
-    cnames = colnames(datasets::iris)[1:4],
-    title = "Iris scatter matrix",
-    clabel = "Species"
-  )
-  print(grf)
-}
+grf <- plot_pair(
+  datasets::iris,
+  cnames = colnames(datasets::iris)[1:4],
+  title = "Iris scatter matrix",
+  clabel = "Species"
+)
+print(grf)
 ```
 
 ![plot of chunk unnamed-chunk-2](fig/23-relationship-pair/unnamed-chunk-2-1.png)

@@ -10,6 +10,7 @@ source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examp
 # install.packages(c("daltoolbox", "ipred"))
 
 library(daltoolbox)
+library(ipred)
 ```
 
 Load data and inspect.
@@ -62,21 +63,17 @@ tbl
 Model configuration and fitting.
 
 ``` r
-if (requireNamespace("ipred", quietly = TRUE)) {
-  model <- cla_bagging("Species", nbagg = 25)
-  set_example_seed()
-  model <- fit(model, iris_train)
-}
+model <- cla_bagging("Species", nbagg = 25)
+set_example_seed()
+model <- fit(model, iris_train)
 ```
 
 Training evaluation.
 
 ``` r
-if (requireNamespace("ipred", quietly = TRUE)) {
-  train_prediction <- predict(model, iris_train)
-  train_eval <- evaluate(model, iris_train[, "Species"], train_prediction)
-  train_eval$metrics
-}
+train_prediction <- predict(model, iris_train)
+train_eval <- evaluate(model, iris_train[, "Species"], train_prediction)
+train_eval$metrics
 ```
 
 ```
@@ -87,11 +84,9 @@ if (requireNamespace("ipred", quietly = TRUE)) {
 Test evaluation.
 
 ``` r
-if (requireNamespace("ipred", quietly = TRUE)) {
-  test_prediction <- predict(model, iris_test)
-  test_eval <- evaluate(model, iris_test[, "Species"], test_prediction)
-  test_eval$metrics
-}
+test_prediction <- predict(model, iris_test)
+test_eval <- evaluate(model, iris_test[, "Species"], test_prediction)
+test_eval$metrics
 ```
 
 ```

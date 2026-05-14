@@ -10,6 +10,57 @@ source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examp
 # install.packages(c("daltoolbox", "adabag"))
 
 library(daltoolbox)
+library(adabag)
+```
+
+```
+## Loading required package: rpart
+```
+
+```
+## Loading required package: caret
+```
+
+```
+## Loading required package: lattice
+```
+
+```
+## 
+## Attaching package: 'caret'
+```
+
+```
+## The following object is masked from 'package:daltoolbox':
+## 
+##     cluster
+```
+
+```
+## Loading required package: foreach
+```
+
+```
+## Loading required package: doParallel
+```
+
+```
+## Loading required package: iterators
+```
+
+```
+## Loading required package: parallel
+```
+
+```
+## 
+## Attaching package: 'adabag'
+```
+
+```
+## The following object is masked from 'package:ipred':
+## 
+##     bagging
 ```
 
 Load data and inspect.
@@ -62,21 +113,17 @@ tbl
 Model configuration and fitting.
 
 ``` r
-if (requireNamespace("adabag", quietly = TRUE)) {
-  model <- cla_boosting("Species", mfinal = 20)
-  set_example_seed()
-  model <- fit(model, iris_train)
-}
+model <- cla_boosting("Species", mfinal = 20)
+set_example_seed()
+model <- fit(model, iris_train)
 ```
 
 Training evaluation.
 
 ``` r
-if (requireNamespace("adabag", quietly = TRUE)) {
-  train_prediction <- predict(model, iris_train)
-  train_eval <- evaluate(model, iris_train[, "Species"], train_prediction)
-  train_eval$metrics
-}
+train_prediction <- predict(model, iris_train)
+train_eval <- evaluate(model, iris_train[, "Species"], train_prediction)
+train_eval$metrics
 ```
 
 ```
@@ -87,11 +134,9 @@ if (requireNamespace("adabag", quietly = TRUE)) {
 Test evaluation.
 
 ``` r
-if (requireNamespace("adabag", quietly = TRUE)) {
-  test_prediction <- predict(model, iris_test)
-  test_eval <- evaluate(model, iris_test[, "Species"], test_prediction)
-  test_eval$metrics
-}
+test_prediction <- predict(model, iris_test)
+test_eval <- evaluate(model, iris_test[, "Species"], test_prediction)
+test_eval$metrics
 ```
 
 ```

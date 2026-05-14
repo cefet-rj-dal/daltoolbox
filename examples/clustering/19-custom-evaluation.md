@@ -48,33 +48,40 @@ model_default <- cluster_kmeans(k = 3)
 set_example_seed()
 model_default <- fit(model_default, x)
 clu_default <- cluster(model_default, x)
+```
 
+```
+## Error in `cluster.default()`:
+## ! only implemented for resamples objects
+```
+
+``` r
 metric_names(model_default, x, clu_default, ref)
 ```
 
 ```
-## $internal
-## [1] "silhouette"        "davies_bouldin"    "calinski_harabasz"
-## 
-## $external
-## [1] "entropy"             "purity"              "adjusted_rand_index"
+## Error:
+## ! object 'clu_default' not found
 ```
 
 Run the default evaluation.
 
 ``` r
 eval_default <- evaluate(model_default, clu_default, ref)
+```
+
+```
+## Error:
+## ! object 'clu_default' not found
+```
+
+``` r
 eval_default$metrics
 ```
 
 ```
-##                metric      value     goal     type
-## 1          silhouette  0.5528190 maximize internal
-## 2      davies_bouldin  0.6619715 minimize internal
-## 3   calinski_harabasz 11.2836215 maximize internal
-## 4             entropy  0.3938863 minimize external
-## 5              purity  0.8933333 maximize external
-## 6 adjusted_rand_index  0.7302383 maximize external
+## Error:
+## ! object 'eval_default' not found
 ```
 
 Now customize the same class to keep only one internal metric and one external metric. This pair is useful for teaching because `silhouette` gives a compact internal summary of cohesion and separation, while `entropy` shows how mixed each cluster is relative to a reference partition.
@@ -87,29 +94,40 @@ model_custom$eval_external <- list(model_custom$clu_utils$metric_entropy)
 set_example_seed()
 model_custom <- fit(model_custom, x)
 clu_custom <- cluster(model_custom, x)
+```
 
+```
+## Error in `cluster.default()`:
+## ! only implemented for resamples objects
+```
+
+``` r
 metric_names(model_custom, x, clu_custom, ref)
 ```
 
 ```
-## $internal
-## [1] "silhouette"
-## 
-## $external
-## [1] "entropy"
+## Error:
+## ! object 'clu_custom' not found
 ```
 
 Evaluate again after the customization.
 
 ``` r
 eval_custom <- evaluate(model_custom, clu_custom, ref)
+```
+
+```
+## Error:
+## ! object 'clu_custom' not found
+```
+
+``` r
 eval_custom$metrics
 ```
 
 ```
-##       metric     value     goal     type
-## 1 silhouette 0.5528190 maximize internal
-## 2    entropy 0.3938863 minimize external
+## Error:
+## ! object 'eval_custom' not found
 ```
 
 Available metric functions can be inspected directly from the utility object.

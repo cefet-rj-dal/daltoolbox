@@ -2,6 +2,7 @@ source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examp
 # install.packages(c("daltoolbox", "rpart"))
 
 library(daltoolbox)
+library(rpart)
 
 iris <- datasets::iris
 head(iris)
@@ -21,19 +22,13 @@ tbl <- rbind(
 rownames(tbl) <- c("dataset", "training", "test")
 tbl
 
-if (requireNamespace("rpart", quietly = TRUE)) {
-  model <- cla_rpart("Species")
-  model <- fit(model, iris_train)
-}
+model <- cla_rpart("Species")
+model <- fit(model, iris_train)
 
-if (requireNamespace("rpart", quietly = TRUE)) {
-  train_prediction <- predict(model, iris_train)
-  train_eval <- evaluate(model, iris_train[, "Species"], train_prediction)
-  train_eval$metrics
-}
+train_prediction <- predict(model, iris_train)
+train_eval <- evaluate(model, iris_train[, "Species"], train_prediction)
+train_eval$metrics
 
-if (requireNamespace("rpart", quietly = TRUE)) {
-  test_prediction <- predict(model, iris_test)
-  test_eval <- evaluate(model, iris_test[, "Species"], test_prediction)
-  test_eval$metrics
-}
+test_prediction <- predict(model, iris_test)
+test_eval <- evaluate(model, iris_test[, "Species"], test_prediction)
+test_eval$metrics

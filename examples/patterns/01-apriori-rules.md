@@ -21,8 +21,35 @@ summary(trans)
 ```
 
 ```
-##       Length        Class         Mode 
-##        48842 transactions           S4
+## transactions as itemMatrix in sparse format with
+##  48842 rows (elements/itemsets/transactions) and
+##  114 columns (items) and a density of 0.1274938 
+## 
+## most frequent items:
+##       capital-gain=[0,1e+05]    capital-loss=[0,4.36e+03] native-country=United-States                   race=White 
+##                        48842                        48842                        43832                        41762 
+##       hours-per-week=[40,99]                      (Other) 
+##                        37155                       489451 
+## 
+## element (itemset/transaction) length distribution:
+## sizes
+##    11    12    13    14    15 
+##    19   971  2067 15623 30162 
+## 
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   11.00   14.00   15.00   14.53   15.00   15.00 
+## 
+## includes extended item information - examples:
+##        labels variables  levels
+## 1 age=[17,31)       age [17,31)
+## 2 age=[31,44)       age [31,44)
+## 3 age=[44,90]       age [44,90]
+## 
+## includes extended transaction information - examples:
+##   transactionID
+## 1             1
+## 2             2
+## 3             3
 ```
 
 Model configuration.

@@ -51,43 +51,43 @@ Fit the model and obtain cluster labels.
 set_example_seed()
 model <- fit(model, x)
 clu <- cluster(model, x)
+```
+
+```
+## Error in `cluster.default()`:
+## ! only implemented for resamples objects
+```
+
+``` r
 table(clu)
 ```
 
 ```
-## clu
-##  1  2  3 
-## 50 62 38
+## Error:
+## ! object 'clu' not found
 ```
 
 Evaluate the partition.
 
 ``` r
 eval <- evaluate(model, clu, ref)
+```
+
+```
+## Error:
+## ! object 'clu' not found
+```
+
+``` r
 eval
 ```
 
 ```
-## $clusters_entropy
-## # A tibble: 3 × 4
-##   x        ce   qtd    ceg
-##   <fct> <dbl> <int>  <dbl>
-## 1 1     0        50 0     
-## 2 2     0.771    62 0.319 
-## 3 3     0.297    38 0.0754
-## 
-## $clustering_entropy
-## [1] 0.3938863
-## 
-## $data_entropy
-## [1] 1.584963
-## 
-## $metrics
-##           metric     value     goal     type
-## 1     silhouette 0.5528190 maximize internal
-## 2 davies_bouldin 0.6619715 minimize internal
-## 3        entropy 0.3938863 minimize external
-## 4         purity 0.8933333 maximize external
+## function (expr, envir = parent.frame(), enclos = if (is.list(envir) || 
+##     is.pairlist(envir)) parent.frame() else baseenv()) 
+## .Internal(eval(expr, envir, enclos))
+## <bytecode: 0x5c28c1546c10>
+## <environment: namespace:base>
 ```
 
 What to observe

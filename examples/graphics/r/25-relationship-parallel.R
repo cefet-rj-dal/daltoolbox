@@ -2,8 +2,7 @@ source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examp
 # install.packages(c("daltoolbox", "GGally"))
 
 library(daltoolbox)
+library(GGally)
 
-if (requireNamespace("GGally", quietly = TRUE)) {
-  grf <- plot_parallel(datasets::iris, columns = 1:4, group = 5)
-  plot(grf)
-}
+grf <- plot_parallel(datasets::iris, columns = 1:4, group = 5)
+plot(grf)

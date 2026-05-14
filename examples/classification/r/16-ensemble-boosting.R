@@ -2,6 +2,7 @@ source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examp
 # install.packages(c("daltoolbox", "adabag"))
 
 library(daltoolbox)
+library(adabag)
 
 iris <- datasets::iris
 head(iris)
@@ -21,20 +22,14 @@ tbl <- rbind(
 rownames(tbl) <- c("dataset", "training", "test")
 tbl
 
-if (requireNamespace("adabag", quietly = TRUE)) {
-  model <- cla_boosting("Species", mfinal = 20)
-  set_example_seed()
-  model <- fit(model, iris_train)
-}
+model <- cla_boosting("Species", mfinal = 20)
+set_example_seed()
+model <- fit(model, iris_train)
 
-if (requireNamespace("adabag", quietly = TRUE)) {
-  train_prediction <- predict(model, iris_train)
-  train_eval <- evaluate(model, iris_train[, "Species"], train_prediction)
-  train_eval$metrics
-}
+train_prediction <- predict(model, iris_train)
+train_eval <- evaluate(model, iris_train[, "Species"], train_prediction)
+train_eval$metrics
 
-if (requireNamespace("adabag", quietly = TRUE)) {
-  test_prediction <- predict(model, iris_test)
-  test_eval <- evaluate(model, iris_test[, "Species"], test_prediction)
-  test_eval$metrics
-}
+test_prediction <- predict(model, iris_test)
+test_eval <- evaluate(model, iris_test[, "Species"], test_prediction)
+test_eval$metrics

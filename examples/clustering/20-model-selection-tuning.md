@@ -60,40 +60,43 @@ Generate cluster labels with the selected configuration.
 
 ``` r
 clu <- cluster(model, x)
+```
+
+```
+## Error in `cluster.default()`:
+## ! only implemented for resamples objects
+```
+
+``` r
 table(clu)
 ```
 
 ```
-## clu
-##  1  2 
-## 97 53
+## Error:
+## ! object 'clu' not found
 ```
 
 Evaluate the tuned partition.
 
 ``` r
 eval <- evaluate(model, clu, ref)
+```
+
+```
+## Error:
+## ! object 'clu' not found
+```
+
+``` r
 eval
 ```
 
 ```
-## $clusters_entropy
-## # A tibble: 2 × 4
-##   x        ce   qtd   ceg
-##   <fct> <dbl> <int> <dbl>
-## 1 1     0.999    97 0.646
-## 2 2     0.314    53 0.111
-## 
-## $clustering_entropy
-## [1] 0.757101
-## 
-## $data_entropy
-## [1] 1.584963
-## 
-## $metrics
-##       metric     value     goal     type
-## 1 silhouette 0.6810462 maximize internal
-## 2    entropy 0.7571010 minimize external
+## function (expr, envir = parent.frame(), enclos = if (is.list(envir) || 
+##     is.pairlist(envir)) parent.frame() else baseenv()) 
+## .Internal(eval(expr, envir, enclos))
+## <bytecode: 0x5c28c1546c10>
+## <environment: namespace:base>
 ```
 
 What to observe
