@@ -28,7 +28,7 @@ head(cluster_data)
 Apply clustering-based smoothing and inspect bins.
 ```{r}
 # smoothing using class-aware clustering
-obj <- smoothing_cluster("Species", n = 2)
+obj <- smoothing_cluster("Species", n = 3)
 set_example_seed()
 obj <- fit(obj, cluster_data)
 sl.bi <- transform(obj, iris$Sepal.Length)
@@ -45,9 +45,9 @@ print(entro$entropy)
 
 Optimizing the number of binnings
 
-Optimize the number of bins by minimizing conditional entropy (search 1:20) and refit.
+Optimize the number of bins by minimizing conditional entropy (search 1:8) and refit.
 ```{r}
-opt_obj <- smoothing_cluster("Species", n=1:20)
+opt_obj <- smoothing_cluster("Species", n=1:8)
 set_example_seed()
 obj <- fit(opt_obj, cluster_data)
 obj$n
