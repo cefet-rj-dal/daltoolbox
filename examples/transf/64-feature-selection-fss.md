@@ -29,21 +29,22 @@ head(Boston)
 
 
 ``` r
-if (requireNamespace("leaps", quietly = TRUE)) {
-  fs <- feature_selection_fss("medv")
-  set_example_seed()
-  fs <- fit(fs, Boston)
+fs <- feature_selection_fss("medv")
+set_example_seed()
+fs <- fit(fs, Boston)
 
-  print(fs$selected)
-  print(fs$ranking)
-
-  boston_fs <- transform(fs, Boston)
-  head(boston_fs)
-}
+print(fs$selected)
 ```
 
 ```
-##  [1] "crim"    "zn"      "chas"    "nox"     "rm"      "dis"     "rad"     "tax"     "ptratio" "black"   "lstat"  
+##  [1] "crim"    "zn"      "chas"    "nox"     "rm"      "dis"     "rad"     "tax"     "ptratio" "black"   "lstat"
+```
+
+``` r
+print(fs$ranking)
+```
+
+```
 ##    feature score
 ## 1     crim     1
 ## 2       zn     2
@@ -56,6 +57,11 @@ if (requireNamespace("leaps", quietly = TRUE)) {
 ## 9  ptratio     9
 ## 10   black    10
 ## 11   lstat    11
+```
+
+``` r
+boston_fs <- transform(fs, Boston)
+head(boston_fs)
 ```
 
 ```

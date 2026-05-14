@@ -41,7 +41,7 @@ Apply clustering-based smoothing and inspect bins.
 
 ``` r
 # smoothing using class-aware clustering
-obj <- smoothing_cluster("Species", n = 2)
+obj <- smoothing_cluster("Species", n = 3)
 set_example_seed()
 obj <- fit(obj, cluster_data)
 sl.bi <- transform(obj, iris$Sepal.Length)
@@ -50,8 +50,8 @@ print(table(sl.bi))
 
 ```
 ## sl.bi
-## 5.07230769230769 6.43294117647059 
-##               65               85
+## 4.95384615384615 5.81702127659574 6.77450980392157 
+##               52               47               51
 ```
 
 ``` r
@@ -59,7 +59,7 @@ obj$interval
 ```
 
 ```
-## [1] 4.300000 5.682824 7.900000
+## [1] 4.300000 5.469961 6.279224 7.900000
 ```
 
 Evaluate conditional entropy between bins and species.
@@ -71,22 +71,22 @@ print(entro$entropy)
 ```
 
 ```
-## [1] 1.089198
+## [1] 0.9083361
 ```
 
 Optimizing the number of binnings
 
-Optimize the number of bins by minimizing conditional entropy (search 1:20) and refit.
+Optimize the number of bins by minimizing conditional entropy (search 1:8) and refit.
 
 ``` r
-opt_obj <- smoothing_cluster("Species", n=1:20)
+opt_obj <- smoothing_cluster("Species", n=1:8)
 set_example_seed()
 obj <- fit(opt_obj, cluster_data)
 obj$n
 ```
 
 ```
-## [1] 19
+## [1] 8
 ```
 
 
@@ -99,12 +99,10 @@ print(table(sl.bi))
 
 ```
 ## sl.bi
-## 4.48888888888889 4.83076923076923                5 5.13076923076923 5.38571428571429              5.5 5.65714285714286 
-##                9               13               10               13                7                7               14 
-##             5.83                6              6.1              6.2              6.3              6.4              6.5 
-##               10                6                6                4                9                7                5 
-##              6.6 6.72727272727273             6.92              7.2 7.67142857142857 
-##                2               11                5                5                7
+##           4.6125            5.012 5.31818181818182  5.6047619047619             5.95            6.315 6.70869565217391 
+##               16               25               11               21               22               20               23 
+##            7.475 
+##               12
 ```
 
 References
