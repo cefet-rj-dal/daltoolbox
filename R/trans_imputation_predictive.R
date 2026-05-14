@@ -9,7 +9,10 @@
 #'@return returns an object of class `imputation_predictive`
 #'@examples
 #'data(iris)
-#'imp <- imputation_predictive("Sepal.Length", sources = c("Sepal.Width", "Petal.Length", "Petal.Width", "Species"))
+#'imp <- imputation_predictive(
+#'  "Sepal.Length",
+#'  sources = c("Sepal.Width", "Petal.Length", "Petal.Width", "Species")
+#')
 #'class(imp)
 #'@export
 imputation_predictive <- function(target, sources = NULL, method = c("median", "mean")) {
@@ -50,7 +53,7 @@ imputation_predictive_resolve <- function(obj, data) {
 
   target_kind <- imputation_simple_kind(data[[target]])
   source_kinds <- vapply(data[, sources, drop = FALSE], imputation_simple_kind, character(1))
-  all_kinds <- c(setNames(target_kind, target), source_kinds)
+  all_kinds <- c(base::setNames(target_kind, target), source_kinds)
   levels_map <- lapply(c(target, sources), function(col) {
     imputation_tree_get_levels(data[[col]], all_kinds[[col]])
   })

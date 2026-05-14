@@ -26,6 +26,9 @@ Missing values in source columns can be pre-imputed by a simpler method before f
 }
 \examples{
 data(iris)
-imp <- imputation_predictive("Sepal.Length", sources = c("Sepal.Width", "Petal.Length", "Petal.Width", "Species"))
+imp <- imputation_predictive(
+  "Sepal.Length",
+  sources = c("Sepal.Width", "Petal.Length", "Petal.Width", "Species")
+)
 class(imp)
 }

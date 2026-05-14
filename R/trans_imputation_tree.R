@@ -103,7 +103,7 @@ fit.imputation_tree <- function(obj, data, ...) {
     stop("imputation_tree: target has no observed values for model fitting.", call. = FALSE)
   }
 
-  train_kinds <- c(setNames(target_kind, target), source_kinds)
+  train_kinds <- c(base::setNames(target_kind, target), source_kinds)
   train_frame <- work[observed, c(target, sources), drop = FALSE]
   train_frame <- imputation_tree_prepare_frame(train_frame, c(target, sources), train_kinds, levels_map)
 
