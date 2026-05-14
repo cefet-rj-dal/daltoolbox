@@ -22,17 +22,6 @@ library(mclust)
 ## Type 'citation("mclust")' for citing this R package in publications.
 ```
 
-```
-## 
-## Attaching package: 'mclust'
-```
-
-```
-## The following object is masked from 'package:dplyr':
-## 
-##     count
-```
-
 Load data and separate predictors from the reference labels used only for interpretation.
 
 ``` r
@@ -138,7 +127,7 @@ eval
 ## function (expr, envir = parent.frame(), enclos = if (is.list(envir) || 
 ##     is.pairlist(envir)) parent.frame() else baseenv()) 
 ## .Internal(eval(expr, envir, enclos))
-## <bytecode: 0x5c28c1546c10>
+## <bytecode: 0x57adf7f87c10>
 ## <environment: namespace:base>
 ```
 

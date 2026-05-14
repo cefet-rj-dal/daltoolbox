@@ -22,6 +22,10 @@ library(adabag)
 ```
 
 ```
+## Loading required package: ggplot2
+```
+
+```
 ## Loading required package: lattice
 ```
 
