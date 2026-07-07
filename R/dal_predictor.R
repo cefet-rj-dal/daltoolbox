@@ -13,12 +13,25 @@ predictor <- function() {
   return(obj)
 }
 
+#'@title Prepare predictor fit data
+#'@description Normalizes supervised fit input and records predictor columns by
+#' removing the target attribute from the data columns.
+#'@param obj predictor-like object containing `attribute`
+#'@param data training data
+#'@return returns a list with the updated object and normalized data
 #'@export
-#'@exportS3Method fit predictor
-fit.predictor <- function(obj, data, ...) {
-  # capture feature names by removing target attribute from columns
+predictor_prepare_fit <- function(obj, data) {
+  if (is.data.frame(data) || is.matrix(data)) {
+    data <- adjust_data.frame(data)
+  }
   obj$x <- setdiff(colnames(data), obj$attribute)
-  return(obj)
+  list(obj = obj, data = data)
+}
+
+#' @method fit predictor
+#' @export
+fit.predictor <- function(obj, data, ...) {
+  predictor_prepare_fit(obj, data)$obj
 }
 
 #'@exportS3Method action predictor
