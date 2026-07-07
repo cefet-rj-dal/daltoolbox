@@ -20,6 +20,20 @@ Model-based clustering using \code{mclust::Mclust}.
 \details{
 Fits a Gaussian mixture model and returns the MAP classification.
 The fitted model is stored in \code{obj$model}. Requires the \code{mclust} package.
+
+The base \code{clusterer()} uses \code{wcss} as a generic default, but
+\code{cluster_gmm()} specializes that choice because GMM is a probabilistic model
+with an explicit likelihood function.
+
+Default evaluation in \code{cluster_gmm()} is:
+\itemize{
+\item main metric: \code{metric_loglik()}
+\item internal evaluation: \code{loglik}
+\item external evaluation: \code{entropy}, \code{purity}, \code{adjusted_rand_index}
+}
+
+The general \code{wcss} fallback is not used as the main metric because it does
+not represent the fit criterion optimized by the mixture model.
 }
 \examples{
 if (requireNamespace("mclust", quietly = TRUE)) {
@@ -32,4 +46,5 @@ if (requireNamespace("mclust", quietly = TRUE)) {
 }
 \references{
 Fraley, C., & Raftery, A. E. (2002). Model-based clustering. \emph{JASA}.
+Banfield, J. D., & Raftery, A. E. (1993). Model-based Gaussian and non-Gaussian clustering.
 }

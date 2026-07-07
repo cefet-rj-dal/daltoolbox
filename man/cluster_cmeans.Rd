@@ -24,6 +24,21 @@ Fuzzy c-means clustering using \code{e1071::cmeans}.
 \details{
 Produces soft membership for each cluster. The hard assignment is returned by \code{cluster()}.
 Membership degrees are returned in the \code{membership} attribute.
+
+The base \code{clusterer()} uses \code{wcss} as a generic default, but
+\code{cluster_cmeans()} specializes that choice because fuzzy clustering carries
+both a hard partition view and a soft membership structure.
+
+Default evaluation in \code{cluster_cmeans()} is:
+\itemize{
+\item main metric: \code{metric_silhouette()}
+\item internal evaluation: \code{silhouette}, \code{withinerror}
+\item external evaluation: \code{entropy}, \code{purity}, \code{adjusted_rand_index}
+}
+
+The generic \code{wcss} fallback is not used as the main metric because fuzzy
+c-means is better summarized by a partition quality index plus a criterion
+that respects the model's own within-cluster objective.
 }
 \examples{
 data(iris)
@@ -34,4 +49,5 @@ table(clu)
 }
 \references{
 Bezdek, J. C. (1981). Pattern Recognition with Fuzzy Objective Function Algorithms.
+Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
 }

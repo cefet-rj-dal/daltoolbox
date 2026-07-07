@@ -18,6 +18,23 @@ Graph community detection using \code{igraph::cluster_louvain}.
 \details{
 Accepts an \code{igraph} object and returns community memberships.
 Requires the \code{igraph} package.
+
+The base \code{clusterer()} uses \code{wcss} and \code{entropy} as generic defaults, but
+\code{cluster_louvain_graph()} specializes both because graph community detection
+is not a point-to-centroid clustering problem.
+
+Default evaluation in \code{cluster_louvain_graph()} is:
+\itemize{
+\item main metric: \code{metric_modularity()}
+\item internal evaluation: \code{modularity}
+\item external evaluation: none
+}
+
+The general \code{wcss} fallback is not used because graph communities are judged
+by network connectivity structure, not by geometric dispersion. The generic
+external \code{entropy} default is also not kept because this class operates on an
+\code{igraph} object and has no natural reference labels unless the user supplies
+an external comparison separately.
 }
 \examples{
 if (requireNamespace("igraph", quietly = TRUE)) {
@@ -31,4 +48,5 @@ if (requireNamespace("igraph", quietly = TRUE)) {
 \references{
 Blondel, V. D., Guillaume, J.-L., Lambiotte, R., & Lefebvre, E. (2008).
 Fast unfolding of communities in large networks. \emph{J. Statistical Mechanics}.
+Newman, M. E. J. (2006). Modularity and community structure in networks.
 }

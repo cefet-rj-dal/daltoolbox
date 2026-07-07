@@ -2,21 +2,29 @@
 % Please edit documentation in R/trans_sample_strat.R
 \name{sample_stratified}
 \alias{sample_stratified}
-\title{Stratified sampling}
+\title{Stratified Sampling}
 \usage{
 sample_stratified(attribute)
 }
 \arguments{
-\item{attribute}{attribute target to model building}
+\item{attribute}{Name of the target attribute whose class proportions should
+be preserved.}
 }
 \value{
-returns an object of class \code{sample_stratified}
+An object of class \code{sample_stratified}.
 }
 \description{
-Train/test split and k‑fold partitioning that preserve the target class proportions (strata).
+Train/test split and k-fold partitioning that preserve the
+target class proportions.
+}
+\details{
+Use this sampler when the response distribution matters, especially
+in imbalanced classification problems. Compared with simple random
+sampling, it reduces the chance that one split will overrepresent or
+underrepresent a class by accident.
 }
 \examples{
-#using stratified sampling
+# using stratified sampling
 sample <- sample_stratified("Species")
 tt <- train_test(sample, iris)
 
@@ -29,7 +37,7 @@ folds <- k_fold(sample, iris, 4)
 # distribution of folds
 tbl <- NULL
 for (f in folds) {
- tbl <- rbind(tbl, table(f$Species))
+  tbl <- rbind(tbl, table(f$Species))
 }
 head(tbl)
 }

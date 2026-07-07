@@ -7,12 +7,12 @@
 discover(obj, ...)
 }
 \arguments{
-\item{obj}{a \code{pattern_miner} object}
+\item{obj}{A \code{pattern_miner} object.}
 
-\item{...}{optional arguments}
+\item{...}{Optional arguments passed to the concrete discovery method.}
 }
 \value{
-discovered patterns
+Discovered patterns in the representation used by the mining engine.
 }
 \description{
 Generic for pattern discovery.

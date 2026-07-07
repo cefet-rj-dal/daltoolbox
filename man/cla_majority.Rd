@@ -2,21 +2,26 @@
 % Please edit documentation in R/cla_majority.R
 \name{cla_majority}
 \alias{cla_majority}
-\title{Majority baseline classifier}
+\title{Majority Baseline Classifier}
 \usage{
 cla_majority(attribute, slevels)
 }
 \arguments{
-\item{attribute}{attribute target to model building.}
+\item{attribute}{Name of the target attribute to predict.}
 
-\item{slevels}{possible values for the target classification.}
+\item{slevels}{Possible class labels for the target classification problem.}
 }
 \value{
-returns a classification object.
+A classification object of class \code{cla_majority}.
 }
 \description{
-Trivial classifier that always predicts the most frequent class observed in the training data.
-Useful as a baseline.
+Trivial classifier that always predicts the most frequent class
+observed in the training data.
+}
+\details{
+Useful as a minimum reference point. If a stronger classifier does
+not outperform this learner, it is often worth revisiting the predictors,
+the sampling strategy, or the evaluation protocol before tuning models.
 }
 \examples{
 data(iris)
@@ -32,7 +37,12 @@ test <- sr$test
 model <- fit(model, train)
 
 prediction <- predict(model, test)
-predictand <- adjust_class_label(test[,"Species"])
+predictand <- adjust_class_label(test[, "Species"])
 test_eval <- evaluate(model, predictand, prediction)
 test_eval$metrics
+}
+\references{
+Witten, I. H., Frank, E., Hall, M. A., and Pal, C. J. (2016).
+Data Mining: Practical Machine Learning Tools and Techniques (4th ed.).
+Morgan Kaufmann.
 }

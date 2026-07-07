@@ -21,6 +21,24 @@ goal is to standardize future implementations around:
 \item \code{cluster()} producing labels from a fitted model
 \item configurable internal/external metrics and selection helpers via \code{cluutils()}
 }
+
+The base defaults are intentionally generic:
+\itemize{
+\item \code{metric = metric_wcss()}
+\item \code{eval_internal = list(metric_wcss)}
+\item \code{eval_external = list(metric_entropy)}
+}
+
+These defaults provide a common contract for simple partition-based clustering,
+but they are not imposed on all subclasses. Concrete clustering methods can
+replace them when another metric is more faithful to the algorithm. For
+example, centroid and medoid methods often prefer separation-based indices
+such as silhouette, density-based methods may prefer counting noise points,
+mixture models naturally expose log-likelihood, and graph community detection
+is better described by modularity.
+
+Therefore, users should treat the \code{clusterer()} defaults as a shared fallback,
+not as the final evaluation policy for every \verb{cluster_*} implementation.
 }
 \examples{
 #See ?cluster_kmeans for an example of transformation

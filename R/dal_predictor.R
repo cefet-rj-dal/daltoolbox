@@ -13,6 +13,7 @@ predictor <- function() {
   return(obj)
 }
 
+#'@export
 #'@exportS3Method fit predictor
 fit.predictor <- function(obj, data, ...) {
   # capture feature names by removing target attribute from columns

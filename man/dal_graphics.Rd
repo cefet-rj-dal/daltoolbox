@@ -2,21 +2,33 @@
 % Please edit documentation in R/graphics_dal_graphics.R
 \name{dal_graphics}
 \alias{dal_graphics}
-\title{Graphics utilities}
+\title{Graphics Utilities}
 \description{
-A collection of small plotting helpers built on ggplot2 used across the package
-to quickly visualize vectors, grouped summaries and time series. All functions return a
-\code{ggplot2::ggplot} object so you can further customize the theme, scales, and annotations.
+A collection of small plotting helpers built on ggplot2 used
+across the package to quickly visualize vectors, grouped summaries, and
+time series.
 }
 \details{
+All functions return a \code{ggplot2::ggplot} object so the result can be
+extended with themes, scales, labels, and annotations.
+
 Conventions adopted:
 \itemize{
-\item Input data generally follows the pattern: first column is an index or category (x), remaining columns
-are numeric series; in some functions a long format is expected with columns named \code{x}, \code{value}, \code{variable}.
-\item The \code{colors} parameter accepts either a single color or a vector mapped to groups/variables.
+\item Input data generally follows the pattern: first column is an index or
+category (\code{x}), remaining columns are numeric series.
+\item Some functions expect a long format with columns named \code{x}, \code{value}, and
+\code{variable}.
+\item The \code{colors} parameter accepts either a single color or a vector mapped to
+groups or variables.
 \item Transparency is controlled by \code{alpha} where provided.
-\item All helpers set a light \code{theme_bw()} baseline and place legends at the bottom by default.
+\item All helpers set a light \code{theme_bw()} baseline and place legends at the
+bottom by default.
 }
+}
+\examples{
+data <- data.frame(group = c("A", "B"), value = c(2, 5))
+grf <- plot_bar(data)
+plot(grf)
 }
 \seealso{
 ggplot2

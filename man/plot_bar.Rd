@@ -2,38 +2,46 @@
 % Please edit documentation in R/grf_bar.R
 \name{plot_bar}
 \alias{plot_bar}
-\title{Plot bar graph}
+\title{Plot Bar Graph}
 \usage{
 plot_bar(data, label_x = "", label_y = "", colors = NULL, alpha = 1)
 }
 \arguments{
-\item{data}{two‑column data.frame: category in the first column, numeric values in the second}
+\item{data}{Two-column data frame: category in the first column, numeric
+values in the second.}
 
-\item{label_x}{x‑axis label}
+\item{label_x}{Label for the x-axis.}
 
-\item{label_y}{y‑axis label}
+\item{label_y}{Label for the y-axis.}
 
-\item{colors}{optional fill color (single value)}
+\item{colors}{Optional fill color.}
 
-\item{alpha}{bar transparency (0–1)}
+\item{alpha}{Bar transparency between 0 and 1.}
 }
 \value{
-returns a ggplot2::ggplot graphic
+A \code{ggplot2::ggplot} object.
 }
 \description{
-Draw a simple bar chart from a two‑column data.frame: first column as categories (x), second as values.
+Draw a simple bar chart from a two-column data frame: first
+column as categories (\code{x}), second as values (\code{y}).
 }
 \details{
-If \code{colors} is provided, a constant fill is used; otherwise ggplot2's default palette applies.
-\code{alpha} controls bar transparency. The first column is coerced to factor when needed.
+If \code{colors} is provided, a constant fill is used; otherwise
+ggplot2's default palette applies. \code{alpha} controls bar transparency. The
+first column is coerced to factor when needed, which makes the function
+convenient for quick summaries of grouped values.
 }
 \examples{
-#summarizing iris dataset
-data <- iris |> dplyr::group_by(Species) |>
-dplyr::summarize(Sepal.Length=mean(Sepal.Length))
+# summarizing iris dataset
+data <- iris |>
+  dplyr::group_by(Species) |>
+  dplyr::summarize(Sepal.Length = mean(Sepal.Length))
 head(data)
 
 # plotting data
-grf <- plot_bar(data, colors="blue")
+grf <- plot_bar(data, colors = "blue")
 plot(grf)
+}
+\references{
+Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
 }

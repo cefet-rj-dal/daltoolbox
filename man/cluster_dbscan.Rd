@@ -20,6 +20,21 @@ Density-Based Spatial Clustering of Applications with Noise using \code{dbscan::
 \details{
 Discovers clusters as dense regions separated by sparse areas. Hyperparameters are \code{eps} (neighborhood radius)
 and \code{minPts} (minimum points). If \code{eps} is missing, it is estimated from the kNN distance curve elbow.
+
+The base \code{clusterer()} uses \code{wcss} as a generic default, but
+\code{cluster_dbscan()} specializes that choice because DBSCAN does not force a
+centroid-based partition and can label observations as noise.
+
+Default evaluation in \code{cluster_dbscan()} is:
+\itemize{
+\item main metric: \code{metric_noise_points()}
+\item internal evaluation: \code{noise_points}
+\item external evaluation: \code{entropy}, \code{purity}, \code{adjusted_rand_index}
+}
+
+The general \code{wcss} fallback is not used as the main metric because it ignores
+the central modeling choice of DBSCAN: distinguishing dense clusters from
+sparse or noisy observations.
 }
 \examples{
 # setup clustering
@@ -39,4 +54,5 @@ eval
 }
 \references{
 Ester, M., Kriegel, H.-P., Sander, J., Xu, X. (1996). A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases with Noise.
+Zhao, Y., & Karypis, G. (2001). Criterion functions for document clustering.
 }

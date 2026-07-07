@@ -2,32 +2,37 @@
 % Please edit documentation in R/trans_sample_random.R
 \name{train_test_from_folds}
 \alias{train_test_from_folds}
-\title{k-fold training and test partition object}
+\title{k-Fold Training and Test Partition Object}
 \usage{
 train_test_from_folds(folds, k)
 }
 \arguments{
-\item{folds}{data partitioned into folds}
+\item{folds}{Data already partitioned into folds.}
 
-\item{k}{k-fold for test set, all reminder for training set}
+\item{k}{Fold index to be used as the test set.}
 }
 \value{
-returns a list with two elements:
+A list with two elements:
 \itemize{
-\item train: A data frame containing the combined data from all folds except the k-th fold, used as the training set.
-\item test: A data frame corresponding to the k-th fold, used as the test set.
+\item train: data frame containing all folds except the k-th.
+\item test: data frame corresponding to the k-th fold.
 }
 }
 \description{
-Splits a dataset into training and test sets based on k-fold cross-validation.
-The function takes a list of data partitions (folds) and a specified fold index k.
-It returns the data corresponding to the k-th fold as the test set, and combines all other folds to form the training set.
+Build one train/test split from a list of folds produced by
+cross-validation.
+}
+\details{
+The k-th fold is returned as the test set and all remaining folds
+are concatenated into the training set. This helper makes manual
+cross-validation loops easier to explain and reproduce.
 }
 \examples{
 # Create k-fold partitions of a dataset (e.g., iris)
 folds <- k_fold(sample_random(), iris, k = 5)
 
-# Use the first fold as the test set and combine the remaining folds for the training set
+# Use the first fold as the test set and combine the remaining folds
+# for the training set
 train_test_split <- train_test_from_folds(folds, k = 1)
 
 # Display the training set

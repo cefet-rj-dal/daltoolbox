@@ -2,18 +2,25 @@
 % Please edit documentation in R/trans_sample_random.R
 \name{sample_random}
 \alias{sample_random}
-\title{Random sampling}
+\title{Random Sampling}
 \usage{
 sample_random()
 }
 \value{
-returns an object of class `sample_random
+An object of class \code{sample_random}.
 }
 \description{
-Train/test split and k‑fold partitioning by simple random sampling.
+Train/test split and k-fold partitioning by simple random
+sampling.
+}
+\details{
+This is the simplest partitioning strategy in \code{daltoolbox}. It is a
+good starting point when the dataset is reasonably balanced and the user
+wants to understand the train/test workflow before moving to stratified or
+more specialized sampling schemes.
 }
 \examples{
-#using random sampling
+# using random sampling
 sample <- sample_random()
 tt <- train_test(sample, iris)
 
@@ -26,7 +33,7 @@ folds <- k_fold(sample, iris, 4)
 # distribution of folds
 tbl <- NULL
 for (f in folds) {
- tbl <- rbind(tbl, table(f$Species))
+  tbl <- rbind(tbl, table(f$Species))
 }
 head(tbl)
 }

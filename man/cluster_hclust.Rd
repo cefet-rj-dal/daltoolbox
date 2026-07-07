@@ -33,6 +33,21 @@ Agglomerative hierarchical clustering using \code{stats::hclust}.
 \details{
 Computes a distance matrix (optionally after scaling) and builds a dendrogram. Clusters are
 obtained by cutting the tree with \code{k} (number of clusters) or \code{h} (height).
+
+The base \code{clusterer()} uses \code{wcss} as a generic default, but
+\code{cluster_hclust()} specializes that choice because a hierarchical partition
+is obtained from a dendrogram and is better judged through
+separation/cohesion indices than through a centroid-style fallback alone.
+
+Default evaluation in \code{cluster_hclust()} is:
+\itemize{
+\item main metric: \code{metric_silhouette()}
+\item internal evaluation: \code{silhouette}, \code{davies_bouldin}, \code{calinski_harabasz}
+\item external evaluation: \code{entropy}, \code{purity}, \code{adjusted_rand_index}
+}
+
+The general \code{wcss} fallback is not kept as the main metric because the method
+is not fitted by directly minimizing that criterion.
 }
 \examples{
 data(iris)
@@ -43,4 +58,7 @@ table(clu)
 }
 \references{
 Johnson, S. C. (1967). Hierarchical clustering schemes. Psychometrika.
+Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
+Davies, D. L., & Bouldin, D. W. (1979). A cluster separation measure.
+Calinski, T., & Harabasz, J. (1974). A dendrite method for cluster analysis.
 }

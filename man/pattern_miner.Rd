@@ -2,12 +2,12 @@
 % Please edit documentation in R/pat_pattern_miner.R
 \name{pattern_miner}
 \alias{pattern_miner}
-\title{Pattern miner}
+\title{Pattern Miner}
 \usage{
 pattern_miner()
 }
 \value{
-returns a \code{pattern_miner} object
+A \code{pattern_miner} object.
 }
 \description{
 Base class for frequent pattern and sequence mining.
@@ -23,4 +23,8 @@ Pattern miners follow a lightweight Experiment Line:
 Different miners may normalize their inputs differently (for example, item
 transactions versus sequence transactions), but the base contract remains the
 same.
+}
+\examples{
+miner <- pattern_miner()
+class(miner)
 }

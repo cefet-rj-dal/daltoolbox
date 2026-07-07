@@ -17,6 +17,21 @@ Clustering around representative data points (medoids) using \code{cluster::pam}
 }
 \details{
 More robust to outliers than k‑means. The intrinsic metric reported is the within‑cluster SSE to medoids.
+
+The base \code{clusterer()} uses \code{wcss} as a generic default, but
+\code{cluster_pam()} specializes that choice because PAM is commonly compared
+through partition quality indices that balance cohesion and separation.
+
+Default evaluation in \code{cluster_pam()} is:
+\itemize{
+\item main metric: \code{metric_silhouette()}
+\item internal evaluation: \code{silhouette}, \code{davies_bouldin}, \code{calinski_harabasz}
+\item external evaluation: \code{entropy}, \code{purity}, \code{adjusted_rand_index}
+}
+
+The generic \code{wcss} fallback is not used as the main metric because PAM is not
+optimized around centroids and is usually interpreted through medoid-based
+partition quality rather than only through within-cluster dispersion.
 }
 \examples{
 # setup clustering
@@ -36,4 +51,7 @@ eval
 }
 \references{
 Kaufman, L. and Rousseeuw, P. J. (1990). Finding Groups in Data: An Introduction to Cluster Analysis.
+Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
+Davies, D. L., & Bouldin, D. W. (1979). A cluster separation measure.
+Calinski, T., & Harabasz, J. (1974). A dendrite method for cluster analysis.
 }
