@@ -119,10 +119,9 @@ grep("^metric_", names(model_custom$clu_utils), value = TRUE)
 ```
 
 ```
-##  [1] "metric_result"              "metric_from_attr"           "metric_wcss"                "metric_silhouette"         
-##  [5] "metric_davies_bouldin"      "metric_calinski_harabasz"   "metric_entropy"             "metric_purity"             
-##  [9] "metric_rand_index"          "metric_adjusted_rand_index" "metric_noise_points"        "metric_loglik"             
-## [13] "metric_withinerror"         "metric_modularity"
+##  [1] "metric_result"              "metric_from_attr"           "metric_wcss"                "metric_silhouette"          "metric_davies_bouldin"     
+##  [6] "metric_calinski_harabasz"   "metric_entropy"             "metric_purity"              "metric_rand_index"          "metric_adjusted_rand_index"
+## [11] "metric_noise_points"        "metric_loglik"              "metric_withinerror"         "metric_modularity"
 ```
 
 What to observe

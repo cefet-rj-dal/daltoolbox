@@ -107,7 +107,20 @@ grfn <- plot_hist(example |> dplyr::select(normal),
 
 ``` r
 library(gridExtra)  
+```
 
+```
+## 
+## Attaching package: 'gridExtra'
+```
+
+```
+## The following object is masked from 'package:dplyr':
+## 
+##     combine
+```
+
+``` r
 options(repr.plot.width=18, repr.plot.height=3.2)
 grid.arrange(grfe, grfu, grfn, ncol=3)
 ```

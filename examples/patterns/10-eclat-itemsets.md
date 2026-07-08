@@ -26,10 +26,10 @@ summary(trans)
 ##  114 columns (items) and a density of 0.1274938 
 ## 
 ## most frequent items:
-##       capital-gain=[0,1e+05]    capital-loss=[0,4.36e+03] native-country=United-States                   race=White 
-##                        48842                        48842                        43832                        41762 
-##       hours-per-week=[40,99]                      (Other) 
-##                        37155                       489451 
+##       capital-gain=[0,1e+05]    capital-loss=[0,4.36e+03] native-country=United-States                   race=White       hours-per-week=[40,99] 
+##                        48842                        48842                        43832                        41762                        37155 
+##                      (Other) 
+##                       489451 
 ## 
 ## element (itemset/transaction) length distribution:
 ## sizes

@@ -26,10 +26,10 @@ summary(trans)
 ##  114 columns (items) and a density of 0.1274938 
 ## 
 ## most frequent items:
-##       capital-gain=[0,1e+05]    capital-loss=[0,4.36e+03] native-country=United-States                   race=White 
-##                        48842                        48842                        43832                        41762 
-##       hours-per-week=[40,99]                      (Other) 
-##                        37155                       489451 
+##       capital-gain=[0,1e+05]    capital-loss=[0,4.36e+03] native-country=United-States                   race=White       hours-per-week=[40,99] 
+##                        48842                        48842                        43832                        41762                        37155 
+##                      (Other) 
+##                       489451 
 ## 
 ## element (itemset/transaction) length distribution:
 ## sizes
@@ -106,20 +106,13 @@ arules::inspect(rules[head(ord, 6)])
 ```
 
 ```
-##     lhs                                         rhs                            support   confidence coverage  lift    
-## [1] {fnlwgt=[1.23e+04,1.41e+05), race=White} => {native-country=United-States} 0.2746612 0.9513510  0.2887064 1.060090
-## [2] {education=HS-grad, race=White}          => {native-country=United-States} 0.2578314 0.9406887  0.2740879 1.048210
-## [3] {education-num=[9,10), race=White}       => {native-country=United-States} 0.2578314 0.9406887  0.2740879 1.048210
-## [4] {education-num=[10,16], race=White}      => {native-country=United-States} 0.4448016 0.9398252  0.4732812 1.047247
-## [5] {fnlwgt=[1.41e+05,2.11e+05), race=White} => {native-country=United-States} 0.2713648 0.9293878  0.2919823 1.035617
-## [6] {relationship=Not-in-family, race=White} => {native-country=United-States} 0.2053560 0.9282739  0.2212235 1.034376
-##     count
-## [1] 13415
-## [2] 12593
-## [3] 12593
-## [4] 21725
-## [5] 13254
-## [6] 10030
+##     lhs                                         rhs                            support   confidence coverage  lift     count
+## [1] {fnlwgt=[1.23e+04,1.41e+05), race=White} => {native-country=United-States} 0.2746612 0.9513510  0.2887064 1.060090 13415
+## [2] {education=HS-grad, race=White}          => {native-country=United-States} 0.2578314 0.9406887  0.2740879 1.048210 12593
+## [3] {education-num=[9,10), race=White}       => {native-country=United-States} 0.2578314 0.9406887  0.2740879 1.048210 12593
+## [4] {education-num=[10,16], race=White}      => {native-country=United-States} 0.4448016 0.9398252  0.4732812 1.047247 21725
+## [5] {fnlwgt=[1.41e+05,2.11e+05), race=White} => {native-country=United-States} 0.2713648 0.9293878  0.2919823 1.035617 13254
+## [6] {relationship=Not-in-family, race=White} => {native-country=United-States} 0.2053560 0.9282739  0.2212235 1.034376 10030
 ```
 
 What to observe

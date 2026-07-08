@@ -13,6 +13,60 @@ library(daltoolbox)
 library(adabag)
 ```
 
+```
+## Loading required package: rpart
+```
+
+```
+## Loading required package: caret
+```
+
+```
+## Loading required package: ggplot2
+```
+
+```
+## Loading required package: lattice
+```
+
+```
+## 
+## Attaching package: 'caret'
+```
+
+```
+## The following object is masked from 'package:daltoolbox':
+## 
+##     cluster
+```
+
+```
+## Loading required package: foreach
+```
+
+```
+## Loading required package: doParallel
+```
+
+```
+## Loading required package: iterators
+```
+
+```
+## Loading required package: parallel
+```
+
+```
+## 
+## Attaching package: 'adabag'
+```
+
+```
+## The following object is masked from 'package:ipred':
+## 
+##     bagging
+```
+
 Load data and inspect.
 
 ``` r

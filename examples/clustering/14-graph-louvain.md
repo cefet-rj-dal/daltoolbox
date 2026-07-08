@@ -13,6 +13,29 @@ library(daltoolbox)
 library(igraph)
 ```
 
+```
+## 
+## Attaching package: 'igraph'
+```
+
+```
+## The following object is masked from 'package:daltoolbox':
+## 
+##     plot_dendrogram
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     decompose, spectrum
+```
+
+```
+## The following object is masked from 'package:base':
+## 
+##     union
+```
+
 Create a graph for the example.
 
 ``` r
@@ -22,11 +45,11 @@ g
 ```
 
 ```
-## IGRAPH 84eb31d U--- 20 28 -- Erdos-Renyi (gnp) graph
+## IGRAPH 9fefab0 U--- 20 28 -- Erdos-Renyi (gnp) graph
 ## + attr: name (g/c), type (g/c), loops (g/l), p (g/n)
-## + edges from 84eb31d:
-##  [1]  2-- 3  2-- 4  1-- 5  4-- 5  1-- 7  6-- 7  4-- 8  5-- 8  1-- 9  5-- 9  6-- 9  7-- 9  7--11  4--12  6--14 13--14  2--15
-## [18]  8--15  9--15 13--15  8--16  9--16 11--16  3--17  5--17  3--18 17--18  8--19
+## + edges from 9fefab0:
+##  [1]  2-- 3  2-- 4  1-- 5  4-- 5  1-- 7  6-- 7  4-- 8  5-- 8  1-- 9  5-- 9  6-- 9  7-- 9  7--11  4--12  6--14 13--14  2--15  8--15  9--15 13--15  8--16  9--16
+## [23] 11--16  3--17  5--17  3--18 17--18  8--19
 ```
 
 Model configuration.
