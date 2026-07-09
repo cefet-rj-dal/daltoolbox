@@ -2,26 +2,26 @@
 knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 ```
 
-# Mineração de Padrões
+# Pattern Mining
 
-## Visão Geral
-A mineração de padrões frequentes busca regularidades em dados transacionais e sequenciais. A partir de padrões frequentes, derivam-se regras de associação com medidas como suporte, confiança e lift.  
+## Overview
+Frequent pattern mining looks for regularities in transactional and sequential data. From frequent patterns, association rules can be derived with measures such as support, confidence, and lift.  
 Slides: 1–5.
 
-## Como ler este roteiro
-O fluxo está organizado em quatro passos:
-1. preparar dados transacionais;
-2. minerar itemsets e regras;
-3. reduzir redundância e priorizar padrões úteis;
-4. avançar para sequências e grafos.
-Em cada etapa, compare sempre volume de padrões versus interpretabilidade.
+## How to read this guide
+The flow is organized in four steps:
+1. prepare transactional data;
+2. mine itemsets and rules;
+3. reduce redundancy and prioritize useful patterns;
+4. move on to sequences and graphs.
+At each step, compare pattern volume against interpretability.
 
-## Configuração
+## Setup
 
-Nesta abertura, carregamos pacotes para mineração, visualização e variantes estruturadas (sequências/grafos).
+In this opening section, we load packages for mining, visualization, and structured variants (sequences/graphs).
 
 ```{r}
-# Slides 1–3: contexto
+# Slides 1–3: context
 # DAL ToolBox
 # version 1.0.77
 
@@ -33,24 +33,24 @@ library(arulesSequences)
 library(igraph)
 ```
 
-Antes de minerar, inspecionamos dimensão e amostra dos dados para entender cardinalidade e tipos de atributos.
+Before mining, inspect data size and a sample of the rows to understand cardinality and attribute types.
 
 ```{r}
-# Slide 2–4: exemplo transacional
+# Slide 2–4: transactional example
 data(AdultUCI)
 myAdultUCI <- as.data.frame(AdultUCI)
 dim(myAdultUCI)
 head(myAdultUCI)
 ```
 
-## Pré-processamento e Hierarquias Conceituais
-A discretização e a criação de níveis agregados ajudam a reduzir a cardinalidade e a revelar padrões em diferentes granularidades.  
+## Preprocessing and Concept Hierarchies
+Discretization and the creation of aggregated levels help reduce cardinality and reveal patterns at different granularities.  
 Slides: 5–9.
 
-Começamos com limpeza mínima para evitar que ruído estrutural distorça suporte e confiança.
+We start with minimal cleaning to prevent structural noise from distorting support and confidence.
 
 ```{r}
-# Limpeza básica e remoção de atributos
+# Basic cleaning and attribute removal
 na_obj <- na_removal()
 myAdultUCI <- transform(na_obj, myAdultUCI)
 
@@ -58,10 +58,10 @@ myAdultUCI$fnlwgt <- NULL
 myAdultUCI$"education-num" <- NULL
 ```
 
-Na sequência, aplicamos hierarquia conceitual e binning para elevar interpretabilidade sem perder padrão global.
+Next, we apply concept hierarchies and binning to improve interpretability without losing the global pattern.
 
 ```{r}
-# Hierarquia conceitual e binning com transformacoes do DALToolbox
+# Concept hierarchies and binning with DALToolbox transforms
 hc_age <- hierarchy_cut(
   attribute = "age",
   breaks = c(15, 25, 45, 65, 100),
@@ -110,20 +110,20 @@ myAdultUCI$capital_loss_level <- NULL
 head(myAdultUCI)
 ```
 
-## Conversão para Transações
-Dados transacionais são a base para Apriori, ECLAT e regras de associação.  
+## Conversion to Transactions
+Transactional data is the basis for Apriori, ECLAT, and association rules.  
 Slides: 2–5.
 
 ```{r}
-# Conversao para transacoes
+# Conversion to transactions
 AdultTrans <- as(myAdultUCI, "transactions")
 ```
 
 ## Apriori
-Apriori explora a propriedade anti-monótona do suporte para gerar e podar candidatos.  
+Apriori explores the anti-monotonic property of support to generate and prune candidates.  
 Slides: 10–20.
 
-Leitura recomendada: filtre primeiro por suporte/confianca e depois priorize por lift.
+Recommended reading: filter first by support/confidence and then prioritize by lift.
 
 ```{r}
 # A Priori
@@ -137,35 +137,35 @@ rules <- discover(pm_apriori, AdultTrans)
 inspect(rules)
 ```
 
-Converter para `data.frame` facilita ranking, filtro e comparação de regras.
+Converting to `data.frame` makes rule ranking, filtering, and comparison easier.
 
 ```{r}
 rules_a <- as(rules, "data.frame")
 head(rules_a)
 ```
 
-## ECLAT e Itemsets Frequentes
-ECLAT usa representação vertical, eficiente para contagem de suportes.  
+## ECLAT and Frequent Itemsets
+ECLAT uses a vertical representation, which is efficient for support counting.  
 Slides: 22–24.
 
-Aqui vale comparar com Apriori: ECLAT foca itemsets; Apriori já pode produzir regras.
+This is a good place to compare with Apriori: ECLAT focuses on itemsets, while Apriori can already produce rules.
 
 ```{r}
-# ECLAT (itemsets frequentes)
+# ECLAT (frequent itemsets)
 pm_eclat <- pat_eclat(parameter = list(supp = 0.5, maxlen = 3))
 pm_eclat <- fit(pm_eclat, AdultTrans)
 itemsets_eclat <- discover(pm_eclat, AdultTrans)
 inspect(head(sort(itemsets_eclat, by = "support")))
 ```
 
-## Padrões Fechados e Max-Padrões
-Padrões fechados preservam suporte; max-padrões reduzem ainda mais o volume, mas perdem detalhes.  
+## Closed Patterns and Max-Patterns
+Closed patterns preserve support; max-patterns reduce volume even further, but lose detail.  
 Slides: 6–9.
 
-Esses dois conjuntos ajudam a compactar resultados sem perder o sinal principal.
+These two sets help compress results without losing the main signal.
 
 ```{r}
-# Padrões fechados e max-padrões
+# Closed patterns and max-patterns
 closed_sets <- itemsets_eclat[is.closed(itemsets_eclat)]
 max_sets <- itemsets_eclat[is.maximal(itemsets_eclat)]
 
@@ -173,42 +173,42 @@ inspect(head(sort(closed_sets, by = "support")))
 inspect(head(sort(max_sets, by = "support")))
 ```
 
-## Medidas de Interesse
-Além de suporte e confiança, métricas como lift, leverage e conviction ajudam a priorizar regras.  
+## Interestingness Measures
+In addition to support and confidence, measures such as lift, leverage, and conviction help prioritize rules.  
 Slides: 4–5, 21.
 
 ```{r}
-# Analise das regras
+# Rule analysis
 imrules <- interestMeasure(rules, transactions = AdultTrans)
 head(imrules)
 ```
 
-No bloco seguinte, ordenamos por lift para destacar associações potencialmente mais informativas.
+In the next block, we sort by lift to highlight potentially more informative associations.
 
 ```{r}
 imrules2 <- interestMeasure(rules, c("support", "confidence", "lift", "leverage", "conviction"), AdultTrans)
 head(imrules2[order(imrules2[, "lift"], decreasing = TRUE), ])
 ```
 
-## Redundância e Interpretação
-Redução de redundância evita regras repetitivas ou pouco informativas.  
+## Redundancy and Interpretation
+Reducing redundancy avoids repetitive or weakly informative rules.  
 Slides: 21–24.
 
 ```{r}
-# Removendo regras redundantes
+# Removing redundant rules
 nrules <- rules[!is.redundant(rules)]
 
 arules::inspect(nrules)
 ```
 
-## Transações de Suporte
-Analisar quais transações suportam regras ajuda a validar padrões.  
+## Supporting Transactions
+Analyzing which transactions support the rules helps validate patterns.  
 Slides: 4–5.
 
-Primeiro avaliamos cobertura de uma regra; depois ampliamos para múltiplas regras.
+First we evaluate the coverage of one rule, then we extend it to multiple rules.
 
 ```{r}
-# Mostrando as transacoes que suportam as regras
+# Showing the transactions that support the rules
 st <- supportingTransactions(nrules[1], AdultTrans)
 trans <- unique(st@data@i)
 length(trans)
@@ -216,21 +216,21 @@ print(c(length(trans)/length(AdultTrans), nrules[1]@quality$support))
 ```
 
 ```{r}
-# Transacoes de suporte para multiplas regras
+# Supporting transactions for multiple rules
 st <- supportingTransactions(nrules[1:2], AdultTrans)
 trans <- unique(st@data@i)
 length(trans)
 print(c(length(trans)/length(AdultTrans), nrules[1:2]@quality$support))
 ```
 
-## Visualização de Regras
-Visualizações auxiliam a interpretação de padrões descobertos.  
+## Rule Visualization
+Visualizations help interpret the discovered patterns.  
 Slides: 21.
 
-Use os dois gráficos de forma complementar: visão global e visão relacional (paracoord).
+Use the two plots in a complementary way: global view and relational view (`paracoord`).
 
 ```{r}
-# Visualizacao de regras
+# Rule visualization
 options(repr.plot.width=10, repr.plot.height=5)
 plot(rules)
 ```
@@ -240,14 +240,14 @@ options(repr.plot.width=10, repr.plot.height=5)
 plot(rules, method="paracoord", control=list(reorder=TRUE))
 ```
 
-## Padrões Raros e Negativos
-Padrões raros podem ser estratégicos; padrões negativos indicam correlação inversa (lift < 1).  
+## Rare and Negative Patterns
+Rare patterns can be strategically important; negative patterns indicate inverse correlation (`lift < 1`).  
 Slides: 39.
 
-Esta etapa é útil para detectar exceções e comportamentos menos frequentes.
+This step is useful for detecting exceptions and less frequent behaviors.
 
 ```{r}
-# Padrões raros e negativos
+# Rare and negative patterns
 pm_apriori_rare <- pat_apriori(parameter = list(supp = 0.05, conf = 0.6, minlen = 2, maxlen = 3))
 pm_apriori_rare <- fit(pm_apriori_rare, AdultTrans)
 rare_rules <- discover(pm_apriori_rare, AdultTrans)
@@ -256,14 +256,14 @@ length(neg_rules)
 inspect(head(neg_rules))
 ```
 
-## Associações Multi-Nível e Multi-Dimensionais
-Regras podem incorporar dimensões adicionais, como atributos demográficos, com suportes adequados por nível.  
+## Multilevel and Multidimensional Associations
+Rules can incorporate additional dimensions, such as demographic attributes, with suitable supports per level.  
 Slides: 30–35.
 
-Aqui adicionamos uma dimensão semântica (`edu_level`) para extrair regras mais interpretáveis por perfil.
+Here we add a semantic dimension (`edu_level`) to extract more interpretable rules by profile.
 
 ```{r}
-# Associações multi-nível e multi-dimensionais
+# Multilevel and multidimensional associations
 adult_ml <- myAdultUCI
 fg_edu <- feature_generation(
   edu_level = ifelse(
@@ -287,19 +287,19 @@ rules_md <- discover(pm_apriori_md, AdultTransML)
 inspect(rules_md)
 ```
 
-## Mineração de Sequências
-Padrões sequenciais estendem itemsets para ordem temporal. SPADE é uma abordagem vertical eficiente.  
+## Sequence Mining
+Sequential patterns extend itemsets to temporal order. SPADE is an efficient vertical approach.  
 Slides: 46–62.
 
-Diferença-chave: em sequências, a ordem dos eventos influencia o padrão encontrado.
+Key difference: in sequences, event order influences the discovered pattern.
 
 ```{r}
-# Mineracao de sequencias
+# Sequence mining
 x <- read_baskets(con = system.file("misc", "zaki.txt", package = "arulesSequences"), info = c("sequenceID","eventID","SIZE"))
 as(x, "data.frame")
 ```
 
-Com os dados carregados, executamos o SPADE para descobrir padrões sequenciais frequentes.
+With the data loaded, we run SPADE to discover frequent sequential patterns.
 
 ```{r}
 pm_cspade <- pat_cspade(parameter = list(support = 0.4), control = list(verbose = TRUE))
@@ -308,14 +308,14 @@ s1 <- discover(pm_cspade, x)
 as(s1, "data.frame")
 ```
 
-## Mineração de Padrões em Grafos (Exemplo)
-Em grafos, padrões frequentes são subgrafos recorrentes. Aqui mostramos contagem de subgrafos como ilustração.  
+## Graph Pattern Mining (Example)
+In graphs, frequent patterns are recurring subgraphs. Here we show subgraph counting as an illustration.  
 Slides: 63–64.
 
-Encerramos com grafos para mostrar que o conceito de padrão frequente se estende a estruturas relacionais.
+We close with graphs to show that the concept of frequent patterns extends to relational structures.
 
 ```{r}
-# Mineracao de padroes em grafos (exemplo simples)
+# Graph pattern mining (simple example)
 
 g1 <- make_ring(4)
 g2 <- make_full_graph(3)
@@ -327,7 +327,7 @@ count_subgraph_isomorphisms(tri, g2)
 count_subgraph_isomorphisms(tri, g3)
 ```
 
-## Referências
+## References
 - Han, J., Pei, J., & Tong, H. (2022). *Data Mining: Concepts and Techniques* (4th ed.). Morgan Kaufmann.
 - Agrawal, R., & Srikant, R. (1994). Fast algorithms for mining association rules. *VLDB*.
 - Zaki, M. (2001). SPADE: An efficient algorithm for mining frequent sequences. *Machine Learning*, 42(1), 31–60.
