@@ -20,19 +20,12 @@ returns a \code{cla_xgboost} object
 Gradient boosting classifier using \code{xgboost}.
 }
 \examples{
-if (requireNamespace("xgboost", quietly = TRUE)) {
- data(iris)
- # This setup keeps the example fast for checks and documentation builds.
- # A more typical starting point is:
- # model <- cla_xgboost("Species")
- model <- cla_xgboost(
-   "Species",
-   params = list(max_depth = 1, nthread = 1),
-   nrounds = 1
- )
- model <- fit(model, iris)
- pred <- predict(model, iris)
- eval <- evaluate(model, adjust_class_label(iris$Species), pred)
- eval$metrics
+\dontrun{
+data(iris)
+model <- cla_xgboost("Species")
+model <- fit(model, iris)
+pred <- predict(model, iris)
+eval <- evaluate(model, adjust_class_label(iris$Species), pred)
+eval$metrics
 }
 }
