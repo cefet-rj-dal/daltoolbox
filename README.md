@@ -7,101 +7,152 @@
 
 ![GitHub Repo
 stars](https://img.shields.io/github/stars/cefet-rj-dal/daltoolbox?logo=Github)
-![GitHub Repo stars](https://cranlogs.r-pkg.org/badges/daltoolbox)
+![CRAN downloads](https://cranlogs.r-pkg.org/badges/daltoolbox)
 <!-- badges: end -->
 
-As research experiments grow in scale and complexity, data analytics
-demands tools that go beyond isolated functions. DAL Toolbox is a
-framework designed to meet these modern challenges by organizing a
-comprehensive set of data analytics capabilities into an integrated
-workflow environment. Inspired by the Experiment Line model
-<doi:10.1007/978-3-642-02279-1_20>, it supports essential tasks such as
-data preprocessing, classification, regression, clustering, and time
-series prediction. With a unified data model, consistent method API, and
-support for hyperparameter tuning, DAL Toolbox enables the seamless
-construction and execution of end-to-end analytics pipelines. It also
-offers easy integration with existing libraries and languages, promoting
-usability, extensibility, and reproducibility in data science.
+DAL Toolbox is an R framework for data analytics workflows. It organizes
+preprocessing, modeling, evaluation, tuning, visualization, and
+extensibility resources around a consistent Experiment Line style API,
+helping users build reproducible end-to-end analytical pipelines.
+
+The package supports data preprocessing, classification, regression,
+clustering, pattern mining, graphics, and time series prediction. It is
+designed for teaching, experimentation, and applied data science
+projects where the same workflow needs to be reused, compared, and
+extended across methods.
+
+Current package version in this repository: `1.3.767`.
+
+------------------------------------------------------------------------
+
+## Installation
+
+The stable version is available on CRAN:
+
+<https://CRAN.R-project.org/package=daltoolbox>
+
+``` r
+install.packages("daltoolbox")
+```
+
+The development version is available on GitHub:
+
+<https://github.com/cefet-rj-dal/daltoolbox>
+
+``` r
+library(devtools)
+devtools::install_github("cefet-rj-dal/daltoolbox", force = TRUE, dependencies = FALSE, upgrade = "never")
+```
 
 ------------------------------------------------------------------------
 
 ## Documentation
 
-The documentation was reorganized to support two complementary entry
-points:
+Documentation and examples are available in the package site and in the
+repository:
+
+- [Package website](https://cefet-rj-dal.github.io/daltoolbox/)
+- [Function
+  reference](https://cefet-rj-dal.github.io/daltoolbox/reference/)
+- [Articles](https://cefet-rj-dal.github.io/daltoolbox/articles/)
+- [GitHub repository](https://github.com/cefet-rj-dal/daltoolbox)
+- [JOSS
+  paper](https://github.com/cefet-rj-dal/daltoolbox/blob/main/paper/paper.pdf)
+
+The documentation is organized around two complementary entry points:
 
 - a guided tutorial track for readers who want to learn the workflow
   step by step
 - thematic example collections for readers who want to inspect a
   specific family of methods
 
-If you are new to `daltoolbox`, start with the tutorials. If you
-already know the package structure, the thematic collections remain
-available and were reorganized with more didactic descriptions.
+If you are new to `daltoolbox`, start with the tutorials. If you already
+know the package structure, the thematic collections provide focused
+examples by method family.
 
-### Guided tutorial track
+------------------------------------------------------------------------
 
-- [Tutorials](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/tutorial/)
-  - a 13-part learning sequence covering first experiment, sampling,
-  data quality, preprocessing, baselines, metrics, model comparison,
-  tuning, end-to-end pipelines, regression, clustering, visual
-  analysis, and custom extensions.
+## Guided Tutorial Track
 
-### Thematic example collections
+- [Tutorials](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/tutorial/) -
+  a 13-part learning sequence covering first experiment, sampling, data
+  quality, preprocessing, baselines, metrics, model comparison, tuning,
+  end-to-end pipelines, regression, clustering, visual analysis, and
+  custom extensions.
 
-- [Transformations](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/transf/)
-  - sampling, balancing, cleaning, scaling, encoding, smoothing,
-  feature selection, dimensionality reduction, and curvature-based
-  heuristics.
-- [Classification](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/classification/)
-  - baseline models, core classifier families, and model selection.
-- [Regression](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/regression/)
-  - interpretable models, nonlinear learners, and tuning for numeric
-  prediction.
-- [Clustering](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/clustering/)
-  - partitional, medoid-based, density-based methods, and clustering
-  model selection.
-- [Graphics](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/graphics/)
-  - comparison, distribution, relationship, time-oriented, and
+The sequence is cumulative. Each tutorial introduces one main decision
+in a data mining study, explains why that step matters, and keeps the
+code close to that learning objective.
+
+------------------------------------------------------------------------
+
+## Thematic Example Collections
+
+- [Transformations](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/transf/) -
+  sampling, balancing, cleaning, scaling, encoding, smoothing, feature
+  selection, dimensionality reduction, and curvature-based heuristics.
+- [Classification](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/classification/) -
+  baseline models, decision trees, instance-based methods, probabilistic
+  models, linear models, ensembles, neural models, support vector
+  machines, boosting, and tuning.
+- [Regression](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/regression/) -
+  interpretable models, instance-based learners, random forests, support
+  vector machines, neural models, and tuning for numeric prediction.
+- [Clustering](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/clustering/) -
+  partitional, medoid-based, density-based, fuzzy, model-based,
+  hierarchical, graph-based methods, and clustering model selection.
+- [Pattern
+  Mining](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/patterns/) -
+  association rules, frequent itemsets, and sequence mining.
+- [Graphics](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/graphics/) -
+  comparison, distribution, relationship, time-oriented, and
   export-focused visualizations.
-- [Custom extensions](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/custom/)
-  - examples showing how to integrate new transformations, classifiers,
-  regressors, and clustering methods into the Experiment Line workflow.
-
-### Documentation design
-
-The examples were revised to be more useful for learning:
-
-- files inside each collection are now numbered in a suggested reading
-  order
-- category `README` files group examples by subject rather than only by
-  class name
-- many examples now include more explanation between code blocks,
-  including interpretation hints and common mistakes
+- [Custom
+  Extensions](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/custom/) -
+  examples showing how to integrate new transformations, classifiers,
+  regressors, clusterers, autoencoders, and pattern miners into the
+  Experiment Line workflow.
 
 ------------------------------------------------------------------------
 
-## Installation
+## Main Capabilities
 
-The latest version of DAL Toolbox at CRAN is available at:
-<https://CRAN.R-project.org/package=daltoolbox>
-
-You can install the stable version of DAL Toolbox from CRAN with:
-
-``` r
-install.packages("daltoolbox")
-```
-
-You can install the development version of DAL Toolbox from GitHub
-<https://github.com/cefet-rj-dal/daltoolbox> with:
-
-``` r
-library(devtools)
-devtools::install_github("cefet-rj-dal/daltoolbox", force=TRUE, dependencies=FALSE, upgrade="never")
-```
+- Unified abstractions for learners, transformations, predictors, and
+  tuners.
+- Reusable preprocessing workflows for sampling, balancing, cleaning,
+  normalization, encoding, smoothing, feature selection, and
+  dimensionality reduction.
+- Classification, regression, clustering, and pattern mining examples
+  with consistent fit, predict, evaluate, and tune stages.
+- Time series support for preprocessing, augmentation, normalization,
+  filtering, and prediction.
+- Visualization helpers for comparisons, distributions, relationships,
+  time series, and report-oriented graphics.
+- Extensible interfaces for custom analytical components.
 
 ------------------------------------------------------------------------
 
-## Bugs and new features request
+## Related DAL Projects
+
+- [DAL Toolbox website](https://cefet-rj-dal.github.io/daltoolbox/)
+- [tspredit](https://cefet-rj-dal.github.io/tspredit/)
+- [harbinger](https://cefet-rj-dal.github.io/harbinger/)
+- [Data Analytics Lab](https://eic.cefet-rj.br/~dal)
+
+------------------------------------------------------------------------
+
+## Playlist
+
+[DAL Toolbox
+videos](https://www.youtube.com/playlist?list=PLJb2qK1RWkbF246c9V3aCydoBJ_ZiP91n)
+
+[![Watch the playlist on
+YouTube](https://img.shields.io/badge/YouTube-Watch%20playlist-red?logo=youtube&logoColor=white)](https://www.youtube.com/playlist?list=PLJb2qK1RWkbF246c9V3aCydoBJ_ZiP91n)
+
+------------------------------------------------------------------------
+
+## Bugs and Feature Requests
+
+Please report bugs, questions, and feature requests at:
 
 <https://github.com/cefet-rj-dal/daltoolbox/issues>
