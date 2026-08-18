@@ -144,10 +144,10 @@ code close to that learning objective.
 ## Playlist
 
 [DAL Toolbox
-videos](https://www.youtube.com/playlist?list=PLJb2qK1RWkbF246c9V3aCydoBJ_ZiP91n)
+videos](https://www.youtube.com/playlist?list=PLExOtPNxNUwY)
 
 [![Watch the playlist on
-YouTube](https://img.shields.io/badge/YouTube-Watch%20playlist-red?logo=youtube&logoColor=white)](https://www.youtube.com/playlist?list=PLJb2qK1RWkbF246c9V3aCydoBJ_ZiP91n)
+YouTube](https://img.shields.io/badge/YouTube-Watch%20playlist-red?logo=youtube&logoColor=white)](https://www.youtube.com/playlist?list=PLExOtPNxNUwY)
 
 ------------------------------------------------------------------------
 
