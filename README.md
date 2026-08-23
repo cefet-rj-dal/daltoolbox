@@ -52,9 +52,7 @@ Documentation and examples are available in the package site and in the
 repository:
 
 - [Package website](https://cefet-rj-dal.github.io/daltoolbox/)
-- [Function
-  reference](https://cefet-rj-dal.github.io/daltoolbox/reference/)
-- [Articles](https://cefet-rj-dal.github.io/daltoolbox/articles/)
+- [Examples](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/)
 - [GitHub repository](https://github.com/cefet-rj-dal/daltoolbox)
 - [JOSS
   paper](https://github.com/cefet-rj-dal/daltoolbox/blob/main/paper/paper.pdf)
@@ -74,11 +72,12 @@ examples by method family.
 
 ## Guided Tutorial Track
 
-- [Tutorials](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/tutorial/) -
-  a 13-part learning sequence covering first experiment, sampling, data
-  quality, preprocessing, baselines, metrics, model comparison, tuning,
-  end-to-end pipelines, regression, clustering, visual analysis, and
-  custom extensions.
+The tutorials are part of the
+[examples](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/)
+collection. They form a 13-part learning sequence covering first
+experiment, sampling, data quality, preprocessing, baselines, metrics,
+model comparison, tuning, end-to-end pipelines, regression, clustering,
+visual analysis, and custom extensions.
 
 The sequence is cumulative. Each tutorial introduces one main decision
 in a data mining study, explains why that step matters, and keeps the
@@ -88,30 +87,29 @@ code close to that learning objective.
 
 ## Thematic Example Collections
 
-- [Transformations](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/transf/) -
-  sampling, balancing, cleaning, scaling, encoding, smoothing, feature
-  selection, dimensionality reduction, and curvature-based heuristics.
-- [Classification](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/classification/) -
-  baseline models, decision trees, instance-based methods, probabilistic
-  models, linear models, ensembles, neural models, support vector
-  machines, boosting, and tuning.
-- [Regression](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/regression/) -
-  interpretable models, instance-based learners, random forests, support
-  vector machines, neural models, and tuning for numeric prediction.
-- [Clustering](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/clustering/) -
-  partitional, medoid-based, density-based, fuzzy, model-based,
-  hierarchical, graph-based methods, and clustering model selection.
-- [Pattern
-  Mining](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/patterns/) -
-  association rules, frequent itemsets, and sequence mining.
-- [Graphics](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/graphics/) -
-  comparison, distribution, relationship, time-oriented, and
+The
+[examples](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/)
+collection includes thematic subcollections:
+
+- Transformations - sampling, balancing, cleaning, scaling, encoding,
+  smoothing, feature selection, dimensionality reduction, and
+  curvature-based heuristics.
+- Classification - baseline models, decision trees, instance-based
+  methods, probabilistic models, linear models, ensembles, neural
+  models, support vector machines, boosting, and tuning.
+- Regression - interpretable models, instance-based learners, random
+  forests, support vector machines, neural models, and tuning for
+  numeric prediction.
+- Clustering - partitional, medoid-based, density-based, fuzzy,
+  model-based, hierarchical, graph-based methods, and clustering model
+  selection.
+- Pattern Mining - association rules, frequent itemsets, and sequence
+  mining.
+- Graphics - comparison, distribution, relationship, time-oriented, and
   export-focused visualizations.
-- [Custom
-  Extensions](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/custom/) -
-  examples showing how to integrate new transformations, classifiers,
-  regressors, clusterers, autoencoders, and pattern miners into the
-  Experiment Line workflow.
+- Custom Extensions - examples showing how to integrate new
+  transformations, classifiers, regressors, clusterers, autoencoders,
+  and pattern miners into the Experiment Line workflow.
 
 ------------------------------------------------------------------------
 
@@ -137,7 +135,7 @@ code close to that learning objective.
 - [DAL Toolbox website](https://cefet-rj-dal.github.io/daltoolbox/)
 - [tspredit](https://cefet-rj-dal.github.io/tspredit/)
 - [harbinger](https://cefet-rj-dal.github.io/harbinger/)
-- [Data Analytics Lab](https://eic.cefet-rj.br/~dal)
+- [Data Analytics Lab](https://eic.cefet-rj.br/~dal/)
 
 ------------------------------------------------------------------------
 
