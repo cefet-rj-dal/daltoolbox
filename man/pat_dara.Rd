@@ -7,7 +7,7 @@
 pat_dara(
   data,
   rules,
-  rhs_attr = NULL,
+  rhs_attr,
   rhs_value = NULL,
   attributes = NULL,
   rule_weight = NULL
@@ -18,9 +18,9 @@ pat_dara(
 
 \item{rules}{Tidy rule data frame produced by \code{pat_dara_rules()} or \code{pat_rules_tidy()}.}
 
-\item{rhs_attr}{Optional target attribute used to restrict \code{data}.}
+\item{rhs_attr}{Right-hand-side attribute used by the mined rules.}
 
-\item{rhs_value}{Optional target value used with \code{rhs_attr}.}
+\item{rhs_value}{Optional right-hand-side value used to restrict \code{data}.}
 
 \item{attributes}{Optional attributes to compare. Defaults to common columns in \code{data} and \code{rules}.}
 
@@ -33,11 +33,13 @@ A list of per-attribute data frames with columns \code{value}, \code{dataset}, \
 Rank attribute values whose ordering diverges between the dataset and discovered rules.
 }
 \details{
-DARA compares two value-frequency orderings for each attribute: the ordering in
-a reference dataset, optionally restricted to a target condition, and the
-ordering in a table of association rules. The returned counter \code{c} increases
-for values that are more prominent in rules than in the reference data and
-decreases for values that are less prominent in rules.
+DARA compares two value-frequency orderings for each explanatory attribute:
+the ordering in a reference dataset, optionally restricted to a right-hand-side
+value, and the ordering in a table of association rules. The right-hand-side
+attribute is required so it can be excluded from explanatory divergence.
+The returned counter \code{c} increases for values that are more prominent in rules
+than in the reference data and decreases for values that are less prominent in
+rules.
 }
 \examples{
 if (requireNamespace("arules", quietly = TRUE)) {

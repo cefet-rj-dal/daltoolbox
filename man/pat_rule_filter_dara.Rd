@@ -19,9 +19,9 @@ pat_rule_filter_dara(
 \arguments{
 \item{data}{Reference data frame used by DARA.}
 
-\item{rhs_attr}{Target attribute used to restrict \code{data}.}
+\item{rhs_attr}{Right-hand-side attribute used by the mined rules.}
 
-\item{rhs_value}{Optional target value used with \code{rhs_attr}.}
+\item{rhs_value}{Optional right-hand-side value used to restrict \code{data}.}
 
 \item{attributes}{Optional attributes to compare. Defaults to common columns.}
 
@@ -44,7 +44,7 @@ Build a rule filter based on Divergent Association Ranking Analysis.
 \details{
 DARA filters rules by scoring each antecedent with the divergence counters
 computed by \code{pat_dara()}. A rule with antecedent values that are more prominent
-in the rule set than in the target subset receives a higher positive score.
+in the rule set than in the exploratory data receives a higher positive score.
 }
 \examples{
 data <- data.frame(a = factor(c("x", "x", "y")), b = factor(c("z", "w", "z")))

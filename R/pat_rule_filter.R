@@ -58,10 +58,10 @@ pat_rule_filter_interest <- function(lift_min = 1,
 #' @details
 #' DARA filters rules by scoring each antecedent with the divergence counters
 #' computed by `pat_dara()`. A rule with antecedent values that are more prominent
-#' in the rule set than in the target subset receives a higher positive score.
+#' in the rule set than in the exploratory data receives a higher positive score.
 #' @param data Reference data frame used by DARA.
-#' @param rhs_attr Target attribute used to restrict `data`.
-#' @param rhs_value Optional target value used with `rhs_attr`.
+#' @param rhs_attr Right-hand-side attribute used by the mined rules.
+#' @param rhs_value Optional right-hand-side value used to restrict `data`.
 #' @param attributes Optional attributes to compare. Defaults to common columns.
 #' @param min_score Minimum DARA score required to keep a rule.
 #' @param top Optional number of highest-scored rules to keep.
@@ -84,6 +84,9 @@ pat_rule_filter_dara <- function(data,
                                  use_abs = FALSE,
                                  rule_weight = NULL) {
   score <- match.arg(score)
+  if (missing(rhs_attr) || is.null(rhs_attr) || length(rhs_attr) != 1 || is.na(rhs_attr)) {
+    stop("pat_rule_filter_dara requires the right-hand-side attribute in 'rhs_attr'.", call. = FALSE)
+  }
   obj <- dal_base()
   obj$data <- adjust_data.frame(data)
   obj$rhs_attr <- rhs_attr
@@ -194,7 +197,27 @@ pat_rule_filter_prepare_rules <- function(rules, data = NULL) {
     return(list(original = rules, tidy = tidy, arules = TRUE))
   }
   if (is.data.frame(rules)) {
-    return(list(original = rules, tidy = adjust_data.frame(rules), arules = FALSE))
+    tidy <- adjust_data.frame(rules)
+    if (!is.null(data) && "lhs" %in% colnames(tidy) && (is.data.frame(data) || is.matrix(data))) {
+      item_columns <- setdiff(colnames(data), colnames(tidy))
+      if (length(item_columns) > 0) {
+        for (name in item_columns) {
+          tidy[[name]] <- NA_character_
+        }
+        parsed <- lapply(tidy$lhs, pat_dara_parse_items)
+        for (i in seq_along(parsed)) {
+          values <- parsed[[i]]
+          common <- intersect(names(values), item_columns)
+          for (name in common) {
+            value <- unname(values[name])
+            if (length(value) == 1 && !is.na(value)) {
+              tidy[i, name] <- value
+            }
+          }
+        }
+      }
+    }
+    return(list(original = rules, tidy = tidy, arules = FALSE))
   }
   stop("pat_filter_rules expects an 'arules' rules object or a tidy rule data frame.", call. = FALSE)
 }

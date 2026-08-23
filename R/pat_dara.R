@@ -155,15 +155,17 @@ pat_dara_rules <- function(data,
 #' @title Divergent Association Ranking Analysis
 #' @description Rank attribute values whose ordering diverges between the dataset and discovered rules.
 #' @details
-#' DARA compares two value-frequency orderings for each attribute: the ordering in
-#' a reference dataset, optionally restricted to a target condition, and the
-#' ordering in a table of association rules. The returned counter `c` increases
-#' for values that are more prominent in rules than in the reference data and
-#' decreases for values that are less prominent in rules.
+#' DARA compares two value-frequency orderings for each explanatory attribute:
+#' the ordering in a reference dataset, optionally restricted to a right-hand-side
+#' value, and the ordering in a table of association rules. The right-hand-side
+#' attribute is required so it can be excluded from explanatory divergence.
+#' The returned counter `c` increases for values that are more prominent in rules
+#' than in the reference data and decreases for values that are less prominent in
+#' rules.
 #' @param data Reference data frame.
 #' @param rules Tidy rule data frame produced by `pat_dara_rules()` or `pat_rules_tidy()`.
-#' @param rhs_attr Optional target attribute used to restrict `data`.
-#' @param rhs_value Optional target value used with `rhs_attr`.
+#' @param rhs_attr Right-hand-side attribute used by the mined rules.
+#' @param rhs_value Optional right-hand-side value used to restrict `data`.
 #' @param attributes Optional attributes to compare. Defaults to common columns in `data` and `rules`.
 #' @param rule_weight Optional numeric column in `rules` used as rule frequency instead of one count per rule.
 #' @return A list of per-attribute data frames with columns `value`, `dataset`, `rules`, and `c`.
@@ -179,20 +181,21 @@ pat_dara_rules <- function(data,
 #' @export
 pat_dara <- function(data,
                      rules,
-                     rhs_attr = NULL,
+                     rhs_attr,
                      rhs_value = NULL,
                      attributes = NULL,
                      rule_weight = NULL) {
   data <- adjust_data.frame(data)
   rules <- adjust_data.frame(rules)
 
-  if (!is.null(rhs_attr)) {
-    if (!rhs_attr %in% colnames(data)) {
-      stop("pat_dara: 'rhs_attr' was not found in data.", call. = FALSE)
-    }
-    if (!is.null(rhs_value)) {
-      data <- data[data[[rhs_attr]] == rhs_value, , drop = FALSE]
-    }
+  if (missing(rhs_attr) || is.null(rhs_attr) || length(rhs_attr) != 1 || is.na(rhs_attr)) {
+    stop("pat_dara requires the right-hand-side attribute in 'rhs_attr'.", call. = FALSE)
+  }
+  if (!rhs_attr %in% colnames(data)) {
+    stop("pat_dara: 'rhs_attr' was not found in data.", call. = FALSE)
+  }
+  if (!is.null(rhs_value)) {
+    data <- data[data[[rhs_attr]] == rhs_value, , drop = FALSE]
   }
 
   if (is.null(attributes)) {
