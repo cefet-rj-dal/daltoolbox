@@ -11,8 +11,10 @@ utils <- patutils()
 
 pm <- pat_apriori(
   target = "rules",
-  supp = 0.2,
-  conf = 0.85,
+  supp = 0,
+  conf = 0,
+  support_strategy = pat_support_threshold("curvature"),
+  confidence_strategy = pat_confidence_threshold("rhs_baseline", margin = 0.1),
   minlen = 2,
   maxlen = 3,
   rhs = c("native-country=United-States"),
@@ -21,6 +23,7 @@ pm <- pat_apriori(
 )
 
 pm <- fit(pm, trans)
+pm$engine_parameter
 rules <- suppressWarnings(discover(pm, trans))
 length(rules)
 

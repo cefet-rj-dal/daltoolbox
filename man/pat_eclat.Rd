@@ -5,7 +5,8 @@
 \title{ECLAT itemsets}
 \usage{
 pat_eclat(
-  supp = 0.5,
+  supp = 0,
+  support_strategy = pat_support_threshold("curvature"),
   minlen = 1,
   maxlen = 3,
   include = NULL,
@@ -15,7 +16,9 @@ pat_eclat(
 )
 }
 \arguments{
-\item{supp}{minimum support threshold}
+\item{supp}{minimum support threshold. If \code{0}, estimated during \code{fit()} using \code{support_strategy}.}
+
+\item{support_strategy}{support threshold strategy created with \code{pat_support_threshold()}}
 
 \item{minlen}{minimum itemset length}
 
@@ -41,7 +44,8 @@ if (requireNamespace("arules", quietly = TRUE)) {
  trans <- suppressWarnings(methods::as(as.data.frame(AdultUCI), "transactions"))
  utils <- patutils()
  pm <- pat_eclat(
-   supp = 0.2,
+   supp = 0,
+   support_strategy = pat_support_threshold("curvature"),
    maxlen = 3,
    include = c("sex=Male", "income=small", "marital-status=Married-civ-spouse", "race=White"),
    exclude = c("income=small"),

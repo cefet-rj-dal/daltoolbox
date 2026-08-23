@@ -1,6 +1,7 @@
 #'@title cSPADE sequences
 #'@description Sequential pattern mining using `arulesSequences::cspade`.
-#'@param support minimum support threshold
+#'@param support minimum support threshold. If `0`, estimated during `fit()` using `support_strategy`.
+#'@param support_strategy support threshold strategy created with `pat_support_threshold()`
 #'@param maxsize maximum number of items per event
 #'@param maxlen maximum number of events per sequence
 #'@param mingap minimum gap between successive events
@@ -16,7 +17,8 @@
 #'  )
 #'  utils <- patutils()
 #'  pm <- pat_cspade(
-#'    support = 0.4,
+#'    support = 0,
+#'    support_strategy = pat_support_threshold("min_count", min_count = 2),
 #'    maxlen = 3,
 #'    quality_filter = utils$quality_min(support = 0.5)
 #'  )
@@ -26,7 +28,8 @@
 #'  eval$metrics
 #'}
 #'@export
-pat_cspade <- function(support = 0.4,
+pat_cspade <- function(support = 0,
+                       support_strategy = pat_support_threshold("min_count", min_count = 2),
                        maxsize = NULL,
                        maxlen = NULL,
                        mingap = NULL,
@@ -36,6 +39,7 @@ pat_cspade <- function(support = 0.4,
   obj <- pattern_miner()
   utils <- obj$pat_utils
   obj$support <- support
+  obj$support_strategy <- support_strategy
   obj$maxsize <- maxsize
   obj$maxlen <- maxlen
   obj$mingap <- mingap
@@ -53,8 +57,13 @@ pat_cspade <- function(support = 0.4,
   return(obj)
 }
 
-pat_cspade_compile <- function(obj) {
-  obj$engine_parameter <- list(support = obj$support)
+pat_cspade_compile <- function(obj, data = NULL) {
+  obj$support_resolved <- pat_resolve_support(
+    obj[["support", exact = TRUE]],
+    obj[["support_strategy", exact = TRUE]],
+    data
+  )
+  obj$engine_parameter <- list(support = obj$support_resolved)
   if (!is.null(obj$maxsize)) obj$engine_parameter$maxsize <- obj$maxsize
   if (!is.null(obj$maxlen)) obj$engine_parameter$maxlen <- obj$maxlen
   if (!is.null(obj$mingap)) obj$engine_parameter$mingap <- obj$mingap
@@ -68,8 +77,8 @@ fit.pat_cspade <- function(obj, data, ...) {
   if (!requireNamespace("arulesSequences", quietly = TRUE)) {
     stop("pat_cspade requires the 'arulesSequences' package.", call. = FALSE)
   }
-  obj <- pat_cspade_compile(obj)
   data <- pattern_prepare_sequences(data)
+  obj <- pat_cspade_compile(obj, data)
   pattern_miner_mark_fitted(obj, data)
 }
 

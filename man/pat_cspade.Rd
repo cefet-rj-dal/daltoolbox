@@ -5,7 +5,8 @@
 \title{cSPADE sequences}
 \usage{
 pat_cspade(
-  support = 0.4,
+  support = 0,
+  support_strategy = pat_support_threshold("min_count", min_count = 2),
   maxsize = NULL,
   maxlen = NULL,
   mingap = NULL,
@@ -15,7 +16,9 @@ pat_cspade(
 )
 }
 \arguments{
-\item{support}{minimum support threshold}
+\item{support}{minimum support threshold. If \code{0}, estimated during \code{fit()} using \code{support_strategy}.}
+
+\item{support_strategy}{support threshold strategy created with \code{pat_support_threshold()}}
 
 \item{maxsize}{maximum number of items per event}
 
@@ -43,7 +46,8 @@ if (requireNamespace("arulesSequences", quietly = TRUE)) {
  )
  utils <- patutils()
  pm <- pat_cspade(
-   support = 0.4,
+   support = 0,
+   support_strategy = pat_support_threshold("min_count", min_count = 2),
    maxlen = 3,
    quality_filter = utils$quality_min(support = 0.5)
  )

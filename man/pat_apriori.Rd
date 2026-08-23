@@ -6,8 +6,10 @@
 \usage{
 pat_apriori(
   target = c("rules", "frequent itemsets"),
-  supp = 0.5,
-  conf = 0.9,
+  supp = 0,
+  conf = 0,
+  support_strategy = pat_support_threshold("curvature"),
+  confidence_strategy = pat_confidence_threshold(),
   minlen = 2,
   maxlen = 10,
   lhs = NULL,
@@ -15,15 +17,20 @@ pat_apriori(
   include = NULL,
   exclude = NULL,
   quality_filter = NULL,
+  rule_filter = pat_rule_filter_none(),
   control = NULL
 )
 }
 \arguments{
 \item{target}{mining target: \code{"rules"} or \code{"frequent itemsets"}}
 
-\item{supp}{minimum support threshold}
+\item{supp}{minimum support threshold. If \code{0}, estimated during \code{fit()} using \code{support_strategy}.}
 
-\item{conf}{minimum confidence threshold for rules}
+\item{conf}{minimum confidence threshold for rules. If \code{0}, estimated during \code{fit()} using \code{confidence_strategy}.}
+
+\item{support_strategy}{support threshold strategy created with \code{pat_support_threshold()}}
+
+\item{confidence_strategy}{confidence threshold strategy created with \code{pat_confidence_threshold()}}
 
 \item{minlen}{minimum pattern length}
 
@@ -38,6 +45,8 @@ pat_apriori(
 \item{exclude}{optional vector of items forbidden in the discovered patterns}
 
 \item{quality_filter}{optional quality filter created with \code{patutils()}}
+
+\item{rule_filter}{rule filter created with \code{pat_rule_filter_none()}, \code{pat_rule_filter_interest()}, or \code{pat_rule_filter_dara()}}
 
 \item{control}{list of control parameters}
 }
@@ -54,12 +63,15 @@ if (requireNamespace("arules", quietly = TRUE)) {
  utils <- patutils()
  pm <- pat_apriori(
    target = "rules",
-   supp = 0.2,
-   conf = 0.85,
+   supp = 0,
+   conf = 0,
+   support_strategy = pat_support_threshold("curvature"),
+   confidence_strategy = pat_confidence_threshold("rhs_baseline", margin = 0.1),
    minlen = 2,
    maxlen = 3,
    rhs = c("native-country=United-States"),
    quality_filter = utils$quality_min(confidence = 0.9, lift = 1.03),
+   rule_filter = pat_rule_filter_interest(lift_min = 1),
    control = list(verbose = FALSE)
  )
  pm <- fit(pm, trans)

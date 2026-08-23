@@ -12,13 +12,15 @@ x
 utils <- patutils()
 
 pm <- pat_cspade(
-  support = 0.4,
+  support = 0,
+  support_strategy = pat_support_threshold("min_count", min_count = 4),
   maxlen = 3,
   quality_filter = utils$quality_min(support = 0.5),
   control = list(verbose = FALSE)
 )
 
 pm <- fit(pm, x)
+pm$engine_parameter
 seqs <- discover(pm, x)
 length(seqs)
 

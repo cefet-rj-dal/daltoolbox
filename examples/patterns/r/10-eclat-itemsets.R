@@ -10,7 +10,8 @@ summary(trans)
 utils <- patutils()
 
 pm <- pat_eclat(
-  supp = 0.2,
+  supp = 0,
+  support_strategy = pat_support_threshold("curvature"),
   maxlen = 3,
   include = c("sex=Male", "income=small", "marital-status=Married-civ-spouse", "race=White"),
   exclude = c("income=small"),
@@ -19,6 +20,7 @@ pm <- pat_eclat(
 )
 
 pm <- fit(pm, trans)
+pm$engine_parameter
 itemsets <- discover(pm, trans)
 length(itemsets)
 

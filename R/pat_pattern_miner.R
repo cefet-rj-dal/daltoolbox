@@ -23,6 +23,7 @@ pattern_miner <- function() {
   obj$fitted <- FALSE
   obj$pat_utils <- utils
   obj$quality_filter <- NULL
+  obj$rule_filter <- pat_rule_filter_none()
   obj$eval_metrics <- list(
     utils$metric_pattern_count,
     utils$metric_mean_support,

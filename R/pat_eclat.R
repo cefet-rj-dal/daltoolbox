@@ -1,6 +1,7 @@
 #'@title ECLAT itemsets
 #'@description Frequent itemsets using `arules::eclat`.
-#'@param supp minimum support threshold
+#'@param supp minimum support threshold. If `0`, estimated during `fit()` using `support_strategy`.
+#'@param support_strategy support threshold strategy created with `pat_support_threshold()`
 #'@param minlen minimum itemset length
 #'@param maxlen maximum itemset length
 #'@param include optional vector of items allowed in the discovered itemsets
@@ -14,7 +15,8 @@
 #'  trans <- suppressWarnings(methods::as(as.data.frame(AdultUCI), "transactions"))
 #'  utils <- patutils()
 #'  pm <- pat_eclat(
-#'    supp = 0.2,
+#'    supp = 0,
+#'    support_strategy = pat_support_threshold("curvature"),
 #'    maxlen = 3,
 #'    include = c("sex=Male", "income=small", "marital-status=Married-civ-spouse", "race=White"),
 #'    exclude = c("income=small"),
@@ -27,7 +29,8 @@
 #'  eval$metrics
 #'}
 #'@export
-pat_eclat <- function(supp = 0.5,
+pat_eclat <- function(supp = 0,
+                      support_strategy = pat_support_threshold("curvature"),
                       minlen = 1,
                       maxlen = 3,
                       include = NULL,
@@ -37,6 +40,7 @@ pat_eclat <- function(supp = 0.5,
   obj <- pattern_miner()
   utils <- obj$pat_utils
   obj$supp <- supp
+  obj$support_strategy <- support_strategy
   obj$minlen <- minlen
   obj$maxlen <- maxlen
   obj$include <- include
@@ -54,9 +58,14 @@ pat_eclat <- function(supp = 0.5,
   return(obj)
 }
 
-pat_eclat_compile <- function(obj) {
+pat_eclat_compile <- function(obj, data = NULL) {
+  obj$supp_resolved <- pat_resolve_support(
+    obj[["supp", exact = TRUE]],
+    obj[["support_strategy", exact = TRUE]],
+    data
+  )
   obj$engine_parameter <- list(
-    supp = obj$supp,
+    supp = obj$supp_resolved,
     minlen = obj$minlen,
     maxlen = obj$maxlen
   )
@@ -70,8 +79,8 @@ fit.pat_eclat <- function(obj, data, ...) {
   if (!requireNamespace("arules", quietly = TRUE)) {
     stop("pat_eclat requires the 'arules' package.", call. = FALSE)
   }
-  obj <- pat_eclat_compile(obj)
   data <- pattern_prepare_transactions(data)
+  obj <- pat_eclat_compile(obj, data)
   pattern_miner_mark_fitted(obj, data)
 }
 

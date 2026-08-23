@@ -1,0 +1,109 @@
+About the method
+
+- `pat_rule_filter_interest`: filters rules by classical interestingness measures such as `lift`, `Kulc`, and `IR`.
+- `pat_rule_filter_dara`: filters rules by Divergent Association Ranking Analysis (DARA).
+- `pat_rule_filter_none`: keeps all discovered rules and makes the no-filter option explicit.
+- `pat_filter_rules`: applies an interesting-rule filter to a rule table or an `arules` rule object.
+
+Didactic goal: separate pattern discovery from rule-interest filtering. `pat_apriori`, ECLAT, and other miners discover candidate patterns; rule filters keep the most interesting association rules according to either classical measures or DARA.
+
+Environment setup.
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages(c("daltoolbox", "arules"))
+
+library(daltoolbox)
+```
+
+Load categorical data.
+```{r}
+data("AdultUCI", package = "arules")
+
+data <- as.data.frame(AdultUCI)
+data <- data[, c(
+  "workclass",
+  "education",
+  "marital-status",
+  "occupation",
+  "income"
+)]
+```
+
+Mine target association rules and keep them in tabular form. This is the candidate rule set before interestingness filtering.
+```{r}
+rules <- pat_dara_rules(
+  data,
+  rhs = "income=small",
+  supp = 0.05,
+  conf = 0.6,
+  minlen = 2,
+  maxlen = 4,
+  remove_redundant = FALSE
+)
+
+head(rules[, c("lhs", "rhs", "support", "confidence", "lift", "count")])
+```
+
+Keep all rules with the explicit no-filter option.
+```{r}
+none_rules <- pat_filter_rules(rules, pat_rule_filter_none())
+nrow(none_rules)
+```
+
+Filter rules with classical interestingness measures. This keeps rules with high lift, acceptable Kulczynski, and low imbalance ratio.
+```{r}
+interest_filter <- pat_rule_filter_interest(
+  lift_min = 1.2,
+  kulc_min = 0.38,
+  ir_max = 0.8
+)
+
+interest_rules <- pat_filter_rules(rules, interest_filter)
+interest_rules[, c("lhs", "lift", "kulc", "ir")]
+```
+
+Filter rules with DARA. This scores each rule antecedent using divergence counters computed from the target subset.
+```{r}
+dara_filter <- pat_rule_filter_dara(
+  data,
+  rhs_attr = "income",
+  rhs_value = "small",
+  min_score = 1
+)
+
+dara_rules <- pat_filter_rules(rules, dara_filter)
+dara_rules[, c("lhs", "dara_score")]
+```
+
+DARA can also be inspected as a ranking to explain why rules were retained.
+```{r}
+ranking <- attr(dara_rules, "dara_ranking")
+ranking[["marital-status"]]
+```
+
+Use the DARA filter directly inside `pat_apriori`.
+```{r}
+pm <- pat_apriori(
+  target = "rules",
+  supp = 0.05,
+  conf = 0.6,
+  minlen = 2,
+  maxlen = 4,
+  rhs = "income=small",
+  rule_filter = dara_filter,
+  control = list(verbose = FALSE)
+)
+
+pm <- fit(pm, data)
+filtered_rules <- discover(pm, data)
+length(filtered_rules)
+attr(filtered_rules, "dara_score")
+```
+
+What to observe
+
+- Interestingness filters are post-processing components: the miner generates candidate rules, and the filter decides which rules remain.
+- `pat_rule_filter_none()` is the explicit default when the user wants discovery without post-mining rule filtering.
+- `lift`, `Kulc`, and `IR` evaluate a rule directly from support relationships.
+- DARA evaluates whether antecedent values become more prominent in the rule set than in the target subset.
+- DARA scores are attached to filtered rules through the `dara_score` column or attribute, and the explanatory ranking is available as `dara_ranking`.
