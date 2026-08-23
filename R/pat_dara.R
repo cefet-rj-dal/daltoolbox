@@ -187,6 +187,7 @@ pat_dara <- function(data,
                      rule_weight = NULL) {
   data <- adjust_data.frame(data)
   rules <- adjust_data.frame(rules)
+  rules <- pat_dara_expand_lhs_columns(rules, data)
 
   if (missing(rhs_attr) || is.null(rhs_attr) || length(rhs_attr) != 1 || is.na(rhs_attr)) {
     stop("pat_dara requires the right-hand-side attribute in 'rhs_attr'.", call. = FALSE)
@@ -250,6 +251,31 @@ pat_dara_parse_items <- function(label) {
     }
   }
   values
+}
+
+pat_dara_expand_lhs_columns <- function(rules, data) {
+  if (!is.data.frame(rules) || !"lhs" %in% colnames(rules) || !(is.data.frame(data) || is.matrix(data))) {
+    return(rules)
+  }
+  item_columns <- setdiff(colnames(data), colnames(rules))
+  if (length(item_columns) == 0) {
+    return(rules)
+  }
+  for (name in item_columns) {
+    rules[[name]] <- NA_character_
+  }
+  parsed <- lapply(rules$lhs, pat_dara_parse_items)
+  for (i in seq_along(parsed)) {
+    values <- parsed[[i]]
+    common <- intersect(names(values), item_columns)
+    for (name in common) {
+      value <- unname(values[name])
+      if (length(value) == 1 && !is.na(value)) {
+        rules[i, name] <- value
+      }
+    }
+  }
+  rules
 }
 
 pat_dara_rule_frequency <- function(rules, attribute, rule_weight = NULL) {

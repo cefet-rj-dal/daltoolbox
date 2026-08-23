@@ -198,25 +198,7 @@ pat_rule_filter_prepare_rules <- function(rules, data = NULL) {
   }
   if (is.data.frame(rules)) {
     tidy <- adjust_data.frame(rules)
-    if (!is.null(data) && "lhs" %in% colnames(tidy) && (is.data.frame(data) || is.matrix(data))) {
-      item_columns <- setdiff(colnames(data), colnames(tidy))
-      if (length(item_columns) > 0) {
-        for (name in item_columns) {
-          tidy[[name]] <- NA_character_
-        }
-        parsed <- lapply(tidy$lhs, pat_dara_parse_items)
-        for (i in seq_along(parsed)) {
-          values <- parsed[[i]]
-          common <- intersect(names(values), item_columns)
-          for (name in common) {
-            value <- unname(values[name])
-            if (length(value) == 1 && !is.na(value)) {
-              tidy[i, name] <- value
-            }
-          }
-        }
-      }
-    }
+    tidy <- pat_dara_expand_lhs_columns(tidy, data)
     return(list(original = rules, tidy = tidy, arules = FALSE))
   }
   stop("pat_filter_rules expects an 'arules' rules object or a tidy rule data frame.", call. = FALSE)
