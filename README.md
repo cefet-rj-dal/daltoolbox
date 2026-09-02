@@ -142,10 +142,10 @@ collection includes thematic subcollections:
 ## Playlist
 
 [DAL Toolbox
-videos](https://www.youtube.com/playlist?list=PLExOtPNxNUwY)
+videos](https://www.youtube.com/playlist?list=PLG1M6TA-XJo8)
 
 [![Watch the playlist on
-YouTube](https://img.shields.io/badge/YouTube-Watch%20playlist-red?logo=youtube&logoColor=white)](https://www.youtube.com/playlist?list=PLExOtPNxNUwY)
+YouTube](https://img.shields.io/badge/YouTube-Watch%20playlist-red?logo=youtube&logoColor=white)](https://www.youtube.com/playlist?list=PLG1M6TA-XJo8)
 
 ------------------------------------------------------------------------
 
