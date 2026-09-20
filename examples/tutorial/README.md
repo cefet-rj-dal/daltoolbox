@@ -4,6 +4,8 @@ This section presents `daltoolbox` as a guided learning path. The numbering now 
 
 The sequence is cumulative. Each tutorial introduces one main decision in a data mining study, explains why that step matters, and keeps the code close to that learning objective.
 
+> Slide deck: [d020_tutorial.pdf](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/pdf/d020_tutorial.pdf).
+
 ## Foundations
 
 Start here if you want the minimum workflow before comparing learners or tuning parameters.

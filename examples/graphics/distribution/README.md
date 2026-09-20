@@ -2,7 +2,7 @@
 
 These plots cover four analytical questions in sequence: the shape of a single variable's distribution, the relationship between variables, ordered/temporal views, and how to export the final chart.
 
-> Slide deck: `d072-distribution.pdf`. Despite its filename, this deck already bundles four themes (Distribution Analysis, Relationships Between Variables, Time-Oriented Views, and Export and Delivery) in one presentation — kept as a single folder here to stay 1:1 with the deck as it exists today. If `d072` is ever split into separate decks, this folder should be split to match (into `distribution/`, `relationship/`, `time-series/`, and `export/`).
+> Slide deck: [d072_graphics_distribution.pdf](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/pdf/d072_graphics_distribution.pdf). Despite its filename, this deck already bundles four themes (Distribution Analysis, Relationships Between Variables, Time-Oriented Views, and Export and Delivery) in one presentation — kept as a single folder here to stay 1:1 with the deck as it exists today. If `d072` is ever split into separate decks, this folder should be split to match (into `distribution/`, `relationship/`, `time-series/`, and `export/`).
 
 ## Distribution Analysis
 

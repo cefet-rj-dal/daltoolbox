@@ -2,7 +2,7 @@
 
 These examples are useful when the first challenge is creating representative partitions before any other transformation.
 
-> Slide deck: `d032-sampling.pdf`.
+> Slide deck: [d032_transf_sampling.pdf](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/pdf/d032_transf_sampling.pdf).
 
 - [01-sampling-random.md](/examples/transf/sampling/01-sampling-random.md) - `sample_random`: train/test split and folds by simple random draws.
 - [02-sampling-stratified.md](/examples/transf/sampling/02-sampling-stratified.md) - `sample_stratified`: train/test split and folds preserving target proportions.

@@ -47,13 +47,6 @@ Target `Species` levels and reproducible train/test split.
 slevels <- levels(iris$Species)
 
 set_example_seed()
-```
-
-```
-## Downloading uv...Done!
-```
-
-``` r
 sr <- train_test(sample_random(), iris)
 iris_train <- sr$train
 iris_test <- sr$test

@@ -2,7 +2,7 @@
 
 These examples reduce the predictor set according to relevance, sparsity, or subset search.
 
-> Slide deck: `d038-feature-selection.pdf`.
+> Slide deck: [d038_transf_feature-selection.pdf](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/pdf/d038_transf_feature-selection.pdf).
 
 - [60-feature-selection-information-gain.md](/examples/transf/feature-selection/60-feature-selection-information-gain.md) - `feature_selection_info_gain`: rank predictors by information gain.
 - [61-feature-selection-relief.md](/examples/transf/feature-selection/61-feature-selection-relief.md) - `feature_selection_relief`: rank predictors through nearest-hit and nearest-miss contrasts.

@@ -6,7 +6,7 @@ The didactic question here is different from classification and regression: how 
 
 When `supp`, `conf`, or `support` are set to `0`, the miner estimates them during `fit()` with threshold strategies such as `pat_support_threshold()` and `pat_confidence_threshold()`. These strategies configure the search space; the filters below are post-mining rule filters.
 
-> Slide deck: none yet. This whole folder is one coherent topic (association rules, itemsets, sequences, and rule filtering), so it does not need to be split into subfolders — it needs a single new deck, the same way `custom/` maps entirely to `d08-custom.pdf` (recommend e.g. `d09-patterns.pdf`).
+> Slide deck: [d090_patterns.pdf](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/pdf/d090_patterns.pdf) — draft, auto-generated from Markdown source; pending a proper presentation design. This whole folder is one coherent topic (association rules, itemsets, sequences, and rule filtering), so it does not need to be split into subfolders, the same way `custom/` maps entirely to `d080_custom.pdf`.
 
 ## Association Rules
 
