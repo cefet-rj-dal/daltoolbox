@@ -1,0 +1,95 @@
+About the method
+- `cluster_gmm`: Gaussian mixture model clustering.
+
+Didactic goal: keep the same clustering line of experiment and change only the clustering family to a probabilistic mixture model.
+
+Environment setup.
+
+``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages(c("daltoolbox", "mclust"))
+
+library(daltoolbox)
+library(mclust)
+```
+
+```
+## Warning: package 'mclust' was built under R version 4.5.2
+```
+
+```
+## Package 'mclust' version 6.1.2
+## Type 'citation("mclust")' for citing this R package in publications.
+```
+
+Load data and separate predictors from the reference labels used only for interpretation.
+
+``` r
+iris <- datasets::iris
+x <- iris[, 1:4]
+ref <- iris$Species
+head(x)
+```
+
+```
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1          5.1         3.5          1.4         0.2
+## 2          4.9         3.0          1.4         0.2
+## 3          4.7         3.2          1.3         0.2
+## 4          4.6         3.1          1.5         0.2
+## 5          5.0         3.6          1.4         0.2
+## 6          5.4         3.9          1.7         0.4
+```
+
+Model configuration.
+
+``` r
+model <- cluster_gmm(G = 3)
+```
+
+Fit the model and obtain cluster labels.
+
+``` r
+model <- daltoolbox::fit(model, x)
+clu <- daltoolbox::cluster(model, x)
+table(clu)
+```
+
+```
+## clu
+##  1  2  3 
+## 50 45 55
+```
+
+Evaluate the partition.
+
+``` r
+eval <- daltoolbox::evaluate(model, clu, ref)
+eval
+```
+
+```
+## $clusters_entropy
+## # A tibble: 3 × 4
+##   x        ce   qtd   ceg
+##   <fct> <dbl> <int> <dbl>
+## 1 1     0        50 0    
+## 2 2     0        45 0    
+## 3 3     0.439    55 0.161
+## 
+## $clustering_entropy
+## [1] 0.1611489
+## 
+## $data_entropy
+## [1] 1.584963
+## 
+## $metrics
+##                metric        value     goal     type
+## 1              loglik -186.0740479 maximize    model
+## 2             entropy    0.1611489 minimize external
+## 3              purity    0.9666667 maximize external
+## 4 adjusted_rand_index    0.9038742 maximize external
+```
+
+References
+- Fraley, C., and Raftery, A. E. (2002). Model-Based Clustering, Discriminant Analysis, and Density Estimation.

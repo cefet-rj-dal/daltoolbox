@@ -85,8 +85,8 @@ eval$metrics
 ```
 
 ```
-##   accuracy TP TN FP FN precision recall sensitivity specificity f1
-## 1        1  9 21  0  0         1      1           1           1  1
+##    accuracy TP TN FP FN precision recall sensitivity specificity f1
+## 1 0.9333333  9 21  0  0         1      1           1           1  1
 ```
 
 The core message is that extending the framework should not require rewriting the entire experimental workflow.

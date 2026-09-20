@@ -1,21 +1,11 @@
 # Regression Examples
 
-This section organizes regression examples as a progression of modeling ideas. The numbering now leaves semantic gaps so the collection is easier to scan by family: interpretable models, local methods, ensembles, margin-based regression, neural learners, and tuning.
+This section organizes regression examples as a progression of modeling ideas, one subfolder per family, so each folder maps 1:1 to a slide deck.
 
-If you are learning numeric prediction in `daltoolbox`, read the examples in order. The early notebooks help build intuition before the later ones introduce stronger nonlinear models and hyperparameter search.
+If you are learning numeric prediction in `daltoolbox`, read the subfolders in order. The early notebooks help build intuition before the later ones introduce stronger nonlinear models and hyperparameter search.
 
-## Interpretable Start
-
-- [01-interpretable-tree.md](/examples/regression/01-interpretable-tree.md) - `reg_dtree`: regression tree with rule-like splits and easy inspection.
-
-## Core Regression Families
-
-- [11-linear-model.md](/examples/regression/11-linear-model.md) - `reg_lm`: linear regression baseline for numeric prediction.
-- [10-instance-based-knn.md](/examples/regression/10-instance-based-knn.md) - `reg_knn`: local prediction by nearby cases.
-- [20-ensemble-random-forest.md](/examples/regression/20-ensemble-random-forest.md) - `reg_rf`: tree ensemble for robust nonlinear regression.
-- [30-margin-svm.md](/examples/regression/30-margin-svm.md) - `reg_svm`: support vector regression with margin-based fitting.
-- [40-neural-mlp.md](/examples/regression/40-neural-mlp.md) - `reg_mlp`: multilayer perceptron for nonlinear numeric prediction.
-
-## Model Selection
-
-- [50-model-selection-tuning.md](/examples/regression/50-model-selection-tuning.md) - `reg_tune`: searches hyperparameter settings for regression models in a reproducible workflow.
+- [Linear Regression](linear/README.Rmd) - `d051-regression.pdf`
+- [Beyond Linear Regression](beyond-linear/README.Rmd) - `d052-beyond-linear-regression.pdf`
+- [Ensemble Regression](ensemble/README.Rmd) - `d053-ensemble-regression.pdf`
+- [Flexible Non-Linear Regression](flexible/README.Rmd) - `d054-flex-regression.pdf`
+- [Model Selection](model-selection/README.Rmd) - `d055-hyper-regression.pdf`

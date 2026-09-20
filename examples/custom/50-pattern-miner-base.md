@@ -25,7 +25,7 @@ names(miner)
 ```
 
 ```
-## [1] "fitted"       "pat_utils"    "eval_metrics" "pattern_kind"
+## [1] "fitted"       "pat_utils"    "rule_filter"  "eval_metrics" "pattern_kind"
 ```
 
 ``` r

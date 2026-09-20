@@ -1,40 +1,14 @@
 # Classification Examples
 
-This section presents classification as a staged learning path rather than as a flat list of model names. The numbering now leaves semantic gaps so the reader can immediately see where the collection moves from foundations to core model families and then to model selection.
+This section presents classification as a staged learning path, one subfolder per model family, so each folder maps 1:1 to a slide deck.
 
-If you are new to supervised classification in `daltoolbox`, start with the first two examples and only then move to the alternative learner families. The final block is intentionally separated because tuning makes more sense after the reader already understands at least one untuned learner.
+If you are new to supervised classification in `daltoolbox`, start with fundamentals and only then move to the alternative learner families. Model selection is intentionally separated because tuning makes more sense after the reader already understands at least one untuned learner.
 
-## Foundations
-
-These examples establish the minimum logic of a classification experiment: define the target, create a split, fit a learner, generate class scores, and evaluate the result.
-
-- [01-baseline-majority.md](/examples/classification/01-baseline-majority.md) - `cla_majority`: baseline classifier that always predicts the most frequent class observed during training.
-- [02-interpretable-tree.md](/examples/classification/02-interpretable-tree.md) - `cla_dtree`: decision tree classifier with an easy-to-interpret splitting structure.
-
-## Core Model Families
-
-This block groups learners by different modeling ideas so the reader can compare neighborhood-based, probabilistic, ensemble, margin-based, and neural approaches without confusing them with the baseline block above.
-
-- [10-instance-based-knn.md](/examples/classification/10-instance-based-knn.md) - `cla_knn`: classifies by the majority vote of the nearest neighbors.
-- [11-probabilistic-naive-bayes.md](/examples/classification/11-probabilistic-naive-bayes.md) - `cla_nb`: probabilistic classifier based on conditional independence assumptions.
-- [12-ensemble-random-forest.md](/examples/classification/12-ensemble-random-forest.md) - `cla_rf`: ensemble of randomized decision trees.
-- [13-margin-svm.md](/examples/classification/13-margin-svm.md) - `cla_svm`: support vector machine for margin-based class separation.
-- [14-neural-mlp.md](/examples/classification/14-neural-mlp.md) - `cla_mlp`: multilayer perceptron for nonlinear classification.
-- [15-ensemble-bagging.md](/examples/classification/15-ensemble-bagging.md) - `cla_bagging`: bootstrap aggregation of tree learners.
-- [16-ensemble-boosting.md](/examples/classification/16-ensemble-boosting.md) - `cla_boosting`: sequential ensemble that focuses on hard cases.
-- [17-linear-logistic-glm.md](/examples/classification/17-linear-logistic-glm.md) - `cla_glm`: binary logistic regression through the GLM framework.
-- [18-linear-logistic-glmnet.md](/examples/classification/18-linear-logistic-glmnet.md) - `cla_glmnet`: L1-regularized logistic regression.
-- [19-probabilistic-multinomial.md](/examples/classification/19-probabilistic-multinomial.md) - `cla_multinom`: multinomial logistic regression for multiclass problems.
-
-## Model Selection
-
-This final block isolates hyperparameter search from the learner-introduction examples. That separation helps the reader first understand what a learner does before adding the extra layer of search strategy and comparison.
-
-- [20-model-selection-tuning.md](/examples/classification/20-model-selection-tuning.md) - `cla_tune`: searches hyperparameter ranges while preserving the same Experiment Line workflow.
-
-## Additional Backends
-
-These examples keep the same classification task but switch backend implementation, which is useful for readers comparing DAL wrappers rather than only statistical families.
-
-- [21-tree-rpart.md](/examples/classification/21-tree-rpart.md) - `cla_rpart`: CART classification tree with the `rpart` backend.
-- [22-boosting-xgboost.md](/examples/classification/22-boosting-xgboost.md) - `cla_xgboost`: gradient boosting classifier with `xgboost`.
+- [Foundations](fundamentals/README.Rmd) - `d042-fundamentals.pdf`
+- [Instance-Based (kNN)](knn/README.Rmd) - `d043-knn.pdf`
+- [Probabilistic Classifiers](probabilistic/README.Rmd) - `d044-naive-bayes.pdf`
+- [Ensemble Classifiers](ensemble/README.Rmd) - `d045-ensemble.pdf`
+- [Margin-Based (SVM)](svm/README.Rmd) - `d046-svm.pdf`
+- [Neural Networks](neural-networks/README.Rmd) - `d047-neural-networks.pdf`
+- [Linear Models](linear-models/README.Rmd) - no deck yet, pending a new presentation
+- [Model Selection](model-selection/README.Rmd) - `d048-model-selection.pdf`
