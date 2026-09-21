@@ -2,7 +2,7 @@
 
 These charts are useful when the main goal is to compare categories, summarize aggregates, or show composition.
 
-> Slide deck: [d071_graphics_comparison.pdf](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/pdf/d071_graphics_comparison.pdf).
+> Slide deck: [d071-graphics-comparison.pdf](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/pdf/d071-graphics-comparison.pdf).
 
 - [01-comparison-bar.md](/examples/graphics/comparison/01-comparison-bar.md) - bar chart for aggregated values by category.
 - [02-comparison-bar-with-error.md](/examples/graphics/comparison/02-comparison-bar-with-error.md) - bar chart with uncertainty or variability bands through `geom_errorbar()`.

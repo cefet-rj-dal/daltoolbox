@@ -7,7 +7,7 @@ The examples now support two complementary entry points:
 
 If you are new to `daltoolbox`, start with the tutorials. If you already know the basic Experiment Line, jump directly to the thematic collections.
 
-> Slide deck: [d010_daltoolbox.pdf](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/pdf/d010_daltoolbox.pdf) — whole-package overview.
+> Slide deck: [d010-daltoolbox.pdf](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/pdf/d010-daltoolbox.pdf) — whole-package overview.
 
 ## Guided Tutorial Track
 
