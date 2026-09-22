@@ -7,8 +7,6 @@ The examples now support two complementary entry points:
 
 If you are new to `daltoolbox`, start with the tutorials. If you already know the basic Experiment Line, jump directly to the thematic collections.
 
-> Slide deck: [d010-daltoolbox.pdf](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/pdf/d010-daltoolbox.pdf) — whole-package overview.
-
 ## Guided Tutorial Track
 
 - [Tutorials](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/tutorial/) - a structured path with semantic numbering blocks for foundations, classification study, workflow transfer, and extension.

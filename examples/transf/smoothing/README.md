@@ -2,8 +2,6 @@
 
 These examples summarize continuous values into intervals, frequencies, or cluster-defined bins.
 
-> Slide deck: [d036-transf-smoothing.pdf](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/pdf/d036-transf-smoothing.pdf).
-
 - [40-smoothing-interval.md](/examples/transf/smoothing/40-smoothing-interval.md) - `smoothing_inter`: discretization by equal-width intervals.
 - [41-smoothing-frequency.md](/examples/transf/smoothing/41-smoothing-frequency.md) - `smoothing_freq`: discretization by frequency-balanced bins.
 - [42-smoothing-clustering.md](/examples/transf/smoothing/42-smoothing-clustering.md) - `smoothing_cluster`: class-aware discretization guided by clustering and the target label.

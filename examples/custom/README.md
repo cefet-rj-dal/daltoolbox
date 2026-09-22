@@ -4,8 +4,6 @@ This folder explains how to extend `daltoolbox` without breaking the package wor
 
 The didactic idea is simple: once you understand the constructor and the required S3 method for one family, the others become easier to adapt.
 
-> Slide deck: [d080-custom.pdf](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/pdf/d080-custom.pdf).
-
 ## Data Transformation
 
 - [01-custom-transformation.md](/examples/custom/01-custom-transformation.md) - create a custom transformation object and implement `transform()`.

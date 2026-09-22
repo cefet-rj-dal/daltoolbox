@@ -6,8 +6,6 @@ The didactic question here is different from classification and regression: how 
 
 When `supp`, `conf`, or `support` are set to `0`, the miner estimates them during `fit()` with threshold strategies such as `pat_support_threshold()` and `pat_confidence_threshold()`. These strategies configure the search space; the filters below are post-mining rule filters.
 
-> Slide deck: [d090-patterns.pdf](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/pdf/d090-patterns.pdf) — draft, auto-generated from Markdown source; pending a proper presentation design. This whole folder is one coherent topic (association rules, itemsets, sequences, and rule filtering), so it does not need to be split into subfolders, the same way `custom/` maps entirely to `d080-custom.pdf`.
-
 ## Association Rules
 
 Start here if you want directional patterns with left-hand side and right-hand side interpretation.

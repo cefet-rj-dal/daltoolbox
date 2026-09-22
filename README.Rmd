@@ -117,6 +117,13 @@ The [examples](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/) c
 
 ---
 
+## Slides and Videos
+
+- [Slide decks](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/slides/) - one presentation per topic, indexed in `examples/slides/README.md`.
+- [Video index](https://github.com/cefet-rj-dal/daltoolbox/tree/main/examples/videos/) - one entry per published video, indexed in `examples/videos/README.md`.
+
+---
+
 ## Bugs and Feature Requests
 
 Please report bugs, questions, and feature requests at:
