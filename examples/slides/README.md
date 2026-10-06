@@ -9,16 +9,16 @@ One presentation per topic. Each deck matches the corresponding example folder u
 
 ## Transformations
 
-- [Data Aggregation: Summarizing Data for Reports and Charts](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d03-transf-aggregation.pdf) (draft)
-- [Data Preprocessing Pipeline: The Right Order Explained](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d04-transf.pdf)
-- [Random vs Stratified Sampling: Building a Fair Train-Test Split](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d05-transf-sampling.pdf)
-- [Data Cleaning: Missing Values and Outlier Detection](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d06-transf-cleaning.pdf)
-- [Min-Max vs Z-Score Normalization: Feature Scaling Explained](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d07-transf-scaling.pdf)
-- [Categorical Encoding: Concept Hierarchies vs One-Hot Encoding](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d08-transf-encoding.pdf)
-- [Data Discretization: Equal-Width, Equal-Frequency, and Clustering Bins](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d09-transf-smoothing.pdf)
-- [Class Imbalance: Oversampling, SMOTE, and Undersampling](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d10-transf-balancing.pdf)
-- [Feature Selection: Information Gain, Relief, and Lasso Compared](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d11-transf-feature-selection.pdf)
-- [PCA: Dimensionality Reduction and Component Selection](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d12-transf-dimensionality.pdf)
+- [Data Preprocessing Pipeline: The Right Order Explained](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d03-transf.pdf)
+- [Random vs Stratified Sampling: Building a Fair Train-Test Split](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d04-transf-sampling.pdf)
+- [Data Cleaning: Missing Values and Outlier Detection](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d05-transf-cleaning.pdf)
+- [Min-Max vs Z-Score Normalization: Feature Scaling Explained](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d06-transf-scaling.pdf)
+- [Categorical Encoding: Concept Hierarchies vs One-Hot Encoding](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d07-transf-encoding.pdf)
+- [Data Discretization: Equal-Width, Equal-Frequency, and Clustering Bins](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d08-transf-smoothing.pdf)
+- [Class Imbalance: Oversampling, SMOTE, and Undersampling](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d09-transf-balancing.pdf)
+- [Feature Selection: Information Gain, Relief, and Lasso Compared](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d10-transf-feature-selection.pdf)
+- [PCA: Dimensionality Reduction and Component Selection](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d11-transf-dimensionality.pdf)
+- [Data Aggregation: Summarizing Data for Reports and Charts](https://github.com/cefet-rj-dal/daltoolbox/blob/main/examples/slides/d12-transf-aggregation.pdf) (draft)
 
 ## Classification
 
