@@ -41,7 +41,10 @@ smoothing <- function(n) {
     # choose n at elbow point of error curve
     curv <- fit_curvature_max()
     res <- transform(curv, opt$mean)
-    obj$n <- res$x
+    # res$x is the position of max curvature: map it back to the candidate value
+    # (opt$num) and refit so interval/interval.adj match the chosen n.
+    obj$n <- opt$num[res$x]
+    obj <- fit(obj, data)
     return(obj)
   }
   class(obj) <- append("smoothing", class(obj))
