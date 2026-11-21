@@ -23,9 +23,11 @@ PAM proceeds in two phases: BUILD, a greedy selection of the initial medoids, an
 SWAP, which exchanges a medoid with a non-medoid whenever that lowers the total
 distance to the nearest medoid. The SWAP phase uses the FastPAM1 scheme
 (Schubert & Rousseeuw, 2019), which evaluates the cost change of every candidate swap
-in a single pass and therefore reaches the same local optimum as classic PAM far more
-cheaply. This is an independent reimplementation (inspired by \code{cluster::pam}, but not
-a wrapper of it), so the package carries no dependency on the \code{cluster} package.
+in a single pass and therefore reaches the same local optimum as classic PAM (identical
+medoids) while being markedly faster as the number of clusters grows (e.g. about 20x at
+k = 20 in the reference port). This is an independent reimplementation (inspired by
+\code{cluster::pam}, but not a wrapper of it), so the package carries no dependency on the
+\code{cluster} package.
 
 The base \code{clusterer()} uses \code{wcss} as a generic default, but
 \code{cluster_pam()} specializes that choice because PAM is commonly compared
