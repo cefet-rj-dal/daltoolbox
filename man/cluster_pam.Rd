@@ -13,10 +13,19 @@ cluster_pam(k = 1)
 returns PAM object.
 }
 \description{
-Clustering around representative data points (medoids) using \code{cluster::pam}.
+Clustering around representative data points (medoids), using a native
+implementation of PAM (no external clustering dependency).
 }
 \details{
 More robust to outliers than k‑means. The intrinsic metric reported is the within‑cluster SSE to medoids.
+
+PAM proceeds in two phases: BUILD, a greedy selection of the initial medoids, and
+SWAP, which exchanges a medoid with a non-medoid whenever that lowers the total
+distance to the nearest medoid. The SWAP phase uses the FastPAM1 scheme
+(Schubert & Rousseeuw, 2019), which evaluates the cost change of every candidate swap
+in a single pass and therefore reaches the same local optimum as classic PAM far more
+cheaply. This is an independent reimplementation (inspired by \code{cluster::pam}, but not
+a wrapper of it), so the package carries no dependency on the \code{cluster} package.
 
 The base \code{clusterer()} uses \code{wcss} as a generic default, but
 \code{cluster_pam()} specializes that choice because PAM is commonly compared
@@ -51,6 +60,7 @@ eval
 }
 \references{
 Kaufman, L. and Rousseeuw, P. J. (1990). Finding Groups in Data: An Introduction to Cluster Analysis.
+Schubert, E. and Rousseeuw, P. J. (2019). Faster k-Medoids Clustering: Improving the PAM, CLARA, and CLARANS Algorithms. In Similarity Search and Applications (SISAP 2019), 171-187.
 Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
 Davies, D. L., & Bouldin, D. W. (1979). A cluster separation measure.
 Calinski, T., & Harabasz, J. (1974). A dendrite method for cluster analysis.
