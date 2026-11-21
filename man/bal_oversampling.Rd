@@ -2,22 +2,41 @@
 % Please edit documentation in R/trans_sample_oversampling.R
 \name{bal_oversampling}
 \alias{bal_oversampling}
-\title{Random or SMOTE-based class oversampling}
+\title{SMOTE-family class oversampling}
 \usage{
-bal_oversampling(attribute, method = c("smote", "random"), k = 5)
+bal_oversampling(
+  attribute,
+  method = c("smote", "borderline", "adasyn", "random"),
+  k = 5,
+  m = 10,
+  seed = NULL
+)
 }
 \arguments{
 \item{attribute}{target class attribute name}
 
-\item{method}{oversampling strategy: \code{"smote"} or \code{"random"}}
+\item{method}{oversampling strategy: \code{"smote"}, \code{"borderline"}, \code{"adasyn"} or \code{"random"}}
 
-\item{k}{number of nearest neighbors used by the SMOTE strategy}
+\item{k}{number of nearest neighbors used to interpolate synthetic samples}
+
+\item{m}{number of neighbors used to assess the danger/difficulty of a minority instance (borderline/adasyn)}
+
+\item{seed}{optional seed for reproducibility}
 }
 \value{
 returns an object of class \code{bal_oversampling}
 }
 \description{
-Balance class distributions by randomly replicating minority examples or by generating synthetic samples with a local SMOTE implementation.
+Balance class distributions by generating synthetic minority examples with
+the SMOTE family (classic SMOTE, Borderline-SMOTE, ADASYN) or by random replication.
+}
+\details{
+All synthetic variants interpolate a base minority instance toward one of its
+\code{k} nearest minority neighbors; nominal features are set by majority vote among those
+neighbors (SMOTE-NC) instead of a coin flip. \code{"borderline"} synthesizes only from
+\emph{danger} instances (those whose \code{m} nearest neighbors are mostly of other classes),
+concentrating new points near the decision boundary; \code{"adasyn"} allocates more synthetic
+samples to harder-to-learn minority instances. Native implementation, no extra dependency.
 }
 \examples{
 data(iris)
@@ -27,5 +46,7 @@ iris_bal <- transform(bal, iris_imb)
 table(iris_bal$Species)
 }
 \references{
-Chawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: Synthetic Minority Over-sampling Technique.
+Chawla, N. V., Bowyer, K. W., Hall, L. O., & Kegelmeyer, W. P. (2002). SMOTE: Synthetic Minority Over-sampling Technique. Journal of Artificial Intelligence Research, 16:321-357.
+Han, H., Wang, W.-Y., & Mao, B.-H. (2005). Borderline-SMOTE: A New Over-Sampling Method in Imbalanced Data Sets Learning. In ICIC 2005, 878-887.
+He, H., Bai, Y., Garcia, E. A., & Li, S. (2008). ADASYN: Adaptive Synthetic Sampling Approach for Imbalanced Learning. In IJCNN 2008, 1322-1328.
 }
