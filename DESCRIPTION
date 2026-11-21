@@ -45,7 +45,6 @@ Imports:
 Suggests:
   adabag,
   glmnet,
-  leaps,
   ipred,
   xgboost,
   arulesViz,

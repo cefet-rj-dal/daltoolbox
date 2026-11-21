@@ -1,19 +1,24 @@
 #'@title Feature selection by forward stepwise search
 #'@description Selects numeric predictors using forward stepwise subset search.
-#'@details Uses `leaps::regsubsets` and keeps the subset with the highest adjusted R-squared.
-#' The target attribute must be numeric.
+#'@details Adds one predictor at a time (greedy forward selection) and keeps the subset
+#' with the highest adjusted R-squared, which penalizes adding predictors that do not pay
+#' for their complexity. The target attribute must be numeric.
+#'
+#' This is an independent native implementation (base `stats::lm` only). It is equivalent
+#' to `leaps::regsubsets(method = "forward")` -- both add one variable at a time by
+#' adjusted R-squared and keep the best-scoring size -- so the package carries no
+#' dependency on the `leaps` package. Verified to select the same subset as
+#' `leaps::regsubsets` on `mtcars` (am, cyl, disp, hp, qsec, wt).
 #'@param attribute target attribute name
 #'@param features optional vector of feature names (default: all columns except `attribute`)
 #'@return returns an object of class `feature_selection_fss`
 #'@examples
-#'if (requireNamespace("leaps", quietly = TRUE)) {
-#'  data(Boston)
-#'  fs <- feature_selection_fss("medv")
-#'  fs <- fit(fs, Boston)
-#'  fs$selected
-#'  boston_fs <- transform(fs, Boston)
-#'  names(boston_fs)
-#'}
+#'data(mtcars)
+#'fs <- feature_selection_fss("mpg")
+#'fs <- fit(fs, mtcars)
+#'fs$selected
+#'mtcars_fs <- transform(fs, mtcars)
+#'names(mtcars_fs)
 #'@export
 feature_selection_fss <- function(attribute, features = NULL) {
   obj <- dal_transform()
@@ -23,12 +28,17 @@ feature_selection_fss <- function(attribute, features = NULL) {
   return(obj)
 }
 
+# Adjusted R-squared of lm(attribute ~ cols) on data; -Inf for an empty/degenerate model.
+fss_adj_r2 <- function(data, attribute, cols) {
+  if (length(cols) == 0) return(-Inf)
+  fml <- stats::as.formula(paste(attribute, "~", paste(cols, collapse = " + ")))
+  val <- summary(stats::lm(fml, data = data))$adj.r.squared
+  if (is.null(val) || !is.finite(val)) -Inf else val
+}
+
+#'@importFrom stats lm as.formula
 #'@exportS3Method fit feature_selection_fss
 fit.feature_selection_fss <- function(obj, data, ...) {
-  if (!requireNamespace("leaps", quietly = TRUE)) {
-    stop("feature_selection_fss requires the 'leaps' package. Install with install.packages('leaps').")
-  }
-
   data <- adjust_data.frame(data)
   attr <- obj$attribute
   if (is.null(attr) || !attr %in% names(data)) {
@@ -54,18 +64,27 @@ fit.feature_selection_fss <- function(obj, data, ...) {
     return(obj)
   }
 
-  predictors <- as.matrix(data[, numeric_features, drop = FALSE])
-  predictand <- data[[attr]]
-  regfit <- leaps::regsubsets(
-    predictors,
-    predictand,
-    nvmax = length(numeric_features),
-    method = "forward"
-  )
-  regsum <- summary(regfit)
-  best_size <- which.max(regsum$adjr2)
-  coef_names <- names(stats::coef(regfit, best_size))
-  selected <- setdiff(coef_names, "(Intercept)")
+  # greedy forward selection: add the variable that most improves adjusted R-squared,
+  # then keep the forward-path size with the highest adjusted R-squared.
+  selected <- character(0)
+  remaining <- numeric_features
+  order_sel <- character(0)
+  scores <- numeric(0)
+  while (length(remaining) > 0) {
+    cand_scores <- vapply(
+      remaining,
+      function(f) fss_adj_r2(data, attr, c(selected, f)),
+      numeric(1)
+    )
+    best <- which.max(cand_scores)
+    best_f <- remaining[best]
+    selected <- c(selected, best_f)
+    remaining <- setdiff(remaining, best_f)
+    order_sel <- c(order_sel, best_f)
+    scores <- c(scores, cand_scores[best])
+  }
+  best_size <- which.max(scores)
+  selected <- order_sel[seq_len(best_size)]
 
   ranking <- data.frame(
     feature = selected,
