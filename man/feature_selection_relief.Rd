@@ -2,14 +2,16 @@
 % Please edit documentation in R/trans_feature_selection_relief.R
 \name{feature_selection_relief}
 \alias{feature_selection_relief}
-\title{Feature selection by RELIEF}
+\title{Feature selection by ReliefF}
 \usage{
 feature_selection_relief(
   attribute,
   features = NULL,
   top = NULL,
   cutoff = NULL,
-  m = 50
+  m = 50,
+  k = 10,
+  seed = NULL
 )
 }
 \arguments{
@@ -19,18 +21,31 @@ feature_selection_relief(
 
 \item{top}{optional number of top features to keep}
 
-\item{cutoff}{optional minimum RELIEF weight to keep a feature}
+\item{cutoff}{optional minimum ReliefF weight to keep a feature}
 
-\item{m}{number of sampled instances for RELIEF updates}
+\item{m}{number of sampled instances for ReliefF updates}
+
+\item{k}{number of nearest hits/misses per class averaged in each update (default 10)}
+
+\item{seed}{optional seed for the instance sampling (reproducibility)}
 }
 \value{
 returns an object of class \code{feature_selection_relief}
 }
 \description{
-Rank and select features using a simplified RELIEF algorithm.
+Rank and select features using the ReliefF weighting scheme.
 }
 \details{
-For each sampled instance, the algorithm compares nearest hit/miss neighbors and updates feature weights.
+For each of \code{m} sampled instances the algorithm finds its \code{k} nearest neighbors
+of the same class (nearest hits) and its \code{k} nearest neighbors of each other class
+(nearest misses) in the normalized feature space, and updates every feature's weight by
+subtracting its average hit difference and adding its average miss difference, the latter
+weighted by each other class's prior probability \code{P(C) / (1 - P(class(R)))}. Averaging
+over \code{k} neighbors (ReliefF, Kononenko 1994) makes the estimate robust to noise, and the
+class-prior weighting handles multi-class targets.
+
+This is a native implementation inspired by the original Relief and evolved to full
+ReliefF (see references), carrying no external feature-selection dependency.
 }
 \examples{
 data(iris)
@@ -43,4 +58,8 @@ fs <- feature_selection_relief("IsVersicolor", top = 2, m = 50)
 fs <- fit(fs, iris_bin)
 fs$selected
 transform(fs, iris_bin) |> names()
+}
+\references{
+Kira, K. and Rendell, L. A. (1992). A Practical Approach to Feature Selection. In Proceedings of the Ninth International Workshop on Machine Learning, 249-256.
+Kononenko, I. (1994). Estimating Attributes: Analysis and Extensions of RELIEF. In Proceedings of the European Conference on Machine Learning, 171-182.
 }

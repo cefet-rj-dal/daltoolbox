@@ -1,12 +1,26 @@
-#'@title Feature selection by RELIEF
-#'@description Rank and select features using a simplified RELIEF algorithm.
-#'@details For each sampled instance, the algorithm compares nearest hit/miss neighbors and updates feature weights.
+#'@title Feature selection by ReliefF
+#'@description Rank and select features using the ReliefF weighting scheme.
+#'@details For each of `m` sampled instances the algorithm finds its `k` nearest neighbors
+#' of the same class (nearest hits) and its `k` nearest neighbors of each other class
+#' (nearest misses) in the normalized feature space, and updates every feature's weight by
+#' subtracting its average hit difference and adding its average miss difference, the latter
+#' weighted by each other class's prior probability `P(C) / (1 - P(class(R)))`. Averaging
+#' over `k` neighbors (ReliefF, Kononenko 1994) makes the estimate robust to noise, and the
+#' class-prior weighting handles multi-class targets.
+#'
+#' This is a native implementation inspired by the original Relief and evolved to full
+#' ReliefF (see references), carrying no external feature-selection dependency.
 #'@param attribute target attribute name
 #'@param features optional vector of feature names (default: all columns except `attribute`)
 #'@param top optional number of top features to keep
-#'@param cutoff optional minimum RELIEF weight to keep a feature
-#'@param m number of sampled instances for RELIEF updates
+#'@param cutoff optional minimum ReliefF weight to keep a feature
+#'@param m number of sampled instances for ReliefF updates
+#'@param k number of nearest hits/misses per class averaged in each update (default 10)
+#'@param seed optional seed for the instance sampling (reproducibility)
 #'@return returns an object of class `feature_selection_relief`
+#'@references
+#' Kira, K. and Rendell, L. A. (1992). A Practical Approach to Feature Selection. In Proceedings of the Ninth International Workshop on Machine Learning, 249-256.
+#' Kononenko, I. (1994). Estimating Attributes: Analysis and Extensions of RELIEF. In Proceedings of the European Conference on Machine Learning, 171-182.
 #'@examples
 #'data(iris)
 #'fg <- feature_generation(
@@ -20,13 +34,15 @@
 #'transform(fs, iris_bin) |> names()
 #'@importFrom utils head
 #'@export
-feature_selection_relief <- function(attribute, features = NULL, top = NULL, cutoff = NULL, m = 50) {
+feature_selection_relief <- function(attribute, features = NULL, top = NULL, cutoff = NULL, m = 50, k = 10, seed = NULL) {
   obj <- dal_transform()
   obj$attribute <- attribute
   obj$features <- features
   obj$top <- top
   obj$cutoff <- cutoff
   obj$m <- m
+  obj$k <- k
+  obj$seed <- seed
   class(obj) <- append("feature_selection_relief", class(obj))
   return(obj)
 }
@@ -72,25 +88,45 @@ fit.feature_selection_relief <- function(obj, data, ...) {
 
   n <- nrow(X)
   m <- min(obj$m, n)
+  k <- if (is.null(obj$k)) 10 else obj$k
+  if (!is.null(obj$seed)) set.seed(obj$seed)
   idxs <- sample(seq_len(n), size = m)
   w <- rep(0, ncol(X))
 
+  classes <- levels(y)
+  priors <- as.numeric(table(y)[classes]) / n
+  names(priors) <- classes
+  m_eff <- 0
+
   for (i in idxs) {
-    xi <- X[i, , drop = FALSE]
-    yi <- y[i]
-    d <- rowSums((X - matrix(xi, nrow = n, ncol = ncol(X), byrow = TRUE))^2)
+    xi <- X[i, ]
+    yi <- as.character(y[i])
+    # city-block distance on normalized features
+    d <- rowSums(abs(X - matrix(xi, nrow = n, ncol = ncol(X), byrow = TRUE)))
 
     same <- which(y == yi & seq_len(n) != i)
-    diff <- which(y != yi)
-    if (length(same) == 0 || length(diff) == 0) {
+    if (length(same) == 0 || priors[yi] >= 1) {
       next
     }
-    nh <- same[which.min(d[same])]
-    nm <- diff[which.min(d[diff])]
-    w <- w - abs(X[i, ] - X[nh, ]) + abs(X[i, ] - X[nm, ])
+    # k nearest hits (same class)
+    kk <- min(k, length(same))
+    hits <- same[order(d[same])[seq_len(kk)]]
+    hit_diff <- colSums(abs(sweep(X[hits, , drop = FALSE], 2, xi, "-"))) / kk
+    w <- w - hit_diff
+    # k nearest misses per other class, weighted by prior probability
+    for (c in classes) {
+      if (c == yi) next
+      members <- which(y == c)
+      if (length(members) == 0) next
+      kk2 <- min(k, length(members))
+      misses <- members[order(d[members])[seq_len(kk2)]]
+      miss_diff <- colSums(abs(sweep(X[misses, , drop = FALSE], 2, xi, "-"))) / kk2
+      w <- w + (priors[c] / (1 - priors[yi])) * miss_diff
+    }
+    m_eff <- m_eff + 1
   }
 
-  w <- w / m
+  if (m_eff > 0) w <- w / m_eff
   ord <- order(w, decreasing = TRUE)
   ranking <- data.frame(
     feature = features[ord],
