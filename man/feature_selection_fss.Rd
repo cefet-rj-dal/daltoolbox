@@ -22,11 +22,9 @@ Adds one predictor at a time (greedy forward selection) and keeps the subset
 with the highest adjusted R-squared, which penalizes adding predictors that do not pay
 for their complexity. The target attribute must be numeric.
 
-This is an independent native implementation (base \code{stats::lm} only). It is equivalent
-to \code{leaps::regsubsets(method = "forward")} -- both add one variable at a time by
-adjusted R-squared and keep the best-scoring size -- so the package carries no
-dependency on the \code{leaps} package. Verified to select the same subset as
-\code{leaps::regsubsets} on \code{mtcars} (am, cyl, disp, hp, qsec, wt).
+This is an independent native implementation written from the subset-selection
+literature (see references), using base \code{stats::lm} only, so the package carries no
+external feature-selection dependency.
 }
 \examples{
 data(mtcars)
@@ -35,4 +33,8 @@ fs <- fit(fs, mtcars)
 fs$selected
 mtcars_fs <- transform(fs, mtcars)
 names(mtcars_fs)
+}
+\references{
+Hocking, R. R. (1976). The Analysis and Selection of Variables in Linear Regression. Biometrics, 32(1):1-49.
+Miller, A. (2002). Subset Selection in Regression (2nd ed.). Chapman & Hall/CRC.
 }
