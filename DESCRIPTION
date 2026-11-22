@@ -30,7 +30,6 @@ Imports:
   methods,
   FNN,
   arules,
-  arulesSequences,
   class,
   dbscan,
   dplyr,

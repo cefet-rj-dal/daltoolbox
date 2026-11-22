@@ -29,7 +29,6 @@ library(daltoolbox)
 
 library(arules)
 library(arulesViz)
-library(arulesSequences)
 library(igraph)
 ```
 
@@ -355,24 +354,30 @@ inspect(rules_md)
 ```
 
 ## Sequence Mining
-Sequential patterns extend itemsets to temporal order. SPADE is an efficient vertical approach.  
+Sequential patterns extend itemsets to temporal order. PrefixSpan grows patterns by
+prefix-projected pattern growth.
 Slides: 46–62.
 
 Key difference: in sequences, event order influences the discovered pattern.
 
 ```{r}
-# Sequence mining
-x <- read_baskets(con = system.file("misc", "zaki.txt", package = "arulesSequences"), info = c("sequenceID","eventID","SIZE"))
-as(x, "data.frame")
+# Sequences as a long data frame: sequenceID / eventID / item
+seqs <- data.frame(
+  sequenceID = c(1,1,1,2,2,3,3,3,4,4,4),
+  eventID    = c(10,20,30,10,20,10,10,20,10,20,30),
+  item       = c("A","B","C","A","C","A","B","C","A","B","C"),
+  stringsAsFactors = FALSE
+)
+head(seqs)
 ```
 
-With the data loaded, we run SPADE to discover frequent sequential patterns.
+With the data loaded, we run PrefixSpan to discover frequent sequential patterns.
 
 ```{r}
-pm_cspade <- pat_cspade(support = 0.4, control = list(verbose = TRUE))
-pm_cspade <- fit(pm_cspade, x)
-s1 <- discover(pm_cspade, x)
-as(s1, "data.frame")
+pm_seq <- pat_prefix_span(support = 0.5, maxlen = 3)
+pm_seq <- fit(pm_seq, seqs)
+s1 <- discover(pm_seq, seqs)
+s1
 ```
 
 ## Graph Pattern Mining (Example)

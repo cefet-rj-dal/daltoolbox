@@ -159,13 +159,6 @@ pattern_prepare_transactions <- function(data) {
   stop("pattern_miner: unsupported data type for transaction mining.", call. = FALSE)
 }
 
-pattern_prepare_sequences <- function(data) {
-  if (inherits(data, "transactions")) {
-    return(data)
-  }
-  stop("pattern_miner: sequence mining expects a 'transactions' object produced by arulesSequences::read_baskets().", call. = FALSE)
-}
-
 validate_pattern_schema <- function(obj, data) {
   if (is.null(obj$schema)) {
     return(invisible(TRUE))

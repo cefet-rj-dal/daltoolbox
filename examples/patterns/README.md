@@ -20,7 +20,7 @@ Before sequence mining, it helps to separate two kinds of intelligence: directio
 
 Finish with sequence mining, where order matters and the interpretation shifts from co-occurrence to recurring event structure.
 
-- [20-cspade-sequences.md](/examples/patterns/20-cspade-sequences.md) - `pat_cspade`: mines sequential patterns and evaluates them through support and sequence summaries.
+- [20-prefixspan-sequences.md](/examples/patterns/20-prefixspan-sequences.md) - `pat_prefix_span`: mines sequential patterns (native PrefixSpan) and evaluates them through support and sequence summaries.
 
 ## Interesting Rule Filters
 
