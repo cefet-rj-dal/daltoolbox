@@ -17,10 +17,18 @@ returns an object of class \code{sample_balance}
 \description{
 Balance class distribution using up-sampling or down-sampling.
 }
+\details{
+Down-sampling reduces every class to the minority count (without replacement);
+up-sampling grows every class to the majority count (sampling with replacement). Native
+implementation (no external dependency).
+}
 \examples{
 data(iris)
 iris_imb <- iris[iris$Species != "setosa", ]
 sb <- sample_balance("Species", method = "down")
 iris_bal <- transform(sb, iris_imb)
 table(iris_bal$Species)
+}
+\references{
+He, H., & Garcia, E. A. (2009). Learning from Imbalanced Data. IEEE Transactions on Knowledge and Data Engineering, 21(9):1263-1284.
 }

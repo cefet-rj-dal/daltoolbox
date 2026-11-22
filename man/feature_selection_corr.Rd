@@ -20,7 +20,9 @@ returns an object of class \code{feature_selection_corr}
 Remove highly correlated numeric features based on a correlation cutoff.
 }
 \details{
-Uses \code{caret::findCorrelation} on the correlation matrix computed from numeric columns.
+For each pair of numeric features whose absolute correlation exceeds \code{cutoff},
+the one with the larger mean absolute correlation to the remaining features is removed,
+reducing redundancy among predictors. Native implementation (no external dependency).
 }
 \examples{
 data(iris)
@@ -29,4 +31,8 @@ fs <- fit(fs, iris)
 iris_fs <- transform(fs, iris)
 fs$selected
 names(iris_fs)
+}
+\references{
+Hall, M. A. (1999). Correlation-based Feature Selection for Machine Learning. PhD thesis, University of Waikato.
+Kuhn, M. (2008). Building Predictive Models in R Using the caret Package. Journal of Statistical Software, 28(5):1-26.
 }

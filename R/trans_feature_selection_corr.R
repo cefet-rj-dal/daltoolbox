@@ -1,6 +1,11 @@
 #'@title Feature selection by correlation
 #'@description Remove highly correlated numeric features based on a correlation cutoff.
-#'@details Uses `caret::findCorrelation` on the correlation matrix computed from numeric columns.
+#'@details For each pair of numeric features whose absolute correlation exceeds `cutoff`,
+#' the one with the larger mean absolute correlation to the remaining features is removed,
+#' reducing redundancy among predictors. Native implementation (no external dependency).
+#'@references
+#' Hall, M. A. (1999). Correlation-based Feature Selection for Machine Learning. PhD thesis, University of Waikato.
+#' Kuhn, M. (2008). Building Predictive Models in R Using the caret Package. Journal of Statistical Software, 28(5):1-26.
 #'@param cutoff correlation cutoff in \[0, 1\] above which one feature is removed
 #'@param features optional vector of feature names to consider (default: all numeric columns)
 #'@param keep optional vector of columns that should always be kept in `transform()`
@@ -22,7 +27,28 @@ feature_selection_corr <- function(cutoff = 0.9, features = NULL, keep = NULL) {
   return(obj)
 }
 
-#'@importFrom caret findCorrelation
+# For each highly correlated pair, flag the member with the larger mean absolute
+# correlation to the rest; returns the column indices to remove.
+fs_find_correlation <- function(cor_mat, cutoff) {
+  m <- abs(cor_mat)
+  cols <- colnames(m)
+  p <- length(cols)
+  mean_abs <- colMeans(m)
+  remove <- character(0)
+  for (i in seq_len(p)) {
+    for (j in seq_len(p)) {
+      if (j <= i) next
+      a <- cols[i]
+      b <- cols[j]
+      if (a %in% remove || b %in% remove) next
+      if (m[a, b] > cutoff) {
+        remove <- c(remove, if (mean_abs[a] >= mean_abs[b]) a else b)
+      }
+    }
+  }
+  which(cols %in% remove)
+}
+
 #'@exportS3Method fit feature_selection_corr
 fit.feature_selection_corr <- function(obj, data, ...) {
   data <- adjust_data.frame(data)
@@ -45,7 +71,7 @@ fit.feature_selection_corr <- function(obj, data, ...) {
   }
 
   cor_mat <- stats::cor(data[, nums, drop=FALSE], use = "pairwise.complete.obs")
-  remove_idx <- caret::findCorrelation(cor_mat, cutoff = obj$cutoff)
+  remove_idx <- fs_find_correlation(cor_mat, cutoff = obj$cutoff)
   obj$remove <- nums[remove_idx]
   obj$selected <- setdiff(nums, obj$remove)
   score <- sapply(obj$selected, function(f) {
