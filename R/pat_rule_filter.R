@@ -10,7 +10,7 @@
 #' class(filter)
 #' @export
 pat_rule_filter_none <- function() {
-  obj <- dal_base()
+  obj <- dal_transform()
   class(obj) <- append(c("pat_rule_filter_none", "pat_rule_filter"), class(obj))
   obj
 }
@@ -40,7 +40,7 @@ pat_rule_filter_interest <- function(lift_min = 1,
                                      support_min = NULL,
                                      confidence_min = NULL,
                                      count_min = NULL) {
-  obj <- dal_base()
+  obj <- dal_transform()
   obj$criteria <- Filter(Negate(is.null), list(
     lift_min = lift_min,
     kulc_min = kulc_min,
@@ -94,7 +94,7 @@ pat_rule_filter_dara <- function(data,
   if (missing(rhs_attr) || is.null(rhs_attr) || length(rhs_attr) != 1 || is.na(rhs_attr)) {
     stop("pat_rule_filter_dara requires the right-hand-side attribute in 'rhs_attr'.", call. = FALSE)
   }
-  obj <- dal_base()
+  obj <- dal_transform()
   obj$data <- adjust_data.frame(data)
   obj$rhs_attr <- rhs_attr
   obj$rhs_value <- rhs_value
@@ -139,6 +139,18 @@ pat_filter_rules <- function(rules, filter, data = NULL, ...) {
     return(pat_filter_rules_dara(rules, filter, data = data, ...))
   }
   stop("pat_filter_rules: unsupported rule filter.", call. = FALSE)
+}
+
+#' @title Transform rules with a rule filter
+#' @description Experiment Line `transform()` entry point for rule filters; delegates to `pat_filter_rules()`.
+#' @param obj A rule filter created with `pat_rule_filter_none()`, `pat_rule_filter_interest()`, or `pat_rule_filter_dara()`.
+#' @param data An `arules` rules object or a tidy rule data frame to filter.
+#' @param reference Optional transaction/reference data used to compute interest measures for `arules` rules.
+#' @param ... Additional arguments reserved for future filters.
+#' @return Filtered rules in the same representation as `data`.
+#' @exportS3Method transform pat_rule_filter
+transform.pat_rule_filter <- function(obj, data, reference = NULL, ...) {
+  pat_filter_rules(data, obj, data = reference, ...)
 }
 
 pat_filter_rules_none <- function(rules, filter, data = NULL, ...) {

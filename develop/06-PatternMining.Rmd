@@ -111,7 +111,7 @@ head(myAdultUCI)
 ```
 
 ## Conversion to Transactions
-Transactional data is the basis for Apriori, ECLAT, and association rules.  
+Transactional data is the basis for Apriori frequent itemsets and association rules.
 Slides: 2–5.
 
 ```{r}
@@ -128,9 +128,13 @@ Recommended reading: filter first by support/confidence and then prioritize by l
 ```{r}
 # A Priori
 pm_apriori <- pat_apriori(
-  parameter = list(supp = 0.5, conf = 0.9, minlen = 2, maxlen = 10, target = "rules"),
-  appearance = list(rhs = c("capital-gain=None"), default = "lhs"),
-  control = NULL
+  target = "rules",
+  supp = 0.5,
+  conf = 0.9,
+  minlen = 2,
+  maxlen = 10,
+  rhs = c("capital-gain=None"),
+  control = list(verbose = FALSE)
 )
 pm_apriori <- fit(pm_apriori, AdultTrans)
 rules <- discover(pm_apriori, AdultTrans)
@@ -144,30 +148,34 @@ rules_a <- as(rules, "data.frame")
 head(rules_a)
 ```
 
-## ECLAT and Frequent Itemsets
-ECLAT uses a vertical representation, which is efficient for support counting.  
+## Frequent Itemsets
+Setting `target = "frequent itemsets"` makes Apriori return the frequent itemsets instead of
+rules — the groups of items that co-occur at or above the support threshold.
 Slides: 22–24.
 
-This is a good place to compare with Apriori: ECLAT focuses on itemsets, while Apriori can already produce rules.
-
 ```{r}
-# ECLAT (frequent itemsets)
-pm_eclat <- pat_eclat(parameter = list(supp = 0.5, maxlen = 3))
-pm_eclat <- fit(pm_eclat, AdultTrans)
-itemsets_eclat <- discover(pm_eclat, AdultTrans)
-inspect(head(sort(itemsets_eclat, by = "support")))
+# Frequent itemsets with Apriori
+pm_itemsets <- pat_apriori(
+  target = "frequent itemsets",
+  supp = 0.5,
+  maxlen = 3,
+  control = list(verbose = FALSE)
+)
+pm_itemsets <- fit(pm_itemsets, AdultTrans)
+itemsets <- discover(pm_itemsets, AdultTrans)
+inspect(head(sort(itemsets, by = "support")))
 ```
 
 ## Closed Patterns and Max-Patterns
-Closed patterns preserve support; max-patterns reduce volume even further, but lose detail.  
+Closed patterns preserve support; max-patterns reduce volume even further, but lose detail.
 Slides: 6–9.
 
 These two sets help compress results without losing the main signal.
 
 ```{r}
 # Closed patterns and max-patterns
-closed_sets <- itemsets_eclat[is.closed(itemsets_eclat)]
-max_sets <- itemsets_eclat[is.maximal(itemsets_eclat)]
+closed_sets <- itemsets[is.closed(itemsets)]
+max_sets <- itemsets[is.maximal(itemsets)]
 
 inspect(head(sort(closed_sets, by = "support")))
 inspect(head(sort(max_sets, by = "support")))
@@ -199,6 +207,62 @@ Slides: 21–24.
 nrules <- rules[!is.redundant(rules)]
 
 arules::inspect(nrules)
+```
+
+## Divergent Association Rules (DARA)
+DARA prioritizes rules built on *divergent* attribute values — values whose prominence in the
+rule set does not match their frequency in the data, under the hypothesis of attribute-value
+independence. It complements classical interest measures with a data-vs-rules comparison.
+Reference: Baroni et al. (2020), *J. Biomedical Informatics* 108:103512.
+
+We mine rules for a fixed right-hand side and then compare the `none`, `interest`, and `dara`
+filters.
+
+```{r}
+# Target rules for a fixed consequent, as a tidy data frame
+dara_data <- myAdultUCI[, c("workclass", "education", "marital-status", "occupation", "income")]
+dara_rules_tbl <- pat_dara_rules(
+  dara_data,
+  rhs = "income=small",
+  supp = 0.05,
+  conf = 0.6,
+  minlen = 2,
+  maxlen = 4,
+  remove_redundant = FALSE
+)
+head(dara_rules_tbl[, c("lhs", "rhs", "support", "confidence", "lift")])
+```
+
+```{r}
+# DARA rule filter: keep rules whose antecedent values are divergent
+dara_filter <- pat_rule_filter_dara(
+  dara_data,
+  rhs_attr = "income",
+  rhs_value = "small",
+  min_score = 1
+)
+dara_sel <- pat_filter_rules(dara_rules_tbl, dara_filter)
+head(dara_sel[, c("lhs", "dara_score")])
+```
+
+The per-attribute divergence ranking that drives the score is attached to the result.
+
+```{r}
+ranking <- attr(dara_sel, "dara_ranking")
+ranking[["marital-status"]]
+```
+
+DARA also plugs into `pat_apriori` directly through the `rule_filter` argument, so mining and
+filtering run as a single Experiment Line step.
+
+```{r}
+pm_dara <- pat_apriori(
+  target = "rules", supp = 0.05, conf = 0.6, minlen = 2, maxlen = 4,
+  rhs = "income=small", rule_filter = dara_filter, control = list(verbose = FALSE)
+)
+pm_dara <- fit(pm_dara, dara_data)
+dara_integrated <- discover(pm_dara, dara_data)
+length(dara_integrated)
 ```
 
 ## Supporting Transactions
@@ -248,7 +312,10 @@ This step is useful for detecting exceptions and less frequent behaviors.
 
 ```{r}
 # Rare and negative patterns
-pm_apriori_rare <- pat_apriori(parameter = list(supp = 0.05, conf = 0.6, minlen = 2, maxlen = 3))
+pm_apriori_rare <- pat_apriori(
+  target = "rules", supp = 0.05, conf = 0.6, minlen = 2, maxlen = 3,
+  control = list(verbose = FALSE)
+)
 pm_apriori_rare <- fit(pm_apriori_rare, AdultTrans)
 rare_rules <- discover(pm_apriori_rare, AdultTrans)
 neg_rules <- subset(rare_rules, lift < 1)
@@ -279,8 +346,8 @@ AdultTransML <- as(adult_ml, "transactions")
 income_labels <- paste0("income=", levels(adult_ml$income))
 
 pm_apriori_md <- pat_apriori(
-  parameter = list(supp = 0.2, conf = 0.6, minlen = 2, maxlen = 3),
-  appearance = list(rhs = income_labels, default = "lhs")
+  target = "rules", supp = 0.2, conf = 0.6, minlen = 2, maxlen = 3,
+  rhs = income_labels, control = list(verbose = FALSE)
 )
 pm_apriori_md <- fit(pm_apriori_md, AdultTransML)
 rules_md <- discover(pm_apriori_md, AdultTransML)
@@ -302,7 +369,7 @@ as(x, "data.frame")
 With the data loaded, we run SPADE to discover frequent sequential patterns.
 
 ```{r}
-pm_cspade <- pat_cspade(parameter = list(support = 0.4), control = list(verbose = TRUE))
+pm_cspade <- pat_cspade(support = 0.4, control = list(verbose = TRUE))
 pm_cspade <- fit(pm_cspade, x)
 s1 <- discover(pm_cspade, x)
 as(s1, "data.frame")
