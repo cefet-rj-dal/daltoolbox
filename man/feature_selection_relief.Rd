@@ -44,8 +44,7 @@ weighted by each other class's prior probability \code{P(C) / (1 - P(class(R)))}
 over \code{k} neighbors (ReliefF, Kononenko 1994) makes the estimate robust to noise, and the
 class-prior weighting handles multi-class targets.
 
-This is a native implementation inspired by the original Relief and evolved to full
-ReliefF (see references), carrying no external feature-selection dependency.
+Inspired by the original Relief and evolved to full ReliefF (see references).
 }
 \examples{
 data(iris)

@@ -1,6 +1,5 @@
 #'@title PAM (Partitioning Around Medoids)
-#'@description Clustering around representative data points (medoids), using a native
-#' implementation of PAM (no external clustering dependency).
+#'@description Clustering around representative data points (medoids) with PAM.
 #'@details More robust to outliers than k‑means. The intrinsic metric reported is the within‑cluster SSE to medoids.
 #'
 #' PAM proceeds in two phases: BUILD, a greedy selection of the initial medoids, and
@@ -9,9 +8,8 @@
 #' (Schubert & Rousseeuw, 2019), which evaluates the cost change of every candidate swap
 #' in a single pass and therefore reaches the same local optimum as classic PAM (identical
 #' medoids) while being markedly faster as the number of clusters grows (e.g. about 20x at
-#' k = 20 in the reference port). This is a native implementation inspired by the classic
-#' PAM and evolved with the FastPAM1 scheme (see references), so the package carries no
-#' external clustering dependency.
+#' k = 20 in the reference port). Inspired by the classic PAM and evolved with the FastPAM1
+#' scheme (see references).
 #'
 #' The base `clusterer()` uses `wcss` as a generic default, but
 #' `cluster_pam()` specializes that choice because PAM is commonly compared

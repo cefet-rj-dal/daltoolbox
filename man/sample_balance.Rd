@@ -19,8 +19,7 @@ Balance class distribution using up-sampling or down-sampling.
 }
 \details{
 Down-sampling reduces every class to the minority count (without replacement);
-up-sampling grows every class to the majority count (sampling with replacement). Native
-implementation (no external dependency).
+up-sampling grows every class to the majority count (sampling with replacement).
 }
 \examples{
 data(iris)

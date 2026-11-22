@@ -22,9 +22,7 @@ Adds one predictor at a time (greedy forward selection) and keeps the subset
 with the highest adjusted R-squared, which penalizes adding predictors that do not pay
 for their complexity. The target attribute must be numeric.
 
-This is an independent native implementation written from the subset-selection
-literature (see references), using base \code{stats::lm} only, so the package carries no
-external feature-selection dependency.
+Implemented with base \code{stats::lm} (see references for the method).
 }
 \examples{
 data(mtcars)

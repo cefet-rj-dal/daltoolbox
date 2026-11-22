@@ -6,7 +6,7 @@
 #' neighbors (SMOTE-NC) instead of a coin flip. `"borderline"` synthesizes only from
 #' *danger* instances (those whose `m` nearest neighbors are mostly of other classes),
 #' concentrating new points near the decision boundary; `"adasyn"` allocates more synthetic
-#' samples to harder-to-learn minority instances. Native implementation, no extra dependency.
+#' samples to harder-to-learn minority instances.
 #'@param attribute target class attribute name
 #'@param method oversampling strategy: `"smote"`, `"borderline"`, `"adasyn"` or `"random"`
 #'@param k number of nearest neighbors used to interpolate synthetic samples

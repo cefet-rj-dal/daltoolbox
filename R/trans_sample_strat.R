@@ -34,7 +34,7 @@ sample_stratified <- function(attribute) {
 }
 
 # Stratified partition: per class, draw round(perc * n_class) indices for the train set,
-# preserving the class proportions. Native (no external dependency).
+# preserving the class proportions.
 strat_partition <- function(y, perc) {
   y <- as.character(y)
   idx <- integer(0)
