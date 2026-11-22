@@ -26,7 +26,8 @@ if (requireNamespace("arules", quietly = TRUE)) {
   data("AdultUCI", package = "arules")
   data <- as.data.frame(AdultUCI)
   data <- data[, c("workclass", "education", "marital-status", "occupation", "income")]
-  rules <- pat_dara_rules(data, rhs = "income=small", supp = 0.05, conf = 0.6)
+  pm <- fit(pat_apriori(target = "rules", supp = 0.05, conf = 0.6, rhs = "income=small"), data)
+  rules <- pat_rules_tidy(discover(pm, data), transactions = data)
   filter <- pat_rule_filter_interest(lift_min = 1)
   pat_filter_rules(rules, filter)
 }

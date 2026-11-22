@@ -16,7 +16,7 @@ pat_dara(
 \arguments{
 \item{data}{Reference data frame.}
 
-\item{rules}{Tidy rule data frame produced by \code{pat_dara_rules()} or \code{pat_rules_tidy()}.}
+\item{rules}{Tidy rule data frame produced by \code{pat_rules_tidy()}.}
 
 \item{rhs_attr}{Right-hand-side attribute used by the mined rules.}
 
@@ -46,7 +46,8 @@ if (requireNamespace("arules", quietly = TRUE)) {
   data("AdultUCI", package = "arules")
   data <- as.data.frame(AdultUCI)
   data <- data[, c("workclass", "education", "marital-status", "occupation", "income")]
-  rules <- pat_dara_rules(data, rhs = "income=small", supp = 0.05, conf = 0.6)
+  pm <- fit(pat_apriori(target = "rules", supp = 0.05, conf = 0.6, rhs = "income=small"), data)
+  rules <- pat_rules_tidy(discover(pm, data), transactions = data, item_columns = colnames(data))
   ranking <- pat_dara(data, rules, rhs_attr = "income", rhs_value = "small")
   ranking[["marital-status"]]
 }

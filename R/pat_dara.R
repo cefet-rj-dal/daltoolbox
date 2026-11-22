@@ -9,7 +9,8 @@
 #'   data("AdultUCI", package = "arules")
 #'   data <- as.data.frame(AdultUCI)
 #'   data <- data[, c("workclass", "education", "marital-status", "occupation", "income")]
-#'   rules <- pat_dara_rules(data, rhs = "income=small", supp = 0.05, conf = 0.6)
+#'   pm <- fit(pat_apriori(target = "rules", supp = 0.05, conf = 0.6, rhs = "income=small"), data)
+#'   rules <- pat_rules_tidy(discover(pm, data), transactions = data)
 #'   head(rules)
 #' }
 #' @export
@@ -84,74 +85,6 @@ pat_rules_tidy <- function(rules, transactions = NULL, item_columns = NULL) {
   out
 }
 
-#' @title Generate target association rules for DARA
-#' @description Mine association rules for a fixed right-hand side and return them as a data frame.
-#' @param data A data frame or `transactions` object.
-#' @param rhs Right-hand-side item, such as `"income=small"`.
-#' @param supp Minimum support. If `0`, estimated during `fit()` using `support_strategy`.
-#' @param conf Minimum confidence. If `0`, estimated during `fit()` using `confidence_strategy`.
-#' @param support_strategy support threshold strategy created with `pat_support_threshold()`
-#' @param confidence_strategy confidence threshold strategy created with `pat_confidence_threshold()`
-#' @param minlen Minimum rule length.
-#' @param maxlen Maximum rule length.
-#' @param quality_filter Optional quality filter created with `patutils()`.
-#' @param rule_filter rule filter created with `pat_rule_filter_none()`, `pat_rule_filter_interest()`, or `pat_rule_filter_dara()`.
-#' @param remove_redundant If `TRUE`, remove redundant rules using `arules::is.redundant`.
-#' @param control Apriori control list.
-#' @return A tidy rule data frame.
-#' @examples
-#' if (requireNamespace("arules", quietly = TRUE)) {
-#'   data("AdultUCI", package = "arules")
-#'   data <- as.data.frame(AdultUCI)
-#'   data <- data[, c("workclass", "education", "marital-status", "occupation", "income")]
-#'   rules <- pat_dara_rules(data, rhs = "income=small", supp = 0.05, conf = 0.6)
-#'   head(rules)
-#' }
-#' @export
-pat_dara_rules <- function(data,
-                           rhs,
-                           supp = 0,
-                           conf = 0,
-                           support_strategy = pat_support_threshold("curvature"),
-                           confidence_strategy = pat_confidence_threshold(),
-                           minlen = 3,
-                           maxlen = 4,
-                           quality_filter = NULL,
-                           rule_filter = pat_rule_filter_none(),
-                           remove_redundant = TRUE,
-                           control = list(verbose = FALSE)) {
-  if (!requireNamespace("arules", quietly = TRUE)) {
-    stop("pat_dara_rules requires the 'arules' package.", call. = FALSE)
-  }
-  if (missing(rhs) || length(rhs) == 0) {
-    stop("pat_dara_rules requires a right-hand-side item in 'rhs'.", call. = FALSE)
-  }
-
-  item_columns <- if (is.data.frame(data) || is.matrix(data)) colnames(data) else NULL
-  trans <- pattern_prepare_transactions(data)
-  miner <- pat_apriori(
-    target = "rules",
-    supp = supp,
-    conf = conf,
-    support_strategy = support_strategy,
-    confidence_strategy = confidence_strategy,
-    minlen = minlen,
-    maxlen = maxlen,
-    rhs = rhs,
-    quality_filter = quality_filter,
-    rule_filter = rule_filter,
-    control = control
-  )
-  miner <- fit(miner, trans)
-  rules <- suppressWarnings(discover(miner, trans))
-
-  if (length(rules) > 0 && isTRUE(remove_redundant)) {
-    rules <- rules[!arules::is.redundant(rules)]
-  }
-
-  pat_rules_tidy(rules, transactions = trans, item_columns = item_columns)
-}
-
 #' @title Divergent Association Ranking Analysis
 #' @description Rank attribute values whose ordering diverges between the dataset and discovered rules.
 #' @details
@@ -163,7 +96,7 @@ pat_dara_rules <- function(data,
 #' than in the reference data and decreases for values that are less prominent in
 #' rules.
 #' @param data Reference data frame.
-#' @param rules Tidy rule data frame produced by `pat_dara_rules()` or `pat_rules_tidy()`.
+#' @param rules Tidy rule data frame produced by `pat_rules_tidy()`.
 #' @param rhs_attr Right-hand-side attribute used by the mined rules.
 #' @param rhs_value Optional right-hand-side value used to restrict `data`.
 #' @param attributes Optional attributes to compare. Defaults to common columns in `data` and `rules`.
@@ -181,7 +114,8 @@ pat_dara_rules <- function(data,
 #'   data("AdultUCI", package = "arules")
 #'   data <- as.data.frame(AdultUCI)
 #'   data <- data[, c("workclass", "education", "marital-status", "occupation", "income")]
-#'   rules <- pat_dara_rules(data, rhs = "income=small", supp = 0.05, conf = 0.6)
+#'   pm <- fit(pat_apriori(target = "rules", supp = 0.05, conf = 0.6, rhs = "income=small"), data)
+#'   rules <- pat_rules_tidy(discover(pm, data), transactions = data, item_columns = colnames(data))
 #'   ranking <- pat_dara(data, rules, rhs_attr = "income", rhs_value = "small")
 #'   ranking[["marital-status"]]
 #' }

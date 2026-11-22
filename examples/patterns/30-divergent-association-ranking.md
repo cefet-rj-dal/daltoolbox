@@ -31,18 +31,22 @@ data <- data[, c(
 )]
 ```
 
-Mine target association rules and keep them in tabular form. This is the candidate rule set before interestingness filtering.
+Mine target association rules and keep them in tabular form. Discover candidate rules with
+`pat_apriori` and turn them into a tidy table with `pat_rules_tidy`. This is the candidate rule
+set before interestingness filtering.
 
 ``` r
-rules <- pat_dara_rules(
-  data,
-  rhs = "income=small",
+pm <- pat_apriori(
+  target = "rules",
   supp = 0.05,
   conf = 0.6,
   minlen = 2,
   maxlen = 4,
-  remove_redundant = FALSE
+  rhs = "income=small",
+  control = list(verbose = FALSE)
 )
+pm <- fit(pm, data)
+rules <- pat_rules_tidy(discover(pm, data), transactions = data, item_columns = colnames(data))
 
 head(rules[, c("lhs", "rhs", "support", "confidence", "lift", "count")])
 ```
