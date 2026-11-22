@@ -169,6 +169,13 @@ pat_dara_rules <- function(data,
 #' @param attributes Optional attributes to compare. Defaults to common columns in `data` and `rules`.
 #' @param rule_weight Optional numeric column in `rules` used as rule frequency instead of one count per rule.
 #' @return A list of per-attribute data frames with columns `value`, `dataset`, `rules`, and `c`.
+#' @references
+#' Baroni, L., Salles, R., Salles, S., Guedes, G., Porto, F., Bezerra, E., Barcellos, C.,
+#' Pedroso, M., & Ogasawara, E. (2020). An analysis of malaria in the Brazilian Legal
+#' Amazon using divergent association rules. Journal of Biomedical Informatics, 108, 103512.
+#'
+#' The canonical implementation is maintained in the Python `pydaltoolbox` port; this is a
+#' backport of it.
 #' @examples
 #' if (requireNamespace("arules", quietly = TRUE)) {
 #'   data("AdultUCI", package = "arules")

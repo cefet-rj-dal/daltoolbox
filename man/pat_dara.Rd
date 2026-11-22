@@ -51,3 +51,11 @@ if (requireNamespace("arules", quietly = TRUE)) {
   ranking[["marital-status"]]
 }
 }
+\references{
+Baroni, L., Salles, R., Salles, S., Guedes, G., Porto, F., Bezerra, E., Barcellos, C.,
+Pedroso, M., & Ogasawara, E. (2020). An analysis of malaria in the Brazilian Legal
+Amazon using divergent association rules. Journal of Biomedical Informatics, 108, 103512.
+
+The canonical implementation is maintained in the Python \code{pydaltoolbox} port; this is a
+backport of it.
+}

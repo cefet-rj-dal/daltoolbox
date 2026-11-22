@@ -69,6 +69,13 @@ pat_rule_filter_interest <- function(lift_min = 1,
 #' @param use_abs If `TRUE`, rank by absolute divergence counters.
 #' @param rule_weight Optional numeric rule column used to weight rule frequencies.
 #' @return A `pat_rule_filter_dara` object.
+#' @references
+#' Baroni, L., Salles, R., Salles, S., Guedes, G., Porto, F., Bezerra, E., Barcellos, C.,
+#' Pedroso, M., & Ogasawara, E. (2020). An analysis of malaria in the Brazilian Legal
+#' Amazon using divergent association rules. Journal of Biomedical Informatics, 108, 103512.
+#'
+#' The canonical implementation is maintained in the Python `pydaltoolbox` port; this is a
+#' backport of it.
 #' @examples
 #' data <- data.frame(a = factor(c("x", "x", "y")), b = factor(c("z", "w", "z")))
 #' filter <- pat_rule_filter_dara(data, rhs_attr = "b", rhs_value = "z")
