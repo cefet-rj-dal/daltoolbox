@@ -5,7 +5,7 @@ About the method
 - `pat_rule_filter_none`: keeps all discovered rules and makes the no-filter option explicit.
 - `pat_filter_rules`: applies an interesting-rule filter to a rule table or an `arules` rule object.
 
-Didactic goal: separate pattern discovery from rule-interest filtering. `pat_apriori`, ECLAT, and other miners discover candidate patterns; rule filters keep the most interesting association rules according to either classical measures or DARA.
+Didactic goal: separate pattern discovery from rule-interest filtering. `pat_apriori` and other miners discover candidate patterns; rule filters keep the most interesting association rules according to either classical measures or DARA.
 
 Environment setup.
 
