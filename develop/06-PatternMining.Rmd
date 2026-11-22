@@ -28,8 +28,6 @@ In this opening section, we load packages for mining, visualization, and structu
 library(daltoolbox)
 
 library(arules)
-library(arulesViz)
-library(igraph)
 ```
 
 Before mining, inspect data size and a sample of the rows to understand cardinality and attribute types.
@@ -286,23 +284,6 @@ length(trans)
 print(c(length(trans)/length(AdultTrans), nrules[1:2]@quality$support))
 ```
 
-## Rule Visualization
-Visualizations help interpret the discovered patterns.  
-Slides: 21.
-
-Use the two plots in a complementary way: global view and relational view (`paracoord`).
-
-```{r}
-# Rule visualization
-options(repr.plot.width=10, repr.plot.height=5)
-plot(rules)
-```
-
-```{r}
-options(repr.plot.width=10, repr.plot.height=5)
-plot(rules, method="paracoord", control=list(reorder=TRUE))
-```
-
 ## Rare and Negative Patterns
 Rare patterns can be strategically important; negative patterns indicate inverse correlation (`lift < 1`).  
 Slides: 39.
@@ -378,25 +359,6 @@ pm_seq <- pat_prefix_span(support = 0.5, maxlen = 3)
 pm_seq <- fit(pm_seq, seqs)
 s1 <- discover(pm_seq, seqs)
 s1
-```
-
-## Graph Pattern Mining (Example)
-In graphs, frequent patterns are recurring subgraphs. Here we show subgraph counting as an illustration.  
-Slides: 63–64.
-
-We close with graphs to show that the concept of frequent patterns extends to relational structures.
-
-```{r}
-# Graph pattern mining (simple example)
-
-g1 <- make_ring(4)
-g2 <- make_full_graph(3)
-g3 <- make_star(4, mode = "undirected")
-tri <- make_full_graph(3)
-
-count_subgraph_isomorphisms(tri, g1)
-count_subgraph_isomorphisms(tri, g2)
-count_subgraph_isomorphisms(tri, g3)
 ```
 
 ## References
