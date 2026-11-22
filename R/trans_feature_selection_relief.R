@@ -8,8 +8,7 @@
 #' over `k` neighbors (ReliefF, Kononenko 1994) makes the estimate robust to noise, and the
 #' class-prior weighting handles multi-class targets.
 #'
-#' This is a native implementation inspired by the original Relief and evolved to full
-#' ReliefF (see references), carrying no external feature-selection dependency.
+#' Inspired by the original Relief and evolved to full ReliefF (see references).
 #'@param attribute target attribute name
 #'@param features optional vector of feature names (default: all columns except `attribute`)
 #'@param top optional number of top features to keep

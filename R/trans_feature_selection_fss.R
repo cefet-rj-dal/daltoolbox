@@ -4,9 +4,7 @@
 #' with the highest adjusted R-squared, which penalizes adding predictors that do not pay
 #' for their complexity. The target attribute must be numeric.
 #'
-#' This is an independent native implementation written from the subset-selection
-#' literature (see references), using base `stats::lm` only, so the package carries no
-#' external feature-selection dependency.
+#' Implemented with base `stats::lm` (see references for the method).
 #'@param attribute target attribute name
 #'@param features optional vector of feature names (default: all columns except `attribute`)
 #'@return returns an object of class `feature_selection_fss`

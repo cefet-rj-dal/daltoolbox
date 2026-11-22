@@ -1,8 +1,7 @@
 #'@title Class balancing (up/down sampling)
 #'@description Balance class distribution using up-sampling or down-sampling.
 #'@details Down-sampling reduces every class to the minority count (without replacement);
-#' up-sampling grows every class to the majority count (sampling with replacement). Native
-#' implementation (no external dependency).
+#' up-sampling grows every class to the majority count (sampling with replacement).
 #'@param attribute target class attribute name
 #'@param method balancing method: "down" or "up"
 #'@return returns an object of class `sample_balance`

@@ -22,7 +22,7 @@ Remove highly correlated numeric features based on a correlation cutoff.
 \details{
 For each pair of numeric features whose absolute correlation exceeds \code{cutoff},
 the one with the larger mean absolute correlation to the remaining features is removed,
-reducing redundancy among predictors. Native implementation (no external dependency).
+reducing redundancy among predictors.
 }
 \examples{
 data(iris)

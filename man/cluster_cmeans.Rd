@@ -4,7 +4,15 @@
 \alias{cluster_cmeans}
 \title{Fuzzy c-means}
 \usage{
-cluster_cmeans(centers = 2, m = 2, iter = 100, dist = "euclidean")
+cluster_cmeans(
+  centers = 2,
+  m = 2,
+  iter = 100,
+  dist = "euclidean",
+  tol = 1e-06,
+  nstart = 1,
+  seed = NULL
+)
 }
 \arguments{
 \item{centers}{number of clusters}
@@ -13,17 +21,27 @@ cluster_cmeans(centers = 2, m = 2, iter = 100, dist = "euclidean")
 
 \item{iter}{maximum number of iterations}
 
-\item{dist}{distance method passed to \code{e1071::cmeans}}
+\item{dist}{distance method: "euclidean" or "manhattan"}
+
+\item{tol}{convergence tolerance on the membership change}
+
+\item{nstart}{number of restarts; the lowest-error run is kept (default 1)}
+
+\item{seed}{optional seed for reproducibility}
 }
 \value{
 returns a fuzzy clustering object.
 }
 \description{
-Fuzzy c-means clustering using \code{e1071::cmeans}.
+Fuzzy c-means clustering.
 }
 \details{
 Produces soft membership for each cluster. The hard assignment is returned by \code{cluster()}.
-Membership degrees are returned in the \code{membership} attribute.
+Membership degrees are returned in the \code{membership} attribute. The algorithm alternates
+between updating cluster centers as membership-weighted means and recomputing memberships
+from the distances to those centers, until convergence. With \code{nstart > 1} it runs several
+times from different random starts and keeps the run with the lowest within-cluster fuzzy
+error, reducing sensitivity to the random start.
 
 The base \code{clusterer()} uses \code{wcss} as a generic default, but
 \code{cluster_cmeans()} specializes that choice because fuzzy clustering carries
@@ -49,5 +67,6 @@ table(clu)
 }
 \references{
 Bezdek, J. C. (1981). Pattern Recognition with Fuzzy Objective Function Algorithms.
+Dunn, J. C. (1973). A Fuzzy Relative of the ISODATA Process and Its Use in Detecting Compact Well-Separated Clusters.
 Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis.
 }
