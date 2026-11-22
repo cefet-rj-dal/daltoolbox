@@ -45,7 +45,6 @@ Suggests:
   glmnet,
   ipred,
   xgboost,
-  GGally,
   rpart,
   MASS
 Config/roxygen2/version: 8.0.0

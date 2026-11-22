@@ -6,10 +6,9 @@ Didactic goal: present an alternative to scatter matrices when the reader wants 
 
 ``` r
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
-# install.packages(c("daltoolbox", "GGally"))
+# install.packages("daltoolbox")
 
 library(daltoolbox)
-library(GGally)
 ```
 
 

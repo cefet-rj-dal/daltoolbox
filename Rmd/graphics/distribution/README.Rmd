@@ -15,7 +15,6 @@ These plots cover four analytical questions in sequence: the shape of a single v
 - [20-relationship-scatter.md](/examples/graphics/distribution/20-relationship-scatter.md) - scatter plot for two numeric variables.
 - [21-relationship-points.md](/examples/graphics/distribution/21-relationship-points.md) - point plot for discrete or index-based observations without connecting lines.
 - [22-relationship-correlation.md](/examples/graphics/distribution/22-relationship-correlation.md) - correlation heatmap for compact association inspection.
-- [23-relationship-pair.md](/examples/graphics/distribution/23-relationship-pair.md) - scatter matrix for several numeric variables.
 - [25-relationship-parallel.md](/examples/graphics/distribution/25-relationship-parallel.md) - parallel coordinates for multivariate profile comparison.
 - [26-relationship-pixel.md](/examples/graphics/distribution/26-relationship-pixel.md) - pixel-oriented matrix visualization.
 - [27-relationship-dendrogram.md](/examples/graphics/distribution/27-relationship-dendrogram.md) - dendrogram view of hierarchical structure.

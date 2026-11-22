@@ -21,10 +21,19 @@ plot_parallel(data, columns, group, colors = NULL, title = NULL)
 returns a ggplot2::ggplot graphic
 }
 \description{
-Parallel coordinates plot using GGally::ggparcoord.
+Parallel coordinates plot for multivariate data, with lines colored by group.
+}
+\details{
+Each selected variable becomes a parallel vertical axis and each observation a
+polyline crossing them, so class separation and multivariate patterns stand out. Variables are
+standardized per column (z-score) before plotting so axes on different scales are comparable.
 }
 \examples{
 data(iris)
 grf <- plot_parallel(iris, columns = 1:4, group = 5)
 plot(grf)
+}
+\references{
+Inselberg, A. (1985). The plane with parallel coordinates. The Visual Computer, 1(2), 69-91.
+Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
 }
