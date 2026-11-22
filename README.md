@@ -132,6 +132,8 @@ collection includes thematic subcollections:
 
 ## Related DAL Projects
 
+- [pydaltoolbox — Python sibling
+  implementation](https://github.com/cefet-rj-dal/pydaltoolbox)
 - [DAL Toolbox website](https://cefet-rj-dal.github.io/daltoolbox/)
 - [tspredit](https://cefet-rj-dal.github.io/tspredit/)
 - [harbinger](https://cefet-rj-dal.github.io/harbinger/)
