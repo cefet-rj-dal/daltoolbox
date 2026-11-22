@@ -31,3 +31,35 @@
 # The symbol below exposes the dataset when the package is loaded.
 "Boston"
 
+#' Diabetes Data (Regression)
+#' @description Ten baseline variables (age, sex, body mass index, average blood
+#' pressure, and six blood serum measurements) obtained for 442 diabetes patients, with a
+#' quantitative measure of disease progression one year after baseline as the target.
+#' \itemize{
+#' \item age: age in years
+#' \item sex: sex
+#' \item bmi: body mass index
+#' \item bp: average blood pressure
+#' \item s1: tc, total serum cholesterol
+#' \item s2: ldl, low-density lipoproteins
+#' \item s3: hdl, high-density lipoproteins
+#' \item s4: tch, total cholesterol / HDL
+#' \item s5: ltg, log of serum triglycerides level
+#' \item s6: glu, blood sugar level
+#' \item target: quantitative measure of disease progression one year after baseline
+#' }
+#'
+#' @docType data
+#' @usage data(Diabetes)
+#' @format Regression Dataset.
+#' @keywords datasets
+#' @references Efron, B., Hastie, T., Johnstone, I., and Tibshirani, R. (2004).
+#' Least Angle Regression. Annals of Statistics, 32(2), 407-499.
+#' @source The ten baseline variables and target, as distributed with scikit-learn.
+#' @examples
+#' data(Diabetes)
+#' head(Diabetes)
+# This file documents and registers the 'Diabetes' dataset for package users.
+# The symbol below exposes the dataset when the package is loaded.
+"Diabetes"
+

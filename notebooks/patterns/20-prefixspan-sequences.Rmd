@@ -1,0 +1,62 @@
+About the method
+- `pat_prefix_span`: sequential pattern mining (PrefixSpan), where the analytical question is about recurring ordered event structures.
+
+Didactic goal: keep the same pattern-mining line of experiment and change only the data type and pattern family so the reader can compare item co-occurrence with event order.
+
+Environment setup.
+```{r}
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages("daltoolbox")
+
+library(daltoolbox)
+```
+
+Build the classic Zaki sequence database in long format (`sequenceID`, `eventID`, `item`): one row per item of each timed event.
+```{r}
+seqs <- do.call(rbind, list(
+  data.frame(sequenceID = 1, eventID = 10, item = c("C", "D")),
+  data.frame(sequenceID = 1, eventID = 15, item = c("A", "B", "C")),
+  data.frame(sequenceID = 1, eventID = 20, item = c("A", "B", "F")),
+  data.frame(sequenceID = 1, eventID = 25, item = c("A", "C", "D", "F")),
+  data.frame(sequenceID = 2, eventID = 15, item = c("A", "B", "F")),
+  data.frame(sequenceID = 2, eventID = 20, item = c("E")),
+  data.frame(sequenceID = 3, eventID = 10, item = c("A", "B", "F")),
+  data.frame(sequenceID = 4, eventID = 10, item = c("D", "G", "H")),
+  data.frame(sequenceID = 4, eventID = 20, item = c("B", "F")),
+  data.frame(sequenceID = 4, eventID = 25, item = c("A", "G", "H"))
+))
+head(seqs)
+```
+
+Model configuration.
+```{r}
+pm <- pat_prefix_span(
+  support = 0.5,
+  maxlen = 3
+)
+```
+
+Fit and discover patterns.
+```{r}
+pm <- fit(pm, seqs)
+seqs_found <- discover(pm, seqs)
+nrow(seqs_found)
+```
+
+Evaluate the discovered patterns.
+```{r}
+eval <- evaluate(pm, seqs_found)
+eval$metrics
+```
+
+Inspect a few patterns.
+```{r}
+head(seqs_found)
+```
+
+What to observe
+- The workflow is unchanged from the other pattern-mining examples.
+- The main semantic change is that order now matters, so the discovered structures are sequences rather than itemsets or rules.
+
+References
+- Pei, J., Han, J., Mortazavi-Asl, B., Wang, J., Pinto, H., Chen, Q., Dayal, U., and Hsu, M. (2001). PrefixSpan: Mining Sequential Patterns Efficiently by Prefix-Projected Pattern Growth. ICDE.

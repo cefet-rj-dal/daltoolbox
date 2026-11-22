@@ -4,15 +4,15 @@ source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examp
 
 library(daltoolbox)
 
-data(Boston)
-head(Boston)
+data(Diabetes)
+head(Diabetes)
 
-fs <- feature_selection_fss("medv")
+fs <- feature_selection_fss("target")
 set_example_seed()
-fs <- fit(fs, Boston)
+fs <- fit(fs, Diabetes)
 
 print(fs$selected)
 print(fs$ranking)
 
-boston_fs <- transform(fs, Boston)
-head(boston_fs)
+diabetes_fs <- transform(fs, Diabetes)
+head(diabetes_fs)

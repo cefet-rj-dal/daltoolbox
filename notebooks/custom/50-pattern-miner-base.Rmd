@@ -1,6 +1,6 @@
 ## Pattern Miner Base
 
-This example documents `pattern_miner` as the common contract behind the pattern-discovery learners. Unlike the algorithm-specific examples, the goal here is not to discover patterns, but to inspect the slots and workflow expectations shared by `pat_apriori`, `pat_eclat`, and `pat_cspade`.
+This example documents `pattern_miner` as the common contract behind the pattern-discovery learners. Unlike the algorithm-specific examples, the goal here is not to discover patterns, but to inspect the slots and workflow expectations shared by `pat_apriori` and `pat_prefix_span`.
 
 ```{r}
 source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))

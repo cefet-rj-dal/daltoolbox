@@ -59,41 +59,41 @@ predict.reg_rsnns_custom <- function(object, x, ...) {
 
 ``` r
 library(MASS)
-data(Boston)
+data(Diabetes)
 
 set_example_seed()
 sr <- sample_random()
-sr <- train_test(sr, Boston)
-boston_train <- sr$train
-boston_test <- sr$test
+sr <- train_test(sr, Diabetes)
+diabetes_train <- sr$train
+diabetes_test <- sr$test
 ```
 
 
 ``` r
-model <- reg_rsnns_custom("medv", size = 6, learn_rate = 0.05, maxit = 200)
+model <- reg_rsnns_custom("target", size = 6, learn_rate = 0.05, maxit = 200)
 set_example_seed()
-model <- fit(model, boston_train)
+model <- fit(model, diabetes_train)
 
-train_prediction <- predict(model, boston_train)
-train_eval <- evaluate(model, boston_train[, "medv"], train_prediction)
+train_prediction <- predict(model, diabetes_train)
+train_eval <- evaluate(model, diabetes_train[, "target"], train_prediction)
 train_eval$metrics
 ```
 
 ```
-##        mse   smape          R2
-## 1 82.56268 0.30925 -0.03758858
+##       mse     smape          R2
+## 1 6794.74 0.4666355 -0.09356924
 ```
 
 
 ``` r
-test_prediction <- predict(model, boston_test)
-test_eval <- evaluate(model, boston_test[, "medv"], test_prediction)
+test_prediction <- predict(model, diabetes_test)
+test_eval <- evaluate(model, diabetes_test[, "target"], test_prediction)
 test_eval$metrics
 ```
 
 ```
-##        mse     smape           R2
-## 1 103.0929 0.3299567 -0.004030478
+##        mse     smape          R2
+## 1 4622.086 0.4118942 -0.01082021
 ```
 
 References

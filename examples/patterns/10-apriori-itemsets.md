@@ -1,7 +1,7 @@
 About the method
-- `pat_eclat`: frequent itemset mining. The goal is to identify groups of items that often appear together.
+- `pat_apriori` (with `target = "frequent itemsets"`): frequent itemset mining. The goal is to identify groups of items that often appear together.
 
-Didactic goal: show item-level filtering explicitly. Here the mining threshold defines the candidate pool, `include`/`exclude` restrict the item vocabulary, and the quality filter keeps only the strongest surviving itemsets.
+Didactic goal: show item-level filtering explicitly. The mining threshold defines the candidate pool, `include`/`exclude` restrict the item vocabulary, and the quality filter keeps only the strongest surviving itemsets.
 
 Environment setup.
 
@@ -59,101 +59,81 @@ Model configuration.
 ``` r
 utils <- patutils()
 
-pm <- pat_eclat(
+pm <- pat_apriori(
+  target = "frequent itemsets",
   supp = 0,
   support_strategy = pat_support_threshold("curvature"),
   maxlen = 3,
   include = c("sex=Male", "income=small", "marital-status=Married-civ-spouse", "race=White"),
-  exclude = c("income=small"),
   quality_filter = utils$quality_min(support = 0.4),
   control = list(verbose = FALSE)
 )
-```
-
-```
-## Error in `pat_eclat()`:
-## ! não foi possível encontrar a função "pat_eclat"
 ```
 
 Fit and discover patterns.
 
 ``` r
 pm <- fit(pm, trans)
-```
-
-```
-## Error:
-## ! objeto 'pm' não encontrado
-```
-
-``` r
 pm$engine_parameter
 ```
 
 ```
-## Error:
-## ! objeto 'pm' não encontrado
+## $supp
+## [1] 0.03470374
+## 
+## $minlen
+## [1] 2
+## 
+## $maxlen
+## [1] 3
+## 
+## $target
+## [1] "frequent itemsets"
 ```
 
 ``` r
 itemsets <- discover(pm, trans)
-```
-
-```
-## Error:
-## ! objeto 'pm' não encontrado
-```
-
-``` r
 length(itemsets)
 ```
 
 ```
-## Error:
-## ! objeto 'itemsets' não encontrado
+## [1] 4
 ```
 
 Evaluate the discovered patterns.
 
 ``` r
 eval <- evaluate(pm, itemsets)
-```
-
-```
-## Error:
-## ! objeto 'pm' não encontrado
-```
-
-``` r
 eval$metrics
 ```
 
 ```
-## Error in `eval$metrics`:
-## ! objeto de tipo 'closure' não possível dividir em subconjuntos
+##           metric       value      type
+## 1  pattern_count 4.000000000 intrinsic
+## 2   mean_support 0.457531428 intrinsic
+## 3    mean_length 2.000000000 intrinsic
+## 4 retained_ratio 0.001221001    filter
 ```
 
 Inspect a few patterns.
 
 ``` r
 ord <- order(arules::quality(itemsets)$support, decreasing = TRUE)
+arules::inspect(itemsets[head(ord, 10)])
 ```
 
 ```
-## Error in `h()`:
-## ! erro na avaliação do argumento 'x' na seleção do método para a função 'quality': 'objeto 'itemsets' não encontrado'
-```
-
-``` r
-arules::inspect(itemsets[ord])
-```
-
-```
-## Error in `h()`:
-## ! erro na avaliação do argumento 'x' na seleção do método para a função 'inspect': 'objeto 'itemsets' não encontrado'
+##     items                                           support   count
+## [1] {race=White, sex=Male}                          0.5883256 28735
+## [2] {race=White, income=small}                      0.4237951 20699
+## [3] {marital-status=Married-civ-spouse, race=White} 0.4105892 20054
+## [4] {marital-status=Married-civ-spouse, sex=Male}   0.4074157 19899
 ```
 
 What to observe
 - `include` and `exclude` act as semantic filters over which items may appear in the result.
 - The quality filter is a second stage: it keeps only the itemsets that are still strong after the structural filtering.
 - Itemsets are not directional rules. They capture co-occurrence, not implication.
+
+References
+- Agrawal, R., and Srikant, R. (1994). Fast Algorithms for Mining Association Rules in Large Databases. VLDB.

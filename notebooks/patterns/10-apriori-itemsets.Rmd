@@ -1,7 +1,7 @@
 About the method
-- `pat_eclat`: frequent itemset mining. The goal is to identify groups of items that often appear together.
+- `pat_apriori` (with `target = "frequent itemsets"`): frequent itemset mining. The goal is to identify groups of items that often appear together.
 
-Didactic goal: show item-level filtering explicitly. Here the mining threshold defines the candidate pool, `include`/`exclude` restrict the item vocabulary, and the quality filter keeps only the strongest surviving itemsets.
+Didactic goal: show item-level filtering explicitly. The mining threshold defines the candidate pool, `include`/`exclude` restrict the item vocabulary, and the quality filter keeps only the strongest surviving itemsets.
 
 Environment setup.
 ```{r}
@@ -22,12 +22,12 @@ Model configuration.
 ```{r}
 utils <- patutils()
 
-pm <- pat_eclat(
+pm <- pat_apriori(
+  target = "frequent itemsets",
   supp = 0,
   support_strategy = pat_support_threshold("curvature"),
   maxlen = 3,
   include = c("sex=Male", "income=small", "marital-status=Married-civ-spouse", "race=White"),
-  exclude = c("income=small"),
   quality_filter = utils$quality_min(support = 0.4),
   control = list(verbose = FALSE)
 )
@@ -50,10 +50,13 @@ eval$metrics
 Inspect a few patterns.
 ```{r}
 ord <- order(arules::quality(itemsets)$support, decreasing = TRUE)
-arules::inspect(itemsets[ord])
+arules::inspect(itemsets[head(ord, 10)])
 ```
 
 What to observe
 - `include` and `exclude` act as semantic filters over which items may appear in the result.
 - The quality filter is a second stage: it keeps only the itemsets that are still strong after the structural filtering.
 - Itemsets are not directional rules. They capture co-occurrence, not implication.
+
+References
+- Agrawal, R., and Srikant, R. (1994). Fast Algorithms for Mining Association Rules in Large Databases. VLDB.

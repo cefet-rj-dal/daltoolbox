@@ -13,36 +13,36 @@ library(daltoolbox)
 
 Load data and inspect.
 ```{r}
-data(Boston)
-head(Boston)
+data(Diabetes)
+head(Diabetes)
 ```
 
-Target `medv` and reproducible train/test split.
+Target `target` and reproducible train/test split.
 ```{r}
 set_example_seed()
-sr <- train_test(sample_random(), Boston)
-boston_train <- sr$train
-boston_test <- sr$test
+sr <- train_test(sample_random(), Diabetes)
+diabetes_train <- sr$train
+diabetes_test <- sr$test
 ```
 
 Model configuration and fitting.
 ```{r}
-model <- reg_dtree("medv")
+model <- reg_dtree("target")
 set_example_seed()
-model <- fit(model, boston_train)
+model <- fit(model, diabetes_train)
 ```
 
 Training evaluation.
 ```{r}
-train_prediction <- predict(model, boston_train)
-train_eval <- evaluate(model, boston_train[, "medv"], train_prediction)
+train_prediction <- predict(model, diabetes_train)
+train_eval <- evaluate(model, diabetes_train[, "target"], train_prediction)
 train_eval$metrics
 ```
 
 Test evaluation.
 ```{r}
-test_prediction <- predict(model, boston_test)
-test_eval <- evaluate(model, boston_test[, "medv"], test_prediction)
+test_prediction <- predict(model, diabetes_test)
+test_eval <- evaluate(model, diabetes_test[, "target"], test_prediction)
 test_eval$metrics
 ```
 

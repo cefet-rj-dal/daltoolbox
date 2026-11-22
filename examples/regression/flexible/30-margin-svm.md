@@ -16,68 +16,68 @@ library(daltoolbox)
 Load data and inspect.
 
 ``` r
-data(Boston)
-head(Boston)
+data(Diabetes)
+head(Diabetes)
 ```
 
 ```
-##      crim zn indus chas   nox    rm  age    dis rad tax ptratio  black lstat
-## 1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3 396.90  4.98
-## 2 0.02731  0  7.07    0 0.469 6.421 78.9 4.9671   2 242    17.8 396.90  9.14
-## 3 0.02729  0  7.07    0 0.469 7.185 61.1 4.9671   2 242    17.8 392.83  4.03
-## 4 0.03237  0  2.18    0 0.458 6.998 45.8 6.0622   3 222    18.7 394.63  2.94
-## 5 0.06905  0  2.18    0 0.458 7.147 54.2 6.0622   3 222    18.7 396.90  5.33
-## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21
-##   medv
-## 1 24.0
-## 2 21.6
-## 3 34.7
-## 4 33.4
-## 5 36.2
-## 6 28.7
+##            age         sex         bmi           bp           s1          s2
+## 1  0.038075906  0.05068012  0.06169621  0.021872386 -0.044223498 -0.03482076
+## 2 -0.001882017 -0.04464164 -0.05147406 -0.026327528 -0.008448724 -0.01916334
+## 3  0.085298906  0.05068012  0.04445121 -0.005670422 -0.045599451 -0.03419447
+## 4 -0.089062939 -0.04464164 -0.01159501 -0.036656081  0.012190569  0.02499059
+## 5  0.005383060 -0.04464164 -0.03638469  0.021872386  0.003934852  0.01559614
+## 6 -0.092695478 -0.04464164 -0.04069594 -0.019441826 -0.068990650 -0.07928784
+##             s3           s4           s5           s6 target
+## 1 -0.043400846 -0.002592262  0.019907486 -0.017646125    151
+## 2  0.074411564 -0.039493383 -0.068331547 -0.092204050     75
+## 3 -0.032355932 -0.002592262  0.002861309 -0.025930339    141
+## 4 -0.036037570  0.034308859  0.022687745 -0.009361911    206
+## 5  0.008142084 -0.002592262 -0.031987639 -0.046640874    135
+## 6  0.041276824 -0.076394504 -0.041176167 -0.096346157     97
 ```
 
-Target `medv` and reproducible train/test split.
+Target `target` and reproducible train/test split.
 
 ``` r
 set_example_seed()
-sr <- train_test(sample_random(), Boston)
-boston_train <- sr$train
-boston_test <- sr$test
+sr <- train_test(sample_random(), Diabetes)
+diabetes_train <- sr$train
+diabetes_test <- sr$test
 ```
 
 Model configuration and fitting.
 
 ``` r
-model <- reg_svm("medv", epsilon = 0.2, cost = 40.0)
+model <- reg_svm("target", epsilon = 0.2, cost = 40.0)
 set_example_seed()
-model <- fit(model, boston_train)
+model <- fit(model, diabetes_train)
 ```
 
 Training evaluation.
 
 ``` r
-train_prediction <- predict(model, boston_train)
-train_eval <- evaluate(model, boston_train[, "medv"], train_prediction)
+train_prediction <- predict(model, diabetes_train)
+train_eval <- evaluate(model, diabetes_train[, "target"], train_prediction)
 train_eval$metrics
 ```
 
 ```
-##        mse      smape        R2
-## 1 3.093724 0.07190626 0.9611203
+##        mse     smape       R2
+## 1 563.4959 0.1455496 0.909309
 ```
 
 Test evaluation.
 
 ``` r
-test_prediction <- predict(model, boston_test)
-test_eval <- evaluate(model, boston_test[, "medv"], test_prediction)
+test_prediction <- predict(model, diabetes_test)
+test_eval <- evaluate(model, diabetes_test[, "target"], test_prediction)
 test_eval$metrics
 ```
 
 ```
-##        mse    smape        R2
-## 1 9.927719 0.105222 0.9033131
+##        mse     smape         R2
+## 1 5266.002 0.3676784 -0.1516405
 ```
 
 References
