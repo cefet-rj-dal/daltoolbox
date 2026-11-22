@@ -278,6 +278,11 @@ pattern_miner_apply_rule_filter <- function(obj, patterns, data = NULL) {
     rule_filter <- pat_rule_filter_none()
   }
   if (!inherits(patterns, "rules")) {
+    # A no-op filter is simply skipped for non-rule patterns (e.g. frequent
+    # itemsets); only a real rule filter on non-rules is an error.
+    if (inherits(rule_filter, "pat_rule_filter_none")) {
+      return(patterns)
+    }
     stop("pattern_miner: rule_filter can only be applied to association rules.", call. = FALSE)
   }
   pat_filter_rules(patterns, rule_filter, data = data)
