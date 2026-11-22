@@ -48,40 +48,34 @@ library(dplyr)
 ```
 
 ```
-## Warning: package 'dplyr' was built under R version 4.5.3
+## Warning: pacote 'dplyr' foi compilado no R versão 4.5.3
 ```
 
 ```
 ## 
-## Attaching package: 'dplyr'
+## Anexando pacote: 'dplyr'
 ```
 
 ```
-## The following object is masked from 'package:MASS':
+## O seguinte objeto é mascarado por 'package:MASS':
 ## 
 ##     select
 ```
 
 ```
-## The following objects are masked from 'package:igraph':
-## 
-##     as_data_frame, groups, union
-```
-
-```
-## The following object is masked from 'package:mclust':
+## O seguinte objeto é mascarado por 'package:mclust':
 ## 
 ##     count
 ```
 
 ```
-## The following objects are masked from 'package:stats':
+## Os seguintes objetos são mascarados por 'package:stats':
 ## 
 ##     filter, lag
 ```
 
 ```
-## The following objects are masked from 'package:base':
+## Os seguintes objetos são mascarados por 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union
 ```

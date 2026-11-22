@@ -14,87 +14,87 @@ library(adabag)
 ```
 
 ```
-## Warning: package 'adabag' was built under R version 4.5.2
+## Warning: pacote 'adabag' foi compilado no R versão 4.5.2
 ```
 
 ```
-## Loading required package: rpart
+## Carregando pacotes exigidos: rpart
 ```
 
 ```
-## Warning: package 'rpart' was built under R version 4.5.3
+## Warning: pacote 'rpart' foi compilado no R versão 4.5.3
 ```
 
 ```
-## Loading required package: caret
+## Carregando pacotes exigidos: caret
 ```
 
 ```
-## Warning: package 'caret' was built under R version 4.5.1
+## Warning: pacote 'caret' foi compilado no R versão 4.5.1
 ```
 
 ```
-## Loading required package: ggplot2
+## Carregando pacotes exigidos: ggplot2
 ```
 
 ```
-## Warning: package 'ggplot2' was built under R version 4.5.3
+## Warning: pacote 'ggplot2' foi compilado no R versão 4.5.3
 ```
 
 ```
-## Loading required package: lattice
+## Carregando pacotes exigidos: lattice
 ```
 
 ```
-## Warning: package 'lattice' was built under R version 4.5.3
+## Warning: pacote 'lattice' foi compilado no R versão 4.5.3
 ```
 
 ```
 ## 
-## Attaching package: 'caret'
+## Anexando pacote: 'caret'
 ```
 
 ```
-## The following object is masked from 'package:daltoolbox':
+## O seguinte objeto é mascarado por 'package:daltoolbox':
 ## 
 ##     cluster
 ```
 
 ```
-## Loading required package: foreach
+## Carregando pacotes exigidos: foreach
 ```
 
 ```
-## Warning: package 'foreach' was built under R version 4.5.1
+## Warning: pacote 'foreach' foi compilado no R versão 4.5.1
 ```
 
 ```
-## Loading required package: doParallel
+## Carregando pacotes exigidos: doParallel
 ```
 
 ```
-## Warning: package 'doParallel' was built under R version 4.5.2
+## Warning: pacote 'doParallel' foi compilado no R versão 4.5.2
 ```
 
 ```
-## Loading required package: iterators
+## Carregando pacotes exigidos: iterators
 ```
 
 ```
-## Warning: package 'iterators' was built under R version 4.5.1
+## Warning: pacote 'iterators' foi compilado no R versão 4.5.1
 ```
 
 ```
-## Loading required package: parallel
+## Carregando pacotes exigidos: parallel
 ```
 
 ```
 ## 
-## Attaching package: 'adabag'
+## Anexando pacote: 'adabag'
 ```
 
 ```
-## The following object is masked from 'package:ipred':
+## O seguinte objeto é mascarado por 'package:ipred':
 ## 
 ##     bagging
 ```

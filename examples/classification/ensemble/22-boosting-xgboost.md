@@ -14,7 +14,7 @@ library(xgboost)
 ```
 
 ```
-## Warning: package 'xgboost' was built under R version 4.5.3
+## Warning: pacote 'xgboost' foi compilado no R versão 4.5.3
 ```
 
 Load data and inspect.

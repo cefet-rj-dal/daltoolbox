@@ -16,11 +16,13 @@ Start here if you want directional patterns with left-hand side and right-hand s
 
 Before sequence mining, it helps to separate two kinds of intelligence: directional rules and filtered co-occurrence structures.
 
+- [10-eclat-itemsets.md](/examples/patterns/10-eclat-itemsets.md) - `pat_eclat`: itemset mining with `include`, `exclude`, and post-mining support filtering.
+
 ## Sequential Patterns
 
 Finish with sequence mining, where order matters and the interpretation shifts from co-occurrence to recurring event structure.
 
-- [20-prefixspan-sequences.md](/examples/patterns/20-prefixspan-sequences.md) - `pat_prefix_span`: mines sequential patterns (native PrefixSpan) and evaluates them through support and sequence summaries.
+- [20-cspade-sequences.md](/examples/patterns/20-cspade-sequences.md) - `pat_cspade`: mines sequential patterns and evaluates them through support and sequence summaries.
 
 ## Interesting Rule Filters
 

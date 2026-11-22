@@ -65,10 +65,10 @@ tbl
 
 ```
 ##      setosa versicolor virginica
-## [1,]     13         13        13
+## [1,]     12         12        12
 ## [2,]     13         13        13
 ## [3,]     12         12        12
-## [4,]     12         12        12
+## [4,]     13         13        13
 ```
 
 To connect sampling with modeling, fit a simple baseline on the stratified split. The goal here is not high performance; it is to show that even a basic learner depends on the quality of the sampling procedure.

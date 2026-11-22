@@ -1,0 +1,121 @@
+About the method
+- `pat_cspade`: sequential pattern mining, where the analytical question is about recurring ordered event structures.
+
+Didactic goal: keep the same pattern-mining line of experiment and change only the data type and pattern family so the reader can compare item co-occurrence with event order.
+
+Environment setup.
+
+``` r
+source(url("https://raw.githubusercontent.com/cefet-rj-dal/daltoolbox/main/examples/seed.R"))
+# install.packages(c("daltoolbox", "arulesSequences"))
+
+library(daltoolbox)
+```
+
+Load sequence transactions.
+
+``` r
+x <- arulesSequences::read_baskets(
+  con = system.file("misc", "zaki.txt", package = "arulesSequences"),
+  info = c("sequenceID", "eventID", "SIZE")
+)
+x
+```
+
+```
+## transactions in sparse format with
+##  10 transactions (rows) and
+##  8 items (columns)
+```
+
+Model configuration.
+
+``` r
+utils <- patutils()
+
+pm <- pat_cspade(
+  support = 0,
+  support_strategy = pat_support_threshold("min_count", min_count = 4),
+  maxlen = 3,
+  quality_filter = utils$quality_min(support = 0.5),
+  control = list(verbose = FALSE)
+)
+```
+
+```
+## Error in `pat_cspade()`:
+## ! não foi possível encontrar a função "pat_cspade"
+```
+
+Fit and discover patterns.
+
+``` r
+pm <- fit(pm, x)
+```
+
+```
+## Error:
+## ! objeto 'pm' não encontrado
+```
+
+``` r
+pm$engine_parameter
+```
+
+```
+## Error:
+## ! objeto 'pm' não encontrado
+```
+
+``` r
+seqs <- discover(pm, x)
+```
+
+```
+## Error:
+## ! objeto 'pm' não encontrado
+```
+
+``` r
+length(seqs)
+```
+
+```
+## Error:
+## ! objeto 'seqs' não encontrado
+```
+
+Evaluate the discovered patterns.
+
+``` r
+eval <- evaluate(pm, seqs)
+```
+
+```
+## Error:
+## ! objeto 'pm' não encontrado
+```
+
+``` r
+eval$metrics
+```
+
+```
+## Error in `eval$metrics`:
+## ! objeto de tipo 'closure' não possível dividir em subconjuntos
+```
+
+Inspect a few patterns.
+
+``` r
+head(as(seqs, "data.frame"))
+```
+
+```
+## Error in `h()`:
+## ! erro na avaliação do argumento 'x' na seleção do método para a função 'head': 'objeto 'seqs' não encontrado'
+```
+
+What to observe
+- The workflow is unchanged from the other pattern-mining examples.
+- The main semantic change is that order now matters, so the discovered structures are sequences rather than itemsets or rules.

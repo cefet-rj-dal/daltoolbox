@@ -14,7 +14,7 @@ library(ipred)
 ```
 
 ```
-## Warning: package 'ipred' was built under R version 4.5.1
+## Warning: pacote 'ipred' foi compilado no R versão 4.5.1
 ```
 
 Load data and inspect.

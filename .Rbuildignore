@@ -14,7 +14,7 @@
 ^regression$
 ^timeseries$
 ^transf$
-^Rmd$
+^notebooks$
 ^develop$
 ^examples$
 ^examples-r$

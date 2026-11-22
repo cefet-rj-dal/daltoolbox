@@ -35,11 +35,11 @@ print(fs$ranking)
 ```
 
 ```
-##        feature      score
-## 1  Petal.Width 0.18416667
-## 2 Petal.Length 0.15525424
-## 3  Sepal.Width 0.13250000
-## 4 Sepal.Length 0.05055556
+##        feature     score
+## 1  Petal.Width 0.3707083
+## 2 Petal.Length 0.3617288
+## 3 Sepal.Length 0.1384722
+## 4  Sepal.Width 0.1293333
 ```
 
 

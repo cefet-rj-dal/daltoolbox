@@ -110,16 +110,16 @@ library(gridExtra)
 ```
 
 ```
-## Warning: package 'gridExtra' was built under R version 4.5.1
+## Warning: pacote 'gridExtra' foi compilado no R versão 4.5.1
 ```
 
 ```
 ## 
-## Attaching package: 'gridExtra'
+## Anexando pacote: 'gridExtra'
 ```
 
 ```
-## The following object is masked from 'package:dplyr':
+## O seguinte objeto é mascarado por 'package:dplyr':
 ## 
 ##     combine
 ```

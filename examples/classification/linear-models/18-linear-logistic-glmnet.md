@@ -14,15 +14,15 @@ library(glmnet)
 ```
 
 ```
-## Warning: package 'glmnet' was built under R version 4.5.3
+## Warning: pacote 'glmnet' foi compilado no R versão 4.5.3
 ```
 
 ```
-## Loading required package: Matrix
+## Carregando pacotes exigidos: Matrix
 ```
 
 ```
-## Warning: package 'Matrix' was built under R version 4.5.3
+## Warning: pacote 'Matrix' foi compilado no R versão 4.5.3
 ```
 
 ```

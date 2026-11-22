@@ -14,7 +14,7 @@ library(mclust)
 ```
 
 ```
-## Warning: package 'mclust' was built under R version 4.5.2
+## Warning: pacote 'mclust' foi compilado no R versão 4.5.2
 ```
 
 ```
