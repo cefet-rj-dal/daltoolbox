@@ -5,3 +5,6 @@
 .ipynb_checkpoints
 develop/data
 .positai
+
+# parity comparison intermediates (regenerable)
+develop/parity/out_*.csv

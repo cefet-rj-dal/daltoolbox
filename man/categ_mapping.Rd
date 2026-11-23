@@ -10,15 +10,17 @@ categ_mapping(attribute)
 \item{attribute}{attribute to be categorized.}
 }
 \value{
-returns a data frame with binary attributes, one for each possible category.
+returns the input data frame with the attribute replaced by one binary column per
+category (\verb{<attribute>_<level>}); all other columns are preserved.
 }
 \description{
 Convert a factor column into dummy variables (one‑hot encoding) using \code{model.matrix} without intercept.
-Each level becomes a separate binary column.
+Each level becomes a separate binary column named \verb{<attribute>_<level>}.
 }
 \details{
-This is a light wrapper around \code{stats::model.matrix(~ attr - 1, data)} that drops the original column
-and returns only the dummy variables.
+The remaining columns are kept and the original attribute is replaced in place by
+its one-hot dummy columns (appended at the end). Keeping the other columns makes the
+transform safe to use inside a preprocessing pipeline.
 }
 \examples{
 cm <- categ_mapping("Species")
