@@ -17,6 +17,8 @@
 #' decreases mechanically as `k` grows and is therefore weaker as a standalone
 #' quality criterion for comparing partitions.
 #'@param k the number of clusters to form.
+#'@param nstart number of random initializations; the best (lowest within-cluster
+#' sum of squares) is kept. Default 10 for robust clustering (stats::kmeans uses 1).
 #'@return returns a k-means object.
 #'@references
 #' MacQueen, J. (1967). Some Methods for classification and Analysis of Multivariate Observations.
@@ -41,10 +43,11 @@
 #'eval
 
 #'@export
-cluster_kmeans <- function(k = 1) {
+cluster_kmeans <- function(k = 1, nstart = 10) {
   obj <- clusterer()
   utils <- obj$clu_utils
   obj$k <- k
+  obj$nstart <- nstart
   obj$metric <- utils$metric_silhouette
   obj$metric_name <- "silhouette"
   obj$selector <- utils$selector_best
@@ -64,7 +67,11 @@ fit.cluster_kmeans <- function(obj, data, ...) {
 
   x <- as.matrix(data)
   storage.mode(x) <- "double"
-  obj$model <- stats::kmeans(x = x, centers = obj$k)
+  # nstart > 1 restarts k-means from several random initializations and keeps the
+  # best (lowest within-cluster sum of squares). stats::kmeans defaults to nstart = 1,
+  # a single random start that can land in a poor local optimum (e.g. ~0.67 purity on
+  # iris instead of ~0.89); this mirrors the robust multi-start Python uses (n_init).
+  obj$model <- stats::kmeans(x = x, centers = obj$k, nstart = obj$nstart)
   return(obj)
 }
 

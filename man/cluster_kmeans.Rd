@@ -4,10 +4,13 @@
 \alias{cluster_kmeans}
 \title{k-means}
 \usage{
-cluster_kmeans(k = 1)
+cluster_kmeans(k = 1, nstart = 10)
 }
 \arguments{
 \item{k}{the number of clusters to form.}
+
+\item{nstart}{number of random initializations; the best (lowest within-cluster
+sum of squares) is kept. Default 10 for robust clustering (stats::kmeans uses 1).}
 }
 \value{
 returns a k-means object.
