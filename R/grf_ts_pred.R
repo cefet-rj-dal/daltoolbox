@@ -18,6 +18,9 @@
 #'prediction <- sin(x[36:41])
 #'grf <- plot_ts_pred(y=yvalues, yadj=adjust, ypred=prediction)
 #'plot(grf)
+#'@references
+#' Hyndman, R. J. and Athanasopoulos, G. (2021). Forecasting: Principles and Practice (3rd ed.). OTexts.
+#' Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
 #'@export
 #'@importFrom ggplot2 ggplot
 #'@importFrom ggplot2 aes

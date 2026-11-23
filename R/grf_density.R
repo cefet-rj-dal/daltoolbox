@@ -23,6 +23,9 @@
 #'@importFrom ggplot2 ylab
 #'@importFrom ggplot2 element_blank
 #'@importFrom reshape melt
+#'@references
+#' Silverman, B. W. (1986). Density Estimation for Statistics and Data Analysis. Chapman & Hall.
+#' Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
 #'@export
 plot_density <- function(data, label_x = "", label_y = "", colors = NULL, bin = NULL, alpha=0.25) {
   value <- 0

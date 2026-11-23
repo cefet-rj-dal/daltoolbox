@@ -28,6 +28,8 @@
 #'@importFrom ggplot2 xlab
 #'@importFrom ggplot2 ylab
 #'@importFrom reshape melt
+#'@references
+#' Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
 #'@export
 plot_radar <- function(data, label_x = "", label_y = "", colors = NULL) {
   series <- as.data.frame(data)

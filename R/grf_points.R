@@ -24,6 +24,9 @@
 #'@importFrom ggplot2 ylab
 #'@importFrom ggplot2 element_blank
 #'@importFrom reshape melt
+#'@references
+#' Cleveland, W. S. (1985). The Elements of Graphing Data. Wadsworth.
+#' Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
 #'@export
 plot_points <- function(data, label_x = "", label_y = "", colors = NULL) {
   x <- 0

@@ -22,6 +22,9 @@
 #'@importFrom ggplot2 ylab
 #'@importFrom ggplot2 element_blank
 #'@importFrom reshape melt
+#'@references
+#' Tukey, J. W. (1977). Exploratory Data Analysis. Addison-Wesley.
+#' Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
 #'@export
 plot_boxplot <- function(data, label_x = "", label_y = "", colors = NULL, barwidth=0.25) {
   value <- 0

@@ -31,3 +31,7 @@ a constant fill is applied to all boxes. Use \code{barwidth} to control box widt
 grf <- plot_boxplot(iris, colors="white")
 plot(grf)
 }
+\references{
+Tukey, J. W. (1977). Exploratory Data Analysis. Addison-Wesley.
+Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+}

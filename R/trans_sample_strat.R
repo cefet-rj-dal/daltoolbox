@@ -25,6 +25,8 @@
 #'   tbl <- rbind(tbl, table(f$Species))
 #' }
 #' head(tbl)
+#'@references
+#' Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection. IJCAI.
 #' @export
 sample_stratified <- function(attribute) {
   obj <- sample_random()

@@ -45,3 +45,7 @@ if (requireNamespace("MASS", quietly = TRUE)) {
  eval_multi$metrics
 }
 }
+\references{
+Draper, N. R. and Smith, H. (1998). Applied Regression Analysis (3rd ed.). Wiley.
+Weisberg, S. (2005). Applied Linear Regression (3rd ed.). Wiley.
+}

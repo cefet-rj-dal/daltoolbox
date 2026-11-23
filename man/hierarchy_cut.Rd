@@ -31,3 +31,6 @@ hc <- hierarchy_cut(
 iris_h <- transform(hc, iris)
 table(iris_h$Sepal.Length.Level)
 }
+\references{
+Han, J., Kamber, M. and Pei, J. (2011). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann. (Concept hierarchy generation)
+}

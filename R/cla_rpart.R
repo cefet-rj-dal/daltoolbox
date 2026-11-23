@@ -11,6 +11,9 @@
 #'  eval <- evaluate(model, adjust_class_label(iris$Species), pred)
 #'  eval$metrics
 #'}
+#'@references
+#' Breiman, L., Friedman, J., Olshen, R. and Stone, C. (1984). Classification and Regression Trees. Wadsworth.
+#' Therneau, T. M. and Atkinson, E. J. (1997). An Introduction to Recursive Partitioning Using the rpart Routines.
 #'@export
 cla_rpart <- function(attribute) {
   obj <- classification(attribute)

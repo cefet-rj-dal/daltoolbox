@@ -20,6 +20,9 @@
 #'iris_fs <- transform(fs, iris_bin)
 #'names(iris_fs)
 #'@importFrom utils head
+#'@references
+#' Quinlan, J. R. (1986). Induction of Decision Trees. Machine Learning, 1(1):81-106.
+#' Cover, T. M. and Thomas, J. A. (2006). Elements of Information Theory (2nd ed.). Wiley.
 #'@export
 feature_selection_info_gain <- function(attribute, features = NULL, top = NULL, cutoff = 0, bins = 3) {
   obj <- dal_transform()

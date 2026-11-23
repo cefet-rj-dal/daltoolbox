@@ -30,3 +30,7 @@ hc <- hclust(dist(scale(iris[,1:4])), method = "ward.D2")
 grf <- plot_dendrogram(hc)
 plot(grf)
 }
+\references{
+Ward, J. H. (1963). Hierarchical Grouping to Optimize an Objective Function. Journal of the American Statistical Association, 58(301):236-244.
+Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+}

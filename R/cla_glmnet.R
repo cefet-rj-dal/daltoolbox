@@ -18,6 +18,9 @@
 #'  eval <- evaluate(model, adjust_class_label(iris_bin$IsVersicolor), pred)
 #'  eval$metrics
 #'}
+#'@references
+#' Friedman, J., Hastie, T. and Tibshirani, R. (2010). Regularization Paths for Generalized Linear Models via Coordinate Descent. Journal of Statistical Software, 33(1):1-22.
+#' Zou, H. and Hastie, T. (2005). Regularization and variable selection via the elastic net. Journal of the Royal Statistical Society, Series B, 67(2):301-320.
 #'@export
 cla_glmnet <- function(attribute, lambda = c("lambda.min", "lambda.1se")) {
   obj <- classification(attribute)

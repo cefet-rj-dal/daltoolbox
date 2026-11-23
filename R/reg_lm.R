@@ -29,6 +29,9 @@
 #'  eval_multi <- evaluate(model_multi, Boston$medv, pred_multi)
 #'  eval_multi$metrics
 #'}
+#'@references
+#' Draper, N. R. and Smith, H. (1998). Applied Regression Analysis (3rd ed.). Wiley.
+#' Weisberg, S. (2005). Applied Linear Regression (3rd ed.). Wiley.
 #'@export
 reg_lm <- function(formula = NULL, attribute = NULL, features = NULL) {
   obj <- regression(attribute)

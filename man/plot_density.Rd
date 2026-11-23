@@ -41,3 +41,7 @@ The \code{bin} argument is passed to \code{geom_density(binwidth=...)}.
 grf <- plot_density(iris |> dplyr::select(Sepal.Width), colors="blue")
 plot(grf)
 }
+\references{
+Silverman, B. W. (1986). Density Estimation for Statistics and Data Analysis. Chapman & Hall.
+Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+}

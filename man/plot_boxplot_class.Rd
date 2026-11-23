@@ -38,3 +38,7 @@ grf <- plot_boxplot_class(iris |> dplyr::select(Sepal.Width, Species),
 class_label = "Species", colors=c("red", "green", "blue"))
 plot(grf)
 }
+\references{
+Tukey, J. W. (1977). Exploratory Data Analysis. Addison-Wesley.
+Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+}

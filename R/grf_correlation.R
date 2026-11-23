@@ -18,6 +18,9 @@
 #'data(iris)
 #'grf <- plot_correlation(iris[,1:4])
 #'plot(grf)
+#'@references
+#' Friendly, M. (2002). Corrgrams: Exploratory Displays for Correlation Matrices. The American Statistician, 56(4):316-324.
+#' Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
 #'@export
 plot_correlation <- function(df,
                              vars = NULL,

@@ -45,3 +45,7 @@ fs$selected
 iris_fs <- transform(fs, iris_bin)
 names(iris_fs)
 }
+\references{
+Quinlan, J. R. (1986). Induction of Decision Trees. Machine Learning, 1(1):81-106.
+Cover, T. M. and Thomas, J. A. (2006). Elements of Information Theory (2nd ed.). Wiley.
+}

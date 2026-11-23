@@ -14,6 +14,9 @@
 #'  boston_fs <- transform(fs, Boston)
 #'  names(boston_fs)
 #'}
+#'@references
+#' Tibshirani, R. (1996). Regression Shrinkage and Selection via the Lasso. Journal of the Royal Statistical Society, Series B, 58(1):267-288.
+#' Friedman, J., Hastie, T. and Tibshirani, R. (2010). Regularization Paths for Generalized Linear Models via Coordinate Descent. Journal of Statistical Software, 33(1):1-22.
 #'@export
 feature_selection_lasso <- function(attribute, features = NULL) {
   obj <- dal_transform()

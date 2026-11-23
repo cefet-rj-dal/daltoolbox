@@ -45,3 +45,6 @@ head(data)
 grf <- plot_pieplot(data, colors=c("red", "green", "blue"))
 plot(grf)
 }
+\references{
+Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+}

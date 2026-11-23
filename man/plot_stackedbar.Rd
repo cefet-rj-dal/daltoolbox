@@ -36,3 +36,7 @@ dplyr::summarize(Sepal.Length=mean(Sepal.Length), Sepal.Width=mean(Sepal.Width))
 grf <- plot_stackedbar(data, colors=c("blue", "red"))
 plot(grf)
 }
+\references{
+Cleveland, W. S. and McGill, R. (1984). Graphical Perception. Journal of the American Statistical Association, 79(387):531-554.
+Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+}

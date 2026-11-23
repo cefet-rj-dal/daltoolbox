@@ -28,3 +28,6 @@ sample_wr <- transform(srswr, iris$Sepal.Length)
 sample_wor
 sample_wr
 }
+\references{
+Cochran, W. G. (1977). Sampling Techniques (3rd ed.). Wiley.
+}

@@ -24,6 +24,9 @@
 #'@importFrom ggplot2 ylab
 #'@importFrom ggplot2 element_blank
 #'@importFrom reshape melt
+#'@references
+#' Cleveland, W. S. and McGill, R. (1984). Graphical Perception. Journal of the American Statistical Association, 79(387):531-554.
+#' Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
 #'@export
 plot_scatter <- function(data, label_x = "", label_y = "", colors = NULL) {
   x <- 0

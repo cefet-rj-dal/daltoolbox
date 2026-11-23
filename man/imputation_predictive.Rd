@@ -32,3 +32,7 @@ imp <- imputation_predictive(
 )
 class(imp)
 }
+\references{
+Han, J., Kamber, M. and Pei, J. (2011). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.
+van Buuren, S. and Groothuis-Oudshoorn, K. (2011). mice: Multivariate Imputation by Chained Equations in R. Journal of Statistical Software, 45(3):1-67.
+}

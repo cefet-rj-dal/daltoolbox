@@ -30,3 +30,7 @@ iris_cm <- transform(cm, iris)
 species <- iris[,"Species", drop=FALSE]
 iris_cm <- transform(cm, species)
 }
+\references{
+Kuhn, M. and Johnson, K. (2013). Applied Predictive Modeling. Springer.
+Han, J., Kamber, M. and Pei, J. (2011). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann.
+}

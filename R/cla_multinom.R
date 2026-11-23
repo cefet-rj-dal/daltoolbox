@@ -10,6 +10,9 @@
 #'pred <- predict(model, iris)
 #'eval <- evaluate(model, adjust_class_label(iris$Species), pred)
 #'eval$metrics
+#'@references
+#' Agresti, A. (2002). Categorical Data Analysis (2nd ed.). Wiley.
+#' Venables, W. N. and Ripley, B. D. (2002). Modern Applied Statistics with S (4th ed.). Springer.
 #'@export
 cla_multinom <- function(attribute, features = NULL) {
   obj <- classification(attribute)

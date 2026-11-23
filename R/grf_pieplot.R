@@ -32,6 +32,8 @@
 #'@importFrom dplyr summarise
 #'@importFrom dplyr arrange
 #'@importFrom dplyr mutate
+#'@references
+#' Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
 #'@export
 plot_pieplot <- function(data, label_x = "", label_y = "", colors = NULL, textcolor="white", bordercolor="black") {
   x <- prop <- ypos <- label <- value <- desc <- n <- 0

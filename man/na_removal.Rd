@@ -23,3 +23,6 @@ obj <- na_removal()
 iris.clean <- transform(obj, iris.na)
 nrow(iris.clean)
 }
+\references{
+Little, R. J. A. and Rubin, D. B. (2019). Statistical Analysis with Missing Data (3rd ed.). Wiley.
+}

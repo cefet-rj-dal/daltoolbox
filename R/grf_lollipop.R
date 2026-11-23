@@ -35,6 +35,9 @@
 #'@importFrom ggplot2 ylab
 #'@importFrom ggplot2 element_blank
 #'@importFrom reshape melt
+#'@references
+#' Tufte, E. R. (1983). The Visual Display of Quantitative Information. Graphics Press.
+#' Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
 #'@export
 plot_lollipop <- function(data, label_x = "", label_y = "", colors = NULL, color_text = "black", size_text=3, size_ball=8, alpha_ball=0.2, min_value=0, max_value_gap=1) {
   value <- 0

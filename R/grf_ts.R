@@ -13,6 +13,9 @@
 #'
 #'grf <- plot_ts(x = x, y = y, color=c("red"))
 #'plot(grf)
+#'@references
+#' Cleveland, W. S. (1985). The Elements of Graphing Data. Wadsworth.
+#' Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
 #'@export
 #'@importFrom ggplot2 ggplot
 #'@importFrom ggplot2 aes

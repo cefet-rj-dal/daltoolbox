@@ -58,3 +58,7 @@ head(data)
 grf <- plot_lollipop(data, colors="blue", max_value_gap=0.2)
 plot(grf)
 }
+\references{
+Tufte, E. R. (1983). The Visual Display of Quantitative Information. Graphics Press.
+Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+}

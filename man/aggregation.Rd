@@ -28,3 +28,6 @@ agg <- aggregation(
 iris_agg <- transform(agg, iris)
 iris_agg
 }
+\references{
+Han, J., Kamber, M. and Pei, J. (2011). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann. (Data aggregation)
+}

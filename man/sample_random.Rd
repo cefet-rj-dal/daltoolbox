@@ -37,3 +37,6 @@ for (f in folds) {
 }
 head(tbl)
 }
+\references{
+Kohavi, R. (1995). A Study of Cross-Validation and Bootstrap for Accuracy Estimation and Model Selection. IJCAI.
+}

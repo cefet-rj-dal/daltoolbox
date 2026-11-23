@@ -14,6 +14,9 @@
 #'fs <- fit(fs, Boston)
 #'fs$selected
 #'transform(fs, Boston) |> names()
+#'@references
+#' Akaike, H. (1974). A New Look at the Statistical Model Identification. IEEE Transactions on Automatic Control, 19(6):716-723.
+#' Hastie, T., Tibshirani, R. and Friedman, J. (2009). The Elements of Statistical Learning (2nd ed.). Springer.
 #'@export
 feature_selection_stepwise <- function(attribute, features = NULL, direction = "forward", family = stats::binomial, trace = 0) {
   obj <- dal_transform()

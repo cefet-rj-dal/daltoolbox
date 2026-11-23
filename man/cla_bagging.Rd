@@ -27,3 +27,6 @@ if (requireNamespace("ipred", quietly = TRUE)) {
  eval$metrics
 }
 }
+\references{
+Breiman, L. (1996). Bagging predictors. Machine Learning, 24(2):123-140.
+}

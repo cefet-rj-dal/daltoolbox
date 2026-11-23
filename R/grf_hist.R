@@ -22,6 +22,9 @@
 #'@importFrom ggplot2 element_blank
 #'@importFrom graphics hist
 #'@importFrom dplyr filter summarise group_by arrange mutate
+#'@references
+#' Sturges, H. A. (1926). The choice of a class interval. Journal of the American Statistical Association, 21(153):65-66.
+#' Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
 #'@export
 plot_hist <- function(data, label_x = "", label_y = "", color = 'white', alpha=0.25) {
   variable <- 0

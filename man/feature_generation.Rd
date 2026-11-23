@@ -25,3 +25,7 @@ gen <- feature_generation(
 iris_feat <- transform(gen, iris)
 head(iris_feat)
 }
+\references{
+Kuhn, M. and Johnson, K. (2019). Feature Engineering and Selection: A Practical Approach for Predictive Models. CRC Press.
+Han, J., Kamber, M. and Pei, J. (2011). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann. (Attribute construction)
+}

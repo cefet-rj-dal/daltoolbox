@@ -25,3 +25,7 @@ if (requireNamespace("rpart", quietly = TRUE)) {
  eval$metrics
 }
 }
+\references{
+Breiman, L., Friedman, J., Olshen, R. and Stone, C. (1984). Classification and Regression Trees. Wadsworth.
+Therneau, T. M. and Atkinson, E. J. (1997). An Introduction to Recursive Partitioning Using the rpart Routines.
+}

@@ -19,6 +19,8 @@
 #'bins <- cut(iris$Sepal.Length, unique(obj$interval.adj), FALSE, include.lowest = TRUE)
 #'entro <- evaluate(obj, bins, iris$Species)
 #'entro$entropy
+#'@references
+#' Han, J., Kamber, M. and Pei, J. (2011). Data Mining: Concepts and Techniques (3rd ed.). Morgan Kaufmann. (Discretization)
 #'@export
 smoothing <- function(n) {
   obj <- dal_transform()

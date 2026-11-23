@@ -12,6 +12,8 @@
 #'sc <- sample_groups("Species", n_groups = 2)
 #'iris_sc <- transform(sc, iris)
 #'table(iris_sc$Species)
+#'@references
+#' Cochran, W. G. (1977). Sampling Techniques (3rd ed.). Wiley.
 #'@export
 sample_groups <- function(attribute, n_groups) {
   obj <- dal_transform()

@@ -33,3 +33,7 @@ head(data)
 grf <- plot_series(data, colors=c("red"))
 plot(grf)
 }
+\references{
+Cleveland, W. S. (1985). The Elements of Graphing Data. Wadsworth.
+Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
+}

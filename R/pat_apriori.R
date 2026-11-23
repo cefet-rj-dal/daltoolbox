@@ -38,6 +38,8 @@
 #'  eval <- evaluate(pm, rules)
 #'  eval$metrics
 #'}
+#'@references
+#' Agrawal, R. and Srikant, R. (1994). Fast Algorithms for Mining Association Rules in Large Databases. Proceedings of the 20th International Conference on Very Large Data Bases (VLDB), 487-499.
 #'@export
 pat_apriori <- function(target = c("rules", "frequent itemsets"),
                         supp = 0,

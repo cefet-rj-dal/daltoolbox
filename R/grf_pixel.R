@@ -11,6 +11,9 @@
 #'data(iris)
 #'grf <- plot_pixel(as.matrix(iris[,1:4]), title = "Iris")
 #'plot(grf)
+#'@references
+#' Keim, D. A. (2000). Designing Pixel-Oriented Visualization Techniques: Theory and Applications. IEEE Transactions on Visualization and Computer Graphics, 6(1):59-78.
+#' Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer.
 #'@export
 plot_pixel <- function(data, colors = NULL, title = NULL, label_x = "sample", label_y = "Attributes") {
   x <- y <- value <- NULL

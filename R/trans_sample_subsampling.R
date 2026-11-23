@@ -8,6 +8,8 @@
 #'bal <- bal_subsampling("Species")
 #'iris_bal <- transform(bal, iris_imb)
 #'table(iris_bal$Species)
+#'@references
+#' He, H. and Garcia, E. A. (2009). Learning from Imbalanced Data. IEEE Transactions on Knowledge and Data Engineering, 21(9):1263-1284.
 #'@export
 bal_subsampling <- function(attribute) {
   obj <- dal_transform()

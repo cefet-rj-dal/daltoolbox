@@ -12,6 +12,8 @@
 #'  eval <- evaluate(model, adjust_class_label(iris$Species), pred)
 #'  eval$metrics
 #'}
+#'@references
+#' Freund, Y. and Schapire, R. E. (1997). A Decision-Theoretic Generalization of On-Line Learning and an Application to Boosting. Journal of Computer and System Sciences, 55(1):119-139.
 #'@export
 cla_boosting <- function(attribute, mfinal = 50) {
   obj <- classification(attribute)

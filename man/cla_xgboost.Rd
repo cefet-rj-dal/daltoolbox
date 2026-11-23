@@ -29,3 +29,7 @@ eval <- evaluate(model, adjust_class_label(iris$Species), pred)
 eval$metrics
 }
 }
+\references{
+Friedman, J. H. (2001). Greedy Function Approximation: A Gradient Boosting Machine. Annals of Statistics, 29(5):1189-1232.
+Chen, T. and Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 785-794.
+}

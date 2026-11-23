@@ -35,3 +35,7 @@ pred <- predict(model, iris_bin)
 eval <- evaluate(model, adjust_class_label(iris_bin$IsVersicolor), pred)
 eval$metrics
 }
+\references{
+Nelder, J. A. and Wedderburn, R. W. M. (1972). Generalized Linear Models. Journal of the Royal Statistical Society, Series A, 135(3):370-384.
+Hosmer, D. W. and Lemeshow, S. (2000). Applied Logistic Regression (2nd ed.). Wiley.
+}

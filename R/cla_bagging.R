@@ -12,6 +12,8 @@
 #'  eval <- evaluate(model, adjust_class_label(iris$Species), pred)
 #'  eval$metrics
 #'}
+#'@references
+#' Breiman, L. (1996). Bagging predictors. Machine Learning, 24(2):123-140.
 #'@export
 cla_bagging <- function(attribute, nbagg = 25) {
   obj <- classification(attribute)
